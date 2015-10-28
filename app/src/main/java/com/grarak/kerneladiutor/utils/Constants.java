@@ -681,6 +681,18 @@ public interface Constants {
             {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POCKET_MODE, POWER_KEY_SUSPEND, WAKE_DT2W_TIMEBETWEENTAPS, WAKE_DT2W_FEATHERX,
                     WAKE_DT2W_FEATHERY, WAKE_VIB_STRENGTH, WAKE_ST2W_TIME }};
 
+    // LED
+    String LHC = "/sys/class/sec/led/led_highpower_current";
+    String LLC = "/sys/class/sec/led/led_lowpower_current";
+    String LNDO = "/sys/class/sec/led/led_notification_delay_on";
+    String LNDOFF = "/sys/class/sec/led/led_notification_delay_off";
+    String LNRC = "/sys/class/sec/led/led_notification_ramp_control";
+    String LNRU = "/sys/class/sec/led/led_notification_ramp_up";
+    String LNRD = "/sys/class/sec/led/led_notification_ramp_down";
+    String LP = "/sys/class/sec/led/led_pattern";
+
+    String[] LED_ARRAY = {LHC, LLC, LNDO, LNDOFF, LNRC, LNRU, LNRD, LP};
+
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
     String WCD_HIGHPERF_MODE_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/high_perf_mode";
