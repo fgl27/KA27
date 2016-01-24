@@ -44,8 +44,8 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        ksmInfoInit();
         ksmInit();
+        ksmInfoInit();
     }
 
     private void ksmInfoInit() {
