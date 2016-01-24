@@ -43,12 +43,21 @@ public class AboutusFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        ModififactionInit();
         licenseInit();
         appSourceInit();
         featureRequestInit();
         communityInit();
         translationInit();
     }
+
+    private void ModififactionInit() {
+            CardViewItem.DCardView mModificationCard = new CardViewItem.DCardView();
+            mModificationCard.setTitle(getString(R.string.modification));
+            mModificationCard.setDescription(getString(R.string.modification_summary));
+
+            addView(mModificationCard);
+        }
 
     private void licenseInit() {
         CardViewItem.DCardView mLicenseCard = new CardViewItem.DCardView();

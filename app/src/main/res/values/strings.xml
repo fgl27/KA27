@@ -760,4 +760,7 @@
     <string name="translation">Translation</string>
     <string name="translation_summary">Help me translate this app!</string>
 
+    <string name="modification">Modified for Singularity Kernel</string>
+    <string name="modification_summary">This application is being heavily modified for Singularity Kernel. Check it out in the downloads section!</string>
+
 </resources>
