@@ -41,6 +41,18 @@ public class KSM implements Constants {
         return Utils.existFile(getKsmFile(SLEEP_MILLISECONDS));
     }
 
+    public static void setCpuUse(int percent, Context context) {
+        Control.runCommand(String.valueOf(percent), getKsmFile(UKSM_CPU_USE), Control.CommandType.GENERIC, context);
+    }
+
+    public static int getCpuUse() {
+        return Utils.stringToInt(Utils.readFile(getKsmFile(UKSM_CPU_USE)));
+    }
+
+    public static boolean hasCpuUse() {
+        return Utils.existFile(getKsmFile(UKSM_CPU_USE));
+    }
+
     public static void setPagesToScan(int pages, Context context) {
         Control.runCommand(String.valueOf(pages), getKsmFile(PAGES_TO_SCAN), Control.CommandType.GENERIC, context);
     }

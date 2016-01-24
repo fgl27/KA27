@@ -664,6 +664,7 @@ public interface Constants {
     String DEFERRED_TIMER = "deferred_timer";
     String PAGES_TO_SCAN = "pages_to_scan";
     String SLEEP_MILLISECONDS = "sleep_millisecs";
+    String UKSM_CPU_USE = "max_cpu_percentage";
 
     String[] KSM_INFOS = {FULL_SCANS, PAGES_SHARED, PAGES_SHARING, PAGES_UNSHARED, PAGES_VOLATILE};
 
