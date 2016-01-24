@@ -542,6 +542,8 @@
     <!-- Misc Controls -->
     <string name="vibration_strength">Vibration Strength</string>
     <string name="android_logger">Android logging</string>
+    <string name="bcl">BCL</string>
+    <string name="bcl_summary">Enable or Disable BCL completely</string>
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30% of their performance.</string>
     <string name="fsync">Fsync</string>

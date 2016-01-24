@@ -290,6 +290,18 @@ public class Misc implements Constants {
             }
         return false;
     }
+    public static void activateBcl(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", BCL, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isBclActive() {
+        return Utils.readFile(BCL).equals("1");
+    }
+
+    public static boolean hasBcl() {
+        return Utils.existFile(BCL);
+    }
+    
 
     public static void activateCrc(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", CRC_FILE, Control.CommandType.GENERIC, context);
