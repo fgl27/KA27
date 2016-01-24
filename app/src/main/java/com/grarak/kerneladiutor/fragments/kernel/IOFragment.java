@@ -87,7 +87,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
         private PopupCardView.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
 
-        private SwitchCardView.DSwitchCard mRotationalCard;
+        private SwitchCardView.DSwitchCard mRotationalCard, mIOStatsCard;
 
         @Override
         public String getClassName() {
@@ -103,6 +103,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
             if (IO.hasExternalStorage())
                 externalStorageInit();
             if (IO.hasRotational()) RotationalInit();
+            if (IO.hasIOStats()) IOStatsInit();
         }
 
         private void internalStorageInit() {
@@ -191,6 +192,16 @@ public class IOFragment extends ViewPagerFragment implements Constants {
                 addView(mRotationalCard);
         }
 
+        private void IOStatsInit() {
+            mIOStatsCard = new SwitchCardView.DSwitchCard();
+            mIOStatsCard.setTitle(getString(R.string.iostats));
+            mIOStatsCard.setDescription(getString(R.string.iostats_summary));
+            mIOStatsCard.setChecked(IO.isIOStatsActive());
+            mIOStatsCard.setOnDSwitchCardListener(this);
+
+            addView(mIOStatsCard);
+        }
+
 
         @Override
         public void onClick(CardViewItem.DCardView dCardView) {
@@ -203,6 +214,8 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
             if (dSwitchCard == mRotationalCard)
                 IO.activaterotational(checked, getActivity());
+            else if (dSwitchCard == mIOStatsCard)
+                IO.activateIOstats(checked, getActivity());
         }
     }
 

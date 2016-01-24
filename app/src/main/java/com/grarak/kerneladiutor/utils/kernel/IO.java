@@ -107,4 +107,16 @@ public class IO implements Constants {
         return Utils.existFile(IO_ROTATIONAL);
      }
 
+    public static void activateIOstats (boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", IO_STATS, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isIOStatsActive() {
+        return Utils.readFile(IO_STATS).equals("1");
+    }
+
+    public static boolean hasIOStats () {
+        return Utils.existFile(IO_STATS);
+    }
+
 }
