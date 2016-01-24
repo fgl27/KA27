@@ -109,6 +109,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
 
             mCpuUseCard = new SeekBarCardView.DSeekBarCard(list);
             mCpuUseCard.setTitle(getString(R.string.uksm_cpu_use));
+            mCpuUseCard.setDescription(getString(R.string.uksm_cpu_use_summary));
             mCpuUseCard.setProgress(KSM.getCpuUse());
             mCpuUseCard.setOnDSeekBarCardListener(this);
 
