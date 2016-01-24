@@ -111,6 +111,18 @@ public class GPU implements Constants {
         return Utils.existFile(SIMPLE_GPU_PARAMETERS);
     }
 
+    public static void activateGamingMode(boolean active, Context context) {
+         Control.runCommand(active ? "0" : "8", GPU_MIN_POWER_LEVEL, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isGamingModeActive() {
+           return Utils.readFile(GPU_MIN_POWER_LEVEL).equals("0");
+    }
+
+    public static boolean hasGPUMinPowerLevel() {
+            return Utils.existFile(GPU_MIN_POWER_LEVEL);
+    }
+
     public static void setGpu2dGovernor(String governor, Context context) {
         if (GPU_2D_SCALING_GOVERNOR != null)
             Control.runCommand(governor, GPU_2D_SCALING_GOVERNOR, Control.CommandType.GENERIC, context);

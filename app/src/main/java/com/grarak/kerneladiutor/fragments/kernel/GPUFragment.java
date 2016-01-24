@@ -45,6 +45,8 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 
     private PopupCardView.DPopupCard m2dGovernorCard, mGovernorCard;
 
+    private SwitchCardView.DSwitchCard mGamingModeGpuCard;
+
     private SwitchCardView.DSwitchCard mSimpleGpuCard;
     private SeekBarCardView.DSeekBarCard mSimpleGpuLazinessCard, mSimpleGpuRampThresoldCard;
 
@@ -59,6 +61,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
         maxFreqInit();
         minFreqInit();
         governorInit();
+        if (GPU.hasGPUMinPowerLevel()) gamingmodeInit();
         if (GPU.hasSimpleGpu()) simpleGpuInit();
         if (GPU.hasAdrenoIdler()) adrenoIdlerInit();
     }
@@ -146,6 +149,20 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             addView(mGovernorCard);
         }
     }
+
+    private void gamingmodeInit() {
+        if (GPU.hasGPUMinPowerLevel()) {
+            mGamingModeGpuCard = new SwitchCardView.DSwitchCard();
+            mGamingModeGpuCard.setTitle(getString(R.string.gpu_gaming_mode));
+            mGamingModeGpuCard.setDescription(getString(R.string.gpu_gaming_mode_summary));
+            mGamingModeGpuCard.setChecked(GPU.isGamingModeActive());
+            mGamingModeGpuCard.setOnDSwitchCardListener(this);
+
+            addView(mGamingModeGpuCard);
+        }
+    }
+
+
 
     private void simpleGpuInit() {
         DDivider mSimpleGpuDividerCard = new DDivider();
@@ -249,6 +266,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSimpleGpuCard) GPU.activateSimpleGpu(checked, getActivity());
         else if (dSwitchCard == mAdrenoIdlerCard) GPU.activateAdrenoIdler(checked, getActivity());
+        else if (dSwitchCard == mGamingModeGpuCard) GPU.activateGamingMode(checked, getActivity());
     }
 
     @Override
