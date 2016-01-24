@@ -94,4 +94,17 @@ public class IO implements Constants {
                 || Utils.existFile(IO_EXTERNAL_SCHEDULER);
     }
 
+
+     public static void activaterotational (boolean active, Context context) {
+                Control.runCommand(active ? "1" : "0", IO_ROTATIONAL, Control.CommandType.GENERIC, context);
+     }
+
+     public static boolean isRotationalActive() {
+        return Utils.readFile(IO_ROTATIONAL).equals("1");
+     }
+
+     public static boolean hasRotational () {
+        return Utils.existFile(IO_ROTATIONAL);
+     }
+
 }

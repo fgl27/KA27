@@ -23,6 +23,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
+import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.PathReaderFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
@@ -32,6 +33,7 @@ import com.grarak.kerneladiutor.utils.kernel.IO;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by willi on 11.04.15.
@@ -75,7 +77,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     }
 
     public static class IOPart extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
-            CardViewItem.DCardView.OnDCardListener {
+            CardViewItem.DCardView.OnDCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
         private final List<String> readheads = new ArrayList<>();
 
@@ -84,6 +86,8 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         private CardViewItem.DCardView mInternalTunableCard, mExternalTunableCard;
 
         private PopupCardView.DPopupCard mInternalReadAheadCard, mExternalReadAheadCard;
+
+        private SwitchCardView.DSwitchCard mRotationalCard;
 
         @Override
         public String getClassName() {
@@ -98,6 +102,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
             internalStorageInit();
             if (IO.hasExternalStorage())
                 externalStorageInit();
+            if (IO.hasRotational()) RotationalInit();
         }
 
         private void internalStorageInit() {
@@ -176,6 +181,17 @@ public class IOFragment extends ViewPagerFragment implements Constants {
                         .replace(getString(R.string.kb), "")), getActivity());
         }
 
+        private void RotationalInit() {
+                mRotationalCard = new SwitchCardView.DSwitchCard();
+                mRotationalCard.setTitle(getString(R.string.rotational));
+                mRotationalCard.setDescription(getString(R.string.rotational_summary));
+                mRotationalCard.setChecked(IO.isRotationalActive());
+                mRotationalCard.setOnDSwitchCardListener(this);
+
+                addView(mRotationalCard);
+        }
+
+
         @Override
         public void onClick(CardViewItem.DCardView dCardView) {
             ioFragment.storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
@@ -183,6 +199,11 @@ public class IOFragment extends ViewPagerFragment implements Constants {
             ioFragment.setCurrentItem(1);
         }
 
+        @Override
+        public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+            if (dSwitchCard == mRotationalCard)
+                IO.activaterotational(checked, getActivity());
+        }
     }
 
     public static class SchedulerPart extends PathReaderFragment {
