@@ -649,7 +649,7 @@ public interface Constants {
     String IO_INTERNAL_READ_AHEAD = "/sys/block/mmcblk0/queue/read_ahead_kb";
     String IO_EXTERNAL_READ_AHEAD = "/sys/block/mmcblk1/queue/read_ahead_kb";
 
-    String IO_ROTATIONAL = "/sys/block/mmcblk0/queue/add_random";
+    String IO_ROTATIONAL = "/sys/block/mmcblk0/queue/rotational";
     String IO_STATS = "/sys/block/mmcblk0/queue/iostats";
     String IO_RANDOM = "/sys/block/mmcblk0/queue/add_random";
     String IO_AFFINITY = "/sys/block/mmcblk0/queue/rq_affinity";
