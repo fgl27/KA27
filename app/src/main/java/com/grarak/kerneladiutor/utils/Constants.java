@@ -766,6 +766,12 @@ public interface Constants {
     String POWER_SUSPEND_STATE = POWER_SUSPEND + "/power_suspend_state";
     String POWER_SUSPEND_VERSION = POWER_SUSPEND + "/power_suspend_version";
 
+    // C-States
+    String C0STATE = "/sys/module/msm_pm/modes/cpu0/wfi/idle_enabled";
+    String C1STATE = "/sys/module/msm_pm/modes/cpu0/retention/idle_enabled";
+    String C2STATE = "/sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled";
+    String C3STATE = "/sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled";
+
     // Network
     String TCP_AVAILABLE_CONGESTIONS = "/proc/sys/net/ipv4/tcp_available_congestion_control";
     String HOSTNAME_KEY = "net.hostname";

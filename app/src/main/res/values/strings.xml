@@ -583,6 +583,15 @@
     <string name="wlan_wakelock_summary">Prevent wlan wakelock.</string>
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
+    <string name="cstates">Krait C-States Settings</string>
+    <string name="c0state">C0 (WFI)</string>
+    <string name="c0state_summary">Shallowest Sleep with instant wake up.</string>
+    <string name="c1state">C1 (Retention)</string>
+    <string name="c1state_summary">Slightly deeper sleep with slight latency when waking up. (Disable this if you encounter screen flickering)</string>
+    <string name="c2state">C2 (Stand Alone Power Collapse)</string>
+    <string name="c2state_summary">Deeper sleep with longer latency when waking up.</string>
+    <string name="c3state">C3 (Power Collapse)</string>
+    <string name="c3state_summary">Really deep sleep with longest latency when waking up.</string>
 
     <!-- Plugins -->
     <string name="plugin_warning">I, the creator of this application, am not responsible for any damages that third party apps produce! I also can\'t guarantee for the functionality of them. Please be careful which applications you download!</string>
