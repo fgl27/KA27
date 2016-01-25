@@ -94,7 +94,6 @@ public class IO implements Constants {
                 || Utils.existFile(IO_EXTERNAL_SCHEDULER);
     }
 
-
      public static void activaterotational (boolean active, Context context) {
          Control.runCommand(active ? "1" : "0", IO_ROTATIONAL, Control.CommandType.GENERIC, context);
      }
@@ -129,6 +128,19 @@ public class IO implements Constants {
 
     public static boolean hasIOStats () {
         return Utils.existFile(IO_STATS);
+    }
+
+    public static boolean hasIOAffinity() {
+        return Utils.existFile(IO_AFFINITY);
+    }
+
+    public static int getIOAffinity () {
+        String value = Utils.readFile(IO_AFFINITY);
+        return Utils.stringToInt(value);
+    }
+
+    public static void setIOAffinity(int value, Context context) {
+        Control.runCommand(String.valueOf(value), IO_AFFINITY, Control.CommandType.GENERIC, context);
     }
 
 }
