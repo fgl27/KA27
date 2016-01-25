@@ -171,32 +171,14 @@ public class IOFragment extends ViewPagerFragment implements Constants {
             addView(mExternalReadAheadCard);
         }
 
-        @Override
-        public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-            if (dPopupCard == mInternalSchedulerCard)
-                IO.setScheduler(IO.StorageType.INTERNAL, IO.getSchedulers(IO.StorageType.INTERNAL)
-                        .get(position), getActivity());
-            else if (dPopupCard == mExternalSchedulerCard)
-                IO.setScheduler(IO.StorageType.EXTERNAL, IO.getSchedulers(IO.StorageType.EXTERNAL)
-                        .get(position), getActivity());
-            else if (dPopupCard == mInternalReadAheadCard)
-                IO.setReadahead(IO.StorageType.INTERNAL, Utils.stringToInt(readheads.get(position)
-                        .replace(getString(R.string.kb), "")), getActivity());
-            else if (dPopupCard == mExternalReadAheadCard)
-                IO.setReadahead(IO.StorageType.EXTERNAL, Utils.stringToInt(readheads.get(position)
-                        .replace(getString(R.string.kb), "")), getActivity());
-            else if (dPopupCard == mIOAffinityCard)
-                IO.setIOAffinity(position, getActivity());
-        }
-
         private void RotationalInit() {
-                mRotationalCard = new SwitchCardView.DSwitchCard();
-                mRotationalCard.setTitle(getString(R.string.rotational));
-                mRotationalCard.setDescription(getString(R.string.rotational_summary));
-                mRotationalCard.setChecked(IO.isRotationalActive());
-                mRotationalCard.setOnDSwitchCardListener(this);
+            mRotationalCard = new SwitchCardView.DSwitchCard();
+            mRotationalCard.setTitle(getString(R.string.rotational));
+            mRotationalCard.setDescription(getString(R.string.rotational_summary));
+            mRotationalCard.setChecked(IO.isRotationalActive());
+            mRotationalCard.setOnDSwitchCardListener(this);
 
-                addView(mRotationalCard);
+            addView(mRotationalCard);
         }
 
         private void IORandomInit() {
@@ -220,20 +202,37 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         }
 
         private void IOAffintyInit() {
-                List<String> list = new ArrayList<>();
-                for (int i = 0; i < 3; i++) list.add(String.valueOf(i));
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 3; i++) list.add(String.valueOf(i));
 
 
-                mIOAffinityCard = new PopupCardView.DPopupCard(list);
-                mIOAffinityCard.setTitle(getString(R.string.ioaffitiny));
-                mIOAffinityCard.setDescription(getString(R.string.ioraffinity_summary));
-                mIOAffinityCard.setItem(IO.getIOAffinity());
-                mIOAffinityCard.setOnDPopupCardListener(this);
+            mIOAffinityCard = new PopupCardView.DPopupCard(list);
+            mIOAffinityCard.setTitle(getString(R.string.ioaffitiny));
+            mIOAffinityCard.setDescription(getString(R.string.ioraffinity_summary));
+            mIOAffinityCard.setItem(IO.getIOAffinity());
+            mIOAffinityCard.setOnDPopupCardListener(this);
 
-                addView(mIOAffinityCard);
+            addView(mIOAffinityCard);
         }
 
-
+        @Override
+        public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
+            if (dPopupCard == mInternalSchedulerCard)
+                IO.setScheduler(IO.StorageType.INTERNAL, IO.getSchedulers(IO.StorageType.INTERNAL)
+                        .get(position), getActivity());
+            else if (dPopupCard == mExternalSchedulerCard)
+                IO.setScheduler(IO.StorageType.EXTERNAL, IO.getSchedulers(IO.StorageType.EXTERNAL)
+                        .get(position), getActivity());
+            else if (dPopupCard == mInternalReadAheadCard)
+                IO.setReadahead(IO.StorageType.INTERNAL, Utils.stringToInt(readheads.get(position)
+                        .replace(getString(R.string.kb), "")), getActivity());
+            else if (dPopupCard == mExternalReadAheadCard)
+                IO.setReadahead(IO.StorageType.EXTERNAL, Utils.stringToInt(readheads.get(position)
+                        .replace(getString(R.string.kb), "")), getActivity());
+            else if (dPopupCard == mIOAffinityCard)
+                IO.setIOAffinity(position, getActivity());
+        }
+        
     @Override
     public void onClick(CardViewItem.DCardView dCardView) {
             ioFragment.storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
