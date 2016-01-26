@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -144,6 +145,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateAutoSmp(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("AutoSMP", context);
     }
 
     public static boolean isAutoSmpActive() {
@@ -185,6 +187,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateZenDecision(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("ZenDecision", context);
     }
 
     public static boolean isZenDecisionActive() {
@@ -201,7 +204,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateThunderPlugTouchBoost(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", HOTPLUG_THUNDER_PLUG_TOUCH_BOOST, Control.CommandType.GENERIC, context);
-    }
+      }
 
     public static boolean isThunderPlugTouchBoostActive() {
         return Utils.readFile(HOTPLUG_THUNDER_PLUG_TOUCH_BOOST).equals("1");
@@ -261,6 +264,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateThunderPlug(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("ThunderPlug", context);
     }
 
     public static boolean isThunderPlugActive() {
@@ -373,6 +377,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateAlucardHotplug(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("AlucardHotplug", context);
     }
 
     public static boolean isAlucardHotplugActive() {
@@ -544,6 +549,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateMBHotplug(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", MB_HOTPLUG_FILE + "/" + MB_ENABLED, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("MBHotplug", context);
     }
 
     public static boolean isMBHotplugActive() {
@@ -693,6 +699,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateMakoHotplug(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", MAKO_HOTPLUG_ENABLED, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("MakoHotPlug", context);
     }
 
     public static boolean isMakoHotplugActive() {
@@ -914,6 +921,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateMsmHotplug(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", MSM_HOTPLUG_ENABLE_FILE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("MSMHotPlug", context);
     }
 
     public static boolean isMsmHotplugActive() {
@@ -1032,6 +1040,7 @@ public class CPUHotplug implements Constants {
 
     public static void activateBluPlug(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", HOTPLUG_BLU_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("BluPlug", context);
     }
 
     public static boolean isBluPlugActive() {
@@ -1306,6 +1315,7 @@ public class CPUHotplug implements Constants {
         String file = HOTPLUG_INTELLI_PLUG_ENABLE;
         if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
         Control.runCommand(active ? "1" : "0", file, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("IntelliPlug", context);
     }
 
     public static boolean isIntelliPlugActive() {
@@ -1317,7 +1327,7 @@ public class CPUHotplug implements Constants {
     public static boolean hasIntelliPlugEnable() {
         String file = HOTPLUG_INTELLI_PLUG_ENABLE;
         if (TYPE == INTELLIPLUG_TYPE.INTELLIPLUG_5) file = HOTPLUG_INTELLI_PLUG_5_ENABLE;
-        return Utils.existFile(file);
+        return Utils.readFile(file).equals("1");
     }
 
     public static boolean hasIntelliPlug() {
@@ -1328,7 +1338,10 @@ public class CPUHotplug implements Constants {
     }
 
     public static void activateMpdecision(boolean active, Context context) {
-        if (active) Control.startService(HOTPLUG_MPDEC, context);
+        if (active) {
+            Control.startService(HOTPLUG_MPDEC, context);
+            togglehotplugs("MPDecision", context);
+        }
         else {
             Control.stopService(HOTPLUG_MPDEC, context);
             CPU.onlineAllCores(context);
@@ -1348,6 +1361,26 @@ public class CPUHotplug implements Constants {
         for (String[] array : CPU_HOTPLUG_ARRAY)
             for (String file : array) if (Utils.existFile(file)) return true;
         return false;
+    }
+
+    public static void togglehotplugs (String activehotplug, Context context){
+        if (CPUHotplug.isMpdecisionActive() && !activehotplug.equals("MPDecision") ) {
+            if (isMpdecisionActive()) {
+                Control.stopService(HOTPLUG_MPDEC, context);
+                CPU.onlineAllCores(context);
+            }
+        }
+        if (CPUHotplug.isAutoSmpActive() && !activehotplug.equals("AutoSMP") ) Control.runCommand("N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isThunderPlugActive() && !activehotplug.equals("ThunderPlug")) Control.runCommand("0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isAlucardHotplugActive() && !activehotplug.equals("AlucardHotplug")) Control.runCommand("0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isBluPlugActive() && !activehotplug.equals("MBHotplug")) Control.runCommand("0", MB_HOTPLUG_FILE + "/" + MB_ENABLED, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isMakoHotplugActive() && !activehotplug.equals("MakoHotPlug")) Control.runCommand("0", MAKO_HOTPLUG_ENABLED, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isBluPlugActive() && !activehotplug.equals("BluPlug")) Control.runCommand("0", HOTPLUG_BLU_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isIntelliPlugActive() && !activehotplug.equals("IntelliPlug")) {
+            if (Utils.existFile(HOTPLUG_INTELLI_PLUG_ENABLE)) Control.runCommand("0", HOTPLUG_INTELLI_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+            if (Utils.existFile(HOTPLUG_INTELLI_PLUG_5_ENABLE)) Control.runCommand("0", HOTPLUG_INTELLI_PLUG_5_ENABLE, Control.CommandType.GENERIC, context);
+        }
+        if (CPUHotplug.isZenDecisionActive() && !activehotplug.equals("ZenDecision")) Control.runCommand("0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
     }
 
 }
