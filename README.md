@@ -94,6 +94,8 @@ _(Many sys interface paths has been taken from his [UKM-Project](https://github.
 
 tips to build my machine
 do this cmd first
+
+
 export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
 
 local.properties
