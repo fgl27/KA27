@@ -47,6 +47,7 @@
     <string name="min">min</string>
     <string name="sec">sec</string>
     <string name="ma">mA</string>
+    <string name="pixel">px</string>
 
     <!-- Special signs -->
     <string name="minus" translatable="false">-</string>
@@ -477,6 +478,10 @@
     <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
     <string name="wake_dt2w_timebetweentaps">DoubleTap2Wake TimeOut</string>
     <string name="wake_dt2w_timebetweentaps_summary">Used to control the time that touches have to occur within to register as a DT2W event. Default was traditionally 500ms</string>
+    <string name="wake_dt2w_featherx">DoubleTap2Wake Feather (X axis)</string>
+    <string name="wake_dt2w_featherx_summary">Used to control the allowed distance between tap #1 and tap #2 along the X axis. This may help with unintentional wakes quite a bit. Default was traditionally 150.</string>
+    <string name="wake_dt2w_feathery">DoubleTap2Wake Feather (Y axis)</string>
+    <string name="wake_dt2w_feathery_summary">Used to control the allowed distance between tap #1 and tap #2 along the Y axis. This may help with unintentional wakes quite a bit. Default was traditionally 150.</string>
 
 
     <!-- Sound -->

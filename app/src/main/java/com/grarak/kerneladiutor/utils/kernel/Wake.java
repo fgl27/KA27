@@ -77,6 +77,32 @@ public class Wake implements Constants {
         return Utils.stringToInt(Utils.readFile(WAKE_DT2W_TIMEBETWEENTAPS));
     }
 
+    public static int getDT2WFeatherX() {
+        return Utils.stringToInt(Utils.readFile(WAKE_DT2W_FEATHERX));
+    }
+
+    public static boolean hasDT2WFeatherX() {
+        if (Utils.existFile(WAKE_DT2W_FEATHERX)) return true;
+        return false;
+    }
+
+    public static void setDT2WFeatherX(int value, Context context) {
+        Control.runCommand(String.valueOf(value), WAKE_DT2W_FEATHERX, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDT2WFeatherY() {
+        return Utils.stringToInt(Utils.readFile(WAKE_DT2W_FEATHERY));
+    }
+
+    public static boolean hasDT2WFeatherY() {
+        if (Utils.existFile(WAKE_DT2W_FEATHERY)) return true;
+        return false;
+    }
+
+    public static void setDT2WFeatherY(int value, Context context) {
+        Control.runCommand(String.valueOf(value), WAKE_DT2W_FEATHERY, Control.CommandType.GENERIC, context);
+    }
+
     public static boolean hasWakeTimeout() {
         for (String file : WAKE_TIMEOUT_ARRAY)
             if (Utils.existFile(file)) {

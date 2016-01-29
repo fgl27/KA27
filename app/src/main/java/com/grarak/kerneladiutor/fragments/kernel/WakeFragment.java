@@ -46,7 +46,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mCameraGestureCard;
     private SwitchCardView.DSwitchCard mPocketModeCard;
 
-    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard, mDT2WTimeBetweenTapsCard;
+    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard, mDT2WTimeBetweenTapsCard, mDT2WFeatherXCard, mDT2WFeatherYCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
 
     @Override
@@ -66,6 +66,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
         if (Wake.hasDT2WTimeBetweenTaps()) DT2WTimeBetweenTapsInit();
+        if (Wake.hasDT2WFeatherX()) DT2WFeatherXInit();
+        if (Wake.hasDT2WFeatherY()) DT2WFeatherYInit();
     }
 
     private void dt2wInit() {
@@ -210,6 +212,38 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     }
 
+    private void DT2WFeatherXInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 1; i <= 500; i++)
+            list.add(i + getString(R.string.pixel));
+
+        mDT2WFeatherXCard = new SeekBarCardView.DSeekBarCard(list);
+        mDT2WFeatherXCard.setTitle(getString(R.string.wake_dt2w_featherx));
+        mDT2WFeatherXCard.setDescription(getString(R.string.wake_dt2w_featherx_summary));
+        mDT2WFeatherXCard.setProgress(Wake.getDT2WFeatherX() - 1);
+        mDT2WFeatherXCard.setOnDSeekBarCardListener(this);
+
+        addView(mDT2WFeatherXCard);
+
+
+    }
+
+    private void DT2WFeatherYInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 1; i <= 500; i++)
+            list.add(i + getString(R.string.pixel));
+
+        mDT2WFeatherYCard = new SeekBarCardView.DSeekBarCard(list);
+        mDT2WFeatherYCard.setTitle(getString(R.string.wake_dt2w_feathery));
+        mDT2WFeatherYCard.setDescription(getString(R.string.wake_dt2w_feathery_summary));
+        mDT2WFeatherYCard.setProgress(Wake.getDT2WFeatherY() - 1);
+        mDT2WFeatherYCard.setOnDSeekBarCardListener(this);
+
+        addView(mDT2WFeatherYCard);
+
+
+    }
+
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
@@ -228,6 +262,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
         else if (dSeekBarCard == mDT2WTimeBetweenTapsCard) Wake.setDT2WTimeBetweenTaps(position + 25, getActivity());
+        else if (dSeekBarCard == mDT2WFeatherXCard) Wake.setDT2WFeatherX(position + 1, getActivity());
+        else if (dSeekBarCard == mDT2WFeatherYCard) Wake.setDT2WFeatherY(position + 1, getActivity());
     }
 
     @Override
