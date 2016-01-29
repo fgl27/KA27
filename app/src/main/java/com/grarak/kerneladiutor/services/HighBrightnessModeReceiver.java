@@ -16,25 +16,16 @@
 
 package com.grarak.kerneladiutor.services;
 
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.kerneladiutor.library.root.RootUtils;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import cyanogenmod.app.CMStatusBarManager;
-import cyanogenmod.app.CustomTile;
 
 /**
  * Created by willi on 09.08.15.
