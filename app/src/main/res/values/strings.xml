@@ -534,6 +534,16 @@
     <string name="zram">Z-RAM</string>
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>
+    <string name="dirty_ratio_summary">Contains, as a % of total system memory, the number of pages at which a process which is generating disk writes will itself start writing out dirty data. Lower the amount of unwritten write cache to reduce lags when a huge write is required. (Values: 1-100)</string>
+    <string name="dirty_background_ratio_summary">Contains, as a % of total system memory, the number of pages at which the pdflush background writeback daemon will start writing out dirty data. (Values: 1-100)"</string>
+    <string name="dirty_expire_centisecs_summary">This tunable is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads.  It is expressed in 100\'ths of a second.  Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up. (Values: 10-5000)</string>
+    <string name="dirty_writeback_centisecs_summary">The kernel flusher threads will periodically wake up and write old data out to disk.  This tunable expresses the interval between those wakeups, in 100\'ths of a second.  Setting this to zero disables periodic writeback altogether. (Values: 0-9000)</string>
+    <string name="min_free_kbytes_summary">This is used to force the Linux VM to keep a minimum number of kilobytes free. The VM uses this number to compute a pages_min value for each lowmem zone in the system. Each lowmem zone gets a number of reserved free pages based proportionally on its size(Recommend leaving this at 0)</string>
+    <string name="overcommit_ratio_summary">Percentage of physical memory size to include in overcommit calculations. (Values: 0 - 100)</string>
+    <string name="swappiness_summary">Controls the tendency of the kernel to move processes out of physical memory and onto the swap disk. Because disks are much slower than RAM, this can lead to slower response times for system and applications if processes are too aggressively moved out of memory. (Values: 0-100)</string>
+    <string name="vfs_cache_pressure_summary">"Controls the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects. (Values: 1 - 150)</string>
+    <string name="laptop_mode_summary">This option will delay the writebacks of file system bits cached in RAM while screen is ON (Enable for better performance @ slight risk of possible data loss if crashed or sudden loss of power). (Values: 0 or 1)</string>
+    <string name="extra_free_kbytes_summary">This parameter tells the VM to keep extra free memory between the threshold where background reclaim (kswapd) kicks in, and the threshold where direct reclaim (by allocating processes) kicks in.</string>
 
     <!-- Entropy -->
     <string name="available">Available</string>
