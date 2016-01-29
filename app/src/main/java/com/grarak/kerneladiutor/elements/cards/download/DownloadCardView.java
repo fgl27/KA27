@@ -146,7 +146,7 @@ public class DownloadCardView extends BaseCardView {
                 alertDialog.dismiss();
             }
         //}, Environment.getExternalStorageDirectory().toString() + "/KernelAdiutor/download.zip");
-        }, "/data/data/com.grarak.kerneladiutor/files/KernelAdiutor/download.zip");
+        }, "/data/data/com.singularity.kerneladiutor/files/download.zip");
         downloadTask.execute(link);
 
         cancelButton.setOnClickListener(new OnClickListener() {
@@ -209,9 +209,9 @@ public class DownloadCardView extends BaseCardView {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (installMethod != null) {
                                         RootUtils.runCommand(installMethod.replace("$FILE",
-                                                "/data/data/com.grarak.kerneladiutor/files/KernelAdiutor/download.zip"));
+                                                "/data/data/com.singularity.kerneladiutor/files/download.zip"));
                                         RootUtils.runCommand("rm -f " +
-                                                "/data/data/com.grarak.kerneladiutor/files/KernelAdiutor/download.zip");
+                                                "/data/data/com.singularity.kerneladiutor/files/download.zip");
                                         RootUtils.runCommand("reboot");
                                     } else {
                                         final Recovery recovery =
