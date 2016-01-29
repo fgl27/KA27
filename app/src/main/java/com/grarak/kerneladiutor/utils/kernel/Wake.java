@@ -171,7 +171,9 @@ public class Wake implements Constants {
             list.add(context.getString(R.string.disabled));
             switch (SLEEP_MISC_FILE) {
                 case S2S:
-                    list.add(context.getString(R.string.s2s));
+                    list.add(context.getString(R.string.s2s_right));
+                    list.add(context.getString(R.string.s2s_left));
+                    list.add(context.getString(R.string.s2s_any));
                     break;
                 case SCREEN_SLEEP_OPTIONS:
                     list.add(context.getString(R.string.dt2s));
