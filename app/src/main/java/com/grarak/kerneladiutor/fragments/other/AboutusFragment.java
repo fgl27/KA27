@@ -44,6 +44,7 @@ public class AboutusFragment extends RecyclerViewFragment {
         super.init(savedInstanceState);
 
         ModififactionInit();
+        ModififactionVersionInit();
         licenseInit();
         appSourceInit();
         featureRequestInit();
@@ -58,6 +59,14 @@ public class AboutusFragment extends RecyclerViewFragment {
 
             addView(mModificationCard);
         }
+
+    private void ModififactionVersionInit() {
+        CardViewItem.DCardView mModificationVersionCard = new CardViewItem.DCardView();
+        mModificationVersionCard.setTitle(getString(R.string.modification_version));
+        mModificationVersionCard.setDescription(getString(R.string.modification_version_number));
+
+        addView(mModificationVersionCard);
+    }
 
     private void licenseInit() {
         CardViewItem.DCardView mLicenseCard = new CardViewItem.DCardView();
