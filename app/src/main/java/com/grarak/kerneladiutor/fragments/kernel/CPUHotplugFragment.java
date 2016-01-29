@@ -159,6 +159,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
         if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
         if (CPUHotplug.hasAutoSmp()) autoSmpInit();
+        tunablesInit();
     }
 
     private void mpdecisionInit() {
@@ -172,9 +173,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void intelliPlugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
         if (CPUHotplug.hasIntelliPlug()) {
             mIntelliPlugCard = new SwitchCardView.DSwitchCard();
             mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
@@ -182,9 +180,117 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             mIntelliPlugCard.setChecked(CPUHotplug.isIntelliPlugActive());
             mIntelliPlugCard.setOnDSwitchCardListener(this);
 
-            views.add(mIntelliPlugCard);
+            addView(mIntelliPlugCard);
         }
+
+    }
+
+    private void bluPlugInit() {
+        if (CPUHotplug.hasBluPlugEnable()) {
+            mBluPlugCard = new SwitchCardView.DSwitchCard();
+            mBluPlugCard.setTitle(getString(R.string.blu_plug));
+            mBluPlugCard.setDescription(getString(R.string.blu_plug_summary));
+            mBluPlugCard.setChecked(CPUHotplug.isBluPlugActive());
+            mBluPlugCard.setOnDSwitchCardListener(this);
+
+            addView(mBluPlugCard);
+        }
+    }
+
+    private void msmHotplugInit() {
+        if (CPUHotplug.hasMsmHotplugEnable()) {
+            mMsmHotplugEnabledCard = new SwitchCardView.DSwitchCard();
+            mMsmHotplugEnabledCard.setTitle(getString(R.string.msm_hotplug));
+            mMsmHotplugEnabledCard.setDescription(getString(R.string.msm_hotplug_summary));
+            mMsmHotplugEnabledCard.setChecked(CPUHotplug.isMsmHotplugActive());
+            mMsmHotplugEnabledCard.setOnDSwitchCardListener(this);
+
+            addView(mMsmHotplugEnabledCard);
+        }
+    }
+
+    private void makoHotplugInit() {
+       if (CPUHotplug.hasMakoHotplugEnable()) {
+            mMakoHotplugEnableCard = new SwitchCardView.DSwitchCard();
+            mMakoHotplugEnableCard.setTitle(getString(R.string.mako_hotplug));
+            mMakoHotplugEnableCard.setDescription(getString(R.string.mako_hotplug_summary));
+            mMakoHotplugEnableCard.setChecked(CPUHotplug.isMakoHotplugActive());
+            mMakoHotplugEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mMakoHotplugEnableCard);
+        }
+    }
+
+    private void mbHotplugInit() {
+        if (CPUHotplug.hasMBGHotplugEnable()) {
+            mMBHotplugEnableCard = new SwitchCardView.DSwitchCard();
+            mMBHotplugEnableCard.setTitle(CPUHotplug.getMBName(getActivity()));
+            mMBHotplugEnableCard.setDescription(getString(R.string.mb_hotplug_summary));
+            mMBHotplugEnableCard.setChecked(CPUHotplug.isMBHotplugActive());
+            mMBHotplugEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mMBHotplugEnableCard);
+        }
+    }
+
+    private void alucardHotplugInit() {
+        if (CPUHotplug.hasAlucardHotplugEnable()) {
+            mAlucardHotplugEnableCard = new SwitchCardView.DSwitchCard();
+            mAlucardHotplugEnableCard.setTitle(getString(R.string.alucard_hotplug));
+            mAlucardHotplugEnableCard.setDescription(getString(R.string.alucard_hotplug_summary));
+            mAlucardHotplugEnableCard.setChecked(CPUHotplug.isAlucardHotplugActive());
+            mAlucardHotplugEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mAlucardHotplugEnableCard);
+        }
+    }
+
+    private void thunderPlugInit() {
+        if (CPUHotplug.hasThunderPlugEnable()) {
+            mThunderPlugEnableCard = new SwitchCardView.DSwitchCard();
+            mThunderPlugEnableCard.setTitle(getString(R.string.thunderplug));
+            mThunderPlugEnableCard.setDescription(getString(R.string.thunderplug_summary));
+            mThunderPlugEnableCard.setChecked(CPUHotplug.isThunderPlugActive());
+            mThunderPlugEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mThunderPlugEnableCard);
+        }
+    }
+
+    private void zenDecisionInit() {
+        if (CPUHotplug.hasZenDecisionEnable()) {
+            mZenDecisionEnableCard = new SwitchCardView.DSwitchCard();
+            mZenDecisionEnableCard.setTitle(getString(R.string.zen_decision));
+            mZenDecisionEnableCard.setDescription(getString(R.string.zen_decision_summary));
+            mZenDecisionEnableCard.setChecked(CPUHotplug.isZenDecisionActive());
+            mZenDecisionEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mZenDecisionEnableCard);
+        }
+    }
+
+    private void autoSmpInit() {
+        if (CPUHotplug.hasAutoSmpEnable()) {
+            mAutoSmpEnableCard = new SwitchCardView.DSwitchCard();
+            mAutoSmpEnableCard.setTitle(getString(R.string.autosmp));
+            mAutoSmpEnableCard.setDescription(getString(R.string.autosmp_summary));
+            mAutoSmpEnableCard.setChecked(CPUHotplug.isAutoSmpActive());
+            mAutoSmpEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mAutoSmpEnableCard);
+        }
+    }
+
+    private void tunablesInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+        views.clear();
+
         if (CPUHotplug.hasIntelliPlugEnable()) {
+
+            DDivider mIntelliPlugDividerCard = new DDivider();
+            mIntelliPlugDividerCard.setText(getString(R.string.intelliplug));
+            views.add(mIntelliPlugDividerCard);
+
             if (CPUHotplug.hasIntelliPlugProfile()) {
                 mIntelliPlugProfileCard = new PopupCardView.DPopupCard(CPUHotplug.getIntelliPlugProfileMenu(getActivity()));
                 mIntelliPlugProfileCard.setTitle(getString(R.string.profile));
@@ -402,30 +508,12 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 views.add(mIntelliPlugFShiftCard);
             }
         }
-        if (views.size() > 0) {
-            DDivider mIntelliPlugDividerCard = new DDivider();
-            mIntelliPlugDividerCard.setText(getString(R.string.intelliplug));
-            addView(mIntelliPlugDividerCard);
-
-            addAllViews(views);
-        }
-
-    }
-
-    private void bluPlugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-
-        if (CPUHotplug.hasBluPlugEnable()) {
-            mBluPlugCard = new SwitchCardView.DSwitchCard();
-            mBluPlugCard.setTitle(getString(R.string.blu_plug));
-            mBluPlugCard.setDescription(getString(R.string.blu_plug_summary));
-            mBluPlugCard.setChecked(CPUHotplug.isBluPlugActive());
-            mBluPlugCard.setOnDSwitchCardListener(this);
-
-            views.add(mBluPlugCard);
-        }
 
         if (CPUHotplug.isBluPlugActive()) {
+            DDivider mBluPlugDividerCard = new DDivider();
+            mBluPlugDividerCard.setText(getString(R.string.blu_plug));
+            views.add(mBluPlugDividerCard);
+
             if (CPUHotplug.hasBluPlugPowersaverMode()) {
                 mBluPlugPowersaverModeCard = new SwitchCardView.DSwitchCard();
                 mBluPlugPowersaverModeCard.setTitle(getString(R.string.powersaver_mode));
@@ -536,30 +624,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
-        if (views.size() > 0) {
-            DDivider mBluPlugDividerCard = new DDivider();
-            mBluPlugDividerCard.setText(getString(R.string.blu_plug));
-
-            addView(mBluPlugDividerCard);
-            addAllViews(views);
-        }
-
-    }
-
-    private void msmHotplugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasMsmHotplugEnable()) {
-            mMsmHotplugEnabledCard = new SwitchCardView.DSwitchCard();
-            mMsmHotplugEnabledCard.setTitle(getString(R.string.msm_hotplug));
-            mMsmHotplugEnabledCard.setDescription(getString(R.string.msm_hotplug_summary));
-            mMsmHotplugEnabledCard.setChecked(CPUHotplug.isMsmHotplugActive());
-            mMsmHotplugEnabledCard.setOnDSwitchCardListener(this);
-
-            views.add(mMsmHotplugEnabledCard);
-        }
         if (CPUHotplug.isMsmHotplugActive()) {
+            DDivider mMsmHotplugDividerCard = new DDivider();
+            mMsmHotplugDividerCard.setText(getString(R.string.msm_hotplug));
+            views.add(mMsmHotplugDividerCard);
+
             if (CPUHotplug.hasMsmHotplugDebugMask()) {
                 mMsmHotplugDebugMaskCard = new SwitchCardView.DSwitchCard();
                 mMsmHotplugDebugMaskCard.setTitle(getString(R.string.debug));
@@ -778,31 +847,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
-        if (views.size() > 0) {
-            DDivider mMsmHotplugDividerCard = new DDivider();
-            mMsmHotplugDividerCard.setText(getString(R.string.msm_hotplug));
-
-            addView(mMsmHotplugDividerCard);
-            addAllViews(views);
-        }
-
-    }
-
-    private void makoHotplugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasMakoHotplugEnable()) {
-            mMakoHotplugEnableCard = new SwitchCardView.DSwitchCard();
-            mMakoHotplugEnableCard.setTitle(getString(R.string.mako_hotplug));
-            mMakoHotplugEnableCard.setDescription(getString(R.string.mako_hotplug_summary));
-            mMakoHotplugEnableCard.setChecked(CPUHotplug.isMakoHotplugActive());
-            mMakoHotplugEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mMakoHotplugEnableCard);
-        }
-
         if (CPUHotplug.isMakoHotplugActive()) {
+            DDivider mMakoHotplugDividerCard = new DDivider();
+            mMakoHotplugDividerCard.setText(getString(R.string.mako_hotplug));
+            views.add(mMakoHotplugDividerCard);
 
             if (CPUHotplug.hasMakoHotplugCoresOnTouch()) {
                 List<String> list = new ArrayList<>();
@@ -941,31 +989,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
-        if (views.size() > 0) {
-            DDivider mMakoHotplugDividerCard = new DDivider();
-            mMakoHotplugDividerCard.setText(getString(R.string.mako_hotplug));
-            addView(mMakoHotplugDividerCard);
-
-            addAllViews(views);
-        }
-
-    }
-
-    private void mbHotplugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasMBGHotplugEnable()) {
-            mMBHotplugEnableCard = new SwitchCardView.DSwitchCard();
-            mMBHotplugEnableCard.setTitle(CPUHotplug.getMBName(getActivity()));
-            mMBHotplugEnableCard.setDescription(getString(R.string.mb_hotplug_summary));
-            mMBHotplugEnableCard.setChecked(CPUHotplug.isMBHotplugActive());
-            mMBHotplugEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mMBHotplugEnableCard);
-        }
-
         if (CPUHotplug.isMBHotplugActive()) {
+            DDivider mMBHotplugDividerCard = new DDivider();
+            mMBHotplugDividerCard.setText(CPUHotplug.getMBName(getActivity()));
+            views.add(mMBHotplugDividerCard);
 
             if (CPUHotplug.hasMBHotplugScroffSingleCore()) {
                 mMBHotplugScroffSingleCoreCard = new SwitchCardView.DSwitchCard();
@@ -1131,31 +1158,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
-        if (views.size() > 0) {
-            DDivider mMBHotplugDividerCard = new DDivider();
-            mMBHotplugDividerCard.setText(CPUHotplug.getMBName(getActivity()));
-            addView(mMBHotplugDividerCard);
-
-            addAllViews(views);
-        }
-
-    }
-
-    private void alucardHotplugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasAlucardHotplugEnable()) {
-            mAlucardHotplugEnableCard = new SwitchCardView.DSwitchCard();
-            mAlucardHotplugEnableCard.setTitle(getString(R.string.alucard_hotplug));
-            mAlucardHotplugEnableCard.setDescription(getString(R.string.alucard_hotplug_summary));
-            mAlucardHotplugEnableCard.setChecked(CPUHotplug.isAlucardHotplugActive());
-            mAlucardHotplugEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mAlucardHotplugEnableCard);
-        }
-
         if (CPUHotplug.isAlucardHotplugActive()) {
+            DDivider mAlucardDivider = new DDivider();
+            mAlucardDivider.setText(getString(R.string.alucard_hotplug));
+            views.add(mAlucardDivider);
 
             if (CPUHotplug.hasAlucardHotplugHpIoIsBusy()) {
                 mAlucardHotplugHpIoIsBusyCard = new SwitchCardView.DSwitchCard();
@@ -1258,31 +1264,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 views.add(mAlucardHotplugCpuUpRateCard);
             }
         }
-        if (views.size() > 0) {
-            DDivider mAlucardDivider = new DDivider();
-            mAlucardDivider.setText(getString(R.string.alucard_hotplug));
-            addView(mAlucardDivider);
-
-            addAllViews(views);
-        }
-
-    }
-
-    private void thunderPlugInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasThunderPlugEnable()) {
-            mThunderPlugEnableCard = new SwitchCardView.DSwitchCard();
-            mThunderPlugEnableCard.setTitle(getString(R.string.thunderplug));
-            mThunderPlugEnableCard.setDescription(getString(R.string.thunderplug_summary));
-            mThunderPlugEnableCard.setChecked(CPUHotplug.isThunderPlugActive());
-            mThunderPlugEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mThunderPlugEnableCard);
-        }
 
         if (CPUHotplug.isThunderPlugActive()) {
+            DDivider mThunderPlugDividerCard = new DDivider();
+            mThunderPlugDividerCard.setText(getString(R.string.thunderplug));
+            views.add(mThunderPlugDividerCard);
 
             if (CPUHotplug.hasThunderPlugSuspendCpus()) {
                 List<String> list = new ArrayList<>();
@@ -1344,31 +1330,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
-        if (views.size() > 0) {
-            DDivider mThunderPlugDividerCard = new DDivider();
-            mThunderPlugDividerCard.setText(getString(R.string.thunderplug));
-            addView(mThunderPlugDividerCard);
-
-            addAllViews(views);
-        }
-
-    }
-
-    private void zenDecisionInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasZenDecisionEnable()) {
-            mZenDecisionEnableCard = new SwitchCardView.DSwitchCard();
-            mZenDecisionEnableCard.setTitle(getString(R.string.zen_decision));
-            mZenDecisionEnableCard.setDescription(getString(R.string.zen_decision_summary));
-            mZenDecisionEnableCard.setChecked(CPUHotplug.isZenDecisionActive());
-            mZenDecisionEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mZenDecisionEnableCard);
-        }
 
         if (CPUHotplug.isZenDecisionActive()) {
+            DDivider mZenDecisionDividerCard = new DDivider();
+            mZenDecisionDividerCard.setText(getString(R.string.zen_decision));
+            views.add(mZenDecisionDividerCard);
 
             if (CPUHotplug.hasZenDecisionWakeWaitTime()) {
                 List<String> list = new ArrayList<>();
@@ -1398,30 +1364,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
-        if (views.size() > 0) {
-            DDivider mZenDecisionDividerCard = new DDivider();
-            mZenDecisionDividerCard.setText(getString(R.string.zen_decision));
-            addView(mZenDecisionDividerCard);
-
-            addAllViews(views);
-        }
-    }
-
-    private void autoSmpInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        views.clear();
-
-        if (CPUHotplug.hasAutoSmpEnable()) {
-            mAutoSmpEnableCard = new SwitchCardView.DSwitchCard();
-            mAutoSmpEnableCard.setTitle(getString(R.string.autosmp));
-            mAutoSmpEnableCard.setDescription(getString(R.string.autosmp_summary));
-            mAutoSmpEnableCard.setChecked(CPUHotplug.isAutoSmpActive());
-            mAutoSmpEnableCard.setOnDSwitchCardListener(this);
-
-            views.add(mAutoSmpEnableCard);
-        }
-
         if (CPUHotplug.isAutoSmpActive()) {
+            DDivider mAutoSmpDividerCard = new DDivider();
+            mAutoSmpDividerCard.setText(getString(R.string.autosmp));
+            views.add(mAutoSmpDividerCard);
 
             if (CPUHotplug.hasAutoSmpCpufreqDown()) {
                 List<String> list = new ArrayList<>();
@@ -1524,13 +1470,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         }
 
         if (views.size() > 0) {
-            DDivider mAutoSmpDividerCard = new DDivider();
-            mAutoSmpDividerCard.setText(getString(R.string.autosmp));
-            addView(mAutoSmpDividerCard);
-
             addAllViews(views);
         }
+
     }
+
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
