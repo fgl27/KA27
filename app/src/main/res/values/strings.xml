@@ -457,6 +457,7 @@
     <string name="s2w_charging">Sweep2Wake while charging</string>
     <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
     <string name="sleep">Sweep2Sleep</string>
+    <string name="sleep_summary">Sweep across the bottom of the screen to sleep.</string>
     <string name="dt2s">DoubleTap2Sleep</string>
     <string name="dt2s_summary">Lock your device by double tapping on the top of the screen.</string>
     <string name="slide_up">Slide up</string>

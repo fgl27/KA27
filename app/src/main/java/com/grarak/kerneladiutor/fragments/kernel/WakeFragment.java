@@ -121,7 +121,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     private void sleepMiscInit() {
         mSleepMiscCard = new PopupCardView.DPopupCard(Wake.getSleepMiscMenu(getActivity()));
-        mSleepMiscCard.setDescription(getString(R.string.sleep));
+        mSleepMiscCard.setTitle(getString(R.string.sleep));
+        mSleepMiscCard.setDescription(getString(R.string.sleep_summary));
         mSleepMiscCard.setItem(Wake.getSleepMisc());
         mSleepMiscCard.setOnDPopupCardListener(this);
 
