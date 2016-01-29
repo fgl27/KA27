@@ -46,7 +46,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mCameraGestureCard;
     private SwitchCardView.DSwitchCard mPocketModeCard;
 
-    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard;
+    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard, mDT2WTimeBetweenTapsCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
 
     @Override
@@ -65,6 +65,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasPocketMode()) pocketModeInit();
         if (Wake.hasWakeTimeout()) wakeTimeoutInit();
         if (Wake.hasPowerKeySuspend()) powerKeySuspendInit();
+        if (Wake.hasDT2WTimeBetweenTaps()) DT2WTimeBetweenTapsInit();
     }
 
     private void dt2wInit() {
@@ -193,6 +194,22 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         addView(mPowerKeySuspendCard);
     }
 
+    private void DT2WTimeBetweenTapsInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 25; i <= 100; i++)
+            list.add(i * 10 + getString(R.string.ms));
+
+        mDT2WTimeBetweenTapsCard = new SeekBarCardView.DSeekBarCard(list);
+        mDT2WTimeBetweenTapsCard.setTitle(getString(R.string.wake_dt2w_timebetweentaps));
+        mDT2WTimeBetweenTapsCard.setDescription(getString(R.string.wake_dt2w_timebetweentaps_summary));
+        mDT2WTimeBetweenTapsCard.setProgress(Wake.getDT2WTimeBetweenTaps() - 25);
+        mDT2WTimeBetweenTapsCard.setOnDSeekBarCardListener(this);
+
+        addView(mDT2WTimeBetweenTapsCard);
+
+
+    }
+
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
@@ -210,6 +227,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
+        else if (dSeekBarCard == mDT2WTimeBetweenTapsCard) Wake.setDT2WTimeBetweenTaps(position + 25, getActivity());
     }
 
     @Override

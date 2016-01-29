@@ -64,6 +64,19 @@ public class Wake implements Constants {
         return 10;
     }
 
+    public static boolean hasDT2WTimeBetweenTaps() {
+        if (Utils.existFile(WAKE_DT2W_TIMEBETWEENTAPS)) return true;
+        return false;
+    }
+
+    public static void setDT2WTimeBetweenTaps(int value, Context context) {
+        Control.runCommand(String.valueOf(value), WAKE_DT2W_TIMEBETWEENTAPS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDT2WTimeBetweenTaps() {
+        return Utils.stringToInt(Utils.readFile(WAKE_DT2W_TIMEBETWEENTAPS));
+    }
+
     public static boolean hasWakeTimeout() {
         for (String file : WAKE_TIMEOUT_ARRAY)
             if (Utils.existFile(file)) {
