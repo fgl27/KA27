@@ -32,6 +32,9 @@ import java.util.List;
 /**
  * Created by willi on 27.12.14.
  */
+
+// TODO Rewrite this section to provide sliders and toggles rather than edit boxes.
+    
 public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private EditTextCardView.DEditTextCard[] mVMCard;
