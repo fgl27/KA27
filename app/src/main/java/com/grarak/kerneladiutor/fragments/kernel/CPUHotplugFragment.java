@@ -149,6 +149,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        if (CPUHotplug.hasZenDecision()) zenDecisionInit();
         if (CPUHotplug.hasMpdecision()) mpdecisionInit();
         if (CPUHotplug.hasIntelliPlug()) intelliPlugInit();
         if (CPUHotplug.hasBluPlug()) bluPlugInit();
@@ -157,7 +158,6 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasMBHotplug()) mbHotplugInit();
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
         if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
-        if (CPUHotplug.hasZenDecision()) zenDecisionInit();
         if (CPUHotplug.hasAutoSmp()) autoSmpInit();
     }
 
