@@ -91,3 +91,11 @@ _(Many sys interface paths has been taken from his [UKM-Project](https://github.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+
+tips to build my machine
+do this cmd first
+export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
+
+local.properties
+
+sdk.dir=/home/fella/sdk
