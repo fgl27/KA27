@@ -56,7 +56,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasDt2w()) dt2wInit();
         if (Wake.hasS2w()) s2wInit();
         if (Wake.hasLenient()) lenientInit();
-        if (Wake.hasT2w()) t2wInit();
+        if (Wake.hasT2w() && !Wake.hasDt2w()) t2wInit();
         if (Wake.hasWakeMisc()) wakeMiscInit();
         if (Wake.hasSleepMisc()) sleepMiscInit();
         if (Wake.hasDt2s()) dt2sInit();
