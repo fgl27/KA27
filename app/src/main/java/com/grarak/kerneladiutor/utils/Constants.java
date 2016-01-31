@@ -561,6 +561,11 @@ public interface Constants {
 
     String[] DT2S_ARRAY = {DT2S, DT2S_WIDTH, DT2S_HEIGHT};
 
+    //Wake Gesture Vibration 
+    String WAKE_VIBRATION = "/sys/android_touch2/vib_strength";
+
+    String[] WAKE_VIBRATION_ARRAY = {WAKE_VIBRATION};
+
     // Gesture
     String GESTURE_CRTL = "/sys/devices/virtual/touchscreen/touchscreen_dev/gesture_ctrl";
 
@@ -587,13 +592,8 @@ public interface Constants {
 
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
-    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
+    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, DT2S_ARRAY, WAKE_VIBRATION_ARRAY,  T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY, WAKE_TIMEOUT_ARRAY,
             POCKET_MODE_ARRAY, {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POWER_KEY_SUSPEND}};
-
-    //Wake Gesture Vibration 
-    String WAKE_VIBRATION = "/sys/android_touch2/vib_strength";
-
-    String[] WAKE_VIBRATION_ARRAY = {WAKE_VIBRATION};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";
