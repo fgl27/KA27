@@ -365,15 +365,13 @@ public class Wake implements Constants {
     }
 
     public static int getDt2wValue() {
-        if (Utils.existFile(DT2W_FILE))
             return Utils.stringToInt(Utils.readFile(DT2W_FILE));
-        return 0;
     }
 
     public static List<String> getDt2wMenu(Context context) {
         List<String> list = new ArrayList<>();
+        list.add(context.getString(R.string.disabled));
         if (DT2W_FILE != null) {
-            list.add(context.getString(R.string.disabled));
             switch (DT2W_FILE) {
                 case LGE_TOUCH_CORE_DT2W:
                     list.add(context.getString(R.string.center));

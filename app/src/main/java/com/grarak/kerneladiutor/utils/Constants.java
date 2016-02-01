@@ -573,7 +573,7 @@ public interface Constants {
     String[] GESTURE_STRING_VALUES = {"up", "down", "left", "right", "e", "o", "w", "c", "m", "double_click"};
 
     // Camera Gesture
-    String CAMERA_GESTURE = "/sys/android_touch/camera_gesture";
+    String CAMERA_GESTURE = "/sys/android_touch2/camera_gesture";
 
     // Pocket mode for Gesture
     String POCKET_MODE = "/sys/android_touch/pocket_mode";
