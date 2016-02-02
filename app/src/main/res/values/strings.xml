@@ -477,6 +477,8 @@
     <string name="wake_timeout_summary">Set a duration when the wake controls will be disabled after the screen goes off.</string>
     <string name="power_key_suspend">Power Key Suspend</string>
     <string name="power_key_suspend_summary">Enabling this will turn off wake controls when the screen is turned off by the power key.</string>
+    <string name="wake_S2W_time">Sweep2Wake TimeOut</string>
+    <string name="wake_S2W_time_summary">Used to control the time that a sweep has to occur within to register as a sweep event. Default was traditionally 300ms</string>
     <string name="wake_dt2w_timebetweentaps">DoubleTap2Wake TimeOut</string>
     <string name="wake_dt2w_timebetweentaps_summary">Used to control the time that touches have to occur within to register as a DT2W event. Default was traditionally 500ms</string>
     <string name="wake_dt2w_featherx">DoubleTap2Wake Feather (X axis)</string>

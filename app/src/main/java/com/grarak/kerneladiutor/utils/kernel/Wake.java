@@ -64,6 +64,19 @@ public class Wake implements Constants {
         return 10;
     }
 
+    public static boolean hasS2WTime() {
+        if (Utils.existFile(WAKE_ST2W_TIME)) return true;
+        return false;
+    }
+
+    public static void setS2WTime(int value, Context context) {
+        Control.runCommand(String.valueOf(value), WAKE_ST2W_TIME, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getS2WTime() {
+        return Utils.stringToInt(Utils.readFile(WAKE_ST2W_TIME));
+    }
+
     public static boolean hasDT2WTimeBetweenTaps() {
         if (Utils.existFile(WAKE_DT2W_TIMEBETWEENTAPS)) return true;
         return false;
