@@ -664,17 +664,25 @@ public interface Constants {
 
     // Virtual Memory
     String VM_PATH = "/proc/sys/vm";
-
-    String[] SUPPORTED_VM = {"dirty_ratio", "dirty_background_ratio", "dirty_expire_centisecs",
-            "dirty_writeback_centisecs", "min_free_kbytes", "overcommit_ratio", "swappiness",
-            "vfs_cache_pressure", "laptop_mode", "extra_free_kbytes"};
+    String VM_DIRTY_RATIO = VM_PATH + "/dirty_ratio";
+    String VM_DIRTY_BACKGROUND_RATIO = VM_PATH + "/dirty_background_ratio";
+    String VM_DIRTY_EXPIRE_CENTISECS = VM_PATH + "/dirty_expire_centisecs";
+    String VM_DIRTY_WRITEBACK_CENTISECS = VM_PATH + "/dirty_writeback_centisecs";
+    String VM_MIN_FREE_KBYTES = VM_PATH + "/min_free_kbytes";
+    String VM_OVERCOMMIT_RATIO = VM_PATH + "/overcommit_ratio";
+    String VM_SWAPPINESS = VM_PATH + "/swappiness";
+    String VM_VFS_CACHE_PRESSURE = VM_PATH + "/vfs_cache_pressure";
+    String VM_LAPTOP_MODE = VM_PATH + "/laptop_mode";
+    String VM_EXTRA_FREE_KBYTES = VM_PATH + "/extra_free_kbytes";
 
     String ZRAM = "/sys/block/zram0";
     String ZRAM_BLOCK = "/dev/block/zram0";
     String ZRAM_DISKSIZE = "/sys/block/zram0/disksize";
     String ZRAM_RESET = "/sys/block/zram0/reset";
 
-    String[] VM_ARRAY = {VM_PATH, ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET};
+    String[] VM_ARRAY = {ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET, VM_DIRTY_RATIO, VM_DIRTY_BACKGROUND_RATIO,
+            VM_DIRTY_EXPIRE_CENTISECS, VM_DIRTY_WRITEBACK_CENTISECS, VM_MIN_FREE_KBYTES, VM_OVERCOMMIT_RATIO,
+            VM_SWAPPINESS, VM_VFS_CACHE_PRESSURE, VM_LAPTOP_MODE, VM_EXTRA_FREE_KBYTES};
 
     // Entropy
     String PROC_RANDOM = "/proc/sys/kernel/random";

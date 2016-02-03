@@ -32,8 +32,6 @@ import java.util.List;
  */
 public class VM implements Constants {
 
-    private final static List<String> vmFiles = new ArrayList<>();
-
     public static void setZRAMDisksize(final int value, final Context context) {
         int size = value * 1024 * 1024;
         Control.runCommand("swapoff " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK, Control.CommandType.CUSTOM, "swapoff", context);
@@ -55,29 +53,138 @@ public class VM implements Constants {
         return Utils.existFile(ZRAM);
     }
 
-    public static void setVM(String value, String name, Context context) {
-        Control.runCommand(value, VM_PATH + "/" + name, Control.CommandType.GENERIC, context);
+    public static boolean hasDirtyRatio() {
+        if (Utils.existFile(VM_DIRTY_RATIO)) return true;
+        return false;
     }
 
-    public static String getVMValue(String file) {
-        if (Utils.existFile(VM_PATH + "/" + file)) {
-            String value = Utils.readFile(VM_PATH + "/" + file);
-            if (value != null) return value;
-        }
+    public static void setDirtyRatio(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_DIRTY_RATIO, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDirtyRatio() {
+        return Utils.stringToInt(Utils.readFile(VM_DIRTY_RATIO));
+    }
+
+    public static boolean hasDirtyBackgroundRatio() {
+        if (Utils.existFile(VM_DIRTY_BACKGROUND_RATIO)) return true;
+        return false;
+    }
+
+    public static void setDirtyBackgroundRatio(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_DIRTY_BACKGROUND_RATIO, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDirtyBackgroundRatio() {
+        return Utils.stringToInt(Utils.readFile(VM_DIRTY_BACKGROUND_RATIO));
+    }
+
+    public static boolean hasDirtyExpire() {
+        if (Utils.existFile(VM_DIRTY_EXPIRE_CENTISECS)) return true;
+        return false;
+    }
+
+    public static void setDirtyExpire(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_DIRTY_EXPIRE_CENTISECS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDirtyExpire() {
+        return Utils.stringToInt(Utils.readFile(VM_DIRTY_EXPIRE_CENTISECS));
+    }
+
+    public static boolean hasDirtyWriteback() {
+        if (Utils.existFile(VM_DIRTY_WRITEBACK_CENTISECS)) return true;
+        return false;
+    }
+
+    public static void setDirtyWriteback(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_DIRTY_WRITEBACK_CENTISECS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDirtyWriteback() {
+        return Utils.stringToInt(Utils.readFile(VM_DIRTY_WRITEBACK_CENTISECS));
+    }
+
+    public static boolean hasOverCommitRatio() {
+        if (Utils.existFile(VM_DIRTY_RATIO)) return true;
+        return false;
+    }
+
+    public static void setOverCommitRatio(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_OVERCOMMIT_RATIO, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getOverCommitRatio() {
+        return Utils.stringToInt(Utils.readFile(VM_OVERCOMMIT_RATIO));
+    }
+
+    public static boolean hasSwappiness() {
+        if (Utils.existFile(VM_SWAPPINESS)) return true;
+        return false;
+    }
+
+    public static void setSwappiness(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_SWAPPINESS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSwappiness() {
+        return Utils.stringToInt(Utils.readFile(VM_SWAPPINESS));
+    }
+
+    public static boolean hasVFSCachePressure() {
+        if (Utils.existFile(VM_VFS_CACHE_PRESSURE)) return true;
+        return false;
+    }
+
+    public static void setVFSCachePressure(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_VFS_CACHE_PRESSURE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getVFSCachePressure() {
+        return Utils.stringToInt(Utils.readFile(VM_VFS_CACHE_PRESSURE));
+    }
+
+    public static boolean hasLaptopMode() {
+        if (Utils.existFile(VM_LAPTOP_MODE)) return true;
+        return false;
+    }
+
+    public static void activateLaptopMode(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", VM_LAPTOP_MODE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isLaptopModeActive() {
+        return Utils.readFile(VM_LAPTOP_MODE).equals("1");
+    }
+
+    public static boolean hasMinFreeKbytes() {
+        if (Utils.existFile(VM_MIN_FREE_KBYTES)) return true;
+        return false;
+    }
+
+    public static void setMinFreeKbytes(String value, Context context) {
+        Control.runCommand(value, VM_MIN_FREE_KBYTES, Control.CommandType.GENERIC, context);
+    }
+
+    public static String getMinFreeKbytes() {
+        String value = Utils.readFile(VM_MIN_FREE_KBYTES);
+        if (value != null) return value;
         return null;
     }
 
-    public static List<String> getVMfiles() {
-        if (vmFiles.size() < 1) {
-            File[] files = new File(VM_PATH).listFiles();
-            if (files.length > 0) {
-                for (String supported : SUPPORTED_VM)
-                    for (File file : files)
-                        if (file.getName().equals(supported))
-                            vmFiles.add(file.getName());
-            }
-        }
-        return vmFiles;
+    public static boolean hasExtraFreeKbytes() {
+        if (Utils.existFile(VM_EXTRA_FREE_KBYTES)) return true;
+        return false;
+    }
+
+    public static void setExtraFreeKbytes(String value, Context context) {
+        Control.runCommand(value, VM_EXTRA_FREE_KBYTES, Control.CommandType.GENERIC, context);
+    }
+
+    public static String getExtraFreeKbytes() {
+        String value = Utils.readFile(VM_EXTRA_FREE_KBYTES);
+        if (value != null) return value;
+        return null;
     }
 
 }
