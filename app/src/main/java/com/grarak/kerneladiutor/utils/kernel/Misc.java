@@ -17,6 +17,8 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
@@ -24,9 +26,11 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.kerneladiutor.library.root.RootUtils;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.net.InetAddress;
 
 /**
  * Created by willi on 02.01.15.
@@ -194,14 +198,27 @@ public class Misc implements Constants {
         return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
     }
 
+    public static String getIpAddr(Context context) {
+        WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+        int ip = wifiInfo.getIpAddress();
+
+        String ipString = String.format(
+                "%d.%d.%d.%d",
+                (ip & 0xff),
+                (ip >> 8 & 0xff),
+                (ip >> 16 & 0xff),
+                (ip >> 24 & 0xff));
+
+        return ipString;
+    }
+
     public static void activateADBOverWifi(boolean active, Context context) {
         if (active) {
             Control.setProp("service.adb.tcp.port", "5555", context);
-            RootUtils.restartADBD();
         }
         else {
-            Control.setProp("service.adb.tcp.port", "0", context);
-            RootUtils.restartADBD();
+            Control.setProp("service.adb.tcp.port", "-1", context);
         }
     }
 

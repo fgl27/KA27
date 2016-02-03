@@ -78,6 +78,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        networkInit();
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasBcl()) bclInit();
@@ -86,7 +87,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
 	selinuxInit();
-        networkInit();
         wakelockInit();
     }
 
@@ -255,12 +255,20 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
         mEnableADBOverWifiCard = new SwitchCardView.DSwitchCard();
         mEnableADBOverWifiCard.setTitle(getString(R.string.adb_over_wifi));
-        mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_summary));
+         if (Misc.isADBOverWifiActive()) {
+            mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_connect_summary) + Misc.getIpAddr(getActivity()) + ":5555");
+        }
+        else {
+            mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_summary));
+        }
         mEnableADBOverWifiCard.setChecked(Misc.isADBOverWifiActive());
         mEnableADBOverWifiCard.setOnDSwitchCardListener(this);
 
         addView(mEnableADBOverWifiCard);
 
+        DDivider mMiscCard = new DDivider();
+        mMiscCard.setText("Misc Settings");
+        addView(mMiscCard);
     }
 
     private void wakelockInit() {
@@ -428,8 +436,10 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
                 Misc.activateOldPowerSuspend(checked, getActivity());
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
             Misc.activateC3State(checked, getActivity());
-        else if (dSwitchCard == mEnableADBOverWifiCard)
+        else if (dSwitchCard == mEnableADBOverWifiCard) {
             Misc.activateADBOverWifi(checked, getActivity());
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
         else if (dSwitchCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());
         else if (dSwitchCard == mSensorIndWakeLockCard)

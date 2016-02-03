@@ -80,11 +80,6 @@ public class RootUtils {
         return getSU().runCommand(command);
     }
 
-    public static void restartADBD() {
-        getSU().runCommand("adbd stop");
-        getSU().runCommand("adbd start");
-    }
-
     private static SU getSU() {
         if (su == null) su = new SU();
         else if (su.closed || su.denied) su = new SU();
