@@ -17,10 +17,12 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -190,6 +192,24 @@ public class Misc implements Constants {
 
     public static List<String> getTcpAvailableCongestions() {
         return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
+    }
+
+    public static void activateADBOverWifi(boolean active, Context context) {
+        if (active) {
+            Control.setProp("service.adb.tcp.port", "5555", context);
+            RootUtils.restartADBD();
+        }
+        else {
+            Control.setProp("service.adb.tcp.port", "0", context);
+            RootUtils.restartADBD();
+        }
+    }
+
+    public static boolean isADBOverWifiActive() {
+        if (Utils.getProp(ADB_OVER_WIFI).equals("5555")) {
+            return true;
+        }
+        return false;
     }
 
     public static void setNewPowerSuspend(int value, Context context) {

@@ -72,6 +72,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard;
     private SeekBarCardView.DSeekBarCard mMsmHsicWakelockDividerCard;
 
+    private SwitchCardView.DSwitchCard mEnableADBOverWifiCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -249,6 +251,16 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         mHostnameCard.setOnDEditTextCardListener(this);
 
         addView(mHostnameCard);
+
+
+        mEnableADBOverWifiCard = new SwitchCardView.DSwitchCard();
+        mEnableADBOverWifiCard.setTitle(getString(R.string.adb_over_wifi));
+        mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_summary));
+        mEnableADBOverWifiCard.setChecked(Misc.isADBOverWifiActive());
+        mEnableADBOverWifiCard.setOnDSwitchCardListener(this);
+
+        addView(mEnableADBOverWifiCard);
+
     }
 
     private void wakelockInit() {
@@ -416,6 +428,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
                 Misc.activateOldPowerSuspend(checked, getActivity());
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
             Misc.activateC3State(checked, getActivity());
+        else if (dSwitchCard == mEnableADBOverWifiCard)
+            Misc.activateADBOverWifi(checked, getActivity());
         else if (dSwitchCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());
         else if (dSwitchCard == mSensorIndWakeLockCard)
