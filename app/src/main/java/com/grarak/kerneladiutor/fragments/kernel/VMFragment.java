@@ -160,7 +160,7 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         mVFSCachePressureCard.setProgress(VM.getVFSCachePressure() - 1);
         mVFSCachePressureCard.setOnDSeekBarCardListener(this);
 
-        addView(mSwappinessCard);
+        addView(mVFSCachePressureCard);
     }
     private void laptopmodeInit() {
         mLaptopModeCard = new SwitchCardView.DSwitchCard();
