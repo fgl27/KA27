@@ -433,10 +433,9 @@ public class Misc implements Constants {
     }
 
     public static String getSELinuxStatus () {
-        //This function returns the opposite state to indicate what mode the toggle will place the device in.
         String result = RootUtils.runCommand(GETENFORCE);
-        if (result.equals("Enforcing")) return "Permissive";
-        else if (result.equals("Permissive")) return "Enforcing";
+        if (result.equals("Enforcing")) return "Enforcing";
+        else if (result.equals("Permissive")) return "Permissive";
         return "Unknown Status";
     }
 
