@@ -354,6 +354,8 @@
     <string name="gpu_gaming_mode_summary">Gaming Mode restricts the GPU to the maximum power level while enabled.</string>
 
     <!-- Screen -->
+    <string name="screen_color_profile">Color Profile</string>
+    <string name="screen_color_profile_summary">Select a preset profile</string>
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
