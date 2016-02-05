@@ -320,6 +320,10 @@ public class GammaProfiles {
             return getString("contrast", position);
         }
 
+        public String getHue (int position) {
+            return getString("hue", position);
+        }
+
         @Override
         public String getName(int position) {
             return getString("name", position);

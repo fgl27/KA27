@@ -488,21 +488,24 @@
       "rgb": "230 232 255",
       "sat": "280",
       "value": "273",
-      "contrast": "243"
+      "contrast": "243",
+      "hue": "0"
     },
     {
       "name": "Vomer IPS",
       "rgb": "230 232 255",
       "sat": "265",
       "value": "253",
-      "contrast": "243"
+      "contrast": "243",
+      "hue": "0"
     },
     {
       "name": "Vomer AccuRich",
       "rgb": "230 232 252",
       "sat": "265",
       "value": "263",
-      "contrast": "248"
+      "contrast": "248",
+      "hue": "0"
     }
   ]
 }

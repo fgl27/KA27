@@ -682,9 +682,10 @@ public class Screen implements Constants {
         setSaturationIntensityKcal(screenColorProfiles.getSat(profile), context);
         setScreenValueKcal(screenColorProfiles.getValue(profile), context);
         setScreenContrastKcal(screenColorProfiles.getContrast(profile), context);
+        setScreenHueKcal(screenColorProfiles.getHue(profile), context);
     }
 
-    public static void setColorCalibrationKcal (String value, Context context) {
+    public static void setColorCalibrationKcal(String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL, Control.CommandType.GENERIC, context);
     }
     public static void setScreenValueKcal (String value, Context context) {
@@ -696,6 +697,10 @@ public class Screen implements Constants {
     }
     public static void setSaturationIntensityKcal (String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL_SAT, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setScreenHueKcal (String value, Context context) {
+        Control.runCommand(value, SCREEN_KCAL_CTRL_HUE, Control.CommandType.GENERIC, context);
     }
 
 }
