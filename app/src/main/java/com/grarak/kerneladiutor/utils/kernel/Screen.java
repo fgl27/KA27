@@ -670,4 +670,32 @@ public class Screen implements Constants {
         return false;
     }
 
+    public static GammaProfiles.ScreenColorProfiles getScreenColorProfiles (Context context) {
+        if (GAMMA_PROFILES == null)
+            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+        return GAMMA_PROFILES.getScreenColorProfiles();
+    }
+
+    public static void setScreenColorProfile (int profile, GammaProfiles.ScreenColorProfiles screenColorProfiles, Context context) {
+        if (screenColorProfiles == null) return;
+        setColorCalibrationKcal(screenColorProfiles.getRGB(profile), context);
+        setSaturationIntensityKcal(screenColorProfiles.getSat(profile), context);
+        setScreenValueKcal(screenColorProfiles.getValue(profile), context);
+        setScreenContrastKcal(screenColorProfiles.getContrast(profile), context);
+    }
+
+    public static void setColorCalibrationKcal (String value, Context context) {
+        Control.runCommand(value, SCREEN_KCAL_CTRL, Control.CommandType.GENERIC, context);
+    }
+    public static void setScreenValueKcal (String value, Context context) {
+        Control.runCommand(value, SCREEN_KCAL_CTRL_VAL, Control.CommandType.GENERIC, context);
+    }
+
+    public static void setScreenContrastKcal (String value, Context context) {
+        Control.runCommand(value, SCREEN_KCAL_CTRL_CONT, Control.CommandType.GENERIC, context);
+    }
+    public static void setSaturationIntensityKcal (String value, Context context) {
+        Control.runCommand(value, SCREEN_KCAL_CTRL_SAT, Control.CommandType.GENERIC, context);
+    }
+
 }

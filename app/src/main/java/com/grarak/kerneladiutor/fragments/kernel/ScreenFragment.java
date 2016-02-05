@@ -68,6 +68,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private EditTextCardView.DEditTextCard mKGammaGreenCard;
     private EditTextCardView.DEditTextCard mKGammaRedCard;
     private PopupCardView.DPopupCard mKGammaProfilesCard;
+    private PopupCardView.DPopupCard mScreenColorProilesCard;
 
     private EditTextCardView.DEditTextCard mGammaControlRedGreysCard;
     private EditTextCardView.DEditTextCard mGammaControlRedMidsCard;
@@ -145,6 +146,23 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void screenColorInit() {
+
+        GammaProfiles.ScreenColorProfiles screenColorProfiles = Screen.getScreenColorProfiles(getActivity());
+        if (screenColorProfiles != null) {
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < screenColorProfiles.length(); i++)
+                list.add(screenColorProfiles.getName(i));
+
+            mScreenColorProilesCard = new PopupCardView.DPopupCard(list);
+            mScreenColorProilesCard.setTitle(getString(R.string.gamma_profile));
+            mScreenColorProilesCard.setDescription(getString(R.string.gamma_profile_summary));
+            mScreenColorProilesCard.setItem("");
+            mScreenColorProilesCard.setOnDPopupCardListener(this);
+
+            addView(mScreenColorProilesCard);
+        }
+
+
         if (Screen.hasColorCalibration()) {
             List<String> colors = Screen.getColorCalibration();
             mColorCalibrationLimits = Screen.getColorCalibrationLimits();
@@ -863,6 +881,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         } else if (dPopupCard == mDsiPanelProfilesCard) {
             Screen.setDsiPanelProfile(position, Screen.getDsiPanelProfiles(getActivity()), getActivity());
             refreshDsiPanel();
+        } else if (dPopupCard == mScreenColorProilesCard) {
+            Screen.setScreenColorProfile(position, Screen.getScreenColorProfiles(getActivity()), getActivity());
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
     }
 

@@ -32,6 +32,7 @@ public class GammaProfiles {
     private JSONObject JSON;
     private KGammaProfiles kgammaProfiles;
     private GammaControlProfiles gammaControlProfiles;
+    private ScreenColorProfiles screenColorProfiles;
     private DsiPanelProfiles dsiPanelProfiles;
 
     public GammaProfiles(String json) {
@@ -68,6 +69,16 @@ public class GammaProfiles {
             if (dsiPanelProfiles == null && JSON != null)
                 dsiPanelProfiles = new DsiPanelProfiles(JSON.getJSONArray("dsi_panel"));
             return dsiPanelProfiles;
+        } catch (JSONException e) {
+            return null;
+        }
+    }
+
+    public ScreenColorProfiles getScreenColorProfiles() {
+        try {
+            if (screenColorProfiles == null && JSON != null)
+                screenColorProfiles = new ScreenColorProfiles(JSON.getJSONArray("screen_color"));
+            return screenColorProfiles;
         } catch (JSONException e) {
             return null;
         }
@@ -262,6 +273,51 @@ public class GammaProfiles {
 
         public String getRedPositive(int position) {
             return getString("red_positive", position);
+        }
+
+        @Override
+        public String getName(int position) {
+            return getString("name", position);
+        }
+
+        private String getString(String name, int position) {
+            try {
+                return JSON.getJSONObject(position).getString(name);
+            } catch (JSONException e) {
+                return null;
+            }
+        }
+
+        @Override
+        public int length() {
+            return JSON.length();
+        }
+
+    }
+
+
+    public static class ScreenColorProfiles implements GammaProfile {
+
+        private final JSONArray JSON;
+
+        public ScreenColorProfiles(JSONArray screencolorArray) {
+            JSON = screencolorArray;
+        }
+
+        public String getRGB(int position) {
+            return getString("rgb", position);
+        }
+
+        public String getSat(int position) {
+            return getString("sat", position);
+        }
+
+        public String getValue(int position) {
+            return getString("value", position);
+        }
+
+        public String getContrast (int position) {
+            return getString("contrast", position);
         }
 
         @Override
