@@ -506,6 +506,30 @@
       "value": "263",
       "contrast": "248",
       "hue": "0"
+    },
+    {
+      "name": "Vomer DeepRich",
+      "rgb": "237 235 255",
+      "sat": "275",
+      "value": "248",
+      "contrast": "243",
+      "hue": "0"
+    },
+    {
+      "name": "WrinkleFree",
+      "rgb": "250 250 255",
+      "sat": "245",
+      "value": "251",
+      "contrast": "256",
+      "hue": "1515"
+    },
+    {
+      "name": "WrinkleFree Cool",
+      "rgb": "232 228 255",
+      "sat": "251",
+      "value": "254",
+      "contrast": "256",
+      "hue": "1515"
     }
   ]
 }
