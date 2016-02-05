@@ -484,6 +484,14 @@
   ],
   "screen_color": [
     {
+      "name": "Stock",
+      "rgb": "256 256 256",
+      "sat": "255",
+      "value": "255",
+      "contrast": "255",
+      "hue": "0"
+    },
+    {
       "name": "Vomer BrightBalance",
       "rgb": "230 232 255",
       "sat": "280",
@@ -530,6 +538,111 @@
       "value": "254",
       "contrast": "256",
       "hue": "1515"
+    },
+    {
+      "name": "Deep Black Colorful",
+      "rgb": "230 232 255",
+      "sat": "274",
+      "value": "247",
+      "contrast": "268",
+      "hue": "0"
+    },
+    {
+      "name": "Sir Banger",
+      "rgb": "215 220 255",
+      "sat": "275",
+      "value": "252",
+      "contrast": "252",
+      "hue": "13"
+    },
+    {
+      "name": "Purian",
+      "rgb": "223 223 255",
+      "sat": "271",
+      "value": "255",
+      "contrast": "255",
+      "hue": "0"
+    },
+    {
+      "name": "Franco",
+      "rgb": "232 237 256",
+      "sat": "300",
+      "value": "255",
+      "contrast": "255",
+      "hue": "0"
+    },
+    {
+      "name": "Harley-Tech",
+      "rgb": "236 240 255",
+      "sat": "285",
+      "value": "240",
+      "contrast": "270",
+      "hue": "0"
+    },
+    {
+      "name": "Banged Up",
+      "rgb": "239 243 255",
+      "sat": "278",
+      "value": "254",
+      "contrast": "264",
+      "hue": "10"
+    },
+    {
+      "name": "SimCooler",
+      "rgb": "240 245 255",
+      "sat": "265",
+      "value": "260",
+      "contrast": "255",
+      "hue": "0"
+    },
+    {
+      "name": "Obsanity",
+      "rgb": "245 245 256",
+      "sat": "273",
+      "value": "255",
+      "contrast": "255",
+      "hue": "0"
+    },
+    {
+      "name": "Obsanity IPS",
+      "rgb": "245 240 256",
+      "sat": "243",
+      "value": "259",
+      "contrast": "259",
+      "hue": "37"
+    },
+    {
+      "name": "yoyoz808",
+      "rgb": "220 230 255",
+      "sat": "260",
+      "value": "260",
+      "contrast": "255",
+      "hue": "0"
+    },
+    {
+      "name": "Perfection",
+      "rgb": "237 235 255",
+      "sat": "265",
+      "value": "253",
+      "contrast": "255",
+      "hue": "1515"
+    },
+    {
+      "name": "Gerard Extreme Cool",
+      "rgb": "217 215 255",
+      "sat": "265",
+      "value": "253",
+      "contrast": "250",
+      "hue": "0"
+    },
+    {
+      "name": "Cooler D7500",
+      "rgb": "232 228 255",
+      "sat": "251",
+      "value": "254",
+      "contrast": "256",
+      "hue": "1515"
     }
+
   ]
 }
