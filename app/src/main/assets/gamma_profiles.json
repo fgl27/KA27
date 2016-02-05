@@ -481,5 +481,28 @@
       "red_positive": "0 10 21 31 42 52 65 77 89 102 113 125 119 109 99 88 78 69 58 49 39 30 22",
       "white_point": "32"
     }
+  ],
+  "screen_color": [
+    {
+      "name": "Vomer BrightBalance",
+      "rgb": "230 232 255",
+      "sat": "55",
+      "value": "145",
+      "contrast": "115"
+    },
+    {
+      "name": "Vomer IPS",
+      "rgb": "230 232 255",
+      "sat": "40",
+      "value": "125",
+      "contrast": "115"
+    },
+    {
+      "name": "Vomer AccuRich",
+      "rgb": "230 232 252",
+      "sat": "40",
+      "value": "135",
+      "contrast": "120"
+    }
   ]
 }
