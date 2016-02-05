@@ -59,7 +59,6 @@ import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
-import com.grarak.kerneladiutor.fragments.kernel.PluginsFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
@@ -274,7 +273,6 @@ public class MainActivity extends BaseActivity implements Constants {
         if (Entropy.hasEntropy())
             ITEMS.add(new DAdapter.Item(getString(R.string.entropy), new EntropyFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.plugins), new PluginsFragment()));
         ITEMS.add(new DAdapter.Header(getString(R.string.tools)));
         Downloads downloads;
         if ((downloads = new Downloads(this)).isSupported())

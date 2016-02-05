@@ -55,9 +55,6 @@
             android:name=".EditTextActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity
-            android:name=".DownloadPluginsActivity"
-            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
-        <activity
             android:name=".elements.DAdapter$MainHeader$MainHeaderActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
