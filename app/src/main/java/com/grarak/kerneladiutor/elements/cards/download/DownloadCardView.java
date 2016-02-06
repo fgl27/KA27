@@ -145,7 +145,7 @@ public class DownloadCardView extends BaseCardView {
                 Utils.toast(error, getContext());
                 alertDialog.dismiss();
             }
-          }, getContext().getApplicationContext().getFilesDir() + "download.zip");
+          }, getContext().getApplicationContext().getFilesDir() + "/download.zip");
         downloadTask.execute(link);
 
         cancelButton.setOnClickListener(new OnClickListener() {
@@ -208,9 +208,9 @@ public class DownloadCardView extends BaseCardView {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (installMethod != null) {
                                         RootUtils.runCommand(installMethod.replace("$FILE",
-                                                getContext().getApplicationContext().getFilesDir() + "download.zip"));
+                                                getContext().getApplicationContext().getFilesDir() + "/download.zip"));
                                         RootUtils.runCommand("rm -f " +
-                                                getContext().getApplicationContext().getFilesDir() + "download.zip");
+                                                getContext().getApplicationContext().getFilesDir() + "/download.zip");
                                         RootUtils.runCommand("reboot");
                                     } else {
                                         final Recovery recovery =
