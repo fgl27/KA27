@@ -63,6 +63,7 @@ public class DownloadCardView extends BaseCardView {
 
     public DownloadCardView(Context context, final Downloads.Download download) {
         super(context, R.layout.download_cardview);
+        Context download_context = context;
 
         final String name = download.getName();
         nameText.setText(Html.fromHtml(name));
@@ -145,8 +146,7 @@ public class DownloadCardView extends BaseCardView {
                 Utils.toast(error, getContext());
                 alertDialog.dismiss();
             }
-        //}, Environment.getExternalStorageDirectory().toString() + "/KernelAdiutor/download.zip");
-        }, "/data/data/com.singularity.kerneladiutor/files/download.zip");
+          }, getContext().getApplicationContext().getFilesDir() + "download.zip");
         downloadTask.execute(link);
 
         cancelButton.setOnClickListener(new OnClickListener() {
@@ -209,9 +209,9 @@ public class DownloadCardView extends BaseCardView {
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     if (installMethod != null) {
                                         RootUtils.runCommand(installMethod.replace("$FILE",
-                                                "/data/data/com.singularity.kerneladiutor/files/download.zip"));
+                                                getContext().getApplicationContext().getFilesDir() + "download.zip"));
                                         RootUtils.runCommand("rm -f " +
-                                                "/data/data/com.singularity.kerneladiutor/files/download.zip");
+                                                getContext().getApplicationContext().getFilesDir() + "download.zip");
                                         RootUtils.runCommand("reboot");
                                     } else {
                                         final Recovery recovery =
