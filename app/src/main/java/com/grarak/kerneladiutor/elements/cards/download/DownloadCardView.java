@@ -63,7 +63,6 @@ public class DownloadCardView extends BaseCardView {
 
     public DownloadCardView(Context context, final Downloads.Download download) {
         super(context, R.layout.download_cardview);
-        Context download_context = context;
 
         final String name = download.getName();
         nameText.setText(Html.fromHtml(name));
