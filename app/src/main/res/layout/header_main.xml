@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/headermain_height"
     android:clickable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="?attr/selectableItemBackground"
+    android:background="@drawable/header_background">
 
     <ImageView
         android:id="@+id/picture"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_primary"
+        android:background="@drawable/header_background"
         android:contentDescription="@string/app_name"
         android:scaleType="centerCrop" />
 
