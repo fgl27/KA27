@@ -24,6 +24,8 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DAdapter;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
@@ -52,6 +54,8 @@ public class BatteryFragment extends RecyclerViewFragment implements
     private SwitchCardView.DSwitchCard mCustomChargeRateEnableCard;
     private SeekBarCardView.DSeekBarCard mChargingRateCard;
 
+    private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -67,6 +71,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
             getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         } catch (NullPointerException ignored) {
         }
+        cstatesInit();
     }
 
     @Override
@@ -144,6 +149,58 @@ public class BatteryFragment extends RecyclerViewFragment implements
         }
     }
 
+    private void cstatesInit() {
+        List<DAdapter.DView> views = new ArrayList<>();
+
+        if (Battery.hasC0State()) {
+            mC0StateCard = new SwitchCardView.DSwitchCard();
+            mC0StateCard.setTitle(getString(R.string.c0state));
+            mC0StateCard.setDescription(getString(R.string.c0state_summary));
+            mC0StateCard.setChecked(Battery.isC0StateActive());
+            mC0StateCard.setOnDSwitchCardListener(this);
+
+            views.add(mC0StateCard);
+        }
+
+        if (Battery.hasC1State()) {
+            mC1StateCard = new SwitchCardView.DSwitchCard();
+            mC1StateCard.setTitle(getString(R.string.c1state));
+            mC1StateCard.setDescription(getString(R.string.c1state_summary));
+            mC1StateCard.setChecked(Battery.isC1StateActive());
+            mC1StateCard.setOnDSwitchCardListener(this);
+
+            views.add(mC1StateCard);
+        }
+
+        if (Battery.hasC2State()) {
+            mC2StateCard = new SwitchCardView.DSwitchCard();
+            mC2StateCard.setTitle(getString(R.string.c2state));
+            mC2StateCard.setDescription(getString(R.string.c2state_summary));
+            mC2StateCard.setChecked(Battery.isC2StateActive());
+            mC2StateCard.setOnDSwitchCardListener(this);
+
+            views.add(mC2StateCard);
+        }
+
+        if (Battery.hasC3State()) {
+            mC3StateCard = new SwitchCardView.DSwitchCard();
+            mC3StateCard.setTitle(getString(R.string.c3state));
+            mC3StateCard.setDescription(getString(R.string.c3state_summary));
+            mC3StateCard.setChecked(Battery.isC3StateActive());
+            mC3StateCard.setOnDSwitchCardListener(this);
+
+            views.add(mC3StateCard);
+        }
+
+        if (views.size() > 0) {
+            DDivider mCstatesCard = new DDivider();
+            mCstatesCard.setText(getString(R.string.cstates));
+            addView(mCstatesCard);
+
+           addAllViews(views);
+        }
+    }
+
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context arg0, Intent intent) {
@@ -167,6 +224,14 @@ public class BatteryFragment extends RecyclerViewFragment implements
             Battery.activateForceFastCharge(checked, getActivity());
         else if (dSwitchCard == mCustomChargeRateEnableCard)
             Battery.activateCustomChargeRate(checked, getActivity());
+        else if (dSwitchCard == mC0StateCard)
+            Battery.activateC0State(checked, getActivity());
+        else if (dSwitchCard == mC1StateCard)
+            Battery.activateC1State(checked, getActivity());
+        else if (dSwitchCard == mC2StateCard)
+            Battery.activateC2State(checked, getActivity());
+        else if (dSwitchCard == mC3StateCard)
+            Battery.activateC3State(checked, getActivity());
     }
 
     @Override

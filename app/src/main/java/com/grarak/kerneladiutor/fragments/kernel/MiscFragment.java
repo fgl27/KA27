@@ -72,8 +72,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard;
     private SeekBarCardView.DSeekBarCard mMsmHsicWakelockDividerCard;
 
-    private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
-
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -85,7 +83,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         fsyncInit();
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
-	cstatesInit();
 	selinuxInit();
         networkInit();
         wakelockInit();
@@ -224,58 +221,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             mNewPowerSuspendStateCard.setOnDSeekBarCardListener(this);
 
             addView(mNewPowerSuspendStateCard);
-        }
-    }
-
-    private void cstatesInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
-        if ( Misc.hasC0State() ) {
-            mC0StateCard = new SwitchCardView.DSwitchCard();
-            mC0StateCard.setTitle(getString(R.string.c0state));
-            mC0StateCard.setDescription(getString(R.string.c0state_summary));
-            mC0StateCard.setChecked(Misc.isC0StateActive());
-            mC0StateCard.setOnDSwitchCardListener(this);
-
-            views.add(mC0StateCard);
-        }
-
-        if ( Misc.hasC1State() ) {
-            mC1StateCard = new SwitchCardView.DSwitchCard();
-            mC1StateCard.setTitle(getString(R.string.c1state));
-            mC1StateCard.setDescription(getString(R.string.c1state_summary));
-            mC1StateCard.setChecked(Misc.isC1StateActive());
-            mC1StateCard.setOnDSwitchCardListener(this);
-
-            views.add(mC1StateCard);
-        }
-
-        if ( Misc.hasC2State() ) {
-            mC2StateCard = new SwitchCardView.DSwitchCard();
-            mC2StateCard.setTitle(getString(R.string.c2state));
-            mC2StateCard.setDescription(getString(R.string.c2state_summary));
-            mC2StateCard.setChecked(Misc.isC2StateActive());
-            mC2StateCard.setOnDSwitchCardListener(this);
-
-            views.add(mC2StateCard);
-        }
-
-        if ( Misc.hasC3State() ) {
-            mC3StateCard = new SwitchCardView.DSwitchCard();
-            mC3StateCard.setTitle(getString(R.string.c3state));
-            mC3StateCard.setDescription(getString(R.string.c3state_summary));
-            mC3StateCard.setChecked(Misc.isC3StateActive());
-            mC3StateCard.setOnDSwitchCardListener(this);
-
-            views.add(mC3StateCard);
-        }
-
-        if (views.size() > 0) {
-            DDivider mCstatesCard = new DDivider();
-            mCstatesCard.setText(getString(R.string.cstates));
-            addView(mCstatesCard);
-
-
-            addAllViews(views);
         }
     }
 
@@ -470,13 +415,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.activateOldPowerSuspend(checked, getActivity());
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
-        else if (dSwitchCard == mC0StateCard)
-            Misc.activateC0State(checked, getActivity());
-        else if (dSwitchCard == mC1StateCard)
-            Misc.activateC1State(checked, getActivity());
-        else if (dSwitchCard == mC2StateCard)
-            Misc.activateC2State(checked, getActivity());
-        else if (dSwitchCard == mC3StateCard)
             Misc.activateC3State(checked, getActivity());
         else if (dSwitchCard == mSmb135xWakeLockCard)
             Misc.activateSmb135xWakeLock(checked, getActivity());

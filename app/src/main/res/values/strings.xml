@@ -70,7 +70,7 @@
     <string name="screen">Screen</string>
     <string name="wake_controls">Wake Controls</string>
     <string name="sound">Sound</string>
-    <string name="battery">Battery</string>
+    <string name="battery">Power and Battery</string>
     <string name="io_scheduler">I/O Scheduler</string>
     <string name="ksm">Kernel Samepage Merging</string>
     <string name="low_memory_killer">Low Memory Killer</string>
