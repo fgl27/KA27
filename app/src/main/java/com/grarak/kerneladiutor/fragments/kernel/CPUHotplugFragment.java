@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
+import android.view.ViewDebug;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
@@ -145,6 +146,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCard mAutoSmpMinCpusCard;
     private SwitchCardView.DSwitchCard mAutoSmpScroffSingleCoreCard;
 
+    private SwitchCardView.DSwitchCard mMSMSleeperEnableCard;
+    private SeekBarCardView.DSeekBarCard mMSMSleeperUpThresholdCard, mMSMSleeperMaxOnlineCard, mMSMSleeperSuspendMaxOnlineCard,
+            mMSMSleeperUpCountMaxCard, mMSMSleeperDownCountMaxCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -159,6 +164,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
         if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
         if (CPUHotplug.hasAutoSmp()) autoSmpInit();
+        if (CPUHotplug.hasMSMSleeper()) msmSleeperInit();
         tunablesInit();
     }
 
@@ -210,7 +216,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void makoHotplugInit() {
-       if (CPUHotplug.hasMakoHotplugEnable()) {
+        if (CPUHotplug.hasMakoHotplugEnable()) {
             mMakoHotplugEnableCard = new SwitchCardView.DSwitchCard();
             mMakoHotplugEnableCard.setTitle(getString(R.string.mako_hotplug));
             mMakoHotplugEnableCard.setDescription(getString(R.string.mako_hotplug_summary));
@@ -280,6 +286,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             addView(mAutoSmpEnableCard);
         }
     }
+
+    private void msmSleeperInit() {
+        if (CPUHotplug.hasAutoSmpEnable()) {
+            mMSMSleeperEnableCard = new SwitchCardView.DSwitchCard();
+            mMSMSleeperEnableCard.setTitle(getString(R.string.msm_sleeper));
+            mMSMSleeperEnableCard.setDescription(getString(R.string.msm_sleeper_summary));
+            mMSMSleeperEnableCard.setChecked(CPUHotplug.isMSMSleeperActive());
+            mMSMSleeperEnableCard.setOnDSwitchCardListener(this);
+
+            addView(mMSMSleeperEnableCard);
+        }
+    }
+
 
     private void tunablesInit() {
         List<DAdapter.DView> views = new ArrayList<>();
@@ -1469,6 +1488,74 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
         }
 
+        if (CPUHotplug.isMSMSleeperActive()) {
+            DDivider mMSMSleeperDividerCard = new DDivider();
+            mMSMSleeperDividerCard.setText(getString(R.string.msm_sleeper));
+            views.add(mMSMSleeperDividerCard);
+
+            if (CPUHotplug.hasMSMSleeperMaxOnline()) {
+                List<String> list = new ArrayList<>();
+                for (int i = 1; i < 5; i++) list.add(i + " Cores");
+
+                mMSMSleeperMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
+                mMSMSleeperMaxOnlineCard.setTitle(getString(R.string.msm_sleeper_max_online));
+                mMSMSleeperMaxOnlineCard.setProgress(CPUHotplug.getMSMSleeperMaxOnline() - 1);
+                mMSMSleeperMaxOnlineCard.setOnDSeekBarCardListener(this);
+
+                views.add(mMSMSleeperMaxOnlineCard);
+            }
+
+            if (CPUHotplug.hasMSMSleeperSuspendMaxOnline()) {
+                List<String> list = new ArrayList<>();
+                for (int i = 1; i < 5; i++) list.add(i + " Cores");
+
+                mMSMSleeperSuspendMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
+                mMSMSleeperSuspendMaxOnlineCard.setTitle(getString(R.string.msm_sleeper_suspend_max_online));
+                mMSMSleeperSuspendMaxOnlineCard.setProgress(CPUHotplug.getMSMSleeperSuspendMaxOnline() - 1);
+                mMSMSleeperSuspendMaxOnlineCard.setOnDSeekBarCardListener(this);
+
+                views.add(mMSMSleeperSuspendMaxOnlineCard);
+            }
+
+            if (CPUHotplug.hasMSMSleeperUpThresh()) {
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 101; i++) list.add(i + getString(R.string.percent));
+
+                mMSMSleeperUpThresholdCard = new SeekBarCardView.DSeekBarCard(list);
+                mMSMSleeperUpThresholdCard.setTitle(getString(R.string.msm_sleeper_up_thresh));
+                mMSMSleeperUpThresholdCard.setProgress(CPUHotplug.getMSMSleeperUpThresh());
+                mMSMSleeperUpThresholdCard.setOnDSeekBarCardListener(this);
+
+                views.add(mMSMSleeperUpThresholdCard);
+            }
+
+            if (CPUHotplug.hasMSMSleeperUpCountMax()) {
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 41; i++) list.add(i + getString(R.string.ms));
+
+                mMSMSleeperUpCountMaxCard = new SeekBarCardView.DSeekBarCard(list);
+                mMSMSleeperUpCountMaxCard.setTitle(getString(R.string.msm_sleeper_up_count_max));
+                mMSMSleeperUpCountMaxCard.setProgress(CPUHotplug.getMSMSleeperUpCountMax());
+                mMSMSleeperUpCountMaxCard.setOnDSeekBarCardListener(this);
+
+                views.add(mMSMSleeperUpCountMaxCard);
+            }
+
+            if (CPUHotplug.hasMSMSleeperDownCountMax()) {
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 41; i++) list.add(i + getString(R.string.ms));
+
+                mMSMSleeperDownCountMaxCard = new SeekBarCardView.DSeekBarCard(list);
+                mMSMSleeperDownCountMaxCard.setTitle(getString(R.string.msm_sleeper_down_count_max));
+                mMSMSleeperDownCountMaxCard.setProgress(CPUHotplug.getMSMSleeperDownCountMax());
+                mMSMSleeperDownCountMaxCard.setOnDSeekBarCardListener(this);
+
+                views.add(mMSMSleeperDownCountMaxCard);
+            }
+
+
+        }
+
         if (views.size() > 0) {
             addAllViews(views);
         }
@@ -1524,6 +1611,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.activateAutoSmp(checked, getActivity());
         else if (dSwitchCard == mAutoSmpScroffSingleCoreCard)
             CPUHotplug.activateAutoSmpScroffSingleCoreActive(checked, getActivity());
+        else if (dSwitchCard == mMSMSleeperEnableCard)
+            CPUHotplug.activateMSMSleeper(checked, getActivity());
         view.invalidate();
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
 
@@ -1690,6 +1779,15 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setAutoSmpMaxCpus(position + 1, getActivity());
         else if (dSeekBarCard == mAutoSmpMinCpusCard)
             CPUHotplug.setAutoSmpMinCpus(position + 1, getActivity());
+        else if (dSeekBarCard == mMSMSleeperMaxOnlineCard)
+            CPUHotplug.setMSMSleeperMaxOnline(position + 1, getActivity());
+        else if (dSeekBarCard == mMSMSleeperSuspendMaxOnlineCard)
+            CPUHotplug.setMSMSleeperSuspendMaxOnline(position + 1, getActivity());
+        else if (dSeekBarCard == mMSMSleeperUpThresholdCard)
+            CPUHotplug.setMSMSleeperUpThresh(position, getActivity());
+        else if (dSeekBarCard == mMSMSleeperUpCountMaxCard)
+            CPUHotplug.setMSMSleeperUpCountMax(position, getActivity());
+        else if (dSeekBarCard == mMSMSleeperDownCountMaxCard)
+            CPUHotplug.setMSMSleeperDownCountMax(position, getActivity());
     }
-
 }

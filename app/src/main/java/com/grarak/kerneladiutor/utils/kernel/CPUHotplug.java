@@ -1381,6 +1381,79 @@ public class CPUHotplug implements Constants {
             if (Utils.existFile(HOTPLUG_INTELLI_PLUG_5_ENABLE)) Control.runCommand("0", HOTPLUG_INTELLI_PLUG_5_ENABLE, Control.CommandType.GENERIC, context);
         }
         if (CPUHotplug.isZenDecisionActive() && !activehotplug.equals("ZenDecision")) Control.runCommand("0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isMSMSleeperActive() && !activehotplug.equals("MSM_Sleeper")) Control.runCommand("0", MSM_SLEEPER_ENABLE, Control.CommandType.GENERIC, context);
     }
 
+    public static boolean hasMSMSleeper () {
+        return Utils.existFile(MSM_SLEEPER);
+    }
+
+    public static void activateMSMSleeper (boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", MSM_SLEEPER_ENABLE, Control.CommandType.GENERIC, context);
+        if (active) togglehotplugs("MSM_Sleeper", context);
+    }
+
+    public static boolean isMSMSleeperActive () {
+        return Utils.readFile(MSM_SLEEPER_ENABLE).equals("1");
+    }
+
+    public static void setMSMSleeperMaxOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MSM_SLEEPER_MAX_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMSMSleeperMaxOnline() {
+        return Utils.stringToInt(Utils.readFile(MSM_SLEEPER_MAX_ONLINE));
+    }
+
+    public static boolean hasMSMSleeperMaxOnline() {
+        return Utils.existFile(MSM_SLEEPER_MAX_ONLINE);
+    }
+
+    public static void setMSMSleeperSuspendMaxOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MSM_SLEEPER_SUSPEND_MAX_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMSMSleeperSuspendMaxOnline() {
+        return Utils.stringToInt(Utils.readFile(MSM_SLEEPER_SUSPEND_MAX_ONLINE));
+    }
+
+    public static boolean hasMSMSleeperSuspendMaxOnline() {
+        return Utils.existFile(MSM_SLEEPER_SUSPEND_MAX_ONLINE);
+    }
+
+    public static void setMSMSleeperUpThresh(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MSM_SLEEPER_UP_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMSMSleeperUpThresh() {
+        return Utils.stringToInt(Utils.readFile(MSM_SLEEPER_UP_THRESHOLD));
+    }
+
+    public static boolean hasMSMSleeperUpThresh() {
+        return Utils.existFile(MSM_SLEEPER_UP_THRESHOLD);
+    }
+
+    public static void setMSMSleeperUpCountMax(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MSM_SLEEPER_UP_COUNT_MAX, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMSMSleeperUpCountMax() {
+        return Utils.stringToInt(Utils.readFile(MSM_SLEEPER_UP_COUNT_MAX));
+    }
+
+    public static boolean hasMSMSleeperUpCountMax() {
+        return Utils.existFile(MSM_SLEEPER_UP_COUNT_MAX);
+    }
+
+    public static void setMSMSleeperDownCountMax(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MSM_SLEEPER_DOWN_COUNT_MAX, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getMSMSleeperDownCountMax() {
+        return Utils.stringToInt(Utils.readFile(MSM_SLEEPER_DOWN_COUNT_MAX));
+    }
+
+    public static boolean hasMSMSleeperDownCountMax() {
+        return Utils.existFile(MSM_SLEEPER_DOWN_COUNT_MAX);
+    }
 }
