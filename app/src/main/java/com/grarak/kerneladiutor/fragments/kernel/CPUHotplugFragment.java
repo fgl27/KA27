@@ -288,7 +288,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void msmSleeperInit() {
-        if (CPUHotplug.hasAutoSmpEnable()) {
+        if (CPUHotplug.hasMSMSleeper()) {
             mMSMSleeperEnableCard = new SwitchCardView.DSwitchCard();
             mMSMSleeperEnableCard.setTitle(getString(R.string.msm_sleeper));
             mMSMSleeperEnableCard.setDescription(getString(R.string.msm_sleeper_summary));
