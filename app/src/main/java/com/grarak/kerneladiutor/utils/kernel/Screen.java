@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
 
+import com.grarak.kerneladiutor.services.AutoHighBrightnessModeService;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.json.GammaProfiles;
@@ -481,6 +482,24 @@ public class Screen implements Constants {
 
     public static boolean hasScreenHBM() {
         return Utils.existFile(SCREEN_HBM);
+    }
+
+    public static boolean isScreenAutoHBMActive(Context context) {
+        return Utils.getBoolean("AutoHBM", false, context);
+    }
+
+    public static void activateScreenAutoHBM(boolean active, Context context) {
+        Utils.saveBoolean("AutoHBM", active, context);
+        AutoHighBrightnessModeService.AutoHBMSensorEnabled = active;
+    }
+
+    public static int getAutoHBMThresh(Context context) {
+        return Utils.getInt("AutoHBM_Threshold", 1500, context);
+    }
+
+    public static void setAutoHBMThresh(int value, Context context) {
+        Utils.saveInt("AutoHBM_Threshold", value, context);
+        AutoHighBrightnessModeService.LuxThresh = value;
     }
 
     public static void setScreenContrast(int value, Context context) {

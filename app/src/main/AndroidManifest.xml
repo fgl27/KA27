@@ -71,6 +71,7 @@
 
         <service android:name=".services.BootService" />
         <service android:name=".services.InitdService" />
+        <service android:name=".services.AutoHighBrightnessModeService" />
 
         <!-- Profile Widget -->
         <receiver android:name=".services.ProfileWidget">
