@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.view.ViewDebug;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -81,10 +82,9 @@ public class Battery implements Constants {
 
     public static void activateC0State (boolean active, Context context) {
         String path = C0STATE;
-        Control.runCommand(active ? "1" : "0", path, Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "1"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "2"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "3"), Control.CommandType.GENERIC, context);
+        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+            Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
+        }
     }
 
 
@@ -98,10 +98,9 @@ public class Battery implements Constants {
 
     public static void activateC1State (boolean active, Context context) {
         String path = C1STATE;
-        Control.runCommand(active ? "1" : "0", path, Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "1"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "2"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "3"), Control.CommandType.GENERIC, context);
+        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+            Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
+        }
     }
 
 
@@ -115,10 +114,9 @@ public class Battery implements Constants {
 
     public static void activateC2State (boolean active, Context context) {
         String path = C2STATE;
-        Control.runCommand(active ? "1" : "0", path, Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "1"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "2"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "3"), Control.CommandType.GENERIC, context);
+        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+            Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
+        }
     }
 
 
@@ -132,10 +130,9 @@ public class Battery implements Constants {
 
     public static void activateC3State (boolean active, Context context) {
         String path = C3STATE;
-        Control.runCommand(active ? "1" : "0", path, Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "1"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "2"), Control.CommandType.GENERIC, context);
-        Control.runCommand(active ? "1" : "0", path.replace("0", "3"), Control.CommandType.GENERIC, context);
+        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+            Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
+        }
     }
 
     public static boolean isC3StateActive() {
