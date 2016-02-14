@@ -37,7 +37,7 @@ import com.grarak.kerneladiutor.utils.root.Control;
  * Created by willi on 08.03.15.
  */
 public class AutoHighBrightnessModeService extends Service {
-    float lux = 0, oldlux = 0, newlux = 0;
+    float lux = 0;
     public static int LuxThresh = 50000;
     public static boolean AutoHBMSensorEnabled = false, HBMActive = false;
 
@@ -82,12 +82,7 @@ public class AutoHighBrightnessModeService extends Service {
         @Override
         public void onSensorChanged(SensorEvent event) {
             if (AutoHBMSensorEnabled) {
-                // Store old lux value
-                oldlux = newlux;
-                // Store new lux value
-                newlux = event.values[0];
-                // Average both the old value and new value to give some smoothing to reduce jitter
-                lux = (oldlux + newlux) / 2;
+                lux = event.values[0];
 
                 HBMActive = Utils.readFile(Constants.SCREEN_HBM).equals("1");
 
