@@ -230,7 +230,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private void mbHotplugInit() {
         if (CPUHotplug.hasMBGHotplugEnable()) {
             mMBHotplugEnableCard = new SwitchCardView.DSwitchCard();
-            mMBHotplugEnableCard.setTitle(CPUHotplug.getMBName(getActivity()));
+            mMBHotplugEnableCard.setTitle(getString(R.string.bricked_hotplug));
             mMBHotplugEnableCard.setDescription(getString(R.string.mb_hotplug_summary));
             mMBHotplugEnableCard.setChecked(CPUHotplug.isMBHotplugActive());
             mMBHotplugEnableCard.setOnDSwitchCardListener(this);
@@ -1010,7 +1010,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
         if (CPUHotplug.isMBHotplugActive()) {
             DDivider mMBHotplugDividerCard = new DDivider();
-            mMBHotplugDividerCard.setText(CPUHotplug.getMBName(getActivity()));
+            mMBHotplugDividerCard.setText(getString(R.string.bricked_hotplug));
             views.add(mMBHotplugDividerCard);
 
             if (CPUHotplug.hasMBHotplugScroffSingleCore()) {

@@ -560,17 +560,6 @@ public class CPUHotplug implements Constants {
         return Utils.existFile(MB_HOTPLUG_FILE + "/" + MB_ENABLED);
     }
 
-    public static String getMBName(Context context) {
-        switch (MB_HOTPLUG_FILE) {
-            case MSM_MPDECISION_HOTPLUG:
-                return context.getString(R.string.msm_mpdecision_hotplug);
-            case BRICKED_HOTPLUG:
-                return context.getString(R.string.bricked_hotplug);
-            default:
-                return null;
-        }
-    }
-
     public static boolean hasMBHotplug() {
         if (Utils.existFile(MSM_MPDECISION_HOTPLUG)) MB_HOTPLUG_FILE = MSM_MPDECISION_HOTPLUG;
         else if (Utils.existFile(BRICKED_HOTPLUG)) MB_HOTPLUG_FILE = BRICKED_HOTPLUG;
