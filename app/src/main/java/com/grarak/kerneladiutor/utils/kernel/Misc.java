@@ -428,8 +428,7 @@ public class Misc implements Constants {
     }
 
     public static void activateSELinux (boolean active, Context context) {
-        if (active == true) Control.runCommand("1", SETENFORCE, Control.CommandType.SHELL, context);
-        if (active == false) Control.runCommand("0", SETENFORCE, Control.CommandType.SHELL, context);
+        Control.runCommand(active ? "1" : "0", SETENFORCE, Control.CommandType.SHELL, context);
     }
 
     public static String getSELinuxStatus () {
