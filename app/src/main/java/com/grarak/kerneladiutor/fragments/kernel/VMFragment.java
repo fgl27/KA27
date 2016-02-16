@@ -51,7 +51,7 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         if (VM.hasDirtyRatio()) dirtyratioInit();
         if (VM.hasDirtyBackgroundRatio()) dirtybackgroundratioInit();
         if (VM.hasDirtyExpire()) dirtyexpireInit();
-        if (VM.hasDirtyWriteback()) dirtywritebackInit();
+        if (VM.hasDirtyWriteback() && !VM.isDynamicDirtyWritebackActive()) dirtywritebackInit();
         if (VM.hasDynamicDirtyWriteback()) dynamicdirtywritebackInit();
         if (VM.hasOverCommitRatio()) overcommitratioInit();
         if (VM.hasSwappiness()) swappinessInit();
@@ -132,30 +132,33 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
             addView(mDynamic_Dirty_WritebackCard);
         }
 
-        List<String> list = new ArrayList<>();
-        for (int i = 1; i <= 900; i++)
-            list.add(i * 10 + getString(R.string.cs));
+        if (VM.isDynamicDirtyWritebackActive()) {
 
-        if (VM.hasDirtySuspendWriteback()) {
+            List<String> list = new ArrayList<>();
+            for (int i = 1; i <= 900; i++)
+                list.add(i * 10 + getString(R.string.cs));
 
-            mDirty_Writeback_SuspendCard = new SeekBarCardView.DSeekBarCard(list);
-            mDirty_Writeback_SuspendCard.setTitle(getString(R.string.dirty_writeback_suspend_centisecs));
-            mDirty_Writeback_SuspendCard.setDescription(getString(R.string.dirty_writeback_suspend_centisecs_summary));
-            mDirty_Writeback_SuspendCard.setProgress((VM.getDirtySuspendWriteback()) - 1);
-            mDirty_Writeback_SuspendCard.setOnDSeekBarCardListener(this);
+            if (VM.hasDirtySuspendWriteback()) {
 
-            addView(mDirty_Writeback_SuspendCard);
-        }
+                mDirty_Writeback_SuspendCard = new SeekBarCardView.DSeekBarCard(list);
+                mDirty_Writeback_SuspendCard.setTitle(getString(R.string.dirty_writeback_suspend_centisecs));
+                mDirty_Writeback_SuspendCard.setDescription(getString(R.string.dirty_writeback_suspend_centisecs_summary));
+                mDirty_Writeback_SuspendCard.setProgress((VM.getDirtySuspendWriteback()) - 1);
+                mDirty_Writeback_SuspendCard.setOnDSeekBarCardListener(this);
 
-        if (VM.hasDirtyActiveWriteback()) {
+                addView(mDirty_Writeback_SuspendCard);
+            }
 
-            mDirty_Writeback_ActiveCard = new SeekBarCardView.DSeekBarCard(list);
-            mDirty_Writeback_ActiveCard.setTitle(getString(R.string.dirty_writeback_active_centisecs));
-            mDirty_Writeback_ActiveCard.setDescription(getString(R.string.dirty_writeback_active_centisecs_summary));
-            mDirty_Writeback_ActiveCard.setProgress((VM.getDirtySuspendWriteback()) - 1);
-            mDirty_Writeback_ActiveCard.setOnDSeekBarCardListener(this);
+            if (VM.hasDirtyActiveWriteback()) {
 
-            addView(mDirty_Writeback_ActiveCard);
+                mDirty_Writeback_ActiveCard = new SeekBarCardView.DSeekBarCard(list);
+                mDirty_Writeback_ActiveCard.setTitle(getString(R.string.dirty_writeback_active_centisecs));
+                mDirty_Writeback_ActiveCard.setDescription(getString(R.string.dirty_writeback_active_centisecs_summary));
+                mDirty_Writeback_ActiveCard.setProgress((VM.getDirtySuspendWriteback()) - 1);
+                mDirty_Writeback_ActiveCard.setOnDSeekBarCardListener(this);
+
+                addView(mDirty_Writeback_ActiveCard);
+            }
         }
     }
 
@@ -296,7 +299,10 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mLaptopModeCard)
             VM.activateLaptopMode(checked, getActivity());
-        else if (dSwitchCard == mDynamic_Dirty_WritebackCard)
+        else if (dSwitchCard == mDynamic_Dirty_WritebackCard) {
             VM.activateDynamicDirtyWriteback(checked, getActivity());
+            view.invalidate();
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
     }
 }
