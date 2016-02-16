@@ -543,6 +543,12 @@
     <string name="dirty_expire_centisecs_summary">This tunable is used to define when dirty data is old enough to be eligible for writeout by the kernel flusher threads.  It is expressed in 100\'ths of a second.  Data which has been dirty in-memory for longer than this interval will be written out next time a flusher thread wakes up.</string>
     <string name="dirty_writeback_centisecs">Dirty Writeback Centisecs</string>
     <string name="dirty_writeback_centisecs_summary">The kernel flusher threads will periodically wake up and write old data out to disk.  This tunable expresses the interval between those wakeups, in 100\'ths of a second.  Setting this to zero disables periodic writeback altogether.</string>
+    <string name="dynamic_dirty_writeback_centisecs">Dynamic Dirty Writeback</string>
+    <string name="dynamic_dirty_writeback_centisecs_summary">This feature allows to have two different intervals for dirty page writebacks and to dynamically manage them when the system has been resumed (it\'s active) or when has been suspended.</string>
+    <string name="dirty_writeback_suspend_centisecs">Suspend Dirty Writeback Centisecs</string>
+    <string name="dirty_writeback_suspend_centisecs_summary">The kernel flusher threads will periodically wake up and write old data out to disk.  This tunable expresses the interval between those wakeups during suspend, in 100\'ths of a second.  Setting this to zero disables periodic writeback altogether.</string>
+    <string name="dirty_writeback_active_centisecs">Active Writeback Centisecs</string>
+    <string name="dirty_writeback_active_centisecs_summary">The kernel flusher threads will periodically wake up and write old data out to disk.  This tunable expresses the interval between those wakeups while active, in 100\'ths of a second.  Setting this to zero disables periodic writeback altogether.</string>
     <string name="overcommit_ratio">Overcommit Ratio</string>
     <string name="overcommit_ratio_summary">Percentage of physical memory size to include in overcommit calculations.</string>
     <string name="swappiness">Swappiness</string>

@@ -668,6 +668,9 @@ public interface Constants {
     String VM_DIRTY_BACKGROUND_RATIO = VM_PATH + "/dirty_background_ratio";
     String VM_DIRTY_EXPIRE_CENTISECS = VM_PATH + "/dirty_expire_centisecs";
     String VM_DIRTY_WRITEBACK_CENTISECS = VM_PATH + "/dirty_writeback_centisecs";
+    String VM_DYNAMIC_DIRTY_WRITEBACK = VM_PATH + "/dynamic_dirty_writeback";
+    String VM_DIRTY_WRITEBACK_SUSPEND_CENTISECS = VM_PATH + "/dirty_writeback_suspend_centisecs";
+    String VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS = VM_PATH + "/dirty_writeback_active_centisecs";
     String VM_MIN_FREE_KBYTES = VM_PATH + "/min_free_kbytes";
     String VM_OVERCOMMIT_RATIO = VM_PATH + "/overcommit_ratio";
     String VM_SWAPPINESS = VM_PATH + "/swappiness";

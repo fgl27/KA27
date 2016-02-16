@@ -187,4 +187,43 @@ public class VM implements Constants {
         return null;
     }
 
+    public static boolean hasDynamicDirtyWriteback() {
+        if (Utils.existFile(VM_DYNAMIC_DIRTY_WRITEBACK)) return true;
+        return false;
+    }
+
+    public static void activateDynamicDirtyWriteback(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", VM_DYNAMIC_DIRTY_WRITEBACK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isDynamicDirtyWritebackActive() {
+        return Utils.readFile(VM_DYNAMIC_DIRTY_WRITEBACK).equals("1");
+    }
+
+    public static boolean hasDirtySuspendWriteback() {
+        if (Utils.existFile(VM_DIRTY_WRITEBACK_SUSPEND_CENTISECS)) return true;
+        return false;
+    }
+
+    public static void setDirtySuspendWriteback(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_DIRTY_WRITEBACK_SUSPEND_CENTISECS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDirtySuspendWriteback() {
+        return Utils.stringToInt(Utils.readFile(VM_DIRTY_WRITEBACK_SUSPEND_CENTISECS));
+    }
+
+    public static boolean hasDirtyActiveWriteback() {
+        if (Utils.existFile(VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS)) return true;
+        return false;
+    }
+
+    public static void setDirtyActiveWriteback(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getDirtyActiveWriteback() {
+        return Utils.stringToInt(Utils.readFile(VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS));
+    }
+
 }
