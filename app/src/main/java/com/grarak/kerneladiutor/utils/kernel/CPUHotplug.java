@@ -17,12 +17,12 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -1404,9 +1404,17 @@ public class CPUHotplug implements Constants {
     }
 
     public static boolean isMpdecisionActive() {
-        return Utils.isPropActive(HOTPLUG_MPDEC);
+        // Doing this here instead of the utils.ispropactive function because it can show either of these statuses
+        try {
+            String result = RootUtils.runCommand("getprop | grep " + HOTPLUG_MPDEC).split("]: ")[1];
+            if (result.equals("[running]") || result.equals("[restarting]")) {
+                return true;
+            }
+        } catch (Exception ignored) {
+            return false;
+        }
+        return false;
     }
-
     public static boolean hasMpdecision() {
         return Utils.hasProp(HOTPLUG_MPDEC);
     }
