@@ -79,8 +79,8 @@ public class SoundFragment extends RecyclerViewFragment implements
 
     private void spkr_drv_wrnd_Init() {
         mspkr_drv_wrndCard = new SwitchCardView.DSwitchCard();
-        mspkr_drv_wrndCard.setTitle(getString(R.string.headset_highperf_mode));
-        mspkr_drv_wrndCard.setDescription(getString(R.string.headset_highperf_mode_summary));
+        mspkr_drv_wrndCard.setTitle(getString(R.string.headset_mspkr_drv_mode));
+        mspkr_drv_wrndCard.setDescription(getString(R.string.headset_mspkr_drv_mode_summary));
         mspkr_drv_wrndCard.setChecked(Sound.isSpkr_Drv_Wrnd_Active());
         mspkr_drv_wrndCard.setOnDSwitchCardListener(this);
 
