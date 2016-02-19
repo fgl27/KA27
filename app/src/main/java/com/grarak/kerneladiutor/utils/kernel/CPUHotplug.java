@@ -428,6 +428,18 @@ public class CPUHotplug implements Constants {
         return Utils.existFile(MB_HOTPLUG_FILE + "/" + MB_STARTDELAY);
     }
 
+    public static void setBrickedDownLockDuration(int value, Context context) {
+        Control.runCommand(String.valueOf(value), MB_HOTPLUG_FILE + "/" + BRICKED_DOWN_LOCK_DURATION, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getBrickedDownLockDuration() {
+        return Utils.stringToInt(Utils.readFile(MB_HOTPLUG_FILE + "/" + BRICKED_DOWN_LOCK_DURATION));
+    }
+
+    public static boolean hasBrickedDownLockDuration() {
+        return Utils.existFile(MB_HOTPLUG_FILE + "/" + BRICKED_DOWN_LOCK_DURATION);
+    }
+
     public static void setMBHotplugBoostFreqs(int core, int value, Context context) {
         Control.runCommand(core + " " + value, MB_HOTPLUG_FILE + "/" + MB_BOOST_FREQS, Control.CommandType.GENERIC, context);
     }

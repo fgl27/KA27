@@ -202,6 +202,7 @@ public interface Constants {
     String MB_PAUSE = "pause";
     String BRICKED_NWNS = "nwns_threshold";
     String BRICKED_TWTS = "twts_threshold";
+    String BRICKED_DOWN_LOCK_DURATION = "down_lock_duration";
 
     String[] MB_HOTPLUG_ARRAY = {MSM_MPDECISION_HOTPLUG, BRICKED_HOTPLUG};
 

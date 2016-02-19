@@ -113,6 +113,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCard mMBHotplugStartDelayCard;
     private SeekBarCardView.DSeekBarCard mMBHotplugDelayCard;
     private SeekBarCardView.DSeekBarCard mMBHotplugPauseCard;
+    private SeekBarCardView.DSeekBarCard mBrickedDownLockDurationCard;
     private SeekBarCardView.DSeekBarCard mBrickedNWNSCard[], mBrickedTWTSCard[];
 
     private SwitchCardView.DSwitchCard mAlucardHotplugEnableCard;
@@ -1134,6 +1135,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 }
             }
 
+            if (CPUHotplug.hasBrickedDownLockDuration()) {
+                List<String> list = new ArrayList<>();
+                for (int i = 300; i < 5001; i++)
+                    list.add(i + getString(R.string.ms));
+
+                mBrickedDownLockDurationCard = new SeekBarCardView.DSeekBarCard(list);
+                mBrickedDownLockDurationCard.setTitle(getString(R.string.down_lock_duration));
+                mBrickedDownLockDurationCard.setDescription(getString(R.string.down_lock_duration_summary));
+                mBrickedDownLockDurationCard.setProgress((CPUHotplug.getBrickedDownLockDuration() - 300));
+                mBrickedDownLockDurationCard.setOnDSeekBarCardListener(this);
+
+                views.add(mBrickedDownLockDurationCard);
+            }
+
+
             if (CPUHotplug.hasMBHotplugStartDelay()) {
                 List<String> list = new ArrayList<>();
                 for (int i = 0; i < 51; i++)
@@ -1787,6 +1803,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setMBHotplugBoostTime(position * 100, getActivity());
         else if (dSeekBarCard == mMBHotplugCpusBoostedCard)
             CPUHotplug.setMBHotplugCpusBoosted(position, getActivity());
+        else if (dSeekBarCard == mBrickedDownLockDurationCard)
+            CPUHotplug.setBrickedDownLockDuration(position + 300, getActivity());
         else if (dSeekBarCard == mMBHotplugStartDelayCard)
             CPUHotplug.setMBHotplugStartDelay(position * 1000, getActivity());
         else if (dSeekBarCard == mMBHotplugDelayCard)
