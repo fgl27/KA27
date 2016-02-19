@@ -51,6 +51,19 @@ public class Wake implements Constants {
         return Utils.existFile(POWER_KEY_SUSPEND);
     }
 
+    public static boolean hasVibStrength() {
+        if (Utils.existFile(WAKE_VIB_STRENGTH)) return true;
+        return false;
+    }
+
+    public static void setvibstrength(int value, Context context) {
+        Control.runCommand(String.valueOf(value), WAKE_VIB_STRENGTH, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getvibstrength() {
+        return Utils.stringToInt(Utils.readFile(WAKE_VIB_STRENGTH));
+    }
+
     public static void setWakeTimeout(int value, Context context) {
         Control.runCommand(String.valueOf(value), WAKE_TIMEOUT_FILE, Control.CommandType.GENERIC, context);
     }

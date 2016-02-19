@@ -429,6 +429,8 @@
     <string name="glove_mode_summary">Enabling this will let you use your phone even while wearing gloves.</string>
 
     <!-- Wake Controls -->
+    <string name="vib_strength">Wake Gestures Vibration Strength</string>
+    <string name="vib_strength_summary">This value is specific to wake gestures and independent of the normal vibration strength. It is purely for the kernel driver. Gestures controlled by third party apps will not use this value.</string>
     <string name="dt2w">DoubleTap2Wake</string>
     <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
     <string name="center">Center</string>

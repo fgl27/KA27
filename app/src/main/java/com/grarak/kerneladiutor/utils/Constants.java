@@ -597,6 +597,7 @@ public interface Constants {
 
     String POWER_KEY_SUSPEND = "/sys/module/qpnp_power_on/parameters/pwrkey_suspend";
 
+    String WAKE_VIB_STRENGTH = "/sys/android_touch/vib_strength";
     String WAKE_ST2W_TIME = "/sys/android_touch/sweep_timeout";
     String WAKE_DT2W_TIMEBETWEENTAPS = "/sys/android_touch/dt2w_time";
     String WAKE_DT2W_FEATHERX = "/sys/android_touch/dt2w_feather_x";
@@ -605,7 +606,7 @@ public interface Constants {
 
     String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY,  WAKE_TIMEOUT_ARRAY,
             {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POCKET_MODE, POWER_KEY_SUSPEND, WAKE_DT2W_TIMEBETWEENTAPS, WAKE_DT2W_FEATHERX,
-                    WAKE_DT2W_FEATHERY }};
+                    WAKE_DT2W_FEATHERY, WAKE_VIB_STRENGTH }};
 
     // Sound
     String SOUND_CONTROL_ENABLE = "/sys/module/snd_soc_wcd9320/parameters/enable_fs";

@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
+import android.view.ViewDebug;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
@@ -46,13 +47,14 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mCameraGestureCard;
     private SwitchCardView.DSwitchCard mPocketModeCard;
 
-    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard,mS2WTimeCard, mDT2WTimeBetweenTapsCard, mDT2WFeatherXCard, mDT2WFeatherYCard;
+    private SeekBarCardView.DSeekBarCard mWakeTimeoutCard, mS2WTimeCard, mDT2WTimeBetweenTapsCard, mDT2WFeatherXCard, mDT2WFeatherYCard, mWakeGesturesVibStrengthCard;
     private SwitchCardView.DSwitchCard mPowerKeySuspendCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        if (Wake.hasVibStrength()) vibstrengthInit();
         if (Wake.hasDt2w()) dt2wInit();
         if (Wake.hasS2w()) s2wInit();
         if (Wake.hasLenient()) lenientInit();
@@ -69,6 +71,20 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (Wake.hasDT2WTimeBetweenTaps()) DT2WTimeBetweenTapsInit();
         if (Wake.hasDT2WFeatherX()) DT2WFeatherXInit();
         if (Wake.hasDT2WFeatherY()) DT2WFeatherYInit();
+    }
+
+    private void vibstrengthInit() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 91; i++)
+            list.add(Integer.toString(i));
+
+        mWakeGesturesVibStrengthCard = new SeekBarCardView.DSeekBarCard(list);
+        mWakeGesturesVibStrengthCard.setTitle(getString(R.string.vib_strength));
+        mWakeGesturesVibStrengthCard.setDescription(getString(R.string.vib_strength_summary));
+        mWakeGesturesVibStrengthCard.setProgress(Wake.getvibstrength());
+        mWakeGesturesVibStrengthCard.setOnDSeekBarCardListener(this);
+
+        addView(mWakeGesturesVibStrengthCard);
     }
 
     private void dt2wInit() {
@@ -270,7 +286,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
+        if (dSeekBarCard == mWakeGesturesVibStrengthCard) Wake.setvibstrength(position, getActivity());
+        else if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
         else if (dSeekBarCard == mS2WTimeCard) Wake.setS2WTime(position + 1, getActivity());
         else if (dSeekBarCard == mDT2WTimeBetweenTapsCard) Wake.setDT2WTimeBetweenTaps(position + 25, getActivity());
         else if (dSeekBarCard == mDT2WFeatherXCard) Wake.setDT2WFeatherX(position + 1, getActivity());
