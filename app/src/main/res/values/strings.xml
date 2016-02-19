@@ -281,6 +281,12 @@
     <string name="msm_sleeper_suspend_max_online">Max Online Cores during suspend</string>
     <string name="msm_sleeper_up_count_max">Amount of time threshold needs to be exceeded before online-ing a core</string>
     <string name="msm_sleeper_down_count_max">Amount of time threshold needs to be below before offline-ing a core</string>
+    <string name="bricked_nwns">Runqueue Threshold Hotplug CPU%d</string>
+    <string name="bricked_nwns_hotplug">If this threshold is reached, CPU%d will be hotplugged.</string>
+    <string name="bricked_nwns_unplug">If this threshold is reached, CPU%d will be unplugged.</string>
+    <string name="bricked_twts">Time Threshold Hotplug CPU%d</string>
+    <string name="bricked_twts_hotplug">This amount of time must have passed for CPU%d to be hotplugged.</string>
+    <string name="bricked_twts_unplug">This amount of time must have passed for CPU%d to be unplugged.</string>
 
     <!-- Thermal -->
     <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>

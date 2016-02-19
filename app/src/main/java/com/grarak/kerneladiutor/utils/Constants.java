@@ -200,6 +200,8 @@ public interface Constants {
     String MB_STARTDELAY = "startdelay";
     String MB_DELAY = "delay";
     String MB_PAUSE = "pause";
+    String BRICKED_NWNS = "nwns_threshold";
+    String BRICKED_TWTS = "twts_threshold";
 
     String[] MB_HOTPLUG_ARRAY = {MSM_MPDECISION_HOTPLUG, BRICKED_HOTPLUG};
 

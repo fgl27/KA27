@@ -17,7 +17,6 @@
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
-import android.view.ViewDebug;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
@@ -114,6 +113,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     private SeekBarCardView.DSeekBarCard mMBHotplugStartDelayCard;
     private SeekBarCardView.DSeekBarCard mMBHotplugDelayCard;
     private SeekBarCardView.DSeekBarCard mMBHotplugPauseCard;
+    private SeekBarCardView.DSeekBarCard mBrickedNWNSCard[], mBrickedTWTSCard[];
 
     private SwitchCardView.DSwitchCard mAlucardHotplugEnableCard;
     private SwitchCardView.DSwitchCard mAlucardHotplugHpIoIsBusyCard;
@@ -1175,6 +1175,48 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
                 views.add(mMBHotplugPauseCard);
             }
+
+            if (CPUHotplug.hasBrickedNWNS()) {
+
+                DDivider mBrickedNWNSDividerCard = new DDivider();
+                mBrickedNWNSDividerCard.setText("Runqueue Thresholds");
+                views.add(mBrickedNWNSDividerCard);
+
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 101; i++)
+                    list.add(i + getString(R.string.percent));
+
+                mBrickedNWNSCard = new SeekBarCardView.DSeekBarCard[8];
+                for (int i = 0; i < 8; i++) {
+                    mBrickedNWNSCard[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mBrickedNWNSCard[i].setTitle(CPUHotplug.getBrickedNWNS(i, "title", getActivity()));
+                    mBrickedNWNSCard[i].setDescription(CPUHotplug.getBrickedNWNS(i, "description", getActivity()));
+                    mBrickedNWNSCard[i].setProgress(Integer.parseInt(CPUHotplug.getBrickedNWNS(i, "value", getActivity())));
+                    mBrickedNWNSCard[i].setOnDSeekBarCardListener(this);
+                    views.add(mBrickedNWNSCard[i]);
+                }
+            }
+
+            if (CPUHotplug.hasBrickedTWTS()) {
+
+                DDivider mBrickedTWTSDividerCard = new DDivider();
+                mBrickedTWTSDividerCard.setText("Time Thresholds");
+                views.add(mBrickedTWTSDividerCard);
+
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 1001; i++)
+                    list.add(i + getString(R.string.ms));
+
+                mBrickedTWTSCard = new SeekBarCardView.DSeekBarCard[8];
+                for (int i = 0; i < 8; i++) {
+                    mBrickedTWTSCard[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mBrickedTWTSCard[i].setTitle(CPUHotplug.getBrickedTWTS(i, "title", getActivity()));
+                    mBrickedTWTSCard[i].setDescription(CPUHotplug.getBrickedTWTS(i, "description", getActivity()));
+                    mBrickedTWTSCard[i].setProgress(Integer.parseInt(CPUHotplug.getBrickedTWTS(i, "value", getActivity())));
+                    mBrickedTWTSCard[i].setOnDSeekBarCardListener(this);
+                    views.add(mBrickedTWTSCard[i]);
+                }
+            }
         }
 
         if (CPUHotplug.isAlucardHotplugActive()) {
@@ -1653,6 +1695,14 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
+        for (int i = 0; i < 8; i++) {
+            if (dSeekBarCard == mBrickedNWNSCard[i]) {
+                CPUHotplug.setBrickedNWNS(i, position, getActivity());
+            }
+            else if (dSeekBarCard == mBrickedTWTSCard[i]) {
+                CPUHotplug.setBrickedTWTS(i, position, getActivity());
+            }
+        }
         if (dSeekBarCard == mIntelliPlugHysteresisCard)
             CPUHotplug.setIntelliPlugHysteresis(position, getActivity());
         else if (dSeekBarCard == mIntelliPlugThresholdCard)
