@@ -206,4 +206,15 @@ public class Sound implements Constants {
         return false;
     }
 
+    public static void activateSpkr_Drv_Wrnd(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", SPKR_DRV_WRND, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSpkr_Drv_Wrnd_Active() {
+        return Utils.readFile(SPKR_DRV_WRND).equals("1");
+    }
+
+    public static boolean hasSpkr_Drv_WrndEnable() {
+        return Utils.existFile(SPKR_DRV_WRND);
+    }
 }
