@@ -583,20 +583,17 @@ public class CPUHotplug implements Constants {
     }
 
     public static String getBrickedNWNS(int num, String item, Context context) {
-        switch (num) {
-            case 0:case 2:case 4:case 6: {
+           if ( ( num & 1 ) == 0 ) {
                 if (item.equals("title")) return String.format(context.getString(R.string.bricked_nwns), num / 2);
                 if (item.equals("description")) return String.format(context.getString(R.string.bricked_nwns_hotplug), num / 2);
                 if (item.equals("value") && Utils.existFile(MB_HOTPLUG_FILE + "/" + BRICKED_NWNS + "_" + num)) return Utils.readFile(MB_HOTPLUG_FILE + "/" + BRICKED_NWNS + "_" + num);
             }
-            case 1:case 3:case 5:case 7: {
+            else {
                 if (item.equals("title")) return String.format(context.getString(R.string.bricked_nwns), (num - 1) / 2);
                 if (item.equals("description")) return String.format(context.getString(R.string.bricked_nwns_unplug), (num - 1) / 2);
                 if (item.equals("value") && Utils.existFile(MB_HOTPLUG_FILE + "/" + BRICKED_NWNS + "_" + num)) return Utils.readFile(MB_HOTPLUG_FILE + "/" + BRICKED_NWNS + "_" + num);
             }
-            default:
-                return null;
-        }
+            return "error";
     }
 
     public static void setBrickedNWNS(int num, int value, Context context) {
@@ -610,20 +607,17 @@ public class CPUHotplug implements Constants {
     }
 
     public static String getBrickedTWTS(int num, String item, Context context) {
-        switch (num) {
-            case 0:case 2:case 4:case 6: {
+          if ( ( num & 1 ) == 0 ) {
                 if (item.equals("title")) return String.format(context.getString(R.string.bricked_twts), num / 2);
                 if (item.equals("description")) return String.format(context.getString(R.string.bricked_twts_hotplug), num / 2);
                 if (item.equals("value") && Utils.existFile(MB_HOTPLUG_FILE + "/" + BRICKED_TWTS + "_" + num)) return Utils.readFile(MB_HOTPLUG_FILE + "/" + BRICKED_TWTS + "_" + num);
             }
-            case 1:case 3:case 5:case 7: {
+            else {
                 if (item.equals("title")) return String.format(context.getString(R.string.bricked_twts), (num - 1) / 2);
                 if (item.equals("description")) return String.format(context.getString(R.string.bricked_twts_unplug), (num - 1) / 2);
                 if (item.equals("value") && Utils.existFile(MB_HOTPLUG_FILE + "/" + BRICKED_TWTS + "_" + num)) return Utils.readFile(MB_HOTPLUG_FILE + "/" + BRICKED_TWTS + "_" + num);
             }
-            default:
-                return null;
-        }
+            return "error";
     }
 
     public static void setBrickedTWTS(int num, int value, Context context) {
