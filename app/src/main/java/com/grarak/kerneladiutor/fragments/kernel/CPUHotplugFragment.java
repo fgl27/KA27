@@ -1202,8 +1202,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 for (int i = 0; i < 101; i++)
                     list.add(i + getString(R.string.percent));
 
-                mBrickedNWNSCard = new SeekBarCardView.DSeekBarCard[8];
-                for (int i = 0; i < 8; i++) {
+                int cores = CPU.getCoreCount();
+                mBrickedNWNSCard = new SeekBarCardView.DSeekBarCard[cores];
+                for (int i = 0; i < cores; i++) {
                     mBrickedNWNSCard[i] = new SeekBarCardView.DSeekBarCard(list);
                     mBrickedNWNSCard[i].setTitle(CPUHotplug.getBrickedNWNS(i, "title", getActivity()));
                     mBrickedNWNSCard[i].setDescription(CPUHotplug.getBrickedNWNS(i, "description", getActivity()));
@@ -1222,9 +1223,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 List<String> list = new ArrayList<>();
                 for (int i = 0; i < 1001; i++)
                     list.add(i + getString(R.string.ms));
-
-                mBrickedTWTSCard = new SeekBarCardView.DSeekBarCard[8];
-                for (int i = 0; i < 8; i++) {
+                int cores = CPU.getCoreCount();
+                mBrickedTWTSCard = new SeekBarCardView.DSeekBarCard[cores];
+                for (int i = 0; i < cores; i++) {
                     mBrickedTWTSCard[i] = new SeekBarCardView.DSeekBarCard(list);
                     mBrickedTWTSCard[i].setTitle(CPUHotplug.getBrickedTWTS(i, "title", getActivity()));
                     mBrickedTWTSCard[i].setDescription(CPUHotplug.getBrickedTWTS(i, "description", getActivity()));
@@ -1711,7 +1712,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < CPU.getCoreCount	(); i++) {
             if (dSeekBarCard == mBrickedNWNSCard[i]) {
                 CPUHotplug.setBrickedNWNS(i, position, getActivity());
             }
