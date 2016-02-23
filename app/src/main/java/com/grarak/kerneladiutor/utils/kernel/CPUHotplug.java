@@ -1439,6 +1439,7 @@ public class CPUHotplug implements Constants {
         if (CPUHotplug.isZenDecisionActive() && !activehotplug.equals("ZenDecision")) Control.runCommand("0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isMSMSleeperActive() && !activehotplug.equals("MSM_Sleeper")) Control.runCommand("0", MSM_SLEEPER_ENABLE, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isMBHotplugActive() && !activehotplug.equals("MBHotplug")) Control.runCommand("0", MB_HOTPLUG_FILE + "/" + MB_ENABLED, Control.CommandType.GENERIC, context);
+        if (CPUHotplug.isMsmHotplugActive() && !activehotplug.equals("MSMHotPlug")) Control.runCommand("0", MSM_HOTPLUG_ENABLE_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean hasMSMSleeper () {
