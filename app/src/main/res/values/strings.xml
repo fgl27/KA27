@@ -487,8 +487,8 @@
     <string name="headphone_poweramp_gain">Headphone PowerAmp Gain</string>
     <string name="microphone_gain">Microphone Gain</string>
     <string name="volume_gain">Volume Gain</string>
-    <string name="headset_mspkr_drv_mode">Speaker Driver</string>
-    <string name="headset_mspkr_drv_mode_summary">Apparently... This does something... Good Luck.</string>
+    <string name="headset_mspkr_drv_mode">Speaker Driver Leakage</string>
+    <string name="headset_mspkr_drv_mode_summary">Run software workaround to avoid leakage on the speaker drive</string>
 
     <!-- Battery -->
     <string name="battery_voltage">Battery Voltage</string>
