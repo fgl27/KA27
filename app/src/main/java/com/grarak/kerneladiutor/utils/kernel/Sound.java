@@ -206,15 +206,37 @@ public class Sound implements Constants {
         return false;
     }
 
-    public static void activateSpkr_Drv_Wrnd(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", SPKR_DRV_WRND, Control.CommandType.GENERIC, context);
+    public static void activateWcdSpkr_Drv_Wrnd(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", WCD_SPKR_DRV_WRND, Control.CommandType.GENERIC, context);
     }
 
-    public static boolean isSpkr_Drv_Wrnd_Active() {
-        return Utils.readFile(SPKR_DRV_WRND).equals("1");
+    public static boolean isWcdSpkr_Drv_Wrnd_Active() {
+        return Utils.readFile(WCD_SPKR_DRV_WRND).equals("1");
     }
 
-    public static boolean hasSpkr_Drv_WrndEnable() {
-        return Utils.existFile(SPKR_DRV_WRND);
+    public static boolean hasWcdSpkr_Drv_WrndEnable() {
+        return Utils.existFile(WCD_SPKR_DRV_WRND);
+    }
+
+    public static void activateWcdHighPerfMode(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", WCD_HIGHPERF_MODE_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isWcdHighPerfModeActive() {
+        return Utils.readFile(WCD_HIGHPERF_MODE_ENABLE).equals("1");
+    }
+
+    public static boolean hasWcdHighPerfMode() {
+        return Utils.existFile(WCD_HIGHPERF_MODE_ENABLE);
+    }
+
+    public static boolean hasDriverTunables() {
+        if (Utils.existFile(WCD_SPKR_DRV_WRND) || Utils.existFile(WCD_HIGHPERF_MODE_ENABLE)) return true;
+        else return false;
+    }
+
+    public static boolean hasThirdPartyTunables() {
+        if (Utils.existFile(FAUX_SOUND) || Utils.existFile(FRANCO_SOUND)) return true;
+        else return false;
     }
 }

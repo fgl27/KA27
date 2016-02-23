@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -33,7 +34,7 @@ public class SoundFragment extends RecyclerViewFragment implements
 
     private SwitchCardView.DSwitchCard mSoundControlEnableCard;
     private SwitchCardView.DSwitchCard mHighPerfModeEnableCard;
-    private SwitchCardView.DSwitchCard mspkr_drv_wrndCard;
+    private SwitchCardView.DSwitchCard mwcdspkr_drv_wrndCard, mwcdHighPerfModeEnableCard;
     private SeekBarCardView.DSeekBarCard mHeadphoneGainCard;
     private SeekBarCardView.DSeekBarCard mHandsetMicrophoneGainCard;
     private SeekBarCardView.DSeekBarCard mCamMicrophoneGainCard;
@@ -46,16 +47,55 @@ public class SoundFragment extends RecyclerViewFragment implements
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        if (Sound.hasDriverTunables()) drivertunablesInit();
+
+        if (Sound.hasWcdSpkr_Drv_WrndEnable()) wcdspkr_drv_wrnd_Init();
+        if (Sound.hasWcdHighPerfMode()) wcdhighPerfModeEnableInit();
+
+        if (Sound.hasThirdPartyTunables()) thirdpartytunablesInit();
+
         if (Sound.hasSoundControlEnable()) soundControlEnableInit();
         if (Sound.hasHighPerfModeEnable()) highPerfModeEnableInit();
-        if (Sound.hasSpkr_Drv_WrndEnable()) spkr_drv_wrnd_Init();
         if (Sound.hasHeadphoneGain()) headphoneGainInit();
         if (Sound.hasHandsetMicrophoneGain()) handsetMicrophoneGainInit();
         if (Sound.hasCamMicrophoneGain()) camMicrophoneGainInit();
         if (Sound.hasSpeakerGain()) speakerGainInit();
-        //if (Sound.hasHeadphonePowerAmpGain()) headphonePowerAmpGainInit();
+        if (Sound.hasHeadphonePowerAmpGain()) headphonePowerAmpGainInit();
         if (Sound.hasMicrophoneGain()) microphoneGainInit();
         if (Sound.hasVolumeGain()) volumeGainInit();
+    }
+
+
+    private void drivertunablesInit() {
+        DDivider mdrivertunablesDivider = new DDivider();
+        mdrivertunablesDivider.setText(getString(R.string.driver_tunables));
+        addView(mdrivertunablesDivider);
+    }
+
+    private void wcdspkr_drv_wrnd_Init() {
+        mwcdspkr_drv_wrndCard = new SwitchCardView.DSwitchCard();
+        mwcdspkr_drv_wrndCard.setTitle(getString(R.string.headset_mspkr_drv_mode));
+        mwcdspkr_drv_wrndCard.setDescription(getString(R.string.headset_mspkr_drv_mode_summary));
+        mwcdspkr_drv_wrndCard.setChecked(Sound.isWcdSpkr_Drv_Wrnd_Active());
+        mwcdspkr_drv_wrndCard.setOnDSwitchCardListener(this);
+
+        addView(mwcdspkr_drv_wrndCard);
+    }
+
+    private void wcdhighPerfModeEnableInit() {
+        mwcdHighPerfModeEnableCard = new SwitchCardView.DSwitchCard();
+        mwcdHighPerfModeEnableCard.setTitle(getString(R.string.headset_highperf_mode));
+        mwcdHighPerfModeEnableCard.setDescription(getString(R.string.headset_highperf_mode_summary));
+        mwcdHighPerfModeEnableCard.setChecked(Sound.isWcdHighPerfModeActive());
+        mwcdHighPerfModeEnableCard.setOnDSwitchCardListener(this);
+
+        addView(mwcdHighPerfModeEnableCard);
+    }
+
+    private void thirdpartytunablesInit() {
+        DDivider mthirdpartytunablesDivider = new DDivider();
+        mthirdpartytunablesDivider.setText(getString(R.string.third_party_driver_tunables));
+        addView(mthirdpartytunablesDivider);
     }
 
     private void soundControlEnableInit() {
@@ -70,22 +110,12 @@ public class SoundFragment extends RecyclerViewFragment implements
     private void highPerfModeEnableInit() {
         mHighPerfModeEnableCard = new SwitchCardView.DSwitchCard();
         mHighPerfModeEnableCard.setTitle(getString(R.string.headset_highperf_mode));
-        mHighPerfModeEnableCard.setDescription(getString(R.string.headset_highperf_mode_summary));
         mHighPerfModeEnableCard.setChecked(Sound.isHighPerfModeActive());
         mHighPerfModeEnableCard.setOnDSwitchCardListener(this);
 
         addView(mHighPerfModeEnableCard);
     }
 
-    private void spkr_drv_wrnd_Init() {
-        mspkr_drv_wrndCard = new SwitchCardView.DSwitchCard();
-        mspkr_drv_wrndCard.setTitle(getString(R.string.headset_mspkr_drv_mode));
-        mspkr_drv_wrndCard.setDescription(getString(R.string.headset_mspkr_drv_mode_summary));
-        mspkr_drv_wrndCard.setChecked(Sound.isSpkr_Drv_Wrnd_Active());
-        mspkr_drv_wrndCard.setOnDSwitchCardListener(this);
-
-        addView(mspkr_drv_wrndCard);
-    }
     private void headphoneGainInit() {
         mHeadphoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHeadphoneGainLimits());
         mHeadphoneGainCard.setTitle(getString(R.string.headphone_gain));
@@ -157,8 +187,10 @@ public class SoundFragment extends RecyclerViewFragment implements
             Sound.activateSoundControl(checked, getActivity());
         else if (dSwitchCard == mHighPerfModeEnableCard)
             Sound.activateHighPerfMode(checked, getActivity());
-        else if (dSwitchCard == mspkr_drv_wrndCard)
-            Sound.activateSpkr_Drv_Wrnd(checked, getActivity());
+        else if (dSwitchCard == mwcdHighPerfModeEnableCard)
+            Sound.activateWcdHighPerfMode(checked, getActivity());
+        else if (dSwitchCard == mwcdspkr_drv_wrndCard)
+            Sound.activateWcdSpkr_Drv_Wrnd(checked, getActivity());
     }
 
     @Override
