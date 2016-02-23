@@ -1430,7 +1430,6 @@ public class CPUHotplug implements Constants {
         if (CPUHotplug.isAutoSmpActive() && !activehotplug.equals("AutoSMP") ) Control.runCommand("N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isThunderPlugActive() && !activehotplug.equals("ThunderPlug")) Control.runCommand("0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isAlucardHotplugActive() && !activehotplug.equals("AlucardHotplug")) Control.runCommand("0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isBluPlugActive() && !activehotplug.equals("MBHotplug")) Control.runCommand("0", MB_HOTPLUG_FILE + "/" + MB_ENABLED, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isMakoHotplugActive() && !activehotplug.equals("MakoHotPlug")) Control.runCommand("0", MAKO_HOTPLUG_ENABLED, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isBluPlugActive() && !activehotplug.equals("BluPlug")) Control.runCommand("0", HOTPLUG_BLU_PLUG_ENABLE, Control.CommandType.GENERIC, context);
         if (CPUHotplug.isIntelliPlugActive() && !activehotplug.equals("IntelliPlug")) {
