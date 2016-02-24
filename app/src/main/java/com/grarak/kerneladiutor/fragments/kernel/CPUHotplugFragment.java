@@ -1697,7 +1697,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setMBHotplugIdleFreq(CPU.getFreqs().get(position), getActivity());
         else if (dPopupCard == mThunderPlugEnduranceLevelCard)
             CPUHotplug.setThunderPlugEnduranceLevel(position, getActivity());
-        else {
+        else if (mMBHotplugBoostFreqsCard != null ){
             for (int i = 0; i < mMBHotplugBoostFreqsCard.length; i++)
                 if (dPopupCard == mMBHotplugBoostFreqsCard[i]) {
                     CPUHotplug.setMBHotplugBoostFreqs(i, CPU.getFreqs().get(position), getActivity());
@@ -1713,10 +1713,10 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         for (int i = 0; i < CPU.getCoreCount	(); i++) {
-            if (dSeekBarCard == mBrickedNWNSCard[i]) {
+            if (mBrickedNWNSCard != null && dSeekBarCard == mBrickedNWNSCard[i]) {
                 CPUHotplug.setBrickedNWNS(i, position, getActivity());
             }
-            else if (dSeekBarCard == mBrickedTWTSCard[i]) {
+            else if (mBrickedTWTSCard != null && dSeekBarCard == mBrickedTWTSCard[i]) {
                 CPUHotplug.setBrickedTWTS(i, position, getActivity());
             }
         }
