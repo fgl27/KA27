@@ -290,6 +290,7 @@ public class Misc implements Constants {
             }
         return false;
     }
+
     public static void activateBcl(boolean active, Context context) {
         Control.runCommand(active ? "enabled" : "disabled", BCL, Control.CommandType.GENERIC, context);
     }
@@ -301,7 +302,18 @@ public class Misc implements Constants {
     public static boolean hasBcl() {
         return Utils.existFile(BCL);
     }
-    
+
+    public static void activateBclHotplug(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", BCL_HOTPLUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isBclHotplugActive() {
+        return Utils.readFile(BCL_HOTPLUG).equals("Y");
+    }
+
+    public static boolean hasBclHotplug() {
+        return Utils.existFile(BCL_HOTPLUG);
+    }
 
     public static void activateCrc(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", CRC_FILE, Control.CommandType.GENERIC, context);
