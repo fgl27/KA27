@@ -291,11 +291,11 @@ public class Misc implements Constants {
         return false;
     }
     public static void activateBcl(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", BCL, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "enabled" : "disabled", BCL, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isBclActive() {
-        return Utils.readFile(BCL).equals("1");
+        return Utils.readFile(BCL).equals("enabled");
     }
 
     public static boolean hasBcl() {
