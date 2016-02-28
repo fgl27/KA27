@@ -292,6 +292,9 @@ public class Misc implements Constants {
     }
 
     public static void activateBcl(boolean active, Context context) {
+        if (!active && Misc.hasBclHotplug() && Misc.isBclHotplugActive()) {
+            Misc.activateBclHotplug(false, context);
+        }
         Control.runCommand(active ? "enabled" : "disabled", BCL, Control.CommandType.GENERIC, context);
     }
 
@@ -304,6 +307,9 @@ public class Misc implements Constants {
     }
 
     public static void activateBclHotplug(boolean active, Context context) {
+        if (active && Misc.hasBcl() && !Misc.isBclActive()) {
+            Misc.activateBcl(true, context);
+        }
         Control.runCommand(active ? "Y" : "N", BCL_HOTPLUG, Control.CommandType.GENERIC, context);
     }
 

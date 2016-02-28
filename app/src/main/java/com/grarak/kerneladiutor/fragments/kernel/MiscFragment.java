@@ -418,4 +418,15 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         dEditTextCard.setDescription(value);
         if (dEditTextCard == mHostnameCard) Misc.setHostname(value, getActivity());
     }
+
+    @Override
+    public boolean onRefresh() {
+        if (mBclCard != null) {
+            mBclCard.setChecked(Misc.isBclActive());
+        }
+        if (mBclHotplugCard != null) {
+            mBclHotplugCard.setChecked(Misc.isBclHotplugActive());
+        }
+        return true;
+    }
 }
