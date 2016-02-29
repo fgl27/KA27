@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.fragments.tools;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -38,11 +39,13 @@ import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.ProfileTileReceiver;
+import com.grarak.kerneladiutor.services.PerAppMonitor;
 import com.grarak.kerneladiutor.services.ProfileWidget;
 import com.grarak.kerneladiutor.tasker.AddProfileActivity;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
+import com.grarak.kerneladiutor.utils.tools.Per_App;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.kerneladiutor.library.root.RootUtils;
@@ -50,6 +53,7 @@ import com.kerneladiutor.library.root.RootUtils;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by willi on 31.01.15.
@@ -66,6 +70,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private TextView title;
     private boolean taskerMode;
+    private AlertDialog.Builder mPerAppDialog;
 
     @Override
     public boolean showApplyOnBoot() {
@@ -296,6 +301,10 @@ public class ProfileFragment extends RecyclerViewFragment {
                                             s.setLength(s.length() - 1);
                                             new AlertDialog.Builder(getActivity()).setMessage(s.toString()).show();
                                             break;
+                                        case 3:
+                                            dialog.dismiss();
+                                            PerAppDialog(profileItems.get(position).getID());
+                                            break;
                                     }
                                 }
                             }).show();
@@ -321,5 +330,79 @@ public class ProfileFragment extends RecyclerViewFragment {
         }
         ProfileTileReceiver.publishProfileTile(profileItems, getActivity());
     }
+    private void PerAppDialog(String id) {
+        if (!Per_App.isAccessibilityEnabled(getActivity(), PerAppMonitor.accessibilityId)) {
+            startActivityForResult(new Intent(android.provider.Settings.ACTION_ACCESSIBILITY_SETTINGS), 0);
+        } else {
 
+            mPerAppDialog = new AlertDialog.Builder(getActivity());
+            mPerAppDialog.setTitle(R.string.per_app_title);
+            mPerAppDialog.setCancelable(true);
+
+            //final String[] mapplist = Per_App.getInstalledApps(getActivity());
+            // Key is Packagename and value is App name
+            final Map apps = Per_App.getInstalledApps(getActivity());
+
+            final String[] packagelist = Per_App.getPackageNames(apps);
+            final String[] mapplist = Per_App.getAppNames(apps);
+
+            final String profile_id = id;
+            final List<Integer> mSelectedApps = new ArrayList<Integer>();
+            final List<Integer> mDeSelectedApps = new ArrayList<Integer>();
+
+            final boolean[] checkedValues = Per_App.getExistingSelections(packagelist, profile_id, getActivity());
+
+            // Specify the list array, the items to be selected by default (null for none),
+            // and the listener through which to receive callbacks when items are selected
+            mPerAppDialog.setMultiChoiceItems(mapplist, checkedValues,
+                    new DialogInterface.OnMultiChoiceClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which,
+                                            boolean isChecked) {
+                            if (isChecked) {
+                                // If the user checked the item, add it to the selected items
+                                mSelectedApps.add(which);
+                            }
+                            if (!isChecked) {
+                                mDeSelectedApps.add(which);
+                            }
+                            if (!isChecked && mSelectedApps.contains(which)) {
+                                // Else, if the item is already in the array, remove it
+                                mSelectedApps.remove(Integer.valueOf(which));
+                            }
+                        }
+                    });
+
+            // Set the action buttons
+            mPerAppDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+                    // User clicked OK, so save the mSelectedItems results somewhere
+                    // or return them to the component that opened the dialog
+                    if (mSelectedApps != null) {
+                        for (int i = 0; i < mSelectedApps.size(); i++) {
+                            int y = mSelectedApps.get(i);
+                            Per_App.save_app(packagelist[y], profile_id, getActivity());
+                        }
+                    }
+                    if (mDeSelectedApps != null) {
+                        for (int i = 0; i < mDeSelectedApps.size(); i++) {
+                            int y = mDeSelectedApps.get(i);
+                            Per_App.remove_app(packagelist[y], profile_id, getActivity());
+                        }
+                    }
+
+
+                }
+            });
+            mPerAppDialog.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int id) {
+
+                }
+            });
+            mPerAppDialog.create();
+            mPerAppDialog.show();
+        }
+    }
 }

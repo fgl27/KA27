@@ -707,6 +707,8 @@
     <string name="applied">Applied</string>
     <string name="applying_profile">Applying %s</string>
     <string name="replace_profile">Do you want to replace %s?</string>
+    <string name="set_per_app">Set Per App Settings</string>
+    <string name="per_app_title">Select Apps that will activate this profile</string>
 
     <!-- Recovery -->
     <string name="reboot">Reboot</string>
@@ -811,5 +813,8 @@
 
     <string name="modification_version">Modification Version</string>
     <string name="modification_version_number">0.9.9.4.+2</string>
+
+    <string name="accessibility_service_label">SKA Per App Monitor</string>
+    <string name="accessibility_service_desc">Service to monitor when foreground app changes for per-app profile loading</string>
 
 </resources>

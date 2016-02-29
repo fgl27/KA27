@@ -64,6 +64,7 @@
         <item>@string/apply</item>
         <item>@string/delete</item>
         <item>@string/information</item>
+        <item>@string/set_per_app</item>
     </string-array>
 
     <!-- Misc -->

@@ -25,6 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by willi on 15.04.15.
@@ -79,6 +80,8 @@ public class ProfileDB extends JsonDB {
 
             items.put("commands", commandArray);
 
+            items.put("id", UUID.randomUUID());
+
             putItem(items);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -100,6 +103,13 @@ public class ProfileDB extends JsonDB {
 
         public String getName() {
             return getString("name");
+        }
+
+        public String getID() {
+            if (getString("id") != null) {
+                return getString("id");
+            }
+            else return "0";
         }
 
         public List<String> getPath() {
