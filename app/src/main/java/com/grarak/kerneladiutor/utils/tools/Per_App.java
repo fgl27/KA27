@@ -4,6 +4,7 @@ import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityManager;
 
@@ -24,14 +25,27 @@ public class Per_App {
         // Get a list of installed apps. Currently this is only the package name
         final PackageManager pm = context.getPackageManager();
         //ArrayList<String> installedApps = new ArrayList<String>();
-        Map applist = new TreeMap();
+        final Map applist = new TreeMap();
 
-        List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        final List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
         // Add a "Default" Selection to set the default profile"
         applist.put("Default","Default");
 
-        for (ApplicationInfo packageInfo : packages) {
-            applist.put(packageInfo.loadLabel(pm), packageInfo.packageName);
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                for (ApplicationInfo packageInfo : packages) {
+                    applist.put(packageInfo.loadLabel(pm), packageInfo.packageName);
+                }
+            }
+        };
+
+        t.start();
+
+        try {
+            t.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
         return applist;
