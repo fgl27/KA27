@@ -106,7 +106,7 @@ public class MainActivity extends BaseActivity implements Constants {
     /**
      * Cache the context of this activity
      */
-    private static Context context;
+    public static Context context;
 
     /**
      * Views
