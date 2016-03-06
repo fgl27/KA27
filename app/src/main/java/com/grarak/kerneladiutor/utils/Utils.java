@@ -461,7 +461,11 @@ public class Utils implements Constants {
     }
 
     public static boolean getBoolean(String name, boolean defaults, Context context) {
-        return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
+        try {
+            return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
+        } catch (Exception ignored){
+            return false;
+        }
     }
 
     public static void saveBoolean(String name, boolean value, Context context) {
