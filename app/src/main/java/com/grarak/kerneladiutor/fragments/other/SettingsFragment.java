@@ -68,6 +68,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         applyonbootInit();
         debuggingInit();
         securityInit();
+        perappInit();
         showSectionsInit();
     }
 
@@ -409,6 +410,26 @@ public class SettingsFragment extends RecyclerViewFragment {
                         Utils.saveString("password", "", getActivity());
                     }
                 }).show();
+    }
+
+    private void perappInit(){
+        DDivider mPerAppDividerCard = new DDivider();
+        mPerAppDividerCard.setText(getString(R.string.per_app));
+        addView(mPerAppDividerCard);
+
+        SwitchCardView.DSwitchCard mPerAppToastCard = new SwitchCardView.DSwitchCard();
+        mPerAppToastCard.setTitle(getString(R.string.per_app_toast));
+        mPerAppToastCard.setDescription(getString(R.string.per_app_toast_summary));
+        mPerAppToastCard.setChecked(Utils.getBoolean("Per_App_Toast", false, getActivity()));
+        mPerAppToastCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+            @Override
+            public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                Utils.saveBoolean("Per_App_Toast", checked, getActivity());
+            }
+        });
+
+        addView(mPerAppToastCard);
+
     }
 
     private void showSectionsInit() {

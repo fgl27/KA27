@@ -770,6 +770,9 @@
     <string name="password_too_long">Password is too long</string>
     <string name="set_password_first">Set a password first</string>
     <string name="show_sections">Show sections</string>
+    <string name="per_app">Per App Profiles</string>
+    <string name="per_app_toast">Per App Toast</string>
+    <string name="per_app_toast_summary">Show a toast when applying a profile for Per App detection</string>
 
     <!-- FAQ -->
     <string name="misspelled">Why did you misspell \"Auditor\"?</string>
