@@ -38,12 +38,12 @@ public class PerAppMonitor extends AccessibilityService {
 
         if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
             sPackageName = event.getPackageName().toString();
-            if ((System.currentTimeMillis() - time) < 2000) {
+            if ((System.currentTimeMillis() - time) < 1000) {
                 if (!sPackageName.equals(launcher) || !sPackageName.equals("com.android.systemui")) {
                     process_window_change(sPackageName);
                 }
             }
-            else if ((System.currentTimeMillis() - time) >= 2000) {
+            else if ((System.currentTimeMillis() - time) >= 1000) {
                 process_window_change(sPackageName);
             }
         }
@@ -55,34 +55,31 @@ public class PerAppMonitor extends AccessibilityService {
     }
 
     private void process_window_change (String windowname) {
-        if (!windowname.equals("com.android.systemui")) {
+        if (!Per_App.app_profile_exists(windowname, getApplicationContext())) {
+            windowname = "Default";
+        }
+        if (Per_App.app_profile_exists(windowname, getApplicationContext())) {
+            ArrayList<String> info = new ArrayList<String>();
+            // Item 0 is packagename Item 1 is the profile ID
+            info = Per_App.app_profile_info(windowname, getApplicationContext());
 
-            if (!Per_App.app_profile_exists(windowname, getApplicationContext())) {
-                windowname = "Default";
-            }
-            if (Per_App.app_profile_exists(windowname, getApplicationContext())) {
-                ArrayList<String> info = new ArrayList<String>();
-                // Item 0 is packagename Item 1 is the profile ID
-                info = Per_App.app_profile_info(windowname, getApplicationContext());
+            if (!windowname.equals(last_package) && !info.get(1).equals(last_profile)) {
+                last_package = windowname;
+                last_profile = info.get(1);
+                time = System.currentTimeMillis();
+                ProfileDB profileDB = new ProfileDB(getApplicationContext());
+                final List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
 
-                if (!windowname.equals(last_package) && !info.get(1).equals(last_profile)) {
-                    last_package = windowname;
-                    last_profile = info.get(1);
-                    time = System.currentTimeMillis();
-                    ProfileDB profileDB = new ProfileDB(getApplicationContext());
-                    final List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
-
-                    for (int i = 0; i < profileItems.size(); i++) {
-                        if (profileItems.get(i).getID().equals(info.get(1))) {
-                            if (Utils.getBoolean("Per_App_Toast", false, MainActivity.context)) {
-                                Utils.toast("Applying Profile: " + profileItems.get(i).getName(), MainActivity.context);
-                            }
-                            Log.i("Kernel Adiutor", "Applying Profile:  " + profileItems.get(i).getName() + " for package " + windowname);
-                            ProfileDB.ProfileItem profileItem = profileItems.get(i);
-                            List<String> paths = profileItem.getPath();
-                            for (int x = 0; x < paths.size(); x++) {
-                                RootUtils.runCommand(profileItem.getCommands().get(x));
-                            }
+                for (int i = 0; i < profileItems.size(); i++) {
+                    if (profileItems.get(i).getID().equals(info.get(1))) {
+                        if (Utils.getBoolean("Per_App_Toast", false, MainActivity.context)) {
+                            Utils.toast("Applying Profile: " + profileItems.get(i).getName(), MainActivity.context);
+                        }
+                        Log.i("Kernel Adiutor", "Applying Profile:  " + profileItems.get(i).getName() + " for package " + windowname);
+                        ProfileDB.ProfileItem profileItem = profileItems.get(i);
+                        List<String> paths = profileItem.getPath();
+                        for (int x = 0; x < paths.size(); x++) {
+                            RootUtils.runCommand(profileItem.getCommands().get(x));
                         }
                     }
                 }
