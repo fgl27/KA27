@@ -95,6 +95,27 @@ public class ProfileDB extends JsonDB {
         return items;
     }
 
+    public int updateDB (Context context) {
+        ProfileDB profileDB = new ProfileDB(context);
+        int result = 0;
+
+        List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
+        for (int i = 0; i < profileItems.size(); i++) {
+            JSONObject temp = profileItems.get(i).getItem();
+            if (profileItems.get(i).getID().equals("111")) {
+                try {
+                    temp.put("id", UUID.randomUUID());
+                    putItem(temp);
+                    profileDB.commit();
+                    result = 1;
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+
     public static class ProfileItem extends DBJsonItem {
 
         public ProfileItem(JSONObject object) {

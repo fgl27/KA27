@@ -252,7 +252,13 @@ public class ProfileFragment extends RecyclerViewFragment {
 
     private void create() {
         removeAllViews();
+
         ProfileDB profileDB = new ProfileDB(getActivity());
+        if (profileDB.updateDB(getActivity()) == 1 ) {
+            removeAllViews();
+
+            profileDB = new ProfileDB(getActivity());
+        }
 
         final List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
         for (int i = 0; i < profileItems.size(); i++) {
