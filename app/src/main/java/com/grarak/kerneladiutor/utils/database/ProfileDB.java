@@ -109,7 +109,7 @@ public class ProfileDB extends JsonDB {
             if (getString("id") != null) {
                 return getString("id");
             }
-            else return "0";
+            else return "111";
         }
 
         public List<String> getPath() {
