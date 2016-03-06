@@ -55,8 +55,6 @@ public class PerAppMonitor extends AccessibilityService {
     }
 
     private void process_window_change (String windowname) {
-        Log.i("Kernel Adiutor", "Foreground: " + sPackageName);
-
         if (!windowname.equals("com.android.systemui")) {
 
             if (!Per_App.app_profile_exists(windowname, getApplicationContext())) {
