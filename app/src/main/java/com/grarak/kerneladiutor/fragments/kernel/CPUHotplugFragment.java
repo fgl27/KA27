@@ -1202,7 +1202,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 for (int i = 0; i < 101; i++)
                     list.add(i + getString(R.string.percent));
 
-                int cores = CPU.getCoreCount();
+                int cores = (CPU.getCoreCount() * 2);
                 mBrickedNWNSCard = new SeekBarCardView.DSeekBarCard[cores];
                 for (int i = 0; i < cores; i++) {
                     mBrickedNWNSCard[i] = new SeekBarCardView.DSeekBarCard(list);
@@ -1223,7 +1223,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 List<String> list = new ArrayList<>();
                 for (int i = 0; i < 1001; i++)
                     list.add(i + getString(R.string.ms));
-                int cores = CPU.getCoreCount();
+                int cores = (CPU.getCoreCount() * 2);
                 mBrickedTWTSCard = new SeekBarCardView.DSeekBarCard[cores];
                 for (int i = 0; i < cores; i++) {
                     mBrickedTWTSCard[i] = new SeekBarCardView.DSeekBarCard(list);
@@ -1712,7 +1712,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        for (int i = 0; i < CPU.getCoreCount	(); i++) {
+        for (int i = 0; i < (CPU.getCoreCount() * 2); i++) {
             if (mBrickedNWNSCard != null && dSeekBarCard == mBrickedNWNSCard[i]) {
                 CPUHotplug.setBrickedNWNS(i, position, getActivity());
             }
