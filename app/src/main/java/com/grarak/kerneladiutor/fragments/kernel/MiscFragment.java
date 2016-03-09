@@ -78,7 +78,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        networkInit();
+	selinuxInit();
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasBcl()) bclInit();
@@ -86,8 +86,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         fsyncInit();
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
-	selinuxInit();
         wakelockInit();
+	networkInit();
     }
 
     private void selinuxInit() {
