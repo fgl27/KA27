@@ -435,7 +435,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.activateOldPowerSuspend(checked, getActivity());
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
-            Misc.activateC3State(checked, getActivity());
         else if (dSwitchCard == mEnableADBOverWifiCard) {
             Misc.activateADBOverWifi(checked, getActivity());
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
