@@ -128,8 +128,8 @@
 
         <receiver android:name=".services.HighBrightnessModeReceiver">
             <intent-filter>
-                <action android:name="com.singularity.kerneladiutor.action.HBM_ON" />
-                <action android:name="com.singularity.kerneladiutor.action.HBM_OFF" />
+                <action android:name="com.grarak.kerneladiutor.action.HBM_ON" />
+                <action android:name="com.grarak.kerneladiutor.action.HBM_OFF" />
             </intent-filter>
         </receiver>
 
