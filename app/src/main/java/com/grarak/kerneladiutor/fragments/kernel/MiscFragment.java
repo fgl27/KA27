@@ -79,11 +79,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         super.init(savedInstanceState);
 
 	selinuxInit();
-        if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasLoggerEnable()) loggerInit();
         if (Misc.hasBcl()) bclInit();
         if (Misc.hasCrc()) crcInit();
         fsyncInit();
+        if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
         wakelockInit();
@@ -99,6 +99,9 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
         addView(mSELinuxCard);
 
+        DDivider mMiscCard = new DDivider();
+        mMiscCard.setText("Misc Settings");
+        addView(mMiscCard);
     }
 
     private void vibrationInit() {
@@ -265,10 +268,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         mEnableADBOverWifiCard.setOnDSwitchCardListener(this);
 
         addView(mEnableADBOverWifiCard);
-
-        DDivider mMiscCard = new DDivider();
-        mMiscCard.setText("Misc Settings");
-        addView(mMiscCard);
     }
 
     private void wakelockInit() {
