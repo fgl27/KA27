@@ -16,12 +16,15 @@
 
 package com.grarak.kerneladiutor;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -406,6 +409,7 @@ public class MainActivity extends BaseActivity implements Constants {
 
                 setList();
             }
+            check_writeexternalstorage();
             return null;
         }
 
@@ -543,6 +547,19 @@ public class MainActivity extends BaseActivity implements Constants {
      */
     public interface OnBackButtonListener {
         boolean onBackPressed();
+    }
+
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+
+    @TargetApi(23)
+    private void check_writeexternalstorage() {
+        int hasWriteExternalPermission = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (hasWriteExternalPermission != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_CODE_ASK_PERMISSIONS);
+            return;
+        }
+        return;
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
