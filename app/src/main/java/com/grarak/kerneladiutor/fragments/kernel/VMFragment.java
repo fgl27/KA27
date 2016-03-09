@@ -114,7 +114,7 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         mDirtyWritebackCard = new SeekBarCardView.DSeekBarCard(list);
         mDirtyWritebackCard.setTitle(getString(R.string.dirty_writeback_centisecs));
         mDirtyWritebackCard.setDescription(getString(R.string.dirty_writeback_centisecs_summary));
-        mDirtyWritebackCard.setProgress((VM.getDirtyWriteback() / 10) - 1);
+        mDirtyWritebackCard.setProgress((VM.getDirtyWriteback()) - 1);
         mDirtyWritebackCard.setOnDSeekBarCardListener(this);
 
         addView(mDirtyWritebackCard);
@@ -243,7 +243,7 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         if (dSeekBarCard == mDirtyRatioCard) VM.setDirtyRatio(position, getActivity());
         else if (dSeekBarCard == mDirtyBackgroundRatioCard) VM.setDirtyBackgroundRatio(position, getActivity());
         else if (dSeekBarCard == mDirtyExpireCard) VM.setDirtyExpire((position + 1) * 10, getActivity());
-        else if (dSeekBarCard == mDirtyWritebackCard) VM.setDirtyWriteback(position, getActivity());
+        else if (dSeekBarCard == mDirtyWritebackCard) VM.setDirtyWriteback(position + 1, getActivity());
         else if (dSeekBarCard == mOverCommitRatioCard) VM.setOverCommitRatio(position, getActivity());
         else if (dSeekBarCard == mSwappinessCard) VM.setSwappiness(position, getActivity());
         else if (dSeekBarCard == mVFSCachePressureCard) VM.setVFSCachePressure(position + 1, getActivity());
