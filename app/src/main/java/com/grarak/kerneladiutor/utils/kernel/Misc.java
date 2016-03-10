@@ -384,25 +384,11 @@ public class Misc implements Constants {
     }
 
     public static void activateLogger(boolean active, Context context) {
-        if (!LOGGER_FILE.equals(LOGD)) {
-            Control.runCommand(active ? "1" : "0", LOGGER_FILE, Control.CommandType.GENERIC, context);
-        }
-        if (LOGGER_FILE.equals(LOGD)) {
-            Control.runCommand("logd", active ? "start" : "stop", Control.CommandType.SHELL, context);
-        }
+        Control.runCommand(active ? "1" : "0", LOGGER_FILE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isLoggerActive() {
-        if (!LOGGER_FILE.equals(LOGD)) {
-            return Utils.readFile(LOGGER_FILE).equals("1");
-        }
-        if (LOGGER_FILE.equals(LOGD)) {
-            String result = RootUtils.runCommand("ps | grep logd");
-            if (result != null && !result.isEmpty()) {
-                return true;
-            }
-        }
-        return false;
+        return Utils.readFile(LOGGER_FILE).equals("1");
     }
 
     public static boolean hasLoggerEnable() {
