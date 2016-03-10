@@ -19,8 +19,6 @@ package com.grarak.kerneladiutor.services;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Build;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
@@ -57,6 +55,7 @@ public class HighBrightnessModeReceiver extends BroadcastReceiver {
                 Screen.activateScreenHBM(false, context);
                 Log.i(Constants.TAG + ": " + getClass().getSimpleName(), "Disabling High Brightness Mode via Intent");
             }
+
         }
     }
 }
