@@ -765,7 +765,7 @@ public interface Constants {
     String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_LOG_ENABLED};
 
     // BCL
-    String BCL = "/sys/devices/qcom,bcl.38/mode";
+    String[] BCL_ARRAY = {"/sys/devices/qcom,bcl.38/mode","/sys/devices/qcom,bcl.39/mode", "/sys/devices/soc.0/qcom,bcl.60/mode" };
     String BCL_HOTPLUG = "/sys/module/battery_current_limit/parameters/bcl_hotplug_enable";
 
     // CRC
@@ -807,9 +807,9 @@ public interface Constants {
     Object[][] MISC_ARRAY = {
             VIBRATION_ARRAY,
             {VIB_LIGHT, VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
-                    MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS, BCL,  POWER_SUSPEND_MODE,
+                    MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS,  POWER_SUSPEND_MODE,
                     POWER_SUSPEND_STATE, BCL_HOTPLUG, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY, GETENFORCE, SETENFORCE, ADB_OVER_WIFI},
-            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, CRC_ARRAY, FSYNC_ARRAY};
+            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, CRC_ARRAY, FSYNC_ARRAY, BCL_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";
