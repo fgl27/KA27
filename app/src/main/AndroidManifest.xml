@@ -126,13 +126,6 @@
             </intent-filter>
         </receiver>
 
-        <receiver android:name=".services.HighBrightnessModeReceiver">
-            <intent-filter>
-                <action android:name="com.singularity.kerneladiutor.action.HBM_ON" />
-                <action android:name="com.singularity.kerneladiutor.action.HBM_OFF" />
-            </intent-filter>
-        </receiver>
-
     </application>
 
 </manifest>
