@@ -156,7 +156,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             mScreenColorProilesCard = new PopupCardView.DPopupCard(list);
             mScreenColorProilesCard.setTitle(getString(R.string.screen_color_profile));
             mScreenColorProilesCard.setDescription(getString(R.string.screen_color_profile_summary));
-            mScreenColorProilesCard.setItem("");
+            mScreenColorProilesCard.setItem("Pick");
             mScreenColorProilesCard.setOnDPopupCardListener(this);
 
             addView(mScreenColorProilesCard);
