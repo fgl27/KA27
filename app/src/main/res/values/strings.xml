@@ -233,6 +233,7 @@
     <string name="max_load_counter">Max Load Counter</string>
     <string name="min_time_cpu_online">Min Time CPU Online</string>
     <string name="timer">Timer</string>
+    <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="bricked_hotplug">Bricked Hotplug</string>
     <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
     <string name="screen_off_single_core">Screen off Single Core</string>
