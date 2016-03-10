@@ -5,8 +5,8 @@ android {
     buildToolsVersion "23.0.2"
 
     defaultConfig {
-        applicationId "com.grarak.kerneladiutor"
-        minSdkVersion 9
+        applicationId "com.bhb27.kerneladiutor"
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 121
         versionName "0.9.9.4.+2"
@@ -19,6 +19,8 @@ android {
     }
     lintOptions {
         abortOnError false
+    }
+    productFlavors {
     }
 }
 

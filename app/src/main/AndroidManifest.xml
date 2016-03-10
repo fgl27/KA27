@@ -122,7 +122,7 @@
         <!-- CM SDK -->
         <receiver android:name=".services.ProfileTileReceiver">
             <intent-filter>
-                <action android:name="com.grarak.kerneladiutor.action.ACTION_TOGGLE_STATE" />
+                <action android:name="com.bhb27.kerneladiutor.action.ACTION_TOGGLE_STATE" />
             </intent-filter>
         </receiver>
 
