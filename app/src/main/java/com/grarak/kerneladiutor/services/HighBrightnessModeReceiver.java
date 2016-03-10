@@ -34,8 +34,8 @@ import com.kerneladiutor.library.root.RootUtils;
  */
 public class HighBrightnessModeReceiver extends BroadcastReceiver {
 
-    private static final String HBM_ON = "com.grarak.kerneladiutor.action.HBM_ON";
-    private static final String HBM_OFF = "com.grarak.kerneladiutor.action.HBM_OFF";
+    private static final String HBM_ON = "com.singularity.kerneladiutor.action.HBM_ON";
+    private static final String HBM_OFF = "com.singularity.kerneladiutor.action.HBM_OFF";
 
     @Override
     public void onReceive(Context context, Intent intent) {
