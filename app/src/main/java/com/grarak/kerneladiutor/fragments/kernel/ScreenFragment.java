@@ -1159,9 +1159,6 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         if (mScreenAutoHBMValueCard != null) {
             mScreenAutoHBMValueCard.setDescription("Current Lux Value: " + lux);
         }
-        if ( mScreenHBMCard != null) {
-            mScreenHBMCard.setChecked(Screen.isScreenHBMActive());
-        }
         return true;
     }
 }
