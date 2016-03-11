@@ -324,6 +324,12 @@ public class GammaProfiles {
             return getString("hue", position);
         }
 
+        public String getValues (int position) {
+            String values = getString("rgb", position) + "," + getString("sat", position) + "," + getString("value", position) + ","  + getString("contrast", position) + "," + getString("hue", position);
+            return values;
+        }
+
+
         @Override
         public String getName(int position) {
             return getString("name", position);

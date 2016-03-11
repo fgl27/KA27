@@ -150,13 +150,14 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         GammaProfiles.ScreenColorProfiles screenColorProfiles = Screen.getScreenColorProfiles(getActivity());
         if (screenColorProfiles != null) {
             List<String> list = new ArrayList<>();
+            list.add("Custom");
             for (int i = 0; i < screenColorProfiles.length(); i++)
                 list.add(screenColorProfiles.getName(i));
 
             mScreenColorProilesCard = new PopupCardView.DPopupCard(list);
             mScreenColorProilesCard.setTitle(getString(R.string.screen_color_profile));
             mScreenColorProilesCard.setDescription(getString(R.string.screen_color_profile_summary));
-            mScreenColorProilesCard.setItem("Pick");
+            mScreenColorProilesCard.setItem(Screen.getCurrentColorProfile(getActivity()));
             mScreenColorProilesCard.setOnDPopupCardListener(this);
 
             addView(mScreenColorProilesCard);

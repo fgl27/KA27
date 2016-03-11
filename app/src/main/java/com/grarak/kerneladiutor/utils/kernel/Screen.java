@@ -676,6 +676,20 @@ public class Screen implements Constants {
         return GAMMA_PROFILES.getScreenColorProfiles();
     }
 
+    public static int getCurrentColorProfile (Context context) {
+        if (GAMMA_PROFILES == null) {
+            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+        }
+        String current = Utils.readFile(SCREEN_KCAL_CTRL) + "," + Utils.readFile(SCREEN_KCAL_CTRL_SAT) + "," + Utils.readFile(SCREEN_KCAL_CTRL_VAL) + "," + Utils.readFile(SCREEN_KCAL_CTRL_CONT) + "," + Utils.readFile(SCREEN_KCAL_CTRL_HUE);
+        GammaProfiles.ScreenColorProfiles profiles = GAMMA_PROFILES.getScreenColorProfiles();
+        for (int i = 0 ;i < profiles.length(); i++) {
+            if (current.equals(profiles.getValues(i))) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
     public static void setScreenColorProfile (int profile, GammaProfiles.ScreenColorProfiles screenColorProfiles, Context context) {
         if (screenColorProfiles == null) return;
         setColorCalibrationKcal(screenColorProfiles.getRGB(profile), context);
