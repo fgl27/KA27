@@ -169,7 +169,7 @@ public class Sound implements Constants {
     }
 
     public static void setHeadphoneGain(String value, Context context, String side) {
-        if (side.isEmpty() || side == null) {
+        if (side == null) {
             Control.runCommand(value + " " + value, HEADPHONE_GAIN, Control.CommandType.FAUX_GENERIC, context);
         }
         if (side.equals("L")) {
