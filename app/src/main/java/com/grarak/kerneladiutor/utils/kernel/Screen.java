@@ -227,8 +227,13 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.DsiPanelProfiles getDsiPanelProfiles(Context context) {
-        if (GAMMA_PROFILES == null)
-            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+        if (GAMMA_PROFILES == null) {
+            if (Utils.existFile(context.getFilesDir() + "/gamma_profiles.json")) {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readFile(context.getFilesDir() + "/gamma_profiles.json"));
+            } else {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+            }
+        }
         return GAMMA_PROFILES.getDsiPanelProfiles();
     }
 
@@ -346,8 +351,13 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.GammaControlProfiles getGammaControlProfiles(Context context) {
-        if (GAMMA_PROFILES == null)
-            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+        if (GAMMA_PROFILES == null) {
+            if (Utils.existFile(context.getFilesDir() + "/gamma_profiles.json")) {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readFile(context.getFilesDir() + "/gamma_profiles.json"));
+            } else {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+            }
+        }
         return GAMMA_PROFILES.getGammaControl();
     }
 
@@ -445,8 +455,13 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.KGammaProfiles getKGammaProfiles(Context context) {
-        if (GAMMA_PROFILES == null)
-            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+        if (GAMMA_PROFILES == null) {
+            if (Utils.existFile(context.getFilesDir() + "/gamma_profiles.json")) {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readFile(context.getFilesDir() + "/gamma_profiles.json"));
+            } else {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+            }
+        }
         return GAMMA_PROFILES.getKGamma();
     }
 
@@ -670,15 +685,18 @@ public class Screen implements Constants {
     }
 
     public static GammaProfiles.ScreenColorProfiles getScreenColorProfiles (Context context) {
-        if (GAMMA_PROFILES == null)
-            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+        if (GAMMA_PROFILES == null) {
+            if (Utils.existFile(context.getFilesDir() + "/gamma_profiles.json")) {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readFile(context.getFilesDir() + "/gamma_profiles.json"));
+            } else {
+                GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
+            }
+        }
         return GAMMA_PROFILES.getScreenColorProfiles();
     }
 
     public static String getCurrentColorProfile (Context context) {
-        if (GAMMA_PROFILES == null) {
-            GAMMA_PROFILES = new GammaProfiles(Utils.readAssetFile(context, "gamma_profiles.json"));
-        }
+        getScreenColorProfiles(context);
         String current = Utils.readFile(SCREEN_KCAL_CTRL) + "," + Utils.readFile(SCREEN_KCAL_CTRL_SAT) + "," + Utils.readFile(SCREEN_KCAL_CTRL_VAL) + "," + Utils.readFile(SCREEN_KCAL_CTRL_CONT) + "," + Utils.readFile(SCREEN_KCAL_CTRL_HUE);
         GammaProfiles.ScreenColorProfiles screenColorProfiles = Screen.getScreenColorProfiles(context);
         for (int i = 0 ;i < screenColorProfiles.length(); i++) {
