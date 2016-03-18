@@ -412,8 +412,7 @@ public class Screen implements Constants {
     }
 
     public static boolean hasGammaControl() {
-        for (String file : GAMMACONTROL_ARRAY) if (Utils.existFile(file)) return true;
-        return false;
+        return Utils.existFile(GAMMACONTROL);
     }
 
     public static void setKGammaProfile(int profile, GammaProfiles.KGammaProfiles kGammaProfiles, Context context) {

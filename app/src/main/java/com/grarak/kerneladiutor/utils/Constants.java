@@ -490,8 +490,6 @@ public interface Constants {
     String GAMMACONTROL_BRIGHTNESS = GAMMACONTROL + "/brightness";
     String GAMMACONTROL_SATURATION = GAMMACONTROL + "/saturation";
 
-    String[] GAMMACONTROL_ARRAY = {GAMMACONTROL};
-
     String DSI_PANEL_RP = "/sys/module/dsi_panel/kgamma_rp";
     String DSI_PANEL_RN = "/sys/module/dsi_panel/kgamma_rn";
     String DSI_PANEL_GP = "/sys/module/dsi_panel/kgamma_gp";
@@ -523,8 +521,8 @@ public interface Constants {
     String GLOVE_MODE = "/sys/devices/virtual/touchscreen/touchscreen_dev/mode";
 
     String[][] SCREEN_ARRAY = {SCREEN_RGB_ARRAY, SCREEN_RGB_CTRL_ARRAY, SCREEN_KCAL_CTRL_NEW_ARRAY, K_GAMMA_ARRAY,
-            GAMMACONTROL_ARRAY, DSI_PANEL_ARRAY, MIN_BRIGHTNESS_ARRAY,
-            {SCREEN_KCAL_CTRL_MIN, SCREEN_HBM, LM3530_BRIGTHNESS_MODE, LM3530_MIN_BRIGHTNESS, LM3530_MAX_BRIGHTNESS,
+             DSI_PANEL_ARRAY, MIN_BRIGHTNESS_ARRAY,
+            {GAMMACONTROL, SCREEN_KCAL_CTRL_MIN, SCREEN_HBM, LM3530_BRIGTHNESS_MODE, LM3530_MIN_BRIGHTNESS, LM3530_MAX_BRIGHTNESS,
                     LM3630_BACKLIGHT_DIMMER, LM3630_BACKLIGHT_DIMMER_THRESHOLD, LM3630_BACKLIGHT_DIMMER_OFFSET,
                     NEGATIVE_TOGGLE, REGISTER_HOOK, MASTER_SEQUENCE, GLOVE_MODE}};
 
