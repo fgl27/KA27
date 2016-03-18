@@ -127,7 +127,9 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         super.init(savedInstanceState);
 
         screenColorInit();
-        if (Screen.hasKGamma()) kgammaInit();
+        if (!Screen.hasGammaControl()) {
+        		if (Screen.hasKGamma()) kgammaInit();
+        }
         if (Screen.hasGammaControl()) gammacontrolInit();
         if (Screen.hasDsiPanel()) dsipanelInit();
         if (mKGammaProfilesCard != null || mGammaControlProfilesCard != null || mDsiPanelProfilesCard != null)
