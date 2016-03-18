@@ -169,7 +169,7 @@ public class Sound implements Constants {
     }
 
     public static void setHeadphoneGain(String value, Context context, String side) {
-        if (side == null) {
+        if (side.equals("B")) {
             Control.runCommand(value + " " + value, HEADPHONE_GAIN, Control.CommandType.FAUX_GENERIC, context);
         }
         if (side.equals("L")) {
@@ -181,7 +181,7 @@ public class Sound implements Constants {
     }
 
     public static String getCurHeadphoneGain(String side) {
-        if (side == null) {
+        if (side.equals("B")) {
             return Utils.readFile(HEADPHONE_GAIN).split(" ")[0];
         }
         if (side.equals("L")) {

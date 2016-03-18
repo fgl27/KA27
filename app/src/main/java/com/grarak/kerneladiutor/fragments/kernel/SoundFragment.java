@@ -149,7 +149,7 @@ public class SoundFragment extends RecyclerViewFragment implements
 
             mHeadphoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHeadphoneGainLimits());
             mHeadphoneGainCard.setTitle(getString(R.string.headphone_gain));
-            mHeadphoneGainCard.setProgress(Sound.getHeadphoneGainLimits().indexOf(Sound.getCurHeadphoneGain(null)));
+            mHeadphoneGainCard.setProgress(Sound.getHeadphoneGainLimits().indexOf(Sound.getCurHeadphoneGain("B")));
             mHeadphoneGainCard.setOnDSeekBarCardListener(this);
 
             addView(mHeadphoneGainCard);
@@ -236,7 +236,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mHeadphoneGainCard)
-            Sound.setHeadphoneGain(Sound.getHeadphoneGainLimits().get(position), getActivity(), null);
+            Sound.setHeadphoneGain(Sound.getHeadphoneGainLimits().get(position), getActivity(), "B");
         else if (dSeekBarCard == mHeadphoneGainLCard)
             Sound.setHeadphoneGain(Sound.getHeadphoneGainLimits().get(position), getActivity(), "L");
         else if (dSeekBarCard == mHeadphoneGainRCard)
