@@ -156,12 +156,41 @@ public class Sound implements Constants {
         return Utils.existFile(HANDSET_MICROPONE_GAIN);
     }
 
-    public static void setHeadphoneGain(String value, Context context) {
-        Control.runCommand(value + " " + value, HEADPHONE_GAIN, Control.CommandType.FAUX_GENERIC, context);
+    public static boolean isIndependentHeadphoneGainEnabled(Context context) {
+        try {
+            return Utils.getBoolean("Independent_Headphone_Gain_Enabled", false, context);
+        } catch (NullPointerException err) {
+            return false;
+        }
     }
 
-    public static String getCurHeadphoneGain() {
-        return Utils.readFile(HEADPHONE_GAIN).split(" ")[0];
+    public static void setIndependentHeadphoneGainEnabled(boolean active, Context context) {
+        Utils.saveBoolean("Independent_Headphone_Gain_Enabled", active, context);
+    }
+
+    public static void setHeadphoneGain(String value, Context context, String side) {
+        if (side.isEmpty() || side == null) {
+            Control.runCommand(value + " " + value, HEADPHONE_GAIN, Control.CommandType.FAUX_GENERIC, context);
+        }
+        if (side.equals("L")) {
+            Control.runCommand(value + " " + getCurHeadphoneGain("R"), HEADPHONE_GAIN, Control.CommandType.FAUX_GENERIC, context);
+        }
+        if (side.equals("R")) {
+            Control.runCommand(getCurHeadphoneGain("L") + " " + value, HEADPHONE_GAIN, Control.CommandType.FAUX_GENERIC, context);
+        }
+    }
+
+    public static String getCurHeadphoneGain(String side) {
+        if (side == null) {
+            return Utils.readFile(HEADPHONE_GAIN).split(" ")[0];
+        }
+        if (side.equals("L")) {
+            return Utils.readFile(HEADPHONE_GAIN).split(" ")[0];
+        }
+        if (side.equals("R")) {
+            return Utils.readFile(HEADPHONE_GAIN).split(" ")[1];
+        }
+        return "0";
     }
 
     public static List<String> getHeadphoneGainLimits() {
