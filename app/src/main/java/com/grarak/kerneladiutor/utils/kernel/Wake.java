@@ -333,8 +333,14 @@ public class Wake implements Constants {
     }
 
     public static void setS2w(int value, Context context) {
-        if (value == 0) Control.runCommand(String.valueOf(value), S2W_FILE, Control.CommandType.GENERIC, context);
-        if (value == 1) Control.runCommand(String.valueOf(15), S2W_FILE, Control.CommandType.GENERIC, context);
+	int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
+	int val_2 = Utils.stringToInt(Utils.readFile(DT2W_FILE));
+        if ((value == 0) && (val_2 == 0)) {
+		Control.runCommand(String.valueOf(value), S2W_FILE, Control.CommandType.GENERIC, context);
+	}
+        if ((value == 1) && (val != 15)) {
+		Control.runCommand(String.valueOf(15), S2W_FILE, Control.CommandType.GENERIC, context);
+	}
     }
 
     public static int getS2wValue() {
@@ -390,6 +396,13 @@ public class Wake implements Constants {
 
     public static void setDt2w(int value, Context context) {
         Control.runCommand(String.valueOf(value), DT2W_FILE, Control.CommandType.GENERIC, context);
+        int val_1 = Utils.stringToInt(Utils.readFile(S2W_FILE));
+	if (val_1 == 0) {
+		Control.runCommand(String.valueOf(15), S2W_FILE, Control.CommandType.GENERIC, context);
+	}
+	if ((value == 0) && (val_1 != 15)) {
+		Control.runCommand(String.valueOf(0), S2W_FILE, Control.CommandType.GENERIC, context);
+	}
     }
 
     public static int getDt2wValue() {

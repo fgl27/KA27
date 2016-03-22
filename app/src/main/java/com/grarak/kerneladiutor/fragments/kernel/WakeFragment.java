@@ -54,13 +54,13 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (Wake.hasVibStrength()) vibstrengthInit();
         if (Wake.hasDt2w()) dt2wInit();
         if (Wake.hasS2w()) s2wInit();
         if (Wake.hasLenient()) lenientInit();
         if (Wake.hasT2w() && !Wake.hasDt2w()) t2wInit();
         if (Wake.hasWakeMisc()) wakeMiscInit();
         if (Wake.hasSleepMisc()) sleepMiscInit();
+        if (Wake.hasVibStrength()) vibstrengthInit();
         if (Wake.hasDt2s()) dt2sInit();
         if (Wake.hasGesture()) gestureInit();
         if (Wake.hasCameraGesture()) cameraGestureInit();
@@ -99,7 +99,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     private void s2wInit() {
         mS2wCard = new PopupCardView.DPopupCard(Wake.getS2wMenu(getActivity()));
-        mS2wCard.setTitle(getString(R.string.s2w));
+        mS2wCard.setTitle(getString(R.string.s2w_title));
         mS2wCard.setDescription(getString(R.string.s2w_summary));
         mS2wCard.setItem(Wake.getS2wValue());
         mS2wCard.setOnDPopupCardListener(this);
@@ -272,8 +272,14 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mDt2wCard) Wake.setDt2w(position, getActivity());
-        else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
+        if (dPopupCard == mDt2wCard) {
+		Wake.setDt2w(position, getActivity());
+		getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+        else if (dPopupCard == mS2wCard) {
+		Wake.setS2w(position, getActivity());
+		getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
         else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
         else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
         else if (dPopupCard == mSleepMiscCard) Wake.setSleepMisc(position, getActivity());
