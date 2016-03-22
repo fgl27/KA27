@@ -554,7 +554,7 @@ public interface Constants {
     String LENIENT = "/sys/android_touch/sweep2wake_sensitive";
 
     // T2W
-    String TSP_T2W = "/sys/devices/error/i2c-1/1-004a/tsp";
+    String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";
     String TOUCHWAKE_T2W = "/sys/class/misc/touchwake/enabled";
 
     String[] T2W_ARRAY = {TSP_T2W, TOUCHWAKE_T2W};
@@ -565,9 +565,9 @@ public interface Constants {
     String[] WAKE_MISC_ARRAY = {SCREEN_WAKE_OPTIONS};
 
     // Sleep Misc
-    String S2S = "/sys/android_touch/erro";
-    String S2S_2 = "/sys/android_touch2/erro";
-    String SCREEN_SLEEP_OPTIONS = "/sys/devices/erro/i2c-2/2-0020/input/input2/screen_sleep_options";
+    String S2S = "/sys/android_touch/sweep2sleep";
+    String S2S_2 = "/sys/android_touch2/sweep2sleep";
+    String SCREEN_SLEEP_OPTIONS = "/sys/devices/f9924000.i2c/i2c-2/2-0020/input/input2/screen_sleep_options";
 
     String[] SLEEP_MISC_ARRAY = {S2S, S2S_2, SCREEN_SLEEP_OPTIONS};
 
