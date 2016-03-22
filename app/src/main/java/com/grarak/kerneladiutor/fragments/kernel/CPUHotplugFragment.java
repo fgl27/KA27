@@ -25,6 +25,7 @@ import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 
@@ -1208,7 +1209,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                     mBrickedNWNSCard[i] = new SeekBarCardView.DSeekBarCard(list);
                     mBrickedNWNSCard[i].setTitle(CPUHotplug.getBrickedNWNS(i, "title", getActivity()));
                     mBrickedNWNSCard[i].setDescription(CPUHotplug.getBrickedNWNS(i, "description", getActivity()));
-                    mBrickedNWNSCard[i].setProgress(Integer.parseInt(CPUHotplug.getBrickedNWNS(i, "value", getActivity())));
+                    mBrickedNWNSCard[i].setProgress(Utils.stringToInt(CPUHotplug.getBrickedNWNS(i, "value", getActivity())));
                     mBrickedNWNSCard[i].setOnDSeekBarCardListener(this);
                     views.add(mBrickedNWNSCard[i]);
                 }
@@ -1229,7 +1230,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                     mBrickedTWTSCard[i] = new SeekBarCardView.DSeekBarCard(list);
                     mBrickedTWTSCard[i].setTitle(CPUHotplug.getBrickedTWTS(i, "title", getActivity()));
                     mBrickedTWTSCard[i].setDescription(CPUHotplug.getBrickedTWTS(i, "description", getActivity()));
-                    mBrickedTWTSCard[i].setProgress(Integer.parseInt(CPUHotplug.getBrickedTWTS(i, "value", getActivity())));
+                    mBrickedTWTSCard[i].setProgress(Utils.stringToInt(CPUHotplug.getBrickedTWTS(i, "value", getActivity())));
                     mBrickedTWTSCard[i].setOnDSeekBarCardListener(this);
                     views.add(mBrickedTWTSCard[i]);
                 }
