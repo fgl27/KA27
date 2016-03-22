@@ -97,6 +97,8 @@ do this cmd first
 
 
 export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
+./gradlew clean
+./gradlew build
 
 local.properties
 
