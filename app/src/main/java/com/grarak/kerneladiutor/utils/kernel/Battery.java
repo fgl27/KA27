@@ -28,6 +28,18 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class Battery implements Constants {
 
+    public static int getChargingCurrent() {
+        return Utils.stringToInt(Utils.readFile(BATTERY_CHARGING_CURRENT));
+    }
+
+    public static String getChargingType() {
+        return Utils.readFile(BATTERY_CHARGING_TYPE);
+    }
+
+    public static String getHealth() {
+        return Utils.readFile(BATTERY_HEALTH);
+    }
+
     public static void setChargingRate(int value, Context context) {
         Control.runCommand(String.valueOf(value), CUSTOM_CHARGING_RATE, Control.CommandType.GENERIC, context);
     }

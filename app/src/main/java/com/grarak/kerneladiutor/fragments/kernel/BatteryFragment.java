@@ -45,7 +45,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
         SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private UsageCardView.DUsageCard mBatteryLevelCard;
-    private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature;
+    private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
 
     private SwitchCardView.DSwitchCard mForceFastChargeCard;
 
@@ -63,6 +63,9 @@ public class BatteryFragment extends RecyclerViewFragment implements
         batteryLevelInit();
         batteryVoltageInit();
         batteryTemperatureInit();
+        batteryChargingTypeInit();
+	batteryChargingCurrentInit();
+	batteryHealthInit();
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
@@ -99,6 +102,27 @@ public class BatteryFragment extends RecyclerViewFragment implements
         mBatteryTemperature.setTitle(getString(R.string.battery_temperature));
 
         addView(mBatteryTemperature);
+    }
+
+    private void batteryChargingCurrentInit() {
+            mBatteryChargingCurrentCard = new CardViewItem.DCardView();
+            mBatteryChargingCurrentCard.setTitle(getString(R.string.battery_charging_current));
+
+            addView(mBatteryChargingCurrentCard);
+    }
+
+    private void batteryChargingTypeInit() {
+            mBatteryChargingTypeCard = new CardViewItem.DCardView();
+            mBatteryChargingTypeCard.setTitle(getString(R.string.battery_charging_mode));
+
+            addView(mBatteryChargingTypeCard);
+    }
+
+    private void batteryHealthInit() {
+            mBatteryHealthCard = new CardViewItem.DCardView();
+            mBatteryHealthCard.setTitle(getString(R.string.battery_health));
+
+            addView(mBatteryHealthCard);
     }
 
     private void forceFastChargeInit() {
@@ -207,6 +231,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
             int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
             int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
+            int current = Battery.getChargingCurrent();
 
             if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(level);
             if (mBatteryVoltageCard != null)
@@ -215,6 +240,15 @@ public class BatteryFragment extends RecyclerViewFragment implements
                 double celsius = (double) temperature / 10;
                 mBatteryTemperature.setDescription(Utils.formatCelsius(celsius) + " " + Utils.celsiusToFahrenheit(celsius));
             }
+            if(mBatteryChargingCurrentCard != null) {
+		double amperage = (double) current / 1000;
+		if (amperage < 0) mBatteryChargingCurrentCard.setDescription(amperage + getString(R.string.ma));
+		else mBatteryChargingCurrentCard.setDescription("+" + amperage + getString(R.string.ma));
+            }
+            if(mBatteryChargingTypeCard != null)
+                mBatteryChargingTypeCard.setDescription(Battery.getChargingType());
+            if(mBatteryHealthCard != null)
+                mBatteryHealthCard.setDescription(Battery.getHealth());
         }
     };
 
