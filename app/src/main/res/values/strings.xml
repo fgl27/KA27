@@ -441,7 +441,7 @@
     <string name="fullscreen">Fullscreen</string>
     <string name="s2w_title">Sweep2Wake</string>
     <string name="s2w">Enabled</string>
-    <string name="s2w_summary">Wake up your device by swiping on the screen to any direction.\n\nNote: If you have enabled DoubleTap2Wake, first disable DoubleTap2Wake then disable Sweep2Wake .</string>
+    <string name="s2w_summary">Wake up your device by swiping on the screen to any direction.\n\nNote: To disable Sweep2Wake, first disable DoubleTap2Wake then disable Sweep2Wake.</string>
     <string name="lenient">Sweep2Wake Leniency</string>
     <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
     <string name="s2s">Sweep2Sleep</string>

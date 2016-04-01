@@ -554,7 +554,7 @@ public interface Constants {
     String LENIENT = "/sys/android_touch/sweep2wake_sensitive";
 
     // T2W
-    String TSP_T2W = "/sys/devices/f9966000.i2c/i2c-1/1-004a/tsp";
+    String TSP_T2W = "/sys/devices/erro/i2c-1/1-004a/tsp";
     String TOUCHWAKE_T2W = "/sys/class/misc/touchwake/enabled";
 
     String[] T2W_ARRAY = {TSP_T2W, TOUCHWAKE_T2W};
