@@ -19,20 +19,26 @@ package com.grarak.kerneladiutor.utils.kernel;
 import android.content.Context;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.kerneladiutor.library.root.RootUtils;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.net.InetAddress;
+import java.util.StringTokenizer;
 
 /**
  * Created by willi on 02.01.15.
  */
 public class Misc implements Constants {
+
+    private static String[] mAvailableTCPCongestions;
 
     private static String VIBRATION_PATH;
     private static Integer VIBRATION_MAX;
