@@ -49,6 +49,7 @@ public class ProfileTileReceiver extends BroadcastReceiver {
         if (ACTION_TOGGLE_STATE.equals(intent.getAction())) {
             String[] commands = intent.getStringArrayExtra(COMMANDS);
             log("Applying: " + intent.getStringExtra(NAME));
+            Utils.toast("Applying: " + intent.getStringExtra(NAME), context);
             if (commands == null) return;
             if (!RootUtils.rootAccess()) {
                 Utils.toast(context.getString(R.string.no_root), context);
@@ -64,6 +65,7 @@ public class ProfileTileReceiver extends BroadcastReceiver {
                 su.runCommand(command);
                 Log.i(Constants.TAG + ": " + getClass().getSimpleName(), "Run: " + command);
             }
+            Utils.toast("Applied: " + intent.getStringExtra(NAME), context);
             su.close();
         }
     }

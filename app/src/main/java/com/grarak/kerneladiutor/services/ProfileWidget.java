@@ -101,7 +101,7 @@ public class ProfileWidget extends AppWidgetProvider {
                     su.runCommand(profileItem.getCommands().get(i));
                 }
                 su.close();
-                Utils.toast(context.getString(R.string.applied), context);
+                 Utils.toast("Profile: \"" + profileItem.getName() + "\" applied.", context);
             }
         }
 
