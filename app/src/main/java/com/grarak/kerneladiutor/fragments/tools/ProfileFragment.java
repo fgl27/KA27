@@ -18,7 +18,6 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -41,16 +40,16 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
-import com.grarak.kerneladiutor.services.ProfileTileReceiver;
 import com.grarak.kerneladiutor.services.PerAppMonitor;
+import com.grarak.kerneladiutor.services.ProfileTileReceiver;
 import com.grarak.kerneladiutor.services.ProfileWidget;
 import com.grarak.kerneladiutor.tasker.AddProfileActivity;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
-import com.grarak.kerneladiutor.utils.tools.Per_App;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.tools.Per_App;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;

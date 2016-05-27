@@ -22,11 +22,6 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
-import java.io.File;
-import java.net.Inet4Address;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by willi on 27.12.14.
  */

@@ -30,8 +30,8 @@ import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.fragments.BaseFragment;
-import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.json.Downloads;
 
 /**
  * Created by willi on 01.07.15.

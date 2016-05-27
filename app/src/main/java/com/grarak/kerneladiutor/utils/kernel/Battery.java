@@ -17,7 +17,6 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
-import android.view.ViewDebug;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;

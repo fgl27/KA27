@@ -25,8 +25,6 @@ import com.kerneladiutor.library.Tools;
 import com.kerneladiutor.library.root.RootFile;
 import com.kerneladiutor.library.root.RootUtils;
 
-import java.io.File;
-
 /**
  * Created by willi on 17.05.15.
  */

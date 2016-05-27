@@ -25,8 +25,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.grarak.kerneladiutor.fragments.tools.download.ParentFragment;
-import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.nineoldandroids.view.ViewHelper;
 
 /**
