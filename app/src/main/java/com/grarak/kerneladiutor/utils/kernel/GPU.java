@@ -36,6 +36,8 @@ public class GPU implements Constants {
     private static String GPU_2D_AVAILABLE_FREQS;
     private static String GPU_2D_SCALING_GOVERNOR;
 
+    private static String[] mAvail_2D_Govs;
+
     private static Integer[] mGpu2dFreqs;
 
     private static String GPU_CUR_FREQ;
@@ -129,7 +131,13 @@ public class GPU implements Constants {
     }
 
     public static List<String> getGpu2dGovernors() {
-        return new ArrayList<>(Arrays.asList(GPU_GENERIC_GOVERNORS.split(" ")));
+        if (mAvail_2D_Govs == null) mAvail_2D_Govs = new String[0];
+        String value = Utils.readFile(GPU_GENERIC_GOVERNORS);
+        if (value != null) {
+            mAvail_2D_Govs = value.split(" ");
+            Arrays.sort(mAvail_2D_Govs);
+        }
+        return new ArrayList<>(Arrays.asList(mAvail_2D_Govs));
     }
 
     public static String getGpu2dGovernor() {
@@ -223,6 +231,7 @@ public class GPU implements Constants {
                         String value = Utils.readFile(file);
                         if (value != null)
                             GPU_AVAILABLE_GOVERNORS = value.split(" ");
+                            Arrays.sort(GPU_AVAILABLE_GOVERNORS);
                     }
         return new ArrayList<>(Arrays.asList(GPU_AVAILABLE_GOVERNORS == null ? GPU_GENERIC_GOVERNORS
                 .split(" ") : GPU_AVAILABLE_GOVERNORS));

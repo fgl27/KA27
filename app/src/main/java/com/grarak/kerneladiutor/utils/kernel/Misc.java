@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.net.InetAddress;
+import java.util.StringTokenizer;
 
 /**
  * Created by willi on 02.01.15.
@@ -193,11 +194,19 @@ public class Misc implements Constants {
     }
 
     public static String getCurTcpCongestion() {
-        return getTcpAvailableCongestions().get(0);
+        return getTcpAvailableCongestions(false).get(0);
     }
 
-    public static List<String> getTcpAvailableCongestions() {
-        return new ArrayList<>(Arrays.asList(Utils.readFile(TCP_AVAILABLE_CONGESTIONS).split(" ")));
+    public static List<String> getTcpAvailableCongestions(boolean sort) {
+        if (mAvailableTCPCongestions == null) mAvailableTCPCongestions = new String[0];
+        String value = Utils.readFile(TCP_AVAILABLE_CONGESTIONS);
+        if (value != null) {
+            mAvailableTCPCongestions = value.split(" ");
+            if (sort) {
+                Arrays.sort(mAvailableTCPCongestions);
+            }
+        }
+        return new ArrayList<>(Arrays.asList(mAvailableTCPCongestions));
     }
 
     public static String getIpAddr(Context context) {

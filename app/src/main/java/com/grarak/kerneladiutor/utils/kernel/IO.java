@@ -66,7 +66,7 @@ public class IO implements Constants {
 
                 for (int i = 0; i < valueArray.length; i++)
                     out[i] = valueArray[i].replace("[", "").replace("]", "");
-
+		Arrays.sort(out);
                 return new ArrayList<>(Arrays.asList(out));
             }
         }
