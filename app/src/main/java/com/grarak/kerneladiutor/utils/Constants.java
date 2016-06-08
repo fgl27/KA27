@@ -732,20 +732,34 @@ public interface Constants {
     // Misc
 
     // Vibration
-    Object[][] VIBRATION_ARRAY = {
-            // {Path, Max, Min}
-            {"/sys/class/timed_output/vibrator/amp", 100, 0},
-            {"/sys/class/timed_output/vibrator/level", 31, 12},
-            {"/sys/class/timed_output/vibrator/pwm_value", 100, 0}, // Read MAX MIN from sys
-            {"/sys/class/timed_output/vibrator/pwm_value_1p", 99, 53},
-            {"/sys/class/timed_output/vibrator/voltage_level", 3199, 1200},
-            {"/sys/class/timed_output/vibrator/vtg_level", 31, 12}, // Read MAX MIN from sys
-            {"/sys/class/timed_output/vibrator/vmax_mv", 3596, 116},
-            {"/sys/class/timed_output/vibrator/vmax_mv_strong", 3596, 116}, // Needs VIB_LIGHT path
-            {"/sys/devices/platform/tspdrv/nforce_timed", 127, 1},
-            {"/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle", 100, 25}, // Needs enable path
-            {"/sys/module/qpnp_vibrator/parameters/vib_voltage", 31, 12},
-            {"/sys/vibrator/pwmvalue", 127, 0}
+    String[] VIBRATION_ARRAY = {
+            "/sys/module/qpnp_vibrator/parameters/vib_voltage",
+            "/sys/vibrator/pwmvalue",
+            "/sys/class/timed_output/vibrator/amp",
+            "/sys/class/timed_output/vibrator/level",
+            "/sys/class/timed_output/vibrator/vtg_level",
+            "/sys/devices/platform/tspdrv/nforce_timed",
+            "/sys/class/timed_output/vibrator/pwm_value",
+            "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_duty_cycle",
+            "/sys/devices/virtual/timed_output/vibrator/voltage_level",
+            "/sys/devices/virtual/timed_output/vibrator/pwm_value_1p",
+            "/sys/devices/virtual/timed_output/vibrator/vmax_mv_strong",
+            "/sys/devices/virtual/timed_output/vibrator/vmax_mv"
+    };
+
+    int[][] VIBRATION_MAX_MIN_ARRAY = {
+            {31, 12},
+            {127, 0},
+            {100, 0},
+            {31, 12},
+            {31, 12}, // Read MAX MIN from sys
+            {127, 1},
+            {100, 0}, // Read MAX MIN from sys
+            {100, 25}, // Needs enable path
+            {3199, 1200},
+            {99, 53},
+            {3596, 116}, // Needs VIB_LIGHT path
+            {3596, 116}
     };
 
     String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
@@ -819,7 +833,7 @@ public interface Constants {
     String GETENFORCE = "getenforce";
     String SETENFORCE = "setenforce";
 
-    Object[][] MISC_ARRAY = {
+    String[][] MISC_ARRAY = {
             VIBRATION_ARRAY,
             {VIB_LIGHT, VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
                     MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS,  POWER_SUSPEND_MODE,
