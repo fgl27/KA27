@@ -39,6 +39,7 @@ public class GPU implements Constants {
     private static String[] mAvail_2D_Govs;
 
     private static Integer[] mGpu2dFreqs;
+    private static int mGPU_Min_Pwr = 20;
 
     private static String GPU_CUR_FREQ;
     private static String GPU_MAX_FREQ;
@@ -114,7 +115,7 @@ public class GPU implements Constants {
     }
 
     public static void activateGamingMode(boolean active, Context context) {
-         Control.runCommand(active ? "0" : "8", GPU_MIN_POWER_LEVEL, Control.CommandType.GENERIC, context);
+         Control.runCommand(active ? "0" : Integer.toString(mGPU_Min_Pwr) , GPU_MIN_POWER_LEVEL, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isGamingModeActive() {
@@ -122,6 +123,9 @@ public class GPU implements Constants {
     }
 
     public static boolean hasGPUMinPowerLevel() {
+        if (Utils.existFile(GPU_NUM_POWER_LEVELS)) {
+            mGPU_Min_Pwr = Utils.stringToInt(Utils.readFile(GPU_NUM_POWER_LEVELS)) - 1;
+        }
             return Utils.existFile(GPU_MIN_POWER_LEVEL);
     }
 

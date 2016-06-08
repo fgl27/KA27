@@ -840,7 +840,7 @@
     <string name="modification_summary">This application is being heavily modified for Quark BHB27-Kernel. Check it out in the downloads section!</string>
 
     <string name="modification_version">BHB27 Mod Version</string>
-    <string name="modification_version_number">0.9.9.4.+7</string>
+    <string name="modification_version_number">0.9.9.4.+8</string>
 
     <string name="accessibility_service_label">SKA Per App Monitor</string>
     <string name="accessibility_service_desc">Service to monitor when foreground app changes for per-app profile loading</string>

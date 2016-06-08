@@ -376,6 +376,8 @@ public interface Constants {
     String GPU_AVAILABLE_TEGRA_FREQS = "/sys/kernel/tegra_gpu/gpu_available_rates";
     
     String GPU_MIN_POWER_LEVEL = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_pwrlevel";
+    String GPU_NUM_POWER_LEVELS = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/num_pwrlevels";
+
 
     String[] GPU_2D_CUR_FREQ_ARRAY = {GPU_CUR_KGSL2D0_QCOM_FREQ};
 
