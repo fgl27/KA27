@@ -844,7 +844,7 @@
     <string name="modification_version">BHB27 Mod Version</string>
     <string name="modification_version_number">0.9.9.4.+9</string>
 
-    <string name="accessibility_service_label">SKA Per App Monitor</string>
+    <string name="accessibility_service_label">BHB27-Kernel-Adiutor Per App Monitor</string>
     <string name="accessibility_service_desc">Service to monitor when foreground app changes for per-app profile loading</string>
 
 </resources>

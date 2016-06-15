@@ -51,9 +51,6 @@ import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.kerneladiutor.library.root.RootUtils;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -207,7 +204,7 @@ public class BootService extends Service {
     }
 
     private void toast(final String message) {
-        if (Utils.getBoolean("applyonbootshowtoast", true, getApplicationContext()))
+        if (Utils.getBoolean("applyonbootshowtoast", true, this))
             hand.post(new Runnable() {
                 @Override
                 public void run() {

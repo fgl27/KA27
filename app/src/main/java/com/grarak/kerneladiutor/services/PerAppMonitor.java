@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
-import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.tools.Per_App;
@@ -72,8 +71,8 @@ public class PerAppMonitor extends AccessibilityService {
 
                 for (int i = 0; i < profileItems.size(); i++) {
                     if (profileItems.get(i).getID().equals(info.get(1))) {
-                        if (Utils.getBoolean("Per_App_Toast", false, MainActivity.context)) {
-                            Utils.toast("Applying Profile: " + profileItems.get(i).getName(), MainActivity.context);
+                        if (Utils.getBoolean("Per_App_Toast", false, this)) {
+                            Utils.toast("Applying Profile: " + profileItems.get(i).getName(), this);
                         }
                         Log.i("Kernel Adiutor", "Applying Profile:  " + profileItems.get(i).getName() + " for package " + windowname);
                         ProfileDB.ProfileItem profileItem = profileItems.get(i);

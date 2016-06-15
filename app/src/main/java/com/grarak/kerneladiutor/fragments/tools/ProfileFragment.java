@@ -21,7 +21,6 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -35,7 +34,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
@@ -97,9 +95,6 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
-
-        PreLoadAppList task = new PreLoadAppList();
-        task.execute();
 
         if (taskerMode) {
             fabView.setVisibility(View.GONE);
@@ -416,11 +411,5 @@ public class ProfileFragment extends RecyclerViewFragment {
             mPerAppDialog.show();
         }
     }
-}
 
-class PreLoadAppList extends AsyncTask<Void, Void, String> {
-    protected String doInBackground(Void...arg0) {
-        Map apps = Per_App.getInstalledApps(MainActivity.context);
-        return "Done";
-    }
 }

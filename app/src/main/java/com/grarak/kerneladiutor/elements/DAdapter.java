@@ -336,22 +336,7 @@ public class DAdapter {
         public static void animate() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 image.setVisibility(View.INVISIBLE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep(500);
-                            ((Activity) image.getContext()).runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Utils.circleAnimate(image, image.getWidth() / 2, image.getHeight() / 2);
-                                }
-                            });
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }).start();
+                Utils.circleAnimate(image, image.getWidth() / 2, image.getHeight() / 2);
             }
         }
 

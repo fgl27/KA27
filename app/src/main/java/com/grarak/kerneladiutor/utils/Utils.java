@@ -30,6 +30,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.support.annotation.MainThread;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -441,10 +442,12 @@ public class Utils implements Constants {
                 Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
     }
 
+   @MainThread
     public static void toast(String message, Context context) {
         toast(message, context, Toast.LENGTH_SHORT);
     }
 
+   @MainThread
     public static void toast(String message, Context context, int duration) {
         Toast.makeText(context, message, duration).show();
     }

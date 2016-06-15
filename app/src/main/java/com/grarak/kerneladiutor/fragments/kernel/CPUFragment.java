@@ -18,7 +18,6 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -721,10 +720,14 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                                             List<Integer> cores = CPU.getBigCoreRange();
                                             for (int i = 0; i < mCoreUsageText.length; i++) {
                                                 String message = Math.round(usage[cores.get(i) + 1]) + "%";
-                                                if (mCoreUsageText[i] != null)
-                                                    mCoreUsageText[i].setText(message);
-                                                if (mCoreProgressBar != null && mCoreProgressBar[i].getProgress() == 0)
-                                                    mCoreUsageText[i].setText("");
+                                                if (mCoreUsageText[i] != null){
+                                                    if (mCoreProgressBar != null && mCoreProgressBar[i] != null && mCoreProgressBar[i].getProgress() == 0){
+                                                        mCoreUsageText[i].setText("");
+                                                    } else {
+                                                        mCoreUsageText[i].setText(message);
+                                                    }
+                                                }
+
                                             }
                                         }
 
@@ -732,10 +735,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                                             List<Integer> cores = CPU.getLITTLECoreRange();
                                             for (int i = 0; i < mCoreUsageTextLITTLE.length; i++) {
                                                 String message = Math.round(usage[cores.get(i) + 1]) + "%";
-                                                if (mCoreUsageTextLITTLE[i] != null)
-                                                    mCoreUsageTextLITTLE[i].setText(message);
-                                                if (mCoreProgressBarLITTLE != null && mCoreProgressBarLITTLE[i].getProgress() == 0)
-                                                    mCoreUsageTextLITTLE[i].setText("");
+                                                if (mCoreUsageTextLITTLE[i] != null){
+                                                    if (mCoreProgressBarLITTLE != null &&  mCoreProgressBarLITTLE[i] != null && mCoreProgressBarLITTLE[i].getProgress() == 0) {
+                                                        mCoreUsageTextLITTLE[i].setText("");
+                                                    } else {
+                                                        mCoreUsageTextLITTLE[i].setText(message);
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -753,15 +759,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         @Override
         public void onResume() {
             super.onResume();
-            Handler hand;
-            if ((hand = getHandler()) != null) hand.post(cpuUsage);
+            getHandler().post(cpuUsage);
         }
 
         @Override
         public void onPause() {
             super.onPause();
-            Handler hand;
-            if ((hand = getHandler()) != null) hand.removeCallbacks(cpuUsage);
+            getHandler().removeCallbacks(cpuUsage);
         }
 
     }
