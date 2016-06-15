@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -181,5 +182,20 @@ public class CPUVoltage implements Constants {
             }
         return false;
     }
+    public static boolean storeVoltageTable (Context context) {
+        // Have to call this function to pre-load variables
+        hasCpuVoltage();
 
+        List<String> freqs = CPUVoltage.getFreqs();
+        List<String> voltages = CPUVoltage.getVoltages();
+
+        // Store Kernel's Stock Freq/Voltage table
+        SharedPreferences.Editor preferences = context.getSharedPreferences("voltage_table", 0).edit();
+        for (int i = 0; i < freqs.size(); i++) {
+            preferences.putString(freqs.get(i), voltages.get(i));
+        }
+        preferences.commit();
+
+        return true;
+    }
 }
