@@ -1196,7 +1196,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             if (CPUHotplug.hasBrickedNWNS()) {
 
                 DDivider mBrickedNWNSDividerCard = new DDivider();
-                mBrickedNWNSDividerCard.setText("Runqueue Thresholds");
+                mBrickedNWNSDividerCard.setText(getString(R.string.bricked_runqueue_threshold));
                 views.add(mBrickedNWNSDividerCard);
 
                 List<String> list = new ArrayList<>();
@@ -1218,7 +1218,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             if (CPUHotplug.hasBrickedTWTS()) {
 
                 DDivider mBrickedTWTSDividerCard = new DDivider();
-                mBrickedTWTSDividerCard.setText("Time Thresholds");
+                mBrickedTWTSDividerCard.setText(getString(R.string.bricked_time_threshold));
                 views.add(mBrickedTWTSDividerCard);
 
                 List<String> list = new ArrayList<>();
