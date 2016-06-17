@@ -245,8 +245,13 @@ public class BatteryFragment extends RecyclerViewFragment implements
 		if (amperage < 0) mBatteryChargingCurrentCard.setDescription(amperage + getString(R.string.ma));
 		else mBatteryChargingCurrentCard.setDescription("+" + amperage + getString(R.string.ma));
             }
-            if(mBatteryChargingTypeCard != null)
-                mBatteryChargingTypeCard.setDescription(Battery.getChargingType());
+            if(mBatteryChargingTypeCard != null) {
+                if (Battery.getChargingType().equals("None")) 
+		    mBatteryChargingTypeCard.setDescription(getString(R.string.battery_charging_mode_none));
+		else if (Battery.getChargingType().equals("Weak"))
+                    mBatteryChargingTypeCard.setDescription(getString(R.string.battery_charging_mode_weak));
+		else mBatteryChargingTypeCard.setDescription(Battery.getChargingType());
+            }
             if(mBatteryHealthCard != null)
                 mBatteryHealthCard.setDescription(Battery.getHealth());
         }
