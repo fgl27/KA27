@@ -366,7 +366,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private void powerSavingWqInit() {
             mPowerSavingWqCard = new SwitchCardView.DSwitchCard();
-            mPowerSavingWqCard.setDescription(getString(R.string.power_saving_wq));
+            mPowerSavingWqCard.setTitle(getString(R.string.power_saving_wq));
+            mPowerSavingWqCard.setDescription(getString(R.string.power_saving_wq_summary));
             mPowerSavingWqCard.setChecked(CPU.isPowerSavingWqActive());
             mPowerSavingWqCard.setOnDSwitchCardListener(this);
 
