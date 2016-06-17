@@ -11,4 +11,5 @@
     android:paddingRight="@dimen/card_padding"
     android:paddingStart="@dimen/card_padding"
     android:paddingTop="@dimen/card_padding"
-    android:textSize="16sp" />
+    android:textSize="16sp"
+    android:textStyle="bold" />

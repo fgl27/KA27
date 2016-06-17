@@ -131,7 +131,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
 
         if (Thermal.hasCoreControlEnable()) {
             mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
-            mCoreControlEnableCard.setDescription(getString(R.string.core_control));
+            mCoreControlEnableCard.setTitle(getString(R.string.core_control));
             mCoreControlEnableCard.setChecked(Thermal.isCoreControlActive());
             mCoreControlEnableCard.setOnDSwitchCardListener(this);
 
@@ -140,7 +140,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
 
         if (Thermal.hasVddRestrictionEnable()) {
             mVddRestrictionEnableCard = new SwitchCardView.DSwitchCard();
-            mVddRestrictionEnableCard.setDescription(getString(R.string.vdd_restriction));
+            mVddRestrictionEnableCard.setTitle(getString(R.string.vdd_restriction));
             mVddRestrictionEnableCard.setChecked(Thermal.isVddRestrictionActive());
             mVddRestrictionEnableCard.setOnDSwitchCardListener(this);
 

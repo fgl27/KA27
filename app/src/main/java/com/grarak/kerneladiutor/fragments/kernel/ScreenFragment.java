@@ -191,7 +191,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         if (Screen.hasInvertScreen()) {
             mInvertScreenCard = new SwitchCardView.DSwitchCard();
-            mInvertScreenCard.setDescription(getString(R.string.invert_screen));
+            mInvertScreenCard.setTitle(getString(R.string.invert_screen));
             mInvertScreenCard.setChecked(Screen.isInvertScreenActive());
             mInvertScreenCard.setOnDSwitchCardListener(this);
 
@@ -213,7 +213,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             addView(mSaturationIntensityCard);
 
             mGrayscaleModeCard = new SwitchCardView.DSwitchCard();
-            mGrayscaleModeCard.setDescription(getString(R.string.grayscale_mode));
+            mGrayscaleModeCard.setTitle(getString(R.string.grayscale_mode));
             mGrayscaleModeCard.setChecked(saturation == 128);
             mGrayscaleModeCard.setOnDSwitchCardListener(this);
 
@@ -262,7 +262,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         if (Screen.hasScreenHBM()) {
             mScreenHBMCard = new SwitchCardView.DSwitchCard();
-            mScreenHBMCard.setDescription(getString(R.string.high_brightness_mode));
+            mScreenHBMCard.setTitle(getString(R.string.high_brightness_mode));
             mScreenHBMCard.setChecked(Screen.isScreenHBMActive());
             mScreenHBMCard.setOnDSwitchCardListener(this);
 
