@@ -614,6 +614,8 @@
     <!-- Entropy -->
     <string name="available">Available</string>
     <string name="poolsize">Poolsize</string>
+    <string name="wakeup_threshold">Wakeup Threshold</string>
+    <string name="wakeup_threshold_summary">Read:\nWake up devices blocking to write to the entropy pool (i.e. sources which will use the aforementioned ioctl to add entropy to the pool) when the pool gets low. It will not necessarily have the effect of adding entropy.\n\nWrite:\nIs opposite, this is the number of bits of entropy required to be Available before entropy allow anything to read from /dev/random. /dev/urandom ignores this parameter (since reads from it are nonblocking and don\'t wait for entropy, instead allowing pseudorandom data to be read).</string>
     <string name="read">Read</string>
     <string name="write">Write</string>
 

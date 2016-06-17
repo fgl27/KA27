@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -61,6 +62,11 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
         items.clear();
         for (int i = 64; i < poolsize; i *= 2) if (i < poolsize) items.add(String.valueOf(i));
         items.add(String.valueOf(poolsize));
+
+        DDivider mENTDividerCard = new DDivider();
+        mENTDividerCard.setText(getString(R.string.wakeup_threshold));
+        mENTDividerCard.setDescription(getString(R.string.wakeup_threshold_summary));
+        addView(mENTDividerCard);
 
         mReadCard = new PopupCardView.DPopupCard(items);
         mReadCard.setDescription(getString(R.string.read));
