@@ -492,10 +492,10 @@
     <string name="wake_S2W_time_summary">Used to control the time that a sweep has to occur within to register as a sweep event. Default was traditionally 300ms</string>
     <string name="wake_dt2w_timebetweentaps">DoubleTap2Wake TimeOut</string>
     <string name="wake_dt2w_timebetweentaps_summary">Used to control the time that touches have to occur within to register as a DT2W event. Default was traditionally 500ms</string>
-    <string name="wake_dt2w_featherx">DoubleTap2Wake Feather (X axis)</string>
-    <string name="wake_dt2w_featherx_summary">Used to control the allowed distance between tap #1 and tap #2 along the X axis. This may help with unintentional wakes quite a bit. Default was traditionally 150.</string>
-    <string name="wake_dt2w_feathery">DoubleTap2Wake Feather (Y axis)</string>
-    <string name="wake_dt2w_feathery_summary">Used to control the allowed distance between tap #1 and tap #2 along the Y axis. This may help with unintentional wakes quite a bit. Default was traditionally 150.</string>
+    <string name="wake_dt2w_featherx">DoubleTap2Wake Feather (Horizontal axis)</string>
+    <string name="wake_dt2w_featherx_summary">Used to control the allowed distance between tap #1 and tap #2 along the Horizontal axis. This may help with unintentional wakes quite a bit. Default was traditionally 150px.</string>
+    <string name="wake_dt2w_feathery">DoubleTap2Wake Feather (Vertical axis)</string>
+    <string name="wake_dt2w_feathery_summary">Used to control the allowed distance between tap #1 and tap #2 along the Vertical axis. This may help with unintentional wakes quite a bit. Default was traditionally 150px.</string>
 
 
     <!-- Sound -->
