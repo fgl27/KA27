@@ -115,6 +115,9 @@
   <string name="disabled">Desativado</string>
   <string name="enabled">Ativado</string>
   <string name="aggressive">Agressivo</string>
+  <string name="disabled2">(Desativado)</string>
+  <string name="enabled2">(Ativado)</string>
+  <string name="aggressive2">(Agressivo)</string>
   <string name="cpu_quiet">CPUQuiet</string>
   <string name="cpu_quiet_summary">CPUQuiet implementa políticas conectáveis para forçar os núcleos de cpu em estado quiescente. Políticas adequadas irão economizar energia sem prejudicar o desempenho.</string>
   <string name="cpu_quiet_governor">Governador CPUQuiet</string>
