@@ -335,8 +335,10 @@ public class Wake implements Constants {
     public static void setS2w(int value, Context context) {
 	int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
 	int val_2 = Utils.stringToInt(Utils.readFile(DT2W_FILE));
-        if ((value == 0) && (val_2 == 0)) {
+        if (value == 0) {
 		Control.runCommand(String.valueOf(value), S2W_FILE, Control.CommandType.GENERIC, context);
+		if (val_2 != 0)
+			Control.runCommand(String.valueOf(value), DT2W_FILE, Control.CommandType.GENERIC, context);
 	}
         if ((value == 1) && (val != 15)) {
 		Control.runCommand(String.valueOf(15), S2W_FILE, Control.CommandType.GENERIC, context);

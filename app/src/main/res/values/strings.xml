@@ -440,7 +440,7 @@
     <string name="vib_strength">Wake Gestures Vibration Strength</string>
     <string name="vib_strength_summary">This value is specific to wake gestures and independent of the normal vibration strength. It is purely for the kernel driver. Gestures controlled by third party apps will not use this value.</string>
     <string name="dt2w">DoubleTap2Wake</string>
-    <string name="dt2w_summary">Wake up your device by double tapping the screen.\n\nNote: DoubleTap2Wake when enabled will also enable Sweep2Wake, this is necessary to make DoubleTap2Wake to work on Quark.</string>
+    <string name="dt2w_summary">Wake up your device by double tapping the screen.\n\nNote: DoubleTap2Wake when (enabled or disabled) will also (enabled or disabled) Sweep2Wake, this is necessary to make DoubleTap2Wake to work on Quark.</string>
     <string name="center">Center</string>
     <string name="full">Full</string>
     <string name="bottom_half">Bottom half</string>
@@ -449,7 +449,7 @@
     <string name="fullscreen">Fullscreen</string>
     <string name="s2w_title">Sweep2Wake</string>
     <string name="s2w">Enabled</string>
-    <string name="s2w_summary">Wake up your device by swiping on the screen to any direction.\n\nNote: To disable Sweep2Wake, first disable DoubleTap2Wake then disable Sweep2Wake.</string>
+    <string name="s2w_summary">Wake up your device by swiping on the screen to any direction.\n\nNote: Disabling Sweep2Wake will disable DoubleTap2Wake if that was enable.</string>
     <string name="lenient">Sweep2Wake Leniency</string>
     <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
     <string name="s2s">Sweep2Sleep</string>
