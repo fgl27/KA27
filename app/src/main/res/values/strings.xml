@@ -623,7 +623,8 @@
     <string name="se_linux">Toggle SE Linux</string>
     <string name="se_linux_summary">Current SELinux Status:</string>
     <string name="vibration_strength">Vibration Strength</string>
-    <string name="android_logger">Android logging</string>
+    <string name="android_logger">Android logging (LOGD or logcat)</string>
+    <string name="android_logger_summary">Disable android logging can save some power, but in the case of a problem there will be no logs to check, let it enabled to debug a problem.</string>
     <string name="bcl">Battery Current Limit Driver(BCL)</string>
     <string name="bcl_summary">Enable or Disable BCL completely</string>
     <string name="bcl_hotplug">Battery Current Limit Driver - Hotplugging</string>

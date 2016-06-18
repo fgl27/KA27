@@ -798,8 +798,9 @@ public interface Constants {
     String LOGGER_MODE = "/sys/kernel/logger_mode/logger_mode";
     String LOGGER_ENABLED = "/sys/module/logger/parameters/enabled";
     String LOGGER_LOG_ENABLED = "/sys/module/logger/parameters/log_enabled";
+    String LOGD = "/system/bin/logd";
 
-    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_LOG_ENABLED};
+    String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_LOG_ENABLED, LOGD, "start", "stop"};
 
     // BCL
     String[] BCL_ARRAY = {"/sys/devices/qcom,bcl.38/mode","/sys/devices/qcom,bcl.39/mode", "/sys/devices/soc.0/qcom,bcl.60/mode" };
@@ -840,7 +841,7 @@ public interface Constants {
             {VIB_LIGHT, VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
                     MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS,  POWER_SUSPEND_MODE,
                     POWER_SUSPEND_STATE, BCL_HOTPLUG, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY, GETENFORCE, SETENFORCE, ADB_OVER_WIFI},
-            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, CRC_ARRAY, FSYNC_ARRAY, BCL_ARRAY};
+            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, LOGGER_ARRAY, CRC_ARRAY, FSYNC_ARRAY, BCL_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

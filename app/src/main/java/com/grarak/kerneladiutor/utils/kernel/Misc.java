@@ -391,11 +391,28 @@ public class Misc implements Constants {
     }
 
     public static void activateLogger(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", LOGGER_FILE, Control.CommandType.GENERIC, context);
+        if (!LOGGER_FILE.equals(LOGD)) {
+            Control.runCommand(active ? "1" : "0", LOGGER_FILE, Control.CommandType.GENERIC, context);
+        }
+        if (LOGGER_FILE.equals(LOGD)) {
+            // This is needed because the path changes from "start" to "stop" so it breaks the commandsaver function
+            Control.deletespecificcommand(context, active ? "stop" : "start", null);
+
+            Control.runCommand("logd", active ? "start" : "stop", Control.CommandType.SHELL, context);
+        }
     }
 
     public static boolean isLoggerActive() {
-        return Utils.readFile(LOGGER_FILE).equals("1");
+        // copy this from mpdecision
+        try {
+            String result = RootUtils.runCommand("getprop | grep logd]").split("]: ")[1];
+            if (result.equals("[running]") || result.equals("[restarting]")) {
+                return true;
+            }
+        } catch (Exception ignored) {
+            return false;
+        }
+        return false;
     }
 
     public static boolean hasLoggerEnable() {
