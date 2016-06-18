@@ -559,7 +559,7 @@
     <string name="ksm_pages_sharing">Pages sharing</string>
     <string name="ksm_pages_unshared">Pages unshared</string>
     <string name="ksm_pages_volatile">Pages volatile</string>
-    <string name="ksm_enable">Enable KSM (Uses UKSM if present)</string>
+    <string name="ksm_enable">Enable KSM</string>
     <string name="ksm_enable_summary">Reduces memory usage but has an impact on the CPU usage.</string>
     <string name="ksm_pages_to_scan">Pages to scan</string>
     <string name="ksm_sleep_milliseconds">Sleep between scans</string>
