@@ -35,7 +35,7 @@ public class PerAppMonitor extends AccessibilityService {
         intent.addCategory("android.intent.category.HOME");
         String launcher = localPackageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY).activityInfo.packageName;
 
-        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+        if(event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED && event.getPackageName() != null) {
             sPackageName = event.getPackageName().toString();
             if ((System.currentTimeMillis() - time) < 1000) {
                 if (!sPackageName.equals(launcher) || !sPackageName.equals("com.android.systemui")) {

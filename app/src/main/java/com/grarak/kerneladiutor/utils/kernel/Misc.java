@@ -27,6 +27,7 @@ import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -43,9 +44,6 @@ public class Misc implements Constants {
     private static String LOGGER_FILE;
 
     private static String CRC_FILE;
-
-    private static String FSYNC_FILE;
-    private static boolean FSYNC_USE_INTEGER;
 
     private static String SMB135X_WAKELOCK_FILE;
     private static String WLAN_RX_WAKELOCK_FILE;
@@ -201,7 +199,7 @@ public class Misc implements Constants {
         if (value != null) {
             mAvailableTCPCongestions = value.split(" ");
             if (sort) {
-                Arrays.sort(mAvailableTCPCongestions);
+                Collections.sort(Arrays.asList(mAvailableTCPCongestions), String.CASE_INSENSITIVE_ORDER);
             }
         }
         return new ArrayList<>(Arrays.asList(mAvailableTCPCongestions));
@@ -309,32 +307,20 @@ public class Misc implements Constants {
     }
 
     public static void activateFsync(boolean active, Context context) {
-        if (FSYNC_USE_INTEGER)
-            Control.runCommand(active ? "1" : "0", FSYNC_FILE, Control.CommandType.GENERIC, context);
-        else
-            Control.runCommand(active ? "Y" : "N", FSYNC_FILE, Control.CommandType.GENERIC, context);
+        if (Utils.isLetter(Utils.readFile(Utils.getsysfspath(FSYNC_ARRAY)))) {
+            Control.runCommand(active ? "Y" : "N", Utils.getsysfspath(FSYNC_ARRAY), Control.CommandType.GENERIC, context);
+        } else {
+            Control.runCommand(active ? "1" : "0", Utils.getsysfspath(FSYNC_ARRAY), Control.CommandType.GENERIC, context);
+        }
     }
 
     public static boolean isFsyncActive() {
-        if (FSYNC_USE_INTEGER)
-            return Utils.readFile(FSYNC_FILE).equals("1");
-        else
-            return Utils.readFile(FSYNC_FILE).equals("Y");
+        String path = Utils.getsysfspath(FSYNC_ARRAY);
+        return Utils.readFile(path).equals(Utils.isLetter(Utils.readFile(path)) ? "Y" : "1");
     }
 
     public static boolean hasFsync() {
-        for (String file : FSYNC_ARRAY)
-            if (Utils.existFile(file)) {
-                FSYNC_FILE = file;
-                try {
-                    Integer.parseInt(Utils.readFile(FSYNC_FILE));
-                    FSYNC_USE_INTEGER = true;
-                } catch (NumberFormatException ignored) {
-                    FSYNC_USE_INTEGER = false;
-                }
-                return true;
-            }
-        return false;
+        return Utils.existFile(Utils.getsysfspath(FSYNC_ARRAY));
     }
 
     public static void activateBcl(boolean active, Context context) {
@@ -502,8 +488,10 @@ public class Misc implements Constants {
 
     public static String getSELinuxStatus () {
         String result = RootUtils.runCommand(GETENFORCE);
-        if (result.equals("Enforcing")) return "Enforcing";
-        else if (result.equals("Permissive")) return "Permissive";
+        if (result != null) {
+            if (result.equals("Enforcing")) return "Enforcing";
+            else if (result.equals("Permissive")) return "Permissive";
+        }
         return "Unknown Status";
     }
 

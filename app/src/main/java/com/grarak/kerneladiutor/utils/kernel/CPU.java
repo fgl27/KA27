@@ -291,7 +291,7 @@ public class CPU implements Constants {
             String value = Utils.readFile(CPU_AVAILABLE_GOVERNORS);
             if (value != null) {
                 mAvailableGovernors[core] = value.split(" ");
-                Arrays.sort(mAvailableGovernors[core]);
+                Collections.sort(Arrays.asList(mAvailableGovernors[core]), String.CASE_INSENSITIVE_ORDER);
             }
         }
         if (mAvailableGovernors[core] == null) return null;

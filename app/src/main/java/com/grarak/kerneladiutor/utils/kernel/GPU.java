@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -139,7 +140,7 @@ public class GPU implements Constants {
         String value = Utils.readFile(GPU_GENERIC_GOVERNORS);
         if (value != null) {
             mAvail_2D_Govs = value.split(" ");
-            Arrays.sort(mAvail_2D_Govs);
+            Collections.sort(Arrays.asList(mAvail_2D_Govs), String.CASE_INSENSITIVE_ORDER);
         }
         return new ArrayList<>(Arrays.asList(mAvail_2D_Govs));
     }
@@ -235,7 +236,7 @@ public class GPU implements Constants {
                         String value = Utils.readFile(file);
                         if (value != null)
                             GPU_AVAILABLE_GOVERNORS = value.split(" ");
-                            Arrays.sort(GPU_AVAILABLE_GOVERNORS);
+                            Collections.sort(Arrays.asList(GPU_AVAILABLE_GOVERNORS), String.CASE_INSENSITIVE_ORDER);
                     }
         return new ArrayList<>(Arrays.asList(GPU_AVAILABLE_GOVERNORS == null ? GPU_GENERIC_GOVERNORS
                 .split(" ") : GPU_AVAILABLE_GOVERNORS));

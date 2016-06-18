@@ -37,13 +37,22 @@ public class Per_App {
     public static String[] getPackageNames (Map<String, String> apps) {
         String[] array = apps.values().toArray(new String[apps.size()]);
         Arrays.sort(array, String.CASE_INSENSITIVE_ORDER);
+        array = insertDefaultListing(array);
         return  array;
     }
 
     public static String[] getAppNames (Map<String, String> apps) {
         String[] array = apps.keySet().toArray(new String[apps.size()]);
         Arrays.sort(array, String.CASE_INSENSITIVE_ORDER);
+        array = insertDefaultListing(array);
         return  array;
+    }
+
+    private static String[] insertDefaultListing(String[] array){
+        String[] newArray = new String[array.length+1];
+        newArray[0] = "Default";
+        System.arraycopy(array,0,newArray,1,array.length);
+        return newArray;
     }
 
     public static void save_app (String app, String id, Context context) {
@@ -115,7 +124,7 @@ public class Per_App {
         List<AccessibilityServiceInfo> runningServices = am
                 .getEnabledAccessibilityServiceList(AccessibilityEvent.TYPES_ALL_MASK);
         for (AccessibilityServiceInfo service : runningServices) {
-            if (id.equals(service.getId())) {
+            if (id != null && id.equals(service.getId())) {
                 return true;
             }
         }

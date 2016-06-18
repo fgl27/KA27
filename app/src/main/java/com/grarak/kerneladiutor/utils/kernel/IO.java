@@ -24,6 +24,7 @@ import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -66,7 +67,7 @@ public class IO implements Constants {
 
                 for (int i = 0; i < valueArray.length; i++)
                     out[i] = valueArray[i].replace("[", "").replace("]", "");
-		Arrays.sort(out);
+		Collections.sort(Arrays.asList(out), String.CASE_INSENSITIVE_ORDER);
                 return new ArrayList<>(Arrays.asList(out));
             }
         }
