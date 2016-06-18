@@ -289,13 +289,13 @@
     <string name="bricked_nwns">Runqueue Threshold Hotplug CPU%d</string>
     <string name="bricked_nwns_hotplug">If this threshold is reached, CPU%d will be hotplugged.</string>
     <string name="bricked_nwns_unplug">If this threshold is reached, CPU%d will be unplugged.</string>
-    <string name="bricked_time_threshold">Time Threshold</string>
     <string name="bricked_twts">Time Threshold Hotplug CPU%d</string>
     <string name="bricked_twts_hotplug">This amount of time must have passed for CPU%d to be hotplugged.</string>
     <string name="bricked_twts_unplug">This amount of time must have passed for CPU%d to be unplugged.</string>
-
+    <string name="bricked_time_threshold">Time Threshold</string>
+	
     <!-- Thermal -->
-    <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.</string>
+    <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.\nIn version 200.0 and up the kernel has no control over thermal driver, Thermal is handled by a system binary (thermal-engine), no need to make changes here.</string>
     <string name="thermald">Thermald</string>
     <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
     <string name="intellithermal">Intellithermal</string>
@@ -847,7 +847,7 @@
     <string name="translation_summary">Help me translate this app!</string>
 
     <string name="modification">Modified for BHB27-Kernel</string>
-    <string name="modification_summary">This application is being heavily modified for Quark BHB27-Kernel. Check it out in the downloads section!</string>
+    <string name="modification_summary">This application is being heavily modified for the kernel BHB27-Kernel for Quark Motorola (Moto Maxx, Turbo or Droid Turbo). Check it out in the downloads section!</string>
 
     <string name="modification_version">BHB27 Mod Version</string>
     <string name="modification_version_number">0.9.9.4.+9</string>
