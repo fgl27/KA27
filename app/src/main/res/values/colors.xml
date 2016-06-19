@@ -2,17 +2,17 @@
 <resources>
     <color name="semi_transparent">#26000000</color>
 
-    <color name="color_primary">#246175</color>
-    <color name="color_primary_dark">#17424f</color>
-    <color name="color_primary_light">#3c7b90</color>
+    <color name="color_primary">#800000</color>
+    <color name="color_primary_dark">#660000</color>
+    <color name="color_primary_light">#990000</color>
 
     <color name="statusbar_color">@color/color_primary_dark</color>
     <color name="actionbar_color">@color/color_primary</color>
 
     <color name="fab_normal">@color/white</color>
-    <color name="fab_pressed">#E6E6E6</color>
+    <color name="fab_pressed">#ffcccc</color>
     <color name="fab_normal_menu">@color/white</color>
-    <color name="fab_pressed_menu">#e6e6e6</color>
+    <color name="fab_pressed_menu">#ffcccc</color>
     <color name="fab_normal_pink">#E91E63</color>
     <color name="fab_pressed_pink">#C2185B</color>
 
@@ -27,17 +27,17 @@
     <color name="circlebar_text">@color/color_primary</color>
 
     <color name="divider_background_light">#d9d9d9</color>
-    <color name="divider_background_dark">#323232</color>
+    <color name="divider_background_dark">#330000</color>
 
     <color name="navigationdrawer_background_light">@color/white</color>
-    <color name="navigationdrawer_background_dark">#202020</color>
+    <color name="navigationdrawer_background_dark">#330000</color>
     <color name="navigationdrawer_selected_background_light">#1A000000</color>
     <color name="navigationdrawer_selected_background_dark">#26FFFFFF</color>
 
     <color name="card_background_light">#FAFAFA</color>
-    <color name="card_background_dark">#202020</color>
+    <color name="card_background_dark">#330000</color>
 
-    <color name="textcolor_light">#737373</color>
+    <color name="textcolor_light">#330000</color>
     <color name="textcolor_dark">#BDBDBD</color>
 </resources>
 
