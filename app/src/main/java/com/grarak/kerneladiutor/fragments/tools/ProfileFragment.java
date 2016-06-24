@@ -37,6 +37,7 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.elements.cards.InformationCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.PerAppMonitor;
 import com.grarak.kerneladiutor.services.ProfileTileReceiver;
@@ -248,6 +249,11 @@ public class ProfileFragment extends RecyclerViewFragment {
     private void create() {
         removeAllViews();
 
+        final InformationCardView.DInformationCard mInformationCard = new InformationCardView.DInformationCard();
+        mInformationCard.setText(getString(R.string.profile_information));
+
+        addView(mInformationCard);
+
         ProfileDB profileDB = new ProfileDB(getActivity());
         if (profileDB.updateDB(getActivity()) == 1 ) {
             removeAllViews();
@@ -323,8 +329,9 @@ public class ProfileFragment extends RecyclerViewFragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (isAdded())
-                    title.setText(getCount() < 1 ? getString(R.string.no_profiles) : getString(R.string.items_found, getCount()));
+                if (isAdded()){
+                    title.setText(getCount() < 2 ? getString(R.string.no_profiles) : getString(R.string.items_found, (getCount() - 1)));
+                }
             }
         });
 

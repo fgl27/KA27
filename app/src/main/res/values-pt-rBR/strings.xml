@@ -269,7 +269,7 @@
   <string name="cycle_down_summary">Ciclos de espera após o último evento hotplug para desligar outro núcleo.</string>
   <string name="cycle_up">Ciclo Up</string>
   <string name="cycle_up_summary">Ciclos de espera após o último evento hotplug para desligar outro núcleo.</string>
-  <string name="thermal_info">Use apenas um Driver térmico entre as seguintes opções, usando mais do que ao mesmo tempo pode causar um comportamento inesperado.\nA partir da versão 200.0 O kernel não é mais responsável pelo controle de temperatura, o responsável pelo controle de temperatura é um binário do sistema (thermal-engine), sem necessidades de fazer alterações aqui.</string>
+  <string name="thermal_info">Use apenas um Driver térmico entre as seguintes opções, usando mais do que ao mesmo tempo pode causar um comportamento inesperado.\n\nA partir da versão 200.0 O kernel não é mais responsável pelo controle de temperatura, o responsável pelo controle de temperatura é um binário do sistema (thermal-engine), sem necessidades de fazer alterações aqui.</string>
   <string name="thermald">Thermald</string>
   <string name="thermald_summary">Condutor térmico Stock da Qualcomm que impede sobreaquecimento do dispositivo. Isto deve ser desabilitado se o kernel atual tem uma alternativa.</string>
   <string name="intellithermal">Intellithermal</string>
@@ -612,12 +612,13 @@
   <string name="value">Valor</string>
   <string name="backup_created">Backup foi criado em %s.</string>
   <string name="search">Procurar</string>
-  <string name="no_profiles">Sem perfis</string>
-  <string name="profile_description">Adicionando um perfil irá salvar suas configurações atuais. Você pode aplicá-las depois.</string>
+  <string name="no_profiles">Sem perfil</string>
+  <string name="profile_description">Adicionando um novo perfil:\nDigite um nome, e selecione as seções que serão salvas neste perfil.</string>
+  <string name="profile_information">Perfil:\n Adicionando um perfil irá salvar sua configuração atual, os perfis são salvos na Memória Interna/KernelAdiutor/profiles.json. Você pode aplicá-los depois.\n\nPerfil por App:\n Ativa um perfil salvo automaticamente quando um app for utilizado.</string>
   <string name="name">Nome</string>
   <string name="select_all">Selecionar todos</string>
   <string name="apply">Aplicar	</string>
-  <string name="removed_all_sections">Você removeu todas as seções! Não há perfis para você.</string>
+  <string name="removed_all_sections">Você removeu todas as seções! Não há perfil para você.</string>
   <string name="no_settings">Não há definições encontradas!</string>
   <string name="press_again_to_apply">Pressione novamente para aplicar.</string>
   <string name="applied">Aplicado</string>
@@ -678,6 +679,9 @@
   <string name="password_too_long">A senha é muito longa</string>
   <string name="set_password_first">Defina uma senha primeiro</string>
   <string name="show_sections">Mostrar seções</string>
+  <string name="per_app">Perfil por App</string>
+  <string name="per_app_toast">Toast do Perfil por app</string>
+  <string name="per_app_toast_summary">Mostra uma Toast quando aplica um perfil por app.</string>
   <string name="misspelled">Por que você confundiu \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
   <string name="cpu_freq_not_sticking">Por que minha frequência determinada do CPU não é cumprida?</string>

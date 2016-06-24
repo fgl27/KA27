@@ -22,6 +22,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.grarak.kerneladiutor.utils.Utils;
+
+import com.kerneladiutor.library.root.RootFile;
+import com.kerneladiutor.library.root.RootUtils;
+import com.kerneladiutor.library.Tools;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,7 +39,7 @@ import java.util.UUID;
 public class ProfileDB extends JsonDB {
 
     public ProfileDB(Context context) {
-        super(context.getFilesDir() + "/profiles.json", 1);
+        super("/sdcard/KernelAdiutor/profiles.json", 1);
     }
 
     @Override
@@ -164,5 +170,15 @@ public class ProfileDB extends JsonDB {
         }
 
     }
-
+	public static boolean kerneladiutormkdir (Context context) {
+		String path = (Tools.getInternalStorage() + "/KernelAdiutor/");
+		if (Utils.existFile(path)) {
+		RootUtils.runCommand("chmod 777 '" + path + "'");
+		} else {
+			RootFile KAFolder = new RootFile(path);
+			KAFolder.mkdir();
+			RootUtils.runCommand("chmod 777 '" + path + "'");
+		}
+	return true;
+    }
 }

@@ -44,7 +44,7 @@ public class RootFile {
     }
 
     public void mkdir() {
-        RootUtils.runCommand("mkdir -p '" + file + "'");
+        RootUtils.runCommand("mkdir -p -m777 '" + file + "'");
     }
 
     public void mv(String newPath) {

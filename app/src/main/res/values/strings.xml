@@ -298,7 +298,7 @@
     <string name="bricked_time_threshold">Time Threshold</string>
 	
     <!-- Thermal -->
-    <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.\nIn version 200.0 and up the kernel has no control over thermal driver, Thermal is handled by a system binary (thermal-engine), no need to make changes here.</string>
+    <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.\n\nIn version 200.0 and up the kernel has no control over thermal driver, Thermal is handled by a system binary (thermal-engine), no need to make changes here.</string>
     <string name="thermald">Thermald</string>
     <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
     <string name="intellithermal">Intellithermal</string>
@@ -735,7 +735,8 @@
 
     <!-- Profile -->
     <string name="no_profiles">No profiles</string>
-    <string name="profile_description">Adding a profile will save your current settings. You can apply them later.</string>
+    <string name="profile_description">Adding a new profile:\nSet a name, and select sections to be saved to this profile.</string>
+    <string name="profile_information">Profiles:\n Adding a profile will save your current settings to Internal Storage/KernelAdiutor/profiles.json. You can apply them later.\n\nPer App Profiles:\n Enable a pre saved profile to automatic load the Kernel settings based on foreground app.</string>
     <string name="name">Name</string>
     <string name="select_all">Select all</string>
     <string name="apply">Apply</string>
