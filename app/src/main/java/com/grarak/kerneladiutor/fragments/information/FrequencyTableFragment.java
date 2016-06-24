@@ -17,6 +17,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.FrameLayout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -286,7 +287,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
      */
     private void generateStateRow(CpuStateMonitor.CpuState state, ViewGroup parent, CpuStateMonitor monitor) {
         // inflate the XML into a view in the parent
-        LinearLayout layout = (LinearLayout) LayoutInflater.from(getActivity())
+        FrameLayout layout = (FrameLayout) LayoutInflater.from(getActivity())
                 .inflate(R.layout.state_row, parent, false);
 
         // what percentage we've got
