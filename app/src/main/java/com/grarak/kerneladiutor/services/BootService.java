@@ -21,7 +21,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
@@ -53,9 +52,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by willi on 08.03.15.
@@ -84,8 +81,8 @@ public class BootService extends Service {
         final List<String> applys = new ArrayList<>();
         final List<String> plugins = new ArrayList<>();
 
-        CPUVoltage.storeVoltageTable(getApplicationContext());
-        ProfileDB.kerneladiutormkdir(getApplicationContext());
+        CPUVoltage.storeVoltageTable(this);
+        ProfileDB.kerneladiutormkdir(this);
 
         Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
                 CPUVoltageFragment.class, EntropyFragment.class, GPUFragment.class, IOFragment.class,
