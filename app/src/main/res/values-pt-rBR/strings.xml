@@ -690,9 +690,11 @@
   <string name="password_too_long">A senha é muito longa</string>
   <string name="set_password_first">Defina uma senha primeiro</string>
   <string name="show_sections">Mostrar seções</string>
-  <string name="per_app">Perfil por App</string>
+  <string name="per_app">Perfil Por App</string>
   <string name="per_app_toast">Toast do Perfil por app</string>
   <string name="per_app_toast_summary">Mostra uma Toast quando aplica um perfil por app.</string>
+  <string name="set_per_app">Defina as configurações Por App para este Perfil</string>
+  <string name="per_app_title">Selecione os apps que ativaram este perfil:</string>
   <string name="misspelled">Por que você confundiu \"Auditor\"?</string>
   <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
   <string name="cpu_freq_not_sticking">Por que minha frequência determinada do CPU não é cumprida?</string>
