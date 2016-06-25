@@ -24,6 +24,7 @@
   <string name="no_permission">Sem permissão</string>
   <string name="select_file">Selecione a %s</string>
   <string name="no_files">Não há arquivos nesta pasta.</string>
+  <string name="copy">Copiar</string>
   
   <!-- EditText -->
   <string name="save">Salvar</string>
@@ -79,6 +80,15 @@
   <string name="settings">Configurações</string>
   <string name="faq">Perguntas Mais Frequentes</string>
   <string name="about_us">Sobre Kernel Adiutor</string>
+  <!-- startup -->
+  <string name="startup_commands">Comandos de inicialização</string>
+  <string name="startup_commands_list">Lista de Comandos de inicialização:</string>
+  <string name="startup_commands_list_info">Clique num comando para escolher entre copiar ou deletar o comando da lista.</string>
+  <string name="all_startup_commands">Clique neste para copiar ou deletar todos comandos da lista abaixo salva.</string>
+  <string name="startup_commands_delete_all">Tem certeza que deseja deletar todos comandos de inicialização.</string>
+  <string name="startup_commands_delete_all_yes">Sim</string>
+  <string name="startup_commands_delete_all_no">Não</string>
+  <string name="startup_commands_none">Nenhum comando de inicialização encontrado.</string>
   
   <!-- Frequency Table -->
   <string name="unused_cpu_states">Estados de CPU não utilizados</string>
@@ -139,6 +149,7 @@
   <string name="global_offset">Mudar todas</string>
   <string name="override_vmin">Substituir a tensão mínima</string>
   <string name="override_vmin_summary">Desabilitar para remover os limites de undervolting dos fabricantes</string>
+  <string name="voltages_toast_notification">O valor em parênteses mostra a diferença entre o seu valor e o valor padram.</string>
   <string name="mpdecision">MPDecision</string>
   <string name="mpdecision_summary">Solução hotplugging da Qualcomm. Você pode ter problemas com a mudança de frequências quando estiver habilitado.</string>
   <string name="intelliplug">IntelliPlug</string>
@@ -601,7 +612,7 @@
   <string name="empty_name">O nome está vazio!</string>
   <string name="backup_already_exists">Um backup com o mesmo nome já existe. Exclua-o primeiro!</string>
   <string name="restore">Restaurar</string>
-  <string name="delete">Excluir</string>
+  <string name="delete">Deletar</string>
   <string name="overwrite_question">Sobrescrever %s?</string>
   <string name="restoring">Restaurando</string>
   <string name="delete_question">Excluir %s?</string>
@@ -613,8 +624,8 @@
   <string name="backup_created">Backup foi criado em %s.</string>
   <string name="search">Procurar</string>
   <string name="no_profiles">Sem perfil</string>
-  <string name="profile_description">Adicionando um novo perfil:\nDigite um nome, e selecione as seções que serão salvas neste perfil.</string>
-  <string name="profile_information">Perfil:\n Adicionando um perfil irá salvar sua configuração atual, os perfis são salvos na Memória Interna/KernelAdiutor/profiles.json. Você pode aplicá-los depois.\n\nPerfil por App:\n Ativa um perfil salvo automaticamente quando um app for utilizado.</string>
+  <string name="profile_description">Adicionando um novo perfil:\nDigite um nome, e selecione as seções que serão salvas neste perfil.\n*Não salve a voltagem do CPU Voltage se planeja compartilhar este.</string>
+  <string name="profile_information">Perfil:\n Adicionando um perfil irá salvar sua configuração atual, os perfis são salvos na Memória Interna/KernelAdiutor/profiles.json. Você pode aplicá-los quando quiser e pode compartilhar com outros.\n\nPerfil por App:\n Ativa um perfil salvo automaticamente quando um app for utilizado, este é salvo Memória Interna/KernelAdiutor/per_app.json.\n\nDica:\n 1. Se planeja compartilhar um perfil não salve neste a voltagem do CPU, pois diferentes aparelhos utilizão diferentes tabela de voltagem padram.\n 2. Não compartilhe Perfil por app, pois cada usuário tem diferentes apps.</string>
   <string name="name">Nome</string>
   <string name="select_all">Selecionar todos</string>
   <string name="apply">Aplicar	</string>

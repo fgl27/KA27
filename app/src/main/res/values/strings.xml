@@ -744,8 +744,8 @@
 
     <!-- Profile -->
     <string name="no_profiles">No profiles</string>
-    <string name="profile_description">Adding a new profile:\nSet a name, and select sections to be saved to this profile.</string>
-    <string name="profile_information">Profiles:\n Adding a profile will save your current settings to Internal Storage/KernelAdiutor/profiles.json. You can apply them later.\n\nPer App Profiles:\n Enable a pre saved profile to automatic load the Kernel settings based on foreground app.</string>
+    <string name="profile_description">Adding a new profile:\nSet a name, and select sections to be saved to this profile.\n*Don\'t save CPU Voltage if you plane to share this.</string>
+    <string name="profile_information">Profiles:\n Adding a profile will save your current settings to Internal Storage/KernelAdiutor/profiles.json. You can apply them later, and share with others.\n\nPer App Profiles:\n Enable a pre saved profile to automatic load the Kernel Adiutor settings based on the start of foreground app, it is saved on Internal Storage/KernelAdiutor/per_app.json.\n\nTip:\n 1. If you plan to share a profile do not save CPU Voltage as it device runs on a different voltage table.\n 2. Do Not share Per app Profiles as it person have a different set of apps</string>
     <string name="name">Name</string>
     <string name="select_all">Select all</string>
     <string name="apply">Apply</string>
