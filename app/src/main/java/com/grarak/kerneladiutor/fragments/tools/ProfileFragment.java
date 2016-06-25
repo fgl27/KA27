@@ -136,7 +136,7 @@ public class ProfileFragment extends RecyclerViewFragment {
 
                 boolean load = true;
                 String start = getString(R.string.kernel);
-                String stop = getString(R.string.plugins);
+                String stop = getString(R.string.downloads);
                 final LinkedHashMap<Class, AppCompatCheckBox> items = new LinkedHashMap<>();
                 for (DAdapter.DView item : Constants.VISIBLE_ITEMS) {
                     if (item.getTitle() != null) {
