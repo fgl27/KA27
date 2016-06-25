@@ -89,4 +89,10 @@
         <item>@string/delete</item>
     </string-array>
 
+    <!-- Startup Commands -->
+    <string-array name="startup_commands_menu">
+        <item>@string/copy</item>
+        <item>@string/delete</item>
+    </string-array>
+
 </resources>
