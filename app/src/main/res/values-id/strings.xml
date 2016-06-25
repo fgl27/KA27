@@ -547,7 +547,7 @@
   <string name="backup_created">Cadangan telah dibuat di %s.</string>
   <string name="search">Cari</string>
   <string name="no_profiles">Tidak ada profil</string>
-  <string name="profile_description">Menambahkan profil akan menyimpan pengaturan Anda saat ini. Anda dapat menerapkannya nanti.</string>
+
   <string name="name">Nama</string>
   <string name="select_all">Pilih Semua</string>
   <string name="apply">Terapkan</string>

@@ -443,7 +443,7 @@
   <string name="backup_created">在 %s 中建立備份。</string>
   <string name="search">搜尋</string>
   <string name="no_profiles">沒有設定檔</string>
-  <string name="profile_description">保存您目前的設定。您可以之後套用它們。</string>
+
   <string name="name">名稱</string>
   <string name="select_all">全選</string>
   <string name="apply">套用</string>

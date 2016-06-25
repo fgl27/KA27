@@ -532,7 +532,7 @@
   <string name="backup_created">备份已在 %s 创建。</string>
   <string name="search">搜索</string>
   <string name="no_profiles">无配置文件</string>
-  <string name="profile_description">添加一个配置文件将会保存你现有的设置。你可以之后应用它们。</string>
+
   <string name="name">名称</string>
   <string name="select_all">全选</string>
   <string name="apply">应用</string>

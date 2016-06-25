@@ -552,7 +552,7 @@
   <string name="backup_created">Varnostna kopija je bila ustvarjena v %s.</string>
   <string name="search">Išči</string>
   <string name="no_profiles">Ni profilov</string>
-  <string name="profile_description">Dodajanje profila bo shranilo vaše trenutne nastavitve. Uporabite jih lahko pozneje.</string>
+
   <string name="name">Ime</string>
   <string name="select_all">Izberi vse</string>
   <string name="apply">Uporabi</string>

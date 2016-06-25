@@ -390,7 +390,7 @@
   <string name="backup_created">Záloha byla vytvořena v %s.</string>
   <string name="search">Hledat</string>
   <string name="no_profiles">Žádné profily</string>
-  <string name="profile_description">Přidáním profilu uložíte své aktuální nastavení pro pozdější použití.</string>
+
   <string name="name">Název</string>
   <string name="select_all">Vybrat vše</string>
   <string name="apply">Použít</string>

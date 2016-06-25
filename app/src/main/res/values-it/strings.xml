@@ -530,7 +530,7 @@
   <string name="backup_created">Il Backup è stato creato nel %s.</string>
   <string name="search">Cerca</string>
   <string name="no_profiles">Nessun profilo</string>
-  <string name="profile_description">L\'aggiunta di un profilo salverà le impostazioni correnti. È possibile applicarle successivamente.</string>
+
   <string name="name">Nome</string>
   <string name="select_all">Seleziona tutto</string>
   <string name="apply">Applica</string>

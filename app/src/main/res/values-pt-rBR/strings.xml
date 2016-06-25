@@ -624,8 +624,8 @@
   <string name="backup_created">Backup foi criado em %s.</string>
   <string name="search">Procurar</string>
   <string name="no_profiles">Sem perfil</string>
-  <string name="profile_description">Adicionando um novo perfil:\nDigite um nome, e selecione as seções que serão salvas neste perfil.\n*Não salve a voltagem do CPU Voltage se planeja compartilhar este.</string>
-  <string name="profile_information">Perfil:\n Adicionando um perfil irá salvar sua configuração atual, os perfis são salvos na Memória Interna/KernelAdiutor/profiles.json. Você pode aplicá-los quando quiser e pode compartilhar com outros.\n\nPerfil por App:\n Ativa um perfil salvo automaticamente quando um app for utilizado, este é salvo Memória Interna/KernelAdiutor/per_app.json.\n\nDica:\n 1. Se planeja compartilhar um perfil não salve neste a voltagem do CPU, pois diferentes aparelhos utilizão diferentes tabela de voltagem padram.\n 2. Não compartilhe Perfil por app, pois cada usuário tem diferentes apps.</string>
+  <string name="profile_description">Adicionando um novo perfil:\nDigite um nome, e selecione as seções que serão salvas neste perfil.\n*Não selecione a voltagem do CPU se planeja compartilhar este.</string>
+  <string name="profile_information">Perfil:\n Adicionando um perfil irá salvar sua configuração atual, os perfis são salvos na Memória Interna/KernelAdiutor/profiles.json. Você pode aplicá-los quando quiser e pode compartilhar com outros.\n\nPerfil por App:\n Ativa um perfil salvo automaticamente quando um app for utilizado, este é salvo Memória Interna/KernelAdiutor/per_app.json.\n\nDica:\n 1. Se planeja compartilhar um perfil não slecione a voltagem do CPU ao cria-lo, pois diferentes aparelhos utilizão diferentes tabela de voltagem padram.\n 2. Não compartilhe Perfil por app, pois cada usuário tem diferentes apps.</string>
   <string name="name">Nome</string>
   <string name="select_all">Selecionar todos</string>
   <string name="apply">Aplicar	</string>

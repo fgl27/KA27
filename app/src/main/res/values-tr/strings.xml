@@ -366,7 +366,7 @@
   <string name="backup_created">Yedekleme %s oluşturuldu.</string>
   <string name="search">Arama</string>
   <string name="no_profiles">Profil yok</string>
-  <string name="profile_description">Bir profil ekleme geçerli ayarlarınızı kaydetmek. Onları daha sonra uygulayabilirsiniz.</string>
+
   <string name="name">Ad</string>
   <string name="select_all">Tümünü Seç</string>
   <string name="apply">Onayla</string>

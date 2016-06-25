@@ -259,7 +259,7 @@
   <string name="backup_created">Резервна копија је направљена у %s.</string>
   <string name="search">Претрага</string>
   <string name="no_profiles">Нема профила</string>
-  <string name="profile_description">Додавањем профила сачуваћете текуће поставке. Можете их применити касније.</string>
+
   <string name="name">Назив</string>
   <string name="select_all">Изабери све</string>
   <string name="apply">Примени</string>

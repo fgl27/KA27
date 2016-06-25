@@ -485,7 +485,7 @@
   <string name="backup_created">Backup wurde in %s erstellt.</string>
   <string name="search">Suchen</string>
   <string name="no_profiles">Keine Profile</string>
-  <string name="profile_description">Durch das Hinzufügen eines Profils werden die Einstellungen gespeichert. Du kannst sie später anwenden.</string>
+
   <string name="name">Name</string>
   <string name="select_all">Alle auswählen</string>
   <string name="apply">Anwenden</string>

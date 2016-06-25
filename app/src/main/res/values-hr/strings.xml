@@ -361,7 +361,7 @@
   <string name="backup_created">Sigurnosna kopija je stvorena u %s.</string>
   <string name="search">Tražiti</string>
   <string name="no_profiles">Nema profila</string>
-  <string name="profile_description">Dodavanje profila će upamtiti trenutne postavke. Kasnije ih možete preuzeti.</string>
+
   <string name="name">Ime</string>
   <string name="select_all">Označi sve</string>
   <string name="apply">Preuzmi</string>

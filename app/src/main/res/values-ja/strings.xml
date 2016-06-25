@@ -553,7 +553,7 @@
   <string name="backup_created">%sにバックアップを作成しました。</string>
   <string name="search">検索</string>
   <string name="no_profiles">プロファイルなし</string>
-  <string name="profile_description">プロファイルを追加すると現在の設定を保存できます。後で適用することもできます。</string>
+
   <string name="name">名前</string>
   <string name="select_all">全てを選択</string>
   <string name="apply">適用</string>

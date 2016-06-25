@@ -250,7 +250,7 @@
   <string name="backup_created">Säkerhetskopia har skapats i %s.</string>
   <string name="search">Sök</string>
   <string name="no_profiles">Inga profiler</string>
-  <string name="profile_description">Dina inställningar sparas när du lägger till en profil. Du kan använda dem senare.</string>
+
   <string name="apply">Tillämpa</string>
   <string name="press_again_to_apply">Tryck igen för att tillämpa.</string>
   <string name="reboot">Starta om</string>
