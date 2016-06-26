@@ -11,66 +11,84 @@ import com.grarak.kerneladiutor.utils.database.PerAppDB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by joe on 2/29/16.
  */
 public class Per_App {
-    public static Map getInstalledApps (Context context) {
+
+    public static final class App implements Comparable<App>{
+        final String name;
+        final String packageId;
+
+        private App(String name, String packageId) {
+            this.name = name;
+            this.packageId = packageId;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            App app = (App) o;
+            return packageId.equals(app.packageId);
+        }
+
+        @Override
+        public int hashCode() {
+            return packageId.hashCode();
+        }
+
+        @Override
+        public int compareTo(App another) {
+            return name.compareToIgnoreCase(another.name);
+        }
+    }
+
+    public static List<App> getInstalledApps (Context context) {
         // Get a list of installed apps. Currently this is only the package name
         final PackageManager pm = context.getPackageManager();
-        //ArrayList<String> installedApps = new ArrayList<String>();
-        final Map applist = new TreeMap();
-
+        final List<App> applist = new ArrayList<>();
         final List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
-        // Add a "Default" Selection to set the default profile"
-        applist.put("Default","Default");
 
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                for (ApplicationInfo packageInfo : packages) {
-                    applist.put(packageInfo.loadLabel(pm), packageInfo.packageName);
-                }
-            }
-        };
-
-        t.start();
-
-        try {
-            t.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        for (ApplicationInfo packageInfo : packages) {
+            App app = new App (String.valueOf(packageInfo.loadLabel(pm)), packageInfo.packageName);
+            applist.add(app);
         }
+
+        Collections.sort(applist);
 
         return applist;
     }
 
-    public static String[] getPackageNames (Map apps) {
-        ArrayList<String> packages = new ArrayList<String>();
-        for (int i = 0; i < apps.size(); i++) {
-            packages.add(i, apps.values().toArray()[i].toString());
-        }
-        // Convert the list to strings for displaying
-        String[] packagelist = new String[packages.size()];
-        packagelist = packages.toArray(packagelist);
+    public static String[] getPackageNames (List<App> apps) {
+        String[] array = new String[apps.size()+1];
 
-        return packagelist;
+        for (int i = 0; i < apps.size()+1; i++) {
+            if(i == 0){
+                array[i] = "Default";
+            } else {
+                array[i] = apps.get(i-1).packageId;
+            }
+        }
+
+        return  array;
     }
 
-    public static String[] getAppNames (Map apps) {
-        ArrayList<String> applist = new ArrayList<String>();
-        for (int i = 0; i < apps.size(); i++) {
-            applist.add(i, apps.keySet().toArray()[i].toString());
-        }
-        // Convert the list to strings for displaying
-        String[] app_names = new String[applist.size()];
-        app_names = applist.toArray(app_names);
+    public static String[] getAppNames (List<App> apps) {
+        String[] array = new String[apps.size()+1];
 
-        return app_names;
+        for (int i = 0; i < apps.size()+1; i++) {
+            if(i == 0){
+                array[i] = "Default";
+            } else {
+                array[i] = apps.get(i-1).name;
+            }
+        }
+
+        return  array;
     }
 
     public static void save_app (String app, String id, Context context) {
