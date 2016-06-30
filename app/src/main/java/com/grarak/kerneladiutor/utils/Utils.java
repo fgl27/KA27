@@ -537,12 +537,23 @@ public class Utils implements Constants {
         return false;
     }
 
+
     public static String getsysfspath(String[] paths) {
         for (int i = 0; i < paths.length; i++) {
             if (Utils.existFile(paths[i])) {
                 return paths[i];
             }
         }
-        return null;
+        return "";
+    }
+
+    //Helper function to get paths with integer format substitutions
+    public static String getsysfspath(String[] paths, int sub) {
+        for (int i = 0; i < paths.length; i++) {
+            if (Utils.existFile(String.format(paths[i], sub))){
+                return String.format(paths[i], sub);
+            }
+        }
+        return "";
     }
 }
