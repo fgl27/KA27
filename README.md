@@ -103,3 +103,9 @@ export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
 local.properties
 
 sdk.dir=/home/fella/sdk
+
+Pics opt
+
+find . -path '**' -name '*.png' -exec exiftool -overwrite_original -all= {} \;
+
+find . -name '*.png' -exec pngquant --ext .png --force 256 {} \;
