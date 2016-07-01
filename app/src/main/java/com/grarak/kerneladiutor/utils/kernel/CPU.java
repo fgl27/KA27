@@ -359,7 +359,9 @@ public class CPU implements Constants {
                         mFreqs[core][i] = Utils.stringToInt(valueArray[i]);
                 }
             }
-        if (mFreqs[core] == null) return null;
+        if (mFreqs[core] == null) {
+            return Collections.emptyList();
+        }
         List<Integer> freqs = Arrays.asList(mFreqs[core]);
         Collections.sort(freqs);
         return freqs;
