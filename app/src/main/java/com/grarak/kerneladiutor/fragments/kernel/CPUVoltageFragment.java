@@ -20,7 +20,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.text.InputType;
@@ -69,7 +68,9 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
         // Save the current Voltage table if it doesn't exist. This will prevent issues in the table if they open it before a reboot.
         // On reboot, the default table will overwrite this as it will have any adjustments done since boot as the reference. This is imperfect, but no better way to do it.
         String toasttext = "";
-        if (storedvoltagetable.getString(CPUVoltage.getFreqs().get(0), "-1").equals("-1")) {
+        List<String> voltages = CPUVoltage.getVoltages();
+        if (voltages.isEmpty()) return;
+        if (storedvoltagetable.getString(voltages.get(0), "-1").equals("-1")) {
             toasttext = getString(R.string.non_default_reference) + " -- ";
             CPUVoltage.storeVoltageTable(getContext());
         }
@@ -87,7 +88,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
 
         mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
         List<String> voltages = CPUVoltage.getVoltages();
-        if (voltages == null) return;
+        if (voltages.isEmpty()) return;
 
         if (CPUVoltage.hasOverrideVmin()) {
             mOverrideVminCard = new SwitchCardView.DSwitchCard();
