@@ -394,20 +394,31 @@ public class Utils implements Constants {
         return df.format(value);
     }
 
-    public static long stringToLong(String string) {
+    public static long stringToLong(String number) {
+        if(TextUtils.isEmpty(number)){
+            return 0;
+        }
         try {
-            return Long.parseLong(string);
-        } catch (NumberFormatException e) {
+            return Long.parseLong(number);
+        } catch (Exception e) {
             return 0;
         }
     }
 
-    public static int stringToInt(String string) {
-        try {
-            return Math.round(Float.parseFloat(string));
-        } catch (NumberFormatException e) {
+    public static int stringToInt(String number) {
+        if(TextUtils.isEmpty(number)){
             return 0;
         }
+        if(number.contains(".")){
+            try {
+                return Math.round(Float.parseFloat(number));
+            } catch (Exception ignored){}
+        } else {
+            try {
+                return Integer.parseInt(number);
+            } catch (Exception ignored){}
+        }
+        return 0;
     }
 
     public static void launchUrl(Context context, String link) {
