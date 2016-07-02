@@ -156,17 +156,17 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (CPUHotplug.hasZenDecision()) zenDecisionInit();
-        if (CPUHotplug.hasMpdecision()) mpdecisionInit();
-        if (CPUHotplug.hasIntelliPlug()) intelliPlugInit();
-        if (CPUHotplug.hasBluPlug()) bluPlugInit();
-        if (CPUHotplug.hasMsmHotplug()) msmHotplugInit();
-        if (CPUHotplug.hasMakoHotplug()) makoHotplugInit();
-        if (CPUHotplug.hasMBHotplug()) mbHotplugInit();
         if (CPUHotplug.hasAlucardHotplug()) alucardHotplugInit();
-        if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
         if (CPUHotplug.hasAutoSmp()) autoSmpInit();
+        if (CPUHotplug.hasBluPlug()) bluPlugInit();
+        if (CPUHotplug.hasMBHotplug()) mbHotplugInit();
+        if (CPUHotplug.hasIntelliPlug()) intelliPlugInit();
+        if (CPUHotplug.hasMakoHotplug()) makoHotplugInit();
+        if (CPUHotplug.hasMpdecision()) mpdecisionInit();
+        if (CPUHotplug.hasMsmHotplug()) msmHotplugInit();
         if (CPUHotplug.hasMSMSleeper()) msmSleeperInit();
+        if (CPUHotplug.hasThunderPlug()) thunderPlugInit();
+        if (CPUHotplug.hasZenDecision()) zenDecisionInit();
         tunablesInit();
     }
 
