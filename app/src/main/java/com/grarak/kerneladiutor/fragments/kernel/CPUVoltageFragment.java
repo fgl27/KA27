@@ -68,9 +68,9 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
         // Save the current Voltage table if it doesn't exist. This will prevent issues in the table if they open it before a reboot.
         // On reboot, the default table will overwrite this as it will have any adjustments done since boot as the reference. This is imperfect, but no better way to do it.
         String toasttext = "";
-        List<String> voltages = CPUVoltage.getVoltages();
-        if (voltages.isEmpty()) return;
-        if (storedvoltagetable.getString(CPUVoltage.getFreqs().get(0), "-1").equals("-1")) {
+        List<String> frequencies = CPUVoltage.getFreqs();
+        if (frequencies.isEmpty()) return;
+        if (storedvoltagetable.getString(frequencies.get(0), "-1").equals("-1")) {
             toasttext = getString(R.string.non_default_reference) + " -- ";
             CPUVoltage.storeVoltageTable(getContext());
         }
@@ -88,6 +88,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
 
         mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
         List<String> voltages = CPUVoltage.getVoltages();
+	List<String> frequencies = CPUVoltage.getFreqs();
         if (voltages.isEmpty()) return;
 
         if (CPUVoltage.hasOverrideVmin()) {
@@ -101,14 +102,13 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
             addView(mOverrideVminCard);
         }
 
-        for (int i = 0; i < CPUVoltage.getFreqs().size(); i++) {
+        for (int i = 0; i < frequencies.size(); i++) {
             mVoltageCard[i] = new EditTextCardView.DEditTextCard();
-            String freq = CPUVoltage.isVddVoltage() ? String.valueOf(Utils.stringToInt(CPUVoltage
-                    .getFreqs().get(i)) / 1000) : CPUVoltage.getFreqs().get(i);
+            String freq = CPUVoltage.isVddVoltage() ? String.valueOf(Utils.stringToInt(frequencies.get(i)) / 1000) : frequencies.get(i);
             mVoltageCard[i].setTitle(freq + getString(R.string.mhz));
 
-            if (voltagetable.get(CPUVoltage.getFreqs().get(i)) != null) {
-                int stock = Integer.parseInt(voltagetable.get(CPUVoltage.getFreqs().get(i)));
+            if (voltagetable.get(frequencies.get(i)) != null) {
+                int stock = Integer.parseInt(voltagetable.get(frequencies.get(i)));
                 int current = Integer.parseInt(voltages.get(i));
                 String diff;
                 if (stock > current) {
