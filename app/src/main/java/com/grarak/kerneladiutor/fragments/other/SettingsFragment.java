@@ -66,9 +66,9 @@ public class SettingsFragment extends RecyclerViewFragment {
         if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
         if (Utils.hasCMSDK()) profileTileInit();
         applyonbootInit();
+        perappInit();
         debuggingInit();
         securityInit();
-        perappInit();
         showSectionsInit();
     }
 
