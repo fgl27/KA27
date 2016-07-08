@@ -75,12 +75,6 @@
         <item>@string/hybrid</item>
     </string-array>
 
-    <!-- Recovery -->
-    <string-array name="recovery_variants">
-        <item>@string/cwm_recovery</item>
-        <item>@string/twrp</item>
-    </string-array>
-
     <!-- Initd -->
     <string-array name="initd_menu">
         <item>@string/information</item>

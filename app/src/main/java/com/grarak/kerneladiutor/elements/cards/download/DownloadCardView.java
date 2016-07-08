@@ -214,7 +214,6 @@ public class DownloadCardView extends BaseCardView {
                                         final Recovery recovery =
                                                 new Recovery(Recovery.RECOVERY_COMMAND.FLASH_ZIP, new File(path));
                                         String[] items = {
-                                                getContext().getString(R.string.cwm_recovery),
                                                 getContext().getString(R.string.twrp),
                                                 getContext().getString(R.string.manual_flashing)
                                         };
@@ -234,8 +233,7 @@ public class DownloadCardView extends BaseCardView {
                                                             return;
                                                         }
 
-                                                        Recovery.RECOVERY type = seleted == 1 ?
-                                                                Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM;
+                                                        Recovery.RECOVERY type = Recovery.RECOVERY.TWRP;
                                                         RootFile recoveryFile = new RootFile("/cache/recovery/"
                                                                 + recovery.getFile(type));
                                                         for (String command : recovery.getCommands(type))

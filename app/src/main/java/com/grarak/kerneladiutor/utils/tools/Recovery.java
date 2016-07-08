@@ -30,7 +30,7 @@ import java.util.List;
 public class Recovery {
 
     public enum RECOVERY {
-        CWM, TWRP
+        TWRP
     }
 
     public enum RECOVERY_COMMAND {
@@ -54,7 +54,7 @@ public class Recovery {
     }
 
     public List<String> getCommands(RECOVERY recovery) {
-        RecoveryType recoveryType = recovery == RECOVERY.TWRP ? new TWRP() : new CWM();
+        RecoveryType recoveryType = new TWRP();
         switch (recovery_command) {
             case WIPE_DATA:
                 return recoveryType.getWipeData();
@@ -90,45 +90,6 @@ public class Recovery {
             return zip;
         }
 
-    }
-
-    private class CWM extends RecoveryType {
-
-        @Override
-        public List<String> getWipeData() {
-            List<String> commands = new ArrayList<>();
-
-            commands.add("format(\"/data\");");
-            commands.add("format(\"" + Tools.getInternalStorage() + "/.android_secure\");");
-
-            return commands;
-        }
-
-        @Override
-        public List<String> getWipeCache() {
-            List<String> commands = new ArrayList<>();
-
-            commands.add("format(\"/cache\");");
-            commands.add("format(\"/data/dalvik-cache\");");
-            commands.add("format(\"/cache/dalvik-cache\");");
-            commands.add("format(\"/sd-ext/dalvik-cache\");");
-
-            return commands;
-        }
-
-        @Override
-        public List<String> getFlashZip(File file) {
-            List<String> commands = new ArrayList<>();
-
-            commands.add("assert(install_zip(\"" + formatFile(file) + "\"));");
-
-            return commands;
-        }
-
-        @Override
-        public String getExternalPath() {
-            return "/storage/sdcard1";
-        }
     }
 
     private class TWRP extends RecoveryType {

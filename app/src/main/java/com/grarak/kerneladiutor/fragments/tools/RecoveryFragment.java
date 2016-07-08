@@ -61,24 +61,6 @@ public class RecoveryFragment extends RecyclerViewFragment {
     public RecyclerView getRecyclerView() {
         View view = getParentView(R.layout.recovery_recyclerview);
 
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(getActivity(), R.layout.simple_spinner_item,
-                getResources().getStringArray(R.array.recovery_variants));
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        mRecoverySpinner = (AppCompatSpinner) view.findViewById(R.id.recovery_spinner);
-        mRecoverySpinner.setAdapter(dataAdapter);
-        mRecoverySpinner.setSelection(Utils.getBoolean("twrp", false, getActivity()) ? 1 : 0);
-        mRecoverySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Utils.saveBoolean("twrp", position == 1, getActivity());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
         view.findViewById(R.id.wipe_data_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -171,14 +153,11 @@ public class RecoveryFragment extends RecyclerViewFragment {
                 Utils.confirmDialog(null, getString(R.string.flash_now_confirm), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String file = "/cache/recovery/" + mCommands.get(0).getFile(mRecoverySpinner
-                                .getSelectedItemPosition() == 1 ? Recovery.RECOVERY.TWRP : Recovery.RECOVERY.CWM);
+                        String file = "/cache/recovery/" + mCommands.get(0).getFile(Recovery.RECOVERY.TWRP);
                         RootFile recoveryFile = new RootFile(file);
                         recoveryFile.delete();
                         for (Recovery commands : mCommands) {
-                            for (String command : commands.getCommands(mRecoverySpinner.getSelectedItemPosition() == 1 ?
-                                    Recovery.RECOVERY.TWRP :
-                                    Recovery.RECOVERY.CWM))
+                            for (String command : commands.getCommands(Recovery.RECOVERY.TWRP))
                                 recoveryFile.write(command, true);
                         }
                         RootUtils.runCommand("reboot recovery");
