@@ -52,6 +52,7 @@ import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.tools.Per_App;
 import com.kerneladiutor.library.root.RootUtils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -99,6 +100,12 @@ public class ProfileFragment extends RecyclerViewFragment {
     @Override
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
+
+	String ppath = ("/sdcard/KA_profiles/");
+            if (!Utils.existFile(ppath)) {
+            File dir = new File(ppath);
+            dir.mkdir();
+	}
 
         if (taskerMode) {
             fabView.setVisibility(View.GONE);

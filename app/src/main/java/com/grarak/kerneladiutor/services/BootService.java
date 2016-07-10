@@ -82,7 +82,6 @@ public class BootService extends Service {
         final List<String> plugins = new ArrayList<>();
 
         CPUVoltage.storeVoltageTable(this);
-        ProfileDB.kerneladiutormkdir(this);
 
         Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
                 CPUVoltageFragment.class, EntropyFragment.class, GPUFragment.class, IOFragment.class,

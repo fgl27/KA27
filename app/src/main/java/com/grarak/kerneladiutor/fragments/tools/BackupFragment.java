@@ -200,11 +200,10 @@ public class BackupFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
 
-        String sdcard = "/sdcard";
-        String name = "/KernelAdiutor/";
-        boot = new RootFile(sdcard + name + "boot");
-        recovery = new RootFile(sdcard + name + "recovery");
-        fota = new RootFile(sdcard + name + "fota");
+        String kafolder = "/sdcard/KernelAdiutor/";
+        boot = new RootFile(kafolder + "boot");
+        recovery = new RootFile(kafolder + "recovery");
+        fota = new RootFile(kafolder + "fota");
     }
 
     @Override

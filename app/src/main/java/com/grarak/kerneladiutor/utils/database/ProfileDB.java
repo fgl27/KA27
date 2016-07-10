@@ -28,7 +28,6 @@ import com.kerneladiutor.library.root.RootFile;
 import com.kerneladiutor.library.root.RootUtils;
 import com.kerneladiutor.library.Tools;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -170,13 +169,5 @@ public class ProfileDB extends JsonDB {
             }
         }
 
-    }
-    public static boolean kerneladiutormkdir (Context context) {
-		String path = ("/sdcard/KA_profiles/");
-		if (!Utils.existFile(path)) {
-		File dir = new File(path);
-		dir.mkdir();
-		} 
-	return true;
     }
 }
