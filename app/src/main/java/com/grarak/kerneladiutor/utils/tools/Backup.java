@@ -25,6 +25,8 @@ import com.kerneladiutor.library.Tools;
 import com.kerneladiutor.library.root.RootFile;
 import com.kerneladiutor.library.root.RootUtils;
 
+import java.io.File;
+
 /**
  * Created by willi on 17.05.15.
  */
@@ -129,10 +131,10 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        RootFile genericFolder = new RootFile(Tools.getInternalStorage() + "/KernelAdiutor/" + folder);
+        File genericFolder = new File("/sdcard/KernelAdiutor/" + folder);
         genericFolder.mkdir();
         if (genericFolder.exists()) return genericFolder.toString();
-        RootFile genericFolder2 = new RootFile("/sdcard/KernelAdiutor/" + folder);
+        File genericFolder2 = new File("/sdcard/KernelAdiutor/" + folder);
         genericFolder2.mkdir();
         return genericFolder2.toString();
     }

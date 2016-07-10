@@ -200,7 +200,7 @@ public class BackupFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
 
-        String sdcard = Tools.getInternalStorage();
+        String sdcard = "/sdcard";
         String name = "/KernelAdiutor/";
         boot = new RootFile(sdcard + name + "boot");
         recovery = new RootFile(sdcard + name + "recovery");
