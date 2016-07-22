@@ -25,17 +25,13 @@ import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * Created by willi on 02.01.15.
  */
 public class Wake implements Constants {
 
-    private static String DT2W_FILE;
-    private static String S2W_FILE;
     private static String T2W_FILE;
     private static String WAKE_MISC_FILE;
-    private static String SLEEP_MISC_FILE;
     private static String DT2S_FILE;
     private static String WAKE_TIMEOUT_FILE;
 
@@ -222,44 +218,21 @@ public class Wake implements Constants {
         return DT2S_FILE != null;
     }
 
-    public static void setSleepMisc(int value, Context context) {
-        Control.runCommand(String.valueOf(value), SLEEP_MISC_FILE, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getSleepMisc() {
-        return Utils.stringToInt(Utils.readFile(SLEEP_MISC_FILE));
-    }
-
-    public static List<String> getSleepMiscMenu(Context context) {
-        List<String> list = new ArrayList<>();
-        if (SLEEP_MISC_FILE != null) {
-            list.add(context.getString(R.string.disabled));
-            switch (SLEEP_MISC_FILE) {
-                case S2S:
-                    list.add(context.getString(R.string.s2s_right));
-                    list.add(context.getString(R.string.s2s_left));
-                    list.add(context.getString(R.string.s2s_any));
-                    break;
-                case SCREEN_SLEEP_OPTIONS:
-                    list.add(context.getString(R.string.dt2s));
-                    break;
-                case S2S_2:
-                    list.add(context.getString(R.string.s2s_right));
-                    list.add(context.getString(R.string.s2s_left));
-                    list.add(context.getString(R.string.s2s_any));
-                    break;
-            }
+    public static void activateSleepMisc(boolean active, Context context) {
+        if (active) {
+            Control.runCommand(String.valueOf(3), S2S, Control.CommandType.GENERIC, context);
         }
-        return list;
+        else {
+            Control.runCommand(String.valueOf(0), S2S, Control.CommandType.GENERIC, context);
+        }
+    }
+
+    public static boolean isSleepMiscActive() {
+        return Utils.readFile(S2S).equals("3");
     }
 
     public static boolean hasSleepMisc() {
-        for (String file : SLEEP_MISC_ARRAY)
-            if (Utils.existFile(file)) {
-                SLEEP_MISC_FILE = file;
-                return true;
-            }
-        return SLEEP_MISC_FILE != null;
+	return Utils.existFile(S2S);
     }
 
     public static void setWakeMisc(int value, Context context) {
@@ -332,57 +305,24 @@ public class Wake implements Constants {
         return T2W_FILE != null;
     }
 
-    public static void setS2w(int value, Context context) {
-	int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
-	int val_2 = Utils.stringToInt(Utils.readFile(DT2W_FILE));
-        if (value == 0) {
-		Control.runCommand(String.valueOf(value), S2W_FILE, Control.CommandType.GENERIC, context);
-		if (val_2 != 0)
-			Control.runCommand(String.valueOf(value), DT2W_FILE, Control.CommandType.GENERIC, context);
+    public static void activateS2w(boolean active, Context context) {
+        if (active) {
+		Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
 	}
-        if ((value == 1) && (val != 15)) {
-		Control.runCommand(String.valueOf(15), S2W_FILE, Control.CommandType.GENERIC, context);
+	else {
+            if (Utils.readFile(DT2W).equals("0")) {
+		Control.runCommand(String.valueOf(0), SW2, Control.CommandType.GENERIC, context);
+	    }
 	}
     }
 
-    public static int getS2wValue() {
-        int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
-        if (val == 0 ) return 0;
-        return 1;
+    public static boolean isS2wActive() {
+        return Utils.readFile(SW2).equals("15");
     }
 
-    public static List<String> getS2wMenu(Context context) {
-        List<String> list = new ArrayList<>();
-        list.add(context.getString(R.string.disabled));
-        if (S2W_FILE != null) {
-            switch (S2W_FILE) {
-                case SW2:
-                    list.add(context.getString(R.string.s2w));
-                    break;
-                case SW2_2:
-                    list.add(context.getString(R.string.s2w_right));
-                    list.add(context.getString(R.string.s2w_left));
-                    list.add(context.getString(R.string.s2w_up));
-                    list.add(context.getString(R.string.s2w_down));
-                    list.add(context.getString(R.string.s2w_any));
-                    break;
-                default:
-                    list.add(context.getString(R.string.enabled));
-                    break;
-            }
-        }
-        return list;
-    }
-
-    public static boolean hasS2w() {
-        if (S2W_FILE == null)
-            for (String file : S2W_ARRY)
-                if (Utils.existFile(file)) {
-                    S2W_FILE = file;
-                    break;
-                }
-        return S2W_FILE != null;
-    }
+     public static boolean hasS2w() {
+        return Utils.existFile(SW2);
+     }
 
     public static void activateLenient(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", LENIENT, Control.CommandType.GENERIC, context);
@@ -396,53 +336,28 @@ public class Wake implements Constants {
         return Utils.existFile(LENIENT);
     }
 
-    public static void setDt2w(int value, Context context) {
-        Control.runCommand(String.valueOf(value), DT2W_FILE, Control.CommandType.GENERIC, context);
-        int val_1 = Utils.stringToInt(Utils.readFile(S2W_FILE));
-	if (val_1 == 0) {
-		Control.runCommand(String.valueOf(15), S2W_FILE, Control.CommandType.GENERIC, context);
-	}
-	if ((value == 0) && (val_1 != 15)) {
-		Control.runCommand(String.valueOf(0), S2W_FILE, Control.CommandType.GENERIC, context);
-	}
-    }
-
-    public static int getDt2wValue() {
-        if (Utils.existFile(DT2W_FILE))
-            return Utils.stringToInt(Utils.readFile(DT2W_FILE));
-        return 0;
-    }
-
-    public static List<String> getDt2wMenu(Context context) {
-        List<String> list = new ArrayList<>();
-        if (DT2W_FILE != null) {
-            list.add(context.getString(R.string.disabled));
-            switch (DT2W_FILE) {
-                case LGE_TOUCH_CORE_DT2W:
-                    list.add(context.getString(R.string.center));
-                    list.add(context.getString(R.string.full));
-                    list.add(context.getString(R.string.bottom_half));
-                    list.add(context.getString(R.string.top_half));
-                    break;
-                case DT2W:
-                    list.add(context.getString(R.string.enabled));
-                    break;
-                default:
-                    list.add(context.getString(R.string.enabled));
-                    break;
-            }
+    public static void activateDt2w(boolean active, Context context) {
+        if (active) {
+            Control.runCommand(String.valueOf(1), DT2W, Control.CommandType.GENERIC, context);
+            if (Utils.readFile(SW2).equals("0")) {
+		Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
+	    }
         }
-        return list;
+        else {
+            Control.runCommand(String.valueOf(0), DT2W, Control.CommandType.GENERIC, context);
+        }
+    }
+
+    public static boolean isDt2wActive() {
+        return Utils.readFile(DT2W).equals("1");
+    }
+
+    public static boolean isDt2wDeactive() {
+        return Utils.readFile(DT2W).equals("0");
     }
 
     public static boolean hasDt2w() {
-        if (DT2W_FILE == null)
-            for (String file : DT2W_ARRAY)
-                if (Utils.existFile(file)) {
-                    DT2W_FILE = file;
-                    return true;
-                }
-        return DT2W_FILE != null;
+	return Utils.existFile(DT2W);
     }
 
     public static boolean hasWake() {

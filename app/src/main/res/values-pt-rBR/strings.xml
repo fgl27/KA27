@@ -424,8 +424,8 @@
   <string name="wake_dt2w_feathery_summary">Use para controlar a distancia máxima entre o 1° e o 2° toque no eixo vertical. Este ajuda a impedir toques intencionais.\nPadram é tradicionalmente 150px.</string>
   <string name="vib_strength">Intensidade da vibração dos gestos deacordar</string>
   <string name="vib_strength_summary">Este valor é exclusivo para esta seção e independente da intensidade de vibração do resto do sistema.</string>
-  <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Acorda seu dispositivo com um duplo toque na tela.</string>
+  <string name="dt2w_note">! DT2W quando ativato tambem ativa S2W\n Isto é necessario para que DT2W funcione</string>
   <string name="center">Centro</string>
   <string name="full">Completo</string>
   <string name="bottom_half">Metade inferior</string>
@@ -434,9 +434,9 @@
   <string name="fullscreen">Tela Cheia</string>
   <string name="s2w">Ativado</string>
   <string name="s2w_summary">Acorda seu dispositivo ao deslizar o dedo na tela, em qualquer direção.</string>
+  <string name="s2w_note">! Para desativar S2W primeiro desative DT2W</string>
   <string name="lenient">Tolerância do Sweep2Wake</string>
   <string name="lenient_summary">Requer apenas o 1º e o 4º botão para ativar o Sweep2Wake.</string>
-  <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Sweep2Wake na direita</string>
   <string name="s2w_left">Sweep2Wake na esquerda</string>
   <string name="s2w_up">Sweep2Wake no topo</string>
@@ -465,7 +465,7 @@
   <string name="draw_c">Escrever C</string>
   <string name="draw_m">Escrever M</string>
   <string name="camera_gesture">Gesto de câmera</string>
-  <string name="camera_gesture_summary">Abrir a câmera padrão ao desenhar um círculo na tela.</string>
+  <string name="camera_gesture_summary">Abre o app de câmera padrão ao desenhar um círculo na tela.</string>
   <string name="pocket_mode">Modo de bolso</string>
   <string name="wake_timeout">Tempo esgotado para acordar</string>
   <string name="wake_timeout_summary">Defina o tempo quando os controles por gestos serão desabilitados após a tela se apagar.</string>
