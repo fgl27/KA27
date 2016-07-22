@@ -219,6 +219,11 @@ public class SoundFragment extends RecyclerViewFragment implements
         else if (dSwitchCard == mHeadphoneGainIndependentCard) {
             Sound.setIndependentHeadphoneGainEnabled(checked, getActivity());
             view.invalidate();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
         else if (dSwitchCard == mHighPerfModeEnableCard)

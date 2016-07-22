@@ -301,6 +301,11 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         else if (dSwitchCard == mDynamic_Dirty_WritebackCard) {
             VM.activateDynamicDirtyWriteback(checked, getActivity());
             view.invalidate();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
     }

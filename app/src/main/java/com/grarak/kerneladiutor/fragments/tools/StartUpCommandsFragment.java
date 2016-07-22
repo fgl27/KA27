@@ -186,6 +186,11 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
 
     public void forcerefresh(Context context) {
         view.invalidate();
+	try {
+            Thread.sleep(100);
+	} catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+	}
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

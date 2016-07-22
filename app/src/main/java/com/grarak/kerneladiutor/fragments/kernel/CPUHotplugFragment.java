@@ -1674,6 +1674,11 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
         else if (dSwitchCard == mMSMSleeperEnableCard)
             CPUHotplug.activateMSMSleeper(checked, getActivity());
         view.invalidate();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
 
     }

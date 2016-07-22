@@ -416,6 +416,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSELinuxCard) {
             Misc.activateSELinux(checked, getActivity());
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
         else if (dSwitchCard == mLoggerEnableCard)
@@ -438,6 +443,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
         else if (dSwitchCard == mEnableADBOverWifiCard) {
             Misc.activateADBOverWifi(checked, getActivity());
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
         else if (dSwitchCard == mSmb135xWakeLockCard)
