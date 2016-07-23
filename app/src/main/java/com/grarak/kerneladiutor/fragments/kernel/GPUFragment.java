@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
@@ -53,17 +54,19 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
     private SwitchCardView.DSwitchCard mAdrenoIdlerCard;
     private SeekBarCardView.DSeekBarCard mAdrenoIdlerDownDiffCard, mAdrenoIdlerIdleWaitCard, mAdrenoIdlerIdleWorkloadCard;
 
+    private SwitchCardView.DSwitchCard mSimpleOndemandScalingCard;
+    private SeekBarCardView.DSeekBarCard mSimpleOndemandDiffCard, mSimpleOndemandUpthresholdCard;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+        if (GPU.hasGPUMinPowerLevel()) gamingmodeInit();
         curFreqInit();
         maxFreqInit();
         minFreqInit();
         governorInit();
-        if (GPU.hasGPUMinPowerLevel()) gamingmodeInit();
-        if (GPU.hasSimpleGpu()) simpleGpuInit();
-        if (GPU.hasAdrenoIdler()) adrenoIdlerInit();
+	tunablesInit();
     }
 
     private void curFreqInit() {
@@ -162,92 +165,131 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
         }
     }
 
+    private void tunablesInit() {
+        List < DAdapter.DView > views = new ArrayList < > ();
+        views.clear();
 
+        DDivider mtunablesDividerCard = new DDivider();
+        mtunablesDividerCard.setText(getString(R.string.gpu_governor_tunables));
+        mtunablesDividerCard.setDescription(getString(R.string.gpu_governor_tunables_note));
+        views.add(mtunablesDividerCard);
 
-    private void simpleGpuInit() {
-        DDivider mSimpleGpuDividerCard = new DDivider();
-        mSimpleGpuDividerCard.setText(getString(R.string.simple_gpu_algorithm));
+        if (GPU.getGpuGovernor().equals("msm-adreno-tz")) {
+	    if (GPU.hasAdrenoIdler()) {
 
-        addView(mSimpleGpuDividerCard);
+	        mAdrenoIdlerCard = new SwitchCardView.DSwitchCard();
+	        mAdrenoIdlerCard.setTitle(getString(R.string.adreno_idler));
+	        mAdrenoIdlerCard.setDescription(getString(R.string.adreno_idler_summary));
+	        mAdrenoIdlerCard.setChecked(GPU.isAdrenoIdlerActive());
+	        mAdrenoIdlerCard.setOnDSwitchCardListener(this);
 
-        mSimpleGpuCard = new SwitchCardView.DSwitchCard();
-        mSimpleGpuCard.setTitle(getString(R.string.simple_gpu_algorithm));
-        mSimpleGpuCard.setDescription(getString(R.string.simple_gpu_algorithm_summary));
-        mSimpleGpuCard.setChecked(GPU.isSimpleGpuActive());
-        mSimpleGpuCard.setOnDSwitchCardListener(this);
+	        views.add(mAdrenoIdlerCard);
+	        if (GPU.isAdrenoIdlerActive()) {
+	            {
+	                List < String > list = new ArrayList < > ();
+	                for (int i = 0; i < 100; i++) list.add(String.valueOf(i));
 
-        addView(mSimpleGpuCard);
+	                mAdrenoIdlerDownDiffCard = new SeekBarCardView.DSeekBarCard(list);
+	                mAdrenoIdlerDownDiffCard.setTitle(getString(R.string.down_differential));
+	                mAdrenoIdlerDownDiffCard.setDescription(getString(R.string.down_differential_summary));
+	                mAdrenoIdlerDownDiffCard.setProgress(GPU.getAdrenoIdlerDownDiff());
+	                mAdrenoIdlerDownDiffCard.setOnDSeekBarCardListener(this);
 
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 11; i++)
-            list.add(String.valueOf(i));
+	                views.add(mAdrenoIdlerDownDiffCard);
 
-        mSimpleGpuLazinessCard = new SeekBarCardView.DSeekBarCard(list);
-        mSimpleGpuLazinessCard.setTitle(getString(R.string.laziness));
-        mSimpleGpuLazinessCard.setDescription(getString(R.string.laziness_summary));
-        mSimpleGpuLazinessCard.setProgress(GPU.getSimpleGpuLaziness());
-        mSimpleGpuLazinessCard.setOnDSeekBarCardListener(this);
+	                mAdrenoIdlerIdleWaitCard = new SeekBarCardView.DSeekBarCard(list);
+	                mAdrenoIdlerIdleWaitCard.setTitle(getString(R.string.idle_wait));
+	                mAdrenoIdlerIdleWaitCard.setDescription(getString(R.string.idle_wait_summary));
+	                mAdrenoIdlerIdleWaitCard.setProgress(GPU.getAdrenoIdlerIdleWait());
+	                mAdrenoIdlerIdleWaitCard.setOnDSeekBarCardListener(this);
 
-        addView(mSimpleGpuLazinessCard);
+	                views.add(mAdrenoIdlerIdleWaitCard);
+	            }
 
-        mSimpleGpuRampThresoldCard = new SeekBarCardView.DSeekBarCard(list);
-        mSimpleGpuRampThresoldCard.setTitle(getString(R.string.ramp_thresold));
-        mSimpleGpuRampThresoldCard.setDescription(getString(R.string.ramp_thresold_summary));
-        mSimpleGpuRampThresoldCard.setProgress(GPU.getSimpleGpuRampThreshold());
-        mSimpleGpuRampThresoldCard.setOnDSeekBarCardListener(this);
+	            {
+	                List < String > list = new ArrayList < > ();
+	                for (int i = 1; i < 11; i++) list.add(String.valueOf(i));
 
-        addView(mSimpleGpuRampThresoldCard);
-    }
+	                mAdrenoIdlerIdleWorkloadCard = new SeekBarCardView.DSeekBarCard(list);
+	                mAdrenoIdlerIdleWorkloadCard.setTitle(getString(R.string.workload));
+	                mAdrenoIdlerIdleWorkloadCard.setDescription(getString(R.string.workload_summary));
+	                mAdrenoIdlerIdleWorkloadCard.setProgress(GPU.getAdrenoIdlerIdleWorkload() - 1);
+	                mAdrenoIdlerIdleWorkloadCard.setOnDSeekBarCardListener(this);
 
-    private void adrenoIdlerInit() {
-        DDivider mAndrenoIdlerDivider = new DDivider();
-        mAndrenoIdlerDivider.setText(getString(R.string.adreno_idler));
+	                views.add(mAdrenoIdlerIdleWorkloadCard);
+	            }
+	        }
+	    }
+	    if (GPU.hasSimpleGpu()) {
 
-        addView(mAndrenoIdlerDivider);
+		mSimpleGpuCard = new SwitchCardView.DSwitchCard();
+		mSimpleGpuCard.setTitle(getString(R.string.simple_gpu_algorithm));
+		mSimpleGpuCard.setDescription(getString(R.string.simple_gpu_algorithm_summary));
+		mSimpleGpuCard.setChecked(GPU.isSimpleGpuActive());
+		mSimpleGpuCard.setOnDSwitchCardListener(this);
 
-        mAdrenoIdlerCard = new SwitchCardView.DSwitchCard();
-        mAdrenoIdlerCard.setTitle(getString(R.string.adreno_idler));
-        mAdrenoIdlerCard.setDescription(getString(R.string.adreno_idler_summary));
-        mAdrenoIdlerCard.setChecked(GPU.isAdrenoIdlerActive());
-        mAdrenoIdlerCard.setOnDSwitchCardListener(this);
+	        views.add(mSimpleGpuCard);
+	        if (GPU.isSimpleGpuActive()) {
+	            List<String> list = new ArrayList<>();
+			for (int i = 0; i < 11; i++)
+			    list.add(String.valueOf(i));
 
-        addView(mAdrenoIdlerCard);
+			    mSimpleGpuLazinessCard = new SeekBarCardView.DSeekBarCard(list);
+			    mSimpleGpuLazinessCard.setTitle(getString(R.string.laziness));
+			    mSimpleGpuLazinessCard.setDescription(getString(R.string.laziness_summary));
+			    mSimpleGpuLazinessCard.setProgress(GPU.getSimpleGpuLaziness());
+			    mSimpleGpuLazinessCard.setOnDSeekBarCardListener(this);
 
-        {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 100; i++) list.add(String.valueOf(i));
+			    views.add(mSimpleGpuLazinessCard);
 
-            mAdrenoIdlerDownDiffCard = new SeekBarCardView.DSeekBarCard(list);
-            mAdrenoIdlerDownDiffCard.setTitle(getString(R.string.down_differential));
-            mAdrenoIdlerDownDiffCard.setDescription(getString(R.string.down_differential_summary));
-            mAdrenoIdlerDownDiffCard.setProgress(GPU.getAdrenoIdlerDownDiff());
-            mAdrenoIdlerDownDiffCard.setOnDSeekBarCardListener(this);
+			    mSimpleGpuRampThresoldCard = new SeekBarCardView.DSeekBarCard(list);
+			    mSimpleGpuRampThresoldCard.setTitle(getString(R.string.ramp_thresold));
+			    mSimpleGpuRampThresoldCard.setDescription(getString(R.string.ramp_thresold_summary));
+			    mSimpleGpuRampThresoldCard.setProgress(GPU.getSimpleGpuRampThreshold());
+			    mSimpleGpuRampThresoldCard.setOnDSeekBarCardListener(this);
 
-            addView(mAdrenoIdlerDownDiffCard);
-
-            mAdrenoIdlerIdleWaitCard = new SeekBarCardView.DSeekBarCard(list);
-            mAdrenoIdlerIdleWaitCard.setTitle(getString(R.string.idle_wait));
-            mAdrenoIdlerIdleWaitCard.setDescription(getString(R.string.idle_wait_summary));
-            mAdrenoIdlerIdleWaitCard.setProgress(GPU.getAdrenoIdlerIdleWait());
-            mAdrenoIdlerIdleWaitCard.setOnDSeekBarCardListener(this);
-
-            addView(mAdrenoIdlerIdleWaitCard);
+			    views.add(mSimpleGpuRampThresoldCard);
+	        }
+	    }
         }
+	if (GPU.getGpuGovernor().equals("simple_ondemand")) {
+	    if (GPU.hasSimpleOndemandScaling()) {
 
-        {
-            List<String> list = new ArrayList<>();
-            for (int i = 1; i < 11; i++) list.add(String.valueOf(i));
+	        mSimpleOndemandScalingCard = new SwitchCardView.DSwitchCard();
+	        mSimpleOndemandScalingCard.setTitle(getString(R.string.simple_ondemand_scaling));
+	        mSimpleOndemandScalingCard.setDescription(getString(R.string.simple_ondemand_scaling_summary));
+	        mSimpleOndemandScalingCard.setChecked(GPU.isSimpleOndemandScalingActive());
+	        mSimpleOndemandScalingCard.setOnDSwitchCardListener(this);
 
-            mAdrenoIdlerIdleWorkloadCard = new SeekBarCardView.DSeekBarCard(list);
-            mAdrenoIdlerIdleWorkloadCard.setTitle(getString(R.string.workload));
-            mAdrenoIdlerIdleWorkloadCard.setDescription(getString(R.string.workload_summary));
-            mAdrenoIdlerIdleWorkloadCard.setProgress(GPU.getAdrenoIdlerIdleWorkload() - 1);
-            mAdrenoIdlerIdleWorkloadCard.setOnDSeekBarCardListener(this);
+	        views.add(mSimpleOndemandScalingCard);
+	        if (GPU.isSimpleOndemandScalingActive()) {
+	            {
+	                List < String > list = new ArrayList < > ();
+	                for (int i = 0; i < 100; i++) list.add(String.valueOf(i));
 
-            addView(mAdrenoIdlerIdleWorkloadCard);
+	                mSimpleOndemandDiffCard = new SeekBarCardView.DSeekBarCard(list);
+	                mSimpleOndemandDiffCard.setTitle(getString(R.string.down_differential));
+	                mSimpleOndemandDiffCard.setDescription(getString(R.string.simple_ondemand_down_differential_summary));
+	                mSimpleOndemandDiffCard.setProgress(GPU.getSimpleOndemandDownDiff());
+	                mSimpleOndemandDiffCard.setOnDSeekBarCardListener(this);
+
+	                views.add(mSimpleOndemandDiffCard);
+
+	                mSimpleOndemandUpthresholdCard = new SeekBarCardView.DSeekBarCard(list);
+	                mSimpleOndemandUpthresholdCard.setTitle(getString(R.string.simple_ondemand_upthreshold));
+	                mSimpleOndemandUpthresholdCard.setDescription(getString(R.string.simple_ondemand_upthreshold_summary));
+	                mSimpleOndemandUpthresholdCard.setProgress(GPU.getSimpleOndemandUpthreshold());
+	                mSimpleOndemandUpthresholdCard.setOnDSeekBarCardListener(this);
+
+	                views.add(mSimpleOndemandUpthresholdCard);
+	            }
+	        }
+	    }
+        }
+        if (views.size() > 0) {
+	    addAllViews(views);
         }
     }
-
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mMax2dFreqCard)
@@ -258,15 +300,47 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             GPU.setGpuMinFreq(GPU.getGpuFreqs().get(position), getActivity());
         else if (dPopupCard == m2dGovernorCard)
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
-        else if (dPopupCard == mGovernorCard)
+        else if (dPopupCard == mGovernorCard) {
             GPU.setGpuGovernor(GPU.getGpuGovernors().get(position), getActivity());
+	    try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
     }
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mSimpleGpuCard) GPU.activateSimpleGpu(checked, getActivity());
-        else if (dSwitchCard == mAdrenoIdlerCard) GPU.activateAdrenoIdler(checked, getActivity());
+        if (dSwitchCard == mSimpleGpuCard) {
+	    GPU.activateSimpleGpu(checked, getActivity());
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+        else if (dSwitchCard == mAdrenoIdlerCard) {
+            GPU.activateAdrenoIdler(checked, getActivity());
+	    try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
         else if (dSwitchCard == mGamingModeGpuCard) GPU.activateGamingMode(checked, getActivity());
+        else if (dSwitchCard == mSimpleOndemandScalingCard) {
+            GPU.activateSimpleOndemandScaling(checked, getActivity());
+	    try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        }
     }
 
     @Override
@@ -283,6 +357,10 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             GPU.setAdrenoIdlerDownDiff(position, getActivity());
         else if (dSeekBarCard == mAdrenoIdlerIdleWaitCard)
             GPU.setAdrenoIdlerIdleWait(position, getActivity());
+        else if (dSeekBarCard == mSimpleOndemandDiffCard)
+            GPU.setSimpleOndemandDownDiff(position, getActivity());
+        else if (dSeekBarCard == mSimpleOndemandUpthresholdCard)
+            GPU.setSimpleOndemandUpthreshold(position, getActivity());
         else if (dSeekBarCard == mAdrenoIdlerIdleWorkloadCard)
             GPU.setAdrenoIdlerIdleWorkload(position + 1, getActivity());
     }

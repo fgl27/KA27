@@ -378,7 +378,6 @@ public interface Constants {
     String GPU_MIN_POWER_LEVEL = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/min_pwrlevel";
     String GPU_NUM_POWER_LEVELS = "/sys/devices/fdb00000.qcom,kgsl-3d0/kgsl/kgsl-3d0/num_pwrlevels";
 
-
     String[] GPU_2D_CUR_FREQ_ARRAY = {GPU_CUR_KGSL2D0_QCOM_FREQ};
 
     String[] GPU_2D_MAX_FREQ_ARRAY = {GPU_MAX_KGSL2D0_QCOM_FREQ};
@@ -419,11 +418,17 @@ public interface Constants {
     String ADRENO_IDLER_IDLEWAIT = ADRENO_IDLER_PARAMETERS + "/adreno_idler_idlewait";
     String ADRENO_IDLER_IDLEWORKLOAD = ADRENO_IDLER_PARAMETERS + "/adreno_idler_idleworkload";
 
+    // Simple Ondemand GPU Gov Tunables
+    String SIMPLE_ONDEMAND_PARAMETERS = "/sys/devices/fdb00000.qcom,kgsl-3d0/devfreq/fdb00000.qcom,kgsl-3d0/simple_ondemand";
+    String SIMPLE_ONDEMAND_SCALING = SIMPLE_ONDEMAND_PARAMETERS + "/simple_scaling";
+    String SIMPLE_ONDEMAND_DOWNDIFFERENTIAL = SIMPLE_ONDEMAND_PARAMETERS + "/downdifferential";
+    String SIMPLE_ONDEMAND_UPTHRESHOLD = SIMPLE_ONDEMAND_PARAMETERS + "/upthreshold";
+
     String[][] GPU_ARRAY = {GPU_2D_CUR_FREQ_ARRAY,
             GPU_2D_MAX_FREQ_ARRAY, GPU_2D_AVAILABLE_FREQS_ARRAY,
             GPU_2D_SCALING_GOVERNOR_ARRAY, GPU_CUR_FREQ_ARRAY,
             GPU_MAX_FREQ_ARRAY, GPU_MIN_FREQ_ARRAY, GPU_AVAILABLE_FREQS_ARRAY,
-            GPU_SCALING_GOVERNOR_ARRAY, {SIMPLE_GPU_PARAMETERS, ADRENO_IDLER_PARAMETERS, GPU_MIN_POWER_LEVEL}};
+            GPU_SCALING_GOVERNOR_ARRAY, {SIMPLE_GPU_PARAMETERS, ADRENO_IDLER_PARAMETERS, GPU_MIN_POWER_LEVEL, SIMPLE_ONDEMAND_PARAMETERS}};
 
     // Screen
     String SCREEN_KCAL = "/sys/devices/platform/kcal_ctrl.0";

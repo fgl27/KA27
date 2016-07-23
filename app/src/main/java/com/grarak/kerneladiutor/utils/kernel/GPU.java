@@ -87,6 +87,34 @@ public class GPU implements Constants {
         return Utils.existFile(ADRENO_IDLER_PARAMETERS);
     }
 
+    public static void activateSimpleOndemandScaling(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", SIMPLE_ONDEMAND_SCALING, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isSimpleOndemandScalingActive() {
+        return Utils.readFile(SIMPLE_ONDEMAND_SCALING).equals("1");
+    }
+
+    public static boolean hasSimpleOndemandScaling() {
+        return Utils.existFile(SIMPLE_ONDEMAND_PARAMETERS);
+    }
+
+    public static void setSimpleOndemandDownDiff(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SIMPLE_ONDEMAND_DOWNDIFFERENTIAL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSimpleOndemandDownDiff() {
+        return Utils.stringToInt(Utils.readFile(SIMPLE_ONDEMAND_DOWNDIFFERENTIAL));
+    }
+
+    public static void setSimpleOndemandUpthreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), SIMPLE_ONDEMAND_UPTHRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getSimpleOndemandUpthreshold() {
+        return Utils.stringToInt(Utils.readFile(SIMPLE_ONDEMAND_UPTHRESHOLD));
+    }
+
     public static void setSimpleGpuRampThreshold(int value, Context context) {
         Control.runCommand(String.valueOf(value * 1000), SIMPLE_RAMP_THRESHOLD, Control.CommandType.GENERIC, context);
     }

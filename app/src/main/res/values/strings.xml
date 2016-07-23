@@ -366,6 +366,8 @@
     <string name="gpu_2d_governor_summary">Set the 2D governor of the GPU.</string>
     <string name="gpu_governor">GPU Governor</string>
     <string name="gpu_governor_summary">Set the governor of the GPU.</string>
+    <string name="gpu_governor_tunables">GPU Governor Tunables</string>
+    <string name="gpu_governor_tunables_note">Not all but some GPU_GOV have tunables, if this is empty this GOV doesn\'t have it.\n\nEnable the first setting under tunables to see the controlers for that featuring.</string>
     <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
     <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
     <string name="laziness">Laziness</string>
@@ -382,6 +384,11 @@
     <string name="workload_summary">Adreno idler will more actively try to ramp down the frequency if this is set to a higher value.</string>
     <string name="gpu_gaming_mode">Gaming Mode</string>
     <string name="gpu_gaming_mode_summary">Gaming Mode restricts the GPU to the maximum power level while enabled.</string>
+    <string name="simple_ondemand_scaling">Simple scaling</string>
+    <string name="simple_ondemand_scaling_summary">A simple scaling controller for Simple ondemand.</string>
+    <string name="simple_ondemand_down_differential_summary">Threshold for determining if the given workload is idle. If the Workload is less than the value, Min frequency will be set.</string>
+    <string name="simple_ondemand_upthreshold">Up Threshold</string>
+    <string name="simple_ondemand_upthreshold_summary">Threshold for determining if the given workload high load. If the Workload cross the value, Max frequency will be set,</string>
 
     <!-- Screen -->
     <string name="screen_color_profile">Color Profile</string>
