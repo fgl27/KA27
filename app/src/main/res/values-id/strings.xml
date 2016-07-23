@@ -64,7 +64,6 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Pengaturan</string>
-  <string name="faq">Tanya Jawab Umum</string>
   <string name="about_us">Tentang Kami</string>
   <string name="unused_cpu_states">CPU tak terpakai</string>
   <string name="uptime">Uptime</string>
@@ -612,23 +611,9 @@
   <string name="password_too_long">Password terlalu panjang</string>
   <string name="set_password_first">Menetapkan dulu sandi</string>
   <string name="show_sections">Tampilkan bagian</string>
-  <string name="misspelled">Mengapa Anda melakukan misspell \"Auditor\"?</string>
-  <string name="misspelled_summary">Adiutor itu latin dan berharap membantu.</string>
-  <string name="cpu_freq_not_sticking">Mengapa saya tidak bisa menentukan CPU freq?</string>
-  <string name="cpu_freq_not_sticking_summary">Ini memiliki banyak alasan. Banyak kernel saat ini memiliki sistem hotplugging sendiri yang mengontrol frekuensi CPU dan CyanogenMod memiliki implementasi CPU meningkatkan mereka sendiri yang mengatur frekuensi. Saya akan menyarankan Anda untuk tidak menyentuh frekuensi CPU dan membiarkan kernel melakukan tugasnya.</string>
-  <string name="feature_not_appearing">Mengapa fitur x dan y tidak muncul?</string>
-  <string name="feature_not_appearing_summary">Fitur ini bergantung pada kernel aktif.</string>
-  <string name="feature_function">Apa yang fitur x lakukan?</string>
-  <string name="feature_function_summary">Jika Anda tidak tahu apa fungsi kontrol ini, cukup jangan sentuh. Silakan tanya mbah google sebelum meng-oprek perangkat mahal anda ini.</string>
-  <string name="add_new_features">Bisakah Anda menambahkan fitur x dan y?</string>
-  <string name="add_new_features_summary">Hal ini susah diungkapkan. Saya mencoba menambahkan semua fitur (yang diminta), tetapi sulit membuat aplikasi ini bisa dipakai untuk semua perangkat. Saya hanya mempunyai Samsung Galaxy S4 (I9500), HTC Desire 816 dan baru-baru ini mempunyai OnePlus 2, jadi jangan menyalahkanku kalau fitur tersebut tidak ditambahkan segera.</string>
   <string name="license">Lisensi</string>
   <string name="app_license">Kernel Adiutor berlisensi Apache, versi 2.0, dan menggunakan library berikut</string>
   <string name="open_source">Sumber Terbuka</string>
   <string name="open_source_summary">Aplikasi ini merupakan open source. Silahkan cek di GitHub Saya!</string>
   <string name="feature_request">Meminta fitur</string>
-  <string name="feature_request_summary">Ingin fitur baru yang lebih banyak? Silahkan buka issue baru di GitHub dan kirimkan.</string>
-  <string name="google_plus_summary">Gabung komunitas kami.</string>
-  <string name="translation">Terjemahkan</string>
-  <string name="translation_summary">Bantu saya menerjemahkan aplikasi ini!</string>
 </resources>

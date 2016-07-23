@@ -29,10 +29,8 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 public class AboutusFragment extends RecyclerViewFragment {
 
-    private final String APP_SOURCE = "https://github.com/Grarak/KernelAdiutor";
-    private final String ISSUE_LINK = "https://github.com/Grarak/KernelAdiutor/issues";
-    private final String COMMUNITY_LINK = "https://plus.google.com/u/0/communities/108445529270785762340";
-    private final String TRANSLATE_LINK = "https://crowdin.com/project/kernel-adiutor";
+    private final String APP_SOURCE = "https://github.com/bhb27/KA27/";
+    private final String XDA_LINK = "http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526";
 
     @Override
     public boolean showApplyOnBoot() {
@@ -48,8 +46,7 @@ public class AboutusFragment extends RecyclerViewFragment {
         licenseInit();
         appSourceInit();
         featureRequestInit();
-        communityInit();
-        translationInit();
+        xdaInit();
     }
 
     private void ModififactionInit() {
@@ -95,43 +92,28 @@ public class AboutusFragment extends RecyclerViewFragment {
     private void featureRequestInit() {
         CardViewItem.DCardView mFeatureRequestCard = new CardViewItem.DCardView();
         mFeatureRequestCard.setTitle(getString(R.string.feature_request));
-        mFeatureRequestCard.setDescription(getString(R.string.feature_request_summary));
+        mFeatureRequestCard.setDescription(getString(R.string.feature_requestb_summary));
         mFeatureRequestCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                Utils.launchUrl(getActivity(), ISSUE_LINK);
+                Utils.launchUrl(getActivity(), XDA_LINK);
             }
         });
 
         addView(mFeatureRequestCard);
     }
 
-    private void communityInit() {
-        CardViewItem.DCardView mCommunityCard = new CardViewItem.DCardView();
-        mCommunityCard.setTitle(getString(R.string.google_plus));
-        mCommunityCard.setDescription(getString(R.string.google_plus_summary));
-        mCommunityCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+    private void xdaInit() {
+        CardViewItem.DCardView mXDACard = new CardViewItem.DCardView();
+        mXDACard.setTitle(getString(R.string.xda));
+        mXDACard.setDescription(getString(R.string.xda_summary));
+        mXDACard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                Utils.launchUrl(getActivity(), COMMUNITY_LINK);
+                Utils.launchUrl(getActivity(), XDA_LINK);
             }
         });
 
-        addView(mCommunityCard);
+        addView(mXDACard);
     }
-
-    private void translationInit() {
-        CardViewItem.DCardView mTranslationCard = new CardViewItem.DCardView();
-        mTranslationCard.setTitle(getString(R.string.translation));
-        mTranslationCard.setDescription(getString(R.string.translation_summary));
-        mTranslationCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                Utils.launchUrl(getActivity(), TRANSLATE_LINK);
-            }
-        });
-
-        addView(mTranslationCard);
-    }
-
 }

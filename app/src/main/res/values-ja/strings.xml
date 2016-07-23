@@ -64,7 +64,6 @@
   <string name="profile">プロファイル</string>
   <string name="initd">Init.d</string>
   <string name="settings">設定</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">アプリについて</string>
   <string name="unused_cpu_states">未使用の CPU テーブル</string>
   <string name="uptime">使用時間</string>
@@ -618,23 +617,9 @@
   <string name="password_too_long">パスワードが長すぎます。</string>
   <string name="set_password_first">まずパスワードを設定してください。</string>
   <string name="show_sections">セクションの表示</string>
-  <string name="misspelled">\"Auditor\"って綴り間違いじゃないのぉ?</string>
-  <string name="misspelled_summary">Adiutorはラテン語で「helper」という意味です。</string>
-  <string name="cpu_freq_not_sticking">CPU周波数を設定したのに固定されないのはなぜ?</string>
-  <string name="cpu_freq_not_sticking_summary">これには多くの理由があります。最近ではほとんどのカーネルにCPU周波数を制御する独自の Hotplug システムがあり、CyanogenMod では周波数を調整する独自のCPU ブースト機能を有しています。CPU周波数には手を触れずカーネルにその仕事を任せることを強くお勧めします。</string>
-  <string name="feature_not_appearing">なぜxとy機能が表示されないの?</string>
-  <string name="feature_not_appearing_summary">カーネルによって実装されている機能に違いがあります。</string>
-  <string name="feature_function">x機能って何なの?</string>
-  <string name="feature_function_summary">何をするものなのか知らないなら、触らないでください。文鎮化を避けるためにも、設定を変える前によく検索してください。</string>
-  <string name="add_new_features">xとy機能を追加してもらえますか?</string>
-  <string name="add_new_features_summary">申し訳ありませんが、このアプリにあらゆる機能を追加したいとは考えていますが、全ての端末で使えるようにするのは難しいです。私は Samsung Galxy S4 (I9500)、HTC Desire 816、OnePlus 2しか持っていないので、機能がすぐ追加されなくても責めないでください。</string>
   <string name="license">ライセンス</string>
   <string name="app_license">Kernel Adiutor は Apache License, Version 2.0 でライセンスされ、以下のライブラリを使用しています:</string>
   <string name="open_source">オープンソース</string>
   <string name="open_source_summary">このアプリはオープンソースです。タップするとGithubページを開きます。</string>
   <string name="feature_request">機能のリクエスト</string>
-  <string name="feature_request_summary">もっと機能を増やして欲しいですか? Githubでissueを開いてアイデアをお聞かせください。</string>
-  <string name="google_plus_summary">コミュニティに参加する</string>
-  <string name="translation">翻訳</string>
-  <string name="translation_summary">アプリの翻訳に御協力下さい!</string>
 </resources>

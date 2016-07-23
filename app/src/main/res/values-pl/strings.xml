@@ -68,7 +68,6 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Ustawienia</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">O nas</string>
   <string name="unused_cpu_states">Nieużywane stany CPU</string>
   <string name="uptime">Czas działania</string>
@@ -325,6 +324,4 @@
   <string name="app_license">Kernel Diutor jest na licencji Apache License, Wesja 2.0, i używa następujących bibliotek</string>
   <string name="open_source">Open source</string>
   <string name="feature_request">Prośba o funkcje</string>
-  <string name="google_plus_summary">Dołącz do naszej społeczności.</string>
-  <string name="translation">Tłumaczenie</string>
 </resources>

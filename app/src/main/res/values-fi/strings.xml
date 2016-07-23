@@ -63,7 +63,6 @@
   <string name="profile">Profiili</string>
   <string name="initd">Init.d</string>
   <string name="settings">Asetukset</string>
-  <string name="faq">Usein kysyttyä</string>
   <string name="unused_cpu_states">Käyttömättömät CPU tilat</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Syvä_uni</string>

@@ -64,7 +64,6 @@
   <string name="profile">Profile</string>
   <string name="initd">Init.d</string>
   <string name="settings">Réglages</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">À propos</string>
   <string name="unused_cpu_states">États de processeur inutilisés</string>
   <string name="uptime">Temps de fonctionnement</string>
@@ -582,23 +581,9 @@
   <string name="password_too_long">Le mot de passe est trop long</string>
   <string name="set_password_first">Paramétrez d\'abord un mot de passe</string>
   <string name="show_sections">Afficher les sections</string>
-  <string name="misspelled">Pourquoi avoir mal épelé «Auditor»?</string>
-  <string name="misspelled_summary">Adiutor signifie assistant en latin.</string>
-  <string name="cpu_freq_not_sticking">Pourquoi la fréquence CPU que j\'ai paramétrée n\'est pas conservée ?</string>
-  <string name="cpu_freq_not_sticking_summary">Il y a plusieurs explications. Aujourd\'hui, la plupart des noyaux intègrent un système \"hotplug\" qui active ou désactive des cœurs CPU à la volée, en plus d\'en contrôler la fréquence. CyanogenMod propose aussi un système \"CPU Boost\" qui agit sur la fréquence et peut ignorer les réglages utilisateurs. Si vous êtes dans une de ces situations, je vous conseille de ne pas modifier les fréquences CPU et de laisser le noyau s\'en charger.</string>
-  <string name="feature_not_appearing">Pourquoi les fonctionnalités x et y n\'apparaissent t\'elles pas?</string>
-  <string name="feature_not_appearing_summary">Les fonctionnalités dépendent du noyau.</string>
-  <string name="feature_function">Que fait la fonctionnalité x?</string>
-  <string name="feature_function_summary">Si vous ne savez pas ce que fait cette fonction, alors n\'y touchez pas. Renseignez-vous correctement avant d\'expérimenter avec du matériel couteux.</string>
-  <string name="add_new_features">Y aurait-il moyen d\'ajouter les fonctionnalités x et y?</string>
-  <string name="add_new_features_summary">J\'essaye d\'ajouter toutes les fonctionnalités, mais rendre cette application universelle à tous les appareils est difficile. Je n\'ai qu\'un Samsung Dalaxy S4 (I9500), un HTC Desire 816, et j\'ai depuis peu un OnePlus 2 sous la main. Donc ne m\'en voulez pas si les fonctionnalités sont longues à implémenter.</string>
   <string name="license">Licence</string>
   <string name="app_license">Kernel Adiutor est sous License Apache, en Version 2.0, et utilise les bibliothèques suivantes</string>
   <string name="open_source">Open source</string>
   <string name="open_source_summary">Cette application est open source. Consultez le code source sur mon GitHub !</string>
   <string name="feature_request">Demande de fonctionnalité</string>
-  <string name="feature_request_summary">Vous voulez plus de fonctionnalités ? Proposez votre idée sur GitHub.</string>
-  <string name="google_plus_summary">Rejoignez notre communauté.</string>
-  <string name="translation">Traduction </string>
-  <string name="translation_summary">Aidez-moi à traduire l\'application !</string>
 </resources>

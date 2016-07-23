@@ -64,7 +64,6 @@
   <string name="profile">Perfil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Axustes</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">Tocante a nós</string>
   <string name="unused_cpu_states">Estaos de CPU ensin usu</string>
   <string name="uptime">Tiempu prendíu</string>
@@ -569,23 +568,9 @@
   <string name="password_too_long">La contraseña ye perllarga</string>
   <string name="set_password_first">Afita primero una contraseña</string>
   <string name="show_sections">Amosanza d\'estayes</string>
-  <string name="misspelled">¿Por qué escribiesti mal «Auditor»?</string>
-  <string name="misspelled_summary">«Adiutor» ye llatín y significa «ayudante».</string>
-  <string name="cpu_freq_not_sticking">¿Por qué nun se caltién la mio frecuencia de CPU afitada?</string>
-  <string name="cpu_freq_not_sticking_summary">Esto quiciabes sía por munches razones. Anguaño munchos kernels tienen el so sistema hotplug propiu que controla les frecuencies de CPU y CyanogenMod tien la so propia implementación de puxu de CPU que regula la frecuencia. Suxérote que nun toques les frecuencies de CPU y dexes facer al kernel el trabayu de so.</string>
-  <string name="feature_not_appearing">¿Por qué nun s\'amuesen les carauterístiques X ya Y?</string>
-  <string name="feature_not_appearing_summary">Les carauterístiques tán arreyaes al kernel.</string>
-  <string name="feature_function">¿Qué fai la carauterística X?</string>
-  <string name="feature_function_summary">Si nun sabes lo que fai esi control, cenciellamente nun lu toques. Fai una gueta afayadiza enantes de xugar col to hardware caru, por favor.</string>
-  <string name="add_new_features">¿Podríes amestar les carauterístiques X ya Y?</string>
-  <string name="add_new_features_summary">Ye difícil de dicir. Intentaré amestar toles carauterístiques pero nun ye cenciello facer esta aplicación universal pa tolos preseos. Namái teo un Samsung Galaxy S4 (I9500), un HTC Desire 816 y apocayá consiguí un OnePlus 2, asina que nun me culpar si nun amiesto nel intre les carauterístiques.</string>
   <string name="license">Llicencia</string>
   <string name="app_license">Kernel Adiutor ta llicenciáu so l\'Apache License, Version 2.0 y usa les biblioteques de darréu</string>
   <string name="open_source">Códigu abiertu</string>
   <string name="open_source_summary">Esta aplicación ye códigu abiertu. ¡Compruébalo nel mio Github!</string>
   <string name="feature_request">Solicitú de carauterístiques</string>
-  <string name="feature_request_summary">¿Quies más carauterístiques? Abri un informe en Github y cúntame la to idea.</string>
-  <string name="google_plus_summary">Xúnite a la nuesa comunidá.</string>
-  <string name="translation">Traducciones</string>
-  <string name="translation_summary">¡Ayúdame a tornar esta aplicación!</string>
 </resources>

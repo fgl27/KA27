@@ -40,7 +40,6 @@
   <string name="profile">Profiil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Seaded</string>
-  <string name="faq">KKK</string>
   <string name="kernel_version">Tuuma versioon</string>
   <string name="cpu_information">CPU andmed</string>
   <string name="cpu_usage">CPU kasutus</string>
@@ -133,9 +132,6 @@
   <string name="logcat">Logcat</string>
   <string name="last_kmsg">Viimane Tuuma sõnum</string>
   <string name="show_sections">Kuva sektsioonid</string>
-  <string name="misspelled_summary">Adiutor on ladina keeles abiline.</string>
   <string name="license">Litsents</string>
   <string name="open_source">Avatud lähtekoodiga</string>
-  <string name="google_plus_summary">Liituge meie kommuuniga.</string>
-  <string name="translation">Tõlge</string>
 </resources>

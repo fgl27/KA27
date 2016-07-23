@@ -64,7 +64,6 @@
   <string name="profile">Профиль</string>
   <string name="initd">Init.d</string>
   <string name="settings">Настройки</string>
-  <string name="faq">ЧаВо</string>
   <string name="about_us">О нас</string>
   <string name="unused_cpu_states">Неиспользуемые частоты процессора</string>
   <string name="uptime">Время работы</string>
@@ -619,23 +618,9 @@
   <string name="password_too_long">Пароль слишком длинный</string>
   <string name="set_password_first">Сначала установите пароль</string>
   <string name="show_sections">Показать разделы</string>
-  <string name="misspelled">Почему неправильно написан \"Auditor\"?</string>
-  <string name="misspelled_summary">\"Adiutor\" с латинского означает \"помощник\".</string>
-  <string name="cpu_freq_not_sticking">Почему моя частота ЦП не остается выбранной?</string>
-  <string name="cpu_freq_not_sticking_summary">Это может быть вызвано множеством причин. Большинство ядер имеют свои системы горячего подключения для контроля частоты процессора, а у CyanogenMod есть даже свой собственный режим ускорения процессора, регулирующий частоту. Не рекомендуется трогать настройки частот, пусть ядро само выполняет свою работу.</string>
-  <string name="feature_not_appearing">Почему нет функции x и y?</string>
-  <string name="feature_not_appearing_summary">Функционал зависит от ядра.</string>
-  <string name="feature_function">Что делает функция x?</string>
-  <string name="feature_function_summary">Если Вы не знаете, что делает этот пункт, то просто не трогайте его. Узнайте о его предназначении перед попыткой сжечь ваше дорогое устройство.</string>
-  <string name="add_new_features">Могли бы вы добавить функцию x и y?</string>
-  <string name="add_new_features_summary">Трудно сказать. Я стараюсь добавлять весь функционал, но сделать универсальное приложение для всех устройств очень трудно. Лично у меня есть только Samsung Galaxy S4(i9509) и HTC Desire 816; также с недавнего времени OnePlus 2, так что не вините меня, если новые возможности появятся не сразу.</string>
   <string name="license">Лицензия</string>
   <string name="app_license">Kernel Adiutor лицензирован Apache License, Версия 2.0, и использует следующие библиотеки</string>
   <string name="open_source">Открытый исходный код</string>
   <string name="open_source_summary">Это приложение с открытым исходным кодом. Вы можете посмотреть его на GitHub!</string>
   <string name="feature_request">Предложить новую функцию</string>
-  <string name="feature_request_summary">Хотите новых возможностей? Создайте запрос на GitHub и предложите свою идею.</string>
-  <string name="google_plus_summary">Присоединяйтесь к нашему сообществу.</string>
-  <string name="translation">Перевод</string>
-  <string name="translation_summary">Помогите с переводом приложения!</string>
 </resources>

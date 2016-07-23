@@ -62,7 +62,6 @@
   <string name="profile">Профил</string>
   <string name="initd">Init.d</string>
   <string name="settings">Поставке</string>
-  <string name="faq">Најчешћа питања</string>
   <string name="about_us">О нама</string>
   <string name="unused_cpu_states">Неискоришћена стања ЦПУ-а</string>
   <string name="uptime">Време рада</string>
@@ -323,19 +322,8 @@
   <string name="password_too_long">Лозинка је предугачка</string>
   <string name="set_password_first">Најпре поставите лозинку</string>
   <string name="show_sections">Прикажи одељке</string>
-  <string name="misspelled">Зашто „Адиутор“?</string>
-  <string name="misspelled_summary">Адиутор је латинска реч и значи „помагач“.</string>
-  <string name="cpu_freq_not_sticking">Зашто се моје фреквенције ЦПУ-а не задржавају?</string>
-  <string name="feature_not_appearing">Зашто функције x и y нису доступне?</string>
-  <string name="feature_not_appearing_summary">Функције зависе од кернела.</string>
-  <string name="feature_function">Шта ради функција x?</string>
-  <string name="feature_function_summary">Ако не знате шта нека поставка ради, једноставно је не дирајте. Подробно се распитајте пре него што се почнете играти вашим скупим хардвером.</string>
-  <string name="add_new_features">Можеш ли да додаш функције x и y?</string>
-  <string name="add_new_features_summary">Тешко је рећи. Настојим да додам све могућности, али тешко је направити универзалну апликацију за све уређаје. Поседујем само Самсунг „Galaxy S4“ (I9500), ХТЦ „Desire 816“ и недавно сам добио „OnePlus 2“, па немојте мене да кривите ако функционалности не буду одмах додате.</string>
   <string name="license">Лиценца</string>
   <string name="app_license">Кернел Адиутор је лиценциран Апачи лиценцом, издање 2.0, и користи следеће библиотеке</string>
   <string name="open_source">Отворени кôд</string>
   <string name="feature_request">Захтеви за функције</string>
-  <string name="google_plus_summary">Придружите се нашој заједници.</string>
-  <string name="translation">Превођење</string>
 </resources>

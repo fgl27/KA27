@@ -64,7 +64,6 @@
   <string name="profile">الملفّ الشّخصي</string>
   <string name="initd">Init.d</string>
   <string name="settings">الاعدادات</string>
-  <string name="faq">الاسئلة الاكثر شيوعا</string>
   <string name="unused_cpu_states">حالات المعالج الغير نشطة</string>
   <string name="uptime">مدة التشغيل</string>
   <string name="deep_sleep">خمول</string>
@@ -163,18 +162,8 @@
   <string name="password_too_long">كلمة المرور طويلة جدا</string>
   <string name="set_password_first">قم بتعيين كلمة مرور أولا</string>
   <string name="show_sections">أضهار الحقول</string>
-  <string name="misspelled">لماذا أخطأت في كلمة \"Auditor\"؟</string>
-  <string name="misspelled_summary">كلمة \"Adiutor\" اصلها لاتيني وتعني المساعد.</string>
-  <string name="feature_not_appearing">لماذا الخاصيتان أكس و واي لا تظهر ؟</string>
-  <string name="feature_not_appearing_summary">الخصائص تعتمد على النظام.</string>
-  <string name="feature_function">ماذا يقوم الخصيصة أكس بالفعل؟</string>
-  <string name="feature_function_summary">أذا كنت لاتعلم ما عمل هذا المتحكم. ببساطة لاتقوم بالعبث به. الرجاء قم ببعض الابحاث قبل ان تقوم بالتعديل على نظامك المادي الباهظ الثمن.</string>
-  <string name="add_new_features">هل بالامكان أضافة الخاصية أكس والخاصية واي ؟</string>
-  <string name="add_new_features_summary">انه من الصعب البت بذلك الشئ. لقد قمت بمحاولة أضافة جميع الخصائص. لكن من الصعب جعلها تعمل بشكل عام على جميع الاجهزة. انا لدي جهاز سامسونج كالاكسي أس 4 (I9500), وكذلك جهار أج تي سي ديزاير 816, وقد قمت حاليا بشراء جهاز ون بلس تو, لذلك لاتقوم بلومي اذا كانت الخصاص لم تندمج بشكل مباشر.</string>
   <string name="license">حقوق النشر</string>
   <string name="app_license">برنامج \"Kernel Adiutor\" يقع ضمن حقوق نشر \"Apache\" نسخة 2,0, وأستخدمنا المكتبات التالية</string>
   <string name="open_source">مفتوحة المصدر</string>
   <string name="feature_request">الخصائص التي تم طلبها مسبقا</string>
-  <string name="google_plus_summary">قم بالانظمام للمجتمع الخاص بنا.</string>
-  <string name="translation">الترجمة</string>
 </resources>

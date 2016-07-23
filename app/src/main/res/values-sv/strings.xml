@@ -64,7 +64,6 @@
   <string name="profile">Profiler</string>
   <string name="initd">Init.d</string>
   <string name="settings">Inställningar</string>
-  <string name="faq">FAQ</string>
   <string name="unused_cpu_states">Oanvända CPU-lägen</string>
   <string name="uptime">Drifttid</string>
   <string name="deep_sleep">Djup Sömn</string>
@@ -273,17 +272,8 @@
   <string name="security">Säkerhet</string>
   <string name="set_password_summary">Du kan skydda Kernel Adiutor genom att ställa in ett lösenord som du måste ange varje gång du startar den här applikationen. Om du glömmer lösenordet, rensa då datan för den här applikationen på din enhets inställningssida. Oroa dig inte, jag sprider inte ditt lösenord.</string>
   <string name="show_sections">Visa sektioner</string>
-  <string name="misspelled">Varför stavade du \"Auditor\" fel?</string>
-  <string name="misspelled_summary">Adiutor är latin och betyder hjälpare.</string>
-  <string name="feature_not_appearing">Varför visas inte funktionerna x och y?</string>
-  <string name="feature_not_appearing_summary">Tillgängliga funktioner beror på din kernel.</string>
-  <string name="feature_function">Vad gör funktion x?</string>
-  <string name="feature_function_summary">Om du inte vet vad denna kontroll gör, rör den då inte. Läs på ordentligt innan du leker med din dyra hårdvara.</string>
-  <string name="add_new_features">Kan du lägga till funktionerna x och y?</string>
   <string name="license">Licens</string>
   <string name="app_license">Kernel Adiutor licensieras under Apache License, Version 2.0, och använder följande bibliotek</string>
   <string name="open_source">Öppen källkod</string>
   <string name="feature_request">Funktionönskemål</string>
-  <string name="google_plus_summary">Gå med i vår gemenskap.</string>
-  <string name="translation">Översättning</string>
 </resources>

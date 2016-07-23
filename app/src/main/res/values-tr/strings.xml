@@ -64,7 +64,6 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Ayarlar</string>
-  <string name="faq">S.S.S</string>
   <string name="about_us">Hakkımızda</string>
   <string name="unused_cpu_states">Kullanılmayan CPU bölümü</string>
   <string name="uptime">Çalışma süresi</string>
@@ -426,6 +425,4 @@
   <string name="license">Lisans</string>
   <string name="open_source">Açık Kaynak</string>
   <string name="feature_request">Özellik İsteği</string>
-  <string name="google_plus_summary">Topluluğumuza katılın.</string>
-  <string name="translation">Çeviri</string>
 </resources>

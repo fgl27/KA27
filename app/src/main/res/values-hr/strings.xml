@@ -64,7 +64,6 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Postavke</string>
-  <string name="faq">Najčešća pitanja i odgovori</string>
   <string name="about_us">O nama</string>
   <string name="unused_cpu_states">Statistika nekorištenog dijela CPU-a</string>
   <string name="uptime">Vrijeme u pogonu</string>
@@ -401,18 +400,8 @@
   <string name="password_too_long">Predugačka lozinka</string>
   <string name="set_password_first">Prvo postavite lozinku</string>
   <string name="show_sections">Prikaz</string>
-  <string name="misspelled">Zašto ste pogriješili utipkujući \"Auditor\"?</string>
-  <string name="misspelled_summary">Adiutor je latinski a znači pomagač.</string>
-  <string name="cpu_freq_not_sticking">Zašto moja odabrana CPU frekvencija ne radi?</string>
-  <string name="feature_not_appearing">Zašto se značajke x i y ne mogu nigdje pronaći?</string>
-  <string name="feature_not_appearing_summary">Značajke ovise o kernelu.</string>
-  <string name="feature_function">Što značajka x čini?</string>
-  <string name="feature_function_summary">Ako ne znate što neka postavka izvršava, onda je jednostavno ne dirajte. Molimo Vas dovoljno se unaprijed raspitajte prije igranja s Vašim dragocjenim hardverom.</string>
-  <string name="add_new_features">Možete li dodati značajku x i y?</string>
   <string name="license">Dozvola</string>
   <string name="app_license">Kernel Adiutor je odobren Apache Licencom, verzija 2.0, i koristi slijedeće banke podataka</string>
   <string name="open_source">Open source</string>
   <string name="feature_request">Predložite novu funkciju</string>
-  <string name="google_plus_summary">Pridružite se našoj zajednici.</string>
-  <string name="translation">Prijevod</string>
 </resources>

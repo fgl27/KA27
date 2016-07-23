@@ -64,7 +64,6 @@
   <string name="profile">프로필</string>
   <string name="initd">Init.d</string>
   <string name="settings">설정</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">정보</string>
   <string name="unused_cpu_states">사용되지 않은 CPU 클럭</string>
   <string name="uptime">가동 시간</string>
@@ -545,23 +544,9 @@
   <string name="password_too_long">비밀번호가 너무 깁니다</string>
   <string name="set_password_first">먼저 비밀번호를 설정해 주세요</string>
   <string name="show_sections">영역 보이기</string>
-  <string name="misspelled">왜 \"Auditor\"가 아닌가요? 오타인가요?</string>
-  <string name="misspelled_summary">Adiutor는 라틴어로 도우미를 뜻합니다.</string>
-  <string name="cpu_freq_not_sticking">설정한 CPU 클럭으로 변경되지 않는데 왜 그런가요?</string>
-  <string name="cpu_freq_not_sticking_summary">이는 여러 이유로 발생할 수 있습니다. 요즘 대부분의 커널은 클럭을 조절하는 그것들만의 독자적인 핫플러깅 시스템을 가지고 있으며, CyanogenMod는 클럭을 조절하는 그들만의 독자적인 CPU 부스트 기능을 사용하고 있습니다. 이 경우에는 CPU 클럭을 건드리지 마시고, 커널에 맡기는 것을 추천합니다.</string>
-  <string name="feature_not_appearing">왜 X와 Y라는 기능이 보이지 않나요?</string>
-  <string name="feature_not_appearing_summary">기능은 커널에 따라 차이가 있습니다.</string>
-  <string name="feature_function">X라는 기능이 무엇인가요?</string>
-  <string name="feature_function_summary">이 기능이 무엇을 하는지 모른다면 그냥 건드리지 마세요. 고가의 기기를 가지고 놀기 전에 제대로 된 연구를 하시기 바랍니다.</string>
-  <string name="add_new_features">X와 Y라는 기능을 추가해 주실 수 있으신가요?</string>
-  <string name="add_new_features_summary">죄송합니다만 저는 모든 기능을 추가하려고 하지만, 이 앱을 모든 단말에서 사용할 수 있도록 하는 것은 어렵습니다. 제가 가지고 있는 기기는 Samsung Galaxy S4 (I9500), HTC Desire 816, OnePlus 2 밖에 없으니 기능이 바로 병합되지 않는다고 저를 비난하지 말아주세요.</string>
   <string name="license">라이선스</string>
   <string name="app_license">Kernel Adiutor는 아파치 라이선스 2.0 버전을 따르며 다음의 라이브러리들을 사용합니다.</string>
   <string name="open_source">오픈소스</string>
   <string name="open_source_summary">이 애플리케이션은 오픈소스 입니다. 제 GitHub에서 확인하세요!</string>
   <string name="feature_request">기능 요청</string>
-  <string name="feature_request_summary">더 많은 기능을 원하시나요? GitHub에 새 이슈를 열고 당신의 아이디어를 제출해주세요!</string>
-  <string name="google_plus_summary">저희 커뮤니티에 가입하세요.</string>
-  <string name="translation">번역</string>
-  <string name="translation_summary">이 앱을 번역하는 것을 도와주세요!</string>
 </resources>

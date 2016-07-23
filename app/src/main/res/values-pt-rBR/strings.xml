@@ -78,7 +78,6 @@
   <string name="profile">Perfil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Configurações</string>
-  <string name="faq">Perguntas Mais Frequentes</string>
   <string name="about_us">Sobre Kernel Adiutor</string>
   <!-- startup -->
   <string name="startup_commands">Comandos de inicialização</string>
@@ -695,25 +694,11 @@
   <string name="per_app_toast_summary">Mostra uma Toast quando aplica um perfil por app.</string>
   <string name="set_per_app">Defina as configurações Por App para este Perfil</string>
   <string name="per_app_title">Selecione os apps que ativaram este perfil:</string>
-  <string name="misspelled">Por que você confundiu \"Auditor\"?</string>
-  <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
-  <string name="cpu_freq_not_sticking">Por que minha frequência determinada do CPU não é cumprida?</string>
-  <string name="cpu_freq_not_sticking_summary">Isto tem muitas razões. Muitos kernels, hoje em dia, têm seu próprio sistema de hotplugging que controla a frequência do CPU e a CyanogenMod tem sua própria implementação de impulso de CPU que regulam a frequência. Gostaria de sugerir-lhe para não tocar as frequências de CPU e deixar o kernel a fazer o seu trabalho.</string>
-  <string name="feature_not_appearing">Por que características x e y não aparecem?</string>
-  <string name="feature_not_appearing_summary">Características dependem do kernel.</string>
-  <string name="feature_function">O que a característica x faz?</string>
-  <string name="feature_function_summary">Se você não sabe o que faz esse controle, então simplesmente não toque. Por favor, faça uma pesquisa adequada antes de brincar com seu hardware caro.</string>
-  <string name="add_new_features">Você poderia adicionar o recurso x e y?</string>
-  <string name="add_new_features_summary">É difícil dizer. Eu tento adicionar todos os recursos, mas é difícil fazer este app universal para todos os dispositivos. Só tenho um Samsung Galaxy S4 (I9500), um HTC Desire 816 e recentemente um OnePlus 2, então não me culpe se os recursos não funcionarem imediatamente.</string>
   <string name="license">Licença</string>
   <string name="app_license">Kernel Adiutor é licenciado sob a licença Apache, Versão 2.0, e suas respectivas bibliotecas</string>
   <string name="open_source">Código aberto</string>
   <string name="open_source_summary">Este aplicativo tem o código aberto. Confira no meu Github!</string>
   <string name="feature_request">Solicitação de recurso</string>
-  <string name="feature_request_summary">Você quer mais recursos? Abra uma nova edição no GitHub e me conte sua idéia.</string>
-  <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
-  <string name="translation">Tradução</string>
-  <string name="translation_summary">Ajude-me traduzir este aplicativo!</string>
     <string name="modification">Modificado para usar com BHB27-Kernel</string>
     <string name="modification_summary">Este aplicativo foi extremamente modificado para melhor servir O Kernel BHB27-Kernel para o dispositivo Quark Motorola (Moto MAXX, Turbo or Droid Turbo). Confira o kernel na seção Download!</string>
 

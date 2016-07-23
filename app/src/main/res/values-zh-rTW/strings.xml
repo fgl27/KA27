@@ -64,7 +64,6 @@
   <string name="profile">設定檔</string>
   <string name="initd">啟動腳本</string>
   <string name="settings">設定</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">關於我們</string>
   <string name="unused_cpu_states">未使用的 CPU 頻率</string>
   <string name="uptime">核心啟用時間</string>
@@ -497,22 +496,9 @@
   <string name="password_too_long">密碼長度太長</string>
   <string name="set_password_first">請先設定密碼</string>
   <string name="show_sections">顯示區塊</string>
-  <string name="misspelled">為什麼你把\"Auditor\"拼錯？</string>
-  <string name="misspelled_summary">Adiutor 是拉丁語意思是幫手</string>
-  <string name="cpu_freq_not_sticking">我設定的 CPU 頻率為什麼不會持續保持著？</string>
-  <string name="feature_not_appearing">為什麼功能 x 和 y 沒有出現？</string>
-  <string name="feature_not_appearing_summary">此功能取決於核心</string>
-  <string name="feature_function">什麼是功能 x？</string>
-  <string name="feature_function_summary">如果您不知道此控制項的作用，請不要碰它。在調教你昂貴的硬體之前請先做好充分的研究。</string>
-  <string name="add_new_features">您可以添加功能 x 和 y 嗎？</string>
-  <string name="add_new_features_summary">這很難說。我試著添加所有功能，但很難讓這個程式普遍適用於所有的裝置 。我只擁有三星 Galaxy S4 (I9500) ， HTC Desire 816 及近期入手的 OnePlus 2 ，所以如果功能沒有立即被納入，不要責怪我。</string>
   <string name="license">授權協議</string>
   <string name="app_license">Kernel Adiutor 被授權在 Apache 授權之下，2.0 版本，並使用以下函式庫</string>
   <string name="open_source">開放原始碼</string>
   <string name="open_source_summary">此為開放原始碼的APP。前往我的 Github 以了解更多。</string>
   <string name="feature_request">新功能請求</string>
-  <string name="feature_request_summary">您想要更多功能嗎？開啟一新的問題討論於 GitHub 並提交您的想法。</string>
-  <string name="google_plus_summary">加入我們的社群</string>
-  <string name="translation">翻譯</string>
-  <string name="translation_summary">幫助我們翻譯此APP！</string>
 </resources>

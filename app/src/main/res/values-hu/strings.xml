@@ -64,7 +64,6 @@
   <string name="profile">Profilok</string>
   <string name="initd">Init.d</string>
   <string name="settings">Beállítások</string>
-  <string name="faq">GYIK</string>
   <string name="about_us">Rólunk</string>
   <string name="unused_cpu_states">Nem használt CPU frekvenciák</string>
   <string name="uptime">Üzemidő</string>
@@ -617,23 +616,9 @@
   <string name="password_too_long">Jelszó túl hosszú</string>
   <string name="set_password_first">Először állítsa be a jelszót</string>
   <string name="show_sections">Szakaszok megjelenítése</string>
-  <string name="misspelled">Miért gépelte félre az \"Auditor\"-t?</string>
-  <string name="misspelled_summary">Adiutor egy latin szó, és azt jelenti, segítő.</string>
-  <string name="cpu_freq_not_sticking">Miért nem jegyzi meg az általam beállított CPU frekvenciákat?</string>
-  <string name="cpu_freq_not_sticking_summary">Ennek számos oka van. Sok kernel manapság saját hotplug-rendszert használ, amely a CPU frekvenciát szabályozza, és CyanogenMod saját CPU gyorsítási végrehajtót használ, amely a frekvenciát szabályozza. Azt javaslom, hogy ne válzotassa a CPU frekvenciát és hagyja, hogy a kernel tegye a dolgát.</string>
-  <string name="feature_not_appearing">Miért nem jelenik meg az x és y funkció?</string>
-  <string name="feature_not_appearing_summary">Funkciók a kerneltől függnek.</string>
-  <string name="feature_function">Mit csinál az x funkció?</string>
-  <string name="feature_function_summary">Ha nem tudja, mit csinál ez a vezérlő, akkor egyszerűen ne érintse meg. Kérjük, végezzen megfelelő kutatást, mielőtt a drága hardverével játszana.</string>
-  <string name="add_new_features">Hozzáadná x vagy  y funciót?</string>
-  <string name="add_new_features_summary">Ezt nehéz megmondani. Megpróbálok felvenni minden funkciót, de számomra nehéz megoldani, hogy ez az alkalmazás univerzális legyen minden eszközre. Én csak egy Samsung Galaxy S4 (I9500), egy HTC Desire 816 és egy nemrég kapott egy OnePlus 2 készülékkel rendelkezem, így ne hibáztasson, ha egyes funkciók nem kerülnek bele azonnal.</string>
   <string name="license">Licenc</string>
   <string name="app_license">Kernel Adiutor az Apache liszensz, 2.0 verziója szerint liszenszelt, és a következő könyvtárakat használja</string>
   <string name="open_source">Nyílt forráskódú</string>
   <string name="open_source_summary">Ez az alkalmazás nyílt forráskódú. Nézze meg a GitHub fiókomat!</string>
   <string name="feature_request">Ötlet, javaslat</string>
-  <string name="feature_request_summary">Több szolgáltatásra vágyik? Nyisson meg egy új problémát a Githubon, és mondja el ötletét.</string>
-  <string name="google_plus_summary">Csatlakozz közösségünkhöz.</string>
-  <string name="translation">Fordítás</string>
-  <string name="translation_summary">Segítsen lefordítani ezt az alkalmazást!</string>
 </resources>

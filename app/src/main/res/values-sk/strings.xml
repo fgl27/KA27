@@ -63,7 +63,6 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Nastavenia</string>
-  <string name="faq">FAQ</string>
   <string name="unused_cpu_states">Nepoužité stavy CPU</string>
   <string name="uptime">V prevádzke</string>
   <string name="deep_sleep">Hlboký spánok</string>
@@ -158,6 +157,4 @@
   <string name="driver_message">Správa ovládača</string>
   <string name="open_source">Otvorený zdroj</string>
   <string name="feature_request">Žiadosť o funkciu</string>
-  <string name="google_plus_summary">Pripojte sa k našej komunite.</string>
-  <string name="translation">Preklad</string>
 </resources>

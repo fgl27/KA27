@@ -1,22 +1,18 @@
 # KernelAdiutor
 
-[![Build Status](https://travis-ci.org/Grarak/KernelAdiutor.svg?branch=master)](https://travis-ci.org/Grarak/KernelAdiutor)
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/kernel-adiutor/localized.png)](https://crowdin.com/project/kernel-adiutor)
+Mod version of original  [Grarak/KernelAdiutor](https://github.com/Grarak/KernelAdiutor)
 
-![Screenshot](https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/bhb27/KA27/master/screenshots/screenshot.png)
 
-* [Join Google+ Community](https://plus.google.com/communities/108445529270785762340) (Beta Testing)
+* [XDA thread](http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526)
 
-[![Google Play](http://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.grarak.kerneladiutor)
-[![PayPal](https://www.paypalobjects.com/webstatic/mktg/Logo/pp-logo-200px.png)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G3643L52LJQ7G)
+* [Changelog](https://github.com/bhb27/KernelAdiutor/wiki/Changelog)
 
-## Kernel Downloader
-
-This is a feature which allows the user to download different custom kernels for their device. To add more kernel the developers have to add support by their own. I wrote up a [documentation](https://github.com/Grarak/KernelAdiutor/wiki/Adding-Download-Support) which explains how to do this.
 
 ## Report a bug or request a feature
 
-You can report a bug or request a feature by [opening an issue](https://github.com/Grarak/KernelAdiutor/issues/new).
+You can report a bug or request a feature by [opening an issue](https://github.com/bhb27/KA27/issues/new) or
+mention @baybutcher27 with the request/bug on the XDA thread [XDA thread](http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526)
 
 #### How to report a bug
 * A detailed description of the bug
@@ -36,7 +32,7 @@ You can report a bug or request a feature by [opening an issue](https://github.c
 Clone the project and come in:
 
 ``` bash
-$ git clone git://github.com/Grarak/KernelAdiutor.git
+$ git clone git://github.com/bhb27/KA27.git
 $ cd KernelAdiutor
 $ ./gradlew build
 ```
@@ -91,21 +87,3 @@ _(Many sys interface paths has been taken from his [UKM-Project](https://github.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-tips to build my machine
-do this cmd first
-
-
-export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
-./gradlew clean
-./gradlew build
-
-local.properties
-
-sdk.dir=/home/fella/sdk
-
-Pics opt
-
-find . -path '**' -name '*.png' -exec exiftool -overwrite_original -all= {} \;
-
-find . -name '*.png' -exec pngquant --ext .png --force 256 {} \;

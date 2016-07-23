@@ -65,7 +65,6 @@ Está a usar a versão %s.</string>
   <string name="profile">Perfil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Definições</string>
-  <string name="faq">Perguntas Frequentes</string>
   <string name="about_us">Sobre nós</string>
   <string name="unused_cpu_states">Estados do CPU não usados</string>
   <string name="uptime">Uptime</string>
@@ -554,19 +553,8 @@ Está a usar a versão %s.</string>
   <string name="password_too_long">Senha muito longa</string>
   <string name="set_password_first">Defina uma senha primeiro</string>
   <string name="show_sections">Mostrar secções</string>
-  <string name="misspelled">Porque é que \"Auditor\" está mal escrito?</string>
-  <string name="misspelled_summary">Adiutor é latim e significa auxiliar.</string>
-  <string name="cpu_freq_not_sticking">Por que determinada CPU freq não cumpre?</string>
-  <string name="feature_not_appearing">Por que não aparecem as características x e y?</string>
-  <string name="feature_not_appearing_summary">Características dependem do kernel.</string>
-  <string name="feature_function">O que uma característica x faz?</string>
-  <string name="feature_function_summary">Se você não sabe o que faz esse controlador, então simplesmente não toque. Por favor, faça uma investigação adequada antes de brincar com seu hardware caro.</string>
-  <string name="add_new_features">Pode adicionar o recurso de x e y?</string>
   <string name="license">Licença</string>
   <string name="app_license">Adiutor kernel é licenciado sob a licença Apache, versão 2.0 e utiliza as seguintes bibliotecas</string>
   <string name="open_source">Código-fonte aberto</string>
   <string name="feature_request">Pedido de funcionalidade</string>
-  <string name="google_plus_summary">Junte-se à nossa comunidade.</string>
-  <string name="translation">Tradução</string>
-  <string name="translation_summary">Ajude-me a traduzir esta app!</string>
 </resources>

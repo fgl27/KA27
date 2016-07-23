@@ -63,7 +63,6 @@
   <string name="profile">פרופיל</string>
   <string name="initd">Init.d</string>
   <string name="settings">הגדרות</string>
-  <string name="faq">שאלות נפוצות</string>
   <string name="unused_cpu_states">סטטיסטיקות מעבד שאינן בשימוש</string>
   <string name="uptime">זמן ריצה</string>
   <string name="deep_sleep">שינה עמוקה</string>

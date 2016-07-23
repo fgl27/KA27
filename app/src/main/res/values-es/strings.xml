@@ -64,7 +64,6 @@
   <string name="profile">Perfil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Ajustes</string>
-  <string name="faq">FAQ</string>
   <string name="about_us">Acerca de Nosotros</string>
   <string name="unused_cpu_states">Frecuencias de CPU no utilizadas</string>
   <string name="uptime">Tiempo de actividad</string>
@@ -617,23 +616,9 @@
   <string name="password_too_long">La contraseña es demasiado larga</string>
   <string name="set_password_first">Establecer una contraseña primero</string>
   <string name="show_sections">Mostrar secciones</string>
-  <string name="misspelled">¿Por qué se escribe incorrectamente «Auditor»?</string>
-  <string name="misspelled_summary">Adiutor en latín significa ayudar.</string>
-  <string name="cpu_freq_not_sticking">Por que mi frecuencia predeterminada no se guarda?</string>
-  <string name="cpu_freq_not_sticking_summary">Esto podría ser debido a muchas razones. Muchos Kernels hoy en día tienen su propio sistema de hotplugging que controla la frecuencia de la CPU y CyanogenMod tiene su propia implementación de CPU Boost que regula la frecuencia. Le sugiero que no toque las frecuencias de CPU y que el Kernel haga su trabajo.</string>
-  <string name="feature_not_appearing">Por que no aparecen algunas características?</string>
-  <string name="feature_not_appearing_summary">Las características dependen del kernel.</string>
-  <string name="feature_function">Que hace la función x?</string>
-  <string name="feature_function_summary">Si no sabe lo que hace este control, entonces simplemente no lo toques. Por favor, investiga antes de modificar una característica de su caro hardware.</string>
-  <string name="add_new_features">Podría añadir la función x o y?</string>
-  <string name="add_new_features_summary">Es difícil de decir. Intento añadir todas las funciones, pero es difícil hacer esta aplicación universal para todos los dispositivos. Sólo tengo un Samsung Galaxy S4 (I9500), una HTC Deseo 816 y recientemente consiguió un OnePlus 2, así que no culpen a me si características no obtener combinadas inmediatamente.</string>
   <string name="license">Licencia</string>
   <string name="app_license">Kernel Adiutor está bajo la licencia Apache, Versión 2.0, y usa siguientes bibliotecas</string>
   <string name="open_source">Código abierto</string>
   <string name="open_source_summary">Esta aplicación es de código abierto. Revísala en mi GitHub!</string>
   <string name="feature_request">Sugerir una idea</string>
-  <string name="feature_request_summary">¿Quieres más funciones? Abre un nuevo tema en GitHub y envíanos tu idea.</string>
-  <string name="google_plus_summary">Únete a nuestra comunidad.</string>
-  <string name="translation">Traducción</string>
-  <string name="translation_summary">Ayúdame a traducir esta aplicación!</string>
 </resources>

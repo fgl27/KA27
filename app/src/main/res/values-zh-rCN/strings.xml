@@ -64,7 +64,6 @@
   <string name="profile">配置文件</string>
   <string name="initd">Init.d</string>
   <string name="settings">设置</string>
-  <string name="faq">疑问与解答</string>
   <string name="about_us">关于我们</string>
   <string name="unused_cpu_states">未使用的 CPU 状态</string>
   <string name="uptime">启动时间</string>
@@ -597,23 +596,9 @@
   <string name="password_too_long">密码过长</string>
   <string name="set_password_first">先设置密码</string>
   <string name="show_sections">显示区块</string>
-  <string name="misspelled">为什么你把 \"Auditor\" 拼错了？</string>
-  <string name="misspelled_summary">Adiutor 是拉丁文,意为\"助手\"。</string>
-  <string name="cpu_freq_not_sticking">为什么我设置好的 CPU 频率又变了？</string>
-  <string name="cpu_freq_not_sticking_summary">这其中存在许多原因。目前许多内核都有其独有的热插拔机制，此机制将会控制CPU频率。同时 CyanogenMod 还存在自动固定频率的 CPU Boost 机制。我的建议是不要干扰内核的工作随他们去吧。</string>
-  <string name="feature_not_appearing">为什么功能 x 和 y 没有出现？</string>
-  <string name="feature_not_appearing_summary">取决于内核的功能。</string>
-  <string name="feature_function">功能 x 有什么作用？</string>
-  <string name="feature_function_summary">如果你不知道这项控制会起什么样的作用,那就先不要碰它.谨记在调校你昂贵的硬件之前做好充分的研究.</string>
-  <string name="add_new_features">您可以添加功能 x 和 y 吗？</string>
-  <string name="add_new_features_summary">这很难说。我试着添加所有功能，但很难使这个应用支持所有设备。我只有一台三星 Galaxy S4 (I9500)，一台 HTC Desire 816， 而最近入手了 OnePlus 2，所以别怪我不能立即合并功能。</string>
   <string name="license">许可</string>
   <string name="app_license">内核助手在 Apache License Version 2.0 下授权, 并使用了以下库</string>
   <string name="open_source">开放源代码</string>
   <string name="open_source_summary">此应用是开源的。在我的 Github 上查看它。</string>
   <string name="feature_request">功能请求</string>
-  <string name="feature_request_summary">你想要更多的功能?打开 GitHub 上的一个新问题，并提交你的想法。</string>
-  <string name="google_plus_summary">加入我们的社群。</string>
-  <string name="translation">翻译</string>
-  <string name="translation_summary">帮忙翻译此应用！</string>
 </resources>

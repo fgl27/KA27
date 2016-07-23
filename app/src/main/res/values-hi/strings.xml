@@ -65,7 +65,6 @@
   <string name="profile">प्रोफ़ाइल</string>
   <string name="initd">Init.d</string>
   <string name="settings">सेटिंग</string>
-  <string name="faq">आम सवाल</string>
   <string name="about_us">हमारे विषय में</string>
   <string name="unused_cpu_states">अप्रयुक्त सीपीयू स्थिति</string>
   <string name="uptime">अपटाइम</string>
@@ -242,6 +241,4 @@
   <string name="halfscreen">आधस्क्रीन</string>
   <string name="fullscreen">पूर्ण स्क्रीन</string>
   <string name="feature_request">सुविधा अनुरोध</string>
-  <string name="google_plus_summary">हमारे समुदाय में शामिल हों।</string>
-  <string name="translation">अनुवाद</string>
 </resources>

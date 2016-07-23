@@ -64,7 +64,6 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Nastavitve</string>
-  <string name="faq">Pogosto zastavljena vprašanja</string>
   <string name="about_us">O nas</string>
   <string name="unused_cpu_states">Neuporabljene frekvence</string>
   <string name="uptime">Čas delovanja od zadnjega vklopa</string>
@@ -617,23 +616,9 @@
   <string name="password_too_long">Geslo je predolgo</string>
   <string name="set_password_first">Najprej nastavi geslo</string>
   <string name="show_sections">Pokaži razdelke</string>
-  <string name="misspelled">Zakaj ste napačno napisali \"Auditor\"?</string>
-  <string name="misspelled_summary">Adiutor v latinščini pomeni pomočnik.</string>
-  <string name="cpu_freq_not_sticking">Zakaj se moja določena frekvenca CPE ne obdrži?</string>
-  <string name="cpu_freq_not_sticking_summary">To ima lahko več vzrokov. Veliko jeder ima dandanes svoj hotplugging sistem, ki nadzira delovanje CPU in CyanogenMod ima vgrajen svoj CPU pospeševalnik CPU, ki nadzira frekvenco. Priporočam vam, da se ne dotikate CPU frekvence in prepustite jedru da opravi svoje delo.</string>
-  <string name="feature_not_appearing">Zakaj se funkcije x in y ne pokažejo?</string>
-  <string name="feature_not_appearing_summary">Funkcije so odvisne od Kernela.</string>
-  <string name="feature_function">Kaj stori funkcija x?</string>
-  <string name="feature_function_summary">Če ne poznate funkcije te nastavitve, jo preprosto pustite pri miru. Prosim, da jo natančno raziščite pred igranjem z vašo drago strojno opremo.</string>
-  <string name="add_new_features">Ali lahko dodate funkciji x in y?</string>
-  <string name="add_new_features_summary">To je težko reči. Poskušam dodati vse možnosti, ampak to ni lahko, ker si lastim samo Samsung Galaxy S4 (I9500), HTC Desire 816 in pred kratkim kupljeni OnePlus Two. Zato me ne krivite, če vse možnosti niso takoj podprte.</string>
   <string name="license">Licenca</string>
   <string name="app_license">Kernel Adiutor je licenciran pod Apache licenco, različica 2.0, in uporablja naslednje knjižnice</string>
   <string name="open_source">Odprta koda</string>
   <string name="open_source_summary">Ta aplikacija je odprtokodna. Preveri na mojem GitHubu!</string>
   <string name="feature_request">Zaželjene funkcije</string>
-  <string name="feature_request_summary">Želite več funkcij? Odprite novo težavo na GitHubu in podajte svojo idejo.</string>
-  <string name="google_plus_summary">Pridružite se naši skupnosti.</string>
-  <string name="translation">Prevod</string>
-  <string name="translation_summary">Pomagajte mi prevesti to aplikacijo!</string>
 </resources>
