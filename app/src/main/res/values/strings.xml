@@ -385,10 +385,10 @@
     <string name="gpu_gaming_mode">Gaming Mode</string>
     <string name="gpu_gaming_mode_summary">Gaming Mode restricts the GPU to the maximum power level while enabled.</string>
     <string name="simple_ondemand_scaling">Simple scaling</string>
-    <string name="simple_ondemand_scaling_summary">A simple scaling controller for Simple ondemand.</string>
-    <string name="simple_ondemand_down_differential_summary">Threshold for determining if the given workload is idle. If the Workload is less than the value, Min frequency will be set.</string>
+    <string name="simple_ondemand_scaling_summary">Bound GPU to only use the MIN or the MAX frequency (all the middle will not be used).</string>
+    <string name="simple_ondemand_down_differential_summary">Threshold for determining if the given workload is idle.</string>
     <string name="simple_ondemand_upthreshold">Up Threshold</string>
-    <string name="simple_ondemand_upthreshold_summary">Threshold for determining if the given workload high load. If the Workload cross the value, Max frequency will be set,</string>
+    <string name="simple_ondemand_upthreshold_summary">Threshold for determining if the given workload high load.</string>
 
     <!-- Screen -->
     <string name="screen_color_profile">Color Profile</string>

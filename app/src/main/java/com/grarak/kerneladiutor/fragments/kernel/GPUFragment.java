@@ -254,15 +254,6 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
         }
 	if (GPU.getGpuGovernor().equals("simple_ondemand")) {
 	    if (GPU.hasSimpleOndemandScaling()) {
-
-	        mSimpleOndemandScalingCard = new SwitchCardView.DSwitchCard();
-	        mSimpleOndemandScalingCard.setTitle(getString(R.string.simple_ondemand_scaling));
-	        mSimpleOndemandScalingCard.setDescription(getString(R.string.simple_ondemand_scaling_summary));
-	        mSimpleOndemandScalingCard.setChecked(GPU.isSimpleOndemandScalingActive());
-	        mSimpleOndemandScalingCard.setOnDSwitchCardListener(this);
-
-	        views.add(mSimpleOndemandScalingCard);
-	        if (GPU.isSimpleOndemandScalingActive()) {
 	            {
 	                List < String > list = new ArrayList < > ();
 	                for (int i = 0; i < 100; i++) list.add(String.valueOf(i));
@@ -283,7 +274,14 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 
 	                views.add(mSimpleOndemandUpthresholdCard);
 	            }
-	        }
+	        mSimpleOndemandScalingCard = new SwitchCardView.DSwitchCard();
+	        mSimpleOndemandScalingCard.setTitle(getString(R.string.simple_ondemand_scaling));
+	        mSimpleOndemandScalingCard.setDescription(getString(R.string.simple_ondemand_scaling_summary));
+	        mSimpleOndemandScalingCard.setChecked(GPU.isSimpleOndemandScalingActive());
+	        mSimpleOndemandScalingCard.setOnDSwitchCardListener(this);
+
+	        views.add(mSimpleOndemandScalingCard);
+	     
 	    }
         }
         if (views.size() > 0) {
