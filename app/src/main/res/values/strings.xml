@@ -366,7 +366,7 @@
     <string name="gpu_governor">GPU Governor</string>
     <string name="gpu_governor_summary">Set the governor of the GPU.</string>
     <string name="gpu_governor_tunables">GPU Governor Tunables</string>
-    <string name="gpu_governor_tunables_note">Not all but some GPU_GOV have tunables, if this is empty this GOV doesn\'t have it.\n\nEnable the first setting under tunables to see the controlers for that featuring.</string>
+    <string name="gpu_governor_tunables_note">Not all but some GPU_GOV have tunables, if the below is empty this GOV doesn\'t have it.\n\nGovernos that have Tunable:\nmsm-adreno-tz\nsimple_ondemand\n\nIn some featuring is need to enable the first switch under tunables to see others controllers for that.</string>
     <string name="simple_gpu_algorithm">Simple GPU Algorithm</string>
     <string name="simple_gpu_algorithm_summary">An add-on for MSM Adreno TZ GPU Governor. Developed by faux123.</string>
     <string name="laziness">Laziness</string>
@@ -376,7 +376,7 @@
     <string name="adreno_idler">Adreno Idler</string>
     <string name="adreno_idler_summary">An efficient workaround for msm-adreno-tz\'s overheads.</string>
     <string name="down_differential">Down Differential</string>
-    <string name="down_differential_summary">Threshold for determining if the given workload is idle.</string>
+    <string name="down_differential_summary">Threshold for determining if the workload of the GPU is idle.</string>
     <string name="idle_wait">Idle Wait</string>
     <string name="idle_wait_summary">Number of events to wait before ramping down the frequency. The idlewait\'th events before current one must be all idle before Adreno idler ramps down the frequency. This implementation is to prevent micro-lags on scrolling or playing games. Adreno idler will more actively try to ramp down the frequency if this is set to a lower value.</string>
     <string name="workload">Workload</string>
@@ -385,9 +385,9 @@
     <string name="gpu_gaming_mode_summary">Gaming Mode restricts the GPU to the maximum power level while enabled.</string>
     <string name="simple_ondemand_scaling">Simple scaling</string>
     <string name="simple_ondemand_scaling_summary">Bound GPU to only use the MIN or the MAX frequency (all the middle will not be used).</string>
-    <string name="simple_ondemand_down_differential_summary">Threshold for determining if the given workload is idle.</string>
+    <string name="simple_ondemand_down_differential_summary">Threshold for determining if the workload of the GPU is idle.</string>
     <string name="simple_ondemand_upthreshold">Up Threshold</string>
-    <string name="simple_ondemand_upthreshold_summary">Threshold for determining if the given workload high load.</string>
+    <string name="simple_ondemand_upthreshold_summary">Threshold for determining if the workload of the GPU is high.</string>
 
     <!-- Screen -->
     <string name="screen_color_profile">Color Profile</string>
@@ -851,8 +851,8 @@
     <string name="frenn" translatable="false">Karim Frenn</string>
     <string name="open_source">Open source</string>
     <string name="open_source_summary">This application is open source. Check it out on my GitHub!</string>
-    <string name="feature_request">Feature request</string>
-    <string name="feature_requestb_summary">Do you want more features? or found a bug?\nClick here and mention @baybutcher27 with the request/bug on the XDA thread.</string>
+    <string name="feature_request">Feature request or Bugs</string>
+    <string name="feature_requestb_summary">Do you want more features? or found a bug?\nClick here and mention @baybutcher27 with the request or bug on the XDA thread.</string>
     <string name="xda_summary">This app is supported via XDA thread check it here</string>
 
     <string name="modification">Modified for BHB27-Kernel</string>

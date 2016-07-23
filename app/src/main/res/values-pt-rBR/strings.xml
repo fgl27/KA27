@@ -334,6 +334,8 @@
   <string name="gpu_2d_governor_summary">Definir o governador do GPU 2D.</string>
   <string name="gpu_governor">Governador do GPU</string>
   <string name="gpu_governor_summary">Definir o governador do GPU.</string>
+  <string name="gpu_governor_tunables">GPU Governor Tunables (Tunaveis)</string>
+  <string name="gpu_governor_tunables_note">Não todos mas alguns GPU_GOV tem tunaveis (tunable), se abaixo estiver vasio este GOV não tem.\n\nGOV que tem tunaveis:\nmsm-adreno-tz\nsimple_ondemand\n\nEm alguns tunaveis é necessario ativar a primeira chave para ver outros controles para este.</string>
   <string name="simple_gpu_algorithm">Algoritmo simples do GPU</string>
   <string name="simple_gpu_algorithm_summary">Um add-on para o Governador MSM Adreno TZ GPU. Desenvolvido por faux123.</string>
   <string name="laziness">Preguiçoso</string>
@@ -343,13 +345,20 @@
   <string name="adreno_idler">Adreno idler</string>
   <string name="adreno_idler_summary">Uma solução eficiente para os overheads do msm-adreno-tz.</string>
   <string name="down_differential">Diferencial mínimo</string>
-  <string name="down_differential_summary">Limite para determinar se a carga do sistema está ociosa.</string>
+  <string name="down_differential_summary">Limite para determinar se a carga de trabalho do GPU está ociosa.</string>
   <string name="idle_wait">Espera inatividade</string>
   <string name="idle_wait_summary">Número de eventos para esperar antes de diminuir a frequência. Os eventos de espera antes do atual devem ser todos ociosos antes que o Adreno idler diminuia a frequência. Essa implementação é para evitar micro-lags na rolagem ou ao usar jogos. O Adreno idler tentará frequentemente diminuir a frequência se este estiver definido com um valor baixo.</string>
   <string name="workload">Carga de trabalho</string>
   <string name="workload_summary">O Adreno idler tentará mais ativamente baixar frequência, se este estiver com um valor alto.</string>
   <string name="gpu_gaming_mode">Modo Jogo</string>
   <string name="gpu_gaming_mode_summary">Modo Jogo restringe o GPU ao nível máximo de energia quando ativado.</string>
+  <string name="simple_ondemand_scaling">Simple scaling</string>
+  <string name="simple_ondemand_scaling_summary">Obriga o GPU a usar apenas a Menor ou a Maior frequência (todas as frequancias medianas não serão usadas).</string>
+  <string name="simple_ondemand_down_differential_summary">Limite para determinar se a carga de trabalho do GPU está ociosa.</string>
+  <string name="simple_ondemand_upthreshold">Up Threshold</string>
+  <string name="simple_ondemand_upthreshold_summary">Limite para determinar se a carga de trabalho do GPU é elevada.
+</string>
+
 
   <string name="screen_color_profile">Perfil de Cor</string>
   <string name="screen_color_profile_summary">Selecione um perfil de cor pré-configurado.</string>
