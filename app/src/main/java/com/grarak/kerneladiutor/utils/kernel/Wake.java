@@ -352,10 +352,6 @@ public class Wake implements Constants {
         return Utils.readFile(DT2W).equals("1");
     }
 
-    public static boolean isDt2wDeactive() {
-        return Utils.readFile(DT2W).equals("0");
-    }
-
     public static boolean hasDt2w() {
 	return Utils.existFile(DT2W);
     }
