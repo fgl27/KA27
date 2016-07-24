@@ -22,6 +22,8 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
 
+import com.kerneladiutor.library.root.RootUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -509,6 +511,10 @@ public class Thermal implements Constants {
 
     public static void activateIntelliThermal(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+	// Enable the above disable the below, only one thermal Driver must RUN
+        if (hasThermalengine()) {
+	Control.runCommand("thermal-engine", active ? "stop" : "start", Control.CommandType.SHELL, context);
+	}
     }
 
     public static boolean isIntelliThermalActive() {
@@ -549,6 +555,34 @@ public class Thermal implements Constants {
         for (String[] arrays : THERMAL_ARRAYS)
             for (String file : arrays) if (Utils.existFile(file)) return true;
         return false;
+    }
+
+    public static void activateThermalengine(boolean active, Context context) {
+            // This is needed because the path changes from "start" to "stop" so it breaks the commandsaver function
+            Control.deletespecificcommand(context, active ? "stop" : "start", null);
+
+            Control.runCommand("thermal-engine", active ? "start" : "stop", Control.CommandType.SHELL, context);
+	    // Enable the above disable the below, only one thermal Driver must RUN
+            if (Utils.existFile(MSM_THERMAL)) {
+	         Control.runCommand(active ? "N" : "Y", getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+	    }
+    }
+
+    public static boolean isThermalengineActive() {
+        // copy this from mpdecision
+        try {
+            String result = RootUtils.runCommand("getprop | grep thermal-engine").split("]: ")[1];
+            if (result.equals("[running]") || result.equals("[restarting]")) {
+                return true;
+            }
+        } catch (Exception ignored) {
+            return false;
+        }
+        return false;
+    }
+
+    public static boolean hasThermalengine() {
+        return Utils.existFile(THERMAL_ENGINE);
     }
 
 }

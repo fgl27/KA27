@@ -306,24 +306,25 @@
     <string name="bricked_time_threshold">Time Threshold</string>
 	
     <!-- Thermal -->
-    <string name="thermal_info">Use only one thermal driver from the following options, using more at the same time may cause unexpected behavior.\n\nIn version 200.0 and up the kernel has no control over thermal driver, Thermal is handled by a system binary (thermal-engine), no need to make changes here.</string>
+    <string name="thermal_info">On stock kernel using this app don\'t change a thing in here.\n\nOn custom Kernel:\n\nWhen using Intellithermal be aware too high value for (Frequency Throttle Temperature) can be danger!!\n\nOnly one thermal driver must be enable, the app will auto switch one off if the other is on and vice versa.</string>
     <string name="thermald">Thermald</string>
     <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
     <string name="intellithermal">Intellithermal</string>
-    <string name="intellithermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123.</string>
+    <string name="intellithermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123.\nEnable to see the tunables</string>
     <string name="intellithermal_optimized">Intellithermal Optimized</string>
     <string name="intellithermal_optimized_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123 and alucard_24.</string>
     <string name="debug_mask_thermal">Allows you to activate debug mask for thermal operations.</string>
     <string name="core_control">Core Control</string>
     <string name="vdd_restriction">VDD Restriction</string>
     <string name="freq_throttle_temp">Frequency Throttle Temperature</string>
-    <string name="freq_throttle_temp_summary">Temperature to start throttling frequencies.</string>
+    <string name="freq_throttle_temp_summary">Temperature to start throttling frequencies.\n(Default 60°C - 140°F)</string>
     <string name="core_throttle_temp">Core Throttle Temperature</string>
-    <string name="core_throttle_temp_summary">Temperature to start shutting down cores.</string>
+    <string name="core_throttle_temp_summary">Temperature to start shutting down cores.\n(Default 80°C - 176°F)</string>
     <string name="core_temp_hysteresis">Core Temperature Hysteresis</string>
     <string name="freq_step">Frequency Step</string>
     <string name="immediately_limit_stop">Immediately Limit Stop</string>
     <string name="poll">Poll</string>
+    <string name="poll_summary">Polling time to check if temperature need to be change.\n(Default 250ms)</string>
     <string name="temp_hysteresis">Temperature Hysteresis</string>
     <string name="thermal_limit_low">Thermal Limit Low</string>
     <string name="thermal_limit_high">Thermal Limit High</string>
@@ -351,6 +352,9 @@
     <string name="temp_limit_min_freq_summary">The thermal will use this frequency to throttle the maximum temperature.</string>
     <string name="temp_limit">Temperature Limit</string>
     <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
+    <string name="termal_engine">Thermal Engine</string>
+    <string name="termal_engine_summary">An system binary thermald, this thermald have no user control.</string>
+    <string name="termal_toast">Only one thermal drive can be enable\nEnable one disable the other\nand vice versa</string>
 
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>

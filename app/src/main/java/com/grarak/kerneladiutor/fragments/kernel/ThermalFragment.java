@@ -33,6 +33,7 @@ import com.grarak.kerneladiutor.utils.kernel.Thermal;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.widget.Toast;
 /**
  * Created by willi on 03.05.15.
  */
@@ -42,6 +43,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     private SwitchCardView.DSwitchCard mThermaldCard;
 
     private SwitchCardView.DSwitchCard mIntelliThermalEnableCard;
+    private SwitchCardView.DSwitchCard mThermalEngineEnableCard;
     private SwitchCardView.DSwitchCard mIntelliThermalOptimizedEnableCard;
     private SwitchCardView.DSwitchCard mThermalDebugModeCard;
     private SwitchCardView.DSwitchCard mCoreControlEnableCard;
@@ -99,6 +101,17 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     }
 
     private void thermalInit() {
+
+        if (Thermal.hasThermalengine()) {
+        mThermalEngineEnableCard = new SwitchCardView.DSwitchCard();
+        mThermalEngineEnableCard.setTitle(getString(R.string.termal_engine));
+        mThermalEngineEnableCard.setDescription(getString(R.string.termal_engine_summary));
+        mThermalEngineEnableCard.setChecked(Thermal.isThermalengineActive());
+        mThermalEngineEnableCard.setOnDSwitchCardListener(this);
+
+        addView(mThermalEngineEnableCard);
+	}
+
         if (Thermal.hasIntelliThermalEnable()) {
             mIntelliThermalEnableCard = new SwitchCardView.DSwitchCard();
             mIntelliThermalEnableCard.setTitle(getString(R.string.intellithermal));
@@ -129,64 +142,81 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             addView(mThermalDebugModeCard);
         }
 
-        if (Thermal.hasCoreControlEnable()) {
-            mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
-            mCoreControlEnableCard.setTitle(getString(R.string.core_control));
-            mCoreControlEnableCard.setChecked(Thermal.isCoreControlActive());
-            mCoreControlEnableCard.setOnDSwitchCardListener(this);
+	if (!Thermal.hasIntelliThermalEnable()) {
+		if (Thermal.hasCoreControlEnable()) {
+		    mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
+		    mCoreControlEnableCard.setTitle(getString(R.string.core_control));
+		    mCoreControlEnableCard.setChecked(Thermal.isCoreControlActive());
+		    mCoreControlEnableCard.setOnDSwitchCardListener(this);
 
-            addView(mCoreControlEnableCard);
-        }
+		    addView(mCoreControlEnableCard);
+		}
 
-        if (Thermal.hasVddRestrictionEnable()) {
-            mVddRestrictionEnableCard = new SwitchCardView.DSwitchCard();
-            mVddRestrictionEnableCard.setTitle(getString(R.string.vdd_restriction));
-            mVddRestrictionEnableCard.setChecked(Thermal.isVddRestrictionActive());
-            mVddRestrictionEnableCard.setOnDSwitchCardListener(this);
+		if (Thermal.hasVddRestrictionEnable()) {
+		    mVddRestrictionEnableCard = new SwitchCardView.DSwitchCard();
+		    mVddRestrictionEnableCard.setTitle(getString(R.string.vdd_restriction));
+		    mVddRestrictionEnableCard.setChecked(Thermal.isVddRestrictionActive());
+		    mVddRestrictionEnableCard.setOnDSwitchCardListener(this);
 
-            addView(mVddRestrictionEnableCard);
-        }
+		    addView(mVddRestrictionEnableCard);
+		}
+	}
 
-        if (Thermal.hasLimitTempDegC()) {
-            List<String> list = new ArrayList<>();
-            for (double i = 50; i < 101; i++)
-                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
+	if (Thermal.isIntelliThermalActive()) {
+		if (Thermal.hasLimitTempDegC()) {
+		    List<String> list = new ArrayList<>();
+		    for (double i = 50; i < 101; i++)
+		        list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
-            mLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
-            mLimitTempDegCCard.setTitle(getString(R.string.freq_throttle_temp));
-            mLimitTempDegCCard.setDescription(getString(R.string.freq_throttle_temp_summary));
-            mLimitTempDegCCard.setProgress(Thermal.getLimitTempDegC() - 50);
-            mLimitTempDegCCard.setOnDSeekBarCardListener(this);
+		    mLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
+		    mLimitTempDegCCard.setTitle(getString(R.string.freq_throttle_temp));
+		    mLimitTempDegCCard.setDescription(getString(R.string.freq_throttle_temp_summary));
+		    mLimitTempDegCCard.setProgress(Thermal.getLimitTempDegC() - 50);
+		    mLimitTempDegCCard.setOnDSeekBarCardListener(this);
 
-            addView(mLimitTempDegCCard);
-        }
+		    addView(mLimitTempDegCCard);
+		}
 
-        if (Thermal.hasCoreLimitTempDegC()) {
-            List<String> list = new ArrayList<>();
-            for (double i = 50; i < 101; i++)
-                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
+		if (Thermal.hasCoreLimitTempDegC()) {
+		    List<String> list = new ArrayList<>();
+		    for (double i = 50; i < 101; i++)
+		        list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
-            mCoreLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
-            mCoreLimitTempDegCCard.setTitle(getString(R.string.core_throttle_temp));
-            mCoreLimitTempDegCCard.setDescription(getString(R.string.core_throttle_temp_summary));
-            mCoreLimitTempDegCCard.setProgress(Thermal.getCoreLimitTempDegC() - 50);
-            mCoreLimitTempDegCCard.setOnDSeekBarCardListener(this);
+		    mCoreLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
+		    mCoreLimitTempDegCCard.setTitle(getString(R.string.core_throttle_temp));
+		    mCoreLimitTempDegCCard.setDescription(getString(R.string.core_throttle_temp_summary));
+		    mCoreLimitTempDegCCard.setProgress(Thermal.getCoreLimitTempDegC() - 50);
+		    mCoreLimitTempDegCCard.setOnDSeekBarCardListener(this);
 
-            addView(mCoreLimitTempDegCCard);
-        }
+		    addView(mCoreLimitTempDegCCard);
+		}
 
-        if (Thermal.hasCoreTempHysteresisDegC()) {
-            List<String> list = new ArrayList<>();
-            for (double i = 0; i < 21; i++)
-                list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
+		if (Thermal.hasCoreTempHysteresisDegC()) {
+		    List<String> list = new ArrayList<>();
+		    for (double i = 0; i < 21; i++)
+		        list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
-            mCoreTempHysteresisDegCCard = new SeekBarCardView.DSeekBarCard(list);
-            mCoreTempHysteresisDegCCard.setTitle(getString(R.string.core_temp_hysteresis));
-            mCoreTempHysteresisDegCCard.setProgress(Thermal.getCoreTempHysteresisDegC());
-            mCoreTempHysteresisDegCCard.setOnDSeekBarCardListener(this);
+		    mCoreTempHysteresisDegCCard = new SeekBarCardView.DSeekBarCard(list);
+		    mCoreTempHysteresisDegCCard.setTitle(getString(R.string.core_temp_hysteresis));
+		    mCoreTempHysteresisDegCCard.setProgress(Thermal.getCoreTempHysteresisDegC());
+		    mCoreTempHysteresisDegCCard.setOnDSeekBarCardListener(this);
 
-            addView(mCoreTempHysteresisDegCCard);
-        }
+		    addView(mCoreTempHysteresisDegCCard);
+		}
+
+		if (Thermal.hasPollMs()) {
+		    List<String> list = new ArrayList<>();
+		    for (int i = 0; i < 301; i++) list.add((i * 10) + getString(R.string.ms));
+
+		    mPollMsCard = new SeekBarCardView.DSeekBarCard(list);
+		    mPollMsCard.setTitle(getString(R.string.poll));
+		    mPollMsCard.setDescription(getString(R.string.poll_summary));
+		    mPollMsCard.setProgress(Thermal.getPollMs() / 10);
+		    mPollMsCard.setOnDSeekBarCardListener(this);
+
+		    addView(mPollMsCard);
+		}
+	}
 
         if (Thermal.hasFreqStep()) {
             List<String> list = new ArrayList<>();
@@ -207,18 +237,6 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             mImmediatelyLimitStopCard.setOnDSwitchCardListener(this);
 
             addView(mImmediatelyLimitStopCard);
-        }
-
-        if (Thermal.hasPollMs()) {
-            List<String> list = new ArrayList<>();
-            for (int i = 0; i < 301; i++) list.add((i * 10) + getString(R.string.ms));
-
-            mPollMsCard = new SeekBarCardView.DSeekBarCard(list);
-            mPollMsCard.setTitle(getString(R.string.poll));
-            mPollMsCard.setProgress(Thermal.getPollMs() / 10);
-            mPollMsCard.setOnDSeekBarCardListener(this);
-
-            addView(mPollMsCard);
         }
 
         if (Thermal.hasTempHysteresisDegC()) {
@@ -477,8 +495,26 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mThermaldCard) Thermal.activateThermald(checked, getActivity());
-        else if (dSwitchCard == mIntelliThermalEnableCard)
+        else if (dSwitchCard == mIntelliThermalEnableCard) {
+	    Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateIntelliThermal(checked, getActivity());
+	    try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+        else if (dSwitchCard == mThermalEngineEnableCard) {
+	    Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
+            Thermal.activateThermalengine(checked, getActivity());
+	    try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
         else if (dSwitchCard == mIntelliThermalOptimizedEnableCard)
             Thermal.activateIntelliThermalOptimized(checked, getActivity());
         else if (dSwitchCard == mThermalDebugModeCard)

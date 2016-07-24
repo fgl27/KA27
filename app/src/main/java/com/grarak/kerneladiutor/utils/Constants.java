@@ -320,8 +320,9 @@ public interface Constants {
     String CONF_FREQ_HIGH_THRESH = MSM_THERMAL_CONF + "/freq_high_thresh";
     String CONF_POLL_MS = MSM_THERMAL_CONF + "/poll_ms";
 
+    String THERMAL_ENGINE = "/system/bin/thermal-engine";
 
-    String[] THERMAL_ARRAY = {MSM_THERMAL, MSM_THERMAL_V2};
+    String[] THERMAL_ARRAY = {MSM_THERMAL, MSM_THERMAL_V2, THERMAL_ENGINE, "start", "stop"};
 
     String[][] THERMAL_ARRAYS = {THERMAL_ARRAY, TEMP_LIMIT_ARRAY, {MSM_THERMAL_CONF}};
 
