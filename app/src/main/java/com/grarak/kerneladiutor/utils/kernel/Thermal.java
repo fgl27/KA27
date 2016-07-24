@@ -510,11 +510,14 @@ public class Thermal implements Constants {
     }
 
     public static void activateIntelliThermal(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-	// Enable the above disable the below, only one thermal Driver must RUN
-        if (hasThermalengine()) {
-	Control.runCommand("thermal-engine", active ? "stop" : "start", Control.CommandType.SHELL, context);
-	}
+        if (active) {
+            Control.stopService(THERMAL_ENGINE, context);
+            Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+        }
+        else {
+            Control.startService(THERMAL_ENGINE, context);
+            Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+        }
     }
 
     public static boolean isIntelliThermalActive() {
@@ -558,14 +561,14 @@ public class Thermal implements Constants {
     }
 
     public static void activateThermalengine(boolean active, Context context) {
-            // This is needed because the path changes from "start" to "stop" so it breaks the commandsaver function
-            Control.deletespecificcommand(context, active ? "stop" : "start", null);
-
-            Control.runCommand("thermal-engine", active ? "start" : "stop", Control.CommandType.SHELL, context);
-	    // Enable the above disable the below, only one thermal Driver must RUN
-            if (Utils.existFile(MSM_THERMAL)) {
-	         Control.runCommand(active ? "N" : "Y", getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-	    }
+        if (active) {
+            Control.startService(THERMAL_ENGINE, context);
+            Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+        }
+        else {
+            Control.stopService(THERMAL_ENGINE, context);
+            Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+        }
     }
 
     public static boolean isThermalengineActive() {
@@ -582,7 +585,7 @@ public class Thermal implements Constants {
     }
 
     public static boolean hasThermalengine() {
-        return Utils.existFile(THERMAL_ENGINE);
+        return Utils.hasProp(THERMAL_ENGINE);
     }
 
 }
