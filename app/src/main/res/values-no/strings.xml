@@ -7,7 +7,6 @@
   <string name="ok">Ok</string>
   <string name="cancel">Avbryt</string>
   <string name="current_value_not_supported">Den gjeldende verdien støttes ikke</string>
-  <string name="beta_message">Takk for at du har valgt å bli betatester! Hvis du får problemer av noe slag så nøl ikke med å kontakte meg. Du kjører for øyeblikket versjon %s.</string>
   <string name="select_picture">Velg bilde</string>
   <string name="no_picture">Intet bilde</string>
   <string name="went_wrong">Noe gikk galt!</string>

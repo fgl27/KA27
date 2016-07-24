@@ -7,7 +7,6 @@
   <string name="ok">Oké</string>
   <string name="cancel">Annuleer</string>
   <string name="current_value_not_supported">Huidige waarde wordt niet ondersteund</string>
-  <string name="beta_message">Bedankt voor het zijn van een beta tester! Als er enige problemen zijn, aarzel dan niet en contacteer mij. Jij draait momenteel versie nummer %s.</string>
   <string name="select_picture">Selecteer afbeelding</string>
   <string name="no_picture">Geen foto</string>
   <string name="went_wrong">Er is iets fout gegaan!</string>

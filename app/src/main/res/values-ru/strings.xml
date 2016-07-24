@@ -7,7 +7,6 @@
   <string name="ok">Ок</string>
   <string name="cancel">Отмена</string>
   <string name="current_value_not_supported">Данное значение не поддерживается</string>
-  <string name="beta_message">Спасибо, что стали тестером! Если у Вас какие-то проблемы, не стесняйтесь написать мне. Текущая версия %s.</string>
   <string name="select_picture">Выберите изображение</string>
   <string name="no_picture">Нет картинки</string>
   <string name="went_wrong">Что-то пошло не так!</string>
@@ -587,8 +586,6 @@
   <string name="file_name">Имя файла</string>
   <string name="dark_theme">Тёмная тема</string>
   <string name="force_english_language">Принудительно использовать английский язык</string>
-  <string name="beta_info">Информация о бета версии</string>
-  <string name="beta_info_summary">Показывать уведомление при старте, если используется бета версия.</string>
   <string name="show_profile_tile">Показать профиль плитка</string>
   <string name="notification">Уведомление</string>
   <string name="notification_summary">Показывать уведомление при запуске сервиса восстановления настроек. Пожалуйста отключите, если у вас возникли проблемы.</string>

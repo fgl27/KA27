@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Abbrechen</string>
   <string name="current_value_not_supported">Aktueller Wert wird nicht unterstützt</string>
-  <string name="beta_message">Danke dass du Beta Tester bist. Falls du irgendwelche Probleme hast, zögere bitte nicht mich zu kontaktieren. Momentan benutzt du Version %s.</string>
   <string name="select_picture">Bild auswählen</string>
   <string name="no_picture">kein Bild</string>
   <string name="went_wrong">Etwas ist schief gelaufen!</string>
@@ -518,8 +517,6 @@
   <string name="file_name">Name der Datei</string>
   <string name="dark_theme">Dunkles Design</string>
   <string name="force_english_language">Englische Sprache erzwingen</string>
-  <string name="beta_info">Beta-Informationen</string>
-  <string name="beta_info_summary">Zeige ein Dialogfeld beim Start, wenn Sie eine Beta-Version verwenden.</string>
   <string name="show_profile_tile">Zeige Profil-Kachel (Benachrichtigungsanzeige)</string>
   <string name="notification">Benachrichtigung</string>
   <string name="notification_summary">Zeige eine Benachrichtigung wenn \"Beim Systemstart anwenden\" gestartet wird. Bei Problemen bitte deaktivieren.</string>

@@ -7,7 +7,6 @@
   <string name="ok">У реду</string>
   <string name="cancel">Одустани</string>
   <string name="current_value_not_supported">Тренутна вредност није подржана</string>
-  <string name="beta_message">Хвала вам што тестирате бета издање. Ако наиђете на проблеме, не оклевајте да ме контактирате. Тренутно издање је%s.</string>
   <string name="select_picture">Изаберите слику</string>
   <string name="no_picture">Нема слике</string>
   <string name="went_wrong">Нешто је пошло по злу!</string>
@@ -291,8 +290,6 @@
   <string name="file_name">Назив фајла</string>
   <string name="dark_theme">Тамна тема</string>
   <string name="force_english_language">Присили енглески језик</string>
-  <string name="beta_info">Инфо о бета издању</string>
-  <string name="beta_info_summary">Прикажи дијалог по покретању ако користим бета издање.</string>
   <string name="show_profile_tile">Прикажи плочицу профила</string>
   <string name="notification">Обавештење</string>
   <string name="notification_summary">Приказ обавештења када се покрене сервис примене при подизању. Искључите ово ако дође до било каквих проблема.</string>

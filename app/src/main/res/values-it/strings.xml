@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Annulla</string>
   <string name="current_value_not_supported">Il valore corrente non è supportato</string>
-  <string name="beta_message">Grazie per essere un beta tester! Se hai problemi, non esitare a contattarmi. Stai attualmente usando la versione %s.</string>
   <string name="select_picture">Selezionare Immagine</string>
   <string name="no_picture">Nessuna foto</string>
   <string name="went_wrong">Qualcosa è andato storto!</string>
@@ -563,8 +562,6 @@
   <string name="file_name">Nome del file</string>
   <string name="dark_theme">Tema scuro</string>
   <string name="force_english_language">Forza lingua Inglese</string>
-  <string name="beta_info">Informazioni Beta</string>
-  <string name="beta_info_summary">Mostra un avvertimento all\'avvio se stai usando una versione beta.</string>
   <string name="show_profile_tile">Mostra Tile del profilo</string>
   <string name="notification">Notifica</string>
   <string name="notification_summary">Mostra una notifica quando parte il servizio applica all\'avvio. Disabilitalo se hai qualche problema.</string>

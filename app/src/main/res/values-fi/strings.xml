@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Peruuta</string>
   <string name="current_value_not_supported">Nykyinen arvo ei ole tuettu</string>
-  <string name="beta_message">Kiitos kun osallistuit beta-testaukseen! Jos sinulle tulee ongelmia, älä epäröi ottaa yhteyttä minuun. Olet käyttämässä versiota %s.</string>
   <string name="select_picture">Valitse kuva</string>
   <string name="no_picture">Ei kuvaa</string>
   <string name="went_wrong">Jokin meni pieleen!</string>

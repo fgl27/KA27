@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Anulare</string>
   <string name="current_value_not_supported">Valoarea curentă nu este susținută</string>
-  <string name="beta_message">Vă mulţumim pentru a fi un tester versiunei beta! Dacă aveţi orice probleme, vă rog să nu ezitaţi să mă contactati. Deocamdata se execută versiunea %s.</string>
   <string name="select_picture">Selectează imagine</string>
   <string name="no_picture">Fără imagine</string>
   <string name="went_wrong">Ceva nu a funcţionat corect!</string>

@@ -7,7 +7,6 @@
   <string name="ok">Vredu</string>
   <string name="cancel">Prekliči</string>
   <string name="current_value_not_supported">Vrednost ni podprta</string>
-  <string name="beta_message">Hvala, da ste beta preizkuševalec/-ka! Če imate kakršne koli težave prosim ne oklevajte in mi pišete. Trenutno uporabljate različico %s.</string>
   <string name="select_picture">Izberi sliko</string>
   <string name="no_picture">Ni slike</string>
   <string name="went_wrong">Nekaj je šlo narobe!</string>
@@ -585,8 +584,6 @@
   <string name="file_name">Ime datoteke</string>
   <string name="dark_theme">Temna preobleka</string>
   <string name="force_english_language">Vsili angleški jezik</string>
-  <string name="beta_info">Informacije o preizkusni različici</string>
-  <string name="beta_info_summary">Pokaži pogovorno okno ob zagonu ali gre za preizkusno različico.</string>
   <string name="show_profile_tile">Pokaži ploščico za profil</string>
   <string name="notification">Obvestilo</string>
   <string name="notification_summary">Pokaži obvestilo, ko se zažene storitev uporabe ob zagonu. Prosim onemogočite, če se pojavijo težave.</string>

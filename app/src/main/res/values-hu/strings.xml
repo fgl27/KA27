@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Mégse</string>
   <string name="current_value_not_supported">Jelenlegi érték nem támogatott</string>
-  <string name="beta_message">Köszönöm, hogy béta teszter! Ha bármilyen probléma merülne fel, ne habozzon a kapcsolatba lépéssel. Az éppen futó változat %s.</string>
   <string name="select_picture">Kép kiválasztása</string>
   <string name="no_picture">Nincs kép</string>
   <string name="went_wrong">Valami nem stimmel!</string>
@@ -585,8 +584,6 @@
   <string name="file_name">Fájl neve</string>
   <string name="dark_theme">Sötét téma</string>
   <string name="force_english_language">Angol nyelv kényszerítése</string>
-  <string name="beta_info">Béta információ</string>
-  <string name="beta_info_summary">Egy párbeszédpanel megjelenítése indításkor, ha egy béta változatot használ.</string>
   <string name="show_profile_tile">Profil csempe megjelenítése</string>
   <string name="notification">Értesítés</string>
   <string name="notification_summary">Értesítés megjelenítése, ha a bootoláskor alkalmaz szolgáltatás fut. Kérem, tiltsa le, ha bármi problémát észlel.</string>

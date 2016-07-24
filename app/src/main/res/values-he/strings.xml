@@ -6,9 +6,7 @@
   <string name="no_busybox">Busybox לא זמין</string>
   <string name="ok">אוקיי</string>
   <string name="cancel">לבטל</string>
-  <string name="current_value_not_supported">הערך הנוכחי לא נתמך</string>
-  <string name="beta_message">תודה על השתתפותך בביטא! אם אתה נתקל בבעיות, בבקשה אל תהסס ליצור איתי קשר.
-כרגע אתה מריץ את גרסה %s.</string>
+  <string name="current_value_not_supported">הערך הנוכחי לא נתמך</string> 
   <string name="select_picture">בחר תמונה</string>
   <string name="no_picture">אין תמונה</string>
   <string name="went_wrong">משהו השתבש!</string>

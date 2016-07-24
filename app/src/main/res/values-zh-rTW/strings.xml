@@ -7,7 +7,6 @@
   <string name="ok">確定</string>
   <string name="cancel">取消</string>
   <string name="current_value_not_supported">不支援目前的數值</string>
-  <string name="beta_message">感謝您成為 Beta 版測試人員！如果您遇到任何問題，請不要猶豫與我聯繫。您當前正在使用的版本為 %s。</string>
   <string name="select_picture">選擇圖片</string>
   <string name="no_picture">沒有圖片</string>
   <string name="went_wrong">出現錯誤！</string>
@@ -469,8 +468,6 @@
   <string name="starting_initd">開始 Init.d 模擬</string>
   <string name="dark_theme">深色主題</string>
   <string name="force_english_language">強制使用英語</string>
-  <string name="beta_info">測試版資訊</string>
-  <string name="beta_info_summary">如果您使用的是 beta 版本，啟動時將顯示一個對話方塊。</string>
   <string name="notification">通知</string>
   <string name="notification_summary">當開機後自動套用開始時顯示通知。如果你有任何問題，請停用此功能。</string>
   <string name="show_toast">顯示訊息方塊</string>

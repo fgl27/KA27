@@ -7,7 +7,6 @@
   <string name="ok">Ok</string>
   <string name="cancel">Cancelar</string>
   <string name="current_value_not_supported">El valor actual no está permitido</string>
-  <string name="beta_message">Gracias por ser Beta Tester! Si encuentras algún problema, no dudes en ponerte en contacto conmigo. Actualmente está utilizando la versión %s.</string>
   <string name="select_picture">Seleccionar imagen</string>
   <string name="no_picture">Sin imagen</string>
   <string name="went_wrong">Algo ha fallado!</string>
@@ -585,8 +584,6 @@
   <string name="file_name">Nombre del archivo</string>
   <string name="dark_theme">Tema Oscuro</string>
   <string name="force_english_language">Forzar idioma inglés</string>
-  <string name="beta_info">Información beta</string>
-  <string name="beta_info_summary">Mostrar un diálogo al inicio si estas usando una versión beta.</string>
   <string name="show_profile_tile">Mostrar la teja del perfil</string>
   <string name="notification">Notificación</string>
   <string name="notification_summary">Mostrar una notificación cuando se aplica la configuración al arranque. Desactivar si da algún problema.</string>

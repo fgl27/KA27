@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Cancel·la</string>
   <string name="current_value_not_supported">El valor actual no és compatible</string>
-  <string name="beta_message">Gràcies per ser un Beta tester! Si teniu problemes, si us plau no dubtis a contactar amb mi. Esteu utilitzant versió %s.</string>
   <string name="select_picture">Seleccionar imatge</string>
   <string name="no_picture">Sense imatge</string>
   <string name="went_wrong">Alguna cosa ha anat malament!</string>

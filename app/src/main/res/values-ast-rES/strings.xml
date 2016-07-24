@@ -7,7 +7,6 @@
   <string name="ok">Aceutar</string>
   <string name="cancel">Encaboxar</string>
   <string name="current_value_not_supported">Nun ta sofitáu\'l valor actual</string>
-  <string name="beta_message">¡Gracies por ser un probador beta! Si alcuentres cualesquier problema nun dubies en contautame, por favor. Anguaño tas executando la versión %s.</string>
   <string name="select_picture">Esbillar semeya</string>
   <string name="no_picture">Ensin semeya</string>
   <string name="went_wrong">¡Daqué foi mal!</string>
@@ -537,8 +536,6 @@
   <string name="file_name">Nome del ficheru</string>
   <string name="dark_theme">Tema escuru</string>
   <string name="force_english_language">Forciar la llingua inglesa</string>
-  <string name="beta_info">Información de Beta</string>
-  <string name="beta_info_summary">Amuesa un diálogu nel aniciu si tas usando una versión Beta.</string>
   <string name="show_profile_tile">Amosar mosaicu de perfiles</string>
   <string name="notification">Avisu</string>
   <string name="notification_summary">Amuesa un avisu al aniciase\'l serviciu d\'«Aplicar nel arranque». Deshabilítalu si tienes cualesquier problemal, por favor.</string>

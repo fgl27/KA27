@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">キャンセル</string>
   <string name="current_value_not_supported">現在の値は非対応です</string>
-  <string name="beta_message">ベータテスターになってくださってありがとうございます! 何か問題がありましたら、お気軽に(英語で)ご質問ください。現在実行しているバージョンは%sです。</string>
   <string name="select_picture">画像の選択</string>
   <string name="no_picture">画像なし</string>
   <string name="went_wrong">何か問題が起きました。</string>
@@ -586,8 +585,6 @@
   <string name="file_name">ファイル名</string>
   <string name="dark_theme">ダークテーマ</string>
   <string name="force_english_language">英語表示にする</string>
-  <string name="beta_info">ベータ情報</string>
-  <string name="beta_info_summary">ベータ版を使用しているとき、起動時にダイアログを出すようにします。</string>
   <string name="show_profile_tile">プロファイルタイルの表示</string>
   <string name="notification">通知</string>
   <string name="notification_summary">起動時に適用するときに通知を表示します。問題があれば無効にしてください。</string>

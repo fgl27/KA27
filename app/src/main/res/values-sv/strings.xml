@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Avbryt</string>
   <string name="current_value_not_supported">Det aktuella värdet stöds inte</string>
-  <string name="beta_message">Tack för att du har valt att beta-testa! Tveka inte att kontakta mig om du stöter på några problem. Du använder just nu version %s.</string>
   <string name="select_picture">Välj bild</string>
   <string name="no_picture">Ingen bild</string>
   <string name="went_wrong">Någonting gick fel!</string>
@@ -258,7 +257,6 @@
   <string name="emulate_initd">Emulera Init.d</string>
   <string name="dark_theme">Mörkt tema</string>
   <string name="force_english_language">Tvinga användning av engelska</string>
-  <string name="beta_info_summary">Visa en dialogruta vid start om du använder en betaversion.</string>
   <string name="notification">Nofikation</string>
   <string name="notification_summary">Visa en notifikation när tillämpa-vid-uppstart-tjänsten startar. Inaktivera detta om du får några problem.</string>
   <string name="show_toast">Visa avisering</string>

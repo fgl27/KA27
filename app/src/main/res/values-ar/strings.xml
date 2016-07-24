@@ -7,7 +7,6 @@
   <string name="ok">موافق</string>
   <string name="cancel">إلغاء الأمر</string>
   <string name="current_value_not_supported">القيمة الحالية غير مدعّمة</string>
-  <string name="beta_message">شكرا لكونك أحد مختبري الإصدارات التجريبية! إذا كان لديك أي مشاكل، رجاءا لاتتردد في إرسالها إلي. تقوم حاليا بتشغيل الإصدار %s.</string>
   <string name="select_picture">قم بأختيار صورة</string>
   <string name="no_picture">لا توجد صورة</string>
   <string name="went_wrong">لقد حدث خطاء ما!</string>

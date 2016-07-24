@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Cancelar</string>
   <string name="current_value_not_supported">O Valor atual não é suportado</string>
-  <string name="beta_message">Obrigado por ser um testador beta! Se você tiver quaisquer problemas, por favor não hesite em me contatar. Você atualmente está executando a versão %s.</string>
   <string name="select_picture">Selecione imagem</string>
   <string name="no_picture">Sem imagem</string>
   <string name="went_wrong">Algo deu errado!</string>
@@ -25,7 +24,7 @@
   <string name="select_file">Selecione a %s</string>
   <string name="no_files">Não há arquivos nesta pasta.</string>
   <string name="copy">Copiar</string>
-  
+
   <!-- EditText -->
   <string name="save">Salvar</string>
 
@@ -667,8 +666,6 @@
   <string name="file_name">Nome do arquivo</string>
   <string name="dark_theme">Tema escuro</string>
   <string name="force_english_language">Forçar em língua inglesa</string>
-  <string name="beta_info">Informações beta</string>
-  <string name="beta_info_summary">Mostre uma caixa de diálogo no início, se você estiver usando uma versão beta.</string>
   <string name="show_profile_tile">Mostrar Título do Perfil</string>
   <string name="notification">Notificação</string>
   <string name="notification_summary">Mostrar uma notificação quando as aplicações forem definidas no início. Por favor, desative se você tiver algum problema.</string>

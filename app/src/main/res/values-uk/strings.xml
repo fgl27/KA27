@@ -7,7 +7,6 @@
   <string name="ok">Ок</string>
   <string name="cancel">Скасувати</string>
   <string name="current_value_not_supported">Наступне значення не підтримується</string>
-  <string name="beta_message">Дякуємо вам за те, що стали бета-тестером! Якщо у Вас виникли які небуть проблеми, не соромтеся написати мені. Поточна версія %s.</string>
   <string name="select_picture">Виберіть зображення</string>
   <string name="no_picture">Відсутнє зображення</string>
   <string name="went_wrong">Щось пішло не так!</string>

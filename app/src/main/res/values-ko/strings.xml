@@ -7,7 +7,6 @@
   <string name="ok">확인</string>
   <string name="cancel">취소</string>
   <string name="current_value_not_supported">현재 값은 지원되지 않습니다.</string>
-  <string name="beta_message">베타 테스트에 참여해 주셔서 감사합니다! 문제가 생기면 꼭 제게 알려주세요. 현재 %s 버전을 사용 중입니다.</string>
   <string name="select_picture">사진 선택</string>
   <string name="no_picture">사진 없음</string>
   <string name="went_wrong">문제가 발생했습니다!</string>
@@ -513,8 +512,6 @@
   <string name="file_name">파일명</string>
   <string name="dark_theme">어두운 테마</string>
   <string name="force_english_language">강제로 영어 사용</string>
-  <string name="beta_info">베타 정보</string>
-  <string name="beta_info_summary">베타 버전 사용 시 앱을 시작할 때 대화 상자를 보여줍니다.</string>
   <string name="show_profile_tile">프로필 타일 보기</string>
   <string name="notification">알림</string>
   <string name="notification_summary">\"부팅 시 적용\" 서비스가 시작되었을 때 알림을 보여줍니다. 문제가 발생하면 사용을 중지해 주세요.</string>

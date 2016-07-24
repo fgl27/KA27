@@ -8,7 +8,6 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="current_value_not_supported">Current value is not supported</string>
-    <string name="beta_message">Thank you for being a beta tester! If you get any problems, please don\'t hesitate contacting me. You are currently running version %s.</string>
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
     <string name="went_wrong">Something went wrong!</string>
@@ -799,8 +798,6 @@
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
     <string name="force_english_language">Force English Language</string>
-    <string name="beta_info">Beta Information</string>
-    <string name="beta_info_summary">Show a dialog on start if you are using a beta version.</string>
     <string name="show_profile_tile">Show Profile Tile</string>
     <string name="notification">Notification</string>
     <string name="notification_summary">Show a notification when apply on boot service starts. Please disable this if you get any problems.</string>

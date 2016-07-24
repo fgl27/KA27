@@ -126,7 +126,6 @@
   <string name="no_scripts_found">Skripte ei leitud!</string>
   <string name="file_name">Faili nimi</string>
   <string name="dark_theme">Tume teema</string>
-  <string name="beta_info">Beetaversiooni teave</string>
   <string name="notification">Teade</string>
   <string name="test">Test</string>
   <string name="logcat">Logcat</string>

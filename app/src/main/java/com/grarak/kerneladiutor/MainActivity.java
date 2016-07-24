@@ -402,19 +402,6 @@ public class MainActivity extends BaseActivity implements Constants {
             mSplashView.finish();
             setInterface();
 
-            try {
-                // Show a dialog if user is running a beta version
-                if (VERSION_NAME.contains("beta") && Utils.getBoolean("betainfo", true, MainActivity.this))
-                    new AlertDialog.Builder(MainActivity.this)
-                            .setMessage(getString(R.string.beta_message, VERSION_NAME))
-                            .setNeutralButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                }
-                            }).show();
-            } catch (Exception ignored) {
-            }
-
             // Start with the very first fragment on the list
             for (int i = 0; i < VISIBLE_ITEMS.size(); i++) {
                 if (VISIBLE_ITEMS.get(i).getFragment() != null) {

@@ -60,10 +60,9 @@ public class SettingsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        darkthemeInit();
         if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en") && !Utils.isTV(getActivity()))
             forceenglishlanguageInit();
-        if (Constants.VERSION_NAME.contains("beta")) betainfoInit();
+        darkthemeInit();
         if (Utils.hasCMSDK()) profileTileInit();
         applyonbootInit();
         perappInit();
@@ -103,22 +102,6 @@ public class SettingsFragment extends RecyclerViewFragment {
                 });
 
         addView(mForceEnglishLanguageCard);
-    }
-
-    private void betainfoInit() {
-        SwitchCardView.DSwitchCard mBetaInfoCard = new SwitchCardView.DSwitchCard();
-        mBetaInfoCard.setTitle(getString(R.string.beta_info));
-        mBetaInfoCard.setDescription(getString(R.string.beta_info_summary));
-        mBetaInfoCard.setChecked(Utils.getBoolean("betainfo", true, getActivity()));
-        mBetaInfoCard.setOnDSwitchCardListener(
-                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
-                    @Override
-                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                        Utils.saveBoolean("betainfo", checked, getActivity());
-                    }
-                });
-
-        addView(mBetaInfoCard);
     }
 
     private void profileTileInit() {

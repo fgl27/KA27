@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Ακύρωση</string>
   <string name="current_value_not_supported">Η τρέχουσα τιμή δεν υποστηρίζεται</string>
-  <string name="beta_message">Σας ευχαριστώ που είστε δοκιμαστής της beta έκδοσης! Αν έχετε οποιοδήποτε πρόβλημα, παρακαλώ επικοινωνείστε μαζί μου. Αυτή τη στιγμή εκτελείτε την έκδοση %s.</string>
   <string name="select_picture">Επιλέξτε Εικόνα</string>
   <string name="no_picture">Δεν υπάρχει εικόνα</string>
   <string name="went_wrong">Κάτι πήγε στραβά!</string>

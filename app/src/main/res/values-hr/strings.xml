@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Poništi</string>
   <string name="current_value_not_supported">Trenutna vrijednost nije podržana</string>
-  <string name="beta_message">Hvala Vam što testirate beta-verziju! Ukoliko se suočite s bilo kakvim problemima, molim kontaktirajte me. Trenutno koristite verziju %s.</string>
   <string name="select_picture">Odaberite sliku</string>
   <string name="no_picture">Nema slike</string>
   <string name="went_wrong">Nešto je krivo.</string>
@@ -370,8 +369,6 @@
   <string name="add_action_first">Morate prvo dodati akciju.</string>
   <string name="dark_theme">Tamni motiv</string>
   <string name="force_english_language">Iznudi Engleski jezik</string>
-  <string name="beta_info">Beta informacije</string>
-  <string name="beta_info_summary">Prikazuje obavijest na početku ukoliko koristite beta-verziju.</string>
   <string name="notification">Obavijest</string>
   <string name="notification_summary">Prikaži obavijest kad započne primjenjivanje unosa pri pokretanju sustava. Molimo onemogućite ovo ukoliko dođe do bilo kakvih problema.</string>
   <string name="show_toast">Pokaži Toast poruku</string>

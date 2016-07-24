@@ -7,7 +7,6 @@
   <string name="ok">Tamam</string>
   <string name="cancel">İptal</string>
   <string name="current_value_not_supported">Geçerli değer desteklenmiyor</string>
-  <string name="beta_message">Beta versiyonu test ettiğiniz için teşekkürler! Eğer bir sorunla karşılaşırsanız, benimle iletişime geçmekte tereddür etmeyin. Şu anda %s sürümü çalışıyor.</string>
   <string name="select_picture">Resim seçin</string>
   <string name="no_picture">Resim Yok</string>
   <string name="went_wrong">Birşeyler yanlış gitti !</string>
@@ -395,8 +394,6 @@
   <string name="file_name">Dosya adı</string>
   <string name="dark_theme">Koyu tema</string>
   <string name="force_english_language">İngilizce Diline Zorla</string>
-  <string name="beta_info">Beta Bilgisi</string>
-  <string name="beta_info_summary">Bir beta sürümünü kullanıyorsanız, bir iletişim kutusu başlangıç gösterir.</string>
   <string name="show_profile_tile">Profil döşeme göster</string>
   <string name="notification">Bildirim</string>
   <string name="notification_summary">Açılış servisi başlatıldığında bildirim gösterilir. Eğer bir problemle karşılaşırsanız lütfen devre dışı bırakın.</string>

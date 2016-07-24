@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Zrušiť</string>
   <string name="current_value_not_supported">Aktuálna hodnota nie je podporovaná</string>
-  <string name="beta_message">Ďakujem vám za to, že ste beta tester! Ak máte akékoľvek problémy, neváhajte ma kontaktovať. Používate verziu %s.</string>
   <string name="select_picture">Vybrať obrázok</string>
   <string name="no_picture">Žiadny obraz</string>
   <string name="went_wrong">Niečo sa pokazilo!</string>
@@ -147,7 +146,6 @@
   <string name="emulate_initd">Emulovať Init.d</string>
   <string name="dark_theme">Tmavá téma</string>
   <string name="force_english_language">Vynútiť anglický jazyk</string>
-  <string name="beta_info">Informácie o verzii beta</string>
   <string name="notification">Oznámenie</string>
   <string name="test">Test</string>
   <string name="debugging">Ladenie</string>

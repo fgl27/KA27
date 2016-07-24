@@ -7,7 +7,6 @@
   <string name="ok">确定</string>
   <string name="cancel">取消 </string>
   <string name="current_value_not_supported">不支持当前值</string>
-  <string name="beta_message">谢谢你是测试版的测试!如果你有任何问题，请不要犹豫与我联系。您当前正在运行版本 %s。</string>
   <string name="select_picture">选择图片</string>
   <string name="no_picture">没有图片</string>
   <string name="went_wrong">出现错误</string>
@@ -565,8 +564,6 @@
   <string name="file_name">文件名</string>
   <string name="dark_theme">暗色主题</string>
   <string name="force_english_language">强制使用英语</string>
-  <string name="beta_info">Beta 版信息</string>
-  <string name="beta_info_summary">如果您使用的是 beta 版本在应用启动时会显示一个对话框。</string>
   <string name="show_profile_tile">显示配置文件标题</string>
   <string name="notification">通知</string>
   <string name="notification_summary">当设置在设备启动中被应用时显示一个通知。如果你遇到任何问题请禁用此选项。</string>

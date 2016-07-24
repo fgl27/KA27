@@ -7,7 +7,6 @@
   <string name="ok">OK</string>
   <string name="cancel">Huỷ</string>
   <string name="current_value_not_supported">Giá trị hiện tại không được hỗ trợ</string>
-  <string name="beta_message">Cảm ơn bạn đã thử nghiệm sản phẩm! Nếu bạn nhận ra bất kỳ vấn đề gì, xin vui lòng liên hệ với tôi. Bạn hiện đang chạy phiên bản %s.</string>
   <string name="select_picture">Chọn hình ảnh</string>
   <string name="no_picture">Không có hình ảnh</string>
   <string name="went_wrong">Có lỗi xảy ra!</string>
