@@ -14,10 +14,6 @@
   <string name="password_wrong">Parola este gresita</string>
   <string name="press_back_again">Apăsați din nou înapoi</string>
   <string name="more">Mai mult</string>
-  <string name="thank_you">Mulțumim!</string>
-  <string name="heavy_user_message">Se pare că vă place aplicația! Vă mulțumim că o utilizați!</string>
-  <string name="rate_app">Acordați o notă aplicației</string>
-  <string name="donate">Faceți o donație</string>
   <string name="select_file">Selectează %s?</string>
   <string name="no_files">Niciun fișier în acest director.</string>
   <string name="save">Salvaţi</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Memorie virtuală</string>
   <string name="entropy">Entropie</string>
   <string name="misc_controls">Diverse controale</string>
-  <string name="plugins">Module</string>
   <string name="backup">Copie de rezervă</string>
   <string name="build_prop_editor">Construirea prop Editor</string>
   <string name="profile">Profilul</string>

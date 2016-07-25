@@ -14,11 +14,6 @@
   <string name="password_wrong">كلمة المرور غير صحيحة</string>
   <string name="press_back_again">اضغط رجوع مرة اخرى للخروج</string>
   <string name="more">المزيد</string>
-  <string name="thank_you">شكرا لك!</string>
-  <string name="heavy_user_message">يبدو انك استمتعت بأستخدام البرنامج! شكرا لاستخدامك البرنامج!</string>
-  <string name="rate_app">يرجى تقييم البرنامج</string>
-  <string name="donate">تبرع لمطور البرنامج</string>
-  <string name="select_file">اختيار s%؟</string>
   <string name="no_files">لاتوجد ملفات في هذا المسار.</string>
   <string name="save">حفظ</string>
   <string name="apply_on_boot">تطبيق عند التشغيل</string>
@@ -57,7 +52,6 @@
   <string name="virtual_memory">الذاكرة الافتراضية</string>
   <string name="entropy">انتروبيا</string>
   <string name="misc_controls">إعدادات متنوعة</string>
-  <string name="plugins">الملحقات</string>
   <string name="backup">نسخة احتياطية</string>
   <string name="build_prop_editor">تعديل Build prop</string>
   <string name="profile">الملفّ الشّخصي</string>

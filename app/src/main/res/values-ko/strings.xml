@@ -14,10 +14,6 @@
   <string name="password_wrong">비밀번호가 잘못 되었습니다</string>
   <string name="press_back_again">뒤로가기 버튼을 한번 더 누르시면 종료됩니다</string>
   <string name="more">자세히</string>
-  <string name="thank_you">감사합니다!</string>
-  <string name="heavy_user_message">이 애플리케이션을 좋아해 주시는 것 같습니다! 사용해 주셔서 감사합니다!</string>
-  <string name="rate_app">앱 평가하기</string>
-  <string name="donate">기부하기</string>
   <string name="select_file">%s 를 선택하시겠습니까?</string>
   <string name="no_files">이 경로에 파일이 없습니다.</string>
   <string name="save">저장</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">가상 메모리</string>
   <string name="entropy">엔트로피</string>
   <string name="misc_controls">기타</string>
-  <string name="plugins">플러그인</string>
   <string name="backup">백업</string>
   <string name="build_prop_editor">Build prop 편집</string>
   <string name="profile">프로필</string>
@@ -190,7 +185,6 @@
   <string name="max_load_counter">최대 부하 카운터</string>
   <string name="min_time_cpu_online">CPU가 활성화 되는 최소 시간</string>
   <string name="timer">타이머</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">퀄컴의 MPDecision을 대체합니다. show-p1984님이 개발했습니다.</string>
   <string name="screen_off_single_core">화면이 꺼져있을 때 1개의 코어만 사용</string>
@@ -323,10 +317,6 @@
   <string name="dt2w_summary">두 번 두드리면 장치의 화면이 켜집니다.</string>
   <string name="center">중앙</string>
   <string name="full">전체</string>
-  <string name="bottom_half">중앙보다 아래</string>
-  <string name="top_half">중앙보다 위</string>
-  <string name="halfscreen">화면 하단</string>
-  <string name="fullscreen">화면 전체</string>
   <string name="s2w">밀어서 화면 켜기</string>
   <string name="s2w_summary">화면을 밀어서 장치의 화면을 켭니다.</string>
   <string name="s2s">밀어서 화면 끄기</string>
@@ -434,13 +424,7 @@
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
-  <string name="plugin_warning">개발자는 타사 애플리케이션에 의한 손상을 책임을 지지 않습니다! 또한 그런 애플리케이션의 기능들을 보장하지 않습니다. 애플리케이션 다운로드를 주의하세요.</string>
-  <string name="download_plugins">플러그인 다운로드</string>
-  <string name="looking_plugins">플러그인 찾기</string>
-  <string name="no_plugins">플러그인을 찾을 수 없습니다.</string>
   <string name="installed">설치됨</string>
-  <string name="update_available">업데이트가 있습니다.</string>
-  <string name="not_installed">설치되지 않음</string>
   <string name="no_kernels">커널을 찾을 수 없습니다.</string>
   <string name="logo">로고</string>
   <string name="features">기능</string>
@@ -494,7 +478,6 @@
   <string name="reboot_bootloader">부트로더 모드로 다시 시작</string>
   <string name="reboot_download">다운로드 모드로 다시 시작</string>
   <string name="confirm">확실합니까?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">데이터 초기화</string>
   <string name="wipe_cache">캐시 초기화</string>

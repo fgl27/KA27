@@ -18,10 +18,6 @@
   <string name="password_wrong">Złe hasło</string>
   <string name="press_back_again">Naciśnij ponownie aby wyjść</string>
   <string name="more">Więcej</string>
-  <string name="thank_you">Dziękujemy!</string>
-  <string name="heavy_user_message">Wygląda na to, że ta aplikacja ci się spodobała. Dziękujemy za korzystanie!</string>
-  <string name="rate_app">Oceń aplikację</string>
-  <string name="donate">Przekaż darowiznę</string>
   <string name="select_file">Wybrać %s?</string>
   <string name="no_files">Brak plików w tym folderze.</string>
   <string name="save">Zapisz</string>
@@ -61,7 +57,6 @@
   <string name="virtual_memory">Pamięć wirtualna</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Różne Ustawienia</string>
-  <string name="plugins">Wtyczki</string>
   <string name="backup">Kopia zapasowa</string>
   <string name="build_prop_editor">Edytor build prop</string>
   <string name="profile">Profil</string>
@@ -166,7 +161,6 @@
   <string name="load_threshold">Próg obciążenia</string>
   <string name="load_threshold_summary">Próg do włączenia wszystkich procesorów.</string>
   <string name="timer">Timer</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Hotplug \"Bricked\"</string>
   <string name="mb_hotplug_summary">Wewnętrzny zamiennik dla MPDecision od Qualcomma. Praca show-p1984.</string>
   <string name="screen_off_single_core_summary">Użyj tylko jednego rdzenia, gdy ekran jest wyłączony.</string>
@@ -203,10 +197,6 @@
   <string name="dt2w_summary">Wybudź swoje urządzenie poprzez podwójne dotknięcie ekranu.</string>
   <string name="center">Środek</string>
   <string name="full">Pełny</string>
-  <string name="bottom_half">Dolna połowa</string>
-  <string name="top_half">Górna połowa</string>
-  <string name="halfscreen">Pół ekranu</string>
-  <string name="fullscreen">Cały ekran</string>
   <string name="s2w">Przeciągnij by wybudzić</string>
   <string name="s2w_summary">Obudź urządzenie przez przesunięcie po ekranie.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -267,7 +257,6 @@
   <string name="network">Sieć</string>
   <string name="hostname">Nazwa hosta</string>
   <string name="wakelock">Wakelock</string>
-  <string name="plugin_warning">Ja, twórca tej aplikacji, nie jestem odpowiedzialny za żadne uszkodzenia wynikające z użytkowania aplikacji firm trzecich! Nie gwarantuję również, ich prawidłowego działania. Uważaj na aplikacje, które instalujesz!</string>
   <string name="xda">XDA</string>
   <string name="github">GitHub</string>
   <string name="google_plus">Google Plus</string>
@@ -308,7 +297,6 @@
   <string name="reboot_bootloader">Reboot Bootloader</string>
   <string name="reboot_download">Reboot Download</string>
   <string name="confirm">Jesteś pewny?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Wyczyść dane</string>
   <string name="wipe_cache">Wyczyść pamięć podręczną</string>

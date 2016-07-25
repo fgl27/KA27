@@ -14,10 +14,6 @@
   <string name="password_wrong">סיסמה לא נכונה</string>
   <string name="press_back_again">לחץ שוב כדי לצאת</string>
   <string name="more">עוד</string>
-  <string name="thank_you">תודה רבה!</string>
-  <string name="heavy_user_message">זה נראה שאתה מאוד נהנה להשתמש באפליקציה! תודה שאתה משתמש בה!</string>
-  <string name="rate_app">דרג את האפליקציה</string>
-  <string name="donate">לתרום לי</string>
   <string name="select_file">בחר %s?</string>
   <string name="no_files">אין קבצים בנתיב זה.</string>
   <string name="save">שמור</string>
@@ -55,7 +51,6 @@
   <string name="virtual_memory">זיכרון וירטואלי</string>
   <string name="entropy">אנטרופיה</string>
   <string name="misc_controls">בקרות שונות</string>
-  <string name="plugins">פלאגינים</string>
   <string name="backup">גיבוי</string>
   <string name="build_prop_editor">בנה עורך prop</string>
   <string name="profile">פרופיל</string>

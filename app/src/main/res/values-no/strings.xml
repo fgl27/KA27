@@ -14,10 +14,6 @@
   <string name="password_wrong">Passordet er feil</string>
   <string name="press_back_again">Trykk tilbakeknappen for å avbryte</string>
   <string name="more">Mer</string>
-  <string name="thank_you">Takk skal du ha!</string>
-  <string name="heavy_user_message">Det virker som du virkelig liker denne applikasjonen! Takk for at du benytter deg av den!</string>
-  <string name="rate_app">Vennligst vurder appen</string>
-  <string name="donate">Vennligst doner til meg</string>
   <string name="select_file">Velg %s?</string>
   <string name="no_files">Ingen filer i denne banen.</string>
   <string name="save">Lagre</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Virtuelt minne</string>
   <string name="entropy">Entropi</string>
   <string name="misc_controls">Diverse kontroller</string>
-  <string name="plugins">Utvidelser</string>
   <string name="backup">Sikkerhetskopi</string>
   <string name="build_prop_editor">Propbyggeditor</string>
   <string name="profile">Profil</string>

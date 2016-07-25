@@ -14,10 +14,6 @@
   <string name="password_wrong">A senha está incorreta</string>
   <string name="press_back_again">Pressione voltar novamente para sair</string>
   <string name="more">Mais</string>
-  <string name="thank_you">Obrigado!</string>
-  <string name="heavy_user_message">Parece que você está adorando este aplicativo! Obrigado por usá-lo!</string>
-  <string name="rate_app">Avalie o app</string>
-  <string name="donate">Doar para mim</string>
   
   <!-- FileBrowser -->
   <string name="no_permission">Sem permissão</string>
@@ -71,7 +67,6 @@
   <string name="virtual_memory">Memória Virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Controles Variados</string>
-  <string name="plugins">Plugins</string>
   <string name="backup">Copia de segurança</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Perfil</string>
@@ -236,7 +231,6 @@
   <string name="max_load_counter">Contador de carga máxima</string>
   <string name="min_time_cpu_online">Tempo mínimo do CPU online</string>
   <string name="timer">Cronômetro</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Uma substituição no kernel para MPDecision da Qualcomm. Desenvolvido por show-p1984.</string>
   <string name="screen_off_single_core">Um núcleo com a tela desligada</string>
@@ -435,23 +429,12 @@
   <string name="dt2w_note">! DT2W quando ativato tambem ativa S2W\n Isto é necessario para que DT2W funcione</string>
   <string name="center">Centro</string>
   <string name="full">Completo</string>
-  <string name="bottom_half">Metade inferior</string>
-  <string name="top_half">Metade superior</string>
-  <string name="halfscreen">Meia tela</string>
-  <string name="fullscreen">Tela Cheia</string>
   <string name="s2w">Ativado</string>
   <string name="s2w_summary">Acorda seu dispositivo ao deslizar o dedo na tela, em qualquer direção.</string>
   <string name="s2w_note">! Para desativar S2W primeiro desative DT2W</string>
   <string name="lenient">Tolerância do Sweep2Wake</string>
   <string name="lenient_summary">Requer apenas o 1º e o 4º botão para ativar o Sweep2Wake.</string>
   <string name="s2w_right">Sweep2Wake na direita</string>
-  <string name="s2w_left">Sweep2Wake na esquerda</string>
-  <string name="s2w_up">Sweep2Wake no topo</string>
-  <string name="s2w_down">Sweep2Wake em baixo</string>
-  <string name="s2w_any">Sweep2Wake em qualquer lugar</string>
-  <string name="s2s_right">Deslizar para a direita</string>
-  <string name="s2s_left">Deslizar para a esquerda</string>
-  <string name="s2s_any">Deslizar para a esquerda ou direita</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Acorda seu dispositivo ao tocar na tela.</string>
   <string name="wake">Balance</string>
@@ -587,13 +570,7 @@
   <string name="wlan_wakelock_summary">Prevenir wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Divisor wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Divisor msm_hsic Wakelock</string>
-  <string name="plugin_warning">Eu, o criador desta aplicação, não sou responsável por quaisquer danos que produzem aplicativos de terceiros! Também não posso garantir para a funcionalidade deles. Por favor tenha cuidado como os aplicativos que você baixar!</string>
-  <string name="download_plugins">Baixando plugins</string>
-  <string name="looking_plugins">Procurando plugins</string>
-  <string name="no_plugins">Nenhum plugin foi encontrado</string>
   <string name="installed">Instalado</string>
-  <string name="update_available">Atualização disponível</string>
-  <string name="not_installed">Erro na instalação</string>
   <string name="no_kernels">Nenhum kernel encontrado</string>
   <string name="logo">Logotipo</string>
   <string name="features">Características</string>
@@ -648,7 +625,6 @@
   <string name="reboot_bootloader">Entrar no Modo Bootloader</string>
   <string name="reboot_download">Reiniciar download</string>
   <string name="confirm">Tem certeza?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar cache</string>

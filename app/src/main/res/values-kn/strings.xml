@@ -14,10 +14,6 @@
   <string name="password_wrong">ಪ್ರವೇಶಪದ ತಪ್ಪಾಗಿದೆ</string>
   <string name="press_back_again">ಹೊರನಡೆಯಲು ಇನ್ನೊಮ್ಮೆ ಹಿಂದಕ್ಕೆ ಒತ್ತಿ</string>
   <string name="more">ಇನ್ನಷ್ಟು</string>
-  <string name="thank_you">ಧನ್ಯವಾದಗಳು!</string>
-  <string name="heavy_user_message">ನೀವು ನಿಜವಾಗಿಯೂ ಈ ಅಪ್ಲಿಕೇಶನ್‍ನನ್ನು ಇಷ್ಟಪಟ್ಟಿದ್ದೀರಿ ಎಂದು ಕಾಣುತ್ತದೆ! ಉಪಯೋಗಿಸಿದಕ್ಕಾಗಿ ಧನ್ಯವಾದಗಳು!</string>
-  <string name="rate_app">ಈ ಆಪ್‍ಗೆ ರೇಟ್ ನೀಡಿ</string>
-  <string name="donate">ನನಗೆ ದಾನ ನೀಡಿ</string>
   <string name="select_file">ಆಯ್ಕೆಮಾಡು %s?</string>
   <string name="no_files">ಈ ಪಾಥ್‍ನಲ್ಲಿ ಯಾವುದೇ ಕಡತಗಳಿಲ್ಲ.</string>
   <string name="save">ಉಳಿಸಿ</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">ವರ್ಚುವಲ್ ಮೆಮೊರಿ</string>
   <string name="entropy">ಎಂಟ್ರೋಪಿ</string>
   <string name="misc_controls">ಇತರೆ ನಿಯಂತ್ರಣಗಳು</string>
-  <string name="plugins">ಪ್ಲಗ್ಇನ್ಸ್</string>
   <string name="backup">ಬ್ಯಕ್ಅಪ್</string>
   <string name="build_prop_editor">Build prop ಸಂಪಾದಕ</string>
   <string name="profile">ಪ್ರೊಫೈಲ್</string>
@@ -168,7 +163,6 @@
   <string name="cpu_freq_unplug_limit">ಸಿಪಿಯು ಆವರ್ತನ ಅನ್‍ಪ್ಲಗ್ ಮಿತಿ</string>
   <string name="first_level">ಮೊದಲ ಮಟ್ಟ</string>
   <string name="first_level_summary">ಎಲ್ಲಾ ಸಿಪಿಯುಗಳನ್ನು ಆನ್‍ಲೈನ್ ಮಾಡುವ ಹೊಸ್ತಿಲು.</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision ಹಾಟ್‍ಪ್ಲಗ್</string>
   <string name="bricked_hotplug">Bricked ಹಾಟ್‍ಪ್ಲಗ್</string>
   <string name="mb_hotplug_summary">Qualcomm\'ನ MPDecisionಗಾಗಿ show-p1984 ಡೆವೆಲಪ್ ಮಾಡಿರುವ ಒಂದು ಪರ್ಯಾಯ ವ್ಯವಸ್ಥೆ.</string>
   <string name="screen_off_single_core">ಪರದೆ ಆಫ್ ಸಿಂಗಲ್ ಕೋರ್</string>

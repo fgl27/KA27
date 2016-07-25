@@ -14,10 +14,6 @@
   <string name="password_wrong">Lösenordet är fel</string>
   <string name="press_back_again">Tryck tillbaka igen för att lämna</string>
   <string name="more">Mer</string>
-  <string name="thank_you">Tack!</string>
-  <string name="heavy_user_message">Det verkar som du verkligen gillar denna pplikation! Tack för att du använder det!</string>
-  <string name="rate_app">Betygsätt appen</string>
-  <string name="donate">Donera till mig</string>
   <string name="select_file">Välj %s?</string>
   <string name="no_files">Inga filer i denna sökväg.</string>
   <string name="save">Spara</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Virtuellt Minne</string>
   <string name="entropy">Entropi</string>
   <string name="misc_controls">Övriga Kontrollenheter</string>
-  <string name="plugins">Tillägg</string>
   <string name="backup">Säkerhetskopiera</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Profiler</string>
@@ -186,10 +181,6 @@
   <string name="mdnie_global_controls">mDNIe globala kontroller</string>
   <string name="dt2w">Dubbeltryck för att väcka</string>
   <string name="dt2w_summary">Väck enheten genom att dubbeltrycka på skärmen.</string>
-  <string name="bottom_half">Nedre halvan</string>
-  <string name="top_half">Övre halvan</string>
-  <string name="halfscreen">Halvskärm</string>
-  <string name="fullscreen">Fullskärm</string>
   <string name="s2w">Svep för att väcka</string>
   <string name="s2w_summary">Väck din enheten genom att svepa över skärmen.</string>
   <string name="t2w_summary">Väck enheten genom att trycka på skärmen.</string>

@@ -14,10 +14,6 @@
   <string name="password_wrong">Girilen şifre yanlış</string>
   <string name="press_back_again">Cikmak icin tekrar basın</string>
   <string name="more">Daha fazla</string>
-  <string name="thank_you">Teşekkür Ederim !</string>
-  <string name="heavy_user_message">Görünüşe göre bu uygulamamızı beğendiniz! Kullandığınız için teşekkür ederiz!</string>
-  <string name="rate_app">Uygulamaya oy verin</string>
-  <string name="donate">Bana bağış yapın</string>
   <string name="select_file">%s seçin?</string>
   <string name="no_files">Bu yolda hiçbir dosya yok.</string>
   <string name="save">Kaydet</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Sanal Bellek</string>
   <string name="entropy">Entropi</string>
   <string name="misc_controls">Diğer Denetimler</string>
-  <string name="plugins">Eklentiler</string>
   <string name="backup">Yedekleme</string>
   <string name="build_prop_editor">Build prop Editör</string>
   <string name="profile">Profil</string>
@@ -254,10 +249,6 @@
   <string name="dt2w_summary">Aygıtınızı çift ekran dokunarak uyandır.</string>
   <string name="center">Orta</string>
   <string name="full">Tam</string>
-  <string name="bottom_half">Alt Yarım</string>
-  <string name="top_half">Üst yarım</string>
-  <string name="halfscreen">Yarı ekran</string>
-  <string name="fullscreen">Tam ekran</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
@@ -379,7 +370,6 @@
   <string name="reboot_bootloader">BootLoader\'da Başlat</string>
   <string name="reboot_download">İndir ve Yeniden Başlat</string>
   <string name="confirm">Emin misiniz?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Verileri Sil</string>
   <string name="wipe_cache">Önbelleği sil</string>

@@ -14,10 +14,6 @@
   <string name="password_wrong">Mật khẩu sai</string>
   <string name="press_back_again">Bấm trở lại một lần nữa để thoát ra</string>
   <string name="more">Nhiều hơn</string>
-  <string name="thank_you">Cảm ơn bạn!</string>
-  <string name="heavy_user_message">Có vẻ như bạn thật sự hài lòng về ứng dụng này! Cảm ơn vì đã sử dụng nó!</string>
-  <string name="rate_app">Đánh giá ứng dụng này</string>
-  <string name="donate">Ủng hộ tôi</string>
   <string name="select_file">Chọn %s?</string>
   <string name="no_files">Không có tệp nào trong đường dẫn này.</string>
   <string name="save">Lưu</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Bộ nhớ ảo</string>
   <string name="entropy">Dữ liệu ngẫu nhiên</string>
   <string name="misc_controls">Linh tinh</string>
-  <string name="plugins">Plugins</string>
   <string name="backup">Sao lưu</string>
   <string name="build_prop_editor">Sửa build.prop</string>
   <string name="profile">Hồ sơ</string>

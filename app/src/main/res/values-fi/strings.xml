@@ -14,9 +14,6 @@
   <string name="password_wrong">Salasana on väärä</string>
   <string name="press_back_again">Paina takaisin-näppäintä uudelleen poistuaksesi</string>
   <string name="more">Lisää</string>
-  <string name="heavy_user_message">Näyttää siltä että todella nautit tästä sovelluksesta! Kiitos että käytät sitä!</string>
-  <string name="rate_app">Arvostele sovellus</string>
-  <string name="donate">Lahjoita minulle</string>
   <string name="select_file">Valitse %s?</string>
   <string name="no_files">Ei tiedostoja tässä polussa.</string>
   <string name="save">Tallenna</string>
@@ -56,7 +53,6 @@
   <string name="virtual_memory">Virtuaalinen muisti</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Sekalaiset</string>
-  <string name="plugins">Lisäosat</string>
   <string name="backup">Varmuuskopiointi</string>
   <string name="build_prop_editor">Build.prop muokkaaja</string>
   <string name="profile">Profiili</string>
@@ -73,7 +69,6 @@
   <string name="cpu_usage">CPU-käyttö</string>
   <string name="cpu_temp">CPUn lämpötila</string>
   <string name="current_freq">Nykyinen taajuus</string>
-  <string name="core">Ydin</string>
   <string name="offline">Offline</string>
   <string name="cpu_max_freq">Suorittimen suurin taajuus</string>
   <string name="cpu_max_freq_summary">Aseta maksimi kellotaajuus jonka CPU saavuttaa</string>

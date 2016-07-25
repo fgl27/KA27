@@ -13,10 +13,6 @@
   <string name="password">Heslo</string>
   <string name="password_wrong">Heslo je zlé</string>
   <string name="more"> Viac</string>
-  <string name="thank_you">Ďakujeme!</string>
-  <string name="heavy_user_message">Vyzerá to, že si naozaj užívate túto aplikáciu! Ďakujem vám za používanie!</string>
-  <string name="rate_app">Ohodnotiť aplikáciu</string>
-  <string name="donate">Darujte mi</string>
   <string name="select_file">Vybrať %s?</string>
   <string name="no_files">Žiadne súbory v tejto ceste.</string>
   <string name="save">Uložiť</string>
@@ -56,7 +52,6 @@
   <string name="virtual_memory">Virtuálna pamäť</string>
   <string name="entropy">Entropy</string>
   <string name="misc_controls">Rôzne ovládacie prvky</string>
-  <string name="plugins">Rozšírenia</string>
   <string name="backup">Záloha</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Profil</string>

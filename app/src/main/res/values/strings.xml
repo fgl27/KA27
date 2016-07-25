@@ -15,14 +15,10 @@
     <string name="password_wrong">Password is wrong</string>
     <string name="press_back_again">Press back again to leave</string>
     <string name="more">More</string>
-    <string name="thank_you">Thank you!</string>
-    <string name="heavy_user_message">It seems like your are really enjoying this application! Thank you for using it!</string>
-    <string name="rate_app">Rate the app</string>
-    <string name="donate">Donate to me</string>
 
     <!-- FileBrowser -->
     <string name="no_permission">No permission</string>
-    <string name="select_file">Select %s?</string>
+    <string name="select_file">Select %s ?</string>
     <string name="no_files">No files in this path.</string>
     <string name="copy">Copy</string>
 
@@ -79,7 +75,6 @@
     <string name="virtual_memory">Virtual Memory</string>
     <string name="entropy">Entropy</string>
     <string name="misc_controls">Misc Controls</string>
-    <string name="plugins">Plugins</string>
     <string name="backup">Backup</string>
     <string name="build_prop_editor">Build prop Editor</string>
     <string name="profile">Profile</string>
@@ -163,7 +158,7 @@
     <string name="global_offset">Global Offset</string>
     <string name="override_vmin">Override Minimum Voltage</string>
     <string name="override_vmin_summary">Disable to remove manufacturer limits on undervolting</string>
-    <string name="non_default_reference">Default Voltages not saved, using current voltages as reference. Please reboot for accurate refernce values.</string>
+    <string name="non_default_reference">Default Voltages not saved, using current voltages as reference. Please reboot for accurate reference values.</string>
     <string name="voltages_toast_notification">Values in parenthesis show your change from the reference values.</string>
 
     <!-- CPU Hotplug -->
@@ -246,7 +241,6 @@
     <string name="max_load_counter">Max Load Counter</string>
     <string name="min_time_cpu_online">Min Time CPU Online</string>
     <string name="timer">Timer</string>
-    <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="bricked_hotplug">Bricked Hotplug</string>
     <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
     <string name="screen_off_single_core">Screen off Single Core</string>
@@ -462,10 +456,6 @@
     <string name="dt2w_note">! DT2W when enabled will enabled S2W\n\nThis is necessary to make DT2W to work</string>
     <string name="center">Center</string>
     <string name="full">Full</string>
-    <string name="bottom_half">Bottom half</string>
-    <string name="top_half">Top half</string>
-    <string name="halfscreen">Halfscreen</string>
-    <string name="fullscreen">Fullscreen</string>
     <string name="s2w_title">S2W (Sweep2Wake)</string>
     <string name="s2w">Enabled</string>
     <string name="s2w_summary">Wake up your device by swiping on the screen to any direction.</string>
@@ -474,13 +464,6 @@
     <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
     <string name="s2s">S2S (Sweep2Sleep)</string>
     <string name="s2w_right">Sweep2Wake Right</string>
-    <string name="s2w_left">Sweep2Wake Left</string>
-    <string name="s2w_up">Sweep2Wake Up</string>
-    <string name="s2w_down">Sweep2Wake Down</string>
-    <string name="s2w_any">Sweep2Wake Any</string>
-    <string name="s2s_right">Sweep Right</string>
-    <string name="s2s_left">Sweep Left</string>
-    <string name="s2s_any">Sweep Left or Right</string>
     <string name="t2w">Tap2Wake</string>
     <string name="t2w_summary">Wake up your device by tapping the screen.</string>
     <string name="wake">Wake</string>
@@ -701,13 +684,7 @@
     <string name="c3state_summary">Really deep sleep with longest latency when waking up.</string>
 
     <!-- Plugins -->
-    <string name="plugin_warning">I, the creator of this application, am not responsible for any damages that third party apps produce! I also can\'t guarantee for the functionality of them. Please be careful which applications you download!</string>
-    <string name="download_plugins">Download Plugins</string>
-    <string name="looking_plugins">Looking for plugins</string>
-    <string name="no_plugins">No plugins found</string>
     <string name="installed">Installed</string>
-    <string name="update_available">Update available</string>
-    <string name="not_installed">Not installed</string>
 
     <!-- Downloads -->
     <string name="no_kernels">No kernels found</string>
@@ -776,7 +753,6 @@
     <string name="reboot_bootloader">Reboot Bootloader</string>
     <string name="reboot_download">Reboot Download</string>
     <string name="confirm">Are you sure?</string>
-    <string name="cwm_recovery">CWM Recovery</string>
     <string name="twrp">TWRP</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>

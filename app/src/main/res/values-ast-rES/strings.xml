@@ -14,10 +14,6 @@
   <string name="password_wrong">La contraseña ye incorreuta</string>
   <string name="press_back_again">Primi de nueves Atrás pa colar</string>
   <string name="more">Más</string>
-  <string name="thank_you">¡Gracies!</string>
-  <string name="heavy_user_message">¡Paez que tas esfrutando daveres d\'esta aplicación! ¡Gracies por usala!</string>
-  <string name="rate_app">Valorar l\'app</string>
-  <string name="donate">Dóname</string>
   <string name="select_file">¿Esbillar %s?</string>
   <string name="no_files">Nun hai ficheros nesti camín.</string>
   <string name="save">Guardar</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Memoria virtual</string>
   <string name="entropy">Entropía</string>
   <string name="misc_controls">Dellos controles</string>
-  <string name="plugins">Complementos</string>
   <string name="backup">Copies de seguranza</string>
   <string name="build_prop_editor">Editor del build.prop</string>
   <string name="profile">Perfil</string>
@@ -187,7 +182,6 @@
   <string name="max_load_counter">Contador de carga máxima</string>
   <string name="min_time_cpu_online">Tiempu mínimu de CPU en llinia</string>
   <string name="timer">Temporizador</string>
-  <string name="msm_mpdecision_hotplug">Hotplug MPDecision de MSM</string>
   <string name="bricked_hotplug">Hotplug de Bricked</string>
   <string name="mb_hotplug_summary">Un troquéu integráu nel kernel pal MPDecision de Qualcomm. Desendolcáu por show-p1984.</string>
   <string name="screen_off_single_core">Un nucleu cola pantalla apagada</string>
@@ -340,10 +334,6 @@
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Esconsueña\'l to preséu calcando dos vegaes na pantalla.</string>
   <string name="center">Centru</string>
-  <string name="bottom_half">Metá baxera</string>
-  <string name="top_half">Metá cimera</string>
-  <string name="halfscreen">Metá de pantalla</string>
-  <string name="fullscreen">Pantalla completa</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Esconsueña\'l to preséu eslizando\'l deu penriba la pantalla.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -458,13 +448,7 @@
   <string name="wlan_wakelock_summary">Evita l\'esconsueñu calteníu de wlan.</string>
   <string name="wlan_rx_wakelock_divider">Divisor d\'esconsueñu calteníu de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor d\'esconsueñu calteníu de msm_hsic</string>
-  <string name="plugin_warning">¡Yo, el creador d\'esta aplicación, nun soi\'l responsable de dañu dalu qu\'aplicaciónes de terceres partes produzan! Tampoco pueo garantizar la so funcionalidá. ¡Ten procuru coles aplicaciones que baxes, por favor!</string>
-  <string name="download_plugins">Baxar complementos</string>
-  <string name="looking_plugins">Guetando complementos</string>
-  <string name="no_plugins">Nun s\'alcontraron complementos</string>
   <string name="installed">Instaláu</string>
-  <string name="update_available">Anovamientu disponible</string>
-  <string name="not_installed">Non instaláu</string>
   <string name="no_kernels">Nun s\'alcontraron kernels</string>
   <string name="logo">Llogu</string>
   <string name="features">Carauterístiques</string>
@@ -518,7 +502,6 @@
   <string name="reboot_bootloader">Reaniciar al Cargador d\'arranque</string>
   <string name="reboot_download">Reaniciar al mou Download</string>
   <string name="confirm">¿De xuru?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Llimpiar Data</string>
   <string name="wipe_cache">Llimpiar Caché</string>

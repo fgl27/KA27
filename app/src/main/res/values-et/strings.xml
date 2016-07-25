@@ -76,9 +76,6 @@
   <string name="offset">Nihe</string>
   <string name="center">Keskel</string>
   <string name="full">Täielik</string>
-  <string name="bottom_half">Alumine pool</string>
-  <string name="top_half">Ülemine pool</string>
-  <string name="fullscreen">Täisekraanil</string>
   <string name="slide_up">Libistage üles</string>
   <string name="slide_down">Libistage alla</string>
   <string name="slide_left">Libistage vasakule</string>

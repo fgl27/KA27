@@ -14,10 +14,6 @@
   <string name="password_wrong">Лозинка је погрешна</string>
   <string name="press_back_again">Притисните опет за излаз</string>
   <string name="more">Још</string>
-  <string name="thank_you">Хвала вам!</string>
-  <string name="heavy_user_message">Изгледа да заиста уживате у овој апликацији! Хвала вам што је користите!</string>
-  <string name="rate_app">Оцените апликацију</string>
-  <string name="donate">Донирајте</string>
   <string name="select_file">Изабрати %s?</string>
   <string name="no_files">Нема фајлова на овој путањи.</string>
   <string name="save">Сачувај</string>
@@ -55,7 +51,6 @@
   <string name="virtual_memory">Виртуелна меморија</string>
   <string name="entropy">Ентропија</string>
   <string name="misc_controls">Разне контроле</string>
-  <string name="plugins">Прикључци</string>
   <string name="backup">Резервна копија</string>
   <string name="build_prop_editor">Уређивач „build.prop“ фајла</string>
   <string name="profile">Профил</string>
@@ -163,9 +158,6 @@
   <string name="dt2w_summary">Пробудите ваш уређај двотапом на екран.</string>
   <string name="center">Средина</string>
   <string name="full">Читав</string>
-  <string name="bottom_half">Доња половина</string>
-  <string name="top_half">Горња половина</string>
-  <string name="fullscreen">Цео екран</string>
   <string name="t2w">Тап за буђење</string>
   <string name="t2w_summary">Пробудите ваш уређај тапом на екран.</string>
   <string name="wake">Буђење</string>
@@ -272,7 +264,6 @@
   <string name="reboot_bootloader">Поново покрени у учитавач</string>
   <string name="reboot_download">Поново покрени у преузимање</string>
   <string name="confirm">Да ли сте сигурни?</string>
-  <string name="cwm_recovery">CWM опоравак</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Обриши податке</string>
   <string name="wipe_cache">Обриши кеш</string>

@@ -14,10 +14,6 @@
   <string name="password_wrong">Невірний пароль</string>
   <string name="press_back_again">Натисніть назад ще раз, щоб вийти</string>
   <string name="more">Ще</string>
-  <string name="thank_you">Дякую!</string>
-  <string name="heavy_user_message">Здається, вам дуже сподобався додаток! Дякуємо, що користуєтесь ним!</string>
-  <string name="rate_app">Оцініть програму</string>
-  <string name="donate">Пожертвувати мені</string>
   <string name="select_file">Вибрати %s?</string>
   <string name="no_files">Файл не знайдений.</string>
   <string name="save">Зберегти</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Віртуальна пам\'ять</string>
   <string name="entropy">Ентропія</string>
   <string name="misc_controls">Інші елементи</string>
-  <string name="plugins">Плагіни</string>
   <string name="backup">Резервна копія</string>
   <string name="build_prop_editor">Редактор build.prop</string>
   <string name="profile">Профіль</string>
@@ -268,7 +263,4 @@
   <string name="dt2w_summary">Розблокуйте пристрій, двічі торкнувшись екрана.</string>
   <string name="center">Центр</string>
   <string name="full">Повний</string>
-  <string name="bottom_half">Нижня половина</string>
-  <string name="top_half">Верхня половина</string>
-  <string name="halfscreen">Halfscreen</string>
 </resources>

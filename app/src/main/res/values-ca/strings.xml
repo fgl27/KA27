@@ -14,10 +14,6 @@
   <string name="password_wrong">La contrasenya està malament</string>
   <string name="press_back_again">Premi de nou per sortir</string>
   <string name="more">Més</string>
-  <string name="thank_you">Gràcies!</string>
-  <string name="heavy_user_message">Sembla que està gaudint d\'aquesta aplicació! Gràcies per usar-la!</string>
-  <string name="rate_app">Valora l\'aplicació</string>
-  <string name="donate">Dóna\'m</string>
   <string name="select_file">Seleccioneu %s?</string>
   <string name="no_files">Sense arxius en aquesta ruta.</string>
   <string name="save">Desar</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Memòria virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Controls varis</string>
-  <string name="plugins">Extensions</string>
   <string name="backup">Còpia de seguretat</string>
   <string name="build_prop_editor">Editor Build.prop</string>
   <string name="profile">Perfil</string>

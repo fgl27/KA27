@@ -14,16 +14,12 @@
   <string name="password_wrong">A palavra-passe está errada</string>
   <string name="press_back_again">Pressione voltar novamente para sair</string>
   <string name="more">Mais</string>
-  <string name="thank_you">Obrigado!</string>
-  <string name="heavy_user_message">Parece que você está adorando esta aplicação! Obrigado por usá-la!</string>
-  <string name="rate_app">Avalie a aplicação</string>
-  <string name="donate">Contribua para mim</string>
   <string name="select_file">Selecionar %s?</string>
   <string name="no_files">Não há ficheiros neste caminho.</string>
   <string name="save">Guardar</string>
   <string name="apply_on_boot">Aplicar no arranque </string>
   <string name="apply_on_boot_finished">As suas alterações foram aplicadas</string>
-  <string name="apply_on_boot_time">Aplicando as suas defenições em %d segundo/s</string>
+  <string name="apply_on_boot_time">Aplicando as suas definições em %d segundo/s</string>
   <string name="apply_on_boot_enabled">Ligado aplicar no arranque na secção %s</string>
   <string name="apply_on_boot_disabled">Desligado aplicar no arranque na secção %s</string>
   <string name="apply_on_boot_failed">Falhou ao aplicar definições no arranque</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Memória virtual</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Controles variados</string>
-  <string name="plugins">Extensões</string>
   <string name="backup">Backup</string>
   <string name="build_prop_editor">Build prop Editor</string>
   <string name="profile">Perfil</string>
@@ -88,7 +83,7 @@
   <string name="cpu_governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="not_tunable">%s não é ajustável</string>
   <string name="mc_power_saving">Modo poupança energia multi núcleos</string>
-  <string name="mc_power_saving_summary">Tenta agrupar tarefas no menor número de núcleos possiveis.</string>
+  <string name="mc_power_saving_summary">Tenta agrupar tarefas no menor número de núcleos possíveis.</string>
   <string name="power_saving_wq">Agendar filas de trabalho em CPUs acordados para economizar energia.</string>
   <string name="cfs_scheduler_policy">Política de Agendamento CFS</string>
   <string name="cfs_scheduler_policy_summary">Política decide o Agendador como equilibrar as tarefas na unidade de CPU diferente.</string>
@@ -191,7 +186,6 @@
   <string name="max_load_counter">Contador de carga máxima</string>
   <string name="min_time_cpu_online">Min tempo CPU on-line</string>
   <string name="timer">Temporizador</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Emparedada Hotplug</string>
   <string name="mb_hotplug_summary">Uma substituição no kernel para MPDecision da Qualcomm. Desenvolvido por show-p1984.</string>
   <string name="screen_off_single_core">Single Core Ecrã Desligado</string>
@@ -242,7 +236,7 @@
   <string name="msm_thermal">MSM Thermal</string>
   <string name="allowed_low_low">Fase 1: Permitido baixo baixo</string>
   <string name="allowed_low_high">Fase 1: Permitido alto baixo</string>
-  <string name="allowed_low_freq">Fase 1: Permitido baixa frequência</string>
+  <string name="allowed_low_freq">Fase 1: Permitido frequência baixa </string>
   <string name="allowed_mid_low">Fase 2: Permitido baixo médio</string>
   <string name="allowed_mid_high">Fase 2: Permitido médio alto</string>
   <string name="allowed_mid_freq">Fase 2: Permitido frequência média</string>
@@ -333,10 +327,6 @@
   <string name="dt2w_summary">Acorda seu dispositivo com duplo toque no ecrã.</string>
   <string name="center">Centro</string>
   <string name="full">Completo</string>
-  <string name="bottom_half">Metade inferior</string>
-  <string name="top_half">Metade superior</string>
-  <string name="halfscreen">Metade do Ecrã</string>
-  <string name="fullscreen">Fullscreen</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Acorda seu dispositivo com um scroll no ecrã.</string>
   <string name="lenient">Sweep2Wake Leniency</string>
@@ -447,12 +437,7 @@
   <string name="wlan_wakelock_summary">Evite wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock divisor</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock divisor</string>
-  <string name="plugin_warning">Eu, o criador desta aplicação, não sou responsável por quaisquer danos que aplicações de terceiros produzem! Também não posso garantir para a funcionalidade deles. Por favor tenha com as aplicações que instalar!</string>
-  <string name="looking_plugins">À procura de plugins</string>
-  <string name="no_plugins">Nenhuns plugins encontrados</string>
   <string name="installed">Instalado</string>
-  <string name="update_available">Atualização disponível</string>
-  <string name="not_installed">Não Instalado</string>
   <string name="no_kernels">Nenhum kernel encontrado</string>
   <string name="logo">Logo</string>
   <string name="features">Funcionalidades</string>
@@ -502,7 +487,6 @@
   <string name="reboot_bootloader">Reinicie o Bootloader</string>
   <string name="reboot_download">Reiniciar o Download</string>
   <string name="confirm">Tem certeza?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Limpar dados</string>
   <string name="wipe_cache">Limpar Cache</string>

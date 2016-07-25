@@ -14,10 +14,6 @@
   <string name="password_wrong">Falsches Passwort</string>
   <string name="press_back_again">Drücken Sie \"Zurück\" noch einmal, um die App zu verlassen</string>
   <string name="more">Mehr</string>
-  <string name="thank_you">Vielen Dank!</string>
-  <string name="heavy_user_message">Anscheinend genießen Sie diese Anwendung sehr! Vielen Dank für die Verwendung!</string>
-  <string name="rate_app">Bewerten Sie die App</string>
-  <string name="donate">Spenden Sie an mich</string>
   <string name="select_file">Wähle %s?</string>
   <string name="no_files">Keine Dateien in diesem Pfad.</string>
   <string name="save">Speichern</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Virtueller Speicher</string>
   <string name="entropy">Entropie</string>
   <string name="misc_controls">Verschiedene Einstellungen</string>
-  <string name="plugins">Erweiterungen</string>
   <string name="backup">Sicherung</string>
   <string name="build_prop_editor">Build prop-Bearbeiter</string>
   <string name="profile">Profil</string>
@@ -175,7 +170,7 @@
   <string name="fast_lane_load">Beschleunigtes Laden</string>
   <string name="fast_lane_load_summary">Verbesserte Latenz indem alle CPU-Kerne eingeschaltet werden wenn die Belastung auf einem hoch genug ist.</string>
   <string name="fast_lane_min_freq">Fast Lane min. Frequenz</string>
-  <string name="fast_lane_min_freq_summary">Legt die minimale Frequenz fest, auf die die CPU zurückfällt, falls die Fast Lane ausgelastet ist.</string>
+  <string name="fast_lane_min_freq_summary">Legt die minimale Frequenz fest, auf die CPU zurückfällt, falls die Fast Lane ausgelastet ist.</string>
   <string name="offline_load">Offline laden</string>
   <string name="io_is_busy">IO ist ausgelastet</string>
   <string name="defer_time">Suspend Zeit verzögern</string>
@@ -192,7 +187,6 @@
   <string name="max_load_counter">Anzahl maximaler Auslastungen</string>
   <string name="min_time_cpu_online">Minimale Zeit, die eine CPU online ist</string>
   <string name="timer">Timer</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Ein Kernel-Ersatz für Qualcomms MPDecision. Entwickelt von showp1984.</string>
   <string name="screen_off_single_core">Bildschirm ausschalten bei einzelnem Kern</string>
@@ -343,10 +337,6 @@
   <string name="dt2w_summary">Wecken Sie Ihr Gerät durch doppeltes Antippen des Bildschirms auf.</string>
   <string name="center">Mittig</string>
   <string name="full">Vollständig</string>
-  <string name="bottom_half">Untere Hälfte</string>
-  <string name="top_half">Obere Hälfte</string>
-  <string name="halfscreen">Halber Bildschirm</string>
-  <string name="fullscreen">Vollbild</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Wecken Sie Ihr Gerät durch Wischen auf dem Bildschirm auf.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -439,13 +429,7 @@
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
-  <string name="plugin_warning">Ich, der Autor dieser Anwendung, bin nicht verantwortlich für Schäden, die Dritt-Anwendungen verursachen! Ich kann auch nicht für die Funktionalität von ihnen garantieren. Seien Sie bitte vorsichtig, welche Anwendungen Sie herunterladen!</string>
-  <string name="download_plugins">Erweiterungen herunterladen</string>
-  <string name="looking_plugins">Suche nach Erweiterungen</string>
-  <string name="no_plugins">Keine Erweiterungen gefunden</string>
   <string name="installed">Installiert</string>
-  <string name="update_available">Aktualisierungen verfügbar</string>
-  <string name="not_installed">Nicht installiert</string>
   <string name="no_kernels">Keine Kernels gefunden</string>
   <string name="logo">Logo</string>
   <string name="features">Features</string>
@@ -499,7 +483,6 @@
   <string name="reboot_bootloader">Bootloader</string>
   <string name="reboot_download">Download-Modus</string>
   <string name="confirm">Sind Sie sicher?</string>
-  <string name="cwm_recovery">CWM-Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Daten löschen</string>
   <string name="wipe_cache">Cache löschen</string>

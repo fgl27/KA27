@@ -14,10 +14,6 @@
   <string name="password_wrong">密碼錯誤</string>
   <string name="press_back_again">再次按返回鍵離開</string>
   <string name="more">更多</string>
-  <string name="thank_you">感謝您！</string>
-  <string name="heavy_user_message">看起來您真的很喜歡這個應用程式！感謝您的使用！</string>
-  <string name="rate_app">為此應用程式評分</string>
-  <string name="donate">捐款給作者</string>
   <string name="select_file">選擇 %s 嗎？</string>
   <string name="no_files">此路徑中沒有檔案</string>
   <string name="save">儲存</string>
@@ -26,7 +22,6 @@
   <string name="apply_on_boot_time">您的設定將在 %d 秒後套用</string>
   <string name="apply_on_boot_enabled">已啟用 %s 區塊開機後自動套用</string>
   <string name="apply_on_boot_disabled">已停用 %s 區塊開機後自動套用</string>
-  <string name="apply_on_boot_failed">開機後自動套用設定失敗</string>
   <string name="mhz">MHz</string>
   <string name="mv">mV</string>
   <string name="kb">kB</string>
@@ -57,7 +52,6 @@
   <string name="virtual_memory">虛擬記憶體</string>
   <string name="entropy">熵</string>
   <string name="misc_controls">其他控制項</string>
-  <string name="plugins">Plugins</string>
   <string name="backup">備份</string>
   <string name="build_prop_editor">Build prop 編輯器</string>
   <string name="profile">設定檔</string>
@@ -190,7 +184,6 @@
   <string name="max_load_counter">最大負載計數器</string>
   <string name="min_time_cpu_online">開啟 CPU 的最小時間</string>
   <string name="timer">計時器</string>
-  <string name="msm_mpdecision_hotplug">高通 MPDecision 熱插拔</string>
   <string name="bricked_hotplug">Bricked 熱插拔</string>
   <string name="mb_hotplug_summary">將高通的 MPDecision 更換為由 show-p1984 開發的內核</string>
   <string name="screen_off_single_core">單核心(螢幕關閉)</string>
@@ -318,16 +311,9 @@
   <string name="master_sequence">主序列</string>
   <string name="dt2w">雙擊螢幕喚醒</string>
   <string name="dt2w_summary">雙擊螢幕來喚醒您的裝置</string>
-  <string name="bottom_half">下半部</string>
-  <string name="top_half">上半部</string>
-  <string name="halfscreen">半螢幕</string>
-  <string name="fullscreen">全螢幕</string>
   <string name="s2w">滑動螢幕喚醒</string>
   <string name="s2w_summary">滑動螢幕來喚醒您的裝置</string>
   <string name="s2s">滑動睡眠</string>
-  <string name="s2s_right">滑動至右側</string>
-  <string name="s2s_left">滑動至左側</string>
-  <string name="s2s_any">滑動至左側或右側</string>
   <string name="t2w">觸碰喚醒</string>
   <string name="t2w_summary">觸碰螢幕來喚醒您的裝置</string>
   <string name="wake">喚醒</string>
@@ -399,13 +385,7 @@
   <string name="tcp">TCP 擁塞控制演算法</string>
   <string name="tcp_summary">擁塞控制是一種用來調整傳輸控制協議（TCP/IP）連接單次發送的分組數量的算法。它通過增減單次發送量逐步調整，使之逼近當前網絡的承載量。</string>
   <string name="hostname">主機名稱</string>
-  <string name="plugin_warning">作為此應用程式的作者，我對第三方程式造成的損害不負責任！我也不保證它們的功能。請注意你所下載的應用程式！</string>
-  <string name="download_plugins">下載 Plugins</string>
-  <string name="looking_plugins">尋找 Plugins</string>
-  <string name="no_plugins">沒有找到 Plugins</string>
   <string name="installed">已安裝</string>
-  <string name="update_available">有更新</string>
-  <string name="not_installed">未安裝</string>
   <string name="no_kernels">沒有找到核心</string>
   <string name="logo">Logo</string>
   <string name="features">功能</string>
@@ -456,7 +436,6 @@
   <string name="reboot_bootloader">重新開機進入 Bootloader</string>
   <string name="reboot_download">重啟下載</string>
   <string name="confirm">您確定嗎?</string>
-  <string name="cwm_recovery">CWM Recovery</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Wipe Data</string>
   <string name="wipe_cache">Wipe Cache</string>

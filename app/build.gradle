@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.bhb27.kerneladiutor"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 121
         versionName "0.9.9.4.+15"

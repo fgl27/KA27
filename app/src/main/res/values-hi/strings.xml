@@ -14,10 +14,6 @@
   <string name="password_wrong">पासवर्ड गलत है</string>
   <string name="press_back_again">जाने के लिए बैक दबाए</string>
   <string name="more">अतिरिक्त</string>
-  <string name="thank_you">धन्यवाद</string>
-  <string name="heavy_user_message">आप इस एप्लीकेशन का आनंद ले रहे है! इस लिए हम आपके आभारी है।</string>
-  <string name="rate_app">एप्लीकेशन को रेट करे</string>
-  <string name="donate">राशि दान करे</string>
   <string name="select_file">%s चुनें</string>
   <string name="no_files">इस पथ में कोई भी फाइल नहीं है।</string>
   <string name="save">सेव करें</string>
@@ -58,7 +54,6 @@
   <string name="virtual_memory">आभासी मेमोरी</string>
   <string name="entropy">एन्ट्रॉपी</string>
   <string name="misc_controls">विविध नियंत्रण</string>
-  <string name="plugins">प्लगिन्स</string>
   <string name="backup">बैकअप</string>
   <string name="build_prop_editor">सहारा संपादक का निर्माण</string>
   <string name="profile">प्रोफ़ाइल</string>
@@ -162,7 +157,6 @@
   <string name="max_load_counter">अधिकतम लोड काउंटर</string>
   <string name="min_time_cpu_online">न्यूनतम समय CPU ऑनलाइन</string>
   <string name="timer">टाइमर</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Qualcomm के MPDecision के लिए एक कर्नेल में प्रतिस्थापन। शो-p1984 द्वारा विकसित की है।</string>
   <string name="screen_off_single_core">एकल कोर बंद स्क्रीन</string>
@@ -235,9 +229,5 @@
   <string name="dt2w_summary">वेक अप आपका डिवाइस डबल स्क्रीन के दोहन के द्वारा।</string>
   <string name="center">मध्य</string>
   <string name="full">पूर्ण</string>
-  <string name="bottom_half">आधे नीचे</string>
-  <string name="top_half">ऊपरी आधे</string>
-  <string name="halfscreen">आधस्क्रीन</string>
-  <string name="fullscreen">पूर्ण स्क्रीन</string>
   <string name="feature_request">सुविधा अनुरोध</string>
 </resources>

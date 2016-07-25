@@ -14,10 +14,6 @@
   <string name="password_wrong">La password è sbagliata</string>
   <string name="press_back_again">Premi ancora indietro per uscire</string>
   <string name="more">Ulteriori</string>
-  <string name="thank_you">Grazie!</string>
-  <string name="heavy_user_message">Sembra che ti stia davvero godendo questa applicazione! Grazie per il suo utilizzo!</string>
-  <string name="rate_app">Vota l\'app</string>
-  <string name="donate">Donazioni</string>
   <string name="select_file">Seleziona %s?</string>
   <string name="no_files">Non ci sono file in questo percorso.</string>
   <string name="save">Salva</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Memoria virtuale</string>
   <string name="entropy">Entropia</string>
   <string name="misc_controls">Controlli vari</string>
-  <string name="plugins">Plugins</string>
   <string name="backup">Backup</string>
   <string name="build_prop_editor">Editor Build prop</string>
   <string name="profile">Profilo</string>
@@ -111,9 +106,9 @@
   <string name="input_boost_freq">Boost frequenza al tocco</string>
   <string name="input_boost_freq_core">Boost della frequenza al tocco %s</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
-  <string name="wakeup_boost">Accellerazione al risveglio</string>
+  <string name="wakeup_boost">Accelerazione al risveglio</string>
   <string name="wakeup_boost_summary">Il Boost di risveglio è simile al boot di input ma si verifica quando lo schermo viene acceso.</string>
-  <string name="hotplug_boost">Accellerazione dell\'hotplug</string>
+  <string name="hotplug_boost">Accelerazione dell\'hotplug</string>
   <string name="hotplug_boost_summary">Il boost hotplug è simile al boost di input ma si verifica quando le CPUs si attivano.</string>
   <string name="global_offset">Offset Generale</string>
   <string name="override_vmin">Eseguire l\'abbassamento alla minima tensione</string>
@@ -195,7 +190,6 @@
   <string name="max_load_counter">Contatore per carico massimo</string>
   <string name="min_time_cpu_online">Tempo minimo per CPU attive</string>
   <string name="timer">Timer</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
   <string name="bricked_hotplug">Bricked Hotplug</string>
   <string name="mb_hotplug_summary">Un\'alternativa all\'interno del kernel per l\'MPDecision di Qualcomm. Sviluppato da show-p1984.</string>
   <string name="screen_off_single_core">Schermo spento Single Core</string>
@@ -367,10 +361,6 @@
   <string name="dt2w_summary">Sveglia il dispositivo con doppio tap sullo schermo.</string>
   <string name="center">Centro</string>
   <string name="full">Completo</string>
-  <string name="bottom_half">Metà inferiore</string>
-  <string name="top_half">Metà superiore</string>
-  <string name="halfscreen">Metà schermo</string>
-  <string name="fullscreen">Schermo intero</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Sveglia il dispositivo scorrendo sullo schermo.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -484,13 +474,7 @@
   <string name="wlan_wakelock_summary">Prevenire Wakelock wlan</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
-  <string name="plugin_warning">Io, il creatore di questa applicazione, non sono responsabile per eventuali danni che producono applicazioni di terze parti! Inoltre non posso garantire per il loro corretto funzionamento. Fate attenzione alle applicazioni che scaricate!</string>
-  <string name="download_plugins">Download Plugins</string>
-  <string name="looking_plugins">Sto cercando i plugin</string>
-  <string name="no_plugins">Nessun plugin trovato</string>
   <string name="installed">Installato</string>
-  <string name="update_available">Aggiornamento disponibile</string>
-  <string name="not_installed">Non installato</string>
   <string name="no_kernels">Nessun kernel trovato</string>
   <string name="logo">Logo</string>
   <string name="features">Funzioni</string>
@@ -544,7 +528,6 @@
   <string name="reboot_bootloader">Riavvia in modalità Bootloader</string>
   <string name="reboot_download">Riavvia download</string>
   <string name="confirm">Continuare?</string>
-  <string name="cwm_recovery">Cwm recovery</string>
   <string name="twrp">Twrp</string>
   <string name="wipe_data">Cancella dati</string>
   <string name="wipe_cache">Cancella la cache</string>

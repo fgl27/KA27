@@ -14,10 +14,6 @@
   <string name="password_wrong">Неверный пароль</string>
   <string name="press_back_again">Нажмите Назад еще раз для выхода</string>
   <string name="more">Ещё</string>
-  <string name="thank_you">Спасибо!</string>
-  <string name="heavy_user_message">Похоже, Вам действительно нравится это приложение! Спасибо за то, что пользуетесь им!</string>
-  <string name="rate_app">Оценить приложение</string>
-  <string name="donate">Пожертвовать</string>
   <string name="select_file">Выбрать %s?</string>
   <string name="no_files">Файл не найден.</string>
   <string name="save">Сохранить</string>
@@ -57,7 +53,6 @@
   <string name="virtual_memory">Виртуальная память</string>
   <string name="entropy">Энтропия</string>
   <string name="misc_controls">Прочие элементы управления</string>
-  <string name="plugins">Плагины</string>
   <string name="backup">Резервная копия</string>
   <string name="build_prop_editor">Редактор Build prop</string>
   <string name="profile">Профиль</string>
@@ -197,7 +192,6 @@
   <string name="max_load_counter">Вычислитель максимальной нагрузки</string>
   <string name="min_time_cpu_online">Минимальное время работы CPU</string>
   <string name="timer">Таймер</string>
-  <string name="msm_mpdecision_hotplug">MSM MPDecision контроль</string>
   <string name="bricked_hotplug">Отладка кирпича</string>
   <string name="mb_hotplug_summary">Замена Qualcomms MPDecision.
 Разработано </string>
@@ -372,23 +366,12 @@
   <string name="dt2w_summary">Будит устройство двойным тапом по экрану.</string>
   <string name="center">В центре</string>
   <string name="full">Полный экран</string>
-  <string name="bottom_half">Нижняя половина</string>
-  <string name="top_half">Верхняя половина</string>
-  <string name="halfscreen">Половина экрана</string>
-  <string name="fullscreen">Полный экран</string>
   <string name="s2w">Жест для пробуждения</string>
   <string name="s2w_summary">Пробуждение свайпом по экрану.</string>
   <string name="lenient">Мягкость Sweep2Wake</string>
   <string name="lenient_summary">Требуется только 1 и 4 кнопка для запуска Sweep2Wake.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="s2w_right">Сдвинуть вправо, чтобы разблокировать</string>
-  <string name="s2w_left">Сдвинуть влево, чтобы разблокировать</string>
-  <string name="s2w_up">Сдвинуть вверх, чтобы разблокировать</string>
-  <string name="s2w_down">Сдвинуть вниз, чтобы разблокировать</string>
-  <string name="s2w_any">Сдвинуть в любую сторону, чтобы разблокировать</string>
-  <string name="s2s_right">Сдвинуть вправо</string>
-  <string name="s2s_left">Сдвинуть влево</string>
-  <string name="s2s_any">Сдвинуть влево или вправо</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Пробуждение устройства тапом по экрану.</string>
   <string name="wake">Пробуждение</string>
@@ -508,13 +491,7 @@
   <string name="wlan_wakelock_summary">Предотвратить wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Делитель wlan_rx Wakelock</string>
   <string name="msm_hsic_wakelock_divider">Делитель msm_hsic Wakelock</string>
-  <string name="plugin_warning">Я, создатель этого приложения, не несу ответственности за любой ущерб, который может нанести сторонняя продукция! Также я не гарантирую её полноценную функциональность. Пожалуйста, будьте осторожны с тем, что вы устанавливаете!</string>
-  <string name="download_plugins">Скачать плагины</string>
-  <string name="looking_plugins">Поиск плагинов</string>
-  <string name="no_plugins">Плагины не найдены</string>
   <string name="installed">Установка завершена</string>
-  <string name="update_available">Доступно обновление</string>
-  <string name="not_installed">Не установлено</string>
   <string name="no_kernels">Ядро не найдено</string>
   <string name="logo">Логотип</string>
   <string name="features">Особенности</string>
@@ -525,7 +502,6 @@
   <string name="google_plus">Google +</string>
   <string name="paypal">PayPal</string>
   <string name="download">Загрузка</string>
-  <string name="downloading_counting">Подсчёт загрузки</string>
   <string name="resume">Возобновить</string>
   <string name="checking_md5">Проверка MD5sum</string>
   <string name="md5_mismatch">Несоответствие MD5</string>
@@ -560,7 +536,6 @@
   <string name="no_settings">Параметры не найдены!</string>
   <string name="press_again_to_apply">Нажмите снова, чтобы применить.</string>
   <string name="applied">Применено</string>
-  <string name="applying_profile">Примененить профиль</string>
   <string name="replace_profile">Вы хотите заменить %s?</string>
   <string name="reboot">Перезагрузить</string>
   <string name="reboot_soft">Перезапуск интерфейса</string>
@@ -568,7 +543,6 @@
   <string name="reboot_bootloader">Восстановить загрузчик</string>
   <string name="reboot_download">Перезагрузить в режим загрузчика</string>
   <string name="confirm">Вы уверены?</string>
-  <string name="cwm_recovery">CWM рекавери</string>
   <string name="twrp">TWRP</string>
   <string name="wipe_data">Очистить раздел Data</string>
   <string name="wipe_cache">Стереть кэш</string>
