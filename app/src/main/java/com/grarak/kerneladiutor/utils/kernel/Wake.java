@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -314,6 +315,17 @@ public class Wake implements Constants {
 		Control.runCommand(String.valueOf(0), SW2, Control.CommandType.GENERIC, context);
 	    }
 	}
+    }
+    // fail safe in case DT2W is on but S2W is not
+    public static boolean ActiveS2W(Context context) {
+	Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
+	if (Utils.readFile(SW2).equals("15")) {
+            Log.w(TAG, "ActiveS2W S2W enabled via BootService true");
+	    return true;
+	} else {
+            Log.w(TAG, "ActiveS2W S2W enabled via BootService false");
+            return false;
+        }
     }
 
     public static boolean isS2wActive() {
