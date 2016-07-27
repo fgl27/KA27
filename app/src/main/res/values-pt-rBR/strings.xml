@@ -487,6 +487,9 @@
   <string name="battery_charging_mode_none">Carregador não conectado</string>
   <string name="battery_charging_mode_weak">Corrente de carga muito fraca.\nProvavelmente carregador e ou cabo com defeito.</string>
   <string name="battery_health">Estado da bateria</string>
+  <string name="battery_turbo_toast">Mensagem Toast Carregador Turbo</string>
+  <string name="battery_turbo_toast_summary">Mostra uma mesagem Toast se o Carregador Turbo da Motorola for conectado e reconhecido como Carregador Turbo</string>
+  <string name="chargerconnected_turbo_toast">   Carregador Turbo conectado   </string>
   <string name="usb_fast_charge">Carga rápida USB</string>
   <string name="usb_fast_charge_summary">O dispositivo irá carregar mais rápido quando conectado com USB. Reconecte o carregador ao alterar esta opção.</string>
   <string name="blx">Extensor de autonomia da bateria</string>
