@@ -656,12 +656,13 @@ public interface Constants {
     String[] BATTERY_ARRAY = {FORCE_FAST_CHARGE, BLX, CHARGE_RATE, C0STATE, C1STATE, C2STATE, C3STATE};
 
     // Extra Battery values for quark and maybe other Moto devices
+    String BATTERY_PARAMETERS = "/sys/class/power_supply/battery";
     // Battery charging current
-    String BATTERY_CHARGING_CURRENT = "/sys/devices/f9925000.i2c/i2c-0/0-001c/power_supply/battery/current_avg";
+    String BATTERY_CHARGING_CURRENT = BATTERY_PARAMETERS + "/current_avg";
     // Battery charging mode or rate type
-    String BATTERY_CHARGING_TYPE = "/sys/devices/f9925000.i2c/i2c-0/0-001c/power_supply/battery/charge_rate";
+    String BATTERY_CHARGING_TYPE = BATTERY_PARAMETERS + "/charge_rate";
     // Battery health
-    String BATTERY_HEALTH = "/sys/devices/f9925000.i2c/i2c-0/0-001c/power_supply/battery/health";
+    String BATTERY_HEALTH = BATTERY_PARAMETERS + "/health";
 
     // I/O
     String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
