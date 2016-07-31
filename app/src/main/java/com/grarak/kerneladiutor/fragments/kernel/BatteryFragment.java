@@ -61,11 +61,11 @@ public class BatteryFragment extends RecyclerViewFragment implements
         super.init(savedInstanceState);
 
         batteryLevelInit();
+	batteryHealthInit();
         batteryVoltageInit();
+	batteryChargingCurrentInit();
         batteryTemperatureInit();
         batteryChargingTypeInit();
-	batteryChargingCurrentInit();
-	batteryHealthInit();
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
