@@ -51,7 +51,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
 
     private SeekBarCardView.DSeekBarCard mBlxCard;
 
-    private SwitchCardView.DSwitchCard mCustomChargeRateEnableCard, mTurboToastCard;
+    private SwitchCardView.DSwitchCard mCustomChargeRateEnableCard;
     private SeekBarCardView.DSeekBarCard mChargingRateCard;
 
     private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
@@ -61,12 +61,11 @@ public class BatteryFragment extends RecyclerViewFragment implements
         super.init(savedInstanceState);
 
         batteryLevelInit();
-	batteryHealthInit();
         batteryVoltageInit();
-	batteryChargingCurrentInit();
         batteryTemperatureInit();
         batteryChargingTypeInit();
-
+	batteryChargingCurrentInit();
+	batteryHealthInit();
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
@@ -117,14 +116,6 @@ public class BatteryFragment extends RecyclerViewFragment implements
             mBatteryChargingTypeCard.setTitle(getString(R.string.battery_charging_mode));
 
             addView(mBatteryChargingTypeCard);
-
-        mTurboToastCard = new SwitchCardView.DSwitchCard();
-        mTurboToastCard.setTitle(getString(R.string.battery_turbo_toast));
-        mTurboToastCard.setDescription(getString(R.string.battery_turbo_toast_summary));
-        mTurboToastCard.setChecked(Battery.isTurboToastEnabled(getActivity()));
-        mTurboToastCard.setOnDSwitchCardListener(this);
-
-        addView(mTurboToastCard);
     }
 
     private void batteryHealthInit() {
@@ -270,10 +261,6 @@ public class BatteryFragment extends RecyclerViewFragment implements
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mForceFastChargeCard)
             Battery.activateForceFastCharge(checked, getActivity());
-        else if (dSwitchCard == mTurboToastCard) {
-            Battery.setTurboToastEnabled(checked, getActivity());
-	    view.invalidate();
-	}
         else if (dSwitchCard == mCustomChargeRateEnableCard)
             Battery.activateCustomChargeRate(checked, getActivity());
         else if (dSwitchCard == mC0StateCard)

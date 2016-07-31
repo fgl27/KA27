@@ -114,6 +114,7 @@ public class Battery implements Constants {
         }
     }
 
+
     public static boolean isC1StateActive() {
         return Utils.readFile(C1STATE).equals("1");
     }
@@ -128,6 +129,7 @@ public class Battery implements Constants {
             Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
         }
     }
+
 
     public static boolean isC2StateActive() {
         return Utils.readFile(C2STATE).equals("1");
@@ -150,18 +152,6 @@ public class Battery implements Constants {
 
     public static boolean hasC3State () {
         return Utils.existFile(C3STATE);
-    }
-
-    public static boolean isTurboToastEnabled(Context context) {
-        try {
-            return Utils.getBoolean("TurboToast", true, context);
-        } catch (NullPointerException err) {
-            return false;
-        }
-    }
-
-    public static void setTurboToastEnabled(boolean active, Context context) {
-        Utils.saveBoolean("TurboToast", active, context);
     }
 
 }

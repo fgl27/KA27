@@ -530,9 +530,6 @@
     <string name="battery_charging_mode_none">Charger not connected</string>
     <string name="battery_charging_mode_weak">Charge current very weak.\nProbably defective charger and/or cable.</string>
     <string name="battery_health">Battery Health</string>
-    <string name="battery_turbo_toast">Turbo Charger Toast</string>
-    <string name="battery_turbo_toast_summary">Display a toast message if Motorola Turbo Charger is connected and recognized by the system as the Turbo charger</string>
-    <string name="chargerconnected_turbo_toast">   Turbo Charger Connected   </string>
     <string name="usb_fast_charge">USB Fast Charge</string>
     <string name="usb_fast_charge_summary">Device will charge faster when connected with USB. Replug your charger when changing this option.</string>
     <string name="blx">Battery Life eXtender</string>
