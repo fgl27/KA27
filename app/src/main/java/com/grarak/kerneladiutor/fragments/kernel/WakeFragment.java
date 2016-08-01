@@ -300,6 +300,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 		Utils.toast(getString(R.string.dt2w_note), getContext(), Toast.LENGTH_LONG);
 	    }
 	    Wake.activateDt2w(checked, getActivity());
+	    view.invalidate();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -312,6 +313,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 		Utils.toast(getString(R.string.s2w_note), getContext(), Toast.LENGTH_LONG);
 	    }
 	    Wake.activateS2w(checked, getActivity());
+	    view.invalidate();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {

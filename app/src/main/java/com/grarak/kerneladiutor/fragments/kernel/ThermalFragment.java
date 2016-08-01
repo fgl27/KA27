@@ -498,6 +498,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         else if (dSwitchCard == mIntelliThermalEnableCard) {
 	    Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateIntelliThermal(checked, getActivity());
+	    view.invalidate();
 	    try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -508,6 +509,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         else if (dSwitchCard == mThermalEngineEnableCard) {
 	    Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateThermalengine(checked, getActivity());
+	    view.invalidate();
 	    try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {

@@ -313,6 +313,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSimpleGpuCard) {
 	    GPU.activateSimpleGpu(checked, getActivity());
+	    view.invalidate();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -322,6 +323,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 	}
         else if (dSwitchCard == mAdrenoIdlerCard) {
             GPU.activateAdrenoIdler(checked, getActivity());
+	    view.invalidate();
 	    try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -332,6 +334,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
         else if (dSwitchCard == mGamingModeGpuCard) GPU.activateGamingMode(checked, getActivity());
         else if (dSwitchCard == mSimpleOndemandScalingCard) {
             GPU.activateSimpleOndemandScaling(checked, getActivity());
+	    view.invalidate();
 	    try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
