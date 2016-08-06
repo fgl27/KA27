@@ -361,7 +361,8 @@ public class Utils implements Constants {
             applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
         else if (mClass == KSMFragment.class)
             applys.addAll(new ArrayList<>(Arrays.asList(KSM_ARRAY)));
-        else if (mClass == LMKFragment.class) applys.add(LMK_MINFREE);
+        else if (mClass == LMKFragment.class)
+            applys.addAll(new ArrayList<>(Arrays.asList(LMK_ARRAY)));
         else if (mClass == MiscFragment.class) for (String[] arrays : MISC_ARRAY)
              applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
         else if (mClass == ScreenFragment.class) for (String[] arrays : SCREEN_ARRAY)

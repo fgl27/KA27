@@ -703,6 +703,8 @@ public interface Constants {
     String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";
     String LMK_ADAPTIVE = "/sys/module/lowmemorykiller/parameters/enable_adaptive_lmk";
 
+    String[] LMK_ARRAY = {LMK_MINFREE, LMK_ADAPTIVE };
+
     // Virtual Memory
     String VM_PATH = "/proc/sys/vm";
     String VM_DIRTY_RATIO = VM_PATH + "/dirty_ratio";
@@ -727,7 +729,7 @@ public interface Constants {
     String[] VM_ARRAY = {ZRAM_BLOCK, ZRAM_DISKSIZE, ZRAM_RESET, VM_DIRTY_RATIO, VM_DIRTY_BACKGROUND_RATIO,
             VM_DIRTY_EXPIRE_CENTISECS, VM_DIRTY_WRITEBACK_CENTISECS, VM_MIN_FREE_KBYTES, VM_OVERCOMMIT_RATIO,
             VM_SWAPPINESS, VM_VFS_CACHE_PRESSURE, VM_LAPTOP_MODE, VM_EXTRA_FREE_KBYTES, VM_DYNAMIC_DIRTY_WRITEBACK,
-            VM_DIRTY_WRITEBACK_SUSPEND_CENTISECS,VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS, LMK_MINFREE, LMK_ADAPTIVE };
+            VM_DIRTY_WRITEBACK_SUSPEND_CENTISECS,VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS };
 
     // Entropy
     String PROC_RANDOM = "/proc/sys/kernel/random";
