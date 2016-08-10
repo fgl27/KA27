@@ -4,6 +4,8 @@ Mod version of original  [Grarak/KernelAdiutor](https://github.com/Grarak/Kernel
 
 ![Screenshot](https://raw.githubusercontent.com/bhb27/KA27/master/screenshots/screenshot.png)
 
+* [Download](https://www.androidfilehost.com/?w=files&flid=48767)
+
 * [XDA thread](http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526)
 
 * [Changelog](https://github.com/bhb27/KernelAdiutor/wiki/Changelog)
@@ -27,7 +29,7 @@ mention @baybutcher27 with the request/bug on the XDA thread [XDA thread](http:/
 * How to apply a new value
 * Make sure there are no similar feature requests already
 
-## Download & Build
+## Download/Clone & Build
 
 Clone the project and come in:
 
