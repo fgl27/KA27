@@ -586,6 +586,22 @@
     <string name="adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
 
     <!-- Virtual Memory -->
+    <string name="process_reclaim">Process Reclaim</string>
+    <string name="process_reclaim_summary">not used</string>
+    <string name="process_reclaim_enable">Process Reclaim</string>
+    <string name="process_reclaim_enable_summary">Anon pages of inactive tasks can be reclaimed, depending on memory pressure. Memory pressure is detected using VM pressure events.</string>
+    <string name="process_reclaim_pressure">Pressure (current)</string>
+    <string name="process_reclaim_avg_eff">Average Efficiency (current)</string>
+    <string name="process_reclaim_per_swap_size">Per Swap Size</string>
+    <string name="process_reclaim_per_swap_size_summary">The max number of pages tried to be reclaimed in a single run.</string>
+    <string name="process_reclaim_swap_eff_win">Time Period</string>
+    <string name="process_reclaim_swap_eff_win_summary">Scheduling process reclaim work-queue unnecessarily when the reclaim efficiency is low does not make sense. We try to detect a drop in efficiency and disable reclaim for a time period. This period and the period for which we monitor a drop in efficiency is defined by (Time Period VS Optimal Efficiency)</string>
+    <string name="process_reclaim_swap_opt_eff">Optimal Efficiency</string>
+    <string name="process_reclaim_swap_opt_eff_summary">Optimal efficiency values used as threshold by (Time Period)</string>
+    <string name="process_reclaim_pressure_max">Pressure Max</string>
+    <string name="process_reclaim_pressure_max_summary">Max Vm pressure value where process reclaim operates</string>
+    <string name="process_reclaim_pressure_min">Pressure Min</string>
+    <string name="process_reclaim_pressure_min_summary">Min Vm pressure value where process reclaim operates</string>
     <string name="zram">Z-RAM</string>
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>

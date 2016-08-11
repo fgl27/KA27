@@ -221,4 +221,101 @@ public class VM implements Constants {
         return Utils.stringToInt(Utils.readFile(VM_DIRTY_WRITEBACK_ACTIVE_CENTISECS));
     }
 
+    public static boolean hasProcessReclaim() {
+        if (Utils.existFile(PROCESS_RECLAIM_ENABLE)) return true;
+        return false;
+    }
+
+    public static void activateProcessReclaim(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", PROCESS_RECLAIM_ENABLE, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isProcessReclaimActive() {
+        return Utils.readFile(PROCESS_RECLAIM_ENABLE).equals("1");
+    }
+
+    // short things here PR = Process Reclaim
+    public static boolean hasPRPressure() {
+        if (Utils.existFile(PROCESS_RECLAIM_PRESSURE)) return true;
+        return false;
+    }
+
+    public static int getPRPressure() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_PRESSURE));
+    }
+
+    public static boolean hasPRAvgEff() {
+        if (Utils.existFile(PROCESS_RECLAIM_AVG_EFF)) return true;
+        return false;
+    }
+
+    public static int getPRAvgEff() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_AVG_EFF));
+    }
+
+    public static boolean hasPRSwapWin() {
+        if (Utils.existFile(PROCESS_RECLAIM_SWAP_WIN)) return true;
+        return false;
+    }
+
+    public static int getPRSwapWin() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_SWAP_WIN));
+    }
+
+    public static void setPRSwapWin(int value, Context context) {
+        Control.runCommand(String.valueOf(value), PROCESS_RECLAIM_SWAP_WIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean hasPRSwapOptEff() {
+        if (Utils.existFile(PROCESS_RECLAIM_SWAP_OPT_EFF)) return true;
+        return false;
+    }
+
+    public static int getPRSwapOptEff() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_SWAP_OPT_EFF));
+    }
+
+    public static void setPRSwapOptEff(int value, Context context) {
+        Control.runCommand(String.valueOf(value), PROCESS_RECLAIM_SWAP_OPT_EFF, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean hasPRPressureMax() {
+        if (Utils.existFile(PROCESS_RECLAIM_PRESSURE_MAX)) return true;
+        return false;
+    }
+
+    public static int getPRPressureMax() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_PRESSURE_MAX));
+    }
+
+    public static void setPRPressureMax(int value, Context context) {
+        Control.runCommand(String.valueOf(value), PROCESS_RECLAIM_PRESSURE_MAX, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean hasPRPressureMin() {
+        if (Utils.existFile(PROCESS_RECLAIM_PRESSURE_MIN)) return true;
+        return false;
+    }
+
+    public static int getPRPressureMin() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_PRESSURE_MIN));
+    }
+
+    public static void setPRPressureMin(int value, Context context) {
+        Control.runCommand(String.valueOf(value), PROCESS_RECLAIM_PRESSURE_MIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean hasPRPerSwapSize() {
+        if (Utils.existFile(PROCESS_RECLAIM_PER_SWAP_SIZE)) return true;
+        return false;
+    }
+
+    public static int getPRPerSwapSize() {
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_PER_SWAP_SIZE));
+    }
+
+    public static void setPRPerSwapSize(int value, Context context) {
+        Control.runCommand(String.valueOf(value), PROCESS_RECLAIM_PER_SWAP_SIZE, Control.CommandType.GENERIC, context);
+    }
+
 }

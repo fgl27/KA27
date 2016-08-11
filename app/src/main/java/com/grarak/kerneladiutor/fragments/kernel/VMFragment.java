@@ -20,8 +20,10 @@ import android.os.Bundle;
 import android.text.InputType;
 
 import com.grarak.kerneladiutor.R;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -36,17 +38,20 @@ import java.util.List;
 
 public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
+    private CardViewItem.DCardView mPRPressureCard, mPRAcgEffCard;
+
     private EditTextCardView.DEditTextCard mMinFreeKbytesCard, mExtraFreeKbytesCard;
 
-    private SeekBarCardView.DSeekBarCard mDirtyRatioCard, mDirtyBackgroundRatioCard, mDirtyExpireCard, mDirtyWritebackCard, mOverCommitRatioCard, mSwappinessCard, mVFSCachePressureCard, mZRAMDisksizeCard;
+    private SeekBarCardView.DSeekBarCard mPRPerSwapSizeCard, mPRSwapWinCard, mPRSwapOptEffCard, mPRPressureMaxCard, mPRPressureMinCard, mDirtyRatioCard, mDirtyBackgroundRatioCard, mDirtyExpireCard, mDirtyWritebackCard, mOverCommitRatioCard, mSwappinessCard, mVFSCachePressureCard, mZRAMDisksizeCard;
     private SeekBarCardView.DSeekBarCard mDirty_Writeback_SuspendCard, mDirty_Writeback_ActiveCard;
 
-    private SwitchCardView.DSwitchCard mLaptopModeCard, mDynamic_Dirty_WritebackCard;
+    private SwitchCardView.DSwitchCard mProcessReclaimCard, mLaptopModeCard, mDynamic_Dirty_WritebackCard;
 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
+	if (VM.hasProcessReclaim()) processreclaimInit();
         if (VM.hasDirtyRatio()) dirtyratioInit();
         if (VM.hasDirtyBackgroundRatio()) dirtybackgroundratioInit();
         if (VM.hasDirtyExpire()) dirtyexpireInit();
@@ -64,19 +69,131 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         if (VM.hasZRAM()) zramInit();
     }
 
+    private void processreclaimInit() {
+
+        DDivider mProcessReclaimDividerCard = new DDivider();
+        mProcessReclaimDividerCard.setText(getString(R.string.process_reclaim));
+        addView(mProcessReclaimDividerCard);
+
+        mProcessReclaimCard = new SwitchCardView.DSwitchCard();
+        mProcessReclaimCard.setTitle(getString(R.string.process_reclaim_enable));
+        mProcessReclaimCard.setDescription(getString(R.string.process_reclaim_enable_summary));
+        mProcessReclaimCard.setChecked(VM.isProcessReclaimActive());
+        mProcessReclaimCard.setOnDSwitchCardListener(this);
+
+        addView(mProcessReclaimCard);
+
+        if (VM.isProcessReclaimActive()) {
+	// short things here PR = Process Reclaim
+		if (VM.hasPRPressure()) {
+			int pressure = VM.getPRPressure();
+
+			mPRPressureCard = new CardViewItem.DCardView();
+			mPRPressureCard.setTitle(getString(R.string.process_reclaim_pressure));
+			mPRPressureCard.setDescription(String.valueOf(pressure));
+
+			addView(mPRPressureCard);
+		}
+		if (VM.hasPRAvgEff()) {
+			int avg = VM.getPRAvgEff();
+
+			mPRAcgEffCard = new CardViewItem.DCardView();
+			mPRAcgEffCard.setTitle(getString(R.string.process_reclaim_avg_eff));
+			mPRAcgEffCard.setDescription(String.valueOf(avg));
+
+			addView(mPRAcgEffCard);
+		}
+
+		if (VM.hasPRPerSwapSize()) {
+			List<String> list = new ArrayList<>();
+			for (int i = 1; i <= 10000; i++)
+				list.add(String.valueOf(i));
+
+			mPRPerSwapSizeCard = new SeekBarCardView.DSeekBarCard(list);
+			mPRPerSwapSizeCard.setTitle(getString(R.string.process_reclaim_per_swap_size));
+			mPRPerSwapSizeCard.setDescription(getString(R.string.process_reclaim_per_swap_size_summary));
+			mPRPerSwapSizeCard.setProgress((VM.getPRPerSwapSize()) - 1);
+			mPRPerSwapSizeCard.setOnDSeekBarCardListener(this);
+
+			addView(mPRPerSwapSizeCard);
+		}
+
+		if (VM.hasPRSwapWin()) {
+			List<String> list = new ArrayList<>();
+			for (int i = 1; i <= 10; i++)
+				list.add(String.valueOf(i));
+
+			mPRSwapWinCard = new SeekBarCardView.DSeekBarCard(list);
+			mPRSwapWinCard.setTitle(getString(R.string.process_reclaim_swap_eff_win));
+			mPRSwapWinCard.setDescription(getString(R.string.process_reclaim_swap_eff_win_summary));
+			mPRSwapWinCard.setProgress((VM.getPRSwapWin()) - 1);
+			mPRSwapWinCard.setOnDSeekBarCardListener(this);
+
+			addView(mPRSwapWinCard);
+		}
+
+		if (VM.hasPRSwapOptEff()) {
+			List<String> list = new ArrayList<>();
+			for (int i = 1; i <= 100; i++)
+				list.add(String.valueOf(i));
+
+			mPRSwapOptEffCard = new SeekBarCardView.DSeekBarCard(list);
+			mPRSwapOptEffCard.setTitle(getString(R.string.process_reclaim_swap_opt_eff));
+			mPRSwapOptEffCard.setDescription(getString(R.string.process_reclaim_swap_opt_eff_summary));
+			mPRSwapOptEffCard.setProgress((VM.getPRSwapOptEff()) - 1);
+			mPRSwapOptEffCard.setOnDSeekBarCardListener(this);
+
+			addView(mPRSwapOptEffCard);
+		}
+
+		if (VM.hasPRPressureMax()) {
+			List<String> list = new ArrayList<>();
+			for (int i = 1; i <= 100; i++)
+				list.add(String.valueOf(i));
+
+			mPRPressureMaxCard = new SeekBarCardView.DSeekBarCard(list);
+			mPRPressureMaxCard.setTitle(getString(R.string.process_reclaim_pressure_max));
+			mPRPressureMaxCard.setDescription(getString(R.string.process_reclaim_pressure_max_summary));
+			mPRPressureMaxCard.setProgress((VM.getPRPressureMax()) - 1);
+			mPRPressureMaxCard.setOnDSeekBarCardListener(this);
+
+			addView(mPRPressureMaxCard);
+		}
+
+		if (VM.hasPRPressureMin()) {
+			List<String> list = new ArrayList<>();
+			for (int i = 1; i <= 100; i++)
+				list.add(String.valueOf(i));
+
+			mPRPressureMinCard = new SeekBarCardView.DSeekBarCard(list);
+			mPRPressureMinCard.setTitle(getString(R.string.process_reclaim_pressure_min));
+			mPRPressureMinCard.setDescription(getString(R.string.process_reclaim_pressure_min_summary));
+			mPRPressureMinCard.setProgress((VM.getPRPressureMin()) - 1);
+			mPRPressureMinCard.setOnDSeekBarCardListener(this);
+
+			addView(mPRPressureMinCard);
+		}
+        }
+    }
+
     private void dirtyratioInit(){
-            List<String> list = new ArrayList<>();
-            list.add(getString(R.string.disabled));
-            for (int i = 1; i <= 100; i++)
+
+        DDivider mVMDividerCard = new DDivider();
+        mVMDividerCard.setText(getString(R.string.virtual_memory));
+        addView(mVMDividerCard);
+
+        List<String> list = new ArrayList<>();
+        list.add(getString(R.string.disabled));
+        for (int i = 1; i <= 100; i++)
                 list.add(i + getString(R.string.percent));
 
-            mDirtyRatioCard = new SeekBarCardView.DSeekBarCard(list);
-            mDirtyRatioCard.setTitle(getString(R.string.dirty_ratio));
-            mDirtyRatioCard.setDescription(getString(R.string.dirty_ratio_summary));
-            mDirtyRatioCard.setProgress(VM.getDirtyRatio());
-            mDirtyRatioCard.setOnDSeekBarCardListener(this);
+        mDirtyRatioCard = new SeekBarCardView.DSeekBarCard(list);
+        mDirtyRatioCard.setTitle(getString(R.string.dirty_ratio));
+        mDirtyRatioCard.setDescription(getString(R.string.dirty_ratio_summary));
+        mDirtyRatioCard.setProgress(VM.getDirtyRatio());
+        mDirtyRatioCard.setOnDSeekBarCardListener(this);
 
-            addView(mDirtyRatioCard);
+        addView(mDirtyRatioCard);
     }
     private void dirtybackgroundratioInit() {
         List<String> list = new ArrayList<>();
@@ -282,7 +399,12 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mDirtyRatioCard) VM.setDirtyRatio(position, getActivity());
+        if (dSeekBarCard == mPRPerSwapSizeCard) VM.setPRPerSwapSize(position + 1, getActivity());
+        else if (dSeekBarCard == mPRSwapWinCard) VM.setPRSwapWin(position + 1, getActivity());
+        else if (dSeekBarCard == mPRSwapOptEffCard) VM.setPRSwapOptEff(position + 1, getActivity());
+	else if (dSeekBarCard == mPRPressureMaxCard) VM.setPRPressureMax(position + 1, getActivity());
+	else if (dSeekBarCard == mPRPressureMinCard) VM.setPRPressureMin(position + 1, getActivity());
+        else if (dSeekBarCard == mDirtyRatioCard) VM.setDirtyRatio(position, getActivity());
         else if (dSeekBarCard == mDirtyBackgroundRatioCard) VM.setDirtyBackgroundRatio(position, getActivity());
         else if (dSeekBarCard == mDirtyExpireCard) VM.setDirtyExpire((position + 1) * 10, getActivity());
         else if (dSeekBarCard == mDirtyWritebackCard) VM.setDirtyWriteback(position + 1, getActivity());
@@ -296,7 +418,17 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mLaptopModeCard)
+        if (dSwitchCard == mProcessReclaimCard) {
+            VM.activateProcessReclaim(checked, getActivity());
+	    view.invalidate();
+	    try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+        else if (dSwitchCard == mLaptopModeCard)
             VM.activateLaptopMode(checked, getActivity());
         else if (dSwitchCard == mDynamic_Dirty_WritebackCard) {
             VM.activateDynamicDirtyWriteback(checked, getActivity());
@@ -308,5 +440,16 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
             }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         }
+    }
+
+    @Override
+    public boolean onRefresh() {
+	int pressure = VM.getPRPressure();
+        int avg = VM.getPRAvgEff();
+
+        if (mPRPressureCard != null) mPRPressureCard.setDescription(String.valueOf(pressure));
+        if (mPRAcgEffCard != null) mPRAcgEffCard.setDescription(String.valueOf(avg));
+        
+        return true;
     }
 }
