@@ -590,8 +590,8 @@
     <string name="process_reclaim_summary">not used</string>
     <string name="process_reclaim_enable">Process Reclaim</string>
     <string name="process_reclaim_enable_summary">Anon pages of inactive tasks can be reclaimed, depending on memory pressure. Memory pressure is detected using VM pressure events.</string>
-    <string name="process_reclaim_pressure">Pressure (current)</string>
-    <string name="process_reclaim_avg_eff">Average Efficiency (current)</string>
+    <string name="process_reclaim_pressure">Pressure (Last registered state)</string>
+    <string name="process_reclaim_avg_eff">Average Efficiency (Last registered state)</string>
     <string name="process_reclaim_per_swap_size">Per Swap Size</string>
     <string name="process_reclaim_per_swap_size_summary">The max number of pages tried to be reclaimed in a single run.</string>
     <string name="process_reclaim_swap_eff_win">Time Period</string>
