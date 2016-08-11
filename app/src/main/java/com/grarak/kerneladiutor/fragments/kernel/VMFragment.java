@@ -105,13 +105,13 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
 
 		if (VM.hasPRPerSwapSize()) {
 			List<String> list = new ArrayList<>();
-			for (int i = 64; i <= 8192; i*=2)
+			for (int i = 1; i <= 10000; i++)
 				list.add(String.valueOf(i));
 
 			mPRPerSwapSizeCard = new SeekBarCardView.DSeekBarCard(list);
 			mPRPerSwapSizeCard.setTitle(getString(R.string.process_reclaim_per_swap_size));
 			mPRPerSwapSizeCard.setDescription(getString(R.string.process_reclaim_per_swap_size_summary));
-			mPRPerSwapSizeCard.setProgress(VM.getPRPerSwapSize());
+			mPRPerSwapSizeCard.setProgress((VM.getPRPerSwapSize()) - 1);
 			mPRPerSwapSizeCard.setOnDSeekBarCardListener(this);
 
 			addView(mPRPerSwapSizeCard);
@@ -398,7 +398,7 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-        if (dSeekBarCard == mPRPerSwapSizeCard) VM.setPRPerSwapSize(position, getActivity());
+        if (dSeekBarCard == mPRPerSwapSizeCard) VM.setPRPerSwapSize(position + 1, getActivity());
         else if (dSeekBarCard == mPRSwapWinCard) VM.setPRSwapWin(position + 1, getActivity());
         else if (dSeekBarCard == mPRSwapOptEffCard) VM.setPRSwapOptEff(position + 1, getActivity());
 	else if (dSeekBarCard == mPRPressureMaxCard) VM.setPRPressureMax(position + 1, getActivity());

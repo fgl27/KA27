@@ -311,18 +311,11 @@ public class VM implements Constants {
     }
 
     public static int getPRPerSwapSize() {
-	int cont_get = 0;
-	int PerSwapSize = Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_PER_SWAP_SIZE));
-	for (int i = 64; i < PerSwapSize; i*= 2)
-		cont_get++;
-        return (cont_get);
+        return Utils.stringToInt(Utils.readFile(PROCESS_RECLAIM_PER_SWAP_SIZE));
     }
 
     public static void setPRPerSwapSize(int value, Context context) {
-	int cont_set = 64;
-	for (int i = 1; i <= value; i++)
-		cont_set*=2;
-        Control.runCommand(String.valueOf(cont_set), PROCESS_RECLAIM_PER_SWAP_SIZE, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), PROCESS_RECLAIM_PER_SWAP_SIZE, Control.CommandType.GENERIC, context);
     }
 
 }
