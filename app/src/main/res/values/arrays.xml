@@ -40,6 +40,8 @@
         <item>@string/empty_app</item>
     </string-array>
     <string-array name="lmk_profiles">
+        <item>@string/bhb27_recommended</item>
+        <item>@string/moto_default</item>
         <item>@string/very_light</item>
         <item>@string/light</item>
         <item>@string/medium</item>

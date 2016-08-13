@@ -572,18 +572,28 @@
     <string name="uksm_cpu_use_summary">Max CPU percentage for UKSM to use when merging pages</string>
 
     <!-- Low Memory Killer -->
+    <string name="lmk_minfree">LMK Min free</string>
     <string name="foreground_app">Foreground Applications</string>
     <string name="visible_app">Visible Applications</string>
     <string name="secondary_server">Secondary Server</string>
     <string name="hidden_app">Hidden Applications</string>
     <string name="content_providers">Content Providers</string>
     <string name="empty_app">Empty Applications</string>
+    <string name="bhb27_recommended">BHB27 Recommended</string>
+    <string name="moto_default">Moto Default</string>
     <string name="very_light">Very light</string>
     <string name="light">Light</string>
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
+    <string name="vmpressure_file_min">VM File Min</string>
+    <string name="vmpressure_file_min_summary">This parameter controls the behavior of LMK when VM pressure is in the range of 90-94 (is a pseudo minfree value, higher than the highest configured value in minfree LMK values)</string>
     <string name="adaptive">Adaptive Low Memory Killer</string>
     <string name="adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
+    <string name="values_in_mb">(values in MB)</string>
+    <string name="lmk_profiles_original">Profiles (General use)</string>
+    <string name="lmk_bhb_profiles">BHB27 Profiles</string>
+    <string name="lmk_profiles">LMK Profiles</string>
+    <string name="lmk_profiles_summary">Click on one of the Profile below to set its values to LMK Min Free parameters.\n\nValues will be set according this order:\nA,B,C,D,E,F,G\nWere:\nA = Foreground Applications\nB = Visible Applications\nC = Secondary Server\nD = Hidden Applications\nE = Content Provider\nF = Empty Applications\nG = VM Pressure Min\n\n*G VM Pressure Min, only available in BHB27 Kernel</string>
 
     <!-- Virtual Memory -->
     <string name="process_reclaim">Process Reclaim</string>

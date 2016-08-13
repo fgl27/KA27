@@ -56,4 +56,16 @@ public class LMK implements Constants {
     public static boolean getAdaptive() {
         return Utils.readFile(LMK_ADAPTIVE).equals("1");
     }
+
+    public static boolean hasVmPressureFileMin() {
+        return Utils.existFile(LMK_VMPRESSURE_FILE_MIN);
+    }
+
+    public static void setVmPressureFileMin(int value, Context context) {
+        Control.runCommand(String.valueOf(value), LMK_VMPRESSURE_FILE_MIN, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getVmPressureFileMin() {
+        return Utils.stringToInt(Utils.readFile(LMK_VMPRESSURE_FILE_MIN));
+    }
 }

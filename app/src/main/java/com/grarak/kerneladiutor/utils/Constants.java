@@ -702,8 +702,9 @@ public interface Constants {
     // Low Memory Killer
     String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";
     String LMK_ADAPTIVE = "/sys/module/lowmemorykiller/parameters/enable_adaptive_lmk";
+    String LMK_VMPRESSURE_FILE_MIN = "/sys/module/lowmemorykiller/parameters/vmpressure_file_min";
 
-    String[] LMK_ARRAY = {LMK_MINFREE, LMK_ADAPTIVE };
+    String[] LMK_ARRAY = {LMK_MINFREE, LMK_ADAPTIVE, LMK_VMPRESSURE_FILE_MIN };
 
     // Virtual Memory
     String VM_PATH = "/proc/sys/vm";
