@@ -549,7 +549,7 @@ public class CPU implements Constants {
     public static float[] getCpuUsage() {
         try {
             Usage[] usage1 = getUsages();
-            Thread.sleep(1000);
+            Thread.sleep(500);
             Usage[] usage2 = getUsages();
 
             if (usage1 != null && usage2 != null) {
@@ -569,7 +569,7 @@ public class CPU implements Constants {
                         }
                     }
 
-                    pers[i] = cpu > -1 ? cpu : 0;
+                    pers[i] = cpu < 0 ? 0 : cpu > 100 ? 100 : cpu;
                 }
                 return pers;
             }
