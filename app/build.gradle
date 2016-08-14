@@ -8,8 +8,8 @@ android {
         applicationId "com.bhb27.kerneladiutor"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 21
-        versionName "0.9.9.4.+18"
+        versionCode 22
+        versionName "0.9.9.4.+19"
     }
     buildTypes {
         release {
