@@ -142,7 +142,6 @@ public class SettingsFragment extends RecyclerViewFragment {
         }
 
         final List<String> list = new ArrayList<>();
-        list.add(0 + getString(R.string.sec));
         for (int i = 5; i < 421; i *= 2)
             list.add(i + getString(R.string.sec));
 
