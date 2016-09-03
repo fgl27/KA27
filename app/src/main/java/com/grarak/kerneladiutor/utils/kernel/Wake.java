@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -316,7 +317,7 @@ public class Wake implements Constants {
     public static int getS2wValue() {
         int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
         if (val == 0) return 0;
-        return 1;
+	else return 1;
     }
 
     public static List < String > getS2wMenu(Context context) {
@@ -330,13 +331,25 @@ public class Wake implements Constants {
 
     public static boolean hasS2w() {
         if (S2W_FILE == null)
-            for (String file: S2W_ARRY)
+            for (String file: S2W_ARRAY)
                 if (Utils.existFile(file)) {
                     S2W_FILE = file;
                     break;
                 }
         return S2W_FILE != null;
     }
+
+    public static boolean ActiveS2W(Context context) {
+	Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
+	if (Utils.readFile(SW2).equals("15")) {
+            Log.w(TAG, "ActiveS2W S2W enabled via BootService true");
+	    return true;
+	} else {
+            Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
+            Log.w(TAG, "ActiveS2W S2W enabled via BootService false");
+            return false;
+        }
+     }
 
     public static void activateLenient(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", LENIENT, Control.CommandType.GENERIC, context);
