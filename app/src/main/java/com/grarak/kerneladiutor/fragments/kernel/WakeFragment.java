@@ -275,27 +275,27 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mDt2wCard) {
-            Wake.setDt2w(position, getActivity());
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-            if (Wake.getDt2wValue() == 1) {
+            if (Wake.getDt2wValue() == 0) {
                 Utils.toast(getString(R.string.dt2w_note), getContext(), Toast.LENGTH_LONG);
             }
-        } else if (dPopupCard == mS2wCard) {
-            Wake.setS2w(position, getActivity());
+            Wake.setDt2w(position, getActivity());
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        } else if (dPopupCard == mS2wCard) {
             if (Wake.getDt2wValue() == 1) {
                 Utils.toast(getString(R.string.s2w_note), getContext(), Toast.LENGTH_LONG);
             }
+            Wake.setS2w(position, getActivity());
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         } else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
         else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
         else if (dPopupCard == mDt2sCard) Wake.setDt2s(position, getActivity());
