@@ -826,7 +826,7 @@ public interface Constants {
     String[] LOGGER_ARRAY = {LOGGER_MODE, LOGGER_ENABLED, LOGGER_LOG_ENABLED, LOGD, "start", "stop"};
 
     // BCL
-    String[] BCL_ARRAY = {"/sys/devices/qcom,bcl.38/mode","/sys/devices/qcom,bcl.39/mode", "/sys/devices/soc.0/qcom,bcl.60/mode" };
+    String[] BCL_ARRAY = {"/sys/devices/qcom,bcl.36/mode", "/sys/devices/qcom,bcl.37/mode", "/sys/devices/qcom,bcl.38/mode","/sys/devices/qcom,bcl.39/mode", "/sys/devices/qcom,bcl.40/mode", "/sys/devices/soc.0/qcom,bcl.60/mode" };
     String BCL_HOTPLUG = "/sys/module/battery_current_limit/parameters/bcl_hotplug_enable";
 
     // CRC
