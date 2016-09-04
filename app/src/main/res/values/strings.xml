@@ -453,13 +453,11 @@
     <string name="vib_strength_summary">This value is specific to wake gestures and independent of the normal vibration strength. It is purely for the kernel driver. Gestures controlled by third party apps will not use this value.</string>
     <string name="dt2w">DT2W (DoubleTap2Wake)</string>
     <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
-    <string name="dt2w_note">! DT2W when enabled will enabled S2W\n\nThis is necessary to make DT2W to work</string>
     <string name="center">Center</string>
     <string name="full">Full</string>
     <string name="s2w_title">S2W (Sweep2Wake)</string>
     <string name="s2w">Enabled</string>
     <string name="s2w_summary">Wake up your device by swiping on the screen to any direction.</string>
-    <string name="s2w_note">! To disable S2W first disable DT2W</string>
     <string name="lenient">Sweep2Wake Leniency</string>
     <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
     <string name="s2s">S2S (Sweep2Sleep)</string>
@@ -484,7 +482,7 @@
     <string name="draw_c">Draw C</string>
     <string name="draw_m">Draw M</string>
     <string name="camera_gesture">Camera Gesture</string>
-    <string name="camera_gesture_summary">Launch default camera by drawing a circle on the screen.</string>
+    <string name="camera_gesture_summary">Launch default camera by drawing a circle on the screen.\nS2W when enabled can make this featuring harder to use.</string>
     <string name="pocket_mode">Pocket Mode</string>
     <string name="pocket_mode_summary">Enabling this will turn off wake controls when device in pocket.</string>
     <string name="wake_timeout">Wake Timeout</string>

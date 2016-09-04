@@ -148,7 +148,18 @@ public class Wake implements Constants {
     }
 
     public static void activateCameraGesture(boolean active, Context context) {
-        Control.runCommand(active ? "1" : "0", CAMERA_GESTURE, Control.CommandType.GENERIC, context);
+        if (active) {
+            Control.runCommand(String.valueOf(1), CAMERA_GESTURE, Control.CommandType.GENERIC, context);
+            if (Utils.readFile(SW2).equals("0") && !isS2wActive()) {
+		Control.runCommand(String.valueOf(1), SW2, Control.CommandType.GENERIC, context);
+	    }
+        }
+        else {
+            Control.runCommand(String.valueOf(0), CAMERA_GESTURE, Control.CommandType.GENERIC, context);
+            if (Utils.readFile(SW2).equals("1") && !isDt2wActive()) {
+		Control.runCommand(String.valueOf(0), SW2, Control.CommandType.GENERIC, context);
+	    }
+        }
     }
 
     public static boolean isCameraGestureActive() {
@@ -311,9 +322,10 @@ public class Wake implements Constants {
 		Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
 	}
 	else {
-            if (Utils.readFile(DT2W).equals("0")) {
+            if (isDt2wActive() || isCameraGestureActive())
+		Control.runCommand(String.valueOf(1), SW2, Control.CommandType.GENERIC, context);
+	    if (!isDt2wActive() && !isCameraGestureActive())
 		Control.runCommand(String.valueOf(0), SW2, Control.CommandType.GENERIC, context);
-	    }
 	}
     }
     // fail safe in case DT2W is on but S2W is not
@@ -336,6 +348,14 @@ public class Wake implements Constants {
         return Utils.existFile(SW2);
      }
 
+    // fail safe in case DT2W || Camera Gesture is on but S2W is not
+    public static boolean isS2wActive_1() {
+	if (Utils.readFile(SW2).equals("15") || Utils.readFile(SW2).equals("1"))
+            return true;
+	else
+            return false;
+    }
+
     public static void activateLenient(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", LENIENT, Control.CommandType.GENERIC, context);
     }
@@ -351,12 +371,15 @@ public class Wake implements Constants {
     public static void activateDt2w(boolean active, Context context) {
         if (active) {
             Control.runCommand(String.valueOf(1), DT2W, Control.CommandType.GENERIC, context);
-            if (Utils.readFile(SW2).equals("0")) {
-		Control.runCommand(String.valueOf(15), SW2, Control.CommandType.GENERIC, context);
+            if (Utils.readFile(SW2).equals("0") && !isS2wActive()) {
+		Control.runCommand(String.valueOf(1), SW2, Control.CommandType.GENERIC, context);
 	    }
         }
         else {
             Control.runCommand(String.valueOf(0), DT2W, Control.CommandType.GENERIC, context);
+            if (Utils.readFile(SW2).equals("1") && !isCameraGestureActive()) {
+		Control.runCommand(String.valueOf(0), SW2, Control.CommandType.GENERIC, context);
+	    }
         }
     }
 

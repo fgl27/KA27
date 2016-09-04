@@ -556,7 +556,7 @@ public interface Constants {
     String SW2 = "/sys/android_touch/sweep2wake";
     String SW2_2 = "/sys/android_touch2/sweep2wake";
 
-    String[] S2W_ARRY = {S2W_ONLY, SW2, SW2_2};
+    String[] S2W_ARRAY = {S2W_ONLY, SW2, SW2_2};
 
     // S2W Leniency
     String LENIENT = "/sys/android_touch/sweep2wake_sensitive";
@@ -612,7 +612,7 @@ public interface Constants {
     String WAKE_DT2W_FEATHERY = "/sys/android_touch/dt2w_feather_y";
 
 
-    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY,  WAKE_TIMEOUT_ARRAY, DT2S_ARRAY,
+    String[][] WAKE_ARRAY = {DT2W_ARRAY, S2W_ARRAY, T2W_ARRAY, WAKE_MISC_ARRAY, SLEEP_MISC_ARRAY,  WAKE_TIMEOUT_ARRAY, DT2S_ARRAY,
             {LENIENT, GESTURE_CRTL, CAMERA_GESTURE, POCKET_MODE, POWER_KEY_SUSPEND, WAKE_DT2W_TIMEBETWEENTAPS, WAKE_DT2W_FEATHERX,
                     WAKE_DT2W_FEATHERY, WAKE_VIB_STRENGTH, WAKE_ST2W_TIME }};
 

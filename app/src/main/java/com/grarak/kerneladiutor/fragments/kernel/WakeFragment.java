@@ -295,32 +295,10 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mDt2wCard) {
-            if (!Wake.isDt2wActive()) {
-		Utils.toast(getString(R.string.dt2w_note), getContext(), Toast.LENGTH_LONG);
-	    }
-	    Wake.activateDt2w(checked, getActivity());
-	    view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-	}
-        else if (dSwitchCard == mS2wCard) {
-            if (Wake.isDt2wActive()) {
-		Utils.toast(getString(R.string.s2w_note), getContext(), Toast.LENGTH_LONG);
-	    }
-	    Wake.activateS2w(checked, getActivity());
-	    view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-	}
+        if (dSwitchCard == mDt2wCard)
+            Wake.activateDt2w(checked, getActivity());
+        else if (dSwitchCard == mS2wCard)
+            Wake.activateS2w(checked, getActivity());
         else if (dSwitchCard == mSleepMiscCard)
             Wake.activateSleepMisc(checked, getActivity());
         else if (dSwitchCard == mLenientCard)
