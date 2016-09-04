@@ -142,18 +142,18 @@ public class SettingsFragment extends RecyclerViewFragment {
         }
 
         final List<String> list = new ArrayList<>();
-        list.add(0 + getString(R.string.sec));
+        list.add(0 + " " + getString(R.string.sec));
         for (int i = 5; i < 421; i *= 2)
-            list.add(i + getString(R.string.sec));
+            list.add(i + " " + getString(R.string.sec));
 
         PopupCardView.DPopupCard mApplyonbootDelayCard = new PopupCardView.DPopupCard(list);
         mApplyonbootDelayCard.setDescription(getString(R.string.delay));
-        mApplyonbootDelayCard.setItem(Utils.getInt("applyonbootdelay", 5, getActivity()) + getString(R.string.sec));
+        mApplyonbootDelayCard.setItem(Utils.getInt("applyonbootdelay", 0, getActivity()) + " " + getString(R.string.sec));
         mApplyonbootDelayCard.setOnDPopupCardListener(new PopupCardView.DPopupCard.OnDPopupCardListener() {
             @Override
             public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
                 Utils.saveInt("applyonbootdelay", Utils.stringToInt(list.get(position)
-                        .replace(getString(R.string.sec), "")), getActivity());
+                        .replace(" " + getString(R.string.sec), "")), getActivity());
             }
         });
 
