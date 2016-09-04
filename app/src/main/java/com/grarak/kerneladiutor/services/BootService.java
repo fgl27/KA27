@@ -49,6 +49,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
+import com.grarak.kerneladiutor.utils.kernel.Wake;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
@@ -192,6 +193,10 @@ public class BootService extends Service {
             log("run: " + command);
             su.runCommand(command);
         }
+	// fail safe in case DT2W is on but S2W is not
+	if ((Wake.isDt2wActive()) && (!Wake.isS2wActive())) {
+	    Wake.ActiveS2W(this);
+	}
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
     }

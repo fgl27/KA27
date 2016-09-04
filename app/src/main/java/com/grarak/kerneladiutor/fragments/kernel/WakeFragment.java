@@ -38,8 +38,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
         SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
-    private PopupCardView.DPopupCard mDt2wCard;
-    private PopupCardView.DPopupCard mS2wCard;
+    private SwitchCardView.DSwitchCard mDt2wCard;
+    private SwitchCardView.DSwitchCard mS2wCard;
     private SwitchCardView.DSwitchCard mLenientCard;
     private PopupCardView.DPopupCard mT2wCard;
     private PopupCardView.DPopupCard mWakeMiscCard;
@@ -90,21 +90,21 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void dt2wInit() {
-        mDt2wCard = new PopupCardView.DPopupCard(Wake.getDt2wMenu(getActivity()));
+        mDt2wCard = new SwitchCardView.DSwitchCard();
         mDt2wCard.setTitle(getString(R.string.dt2w));
         mDt2wCard.setDescription(getString(R.string.dt2w_summary));
-        mDt2wCard.setItem(Wake.getDt2wValue());
-        mDt2wCard.setOnDPopupCardListener(this);
+        mDt2wCard.setChecked(Wake.isDt2wActive());
+        mDt2wCard.setOnDSwitchCardListener(this);
 
         addView(mDt2wCard);
     }
 
     private void s2wInit() {
-        mS2wCard = new PopupCardView.DPopupCard(Wake.getS2wMenu(getActivity()));
+        mS2wCard = new SwitchCardView.DSwitchCard();
         mS2wCard.setTitle(getString(R.string.s2w_title));
         mS2wCard.setDescription(getString(R.string.s2w_summary));
-        mS2wCard.setItem(Wake.getS2wValue());
-        mS2wCard.setOnDPopupCardListener(this);
+        mS2wCard.setChecked(Wake.isS2wActive());
+        mS2wCard.setOnDSwitchCardListener(this);
 
         addView(mS2wCard);
     }
@@ -274,29 +274,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-        if (dPopupCard == mDt2wCard) {
-            if (Wake.getDt2wValue() == 0) {
-                Utils.toast(getString(R.string.dt2w_note), getContext(), Toast.LENGTH_LONG);
-            }
-            Wake.setDt2w(position, getActivity());
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-        } else if (dPopupCard == mS2wCard) {
-            if (Wake.getDt2wValue() == 1) {
-                Utils.toast(getString(R.string.s2w_note), getContext(), Toast.LENGTH_LONG);
-            }
-            Wake.setS2w(position, getActivity());
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-        } else if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
+	if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
         else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
         else if (dPopupCard == mDt2sCard) Wake.setDt2s(position, getActivity());
     }
@@ -317,7 +295,33 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mSleepMiscCard)
+        if (dSwitchCard == mDt2wCard) {
+            if (!Wake.isDt2wActive()) {
+		Utils.toast(getString(R.string.dt2w_note), getContext(), Toast.LENGTH_LONG);
+	    }
+	    Wake.activateDt2w(checked, getActivity());
+	    view.invalidate();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+        else if (dSwitchCard == mS2wCard) {
+            if (Wake.isDt2wActive()) {
+		Utils.toast(getString(R.string.s2w_note), getContext(), Toast.LENGTH_LONG);
+	    }
+	    Wake.activateS2w(checked, getActivity());
+	    view.invalidate();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+	}
+        else if (dSwitchCard == mSleepMiscCard)
             Wake.activateSleepMisc(checked, getActivity());
         else if (dSwitchCard == mLenientCard)
             Wake.activateLenient(checked, getActivity());
