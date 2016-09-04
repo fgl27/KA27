@@ -193,15 +193,6 @@ public class BootService extends Service {
             log("run: " + command);
             su.runCommand(command);
         }
-	// fail safe in case DT2W || Camera Gesture is on but S2W is not
-	try {
-                Thread.sleep(250);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-	if ((Wake.isDt2wActive() || Wake.isCameraGestureActive()) && (!Wake.isS2wActive_1()))
-	    Wake.ActiveS2W(this);
-	else Log.w(Constants.TAG, "BootService DT2W || Camera gesture and S2W enabled ok");
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
     }

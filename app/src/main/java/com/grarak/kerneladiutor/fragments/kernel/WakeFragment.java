@@ -39,11 +39,11 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private SwitchCardView.DSwitchCard mDt2wCard;
-    private SwitchCardView.DSwitchCard mS2wCard;
+    private PopupCardView.DPopupCard mS2wCard;
     private SwitchCardView.DSwitchCard mLenientCard;
     private PopupCardView.DPopupCard mT2wCard;
     private PopupCardView.DPopupCard mWakeMiscCard;
-    private SwitchCardView.DSwitchCard mSleepMiscCard;
+    private PopupCardView.DPopupCard mSleepMiscCard;
     private PopupCardView.DPopupCard mDt2sCard;
     private SwitchCardView.DSwitchCard[] mGestureCards;
     private SwitchCardView.DSwitchCard mCameraGestureCard;
@@ -100,11 +100,11 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void s2wInit() {
-        mS2wCard = new SwitchCardView.DSwitchCard();
+        mS2wCard = new PopupCardView.DPopupCard(Wake.getS2wMenu(getActivity()));
         mS2wCard.setTitle(getString(R.string.s2w_title));
         mS2wCard.setDescription(getString(R.string.s2w_summary));
-        mS2wCard.setChecked(Wake.isS2wActive());
-        mS2wCard.setOnDSwitchCardListener(this);
+        mS2wCard.setItem(Wake.getS2wValue());
+        mS2wCard.setOnDPopupCardListener(this);
 
         addView(mS2wCard);
     }
@@ -139,11 +139,11 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void sleepMiscInit() {
-        mSleepMiscCard = new SwitchCardView.DSwitchCard();
+        mSleepMiscCard = new PopupCardView.DPopupCard(Wake.getSleepMiscMenu(getActivity()));
         mSleepMiscCard.setTitle(getString(R.string.s2s));
         mSleepMiscCard.setDescription(getString(R.string.sleep_summary));
-        mSleepMiscCard.setChecked(Wake.isSleepMiscActive());
-        mSleepMiscCard.setOnDSwitchCardListener(this);
+        mSleepMiscCard.setItem(Wake.getSleepMisc());
+        mSleepMiscCard.setOnDPopupCardListener(this);
 
         addView(mSleepMiscCard);
     }
@@ -275,6 +275,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
 	if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
+	else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
+        else if (dPopupCard == mSleepMiscCard) Wake.setSleepMisc(position, getActivity());
         else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
         else if (dPopupCard == mDt2sCard) Wake.setDt2s(position, getActivity());
     }
@@ -297,10 +299,6 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mDt2wCard)
             Wake.activateDt2w(checked, getActivity());
-        else if (dSwitchCard == mS2wCard)
-            Wake.activateS2w(checked, getActivity());
-        else if (dSwitchCard == mSleepMiscCard)
-            Wake.activateSleepMisc(checked, getActivity());
         else if (dSwitchCard == mLenientCard)
             Wake.activateLenient(checked, getActivity());
         else if (dSwitchCard == mCameraGestureCard)

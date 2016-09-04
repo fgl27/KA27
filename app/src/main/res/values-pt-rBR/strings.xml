@@ -429,7 +429,7 @@
   <string name="center">Centro</string>
   <string name="full">Completo</string>
   <string name="s2w">Ativado</string>
-  <string name="s2w_summary">Acorda seu dispositivo ao deslizar o dedo na tela, em qualquer direção.</string>
+  <string name="s2w_summary">Acorda seu dispositivo ao deslizar o dedo na tela, na direção selecionada:</string>
   <string name="lenient">Tolerância do Sweep2Wake</string>
   <string name="lenient_summary">Requer apenas o 1º e o 4º botão para ativar o Sweep2Wake.</string>
   <string name="s2w_right">Sweep2Wake na direita</string>
@@ -453,12 +453,18 @@
   <string name="draw_c">Escrever C</string>
   <string name="draw_m">Escrever M</string>
   <string name="camera_gesture">Gesto de câmera</string>
-  <string name="camera_gesture_summary">Abre o app de câmera padrão ao desenhar um círculo na tela.\nS2W quando ativado dificulta conseguir fazer esta opção funcionar.</string>
+  <string name="camera_gesture_summary">Abre o app de câmera padrão ao desenhar um círculo na tela.\nEste círculo não é facíl de fazer corretamente e quado S2W esta ativado dificulta conseguir fazer ainda mais.</string>
   <string name="pocket_mode">Modo de bolso</string>
   <string name="wake_timeout">Tempo esgotado para acordar</string>
   <string name="wake_timeout_summary">Defina o tempo quando os controles por gestos serão desabilitados após a tela se apagar.</string>
   <string name="power_key_suspend">Suspender a tecla de energia</string>
   <string name="power_key_suspend_summary">Ativar isto irá desligar os controles por toque quando a tela for desligada pela tecla de energia.</string>
+  <string name="right">Direita</string>
+  <string name="left">Esquerda</string>
+  <string name="up">Cima</string>
+  <string name="down">Baixo</string>
+  <string name="any">Qualquer uma</string>
+  <string name="or">ou</string>
   
   <string name="sound_control">Controle de som</string>
   <string name="headset_highperf_mode">Modo de alto desempenho do fone de ouvido</string>
