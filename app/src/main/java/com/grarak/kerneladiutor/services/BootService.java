@@ -105,7 +105,7 @@ public class BootService extends Service {
         }
 
         if (applys.size() > 0 || plugins.size() > 0) {
-            final int delay = Utils.getInt("applyonbootdelay", 5, this);
+            final int delay = Utils.getInt("applyonbootdelay", 0, this);
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mBuilder = new NotificationCompat.Builder(this);
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
