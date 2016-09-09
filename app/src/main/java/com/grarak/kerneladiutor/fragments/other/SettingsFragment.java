@@ -254,6 +254,18 @@ public class SettingsFragment extends RecyclerViewFragment {
         });
 
         addView(mDmesgCard);
+
+        CardViewItem.DCardView mGetPropCard = new CardViewItem.DCardView();
+        mGetPropCard.setTitle(getString(R.string.get_prop));
+        mGetPropCard.setDescription(getString(R.string.get_prop_summary));
+        mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                new Execute().execute("echo $(getprop) > /sdcard/getprop.txt");
+            }
+        });
+
+        addView(mGetPropCard);
     }
 
     private class Execute extends AsyncTask<String, Void, Void> {
