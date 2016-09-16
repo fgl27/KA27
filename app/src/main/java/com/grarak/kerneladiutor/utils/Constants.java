@@ -98,10 +98,14 @@ public interface Constants {
     String[] CPU_VOLTAGE_ARRAY = {CPU_VOLTAGE, CPU_VDD_VOLTAGE, CPU_FAUX_VOLTAGE, CPU_OVERRIDE_VMIN};
 
     // CPU Hotplug
+    String BCH = "/sys/kernel/boeffla_config_mode/enabled";
     String HOTPLUG_MPDEC = "mpdecision";
 
+    String MSMPERFORMANCE= "/sys/module/msm_performance/parameters/max_cpus";
+
     String HOTPLUG_INTELLI_PLUG = "/sys/module/intelli_plug/parameters";
-    String HOTPLUG_INTELLI_PLUG_ENABLE = HOTPLUG_INTELLI_PLUG + "/intelli_plug_active";
+    String HOTPLUG_INTELLI_PLUG_ENABLE = "/intelli_plug_active";
+
     String HOTPLUG_INTELLI_PLUG_PROFILE = HOTPLUG_INTELLI_PLUG + "/nr_run_profile_sel";
     String HOTPLUG_INTELLI_PLUG_ECO = HOTPLUG_INTELLI_PLUG + "/eco_mode_active";
     String HOTPLUG_INTELLI_PLUG_TOUCH_BOOST = HOTPLUG_INTELLI_PLUG + "/touch_boost_active";
@@ -167,6 +171,7 @@ public interface Constants {
     String HOTPLUG_MSM_SUSPEND_DEFER_TIME = HOTPLUG_MSM + "/suspend_defer_time";
 
     String[] HOTPLUG_MSM_ARRAY = {HOTPLUG_MSM};
+    String[] HOTPLUG_MSM_ENABLE_ARRAY = {HOTPLUG_MSM_ENABLE,HOTPLUG_MSM_ENABLE_2 };
 
     String MAKO_HOTPLUG = "/sys/class/misc/mako_hotplug_control";
     String MAKO_HOTPLUG_ENABLED = MAKO_HOTPLUG + "/enabled";
@@ -221,11 +226,13 @@ public interface Constants {
 
     String HOTPLUG_THUNDER_PLUG = "/sys/kernel/thunderplug";
     String HOTPLUG_THUNDER_PLUG_ENABLE = HOTPLUG_THUNDER_PLUG + "/hotplug_enabled";
+    String HOTPLUG_THUNDER_HP_STYLE = HOTPLUG_THUNDER_PLUG + "/hotplug_style";
     String HOTPLUG_THUNDER_PLUG_SUSPEND_CPUS = HOTPLUG_THUNDER_PLUG + "/suspend_cpus";
     String HOTPLUG_THUNDER_PLUG_ENDURANCE_LEVEL = HOTPLUG_THUNDER_PLUG + "/endurance_level";
     String HOTPLUG_THUNDER_PLUG_SAMPLING_RATE = HOTPLUG_THUNDER_PLUG + "/sampling_rate";
     String HOTPLUG_THUNDER_PLUG_LOAD_THRESHOLD = HOTPLUG_THUNDER_PLUG + "/load_threshold";
     String HOTPLUG_THUNDER_PLUG_TOUCH_BOOST = HOTPLUG_THUNDER_PLUG + "/touch_boost";
+    String HOTPLUG_THUNDER_PLUG_SCHED_BOOST = HOTPLUG_THUNDER_PLUG + "/sched_mode";
 
     String[] HOTPLUG_THUNDER_PLUG_ARRAY = {HOTPLUG_THUNDER_PLUG};
 
@@ -250,6 +257,37 @@ public interface Constants {
 
     String[] HOTPLUG_AUTOSMP_ARRAY = {HOTPLUG_AUTOSMP_PARAMETERS, HOTPLUG_AUTOSMP_CONF};
 
+    String HOTPLUG_LAZYPLUG_PARAMETERS = "/sys/module/lazyplug/parameters/";
+    String HOTPLUG_LAZYPLUG_ACTIVE = HOTPLUG_LAZYPLUG_PARAMETERS + "/lazyplug_active";
+    String HOTPLUG_LAZYPLUG_CPU_NR_RUN_TRESHOLD = HOTPLUG_LAZYPLUG_PARAMETERS + "/cpu_nr_run_threshold";
+    String HOTPLUG_LAZYPLUG_NR_POSSIBLE_CORES = HOTPLUG_LAZYPLUG_PARAMETERS + "/nr_possible_cores";
+    String HOTPLUG_LAZYPLUG_NR_RUN_HYSTERESIS = HOTPLUG_LAZYPLUG_PARAMETERS + "/nr_run_hysteresis";
+    String HOTPLUG_LAZYPLUG_NR_RUN_PROFILE_SET = HOTPLUG_LAZYPLUG_PARAMETERS + "/nr_run_profile_sel";
+    String HOTPLUG_LAZYPLUG_TOUCH_BOOST_ACTIVE = HOTPLUG_LAZYPLUG_PARAMETERS + "/touch_boost_active";
+
+    String[] HOTPLUG_LAZYPLUG_ARRAY = {HOTPLUG_LAZYPLUG_PARAMETERS};
+
+    String HOTPLUG_DYN_PLUG = "/sys/module/dyn_hotplug/parameters";
+    String HOTPLUG_DYN_PLUG_ENABLE = HOTPLUG_DYN_PLUG + "/enabled";
+    String HOTPLUG_DYN_PLUG_MIN_ONLINE = HOTPLUG_DYN_PLUG + "/min_online";
+    String HOTPLUG_DYN_PLUG_MAX_ONLINE = HOTPLUG_DYN_PLUG + "/max_online";
+    String HOTPLUG_DYN_PLUG_UP_THRESHOLD = HOTPLUG_DYN_PLUG + "/up_threshold";
+    String HOTPLUG_DYN_PLUG_UP_TIMER_CNT = HOTPLUG_DYN_PLUG + "/up_timer_cnt";
+    String HOTPLUG_DYN_PLUG_DOWN_TIMER_CNT = HOTPLUG_DYN_PLUG + "/down_timer_cnt";
+
+    String[] DYN_PLUG_ARRAY = {HOTPLUG_DYN_PLUG};
+
+    String HOTPLUG_AUTO_HOTPLUG = "/sys/module/auto_hotplug/parameters";
+    String HOTPLUG_AUTO_HOTPLUG_ENABLE = HOTPLUG_AUTO_HOTPLUG + "/enabled";
+    String HOTPLUG_AUTO_HOTPLUG_MIN_ONLINE = HOTPLUG_AUTO_HOTPLUG + "/min_online_cpus";
+    String HOTPLUG_AUTO_HOTPLUG_MAX_ONLINE = HOTPLUG_AUTO_HOTPLUG + "/max_online_cpus";
+    String HOTPLUG_AUTO_HOTPLUG_ENABLE_LOAD_THRESHOLD = HOTPLUG_AUTO_HOTPLUG + "/enable_load_threshold";
+    String HOTPLUG_AUTO_HOTPLUG_ENABLE_ALL_LOAD_THRESHOLD = HOTPLUG_AUTO_HOTPLUG + "/enable_all_load_threshold";
+    String HOTPLUG_AUTO_HOTPLUG_DISABLE_LOAD_THRESHOLD = HOTPLUG_AUTO_HOTPLUG + "/disable_load_threshold";
+    String HOTPLUG_AUTO_HOTPLUG_SAMPLING_PERIODS = HOTPLUG_AUTO_HOTPLUG + "/sampling_periods";
+
+    String[] AUTO_HOTPLUG_ARRAY = {HOTPLUG_AUTO_HOTPLUG};
+
     String MSM_SLEEPER = "/sys/devices/platform/msm_sleeper";
     String MSM_SLEEPER_ENABLE = MSM_SLEEPER + "/enabled";
     String MSM_SLEEPER_UP_THRESHOLD = MSM_SLEEPER + "/up_threshold";
@@ -258,9 +296,25 @@ public interface Constants {
     String MSM_SLEEPER_UP_COUNT_MAX = MSM_SLEEPER + "/up_count_max";
     String MSM_SLEEPER_DOWN_COUNT_MAX = MSM_SLEEPER + "/down_count_max";
 
+    String STATE_HELPER = "/sys/kernel/state_helper";
+    String STATE_HELPER_ENABLE = STATE_HELPER + "/enabled";
+    String STATE_HELPER_MAX_CPUS_ONLINE = STATE_HELPER + "/max_cpus_online";
+    String STATE_HELPER_MAX_CPUS_SUSPEND = STATE_HELPER + "/max_cpus_susp";
+    String STATE_HELPER_BATT_LEVEL_ECO = STATE_HELPER + "/batt_level_eco";
+    String STATE_HELPER_BATT_LEVEL_CRI = STATE_HELPER + "/batt_level_cri";
+    String STATE_HELPER_MAX_CPU_ECO = STATE_HELPER + "/max_cpus_eco";
+    String STATE_HELPER_MAX_CPU_CRI = STATE_HELPER + "/max_cpus_cri";
 
-    String[][] CPU_HOTPLUG_ARRAY = {{HOTPLUG_MPDEC, MSM_SLEEPER}, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
-            MB_HOTPLUG_ARRAY, ALUCARD_HOTPLUG_ARRAY, HOTPLUG_THUNDER_PLUG_ARRAY, HOTPLUG_ZEN_DECISION_ARRAY, HOTPLUG_AUTOSMP_ARRAY};
+    // Hima Hotplug
+    String HIMA_HOTPLUG = "/sys/kernel/hima_hotplug";
+    String HIMA_HOTPLUG_ENABLE = HIMA_HOTPLUG + "/hima_hotplug_active";
+    String HIMA_HOTPLUG_PROFILE = HIMA_HOTPLUG + "/current_profile_no";
+    String HIMA_HOTPLUG_MIN_CPUS_ONLINE = HIMA_HOTPLUG + "/min_cpus_online";
+    String HIMA_HOTPLUG_MAX_CPUS_ONLINE = HIMA_HOTPLUG + "/max_cpus_online";
+    String HIMA_HOTPLUG_DEF_SAMPLING_MS = HIMA_HOTPLUG + "/def_sampling_ms";
+
+    String[][] CPU_HOTPLUG_ARRAY = {{HOTPLUG_MPDEC, MSM_SLEEPER, STATE_HELPER, MSMPERFORMANCE, BCH, HIMA_HOTPLUG}, INTELLIPLUG_ARRAY, BLU_PLUG_ARRAY, HOTPLUG_MSM_ARRAY, MAKO_HOTPLUG_ARRAY,
+            MB_HOTPLUG_ARRAY, ALUCARD_HOTPLUG_ARRAY, HOTPLUG_THUNDER_PLUG_ARRAY, HOTPLUG_ZEN_DECISION_ARRAY, HOTPLUG_AUTOSMP_ARRAY, HOTPLUG_LAZYPLUG_ARRAY, DYN_PLUG_ARRAY, AUTO_HOTPLUG_ARRAY};
 
     // Thermal
     String THERMALD = "thermald";

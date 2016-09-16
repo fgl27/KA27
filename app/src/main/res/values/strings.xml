@@ -162,6 +162,7 @@
     <string name="voltages_toast_notification">Values in parenthesis show your change from the reference values.</string>
 
     <!-- CPU Hotplug -->
+    <string name="no_enable_toggle">Warning: This Hotplug has no enable or disable toggle. Be aware that having more than one hotplug enabled can cause erratic behavior.</string>
     <string name="mpdecision">MPDecision</string>
     <string name="mpdecision_summary">Qualcomm\'s hotplugging solution. You might get problems with changing frequencies when this is enabled.</string>
     <string name="intelliplug">IntelliPlug</string>
@@ -169,6 +170,7 @@
     <string name="profile_summary">The number in the parentheses indicates the amount of cores online at any time.</string>
     <string name="insanity">InSaNiTy</string>
     <string name="balanced">Balanced (4)</string>
+    <string name="powersave">Power Save</string>
     <string name="performance">Performance (4)</string>
     <string name="conservative">Conservative (4)</string>
     <string name="eco_insanity">Eco InSaNiTy</string>
@@ -181,6 +183,8 @@
     <string name="eco_mode_summary">Battery saving mode for IntelliPlug.</string>
     <string name="touch_boost">Touch Boost</string>
     <string name="touch_boost_summary">This will boost your minimum CPU speed if you touch the screen or press a button.</string>
+    <string name="sched_boost">Sched Boost</string>
+    <string name="sched_boost_summary">Enables aggressive thread migration to big cores for high preformance, consumes more power.</string>
     <string name="hysteresis">Hysteresis Value</string>
     <string name="hysteresis_summary">The lower it is, the faster response.</string>
     <string name="threshold">Threshold Value</string>
@@ -192,6 +196,14 @@
     <string name="cpus_boosted_summary">Maximum number of CPUs boosted at the same time.</string>
     <string name="min_cpu_online">Minimum CPU Online</string>
     <string name="min_cpu_online_summary">Minimum number of CPUs that will be always online.</string>
+    <string name="minlittle">Minimum Little CPUs Online</string>
+    <string name="minlittle_summary">Minimum number of Little CPUs that will be always online.</string>
+    <string name="maxlittle">Maximum Little CPUs Online</string>
+    <string name="maxlittle_summary">Maximum number of Little CPUs that will be always online.</string>
+    <string name="minbig">Minimum Big CPUs Online</string>
+    <string name="minbig_summary">Minimum number of Big CPUs that will be always online.</string>
+    <string name="maxbig">Maximum Big CPUs Online</string>
+    <string name="maxbig_summary">Maximum number of Big CPUs that will be always online.</string>
     <string name="max_cpu_online">Maximum CPU Online</string>
     <string name="max_cpu_online_summary">Maximum number of CPUs that will be always online.</string>
     <string name="max_cores_screen_off">Max Cores Screen Off</string>
@@ -203,6 +215,18 @@
     <string name="down_lock_duration">Down Lock Duration</string>
     <string name="down_lock_duration_summary">Minimum interval a CPU is kept online.</string>
     <string name="fshift">FShift</string>
+    <string name="dyn_plug">Dyn_Plug</string>
+    <string name="dyn_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Stratos Karafotis.</string>
+    <string name="auto_hotplug">ARM Auto_hotplug</string>
+    <string name="auto_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Will Tisdale (Thalamus).</string>
+    <string name="enable_load_treshold">Enable Load Threshold</string>
+    <string name="enable_load_treshold_summary">Load at which an extra CPU is put online.</string>
+    <string name="enable_all_load_treshold">Enable All Load Threshold</string>
+    <string name="enable_all_load_treshold_summary">Load at which all CPUs are enabled.</string>
+    <string name="disable_load_treshold">Disable Load Threshold</string>
+    <string name="disable_load_treshold_summary">Load at which a CPU is taken offline.</string>
+    <string name="sampling_periods">Minimum Sampling Period</string>
+    <string name="sampling_periods_summary">Sampling rate in milliseconds, converted to jiffies at runtime.</string>
     <string name="blu_plug">Blu_Plug</string>
     <string name="blu_plug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by Code_Blue team.</string>
     <string name="powersaver_mode">Powersaver Mode</string>
@@ -241,6 +265,7 @@
     <string name="max_load_counter">Max Load Counter</string>
     <string name="min_time_cpu_online">Min Time CPU Online</string>
     <string name="timer">Timer</string>
+    <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="bricked_hotplug">Bricked Hotplug</string>
     <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
     <string name="screen_off_single_core">Screen off Single Core</string>
@@ -264,6 +289,9 @@
     <string name="thunderplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by varunchitre15.</string>
     <string name="min_cores_screen_off">Min Cores Screen Off</string>
     <string name="min_cores_screen_off_summary">Minimum number of cores online when screen is off.</string>
+    <string name="hp_style">Hotplug Style</string>
+    <string name="per_core_hp">Per-Core-Hotplug</string>
+    <string name="load_balancer">Load Balancer</string>
     <string name="endurance_level">Endurance Level</string>
     <string name="endurance_level_summary">A power saving profile.</string>
     <string name="quad_core_mode">Quad-Core mode</string>
@@ -282,6 +310,11 @@
     <string name="cycle_down_summary">Cycles to wait after the last hotplug event to unplug another core.</string>
     <string name="cycle_up">Cycle Up</string>
     <string name="cycle_up_summary">Cycles to wait after the last hotplug event to plug another core.</string>
+    <string name="lazyplug">Lazyplug</string>
+    <string name="lazyplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Based on IntelliPlug by faux123. Developed by arter97.</string>
+    <string name="lazyplugprofile_summary">Select a preset profile</string>
+    <string name="eco_extreme">Extreme Eco Mode</string>
+    <string name="nrpossiblecores_limits">Limits the number of possible cores</string>
     <string name="msm_sleeper">MSM Sleeper</string>
     <string name="msm_sleeper_summary">A customizable hotplug</string>
     <string name="msm_sleeper_up_thresh">Threshold before onlining another core</string>
@@ -297,6 +330,27 @@
     <string name="bricked_twts_hotplug">This amount of time must have passed for CPU%d to be hotplugged.</string>
     <string name="bricked_twts_unplug">This amount of time must have passed for CPU%d to be unplugged.</string>
     <string name="bricked_time_threshold">Time Threshold</string>
+    <string name="state_helper">State Helper</string>
+    <string name="state_helper_summary">A new hotplug by Neobuddy89</string>
+    <string name="state_helper_max_cpus_online">Maximum number of CPUs onlined while screen on.</string>
+    <string name="state_helper_max_cpus_suspend">Maximum number of CPUs onlined while screen off.</string>
+    <string name="state_helper_batt_level_eco">Battery Level Economical</string>
+    <string name="state_helper_batt_level_eco_summary">Economical level core limiting. Limits max cpus online at this battery percentage.</string>
+    <string name="state_helper_batt_level_cri">Battery Level Critical</string>
+    <string name="state_helper_batt_level_cri_summary">Critical level core limiting. Limits max cpus online at this battery percentage.</string>
+    <string name="state_helper_max_cpus_eco">Max CPUs online after reaching Economical Battery level</string>
+    <string name="state_helper_max_cpus_cri">Max CPUs online after reaching Critical Battery level</string>
+    <string name="bch">Boeffla Config Helper</string>
+    <string name="bch_summary">Lord Boefflas solution for keeping big cores alive</string>
+    <string name="msm_max_cores">Maximum cores to be allowed online.</string>
+    <string name="msmperformance">MSM Performance Hotplug</string>
+
+    <string name="hima">Hima Hotplug</string>
+    <string name="hima_summary">Hotplug Driver ported from HTC m9</string>
+    <string name="hima_min_cpu_online">Minimum CPUs online at anytime.</string>
+    <string name="hima_max_cpu_online">Maximum CPUs online at anytime</string>
+    <string name="hima_sampling_rate">Defer Sampling</string>
+    <string name="hima_profile_summary">Hotplug Style</string>
 	
     <!-- Thermal -->
     <string name="thermal_info">On stock kernel using this app don\'t change a thing in here.\n\nOn custom Kernel:\n\nWhen using Intellithermal be aware too high value for (Frequency Throttle Temperature) can be danger!!\n\nOnly one thermal driver must be enable, the app will auto switch one off if the other is on and vice versa.</string>
