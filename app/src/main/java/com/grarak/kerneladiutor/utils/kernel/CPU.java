@@ -300,6 +300,9 @@ public class CPU implements Constants {
 
     public static void setGovernor(String governor, Context context) {
         setGovernor(Control.CommandType.CPU, governor, context);
+	//If change Governor after change Freq, Freq may be wrong after reboot
+	setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
+        setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
     }
 
     public static void setGovernor(Control.CommandType command, String governor, Context context) {
