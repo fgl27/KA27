@@ -596,6 +596,30 @@ public class CPU implements Constants {
         return null;
     }
 
+    public static void activateStateNotifier(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", STATE_NOTIFIER_ENABLED, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isStateNotifierStateActive() {
+        return Utils.readFile(STATE_NOTIFIER_ENABLED).equals("Y");
+    }
+
+    public static boolean hasStateNotifier()  {
+        return Utils.existFile(STATE_NOTIFIER_ENABLED);
+    }
+
+    public static void setStateDefer(int value, Context context) {
+        Control.runCommand(String.valueOf(value), STATE_NOTFIER_DIFER_TIME, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getStateDefer() {
+        return Utils.stringToInt(Utils.readFile(STATE_NOTFIER_DIFER_TIME));
+    }
+
+    public static boolean hasStateDefer() {
+        return Utils.existFile(STATE_NOTFIER_DIFER_TIME);
+    }
+
     private static class Usage {
 
         private long[] stats;

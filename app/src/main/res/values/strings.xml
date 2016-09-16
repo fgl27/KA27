@@ -108,6 +108,7 @@
     <!-- CPU -->
     <string name="cpu_usage">CPU Usage</string>
     <string name="cpu_temp">CPU Temperature</string>
+    <string name="cpu_extra">CPU Efficiency Flags</string>
     <string name="current_freq">Current Frequency</string>
     <string name="core">Core %d</string>
     <string name="offline">Offline</string>
@@ -728,6 +729,13 @@
     <string name="gentlefairsleepers_summary">Only give sleepers 50% of their service deficit. Disabling this can save a little battery power.</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>
     <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
+    <string name="state_notifier">State Notifier</string>
+    <string name="state_notifier_summary">A new state notifier driver by Neobuddy89.\n\nDesign to improve communication between driver and suspend/resume routine.</string>
+    <string name="state_notifier_mode">State Notifier Mode</string>
+    <string name="state_notifier_mode_summary_enabled">Enable to see tunable.\nToggle between State and FB Notifiers.\n\nCurrently: State Notifier</string>
+    <string name="state_notifier_mode_summary_disabled">Enable to see tunable.\nToggle between State and FB Notifiers.\n\nCurrently: FB Notifier</string>
+    <string name="state_defer">State Notifier Suspended Defer Time</string>
+    <string name="state_defer_summary">When suspended, prevents suspend routines wait X seconds to prevent false/very short suspend calls.(default 10sec)</string>
     <string name="autosleep">Autosleep</string>
     <string name="userspace">Userspace</string>
     <string name="lcd_panel">LCD Panel</string>
