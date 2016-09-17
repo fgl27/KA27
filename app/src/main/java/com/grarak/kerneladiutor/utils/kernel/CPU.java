@@ -43,7 +43,6 @@ public class CPU implements Constants {
     private static int LITTLEcore = -1;
     private static Integer[][] mFreqs;
     private static String[][] mAvailableGovernors;
-    private static String[] mMcPowerSavingItems;
     private static String[] mAvailableCFSSchedulers;
 
     private static String TEMP_FILE;
@@ -247,24 +246,6 @@ public class CPU implements Constants {
 
     public static boolean hasCFSScheduler() {
         return Utils.existFile(CPU_AVAILABLE_CFS_SCHEDULERS) && Utils.existFile(CPU_CURRENT_CFS_SCHEDULER);
-    }
-
-    public static String[] getMcPowerSavingItems(Context context) {
-        if (mMcPowerSavingItems == null && context != null)
-            mMcPowerSavingItems = context.getResources().getStringArray(R.array.mc_power_saving_items);
-        return mMcPowerSavingItems;
-    }
-
-    public static void setMcPowerSaving(int value, Context context) {
-        Control.runCommand(String.valueOf(value), CPU_MC_POWER_SAVING, Control.CommandType.GENERIC, context);
-    }
-
-    public static int getCurMcPowerSaving() {
-        return Utils.stringToInt(Utils.readFile(CPU_MC_POWER_SAVING));
-    }
-
-    public static boolean hasMcPowerSaving() {
-        return Utils.existFile(CPU_MC_POWER_SAVING);
     }
 
     public static void activatePowerSavingWq(boolean active, Context context) {

@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Ladění správce procesoru</string>
   <string name="cpu_governor_tunables_summary">Různé možnosti konfigurace, které závisí na použitém správci procesoru.</string>
   <string name="not_tunable">%s nelze upravit</string>
-  <string name="mc_power_saving">Úspora energie více jader</string>
-  <string name="mc_power_saving_summary">Snaha o seskupení úkolů na co nejméně jader.</string>
   <string name="power_saving_wq">Naplánovat workqueues na probuzení procesorů pro úsporu energie.</string>
   <string name="cfs_scheduler_policy">Zásady CSF plánovače</string>
   <string name="cfs_scheduler_policy_summary">Zásady určují, jak bude CSF plánovač přerozdělovat úkoly mezi různé jednotky procesoru.</string>

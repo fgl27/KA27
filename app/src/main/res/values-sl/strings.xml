@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Napredne nastavitve governorja CPU</string>
   <string name="cpu_governor_tunables_summary">Različne vrednosti CPU governoja, ki jih lahko spreminjamo (odvisno od tega, kateri CPU governor uporabljamo).</string>
   <string name="not_tunable">%s ni nastavljiv</string>
-  <string name="mc_power_saving">Varčevanje z baterijo glede na število jeder</string>
-  <string name="mc_power_saving_summary">Poskusi razvrstiti naloge v skupine, tako da bo za izpolnitev le-teh uporabljenih čim manj jeder CPU.</string>
   <string name="power_saving_wq">Načrtuj opravila z prižganimi jedri CPU, ter tako prihrani baterijo.</string>
   <string name="cfs_scheduler_policy">Način delovanja CFS razporejevalnika</string>
   <string name="cfs_scheduler_policy_summary">CFS razporejevalnik določa, kako naj uravnoteženo razporeja naloge na jedra CPU.</string>

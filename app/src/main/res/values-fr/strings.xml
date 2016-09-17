@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Tunables Gouverneur CPU</string>
   <string name="cpu_governor_tunables_summary">Les divers éléments de configuration qui dépendent du Gouverneur.</string>
   <string name="not_tunable">%s n\'est pas tunable</string>
-  <string name="mc_power_saving">Économie d\'Énergie Multicœurs</string>
-  <string name="mc_power_saving_summary">Essayez de regrouper les tâches en moins de cœurs possible.</string>
   <string name="power_saving_wq">Envoyer les files d\'attentes sur les cœurs réveillés pour économiser de l’énergie.</string>
   <string name="cfs_scheduler_policy">Stratégie de l\'ordonnanceur CFS</string>
   <string name="cfs_scheduler_policy_summary">La stratégie règle comment l\'ordonnanceur CFS équilibre les tâches sur les différents cœurs CPU.</string>

@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">İşlemci Düzenleyicisi Ayarları</string>
   <string name="cpu_governor_tunables_summary">İşlemci Düzenleyicisine bağlı çeşitli yapılandırmalar.</string>
   <string name="not_tunable">%s ayarlanabilir değil</string>
-  <string name="mc_power_saving">Çoklu Çekirdek Güç Tasarrufu</string>
-  <string name="mc_power_saving_summary">İşlemleri olabilecek en az sayıda çekirdeğe gruplamaya çalış.</string>
   <string name="power_saving_wq">Güç tüketimini azaltmak için yapılması gereken işleri uyanık CPU\'lara yönlendir.</string>
   <string name="cfs_scheduler_policy">CFS Zamanlayıcı İlkesi</string>
   <string name="cfs_scheduler_policy_summary">İlke CFS Zamanlayıcısı görevleri farklı CPU birim üzerine nasıl karar verir.</string>

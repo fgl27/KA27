@@ -108,8 +108,6 @@
   <string name="cpu_governor_tunables">Ajustes do Governador do CPU</string>
   <string name="cpu_governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="not_tunable">%s não é ajustável</string>
-  <string name="mc_power_saving">Economia de energia de múltiplos núcleos</string>
-  <string name="mc_power_saving_summary">Tentar agrupar as tarefas em menos núcleos possíveis.</string>
   <string name="power_saving_wq">Fila de Trabalho Eficiente</string>
   <string name="power_saving_wq_summary">Agenda filas de trabalho em um CPU já acordado para economizar energia.</string>
   <string name="cfs_scheduler_policy">Política do escalonador CFS</string>

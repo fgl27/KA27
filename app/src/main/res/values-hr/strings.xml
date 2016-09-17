@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Postavke CPU Governora</string>
   <string name="cpu_governor_tunables_summary">Razne konfiguracijske vrijednosti koje ovise o Governoru.</string>
   <string name="not_tunable">%s se ne može mijenjati</string>
-  <string name="mc_power_saving">Višejezgrena štednja energije</string>
-  <string name="mc_power_saving_summary">Koristi što manje jezgri pri obavljanju zadataka.</string>
   <string name="cfs_scheduler_policy">CFS Scheduler: pravila</string>
   <string name="cfs_scheduler_policy_summary">Pravila određuju za CFS Scheduler kako rasporediti zadatke po različitim CPU jezgrama.</string>
   <string name="disabled">Deaktivirano</string>

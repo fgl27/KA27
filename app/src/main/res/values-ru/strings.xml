@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Переменные говернора</string>
   <string name="cpu_governor_tunables_summary">Различные элементы конфигурации, которые зависят от говернора.</string>
   <string name="not_tunable">%s не настраиваемый</string>
-  <string name="mc_power_saving">Многоядерное энергосбережение</string>
-  <string name="mc_power_saving_summary">Пытаться группировать задачи для наименьшего количества ядер.</string>
   <string name="power_saving_wq">Расписание workqueues на awake процессорах для экономии энергии.</string>
   <string name="cfs_scheduler_policy">Политика планировщика CFS</string>
   <string name="cfs_scheduler_policy_summary">Система которая решает как использовать распределитель CFS  чтобы распределить различные задачи между CPU блоками.</string>

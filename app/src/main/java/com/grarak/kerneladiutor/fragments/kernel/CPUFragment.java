@@ -117,8 +117,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private PopupCardView.DPopupCard mGovernorLITTLECard;
         private CardViewItem.DCardView mGovernorTunableLITTLECard;
 
-        private PopupCardView.DPopupCard mMcPowerSavingCard;
-
         private SwitchCardView.DSwitchCard mPowerSavingWqCard;
 
         private PopupCardView.DPopupCard mCFSSchedulerCard;
@@ -178,7 +176,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 addView(othersDivider);
             }
             int count = getCount();
-            if (CPU.hasMcPowerSaving()) mcPowerSavingInit();
             if (CPU.hasPowerSavingWq()) powerSavingWqInit();
             if (CPU.hasCFSScheduler()) cfsSchedulerInit();
             if (CPU.hasStateNotifier()) statenotifierInit();
@@ -355,17 +352,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             addView(mGovernorLITTLECard);
             addView(mGovernorTunableLITTLECard);
-        }
-
-        private void mcPowerSavingInit() {
-            mMcPowerSavingCard = new PopupCardView.DPopupCard(new ArrayList<>(Arrays.asList(
-                    CPU.getMcPowerSavingItems(getActivity()))));
-            mMcPowerSavingCard.setTitle(getString(R.string.mc_power_saving));
-            mMcPowerSavingCard.setDescription(getString(R.string.mc_power_saving_summary));
-            mMcPowerSavingCard.setItem(CPU.getCurMcPowerSaving());
-            mMcPowerSavingCard.setOnDPopupCardListener(this);
-
-            addView(mMcPowerSavingCard);
         }
 
         private void powerSavingWqInit() {
@@ -615,8 +601,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             else if (dPopupCard == mGovernorLITTLECard)
                 CPU.setGovernor(Control.CommandType.CPU_LITTLE, CPU.getAvailableGovernors(CPU.getLITTLEcore()).get(position),
                         getActivity());
-            else if (dPopupCard == mMcPowerSavingCard)
-                CPU.setMcPowerSaving(position, getActivity());
             else if (dPopupCard == mCFSSchedulerCard)
                 CPU.setCFSScheduler(CPU.getAvailableCFSSchedulers().get(position), getActivity());
             else if (dPopupCard == mCpuQuietGovernorCard)

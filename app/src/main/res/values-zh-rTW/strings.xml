@@ -81,8 +81,6 @@
   <string name="cpu_governor_tunables">CPU 管理模式調整</string>
   <string name="cpu_governor_tunables_summary">這些配置項目與您使用的管理模式有關。</string>
   <string name="not_tunable">%s 不可調整</string>
-  <string name="mc_power_saving">多核心省電</string>
-  <string name="mc_power_saving_summary">盡可能用最少的核心來分配處理任務</string>
   <string name="power_saving_wq">Schedule workqueues on awake CPUs to save power.</string>
   <string name="cfs_scheduler_policy">CFS 調度策略</string>
   <string name="cfs_scheduler_policy_summary">政策決定 CFS 調度程式如何平衡上不同的 CPU 單元的任務。</string>

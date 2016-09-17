@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Optimizadores del Gobernador del CPU</string>
   <string name="cpu_governor_tunables_summary">Varios parámetros configurables que dependen del Gobernador.</string>
   <string name="not_tunable">%s no se puede ajustar</string>
-  <string name="mc_power_saving">Ahorro de Energía Multinúcleo</string>
-  <string name="mc_power_saving_summary">Intenta agrupar tareas en el menor número de núcleos posible.</string>
   <string name="power_saving_wq">Planificar colas de trabajo en CPUs activos para ahorrar energía.</string>
   <string name="cfs_scheduler_policy">Política del Regulador CFS</string>
   <string name="cfs_scheduler_policy_summary">La política decide al programador CFS cómo equilibrar las tareas en diferentes las unidades de la CPU.</string>

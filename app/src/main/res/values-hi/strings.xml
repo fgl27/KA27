@@ -84,8 +84,6 @@
   <string name="cpu_governor_tunables">सीपीयू राज्यपाल संपादन </string>
   <string name="cpu_governor_tunables_summary">विभिन्न कॉन्फ़िगरेशन आइटम जो राज्यपाल पर निर्भर कर रहे हैं।</string>
   <string name="not_tunable">%s स्वर योग्य नहीं है</string>
-  <string name="mc_power_saving">Multicore बिजली की बचत</string>
-  <string name="mc_power_saving_summary">समूह में कार्य करने के लिए कम से कम संभव कोर में प्रयास करें।</string>
   <string name="power_saving_wq">Workqueues अनुसूची CPUs के जागने पर करे पावर बचाने के लिए।</string>
   <string name="cfs_scheduler_policy">CFS Scheduler नीति</string>
   <string name="cfs_scheduler_policy_summary">यह पॉलिसी CFS Schedular को प्रत्येक CPU के task बैलेंस कारने को बताती है</string>

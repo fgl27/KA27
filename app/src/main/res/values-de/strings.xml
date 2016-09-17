@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">CPU-Governor Einstellungen</string>
   <string name="cpu_governor_tunables_summary">Unterschiedliche Konfigurationen, die vom Governor abhängig sind.</string>
   <string name="not_tunable">%s ist nicht einstellbar</string>
-  <string name="mc_power_saving">Energiesparmodus für Mehrkernprozessoren</string>
-  <string name="mc_power_saving_summary">Gruppiert die Aufgaben möglichst wenigen Kernen zu.</string>
   <string name="power_saving_wq">Anstehende Aufgaben, laufenden CPUs zuweisen, um Strom zu sparen.</string>
   <string name="cfs_scheduler_policy">Richtlinien für den CFS-Planer</string>
   <string name="disabled">Deaktiviert</string>

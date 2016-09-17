@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Axustes finos del gobernador de CPU</string>
   <string name="cpu_governor_tunables_summary">Los elementos de delles configuraciones que tán venceyaes al gobernador.</string>
   <string name="not_tunable">«%s» nun pue afinase</string>
-  <string name="mc_power_saving">Aforru d\'enerxía multi-nucleu</string>
-  <string name="mc_power_saving_summary">Intenta axuntar les xeres nos menos nucleos posibles.</string>
   <string name="power_saving_wq">Planifica les solicitúes de trabayu en CPUs esconsoñaes p\'aforrar enerxía.</string>
   <string name="cfs_scheduler_policy">Política\'l planificador CFS</string>
   <string name="cfs_scheduler_policy_summary">La política decide\'l planificador CFS como balancear les xeres nes diferentes unidaes de CPU.</string>

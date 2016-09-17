@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">ಸಿಪಿಯು ಗವರ್ನರ್ ಸಂಯೋಜನೆಗಳು</string>
   <string name="cpu_governor_tunables_summary">ಗವರ್ನರ್ ಅವಲಂಭಿತವಾದ ವಿವಿಧ ಸಂರಚನಾಂಶಗಳು.</string>
   <string name="not_tunable">%s ಸಂಯೋಜನೆ ಮಾಡಲಾಗುವುದಿಲ್ಲ</string>
-  <string name="mc_power_saving">ಮಲ್ಟಿಕೋರ್ ವಿದ್ಯುತ್ ಉಳಿತಾಯ</string>
-  <string name="mc_power_saving_summary">ಕಾರ್ಯಗಳನ್ನು ಸಾಧ್ಯವಾದಷ್ಟು ಕನಿಷ್ಠ ಕೋರ್‍ಗಳಿಗೆ ವರ್ಗೀಕರಿರಸಲು ಪ್ರಯತ್ನಿಸು.</string>
   <string name="power_saving_wq">ವಿದ್ಯುತ್ ಉಳಿಸಲು ಕಾರ್ಯಸರದಿಗಳನ್ನು ಎಚ್ಚರವಾಗಿರುವ ಸಿಪಿಯು‍ಗಳಿಗೆ ನಿಗದಿಪಡಿಸು.</string>
   <string name="cfs_scheduler_policy">CFS ಶೆಡ್ಯೂಲರ್ ನೀಯಮ</string>
   <string name="cfs_scheduler_policy_summary">ನೀತಿಯು CFS ಶೆಡ್ಯೂಲರ್ ವಿವಿಧ ಸಿಪಿಯುಗಳಲ್ಲಿ ಕಾರ್ಯಗಳನ್ನು ಹೇಗೆ ಸಮತೋಲಿಸಬೇಕು ಎಂದು ನಿರ್ಧರಿಸುತ್ತದೆ.</string>

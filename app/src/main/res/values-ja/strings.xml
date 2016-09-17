@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">CPUガバナ設定</string>
   <string name="cpu_governor_tunables_summary">ガバナ毎の設定可能な項目を設定します。</string>
   <string name="not_tunable">%sは設定が出来ません。</string>
-  <string name="mc_power_saving">マルチコア省電力モード</string>
-  <string name="mc_power_saving_summary">出来るだけ少ないコアで動作するようになります。</string>
   <string name="power_saving_wq">バッテリーを節約するため、CPU動作時にワークキューをスケジュールします。</string>
   <string name="cfs_scheduler_policy">CFS スケジューラポリシー</string>
   <string name="cfs_scheduler_policy_summary">CFSスケジューラがCPUユニット毎のバランスを取る方法を決定するポリシーです。</string>

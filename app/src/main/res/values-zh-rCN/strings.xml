@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">CPU 调速器微调</string>
   <string name="cpu_governor_tunables_summary">这些配置项与您使用的调速器有关</string>
   <string name="not_tunable">%s 无法调节</string>
-  <string name="mc_power_saving">多核省电</string>
-  <string name="mc_power_saving_summary">尝试尽可能用最少的核心来分组处理任务。</string>
   <string name="power_saving_wq">对在使用中的CPU的工作阵列排表以节约电量</string>
   <string name="cfs_scheduler_policy">CFS 调度策略</string>
   <string name="cfs_scheduler_policy_summary">策略会决定 CFS 调度程序如何平衡不同的 CPU 单元的任务。</string>

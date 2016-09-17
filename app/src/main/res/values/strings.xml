@@ -123,8 +123,6 @@
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
     <string name="cpu_governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
     <string name="not_tunable">%s is not tunable</string>
-    <string name="mc_power_saving">Multicore Power Saving</string>
-    <string name="mc_power_saving_summary">Try to group tasks into the least cores possible.</string>
     <string name="power_saving_wq">Power Efficient Work queues</string>
     <string name="power_saving_wq_summary">Schedule workqueues on awake CPUs to save power.</string>
     <string name="cfs_scheduler_policy">CFS Scheduler Policy</string>

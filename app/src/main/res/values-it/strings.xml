@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Modifiche al governor della cpu</string>
   <string name="cpu_governor_tunables_summary">Pametri di configurazione avanzata per il governor della CPU.</string>
   <string name="not_tunable">%s non si può modificare</string>
-  <string name="mc_power_saving">Risparmio Energetico Multicore</string>
-  <string name="mc_power_saving_summary">Prova a raggruppare le attività nel minor numero di core disponibili.</string>
   <string name="power_saving_wq">Pianificazione per risveglio CPU per risparmiare energia.</string>
   <string name="cfs_scheduler_policy">Linea di condotta Scheduler CFS</string>
   <string name="cfs_scheduler_policy_summary">La linea di condotta che regola come lo scheduler CFS distribuirà i processi sui core disponibili.</string>

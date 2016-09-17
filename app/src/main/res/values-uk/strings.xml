@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Параметри планувальника CPU</string>
   <string name="cpu_governor_tunables_summary">Різні параметри конфігурації які залежать від планувальника.</string>
   <string name="not_tunable">%s не може бути налаштований</string>
-  <string name="mc_power_saving">Багатоядерне енергозбереження</string>
-  <string name="mc_power_saving_summary">Намагатися згрупувати задачі для використання найменшої кількості ядер CPU.</string>
   <string name="power_saving_wq">Розпорядок workqueues на awake процесорах для економії енергії.</string>
   <string name="cfs_scheduler_policy">Політика планувальника CFS</string>
   <string name="cfs_scheduler_policy_summary">Політика що вирішує як для планувальника CFS розподілити задачі між різними ядрами CPU.</string>

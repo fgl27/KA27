@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Ajustos Governador CPU</string>
   <string name="cpu_governor_tunables_summary">Diversos paràmetres configurables que depenen del Governador.</string>
   <string name="not_tunable">%s no es pot ajustar</string>
-  <string name="mc_power_saving">Estalvi energia multinucli</string>
-  <string name="mc_power_saving_summary">Prova d\'agrupar tasques en el menor nombre de nuclis possible.</string>
   <string name="power_saving_wq">Planificar cues de Treball en CPUs actius per estalviar energia.</string>
   <string name="cfs_scheduler_policy">CFS Política del programador</string>
   <string name="cfs_scheduler_policy_summary">El planificador CFS decideix com distribuir les tasques en els diferents nuclis de la CPU.</string>

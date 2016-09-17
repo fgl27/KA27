@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Hiệu chỉnh có thể của trình điều tiết CPU</string>
   <string name="cpu_governor_tunables_summary">Các cấu hình khác phụ thuộc vào trình điều tiết.</string>
   <string name="not_tunable">%s không hiệu chỉnh được</string>
-  <string name="mc_power_saving">Tiết kiệm năng lượng đa lõi</string>
-  <string name="mc_power_saving_summary">Cố gắng gộp nhiều tác vụ vào ít lõi nhất.</string>
   <string name="power_saving_wq">Sắp tác vụ vào CPU đang thức để tiết kiệm năng lượng.</string>
   <string name="cfs_scheduler_policy">Chính sách lập lịch CFS</string>
   <string name="cfs_scheduler_policy_summary">Chính sách quyết định trình CFS cân bằng các tác vụ lên các CPU khác nhau như thế nào.</string>

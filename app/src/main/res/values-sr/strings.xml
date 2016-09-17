@@ -80,8 +80,6 @@
   <string name="cpu_governor_tunables">Фине поставке ЦПУ управљача</string>
   <string name="cpu_governor_tunables_summary">Разне конфигурације ставки које зависе од Governor-а</string>
   <string name="not_tunable">%s није подесиво</string>
-  <string name="mc_power_saving">Multicore уштеда енергије</string>
-  <string name="mc_power_saving_summary">Групација задатака у што мање језгри</string>
   <string name="power_saving_wq">Распоред позивања функција буђења CPU-oва ради уштеде енергије</string>
   <string name="cfs_scheduler_policy">Стратегија ЦФС планера</string>
   <string name="cfs_scheduler_policy_summary">Стратегија одлучује како да ЦФС планер распореди задатке на различите ЦПУ јединице.</string>

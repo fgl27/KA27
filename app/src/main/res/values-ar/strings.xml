@@ -80,8 +80,6 @@
   <string name="cpu_governor_tunables">متحكم الموجة للمعالج</string>
   <string name="cpu_governor_tunables_summary">الاعدادت المتنوعة للعناصر التي يعامد عليها المتحكم.</string>
   <string name="not_tunable">غير قابل للضبط %s</string>
-  <string name="mc_power_saving">نظام توفير الطاقة المتعدد النواة</string>
-  <string name="mc_power_saving_summary">حاول جمع المهمات في اقل انوية ممكنة.</string>
   <string name="power_saving_wq">جدولة طابور العمل عندما يكون المعالج تشط لحفظ الطاقة.</string>
   <string name="cfs_scheduler_policy">نظام سياسة الجدولة اللعادلة المتكامل</string>
   <string name="cfs_scheduler_policy_summary">السياسات تقوم بتحديد الجدولة العادلة بشكل متكامل كيفية موازنة المهمات على عدة وحدات معالجة مختلفة.</string>

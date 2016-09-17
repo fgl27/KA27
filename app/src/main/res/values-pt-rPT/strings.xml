@@ -82,8 +82,6 @@
   <string name="cpu_governor_tunables">Parâmetros governador CPU</string>
   <string name="cpu_governor_tunables_summary">Os vários itens de configuração que são dependentes do Governador.</string>
   <string name="not_tunable">%s não é ajustável</string>
-  <string name="mc_power_saving">Modo poupança energia multi núcleos</string>
-  <string name="mc_power_saving_summary">Tenta agrupar tarefas no menor número de núcleos possíveis.</string>
   <string name="power_saving_wq">Agendar filas de trabalho em CPUs acordados para economizar energia.</string>
   <string name="cfs_scheduler_policy">Política de Agendamento CFS</string>
   <string name="cfs_scheduler_policy_summary">Política decide o Agendador como equilibrar as tarefas na unidade de CPU diferente.</string>

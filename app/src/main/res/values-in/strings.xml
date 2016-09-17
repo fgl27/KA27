@@ -83,8 +83,6 @@
   <string name="cpu_governor_tunables">Pengontrol CPU Yang Bisa Dirubah</string>
   <string name="cpu_governor_tunables_summary">Ragam item konfigurasi berdasarkan Pengontrol yang dipilih.</string>
   <string name="not_tunable">%s tidak bisa dirubah</string>
-  <string name="mc_power_saving">Penghemat Daya Inti Majemuk</string>
-  <string name="mc_power_saving_summary">Cobalah untuk mengelompokkan tugas-tugas Inti yang memungkinkan.</string>
   <string name="power_saving_wq">Menjadwalkan alur kerja yang membangunkan CPU untuk menghemat daya.</string>
   <string name="cfs_scheduler_policy">Kebijakan Penjadwal CFS</string>
   <string name="cfs_scheduler_policy_summary">Kebijakan yang menentukan cara Penjadwal CFS menyeimbangkan antar CPU.</string>

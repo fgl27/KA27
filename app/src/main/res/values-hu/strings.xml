@@ -82,8 +82,6 @@
   <string name="cpu_governor_tunables">CPU ütemező beállítások</string>
   <string name="cpu_governor_tunables_summary">Az aktuális CPU ütemező finomhangolási lehetőségei.</string>
   <string name="not_tunable">%s nem állítható</string>
-  <string name="mc_power_saving">Többmagos Energiatakarékosság</string>
-  <string name="mc_power_saving_summary">A feladatok csoportosítása a lehető legkevesebb magra.</string>
   <string name="power_saving_wq">Munkamenetek ütemezése éber CPU-kon, az eneriamegtakarítás érdekében.</string>
   <string name="cfs_scheduler_policy">CFS ütemezésének irányelve</string>
   <string name="cfs_scheduler_policy_summary">Ez az irányelv eldönti a CFS ütemező hogyan egyensúlyozza a feladatokat a különböző CPU egységeken.</string>

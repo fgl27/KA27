@@ -82,8 +82,6 @@
   <string name="cpu_governor_tunables">CPU governor Tunables</string>
   <string name="cpu_governor_tunables_summary">De verschillende configuratie-items die afhankelijk van de governor zijn.</string>
   <string name="not_tunable">%s is niet afstembare</string>
-  <string name="mc_power_saving">Multicore energiebesparing</string>
-  <string name="mc_power_saving_summary">Probeer taken te groeperen in de minst mogelijke kernen.</string>
   <string name="power_saving_wq">Schema workqueues op wakker CPU\'s om energie te besparen.</string>
   <string name="cfs_scheduler_policy">CFS Scheduler beleid</string>
   <string name="cfs_scheduler_policy_summary">Beleid beslist de CFS scheduler om de taken op verschillende CPU units evenwicht te brengen.</string>

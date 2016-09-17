@@ -80,8 +80,6 @@
   <string name="cpu_governor_tunables">CPU-tilan säätö</string>
   <string name="cpu_governor_tunables_summary">Monenlaisia kokoonpano nimikkeitä jotka ovat riippuvaisia CPU tilasta.</string>
   <string name="not_tunable">%s ei ole säädettävissä</string>
-  <string name="mc_power_saving">Moniydin tehon säästäminen</string>
-  <string name="mc_power_saving_summary">Yritä järjestää tehtävät mahdollisimman vähille ytimille.</string>
   <string name="power_saving_wq">Järjestä työjonot hereillä oleville CPU-prosessoreille säästääksesi virtaa.</string>
   <string name="disabled">Pois käytöstä</string>
   <string name="enabled">Käytössä</string>

@@ -81,8 +81,6 @@
   <string name="cpu_governor_tunables">CPU Governor Finputsningar</string>
   <string name="cpu_governor_tunables_summary">Diverse konfigurationstyper som är beroende av en specifik governor.</string>
   <string name="not_tunable">%s går inte att finputsa</string>
-  <string name="mc_power_saving">Flerkärnigt Energisparande</string>
-  <string name="mc_power_saving_summary">Försök att gruppera aktiviteter till minsta möjliga kärnor.</string>
   <string name="power_saving_wq">Skemalägg arbetsköer på vakna CPU:er för att spara ström.</string>
   <string name="cfs_scheduler_policy">Policy för CFS-schemaläggare</string>
   <string name="cfs_scheduler_policy_summary">Policyn avgör hur CFS-schemaläggaren balanserar jobb mellan olika CPU:er.</string>
