@@ -152,6 +152,12 @@
     <string name="wakeup_boost_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
     <string name="hotplug_boost">Hotplug Boost</string>
     <string name="hotplug_boost_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
+    <string name="cpu_per_core">Per Core Frequency Control</string>
+    <string name="cpu_per_core_summary">Enable to set individual frequency for it CPU Core.\nDisabling this will set all Cores frequency to Core 0 current Max/Min frequencies.</string>
+    <string name="cpu_per_core_max_freq">CPU Per Core Maximum Frequency</string>
+    <string name="cpu_per_core_min_freq">CPU Per Core Minimum Frequency</string>
+    <string name="cpu_max_per_core">CPU Core %d: Maximum Frequency</string>
+    <string name="cpu_min_per_core">CPU Core %d: Minimum Frequency</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>

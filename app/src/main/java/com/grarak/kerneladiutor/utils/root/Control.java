@@ -57,7 +57,7 @@ public class Control implements Constants {
         }
     }
 
-    private static void run(String command, String path, Context context) {
+    public static void run(String command, String path, Context context) {
         if (path != null && command != null && !path.equals("null") && !command.equals("null")) {
             RootUtils.runCommand(command);
             commandSaver(context, path, command);
@@ -73,7 +73,7 @@ public class Control implements Constants {
         return 255 & (Integer.MAX_VALUE ^ (arg1 & 255) + (arg2 & 255));
     }
 
-    private static void setPermission(String file, int permission, Context context) {
+    public static void setPermission(String file, int permission, Context context) {
         run("chmod " + permission + " " + file, file + "permission" + permission, context);
     }
 

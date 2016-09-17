@@ -280,9 +280,9 @@ public class CPU implements Constants {
     }
 
     public static void setGovernor(String governor, Context context) {
+        //If change Governor after previously had changed Freq, Freq may be wrong after reboot
         setGovernor(Control.CommandType.CPU, governor, context);
-	//If change Governor after change Freq, Freq may be wrong after reboot
-	setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
+        setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
         setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
     }
 
@@ -635,4 +635,63 @@ public class CPU implements Constants {
 
     }
 
+    public static boolean isPerCoreControlEnabled(Context context) {
+        try {
+            return Utils.getBoolean("Per_Core_Control_Enabled", false, context);
+        } catch (NullPointerException err) {
+            return false;
+        }
+    }
+
+    public static void setPerCoreControlEnabled(boolean active, Context context) {
+        Utils.saveBoolean("Per_Core_Control_Enabled", active, context);
+	//If deactivate reset freq to core one freq
+	if (!active) {
+	    setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
+	    setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
+	}
+    }
+    //Rewrite already existent code because of delay using existent function cause command to start before the previously had not finished
+    public static void setPCMaxFreq(int freq, int core, Context context) {
+        if (core > 0)
+            Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, core), String.format(Constants.CPU_CORE_ONLINE, core), context);
+        Control.setPermission(String.format(Constants.CPU_MAX_FREQ, core), 644, context);
+        Control.run("echo " + Integer.toString(freq) + " > " + String.format(CPU_MAX_FREQ, core), String.format(CPU_MAX_FREQ, core), context);
+        Control.setPermission(String.format(Constants.CPU_MAX_FREQ, core), 444, context);
+    }
+
+    public static void setPCMinFreq(int freq, int core, Context context) {
+        if (core > 0)
+            Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, core), String.format(Constants.CPU_CORE_ONLINE, core), context);
+        Control.setPermission(String.format(Constants.CPU_MIN_FREQ, core), 644, context);
+        Control.run("echo " + Integer.toString(freq) + " > " + String.format(CPU_MIN_FREQ, core), String.format(CPU_MIN_FREQ, core), context);
+        Control.setPermission(String.format(Constants.CPU_MIN_FREQ, core), 444, context);
+    }
+
+    public static void setGovernorPC(String governor, Context context) {
+        //If change Governor after previously had changed Freq, Freq may be wrong after reboot
+        //Set Gov
+        for (int i = 0; i < getCoreCount(); i++) {
+            Control.setPermission(String.format(Constants.CPU_SCALING_GOVERNOR, i), 644, context);
+            Control.run("echo " + governor + " > " + String.format(CPU_SCALING_GOVERNOR, i), String.format(CPU_SCALING_GOVERNOR, i), context);
+            Control.setPermission(String.format(Constants.CPU_SCALING_GOVERNOR, i), 444, context);
+        }
+        for (int i = 0; i < getCoreCount(); i++) {
+            String MAX = Integer.toString(getMaxFreq(i, true));
+            String MIN = Integer.toString(getMinFreq(i, true));
+            //Set Max freq
+            if (i > 0)
+                Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i), String.format(Constants.CPU_CORE_ONLINE, i), context);
+            Control.setPermission(String.format(Constants.CPU_MAX_FREQ, i), 644, context);
+            Control.run("echo " + MAX + " > " + String.format(CPU_MAX_FREQ, i), String.format(CPU_MAX_FREQ, i), context);
+            Control.setPermission(String.format(Constants.CPU_MAX_FREQ, i), 444, context);
+
+            //Set Min freq
+            if (i > 0)
+                Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i), String.format(Constants.CPU_CORE_ONLINE, i), context);
+            Control.setPermission(String.format(Constants.CPU_MIN_FREQ, i), 644, context);
+            Control.run("echo " + MIN + " > " + String.format(CPU_MIN_FREQ, i), String.format(CPU_MIN_FREQ, i), context);
+            Control.setPermission(String.format(Constants.CPU_MIN_FREQ, i), 444, context);
+        }
+    }
 }
