@@ -219,7 +219,8 @@ public class SettingsFragment extends RecyclerViewFragment {
         mLogcatCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("logcat -d > /sdcard/logcat.txt");
+                new Execute().execute("date > /sdcard/logcat.txt");
+                new Execute().execute("logcat -d >> /sdcard/logcat.txt");
             }
         });
 
@@ -236,7 +237,8 @@ public class SettingsFragment extends RecyclerViewFragment {
             mLastKmsgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    new Execute().execute("cat " + lastKmsg.toString() + " > /sdcard/last_kmsg.txt");
+                    new Execute().execute("date > /sdcard/last_kmsg.txt");
+                    new Execute().execute("cat " + lastKmsg.toString() + " >> /sdcard/last_kmsg.txt");
                 }
             });
 
@@ -249,7 +251,8 @@ public class SettingsFragment extends RecyclerViewFragment {
         mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("dmesg > /sdcard/dmesg.txt");
+                new Execute().execute("date > /sdcard/dmesg.txt");
+                new Execute().execute("dmesg >> /sdcard/dmesg.txt");
             }
         });
 
@@ -261,7 +264,8 @@ public class SettingsFragment extends RecyclerViewFragment {
         mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("echo $(getprop) > /sdcard/getprop.txt");
+                new Execute().execute("date > /sdcard/getprop.txt");
+                new Execute().execute("getprop >> /sdcard/getprop.txt");
             }
         });
 
