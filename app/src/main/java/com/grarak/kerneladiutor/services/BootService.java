@@ -48,6 +48,7 @@ import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
+import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.Wake;
 import com.kerneladiutor.library.root.RootUtils;
@@ -191,6 +192,14 @@ public class BootService extends Service {
 
         for (String command : commands) {
             log("run: " + command);
+            for (int i = 1; i < CPU.getCoreCount(); i++) {
+                if (command.equals("chmod 644 " + (String.format(Constants.CPU_MIN_FREQ, i))) || command.equals("chmod 644 " + (String.format(Constants.CPU_MAX_FREQ, i)))) {
+                    log("Online if enter in command = " + command);
+                    su.runCommand("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i));
+                    su.runCommand(command);
+                } else
+                    su.runCommand(command);
+            }
             su.runCommand(command);
         }
         su.close();

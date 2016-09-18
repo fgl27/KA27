@@ -124,9 +124,12 @@ public class Control implements Constants {
 
                     List<Integer> range = command == CommandType.CPU ? CPU.getBigCoreRange() : CPU.getLITTLECoreRange();
                     for (int i = 0; i < range.size(); i++) {
-                        if (i != 0)
+                        if (i != 0) {
+                            Control.run(String.format("echo 0 > " + CPU_CORE_ONLINE, i),
+                                String.format(CPU_CORE_ONLINE, i) + "cpuonline", context);
                             Control.run(String.format("echo 1 > " + CPU_CORE_ONLINE, i),
-                                    String.format(CPU_CORE_ONLINE, i) + "cpuonline", context);
+                                String.format(CPU_CORE_ONLINE, i) + "cpuonline", context);
+                        }
                         setPermission(String.format(file, range.get(i)), 644, context);
                         runGeneric(String.format(file, range.get(i)), value, id, context);
                         setPermission(String.format(file, range.get(i)), 444, context);

@@ -734,7 +734,7 @@
     <string name="power_suspend_mode">Power Suspend Mode</string>
     <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
     <string name="state_notifier">State Notifier</string>
-    <string name="state_notifier_summary">A new state notifier driver by Neobuddy89.\n\nDesign to improve communication between driver and suspend/resume routine.</string>
+    <string name="state_notifier_summary">A new state notifier driver by Neobuddy89.\n\nDesign to improve communication between drivers and suspend/resume routine.</string>
     <string name="state_notifier_mode">State Notifier Mode</string>
     <string name="state_notifier_mode_summary_enabled">Enable to see tunable.\nToggle between State and FB Notifiers.\n\nCurrently: State Notifier</string>
     <string name="state_notifier_mode_summary_disabled">Enable to see tunable.\nToggle between State and FB Notifiers.\n\nCurrently: FB Notifier</string>
