@@ -113,9 +113,11 @@
     <string name="core">Core %d</string>
     <string name="offline">Offline</string>
     <string name="cpu_max_freq">CPU Maximum Frequency</string>
-    <string name="cpu_max_freq_summary">Set the maximum frequency the CPU scales up to.</string>
+    <string name="cpu_max_freq_summary">Set the maximum frequency the CPU Cores scales up to.</string>
+    <string name="cpupc_max_freq_summary">Set the maximum frequency the CPU Cores scales up to.\n\nAfter choosing a frequency it will refresh and display the chosen frequency, if it doesn\'t change try again\n\nRare but, some times when setting a frequency to Core 1, 2 or 3 The frequency may not be set, this is do how hotplug control it core if in the particularly moment of change the core is be control by the hotplug the frequency may not be set by the one chosen, usually only need one extra try if the problem happens.</string>
     <string name="cpu_min_freq">CPU Minimum Frequency</string>
-    <string name="cpu_min_freq_summary">Set the minimum frequency the CPU scales down to.</string>
+    <string name="cpupc_min_freq_summary">Set the minimum frequency the CPU Cores scales down to.\n\nAfter choosing a frequency it will refresh and display the chosen frequency, if it doesn\'t change try again\n\nRare but, some times when setting a frequency to Core 1, 2 or 3 The frequency may not be set, this is do how hotplug control it core if in the particularly moment of change the core is be control by the hotplug the frequency may not be set by the one chosen, usually only need one extra try if the problem happens.</string>
+    <string name="cpu_min_freq_summary">Set the minimum frequency the CPU Cores scales down to.</string>
     <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
     <string name="cpu_max_screen_off_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="cpu_governor">CPU Governor</string>
@@ -134,7 +136,7 @@
     <string name="enabled2">(Enabled)</string>
     <string name="aggressive2">(Aggressive)</string>
     <string name="cpu_quiet">CPUQuiet</string>
-    <string name="cpu_quiet_summary">CPUQuiet implements pluggable policies for forcing cpu cores into quiescent state. Appropriate policies will save power without hurting performance.</string>
+    <string name="cpu_quiet_summary">CPUQuiet implements pluggable policies for forcing Cores into quiescent state. Appropriate policies will save power without hurting performance.</string>
     <string name="cpu_quiet_governor">CPUQuiet Governor</string>
     <string name="cpu_boost">CPU Boost</string>
     <string name="debug_mask">Debug Mask</string>
@@ -153,11 +155,11 @@
     <string name="hotplug_boost">Hotplug Boost</string>
     <string name="hotplug_boost_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
     <string name="cpu_per_core">Per Core Frequency Control</string>
-    <string name="cpu_per_core_summary">Enable to set individual frequency for it CPU Core.\nDisabling this will set all Cores frequency to Core 0 current Max/Min frequencies.</string>
-    <string name="cpu_per_core_max_freq">CPU Per Core Maximum Frequency</string>
-    <string name="cpu_per_core_min_freq">CPU Per Core Minimum Frequency</string>
-    <string name="cpu_max_per_core">CPU Core %d: Maximum Frequency</string>
-    <string name="cpu_min_per_core">CPU Core %d: Minimum Frequency</string>
+    <string name="cpu_per_core_summary">Enable to set individual frequency for it Core.\nDisabling this will set all Cores frequency to Core 0 current Max/Min frequencies.</string>
+    <string name="cpu_per_core_max_freq">Per Core Maximum Frequency</string>
+    <string name="cpu_per_core_min_freq">Per Core Minimum Frequency</string>
+    <string name="cpu_max_per_core">Core %d: Maximum Frequency</string>
+    <string name="cpu_min_per_core">Core %d: Minimum Frequency</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
@@ -616,7 +618,7 @@
     <string name="iorandom">Add Random</string>
     <string name="iorandom_summary">Draw entropy from spinning (rotational) storage.</string>
     <string name="ioaffitiny">RQ Affinity</string>
-    <string name="ioraffinity_summary">Try to have scheduler requests complete on the CPU core they were made from.</string>
+    <string name="ioraffinity_summary">Try to have scheduler requests complete on the Core they were made from.</string>
 
     <!-- Kernel Samepage Merging -->
     <string name="ksm_full_scans">Full scans</string>
@@ -748,7 +750,7 @@
     <string name="power_suspend_state_summary">Kernel power management driver when screen is off. Better battery savings if enabled. Note: You can only change this setting if Power Suspend Mode is in User Mode.</string>
     <string name="network">Network</string>
     <string name="tcp">TCP Congestion Algorithm</string>
-    <string name="tcp_summary">The Transmission Control Protocol is one of the core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
+    <string name="tcp_summary">The Transmission Control Protocol is one of the Core protocols of the Internet protocol suite (IP), and is so common that the entire suite is often called TCP/IP.</string>
     <string name="hostname">Hostname</string>
     <string name="adb_over_wifi">ADB Over WiFi</string>
     <string name="adb_over_wifi_summary">Enable ADB over WiFi</string>
