@@ -239,6 +239,7 @@
     <string name="powersaver_mode">Powersaver Mode</string>
     <string name="powersaver_mode_summary">Sets 1 CPU maximum online with frequency @1728 MHz.</string>
     <string name="up_threshold">Up Threshold</string>
+    <string name="down_threshold">Up Threshold</string>
     <string name="up_threshold_summary">Over this threshold the driver will put one more core online.</string>
     <string name="up_timer_cnt">Up Timer Control</string>
     <string name="up_timer_cnt_summary">Control timer for up CPUs.</string>
@@ -347,6 +348,12 @@
     <string name="state_helper_batt_level_cri_summary">Critical level core limiting. Limits max cpus online at this battery percentage.</string>
     <string name="state_helper_max_cpus_eco">Max CPUs online after reaching Economical Battery level</string>
     <string name="state_helper_max_cpus_cri">Max CPUs online after reaching Critical Battery level</string>
+    <string name="state_helper_dinamic">Dynamic Hotplugging</string>
+    <string name="state_helper_dinamic_summary">Enable to allow the driver to unplug/hotplug cores and see the Dynamic extra tunables.</string>
+    <string name="state_helper_up_threshold">Dynamic hotplugging will Online cores if average load is greater than up threashold</string>
+    <string name="state_helper_down_threshold">Dynamic hotplugging will offline cores if average load is less than down threashold</string>
+    <string name="state_helper_dynamic_interval">Dynamic hotplugging Time</string>
+    <string name="state_helper_dynamic_interval_summary">Time (ms) Interval to check for Load Average VS Up/Down Threashold.</string>
     <string name="bch">Boeffla Config Helper</string>
     <string name="bch_summary">Lord Boefflas solution for keeping big cores alive</string>
     <string name="msm_max_cores">Maximum cores to be allowed online.</string>

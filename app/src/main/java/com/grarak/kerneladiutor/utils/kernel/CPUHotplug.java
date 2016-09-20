@@ -1894,6 +1894,78 @@ public class CPUHotplug implements Constants {
         return Utils.existFile(STATE_HELPER_MAX_CPU_CRI);
     }
 
+    public static void activateStateHelperDebug(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", STATE_HELPER_DEBUG_MASK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isStateHelperPlugDebugActive() {
+        return Utils.readFile(STATE_HELPER_DEBUG_MASK).equals("1");
+    }
+
+    public static boolean hasStateHelperDebug() {
+        return Utils.existFile(STATE_HELPER_DEBUG_MASK);
+    }
+
+    public static void activateStateHelperDynamic(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", STATE_HELPER_DYNAMIC, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isStateHelperPlugDynamicActive() {
+        return Utils.readFile(STATE_HELPER_DYNAMIC).equals("1");
+    }
+
+    public static boolean hasStateHelperDynamic() {
+        return Utils.existFile(STATE_HELPER_DYNAMIC);
+    }
+
+    public static void setStateHelperDynamicInterval(int value, Context context) {
+        Control.runCommand(String.valueOf(value), STATE_HELPER_DYNAMIC_INTERVAL, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getStateHelperDynamicInterval() {
+        return Utils.stringToInt(Utils.readFile(STATE_HELPER_DYNAMIC_INTERVAL));
+    }
+
+    public static boolean hasStateHelperDynamicInterval() {
+        return Utils.existFile(STATE_HELPER_DYNAMIC_INTERVAL);
+    }
+
+    public static void setStateHelperMinOnline(int value, Context context) {
+        Control.runCommand(String.valueOf(value), STATE_HELPER_MIN_CPU_ONLINE, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getStateHelperMinOnline() {
+        return Utils.stringToInt(Utils.readFile(STATE_HELPER_MIN_CPU_ONLINE));
+    }
+
+    public static boolean hasStateHelperMinOnline() {
+        return Utils.existFile(STATE_HELPER_MIN_CPU_ONLINE);
+    }
+
+    public static void setStateHelperUpThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), STATE_HELPER_DYNAMIC_UP_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getStateHelperUpThreshold() {
+        return Utils.stringToInt(Utils.readFile(STATE_HELPER_DYNAMIC_UP_THRESHOLD));
+    }
+
+    public static boolean hasStateHelperUpThreshold() {
+        return Utils.existFile(STATE_HELPER_DYNAMIC_UP_THRESHOLD);
+    }
+
+    public static void setStateHelperDownThreshold(int value, Context context) {
+        Control.runCommand(String.valueOf(value), STATE_HELPER_DYNAMIC_DOWN_THRESHOLD, Control.CommandType.GENERIC, context);
+    }
+
+    public static int getStateHelperDownThreshold() {
+        return Utils.stringToInt(Utils.readFile(STATE_HELPER_DYNAMIC_DOWN_THRESHOLD));
+    }
+
+    public static boolean hasStateHelperDownThreshold() {
+        return Utils.existFile(STATE_HELPER_DYNAMIC_DOWN_THRESHOLD);
+    }
+
     public static void activatebch(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", BCH, Control.CommandType.GENERIC, context);
     }

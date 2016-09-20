@@ -301,9 +301,15 @@ public interface Constants {
     String MSM_SLEEPER_DOWN_COUNT_MAX = MSM_SLEEPER + "/down_count_max";
 
     String STATE_HELPER = "/sys/kernel/state_helper";
+    String STATE_HELPER_DEBUG_MASK = STATE_HELPER + "/debug_mask";
+    String STATE_HELPER_DYNAMIC = STATE_HELPER + "/dynamic";
+    String STATE_HELPER_DYNAMIC_INTERVAL = STATE_HELPER + "/dyn_interval_ms";
+    String STATE_HELPER_DYNAMIC_UP_THRESHOLD = STATE_HELPER + "/dyn_up_threshold";
+    String STATE_HELPER_DYNAMIC_DOWN_THRESHOLD = STATE_HELPER + "/dyn_down_threshold";
     String STATE_HELPER_ENABLE = STATE_HELPER + "/enabled";
     String STATE_HELPER_MAX_CPUS_ONLINE = STATE_HELPER + "/max_cpus_online";
     String STATE_HELPER_MAX_CPUS_SUSPEND = STATE_HELPER + "/max_cpus_susp";
+    String STATE_HELPER_MIN_CPU_ONLINE = STATE_HELPER + "/min_cpus_online";
     String STATE_HELPER_BATT_LEVEL_ECO = STATE_HELPER + "/batt_level_eco";
     String STATE_HELPER_BATT_LEVEL_CRI = STATE_HELPER + "/batt_level_cri";
     String STATE_HELPER_MAX_CPU_ECO = STATE_HELPER + "/max_cpus_eco";
