@@ -196,7 +196,7 @@
     <string name="hysteresis_summary">The lower it is, the faster response.</string>
     <string name="threshold">Threshold Value</string>
     <string name="debug">Debug</string>
-    <string name="debug_summary">Allows you to activate debug mask for operations.</string>
+    <string name="debug_summary">Allows you to activate debug mask for this operations.</string>
     <string name="suspend">Suspend</string>
     <string name="suspend_summary">Prevent to suspend.</string>
     <string name="cpus_boosted">CPUs Boosted</string>

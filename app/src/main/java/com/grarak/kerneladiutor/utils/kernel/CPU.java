@@ -606,6 +606,18 @@ public class CPU implements Constants {
         return Utils.existFile(STATE_NOTFIER_DIFER_TIME);
     }
 
+    public static void activateStateDebug(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", STATE_NOTIFIER_DEBUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isStateDebugActive() {
+        return Utils.readFile(STATE_NOTIFIER_DEBUG).equals("1");
+    }
+
+    public static boolean hasStateDebug() {
+        return Utils.existFile(STATE_NOTIFIER_DEBUG);
+    }
+
     private static class Usage {
 
         private long[] stats;

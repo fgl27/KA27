@@ -135,7 +135,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         private SwitchCardView.DSwitchCard mCpuBoostHotplugCard;
 
         private SwitchCardView.DSwitchCard mCpuTouchBoostCard;
-	private SwitchCardView.DSwitchCard mStateNotifierStateCard;
+	private SwitchCardView.DSwitchCard mStateNotifierStateCard, mStateDebugCard;
 
         private SwitchCardView.DSwitchCard mPerCoreControlCard;
         private PopupCardView.DPopupCard mPCMaxFreqCard0, mPCMaxFreqCard1, mPCMaxFreqCard2, mPCMaxFreqCard3,
@@ -484,6 +484,15 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 	    addView(mStateNotifierStateCard);
 
 	    if (CPU.isStateNotifierStateActive()) {
+	        if (CPU.hasStateDebug()) {
+	            mStateDebugCard = new SwitchCardView.DSwitchCard();
+	            mStateDebugCard.setTitle(getString(R.string.state_notifier) + " " + getString(R.string.debug));
+	            mStateDebugCard.setDescription(getString(R.string.debug_summary));
+	            mStateDebugCard.setChecked(CPU.isStateDebugActive());
+	            mStateDebugCard.setOnDSwitchCardListener(this);
+
+	            addView(mStateDebugCard);
+	        }
 	        if (CPU.hasStateDefer()) {
 	            List < String > list = new ArrayList < > ();
 	            for (int i = 0; i < 51; i += 1)
@@ -775,7 +784,9 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 } catch (InterruptedException ignored) {}
                 CPUFragment.cpuFragment.cpuPart.view.invalidate();
                 getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-            } else if (dSwitchCard == mCpuBoostWakeupCard)
+            }  else if (dSwitchCard == mStateDebugCard)
+                CPU.activateStateDebug(checked, getActivity());
+            else if (dSwitchCard == mCpuBoostWakeupCard)
                 CPU.activateCpuBoostWakeup(checked, getActivity());
             else if (dSwitchCard == mCpuBoostHotplugCard)
                 CPU.activateCpuBoostHotplug(checked, getActivity());

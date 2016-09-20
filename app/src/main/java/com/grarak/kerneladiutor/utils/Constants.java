@@ -82,6 +82,7 @@ public interface Constants {
 
     // State Notifier
     String STATE_NOTIFIER = "/sys/module/state_notifier/parameters";
+    String STATE_NOTIFIER_DEBUG = STATE_NOTIFIER + "/debug_mask";
     String STATE_NOTIFIER_ENABLED = STATE_NOTIFIER + "/enabled";
     String STATE_NOTFIER_DIFER_TIME = STATE_NOTIFIER + "/suspend_defer_time";
 
