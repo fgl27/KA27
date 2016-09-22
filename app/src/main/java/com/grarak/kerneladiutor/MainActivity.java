@@ -252,7 +252,7 @@ public class MainActivity extends BaseActivity implements Constants {
                     DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
             ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
-        if (Buildprop.hasBuildprop())
+        if (Buildprop.hasBuildprop() && RootUtils.hasAppletSupport())
             ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
@@ -362,7 +362,7 @@ public class MainActivity extends BaseActivity implements Constants {
         protected Void doInBackground(Void... params) {
             // Check root access and busybox installation
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-            if (hasRoot) hasBusybox = RootUtils.busyboxInstalled();
+            if (hasRoot) hasBusybox = RootUtils.hasAppletSupport();
 
             if (hasRoot && hasBusybox) {
                 // Set permissions to specific files which are not readable by default

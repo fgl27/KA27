@@ -38,7 +38,7 @@ public class RunProfileReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (!ACTION_FIRE_SETTING.equals(intent.getAction()) || !RootUtils.rootAccess() || !RootUtils.busyboxInstalled())
+        if (!ACTION_FIRE_SETTING.equals(intent.getAction()) || !RootUtils.rootAccess() || !RootUtils.hasAppletSupport())
             return;
         RootUtils.closeSU();
 

@@ -55,7 +55,7 @@ public class ProfileTileReceiver extends BroadcastReceiver {
                 Utils.toast(context.getString(R.string.no_root), context);
                 return;
             }
-            if (!RootUtils.busyboxInstalled()) {
+            if (!RootUtils.hasAppletSupport()) {
                 Utils.toast(context.getString(R.string.no_busybox), context);
                 return;
             }

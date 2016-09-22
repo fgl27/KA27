@@ -49,8 +49,19 @@ public class RootUtils {
         return !su.denied;
     }
 
+    public static boolean hasAppletSupport() {
+        if ( busyboxInstalled() || toyboxInstalled() ) {
+         return true;
+        }
+        return false;
+    }
+
     public static boolean busyboxInstalled() {
-        return existBinary("busybox") || existBinary("toybox");
+        return existBinary("busybox");
+    }
+
+    public static boolean toyboxInstalled() {
+        return existBinary("toybox");
     }
 
     private static boolean existBinary(String binary) {
