@@ -102,9 +102,9 @@ public class ProfileFragment extends RecyclerViewFragment {
         super.preInit(savedInstanceState);
 
 	String ppath = ("/sdcard/KA_profiles/");
-            if (!Utils.existFile(ppath)) {
-            File dir = new File(ppath);
-            dir.mkdir();
+	if (!Utils.existFile(ppath)) {
+	    File dir = new File(ppath);
+	    dir.mkdir();
 	}
 
         if (taskerMode) {
