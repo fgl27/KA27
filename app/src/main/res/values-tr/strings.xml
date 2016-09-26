@@ -391,7 +391,6 @@
   <string name="hide_apply_on_boot">Gizle uygulamak üstünde çizme</string>
   <string name="hide_apply_on_boot_summary">Onun görünüm aşağı kaydırma sırasında gizle.</string>
   <string name="enable_apply_on_boot_first">Etkinleştirmek zorunda açılışta en az bir bölüm için ilk önce uygulayın.</string>
-  <string name="debugging">Hata ayıklanıyor</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Logcat  /sdcard/logcat.txt adresine kopyalandı</string>
   <string name="last_kmsg">Son Kernel İletisi</string>

@@ -502,7 +502,6 @@
   <string name="hide_apply_on_boot">\"부팅 시 적용\" 숨기기</string>
   <string name="hide_apply_on_boot_summary">스크롤을 내릴 때 버튼을 숨깁니다.</string>
   <string name="enable_apply_on_boot_first">먼저 커널 설정 중 최소한 한 부분에서 \"부팅 시 적용\"을 활성화해야 합니다.</string>
-  <string name="debugging">디버깅</string>
   <string name="logcat">로그캣</string>
   <string name="logcat_summary">로그캣을 /sdcard/locat.txt에 복사합니다.</string>
   <string name="last_kmsg">마지막 커널 메시지</string>

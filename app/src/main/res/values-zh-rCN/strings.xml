@@ -550,7 +550,6 @@
   <string name="hide_apply_on_boot">隐藏在启动时自动应用</string>
   <string name="hide_apply_on_boot_summary">向下滚动时隐藏</string>
   <string name="enable_apply_on_boot_first">你必须先在一个类目中启用在启动时自动应用。</string>
-  <string name="debugging">调试</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
   <string name="last_kmsg">最近的内核信息</string>

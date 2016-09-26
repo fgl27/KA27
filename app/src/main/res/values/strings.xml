@@ -80,6 +80,7 @@
     <string name="profile">Profile</string>
     <string name="recovery" translatable="false">Recovery</string>
     <string name="initd">Init.d</string>
+    <string name="logs">Logs</string>
     <string name="startup_commands">Start-Up Commands</string>
     <string name="startup_commands_list">Start-Up Commands List:</string>
     <string name="startup_commands_list_info">Tap on an individual command to choose between copying it or deleteing it from the database.</string>
@@ -887,9 +888,10 @@
     <string name="hide_apply_on_boot">Hide Apply On Boot</string>
     <string name="hide_apply_on_boot_summary">Hide its view when scrolling down.</string>
     <string name="enable_apply_on_boot_first">You have to enable apply on boot at least for one section first.</string>
-    <string name="debugging">Debugging</string>
-    <string name="full_logcat">All Logs</string>
-    <string name="full_logcat_summary">Generates a .zip file with all bellow logs to:\n/sdcard/KA_Logs/logs%s.txt</string>
+    <string name="logs_summary">Logs summary</string>
+    <string name="ind_logs">Individual logs</string>
+    <string name="zip_log">One click All Logs to a ZIP</string>
+    <string name="zip_log_summary">Generates a .zip file with all individual logs to:\n/sdcard/KA_Logs/logs%s.txt</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">Copy logcat to:\n/sdcard/KA_Logs/logcat%s.txt</string>
     <string name="log_radio">Radio Log</string>

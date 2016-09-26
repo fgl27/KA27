@@ -451,7 +451,6 @@
   <string name="test">測試</string>
   <string name="test_summary">測試啟動 (滯) 上的應用。如果什麼也沒有發生，那麼沒有已保存的設定。</string>
   <string name="enable_apply_on_boot_first">您必需至少先為一個區塊啟用開機後自動套用</string>
-  <string name="debugging">除錯</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">將 logcat 複製到 /sdcard/logcat.txt</string>
   <string name="last_kmsg">最新的核心訊息</string>

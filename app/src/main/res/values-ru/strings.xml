@@ -567,7 +567,6 @@
   <string name="hide_apply_on_boot">Спрятать сообщение о применении во время загрузки</string>
   <string name="hide_apply_on_boot_summary">Спрятать \"Применить при загрузке\" при пролистывании вниз.</string>
   <string name="enable_apply_on_boot_first">Сначала необходимо включить \"Применить при загрузке\".</string>
-  <string name="debugging">Отладка</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Скопировать logcat в /sdcard/logcat.txt</string>
   <string name="last_kmsg">Последний лог ядра</string>

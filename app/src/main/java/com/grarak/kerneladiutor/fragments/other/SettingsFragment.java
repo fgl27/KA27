@@ -65,19 +65,12 @@ public class SettingsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-	String ppath = ("/sdcard/KA_Logs/");
-	if (!Utils.existFile(ppath)) {
-	    File dir = new File(ppath);
-	    dir.mkdir();
-	}
-
         if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en") && !Utils.isTV(getActivity()))
             forceenglishlanguageInit();
         darkthemeInit();
         if (Utils.hasCMSDK()) profileTileInit();
         applyonbootInit();
         perappInit();
-        debuggingInit();
         securityInit();
         showSectionsInit();
     }
@@ -216,152 +209,6 @@ public class SettingsFragment extends RecyclerViewFragment {
         });
 
         addView(mTestCard);
-    }
-
-    public static String getDate() {
-        DateFormat dateformate = new SimpleDateFormat("MMM_dd_yyyy_HH:mm");
-        Date date = new Date();
-        String Final_Date = "_" + dateformate.format(date);
-        return Final_Date;
-    }
-
-    private void debuggingInit() {
-        DDivider mDebuggingDividerCard = new DDivider();
-        mDebuggingDividerCard.setText(getString(R.string.debugging));
-
-        addView(mDebuggingDividerCard);
-
-        CardViewItem.DCardView mAllLogsCard = new CardViewItem.DCardView();
-        mAllLogsCard.setTitle(getString(R.string.full_logcat));
-        mAllLogsCard.setDescription(String.format(getString(R.string.full_logcat_summary), getDate()));
-        mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                String ppath = ("/tmp/tmp/");
-                if (!Utils.existFile(ppath)) {
-                    File dir = new File(ppath);
-                    dir.mkdir();
-                }
-                logs("logcat -b radio -v time -d ", ppath, "radio");
-                logs("logcat -b events -v time -d ", ppath, "events");
-                logs("dmesg", ppath, "dmesg");
-                logs("getprop", ppath, "getprop");
-                logs("logcat -d", ppath, "logcat");
-                //new Execute().execute("zip -r9 /sdcard/KA_Logs/logs" + getDate() + ".zip logcat.txt radio.txt events.txt dmesg.txt getprop.txt");
-            }
-        });
-
-        addView(mAllLogsCard);
-
-        CardViewItem.DCardView mLogcatCard = new CardViewItem.DCardView();
-        mLogcatCard.setTitle(getString(R.string.logcat));
-        mLogcatCard.setDescription(String.format(getString(R.string.logcat_summary), getDate()));
-        mLogcatCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs("logcat -d", "/sdcard/KA_Logs/", "logcat" + getDate());
-            }
-        });
-
-        addView(mLogcatCard);
-
-        CardViewItem.DCardView mLogRadioCard = new CardViewItem.DCardView();
-        mLogRadioCard.setTitle(getString(R.string.log_radio));
-        mLogRadioCard.setDescription(String.format(getString(R.string.log_radio_summary), getDate()));
-        mLogRadioCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs("logcat -b radio -v time -d ", "/sdcard/KA_Logs/", "radio" + getDate());
-            }
-        });
-
-        addView(mLogRadioCard);
-
-        CardViewItem.DCardView mLogEventsCard = new CardViewItem.DCardView();
-        mLogEventsCard.setTitle(getString(R.string.log_events));
-        mLogEventsCard.setDescription(String.format(getString(R.string.log_events_summary), getDate()));
-        mLogEventsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs("logcat -b events -v time -d ", "/sdcard/KA_Logs/", "events" + getDate());
-            }
-        });
-
-        addView(mLogEventsCard);
-
-        final StringBuilder lastKmsg = new StringBuilder();
-        if (Utils.existFile("/proc/last_kmsg")) lastKmsg.append("/proc/last_kmsg");
-        else if (Utils.existFile("/sys/fs/pstore/console-ramoops"))
-            lastKmsg.append("/sys/fs/pstore/console-ramoops");
-        if (lastKmsg.length() > 0) {
-            CardViewItem.DCardView mLastKmsgCard = new CardViewItem.DCardView();
-            mLastKmsgCard.setTitle(getString(R.string.last_kmsg));
-            mLastKmsgCard.setDescription(getString(R.string.last_kmsg_summary));
-            mLastKmsgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                @Override
-                public void onClick(CardViewItem.DCardView dCardView) {
-                    logs("cat " + lastKmsg.toString(), "/sdcard/KA_Logs/", "last_kmsg" + getDate());
-                }
-            });
-
-            addView(mLastKmsgCard);
-        }
-
-        CardViewItem.DCardView mDmesgCard = new CardViewItem.DCardView();
-        mDmesgCard.setTitle(getString(R.string.driver_message));
-        mDmesgCard.setDescription(String.format(getString(R.string.driver_message_summary), getDate()));
-        mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs("dmesg", "/sdcard/KA_Logs/", "dmesg" + getDate());
-            }
-        });
-
-        addView(mDmesgCard);
-
-        CardViewItem.DCardView mGetPropCard = new CardViewItem.DCardView();
-        mGetPropCard.setTitle(getString(R.string.get_prop));
-        mGetPropCard.setDescription(String.format(getString(R.string.get_prop_summary), getDate()));
-        mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs("getprop", "/sdcard/KA_Logs/", "getprop" + getDate());
-
-            }
-        });
-
-        addView(mGetPropCard);
-    }
-
-    private void logs(String log, String path, String file) {
-        new Execute().execute(log + " > " + path + file + ".txt");
-    }
-
-    private class Execute extends AsyncTask<String, Void, Void> {
-        private ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage(getString(R.string.execute));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(String... params) {
-            RootUtils.runCommand(params[0]);
-            if (params[0].equals("logcat -d > /tmp/tmp/logcat.txt"))
-                ZipUtil.pack(new File("/tmp/tmp"), new File("/sdcard/KA_Logs/logs" + getDate() + ".zip"));
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-        }
     }
 
     private void securityInit() {

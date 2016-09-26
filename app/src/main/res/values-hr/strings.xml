@@ -360,7 +360,6 @@
   <string name="hide_apply_on_boot">Sakrij opciju Primjeni kod pokretanja</string>
   <string name="hide_apply_on_boot_summary">Prekidač je skriven prilikom pomicanja prema dolje.</string>
   <string name="enable_apply_on_boot_first">Prvo morate odabrati primjenu pri pokretanju sustava barem u jednoj kategoriji.</string>
-  <string name="debugging">Ispravljanje pogrešaka</string>
   <string name="logcat">Logcat - izvješće o sustavu</string>
   <string name="logcat_summary">Kopirajte logcat u datoteku /sdcard/logcat.txt</string>
   <string name="last_kmsg">Last Kernel Message - izvješće o kernelu</string>

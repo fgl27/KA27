@@ -72,6 +72,7 @@ import com.grarak.kerneladiutor.fragments.other.SettingsFragment;
 import com.grarak.kerneladiutor.fragments.tools.BackupFragment;
 import com.grarak.kerneladiutor.fragments.tools.BuildpropFragment;
 import com.grarak.kerneladiutor.fragments.tools.InitdFragment;
+import com.grarak.kerneladiutor.fragments.tools.LogsFragment;
 import com.grarak.kerneladiutor.fragments.tools.StartUpCommandsFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
@@ -257,6 +258,7 @@ public class MainActivity extends BaseActivity implements Constants {
         ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.initd), new InitdFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.logs), new LogsFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.startup_commands), new StartUpCommandsFragment()));
         ITEMS.add(new DAdapter.Header(getString(R.string.other)));
         ITEMS.add(new DAdapter.Item(getString(R.string.settings), new SettingsFragment()));

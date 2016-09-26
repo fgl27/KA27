@@ -511,7 +511,6 @@
   <string name="hide_apply_on_boot">Ocultar aplicar ao inicializar</string>
   <string name="hide_apply_on_boot_summary">Ocultar esta vista ao deslocar para baixo.</string>
   <string name="enable_apply_on_boot_first">Você tem que permitir aplicar na inicialização, pelo menos para uma seção primeiro.</string>
-  <string name="debugging">Depuração</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Cópia do Logcat para /sdcard/logcat.txt</string>
   <string name="last_kmsg">Última mensagem de Kernel</string>

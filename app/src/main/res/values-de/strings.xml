@@ -507,7 +507,6 @@
   <string name="hide_apply_on_boot">\"Beim Systemstart anwenden\" ausblenden</string>
   <string name="hide_apply_on_boot_summary">Ansicht beim Herunterscrollen ausblenden.</string>
   <string name="enable_apply_on_boot_first">Sie müssen zuerst für einen Abschnitt \"Anwenden beim Boot\" aktivieren.</string>
-  <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Kopiere Logcat nach /sdcard/logcat.txt</string>
   <string name="last_kmsg">Letzte Kernel-Nachricht</string>

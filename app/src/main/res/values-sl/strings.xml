@@ -567,7 +567,6 @@
   <string name="hide_apply_on_boot">Skrij možnost uporabi ob zagonu</string>
   <string name="hide_apply_on_boot_summary">Skrij ko drsiš navzdol.</string>
   <string name="enable_apply_on_boot_first">Uporabo ob zagonu morate najprej omogočiti vsaj za en odsek.</string>
-  <string name="debugging">Razhroščevanje</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Kopiraj logcat v /sdcard/logcat.txt</string>
   <string name="last_kmsg">Zadnje sporočilo Kernela</string>

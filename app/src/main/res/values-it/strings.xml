@@ -552,7 +552,6 @@
   <string name="hide_apply_on_boot">Nascondi Applica all\'avvio</string>
   <string name="hide_apply_on_boot_summary">Nascondere durante lo scorrimento verso il basso.</string>
   <string name="enable_apply_on_boot_first">Abilitare le impostazioni al boot almeno per una prima sezione.</string>
-  <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copia logcat in /sdcard/logcat.txt</string>
   <string name="last_kmsg">Ultimo Kernel Message</string>

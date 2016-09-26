@@ -561,7 +561,6 @@
   <string name="hide_apply_on_boot">Sembunyikan apply pada Boot</string>
   <string name="hide_apply_on_boot_summary">Sembunyikan view nya ketika scroll ke bawah.</string>
   <string name="enable_apply_on_boot_first">Anda harus mengaktifkan apply boot setidaknya satu bagian pertama.</string>
-  <string name="debugging">Debugging</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Salin logcat ke /sdcard/logcat.txt</string>
   <string name="last_kmsg">Pesan Kernel terakhir</string>

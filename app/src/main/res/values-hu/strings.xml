@@ -566,7 +566,6 @@
   <string name="hide_apply_on_boot">Bootoláskor alkalmaz elretése</string>
   <string name="hide_apply_on_boot_summary">Nézet elrejtése, mikor lefelé görget.</string>
   <string name="enable_apply_on_boot_first">Engedélyeznie kell legalább egy szakaszra a bootoláskor alkalmaz szolgáltatást.</string>
-  <string name="debugging">Hibakeresés</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Logcat másolása ide: /sdcard/logcat.txt</string>
   <string name="last_kmsg">Utolsó kernel üzenet</string>

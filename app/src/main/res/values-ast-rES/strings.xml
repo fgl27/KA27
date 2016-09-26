@@ -526,7 +526,6 @@
   <string name="hide_apply_on_boot">Anubrir «Aplicar nel arranque»</string>
   <string name="hide_apply_on_boot_summary">Anubre la so apaición al desplazase p\'abaxo.</string>
   <string name="enable_apply_on_boot_first">Tienes d\'habilitar primero «Aplicar nel arranque» polo menos nuna estaya.</string>
-  <string name="debugging">Depuración</string>
   <string name="logcat">Logcat</string>
   <string name="logcat_summary">Copia\'l logcat a /sdcard/logcat.txt</string>
   <string name="last_kmsg">Mensaxe caberu\'l kernel</string>

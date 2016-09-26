@@ -288,7 +288,6 @@
   <string name="hide_apply_on_boot">Сакриј примену при подизању</string>
   <string name="hide_apply_on_boot_summary">Сакриј приказ при клизању на доле.</string>
   <string name="enable_apply_on_boot_first">Најпре морате да укључите примену при подизању бар за један одељак.</string>
-  <string name="debugging">Исправљање грешака</string>
   <string name="logcat">Логкат</string>
   <string name="logcat_summary">Копира логкат у /sdcard/logcat.txt</string>
   <string name="last_kmsg">Последња порука кернела</string>
