@@ -59,4 +59,12 @@
         <item name="android:background">@drawable/fab_label_background</item>
     </style>
 
+    <!-- AlertDialog -->
+    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+        <item name="colorAccent">@color/color_primary</item>
+        <item name="android:textColorPrimary">@color/textcolor_light</item>
+    </style>
+
 </resources>
