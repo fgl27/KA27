@@ -50,6 +50,7 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.zeroturnaround.zip.ZipUtil;
 /**
  * Created by willi on 09.03.15.
  */
@@ -236,13 +237,17 @@ public class SettingsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-
-                logs("logcat -d ", "/", "logcat");
-                logs("logcat -b radio -v time -d ", "/", "radio");
-                logs("logcat -b events -v time -d ", "/", "events");
-                logs("dmesg", "/", "dmesg");
-                logs("getprop", "/", "getprop");
-                new Execute().execute("zip -r9 /sdcard/KA_Logs/logs" + getDate() + ".zip logcat.txt radio.txt events.txt dmesg.txt getprop.txt");
+                String ppath = ("/tmp/tmp/");
+                if (!Utils.existFile(ppath)) {
+                    File dir = new File(ppath);
+                    dir.mkdir();
+                }
+                logs("logcat -b radio -v time -d ", ppath, "radio");
+                logs("logcat -b events -v time -d ", ppath, "events");
+                logs("dmesg", ppath, "dmesg");
+                logs("getprop", ppath, "getprop");
+                logs("logcat -d", ppath, "logcat");
+                //new Execute().execute("zip -r9 /sdcard/KA_Logs/logs" + getDate() + ".zip logcat.txt radio.txt events.txt dmesg.txt getprop.txt");
             }
         });
 
@@ -254,7 +259,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mLogcatCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs("logcat -d ", "/sdcard/KA_Logs/", "logcat");
+                logs("logcat -d", "/sdcard/KA_Logs/", "logcat" + getDate());
             }
         });
 
@@ -266,7 +271,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mLogRadioCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs("logcat -b radio -v time -d ", "/sdcard/KA_Logs/", "radio");
+                logs("logcat -b radio -v time -d ", "/sdcard/KA_Logs/", "radio" + getDate());
             }
         });
 
@@ -278,7 +283,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mLogEventsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs("logcat -b events -v time -d ", "/sdcard/KA_Logs/", "events");
+                logs("logcat -b events -v time -d ", "/sdcard/KA_Logs/", "events" + getDate());
             }
         });
 
@@ -295,7 +300,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             mLastKmsgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    logs("cat " + lastKmsg.toString(), "/sdcard/KA_Logs/", "last_kmsg");
+                    logs("cat " + lastKmsg.toString(), "/sdcard/KA_Logs/", "last_kmsg" + getDate());
                 }
             });
 
@@ -308,7 +313,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs("dmesg", "/sdcard/KA_Logs/", "dmesg");
+                logs("dmesg", "/sdcard/KA_Logs/", "dmesg" + getDate());
             }
         });
 
@@ -320,7 +325,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs("getprop", "/sdcard/KA_Logs/", "getprop");
+                logs("getprop", "/sdcard/KA_Logs/", "getprop" + getDate());
 
             }
         });
@@ -329,7 +334,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     }
 
     private void logs(String log, String path, String file) {
-        new Execute().execute(log + " > " + path + file + getDate() + ".txt");
+        new Execute().execute(log + " > " + path + file + ".txt");
     }
 
     private class Execute extends AsyncTask<String, Void, Void> {
@@ -347,6 +352,8 @@ public class SettingsFragment extends RecyclerViewFragment {
         @Override
         protected Void doInBackground(String... params) {
             RootUtils.runCommand(params[0]);
+            if (params[0].equals("logcat -d > /tmp/tmp/logcat.txt"))
+                ZipUtil.pack(new File("/tmp/tmp"), new File("/sdcard/KA_Logs/logs" + getDate() + ".zip"));
             return null;
         }
 

@@ -36,4 +36,5 @@ dependencies {
     compile 'io.karim:materialtabs:2.0.3'
     compile 'net.i2p.android.ext:floatingactionbutton:1.10.1'
     compile 'org.cyanogenmod:platform.sdk:6.0'
+    compile 'org.zeroturnaround:zt-zip:1.9'
 }
