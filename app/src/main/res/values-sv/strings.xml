@@ -253,7 +253,6 @@
   <string name="test_summary">Testa tillämpa vid uppstart (med fördröjning). Om inget händer så har inga inställningar sparats.</string>
   <string name="enable_apply_on_boot_first">Du måste aktivera tillämpa vid uppstart för minst en sektion först.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Kopiera logcat till /sdcard/logcat.txt</string>
   <string name="last_kmsg_summary">Kopiera /proc/last_kmsg till /sdcard/last_kmsg.txt</string>
   <string name="security">Säkerhet</string>
   <string name="set_password_summary">Du kan skydda Kernel Adiutor genom att ställa in ett lösenord som du måste ange varje gång du startar den här applikationen. Om du glömmer lösenordet, rensa då datan för den här applikationen på din enhets inställningssida. Oroa dig inte, jag sprider inte ditt lösenord.</string>

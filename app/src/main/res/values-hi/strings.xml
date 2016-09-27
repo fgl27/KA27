@@ -225,7 +225,5 @@
   <string name="glove_mode_summary">सक्षम कर रहा है यह आप अपने फ़ोन का उपयोग करते हुए भी दस्ताने पहने दूँगी।</string>
   <string name="dt2w">जगाने के दो बार tap करो</string>
   <string name="dt2w_summary">वेक अप आपका डिवाइस डबल स्क्रीन के दोहन के द्वारा।</string>
-  <string name="center">मध्य</string>
-  <string name="full">पूर्ण</string>
   <string name="feature_request">सुविधा अनुरोध</string>
 </resources>

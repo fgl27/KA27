@@ -154,13 +154,10 @@
   <string name="max_brightness">Максимално осветљење</string>
   <string name="dt2w">Двотап за буђење</string>
   <string name="dt2w_summary">Пробудите ваш уређај двотапом на екран.</string>
-  <string name="center">Средина</string>
-  <string name="full">Читав</string>
   <string name="t2w">Тап за буђење</string>
   <string name="t2w_summary">Пробудите ваш уређај тапом на екран.</string>
   <string name="wake">Буђење</string>
   <string name="dt2w_charging">Двотап за буђење у току пуњења</string>
-  <string name="sleep">Спавање</string>
   <string name="dt2s">Двотап за спавање</string>
   <string name="slide_up">Клизај горе</string>
   <string name="slide_down">Клизај доле</string>
@@ -254,7 +251,6 @@
   <string name="removed_all_sections">Уклонили сте све одељке! Нема профила за вас.</string>
   <string name="no_settings">Поставке нису нађене!</string>
   <string name="press_again_to_apply">Притисните опет да примените.</string>
-  <string name="applied">Примењено</string>
   <string name="applying_profile">Примењујем %s</string>
   <string name="reboot">Поново покрени</string>
   <string name="reboot_soft">Меко покретање</string>
@@ -289,11 +285,9 @@
   <string name="hide_apply_on_boot_summary">Сакриј приказ при клизању на доле.</string>
   <string name="enable_apply_on_boot_first">Најпре морате да укључите примену при подизању бар за један одељак.</string>
   <string name="logcat">Логкат</string>
-  <string name="logcat_summary">Копира логкат у /sdcard/logcat.txt</string>
   <string name="last_kmsg">Последња порука кернела</string>
   <string name="last_kmsg_summary">Копира /proc/last_kmsg у /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Дневник драјвера</string>
-  <string name="driver_message_summary">Копира дневник драјвера (dmesg) у /sdcard/dmesg.txt</string>
   <string name="security">Безбедност</string>
   <string name="set_password">Постави лозинку</string>
   <string name="set_password_summary">Можете да заштитите Кернел Адиутор лозинком. Сваки пут кад отворите апликацију, мораћете да је унесете. Ако је заборавите, једноставно обришите податке апликације у поставкама вашег уређаја. Не брините, ваша лозинка је безбедна.</string>

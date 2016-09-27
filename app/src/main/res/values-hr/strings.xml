@@ -263,8 +263,6 @@
   <string name="backlight_dimmer">Prigušivač pozadinskog osvjetljenja</string>
   <string name="dt2w">Dvaput-Dirni-Pa-Probudi</string>
   <string name="dt2w_summary">Probudite uređaj dvostrukim dodirom ekrana.</string>
-  <string name="center">Sredina</string>
-  <string name="full">Potpuno</string>
   <string name="s2w">Klizni-Pa-Probudi</string>
   <string name="s2s">Pometi-Pa-Uspavaj</string>
   <string name="t2w">Kucni-Pa-Probudi</string>
@@ -326,7 +324,6 @@
   <string name="sensor_ind_wakelock_summary">Spriječiti buđenje uređaja pri deaktiviranoj automatskoj svjetlini zaslona.</string>
   <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
   <string name="msm_hsic_host_wakelock_summary">Spriječiti msm_hsic_host buđenje uređaja.</string>
-  <string name="installed">Instalirano</string>
   <string name="features">Značajke</string>
   <string name="downloading_db">Preuzimanje baze podataka</string>
   <string name="google_plus">Google Plus</string>
@@ -348,7 +345,6 @@
   <string name="apply">Preuzmi</string>
   <string name="no_settings">Postavke nisu pronađene!</string>
   <string name="press_again_to_apply">Pritisnite ponovo za primjenu.</string>
-  <string name="applied">Primjenjeno</string>
   <string name="add_action_first">Morate prvo dodati akciju.</string>
   <string name="dark_theme">Tamni motiv</string>
   <string name="force_english_language">Iznudi Engleski jezik</string>
@@ -361,11 +357,9 @@
   <string name="hide_apply_on_boot_summary">Prekidač je skriven prilikom pomicanja prema dolje.</string>
   <string name="enable_apply_on_boot_first">Prvo morate odabrati primjenu pri pokretanju sustava barem u jednoj kategoriji.</string>
   <string name="logcat">Logcat - izvješće o sustavu</string>
-  <string name="logcat_summary">Kopirajte logcat u datoteku /sdcard/logcat.txt</string>
   <string name="last_kmsg">Last Kernel Message - izvješće o kernelu</string>
   <string name="last_kmsg_summary">Kopirajte /proc/last_kmsg u /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Izvješće o Driveru</string>
-  <string name="driver_message_summary">Kopirajte izvješće o driveru (dmesg) u /sdcard/dmesg.txt</string>
   <string name="security">Sigurnost</string>
   <string name="set_password">Postavi lozinku</string>
   <string name="set_password_summary">Možete zaštititi Kernel Adiutor postavljanjem lozinke, no svaki put kad otvorite aplikaciju, morat ćete je unijeti. Ako zaboravite lozinku, u sistemskim postavkama obrišite podatake aplikacije.</string>

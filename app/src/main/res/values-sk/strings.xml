@@ -144,7 +144,6 @@
   <string name="notification">Oznámenie</string>
   <string name="test">Test</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Kopíruj logcat do /sdcard/logcat.txt</string>
   <string name="last_kmsg">Posledná správa jadra</string>
   <string name="driver_message">Správa ovládača</string>
   <string name="open_source">Otvorený zdroj</string>

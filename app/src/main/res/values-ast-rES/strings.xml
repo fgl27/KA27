@@ -331,7 +331,6 @@
   <string name="glove_mode_summary">Habilitando esto dexaráte usar el to móvil magar que teas con guantes.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Esconsueña\'l to preséu calcando dos vegaes na pantalla.</string>
-  <string name="center">Centru</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Esconsueña\'l to preséu eslizando\'l deu penriba la pantalla.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -341,7 +340,6 @@
   <string name="dt2w_charging">DoubleTap2Wake na carga</string>
   <string name="s2w_charging">Sweep2Wake na carga</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake na carga</string>
-  <string name="sleep">Dormición</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="dt2s_summary">Bloquia\'l to preséu calcando dos vegaes na parte cimera de la pantalla.</string>
   <string name="slide_up">Esliza p\'arriba</string>
@@ -446,7 +444,6 @@
   <string name="wlan_wakelock_summary">Evita l\'esconsueñu calteníu de wlan.</string>
   <string name="wlan_rx_wakelock_divider">Divisor d\'esconsueñu calteníu de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor d\'esconsueñu calteníu de msm_hsic</string>
-  <string name="installed">Instaláu</string>
   <string name="no_kernels">Nun s\'alcontraron kernels</string>
   <string name="logo">Llogu</string>
   <string name="features">Carauterístiques</string>
@@ -491,7 +488,6 @@
   <string name="removed_all_sections">¡Desaniciesti toles escoyetes! Nun hai perfiles pa tigo.</string>
   <string name="no_settings">¡Nun s\'alcontraron axustes!</string>
   <string name="press_again_to_apply">Primi de nueves p\'aplicar.</string>
-  <string name="applied">Aplicóse</string>
   <string name="applying_profile">Aplicando %s</string>
   <string name="replace_profile">¿Quies trocar %s?</string>
   <string name="reboot">Reaniciar</string>
@@ -527,11 +523,9 @@
   <string name="hide_apply_on_boot_summary">Anubre la so apaición al desplazase p\'abaxo.</string>
   <string name="enable_apply_on_boot_first">Tienes d\'habilitar primero «Aplicar nel arranque» polo menos nuna estaya.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Copia\'l logcat a /sdcard/logcat.txt</string>
   <string name="last_kmsg">Mensaxe caberu\'l kernel</string>
   <string name="last_kmsg_summary">Copia /proc/last_kmsg a /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensaxe\'l controlador</string>
-  <string name="driver_message_summary">Copia\'l mensaxe del controlador (dmesg) a /sdcard/dmesg.txt</string>
   <string name="security">Seguranza</string>
   <string name="set_password">Afitar contraseña</string>
   <string name="set_password_summary">Pues protexer Kernel Adiutor afitando una contraseña. Cada vegada qu\'abras esta aplicación, tendrás d\'introducila. Si la escaeces, namái llimpia los datos d\'esta aplicación nos axustes del to preséu. Nun t\'esmolezas que nun compartiré la to contraseña.</string>

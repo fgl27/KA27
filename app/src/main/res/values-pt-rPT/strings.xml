@@ -323,8 +323,6 @@
   <string name="glove_mode_summary">Activar isto permitirá que use o seu telefone mesmo usando luvas.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Acorda seu dispositivo com duplo toque no ecrã.</string>
-  <string name="center">Centro</string>
-  <string name="full">Completo</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Acorda seu dispositivo com um scroll no ecrã.</string>
   <string name="lenient">Sweep2Wake Leniency</string>
@@ -335,7 +333,6 @@
   <string name="dt2w_charging">DoubleTap2Wake durante o carregamento</string>
   <string name="s2w_charging">Sweep2Wake durante o carregamento</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake durante o carregamento</string>
-  <string name="sleep">Dormir</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="slide_up">Deslize para cima</string>
   <string name="slide_down">Deslize para baixo</string>
@@ -435,7 +432,6 @@
   <string name="wlan_wakelock_summary">Evite wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock divisor</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock divisor</string>
-  <string name="installed">Instalado</string>
   <string name="no_kernels">Nenhum kernel encontrado</string>
   <string name="logo">Logo</string>
   <string name="features">Funcionalidades</string>
@@ -476,7 +472,6 @@
   <string name="removed_all_sections">Você removeu todas as secções! Não há perfis parasi.</string>
   <string name="no_settings">Não há definições encontradas!</string>
   <string name="press_again_to_apply">Pressione novamente para aplicar.</string>
-  <string name="applied">Aplicado</string>
   <string name="applying_profile">A aplicar %s</string>
   <string name="replace_profile">Deseja substituir %s?</string>
   <string name="reboot">Reiniciar</string>
@@ -512,11 +507,9 @@
   <string name="hide_apply_on_boot_summary">Ocultar esta vista ao deslocar para baixo.</string>
   <string name="enable_apply_on_boot_first">Você tem que permitir aplicar na inicialização, pelo menos para uma seção primeiro.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Cópia do Logcat para /sdcard/logcat.txt</string>
   <string name="last_kmsg">Última mensagem de Kernel</string>
   <string name="last_kmsg_summary">Copiar /Proc/last_kmsg para /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Mensagem do Driver</string>
-  <string name="driver_message_summary">Copiar a mensagem do driver (dmesg) para /sdcard/dmesg.txt</string>
   <string name="security">Segurança</string>
   <string name="set_password">Definir palavra-passe</string>
   <string name="set_password_summary">Pode proteger o Kernel Adiutor, definindo uma senha. Cada vez que abrir esta aplicação, precisa introduzi-la. Se se esquecer, basta limpar os dados da aplicação nas configurações do seu dispositivo. Não se preocupe que eu não partilho a sua senha.</string>

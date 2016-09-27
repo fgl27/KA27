@@ -313,8 +313,6 @@
   <string name="glove_mode_summary">이 기능을 활성화하면 장갑을 낀 상태에서도 휴대폰을 사용할 수 있도록 할 것입니다.</string>
   <string name="dt2w">두 번 두드려서 화면 켜기</string>
   <string name="dt2w_summary">두 번 두드리면 장치의 화면이 켜집니다.</string>
-  <string name="center">중앙</string>
-  <string name="full">전체</string>
   <string name="s2w">밀어서 화면 켜기</string>
   <string name="s2w_summary">화면을 밀어서 장치의 화면을 켭니다.</string>
   <string name="s2s">밀어서 화면 끄기</string>
@@ -324,7 +322,6 @@
   <string name="dt2w_charging">충전중에 두 번 두드려서 화면 켜기</string>
   <string name="s2w_charging">충전중에 밀어서 화면 켜기</string>
   <string name="dt2w_s2w_charging">충전중에 두 번 두드려서 화면 켜기+밀어서 화면 켜기</string>
-  <string name="sleep">화면 잠금</string>
   <string name="dt2s">두 번 두드려서 화면 끄기</string>
   <string name="slide_up">위로 밀기</string>
   <string name="slide_down">아래로 밀기</string>
@@ -422,7 +419,6 @@
   <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
-  <string name="installed">설치됨</string>
   <string name="no_kernels">커널을 찾을 수 없습니다.</string>
   <string name="logo">로고</string>
   <string name="features">기능</string>
@@ -467,7 +463,6 @@
   <string name="removed_all_sections">섹션을 모두 삭제했습니다! 프로필이 없습니다.</string>
   <string name="no_settings">설정이 없습니다!</string>
   <string name="press_again_to_apply">적용하려면 다시 한 번 눌러주세요.</string>
-  <string name="applied">적용됨</string>
   <string name="applying_profile">%s을(를) 적용중</string>
   <string name="replace_profile">%s를 교체하시겠습니까?</string>
   <string name="reboot">다시 시작</string>
@@ -503,11 +498,9 @@
   <string name="hide_apply_on_boot_summary">스크롤을 내릴 때 버튼을 숨깁니다.</string>
   <string name="enable_apply_on_boot_first">먼저 커널 설정 중 최소한 한 부분에서 \"부팅 시 적용\"을 활성화해야 합니다.</string>
   <string name="logcat">로그캣</string>
-  <string name="logcat_summary">로그캣을 /sdcard/locat.txt에 복사합니다.</string>
   <string name="last_kmsg">마지막 커널 메시지</string>
   <string name="last_kmsg_summary">/proc/last_kmsg를 /sdcard/last_kmsg.txt에 복사합니다.</string>
   <string name="driver_message">드라이버 메시지</string>
-  <string name="driver_message_summary">드라이버 메시지(dmesg)를 /sdcard/dmesg.txt에 복사합니다.</string>
   <string name="security">보안</string>
   <string name="set_password">비밀번호 설정</string>
   <string name="set_password_summary">비밀번호를 사용하여 Kernel Adiutor를 보호할 수 있습니다. 이 애플리케이션을 열 때 마다 비밀번호를 입력해야 합니다. 만약 비밀번호가 기억이 나지 않는다면 설정에서 이 이 애플리케이션의 데이터를 삭제해 주세요. 비밀번호가 타인에게 노출되지 않도록 주의하시기 바랍니다.</string>

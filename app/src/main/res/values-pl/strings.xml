@@ -193,15 +193,12 @@
   <string name="offset">Przesunięcie</string>
   <string name="dt2w">Podwójne Klikniecie By Wybudzić</string>
   <string name="dt2w_summary">Wybudź swoje urządzenie poprzez podwójne dotknięcie ekranu.</string>
-  <string name="center">Środek</string>
-  <string name="full">Pełny</string>
   <string name="s2w">Przeciągnij by wybudzić</string>
   <string name="s2w_summary">Obudź urządzenie przez przesunięcie po ekranie.</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Obudź urządzenie przez dotknięcie ekranu.</string>
   <string name="wake">Wybudzanie</string>
-  <string name="sleep">Uśpienie</string>
   <string name="slide_up">Przesuń w górę</string>
   <string name="slide_down">Przesuń w dół</string>
   <string name="slide_left">Przesuń w lewo</string>
@@ -286,7 +283,6 @@
   <string name="select_all">Zaznacz wszystkie</string>
   <string name="apply">Zastosuj</string>
   <string name="press_again_to_apply">Naciśnij ponownie, aby zastosować.</string>
-  <string name="applied">Zastosowano</string>
   <string name="applying_profile">Zastosowanie %s</string>
   <string name="replace_profile">Czy chcesz zastąpić %s?</string>
   <string name="reboot">Uruchom ponownie</string>
@@ -303,7 +299,6 @@
   <string name="emulate_initd">Emuluj Init.d</string>
   <string name="dark_theme">Ciemny motyw</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Skopiuj logcat do /sdcard/logcat.txt</string>
   <string name="last_kmsg_summary">Skopiuj /proc/last_kmsg do /sdcard/last_kmsg.txt</string>
   <string name="license">Licencja</string>
   <string name="app_license">Kernel Diutor jest na licencji Apache License, Wesja 2.0, i używa następujących bibliotek</string>

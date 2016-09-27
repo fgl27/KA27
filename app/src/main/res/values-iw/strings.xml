@@ -194,6 +194,4 @@
   <string name="glove_mode_summary">הפעלת מצב זה יאפשר להשתמש במכשיר עם כפפות.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">להעיר את המכשיר בעזרת הקשה כפולה על המסך.</string>
-  <string name="center">מרכז</string>
-  <string name="full">מלא</string>
 </resources>

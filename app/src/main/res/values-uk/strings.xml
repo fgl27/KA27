@@ -259,6 +259,4 @@
   <string name="glove_mode_summary">Ввімкнення дозволить вам використовувати телефон, навіть в рукавичках.</string>
   <string name="dt2w">Двічі доторкнітья, щоб розблокувати</string>
   <string name="dt2w_summary">Розблокуйте пристрій, двічі торкнувшись екрана.</string>
-  <string name="center">Центр</string>
-  <string name="full">Повний</string>
 </resources>

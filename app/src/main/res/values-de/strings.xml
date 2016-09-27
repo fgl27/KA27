@@ -333,8 +333,6 @@
   <string name="glove_mode">Handschuh-Modus</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Wecken Sie Ihr Gerät durch doppeltes Antippen des Bildschirms auf.</string>
-  <string name="center">Mittig</string>
-  <string name="full">Vollständig</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Wecken Sie Ihr Gerät durch Wischen auf dem Bildschirm auf.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -344,7 +342,6 @@
   <string name="dt2w_charging">DoubleTap2Wake während des Ladevorgangs</string>
   <string name="s2w_charging">Sweep2Wake während des Ladevorgangs</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake während des Ladevorgangs</string>
-  <string name="sleep">Schlafen</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="slide_up">Nach oben streichen</string>
   <string name="slide_down">Nach unten streichen</string>
@@ -427,7 +424,6 @@
   <string name="msm_hsic_host_wakelock_summary">Verhindert msm_hsic_host Wakelocks.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
   <string name="wlan_wakelock_summary">Verhindere WLAN Wakelocks.</string>
-  <string name="installed">Installiert</string>
   <string name="no_kernels">Keine Kernels gefunden</string>
   <string name="logo">Logo</string>
   <string name="features">Features</string>
@@ -472,7 +468,6 @@
   <string name="removed_all_sections">Sie haben alle Abschnitte entfernt! Keine Profile für Sie.</string>
   <string name="no_settings">Keine Einstellungen gefunden!</string>
   <string name="press_again_to_apply">Zum Anwenden erneut drücken.</string>
-  <string name="applied">Übernommen</string>
   <string name="applying_profile">%s anwenden</string>
   <string name="replace_profile">Möchten Sie %s ersetzen?</string>
   <string name="reboot">Neustart</string>
@@ -508,11 +503,9 @@
   <string name="hide_apply_on_boot_summary">Ansicht beim Herunterscrollen ausblenden.</string>
   <string name="enable_apply_on_boot_first">Sie müssen zuerst für einen Abschnitt \"Anwenden beim Boot\" aktivieren.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Kopiere Logcat nach /sdcard/logcat.txt</string>
   <string name="last_kmsg">Letzte Kernel-Nachricht</string>
   <string name="last_kmsg_summary">Kopiere /proc/last_kmsg nach /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Treiber-Nachricht</string>
-  <string name="driver_message_summary">Treiber-Nachricht (Dmesg) auf /sdcard/dmesg.txt speichern</string>
   <string name="security">Sicherheit</string>
   <string name="set_password">Passwort festlegen</string>
   <string name="set_password_summary">Sie können Kernel Adiutor durch das Festlegen eines Passworts schützen. Jedes Mal wenn Sie diese Anwendung öffnen, müssen Sie Ihr Passwort eingeben. Falls Sie es vergessen sollten, einfach die Daten dieser Anwendung in den Einstellungen Ihres Gerätes löschen. Machen Sie sich keine Sorgen, ich werde Ihr Passwort nicht missbrauchen.</string>

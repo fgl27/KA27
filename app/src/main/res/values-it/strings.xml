@@ -357,8 +357,6 @@
   <string name="glove_mode_summary">L\'attivazione di questa funzione vi permetterà di utilizzare il telefono anche con i guanti.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Sveglia il dispositivo con doppio tap sullo schermo.</string>
-  <string name="center">Centro</string>
-  <string name="full">Completo</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Sveglia il dispositivo scorrendo sullo schermo.</string>
   <string name="s2s">Sweep2Sleep</string>
@@ -368,7 +366,6 @@
   <string name="dt2w_charging">DoubleTap2Wake durante la ricarica</string>
   <string name="s2w_charging">Sweep2Wake durante la ricarica</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake durante la ricarica</string>
-  <string name="sleep">Sospendi</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="dt2s_summary">Blocca il dispositivo cliccando due volte nella parte alta dello schermo.</string>
   <string name="slide_up">Scorrere verso l\'alto</string>
@@ -472,7 +469,6 @@
   <string name="wlan_wakelock_summary">Prevenire Wakelock wlan</string>
   <string name="wlan_rx_wakelock_divider">Divisore Wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisore Wakelock msm_hsic</string>
-  <string name="installed">Installato</string>
   <string name="no_kernels">Nessun kernel trovato</string>
   <string name="logo">Logo</string>
   <string name="features">Funzioni</string>
@@ -517,7 +513,6 @@
   <string name="removed_all_sections">Sono state rimosse tutte le sezioni! Nessun profilo presente.</string>
   <string name="no_settings">Impostazioni non trovate!</string>
   <string name="press_again_to_apply">Premere nuovamente per applicare.</string>
-  <string name="applied">Applicato</string>
   <string name="applying_profile">Applicare %s</string>
   <string name="replace_profile">Vuoi sostituire %s?</string>
   <string name="reboot">Riavvia</string>
@@ -553,11 +548,9 @@
   <string name="hide_apply_on_boot_summary">Nascondere durante lo scorrimento verso il basso.</string>
   <string name="enable_apply_on_boot_first">Abilitare le impostazioni al boot almeno per una prima sezione.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Copia logcat in /sdcard/logcat.txt</string>
   <string name="last_kmsg">Ultimo Kernel Message</string>
   <string name="last_kmsg_summary">Copia /proc/last_kmsg in /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Messaggio Driver</string>
-  <string name="driver_message_summary">Copia messaggio driver (dmesg) in /sdcard/dmesg.txt</string>
   <string name="security">Sicurezza</string>
   <string name="set_password">Imposta Password</string>
   <string name="set_password_summary">È possibile proteggere Kernel Adiutor impostando una password. Ogni volta che si aprirà questa applicazione, sarà necessario inserirla. Se si dimentica, è sufficiente pulire i dati di questa applicazione nelle impostazioni del vostro dispositivo. Non ti preoccupare non voglio condividere la tua password.</string>

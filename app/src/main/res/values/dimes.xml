@@ -20,6 +20,5 @@
     <dimen name="headermain_height">150dp</dimen>
 
     <dimen name="fab_elevation">5dp</dimen>
-    <dimen name="divider_card_elevation">5dp</dimen>
     <dimen name="information_card_elevation">5dp</dimen>
 </resources>

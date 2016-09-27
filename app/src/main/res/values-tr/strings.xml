@@ -245,15 +245,12 @@
   <string name="glove_mode_summary">Bunun etkinleştirilmesiyle eldiven giyerken telefonunuzu kullanmanıza izin verir.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Aygıtınızı çift ekran dokunarak uyandır.</string>
-  <string name="center">Orta</string>
-  <string name="full">Tam</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2s">Sweep2Sleep</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Aygıtınızı ekrana dokunarak uyandır.</string>
   <string name="wake">Uyanma</string>
   <string name="dt2w_charging">Şarjdayken Çift Tıkla Uyan</string>
-  <string name="sleep">Uyku</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="slide_up">Yukarı kaydır</string>
   <string name="slide_down">Aşağı kaydır</string>
@@ -360,7 +357,6 @@
   <string name="removed_all_sections">Tüm bölümleri kaldırıldı! Senin için profili yok.</string>
   <string name="no_settings">Herhangi bir ayar bulunamadı!</string>
   <string name="press_again_to_apply">Tekrar uygulamak için düğmesine basın.</string>
-  <string name="applied">Uygulandı</string>
   <string name="applying_profile">%s Uygulanıyor</string>
   <string name="reboot">Yeniden başlat</string>
   <string name="reboot_soft">Yazılımsal yeniden başlatma</string>
@@ -392,11 +388,9 @@
   <string name="hide_apply_on_boot_summary">Onun görünüm aşağı kaydırma sırasında gizle.</string>
   <string name="enable_apply_on_boot_first">Etkinleştirmek zorunda açılışta en az bir bölüm için ilk önce uygulayın.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Logcat  /sdcard/logcat.txt adresine kopyalandı</string>
   <string name="last_kmsg">Son Kernel İletisi</string>
   <string name="last_kmsg_summary">/proc/last_kmsg to /sdcard/last_kmsg.txt adresine kopyalandı</string>
   <string name="driver_message">Sürücü İletisi</string>
-  <string name="driver_message_summary">Sürücü iletisi (dmesg)  /sdcard/dmesg.txt adresine kopyalandı</string>
   <string name="security">Güvenlik</string>
   <string name="set_password">Şifre Belirle</string>
   <string name="set_password_summary">Çekirdek Adiutor bir parola ayarlayarak koruyabilirsiniz. Bu uygulama her açtığınızda bu girmeniz gerekir. Sadece unutursanız, bu uygulamanın veri cihazınızın ayarlarını Sil. Sakın şifrenizi paylaşmak olmayacak merak etme.</string>

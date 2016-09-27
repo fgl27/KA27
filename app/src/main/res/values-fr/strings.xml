@@ -331,19 +331,15 @@
   <string name="glove_mode_summary">Activer ceci vous permettra d\'utiliser votre téléphone même en portant des gants.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Réveillez votre appareil en tapotant deux fois l\'écran.</string>
-  <string name="center">Milieu</string>
-  <string name="full">Plein</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Réveillez votre appareil en balayant sur l\'écran.</string>
   <string name="s2s">Sweep2Sleep</string>
-  <string name="s2w_right">Sweep2Wake vers la droite</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Réveillez votre appareil en touchant l\'écran.</string>
   <string name="wake">Sortie de veille</string>
   <string name="dt2w_charging">DoubleTap2Wake durant la charge</string>
   <string name="s2w_charging">Sweep2Wake durant la charge</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake durant la charge</string>
-  <string name="sleep">Veille</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="dt2s_summary">Verrouille l\'appareil en tapant deux fois sur le haut de l\'écran.</string>
   <string name="slide_up">Glisser vers le haut</string>
@@ -452,7 +448,6 @@
   <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
-  <string name="installed">Installé</string>
   <string name="no_kernels">Aucun noyau n\'a été trouvé</string>
   <string name="logo">Logo</string>
   <string name="features">Caractèristiques</string>
@@ -497,7 +492,6 @@
   <string name="removed_all_sections">Vous avez supprimé toutes les sections ! Pas de profils pour vous.</string>
   <string name="no_settings">Aucuns paramètres trouvés !</string>
   <string name="press_again_to_apply">Appuyez à nouveau pour appliquer.</string>
-  <string name="applied">Appliqué</string>
   <string name="applying_profile">Application de %s en cours</string>
   <string name="replace_profile">Voulez-vous remplacer %s ?</string>
   <string name="reboot">Redémarrer</string>
@@ -533,11 +527,9 @@
   <string name="hide_apply_on_boot_summary">Masquer l\'affichage lors du défilement vers le bas.</string>
   <string name="enable_apply_on_boot_first">Vous devez au préalable activer \"Appliquer au démarrage\" dans au moins une catégorie.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Copier le logcat vers /sdcard/logcat.txt</string>
   <string name="last_kmsg">Dernier Message du Kernel</string>
   <string name="last_kmsg_summary">Copiez /proc/last_kmsg vers /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Message du Pilote</string>
-  <string name="driver_message_summary">Copier le message du driver (dmesg) vers /sdcard/dmesg.txt</string>
   <string name="security">Sécurité</string>
   <string name="set_password">Définir un mot de passe</string>
   <string name="set_password_summary">Vous pouvez protéger Kernel Adiutor en paramétrant un mot de passe. Chaque fois que vous ouvrez l\'application, vous devrez entrer celui-ci. Si vous l\'oubliez, effacez les données de l\'application dans les paramètres de votre appareil. Ne vous inquiétez pas, je ne partagerai pas votre mot de passe.</string>

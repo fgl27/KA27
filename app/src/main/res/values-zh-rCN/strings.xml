@@ -335,7 +335,7 @@
   <string name="gamma_profile_summary">在选择一个配置文件后，请关闭屏幕再开启屏幕。</string>
   <string name="additional_profiles">附加的配置文件</string>
   <string name="additional_profiles_summary">从互联网获取更多配置文件</string>
-  <string name="loading">正在加载...</string>
+  <string name="loading">正在加载&#8230;</string>
   <string name="no_internet">无互联网连接</string>
   <string name="no_additional_profiles">没有找到其他配置文件</string>
   <string name="lcd_backlight">LCD 背光</string>
@@ -356,8 +356,6 @@
   <string name="glove_mode_summary">启用此选项，将让您使用手机时，即使戴着手套。</string>
   <string name="dt2w">双击唤醒</string>
   <string name="dt2w_summary">双击屏幕来唤醒您的设备。</string>
-  <string name="center">中心</string>
-  <string name="full">全部</string>
   <string name="s2w">滑动唤醒</string>
   <string name="s2w_summary">在屏幕上滑动以唤醒您的设备</string>
   <string name="s2s">滑动睡眠</string>
@@ -367,7 +365,6 @@
   <string name="dt2w_charging">充电时双击唤醒</string>
   <string name="s2w_charging">充电时轻扫实体键唤醒</string>
   <string name="dt2w_s2w_charging">充电时轻扫实体键或双击唤醒</string>
-  <string name="sleep">休眠</string>
   <string name="dt2s">双击睡眠</string>
   <string name="dt2s_summary">通过在屏幕顶部的双击锁定您的设备。</string>
   <string name="slide_up">向上滑动</string>
@@ -471,7 +468,6 @@
   <string name="wlan_wakelock_summary">阻止 wlan 取得唤醒锁</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
-  <string name="installed">已安装</string>
   <string name="no_kernels">发现没有内核</string>
   <string name="logo">图标</string>
   <string name="features">功能</string>
@@ -516,7 +512,6 @@
   <string name="removed_all_sections">您删除了所有配置文件！现在没有配置文件。</string>
   <string name="no_settings">没有找到设置!</string>
   <string name="press_again_to_apply">再按一次以应用。</string>
-  <string name="applied">已应用</string>
   <string name="applying_profile">应用%s</string>
   <string name="reboot">重新启动</string>
   <string name="reboot_soft">软重启</string>
@@ -551,11 +546,9 @@
   <string name="hide_apply_on_boot_summary">向下滚动时隐藏</string>
   <string name="enable_apply_on_boot_first">你必须先在一个类目中启用在启动时自动应用。</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">将 logcat 复制到 /sdcard/logcat.txt</string>
   <string name="last_kmsg">最近的内核信息</string>
   <string name="last_kmsg_summary">复制 /proc/last_kmsg 到 /sdcard/last_kmsg.txt</string>
   <string name="driver_message">驱动程序消息</string>
-  <string name="driver_message_summary">将驱动程序消息 (dmesg) 复制到 /sdcard/dmesg.txt</string>
   <string name="security">安全</string>
   <string name="set_password">设置密码</string>
   <string name="set_password_summary">你可以通过设置密码来保护 Kernel Adiutor。你每次打开此应用时都需要先输入密码才能进入。如果你忘记了它，只需在设置中清除此应用的数据。别担心，我不会分享您的密码。</string>

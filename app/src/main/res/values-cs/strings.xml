@@ -238,19 +238,15 @@
   <string name="glove_mode_summary">Povolení této funkce vám umožní používat vaše zařízení i s nasazenými rukavicemi.</string>
   <string name="dt2w">DoubleTap2Wake</string>
   <string name="dt2w_summary">Probuzení zařízení dvojitým poklepáním na displej.</string>
-  <string name="center">Střed</string>
-  <string name="full">Celá</string>
   <string name="s2w">Sweep2Wake</string>
   <string name="s2w_summary">Probuzení zařízení přejetím po displeji.</string>
   <string name="s2s">Sweep2Sleep</string>
-  <string name="s2w_right">Sweep2Wake vpravo</string>
   <string name="t2w">Tap2Wake</string>
   <string name="t2w_summary">Probuzení zařízení poklepáním na displej.</string>
   <string name="wake">Probuzení</string>
   <string name="dt2w_charging">DoubleTap2Wake při nabíjení</string>
   <string name="s2w_charging">Sweep2Wake při nabíjení</string>
   <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake při nabíjení</string>
-  <string name="sleep">Spánek</string>
   <string name="dt2s">DoubleTap2Sleep</string>
   <string name="dt2s_summary">Uzamknutí zařízení dvojitým poklepáním na displej.</string>
   <string name="slide_up">Přejetí nahoru</string>
@@ -326,7 +322,6 @@
   <string name="wakelock">Zákaz úsporného režimu</string>
   <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
   <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
-  <string name="installed">Nainstalováno</string>
   <string name="no_kernels">Nenalezeny žádné kernely</string>
   <string name="logo">Logo</string>
   <string name="features">Funkce</string>
@@ -371,7 +366,6 @@
   <string name="removed_all_sections">Všechny kategorie byly vypnuty. Profily nejsou dostupné.</string>
   <string name="no_settings">Nastavení nenalezeno!</string>
   <string name="press_again_to_apply">Pro použití stiskněte znovu.</string>
-  <string name="applied">Použito</string>
   <string name="applying_profile">Používání %s</string>
   <string name="replace_profile">Opravdu chcete nahradit %s?</string>
   <string name="reboot">Restartovat</string>
@@ -407,11 +401,9 @@
   <string name="hide_apply_on_boot_summary">Skrývat zobrazení při posouvání dolů.</string>
   <string name="enable_apply_on_boot_first">Nejprve musíte povolit „Použít při spuštění“ alespoň pro jednu kategorii.</string>
   <string name="logcat">Logcat</string>
-  <string name="logcat_summary">Kopírovat protokol logcat do /sdcard/logcat.txt</string>
   <string name="last_kmsg">Poslední zpráva jádra</string>
   <string name="last_kmsg_summary">Kopírovat /proc/last_kmsg do /sdcard/last_kmsg.txt</string>
   <string name="driver_message">Zpráva ovladače</string>
-  <string name="driver_message_summary">Kopírovat zprávu ovladače (dmesg) do /sdcard/dmesg.txt</string>
   <string name="security">Bezpečnost</string>
   <string name="set_password">Nastavit heslo</string>
   <string name="set_password_summary">Přístup k funkcím aplikace Kernel Adiutor můžete chránit heslem. Při každém spuštění aplikace jej budete muset zadat. Pokud ho zapomenete, jednoduše vymažte data této aplikace v nastavení svého zařízení.</string>

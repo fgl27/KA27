@@ -204,14 +204,6 @@
     <string name="cpus_boosted_summary">Maximum number of CPUs boosted at the same time.</string>
     <string name="min_cpu_online">Minimum CPU Online</string>
     <string name="min_cpu_online_summary">Minimum number of CPUs that will be always online.</string>
-    <string name="minlittle">Minimum Little CPUs Online</string>
-    <string name="minlittle_summary">Minimum number of Little CPUs that will be always online.</string>
-    <string name="maxlittle">Maximum Little CPUs Online</string>
-    <string name="maxlittle_summary">Maximum number of Little CPUs that will be always online.</string>
-    <string name="minbig">Minimum Big CPUs Online</string>
-    <string name="minbig_summary">Minimum number of Big CPUs that will be always online.</string>
-    <string name="maxbig">Maximum Big CPUs Online</string>
-    <string name="maxbig_summary">Maximum number of Big CPUs that will be always online.</string>
     <string name="max_cpu_online">Maximum CPU Online</string>
     <string name="max_cpu_online_summary">Maximum number of CPUs that will be always online.</string>
     <string name="max_cores_screen_off">Max Cores Screen Off</string>
@@ -274,7 +266,6 @@
     <string name="max_load_counter">Max Load Counter</string>
     <string name="min_time_cpu_online">Min Time CPU Online</string>
     <string name="timer">Timer</string>
-    <string name="msm_mpdecision_hotplug">MSM MPDecision Hotplug</string>
     <string name="bricked_hotplug">Bricked Hotplug</string>
     <string name="mb_hotplug_summary">An in-kernel replacement for Qualcomm\'s MPDecision. Developed by show-p1984.</string>
     <string name="screen_off_single_core">Screen off Single Core</string>
@@ -346,7 +337,6 @@
     <string name="state_helper_batt_level_eco">Battery Level Economical</string>
     <string name="state_helper_batt_level_eco_summary">Economical level core limiting. Limits max cpus online at this battery percentage.</string>
     <string name="state_helper_batt_level_cri">Battery Level Critical</string>
-    <string name="state_helper_batt_level_cri_summary">Critical level core limiting. Limits max cpus online at this battery percentage.</string>
     <string name="state_helper_max_cpus_eco">Max CPUs online after reaching Economical Battery level</string>
     <string name="state_helper_max_cpus_cri">Max CPUs online after reaching Critical Battery level</string>
     <string name="state_helper_dinamic">Dynamic Hotplugging</string>
@@ -522,22 +512,18 @@
     <string name="vib_strength_summary">This value is specific to wake gestures and independent of the normal vibration strength. It is purely for the kernel driver. Gestures controlled by third party apps will not use this value.</string>
     <string name="dt2w">DT2W (DoubleTap2Wake)</string>
     <string name="dt2w_summary">Wake up your device by double tapping the screen.</string>
-    <string name="center">Center</string>
-    <string name="full">Full</string>
     <string name="s2w_title">S2W (Sweep2Wake)</string>
     <string name="s2w">Enabled</string>
     <string name="s2w_summary">Wake up your device by swiping on the screen to the selected direction:</string>
     <string name="lenient">Sweep2Wake Leniency</string>
     <string name="lenient_summary">Only require 1st and 4th button to trigger Sweep2Wake.</string>
     <string name="s2s">S2S (Sweep2Sleep)</string>
-    <string name="s2w_right">Sweep2Wake Right</string>
     <string name="t2w">Tap2Wake</string>
     <string name="t2w_summary">Wake up your device by tapping the screen.</string>
     <string name="wake">Wake</string>
     <string name="dt2w_charging">DoubleTap2Wake while charging</string>
     <string name="s2w_charging">Sweep2Wake while charging</string>
     <string name="dt2w_s2w_charging">DoubleTap2Wake + Sweep2Wake while charging</string>
-    <string name="sleep">Sweep2Sleep</string>
     <string name="sleep_summary">Sweep across the bottom of the screen to sleep.</string>
     <string name="dt2s">DoubleTap2Sleep</string>
     <string name="dt2s_summary">Lock your device by double tapping on the top of the screen.</string>
@@ -658,7 +644,7 @@
     <string name="medium">Medium</string>
     <string name="very_aggressive">Very Aggressive</string>
     <string name="vmpressure_file_min">VM File Min</string>
-    <string name="vmpressure_file_min_summary">This parameter controls the behavior of LMK when VM pressure is in the range of 90-94 (is a pseudo minfree value, higher than the highest configured value in minfree LMK values)</string>
+    <string name="vmpressure_file_min_summary">This parameter controls the behavior of LMK when VM pressure is in the range of 90&#8211;94 (is a pseudo minfree value, higher than the highest configured value in minfree LMK values)</string>
     <string name="adaptive">Adaptive Low Memory Killer</string>
     <string name="adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
     <string name="values_in_mb">(values in MB)</string>
@@ -669,7 +655,6 @@
 
     <!-- Virtual Memory -->
     <string name="process_reclaim">Process Reclaim</string>
-    <string name="process_reclaim_summary">not used</string>
     <string name="process_reclaim_enable">Process Reclaim</string>
     <string name="process_reclaim_enable_summary">Anon pages of inactive tasks can be reclaimed, depending on memory pressure. Memory pressure is detected using VM pressure events.</string>
     <string name="process_reclaim_pressure">Pressure (Last registered state)</string>
@@ -789,7 +774,6 @@
     <string name="c3state_summary">Really deep sleep with longest latency when waking up.</string>
 
     <!-- Plugins -->
-    <string name="installed">Installed</string>
 
     <!-- Downloads -->
     <string name="no_kernels">No kernels found</string>
@@ -845,7 +829,6 @@
     <string name="removed_all_sections">You removed all sections! No profiles for you.</string>
     <string name="no_settings">No settings found!</string>
     <string name="press_again_to_apply">Press again to apply.</string>
-    <string name="applied">Applied</string>
     <string name="applying_profile">Applying %s</string>
     <string name="replace_profile">Do you want to replace %s?</string>
     <string name="set_per_app">Set Per App Settings</string>
@@ -877,11 +860,9 @@
     <string name="file_name">Name of file</string>
 
     <!-- Logs -->
-    <string name="logs_summary">Logs summary</string>
     <string name="ind_logs">Individual logs</string>
     <string name="grep_log">Grep a Log</string>
     <string name="search_log">Search in a Log</string>
-    <string name="grep_find">Input Search</string>
     <string name="search_log_summary">Click to search in a log, the result can be copied or saved to a file</string>
     <string name="log_hint">Enter Text (use a to z, 0 to 9 and space only!)</string>
     <string name="empty_text">Entered text is empty!</string>

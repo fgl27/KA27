@@ -74,8 +74,6 @@
   <string name="no_internet">Internetiühendus puudub</string>
   <string name="lcd_backlight">LCD taustvalgustus</string>
   <string name="offset">Nihe</string>
-  <string name="center">Keskel</string>
-  <string name="full">Täielik</string>
   <string name="slide_up">Libistage üles</string>
   <string name="slide_down">Libistage alla</string>
   <string name="slide_left">Libistage vasakule</string>
@@ -113,7 +111,6 @@
   <string name="select_all">Vali kõik</string>
   <string name="apply">Rakenda</string>
   <string name="no_settings">Ei leidnud seadeid!</string>
-  <string name="applied">Rakendatud</string>
   <string name="reboot">Taaskäivitamine</string>
   <string name="reboot_recovery">Taaskäivita Recovery\'sse</string>
   <string name="reboot_bootloader">Taaskäivita Bootloader\'sse</string>
