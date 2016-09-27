@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 02.12.14.
@@ -283,7 +284,7 @@ public class CPU implements Constants {
         //If change Governor after previously had changed Freq, Freq may be wrong after reboot
         setGovernor(Control.CommandType.CPU, governor, context);
         for (int i = 0; i < getCoreCount(); i++)
-            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i));
+            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
         setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
         setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
     }
@@ -298,10 +299,10 @@ public class CPU implements Constants {
 
     public static String getCurGovernor(int core, boolean forceRead) {
         if (forceRead && core > 0)
-            while (!Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core)))
+            while (!Utils.existFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core)))
                 activateCore(core, true, null);
-        if (Utils.existFile(String.format(CPU_SCALING_GOVERNOR, core))) {
-            String value = Utils.readFile(String.format(CPU_SCALING_GOVERNOR, core));
+        if (Utils.existFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core))) {
+            String value = Utils.readFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core));
             if (value != null) return value;
         }
         return "";
@@ -314,16 +315,16 @@ public class CPU implements Constants {
     public static List<Integer> getFreqs(int core) {
         if (mFreqs == null) mFreqs = new Integer[getCoreCount()][];
         if (mFreqs[core] == null)
-            if (Utils.existFile(String.format(CPU_TIME_STATE, core))
-                    || Utils.existFile(String.format(CPU_TIME_STATE_2, 0))) {
+            if (Utils.existFile(String.format(Locale.US, CPU_TIME_STATE, core))
+                    || Utils.existFile(String.format(Locale.US, CPU_TIME_STATE_2, 0))) {
                 String file;
-                if (Utils.existFile(String.format(CPU_TIME_STATE, core))) {
-                    file = String.format(CPU_TIME_STATE, core);
+                if (Utils.existFile(String.format(Locale.US, CPU_TIME_STATE, core))) {
+                    file = String.format(Locale.US, CPU_TIME_STATE, core);
                 } else {
                     if (core > 0) {
                         activateCore(core, true, null);
-                        file = String.format(CPU_TIME_STATE_2, core);
-                    } else file = String.format(CPU_TIME_STATE_2, 0);
+                        file = String.format(Locale.US, CPU_TIME_STATE_2, core);
+                    } else file = String.format(Locale.US, CPU_TIME_STATE_2, 0);
                 }
                 String values;
                 if ((values = Utils.readFile(file)) != null) {
@@ -332,13 +333,13 @@ public class CPU implements Constants {
                     for (int i = 0; i < mFreqs[core].length; i++)
                         mFreqs[core][i] = Utils.stringToInt(valueArray[i].split(" ")[0]);
                 }
-            } else if (Utils.existFile(String.format(CPU_AVAILABLE_FREQS, 0))) {
+            } else if (Utils.existFile(String.format(Locale.US, CPU_AVAILABLE_FREQS, 0))) {
                 if (core > 0) {
-                    while (!Utils.existFile(String.format(CPU_AVAILABLE_FREQS, core)))
+                    while (!Utils.existFile(String.format(Locale.US, CPU_AVAILABLE_FREQS, core)))
                         activateCore(core, true, null);
                 }
                 String values;
-                if ((values = Utils.readFile(String.format(CPU_AVAILABLE_FREQS, core))) != null) {
+                if ((values = Utils.readFile(String.format(Locale.US, CPU_AVAILABLE_FREQS, core))) != null) {
                     String[] valueArray = values.split(" ");
                     mFreqs[core] = new Integer[valueArray.length];
                     for (int i = 0; i < mFreqs[core].length; i++)
@@ -367,17 +368,17 @@ public class CPU implements Constants {
 
     public static int getMaxScreenOffFreq(int core, boolean forceRead) {
         if (forceRead && core > 0)
-            while (!Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core)))
+            while (!Utils.existFile(String.format(Locale.US, CPU_MAX_SCREEN_OFF_FREQ, core)))
                 activateCore(core, true, null);
-        if (Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, core));
+        if (Utils.existFile(String.format(Locale.US, CPU_MAX_SCREEN_OFF_FREQ, core))) {
+            String value = Utils.readFile(String.format(Locale.US, CPU_MAX_SCREEN_OFF_FREQ, core));
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
 
     public static boolean hasMaxScreenOffFreq() {
-        return Utils.existFile(String.format(CPU_MAX_SCREEN_OFF_FREQ, 0));
+        return Utils.existFile(String.format(Locale.US, CPU_MAX_SCREEN_OFF_FREQ, 0));
     }
 
     public static void setMinFreq(int freq, Context context) {
@@ -395,10 +396,10 @@ public class CPU implements Constants {
     }
 
     public static int getMinFreq(int core, boolean forceRead) {
-        if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MIN_FREQ, core)))
+        if (forceRead && core > 0) while (!Utils.existFile(String.format(Locale.US, CPU_MIN_FREQ, core)))
             activateCore(core, true, null);
-        if (Utils.existFile(String.format(CPU_MIN_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_MIN_FREQ, core));
+        if (Utils.existFile(String.format(Locale.US, CPU_MIN_FREQ, core))) {
+            String value = Utils.readFile(String.format(Locale.US, CPU_MIN_FREQ, core));
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;
@@ -412,11 +413,11 @@ public class CPU implements Constants {
         if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT)
                 && freq > Utils.stringToInt(Utils.readFile(CPU_MSM_CPUFREQ_LIMIT)))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
-        if (Utils.existFile(String.format(CPU_ENABLE_OC, 0)))
+        if (Utils.existFile(String.format(Locale.US, CPU_ENABLE_OC, 0)))
             Control.runCommand("1", CPU_ENABLE_OC, Control.CommandType.CPU, context);
         if (getMinFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) > freq)
             setMinFreq(command, freq, context);
-        if (Utils.existFile(String.format(CPU_MAX_FREQ_KT, 0)))
+        if (Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, 0)))
             Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
         else Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
     }
@@ -426,26 +427,26 @@ public class CPU implements Constants {
     }
 
     public static int getMaxFreq(int core, boolean forceRead) {
-        if (forceRead && core > 0) while (!Utils.existFile(String.format(CPU_MAX_FREQ, core)))
+        if (forceRead && core > 0) while (!Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ, core)))
             activateCore(core, true, null);
-        if (forceRead && core > 0 && Utils.existFile(String.format(CPU_MAX_FREQ_KT, 0)))
-            while (!Utils.existFile(String.format(CPU_MAX_FREQ_KT, core)))
+        if (forceRead && core > 0 && Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, 0)))
+            while (!Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, core)))
                 activateCore(core, true, null);
 
-        if (Utils.existFile(String.format(CPU_MAX_FREQ_KT, core))) {
-            String value = Utils.readFile(String.format(CPU_MAX_FREQ_KT, core));
+        if (Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, core))) {
+            String value = Utils.readFile(String.format(Locale.US, CPU_MAX_FREQ_KT, core));
             if (value != null) return Utils.stringToInt(value);
         }
-        if (Utils.existFile(String.format(CPU_MAX_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_MAX_FREQ, core));
+        if (Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ, core))) {
+            String value = Utils.readFile(String.format(Locale.US, CPU_MAX_FREQ, core));
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;
     }
 
     public static int getCurFreq(int core) {
-        if (Utils.existFile(String.format(CPU_CUR_FREQ, core))) {
-            String value = Utils.readFile(String.format(CPU_CUR_FREQ, core));
+        if (Utils.existFile(String.format(Locale.US, CPU_CUR_FREQ, core))) {
+            String value = Utils.readFile(String.format(Locale.US, CPU_CUR_FREQ, core));
             if (value != null) return Utils.stringToInt(value);
         }
         return 0;
@@ -457,9 +458,9 @@ public class CPU implements Constants {
 
     public static void activateCore(int core, boolean active, Context context) {
         if (context != null)
-            Control.runCommand(active ? "1" : "0", String.format(CPU_CORE_ONLINE, core), Control.CommandType.GENERIC, context);
+            Control.runCommand(active ? "1" : "0", String.format(Locale.US, CPU_CORE_ONLINE, core), Control.CommandType.GENERIC, context);
         else
-            RootUtils.runCommand(String.format("echo %s > " + String.format(CPU_CORE_ONLINE, core), active ? "1" : "0"));
+            RootUtils.runCommand(String.format("echo %s > " + String.format(Locale.US, CPU_CORE_ONLINE, core), active ? "1" : "0"));
     }
 
     public static List<Integer> getLITTLECoreRange() {
@@ -662,7 +663,7 @@ public class CPU implements Constants {
             //If deactivate reset freq to core one freq
             if (!active) {
                 for (int i = 0; i < getCoreCount(); i++)
-                    Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i));
+                    Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
                 setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
                 setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
             }
@@ -670,52 +671,52 @@ public class CPU implements Constants {
         //Rewrite already existent code because of delay using existent function cause command to start before the previously had not finished
     public static void setPCMaxFreq(int freq, int core, Context context) {
         if (core > 0) {
-            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, core));
-            Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, core), String.format(Constants.CPU_CORE_ONLINE, core), context);
+            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
+            Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
         }
-        Control.setPermission(String.format(Constants.CPU_MAX_FREQ, core), 644, context);
-        Control.run("echo " + Integer.toString(freq) + " > " + String.format(CPU_MAX_FREQ, core), String.format(CPU_MAX_FREQ, core), context);
-        Control.setPermission(String.format(Constants.CPU_MAX_FREQ, core), 444, context);
+        Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 644, context);
+        Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MAX_FREQ, core), String.format(Locale.US, CPU_MAX_FREQ, core), context);
+        Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 444, context);
     }
 
     public static void setPCMinFreq(int freq, int core, Context context) {
         if (core > 0) {
-            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, core));
-            Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, core), String.format(Constants.CPU_CORE_ONLINE, core), context);
+            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
+            Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
         }
-        Control.setPermission(String.format(Constants.CPU_MIN_FREQ, core), 644, context);
-        Control.run("echo " + Integer.toString(freq) + " > " + String.format(CPU_MIN_FREQ, core), String.format(CPU_MIN_FREQ, core), context);
-        Control.setPermission(String.format(Constants.CPU_MIN_FREQ, core), 444, context);
+        Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 644, context);
+        Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MIN_FREQ, core), String.format(Locale.US, CPU_MIN_FREQ, core), context);
+        Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 444, context);
     }
 
     public static void setGovernorPC(String governor, Context context) {
         //If change Governor after previously had changed Freq, Freq may be wrong after reboot
         //Set Gov
         for (int i = 0; i < getCoreCount(); i++) {
-            Control.setPermission(String.format(Constants.CPU_SCALING_GOVERNOR, i), 644, context);
-            Control.run("echo " + governor + " > " + String.format(CPU_SCALING_GOVERNOR, i), String.format(CPU_SCALING_GOVERNOR, i), context);
-            Control.setPermission(String.format(Constants.CPU_SCALING_GOVERNOR, i), 444, context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 644, context);
+            Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, i), String.format(Locale.US, CPU_SCALING_GOVERNOR, i), context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 444, context);
         }
         for (int i = 0; i < getCoreCount(); i++) {
             String MAX = Integer.toString(getMaxFreq(i, true));
             String MIN = Integer.toString(getMinFreq(i, true));
             //Set Max freq
             if (i > 0) {
-                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i));
-                Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i), String.format(Constants.CPU_CORE_ONLINE, i), context);
+                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
+                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), context);
             }
-            Control.setPermission(String.format(Constants.CPU_MAX_FREQ, i), 644, context);
-            Control.run("echo " + MAX + " > " + String.format(CPU_MAX_FREQ, i), String.format(CPU_MAX_FREQ, i), context);
-            Control.setPermission(String.format(Constants.CPU_MAX_FREQ, i), 444, context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, i), 644, context);
+            Control.run("echo " + MAX + " > " + String.format(Locale.US, CPU_MAX_FREQ, i), String.format(Locale.US, CPU_MAX_FREQ, i), context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, i), 444, context);
 
             //Set Min freq
             if (i > 0) {
-                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i));
-                Control.run("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i), String.format(Constants.CPU_CORE_ONLINE, i), context);
+                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
+                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), context);
             }
-            Control.setPermission(String.format(Constants.CPU_MIN_FREQ, i), 644, context);
-            Control.run("echo " + MIN + " > " + String.format(CPU_MIN_FREQ, i), String.format(CPU_MIN_FREQ, i), context);
-            Control.setPermission(String.format(Constants.CPU_MIN_FREQ, i), 444, context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, i), 644, context);
+            Control.run("echo " + MIN + " > " + String.format(Locale.US, CPU_MIN_FREQ, i), String.format(Locale.US, CPU_MIN_FREQ, i), context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, i), 444, context);
         }
     }
 }

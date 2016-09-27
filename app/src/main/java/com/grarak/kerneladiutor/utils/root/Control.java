@@ -28,6 +28,7 @@ import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 14.12.14.
@@ -125,10 +126,10 @@ public class Control implements Constants {
                     List<Integer> range = command == CommandType.CPU ? CPU.getBigCoreRange() : CPU.getLITTLECoreRange();
                     for (int i = 0; i < range.size(); i++) {
                         if (i != 0) {
-                            Control.run(String.format("echo 0 > " + CPU_CORE_ONLINE, i),
-                                String.format(CPU_CORE_ONLINE, i) + "cpuonline", context);
-                            Control.run(String.format("echo 1 > " + CPU_CORE_ONLINE, i),
-                                String.format(CPU_CORE_ONLINE, i) + "cpuonline", context);
+                            Control.run(String.format(Locale.US, "echo 0 > " + CPU_CORE_ONLINE, i),
+                                String.format(Locale.US, CPU_CORE_ONLINE, i) + "cpuonline", context);
+                            Control.run(String.format(Locale.US, "echo 1 > " + CPU_CORE_ONLINE, i),
+                                String.format(Locale.US, CPU_CORE_ONLINE, i) + "cpuonline", context);
                         }
                         setPermission(String.format(file, range.get(i)), 644, context);
                         runGeneric(String.format(file, range.get(i)), value, id, context);

@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 02.01.15.
@@ -210,7 +211,7 @@ public class Misc implements Constants {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ip = wifiInfo.getIpAddress();
 
-        String ipString = String.format(
+        String ipString = String.format(Locale.US, 
                 "%d.%d.%d.%d",
                 (ip & 0xff),
                 (ip >> 8 & 0xff),

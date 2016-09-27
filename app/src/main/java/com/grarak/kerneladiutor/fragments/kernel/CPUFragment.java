@@ -977,7 +977,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getPath() {
-            return getPath(CPU.isBigLITTLE() ? String.format(CPU_GOVERNOR_TUNABLES_CORE, cpuFragment.core) :
+            return getPath(CPU.isBigLITTLE() ? String.format(Locale.US, CPU_GOVERNOR_TUNABLES_CORE, cpuFragment.core) :
                     CPU_GOVERNOR_TUNABLES, CPU.getCurGovernor(cpuFragment.core, true));
         }
 

@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -161,13 +162,13 @@ public class CpuStateMonitor {
         _states.clear();
         try {
             String file;
-            if (Utils.existFile(String.format(Constants.CPU_TIME_STATE, core))) {
-                file = String.format(Constants.CPU_TIME_STATE, core);
+            if (Utils.existFile(String.format(Locale.US, Constants.CPU_TIME_STATE, core))) {
+                file = String.format(Locale.US, Constants.CPU_TIME_STATE, core);
             } else {
                 if (core > 0) {
                     CPU.activateCore(core, true, null);
-                    file = String.format(Constants.CPU_TIME_STATE_2, core);
-                } else file = String.format(Constants.CPU_TIME_STATE_2, 0);
+                    file = String.format(Locale.US, Constants.CPU_TIME_STATE_2, core);
+                } else file = String.format(Locale.US, Constants.CPU_TIME_STATE_2, 0);
             }
             if (file == null)
                 throw new CpuStateMonitorException("Problem opening time-in-states file");

@@ -42,6 +42,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 21.12.14.
@@ -221,7 +222,7 @@ public class DAdapter {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-            ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title.toUpperCase());
+            ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title.toUpperCase(Locale.US));
             if (Utils.DARKTHEME)
                 viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(viewHolder.itemView.getResources()
                         .getColor(R.color.divider_background_dark));

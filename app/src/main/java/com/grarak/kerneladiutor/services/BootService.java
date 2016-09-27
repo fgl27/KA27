@@ -55,6 +55,7 @@ import com.kerneladiutor.library.root.RootUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by willi on 08.03.15.
@@ -193,9 +194,9 @@ public class BootService extends Service {
         for (String command : commands) {
             log("run: " + command);
             for (int i = 1; i < CPU.getCoreCount(); i++) {
-                if (command.equals("chmod 644 " + (String.format(Constants.CPU_MIN_FREQ, i))) || command.equals("chmod 644 " + (String.format(Constants.CPU_MAX_FREQ, i)))) {
+                if (command.equals("chmod 644 " + (String.format(Locale.US, Constants.CPU_MIN_FREQ, i))) || command.equals("chmod 644 " + (String.format(Locale.US, Constants.CPU_MAX_FREQ, i)))) {
                     log("Online if enter in command = " + command);
-                    su.runCommand("echo " + "1" + " > " + String.format(Constants.CPU_CORE_ONLINE, i));
+                    su.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
                     su.runCommand(command);
                 } else
                     su.runCommand(command);
