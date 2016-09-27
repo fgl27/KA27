@@ -103,7 +103,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-		String log_temp_folder =  log_folder + "/tmpziplog/";
+                String log_temp_folder = log_folder + "/tmpziplog/";
                 if (!Utils.existFile(log_temp_folder)) {
                     File dir = new File(log_temp_folder);
                     dir.mkdir();
@@ -269,7 +269,6 @@ public class LogsFragment extends RecyclerViewFragment {
         linearLayout.addView(descriptionText);
 
         final AppCompatEditText grep_string = new AppCompatEditText(getActivity());
-        grep_string.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
         grep_string.setHint(getString(R.string.log_hint));
         linearLayout.addView(grep_string);
 
@@ -315,8 +314,9 @@ public class LogsFragment extends RecyclerViewFragment {
                 ((AppCompatCheckBox) get_prop).setChecked(true);
             }
         });
-
-        new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle).setTitle(getString(R.string.search_dialog))
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+            .setTitle(getString(R.string.search_dialog))
             .setView(linearLayout).setNegativeButton(getString(R.string.cancel),
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -395,7 +395,9 @@ public class LogsFragment extends RecyclerViewFragment {
                         final_result.setTextIsSelectable(true);
                         scrollView.addView(final_result);
 
-                        new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle).setTitle(getString(R.string.result))
+                        new AlertDialog.Builder(getActivity(),
+                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                            .setTitle(getString(R.string.result))
                             .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
                                 new DialogInterface.OnClickListener() {
                                     @Override
@@ -412,7 +414,8 @@ public class LogsFragment extends RecyclerViewFragment {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         RootUtils.runCommand("echo " + "'" + final_grep + "'" + " > " + log_folder + "grep_a_log" + getDate() + ".txt");
-                                        new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle)
+                                        new AlertDialog.Builder(getActivity(),
+                                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
                                             .setTitle(getString(R.string.saved_to))
                                             .setMessage(String.format(getString(R.string.saved_to_summary), getDate()))
                                             .setNegativeButton(getString(R.string.close),

@@ -35,7 +35,7 @@
     <color name="card_background_light">#FAFAFA</color>
     <color name="card_background_dark">#330000</color>
 
-    <color name="textcolor_light">#330000</color>
+    <color name="textcolor_light">#650000</color>
     <color name="textcolor_dark">#BDBDBD</color>
 </resources>
 

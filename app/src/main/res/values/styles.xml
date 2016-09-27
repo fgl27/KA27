@@ -60,11 +60,13 @@
     </style>
 
     <!-- AlertDialog -->
-    <style name="AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
+    <style name="AlertDialogStyleDark" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+    <!-- AlertDialog -->
+    <style name="AlertDialogStyleLight" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="colorAccent">@color/color_primary</item>
-        <item name="android:textColorPrimary">@color/textcolor_light</item>
     </style>
 
 </resources>
