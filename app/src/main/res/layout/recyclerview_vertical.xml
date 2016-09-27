@@ -19,8 +19,6 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:paddingEnd="16dp"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
         android:paddingStart="72dp">
 
         <LinearLayout
@@ -46,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:paddingEnd="1dp"
-                android:paddingRight="1dp"
+                android:paddingStart="1dp"
                 android:theme="@style/WhiteAccent" />
         </LinearLayout>
     </FrameLayout>

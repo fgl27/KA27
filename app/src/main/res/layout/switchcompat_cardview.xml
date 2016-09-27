@@ -19,7 +19,6 @@
         android:id="@+id/switchcompat_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_weight="0"
         android:paddingEnd="1dp"

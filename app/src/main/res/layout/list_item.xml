@@ -5,8 +5,6 @@
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
     android:paddingEnd="16dp"
-    android:paddingLeft="42dp"
-    android:paddingRight="16dp"
     android:paddingStart="42dp">
 
     <TextView

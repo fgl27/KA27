@@ -19,8 +19,6 @@
             android:focusableInTouchMode="true"
             android:marqueeRepeatLimit="marquee_forever"
             android:paddingEnd="16dp"
-            android:paddingLeft="72dp"
-            android:paddingRight="16dp"
             android:paddingStart="72dp"
             android:scrollHorizontally="true"
             android:singleLine="true"

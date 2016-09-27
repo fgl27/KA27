@@ -17,8 +17,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingEnd="16dp"
-            android:paddingLeft="72dp"
-            android:paddingRight="16dp"
             android:paddingStart="72dp"
             android:textColor="@android:color/white"
             android:textSize="17sp" />
@@ -43,8 +41,6 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackground"
         android:paddingEnd="16dp"
-        android:paddingLeft="72dp"
-        android:paddingRight="16dp"
         android:paddingStart="72dp">
 
         <LinearLayout
@@ -70,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:paddingEnd="1dp"
-                android:paddingRight="1dp"
+                android:paddingStart="1dp"
                 android:theme="@style/WhiteAccent" />
         </LinearLayout>
     </FrameLayout>
@@ -80,7 +76,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:layout_below="@+id/background_view"
         android:layout_marginEnd="7dp"
         android:layout_marginLeft="7dp"
@@ -97,7 +92,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         android:visibility="gone">
 
         <net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton
@@ -106,7 +100,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="7dp"
             android:layout_marginEnd="7dp"
-            android:layout_marginRight="7dp"
             fab:fab_colorNormal="@color/color_primary"
             fab:fab_colorPressed="@color/color_primary_dark"
             fab:fab_plusIconColor="@color/white" />
