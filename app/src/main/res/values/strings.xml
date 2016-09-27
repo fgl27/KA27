@@ -942,6 +942,8 @@
     <string name="square" translatable="false">Square Inc.</string>
     <string name="materialtabs" translatable="false">MaterialTabs</string>
     <string name="frenn" translatable="false">Karim Frenn</string>
+    <string name="ztzip" translatable="false">Zt-Zip</string>
+    <string name="zero" translatable="false">ZeroTurnaround</string>
     <string name="open_source">Open source</string>
     <string name="open_source_summary">This application is open source. Check it out on my GitHub!</string>
     <string name="feature_request">Feature request or Bugs</string>
@@ -952,7 +954,7 @@
     <string name="modification_summary">This application is being heavily modified for the kernel BHB27-Kernel for Quark Motorola (Moto Maxx, Turbo or Droid Turbo). Check it out in the downloads section!</string>
 
     <string name="modification_version">BHB27 Mod Version</string>
-    <string name="modification_version_number">0.9.9.4.+24</string>
+    <string name="modification_version_number">0.9.9.4.+25</string>
 
     <string name="accessibility_service_label">BHB27-Kernel-Adiutor Per App Monitor</string>
     <string name="accessibility_service_desc">Service to monitor when foreground app changes for per-app profile loading</string>
