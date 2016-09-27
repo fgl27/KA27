@@ -84,9 +84,8 @@ public class LogsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        String temp_path = (log_folder);
-        if (!Utils.existFile(temp_path)) {
-            File dir = new File(temp_path);
+        if (!Utils.existFile(log_folder)) {
+            File dir = new File(log_folder);
             dir.mkdir();
         }
 
@@ -104,17 +103,18 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                String temp_path = ("/tmp/tmp/");
-                if (!Utils.existFile(temp_path)) {
-                    File dir = new File(temp_path);
+		String log_temp_folder =  log_folder + "/tmpziplog/";
+                if (!Utils.existFile(log_temp_folder)) {
+                    File dir = new File(log_temp_folder);
                     dir.mkdir();
                 }
-                logs(logcatC, temp_path, "logcat");
-                logs(radioC, temp_path, "radio");
-                logs(eventsC, temp_path, "events");
-                logs(dmesgC, temp_path, "dmesg");
-                logs(getpropC, temp_path, "getprop");
+                logs(logcatC, log_temp_folder, "logcat");
+                logs(radioC, log_temp_folder, "radio");
+                logs(eventsC, log_temp_folder, "events");
+                logs(dmesgC, log_temp_folder, "dmesg");
+                logs(getpropC, log_temp_folder, "getprop");
                 new Execute().execute("zip");
+                new Execute().execute("rm -rf " + log_temp_folder);
             }
         });
 
@@ -244,8 +244,9 @@ public class LogsFragment extends RecyclerViewFragment {
 
         @Override
         protected Void doInBackground(String...params) {
+            // ZipUtil doesnot understand folder name that end with /
             if (params[0].equals("zip"))
-                ZipUtil.pack(new File("/tmp/tmp"), new File("/sdcard/KA_Logs/logs" + getDate() + ".zip"));
+                ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
             else RootUtils.runCommand(params[0]);
             return null;
         }
@@ -410,7 +411,7 @@ public class LogsFragment extends RecyclerViewFragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        RootUtils.runCommand("echo " + "'" + final_grep + "'" + " > " + log_folder + "log_grep" + getDate() + ".txt");
+                                        RootUtils.runCommand("echo " + "'" + final_grep + "'" + " > " + log_folder + "grep_a_log" + getDate() + ".txt");
                                         new AlertDialog.Builder(getActivity(), R.style.AlertDialogStyle)
                                             .setTitle(getString(R.string.saved_to))
                                             .setMessage(String.format(getString(R.string.saved_to_summary), getDate()))

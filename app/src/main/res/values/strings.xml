@@ -911,7 +911,7 @@
     <string name="close">close</string>
     <string name="forbidden_special">Forbidden Special Character in the text!</string>
     <string name="saved_to">Result saved to:</string>
-    <string name="saved_to_summary">\n/sdcard/KA_Logs/log_grep%s.txt</string>
+    <string name="saved_to_summary">\n/sdcard/KA_Logs/grep_a_log%s.txt</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
