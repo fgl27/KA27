@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.app.AlertDialog;
@@ -69,27 +68,38 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
         listcommands();
     }
 
-    public void listcommands () {
+    public void listcommands() {
         CommandDB commandDB = new CommandDB(getActivity());
-        List<CommandDB.CommandItem> commandItems = commandDB.getAllCommands();
-        final List<String> applys = new ArrayList<>();
-        List<String> commands = new ArrayList<>();
+        List < CommandDB.CommandItem > commandItems = commandDB.getAllCommands();
+        final List < String > applys = new ArrayList < > ();
+        List < String > commands = new ArrayList < > ();
 
-        Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
-                CPUVoltageFragment.class, EntropyFragment.class, GPUFragment.class, IOFragment.class,
-                KSMFragment.class, LMKFragment.class, MiscFragment.class,
-                ScreenFragment.class, SoundFragment.class, ThermalFragment.class,
-                VMFragment.class, WakeFragment.class
+        Class[] classes = {
+            BatteryFragment.class,
+            CPUFragment.class,
+            CPUHotplugFragment.class,
+            CPUVoltageFragment.class,
+            EntropyFragment.class,
+            GPUFragment.class,
+            IOFragment.class,
+            KSMFragment.class,
+            LMKFragment.class,
+            MiscFragment.class,
+            ScreenFragment.class,
+            SoundFragment.class,
+            ThermalFragment.class,
+            VMFragment.class,
+            WakeFragment.class
         };
 
-        for (Class mClass : classes)
+        for (Class mClass: classes)
             if (Utils.getBoolean(mClass.getSimpleName() + "onboot", false, getContext())) {
                 applys.addAll(Utils.getApplys(mClass));
             }
 
         if (applys.size() > 0)
-            for (CommandDB.CommandItem commandItem : commandItems)
-                for (String sys : applys) {
+            for (CommandDB.CommandItem commandItem: commandItems)
+                for (String sys: applys) {
                     String path = commandItem.getPath();
                     if ((sys.contains(path) || path.contains(sys))) {
                         String command = commandItem.getCommand();
@@ -109,27 +119,31 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                     getHandler().post(new Runnable() {
                         @Override
                         public void run() {
-                            new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.startup_commands_menu),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            switch (which) {
-                                                case 0: {
+                            new AlertDialog.Builder(getActivity(),
+                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setItems(getResources().getStringArray(R.array.startup_commands_menu),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case 0:
+                                                {
                                                     ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
                                                     ClipData clip = ClipData.newPlainText("Startup Comnmand", allcommands);
                                                     clipboard.setPrimaryClip(clip);
                                                     break;
                                                 }
-                                                case 1: {
-                                                    AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                                            case 1:
+                                                {
+                                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),
+                                                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
                                                     builder.setMessage(getString(R.string.startup_commands_delete_all)).setPositiveButton(getString(R.string.startup_commands_delete_all_yes), dialogClickListener)
-                                                            .setNegativeButton(getString(R.string.startup_commands_delete_all_no), dialogClickListener).show();
+                                                    .setNegativeButton(getString(R.string.startup_commands_delete_all_no), dialogClickListener).show();
                                                     break;
                                                 }
 
-                                            }
                                         }
-                                    }).show();
+                                    }
+                                }).show();
                         }
                     });
                 }
@@ -147,36 +161,37 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                 mStartUpCommands[i].setDescription(commands.get(i));
                 final String command = commands.get(i);
                 mStartUpCommands[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                                                    @Override
-                                                    public void onClick(CardViewItem.DCardView dCardView) {
+                    @Override
+                    public void onClick(CardViewItem.DCardView dCardView) {
 
-                                                        new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.startup_commands_menu),
-                                                                new DialogInterface.OnClickListener() {
-                                                                    @Override
-                                                                    public void onClick(DialogInterface dialog, int which) {
-                                                                        switch (which) {
-                                                                            case 0: {
-                                                                                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                                                                ClipData clip = ClipData.newPlainText("Startup Comnmand", command);
-                                                                                clipboard.setPrimaryClip(clip);
-                                                                                break;
-                                                                            }
-                                                                            case 1: {
-                                                                                Control.deletespecificcommand(getActivity(), null, command);
-                                                                                forcerefresh(getActivity());
-                                                                                break;
-                                                                            }
+                        new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.startup_commands_menu),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which) {
+                                        case 0:
+                                            {
+                                                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                                ClipData clip = ClipData.newPlainText("Startup Comnmand", command);
+                                                clipboard.setPrimaryClip(clip);
+                                                break;
+                                            }
+                                        case 1:
+                                            {
+                                                Control.deletespecificcommand(getActivity(), null, command);
+                                                forcerefresh(getActivity());
+                                                break;
+                                            }
 
-                                                                        }
-                                                                    }
-                                                                }).show();
+                                    }
+                                }
+                            }).show();
 
-                                                    }
-                                                });
+                    }
+                });
                 addView(mStartUpCommands[i]);
             }
-        }
-        else {
+        } else {
             mAllStartUpCommandsCard = new CardViewItem.DCardView();
             mAllStartUpCommandsCard.setTitle(getString(R.string.startup_commands_none));
 
@@ -186,17 +201,17 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
 
     public void forcerefresh(Context context) {
         view.invalidate();
-	try {
+        try {
             Thread.sleep(100);
-	} catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
-	}
+        }
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            switch (which){
+            switch (which) {
                 case DialogInterface.BUTTON_POSITIVE:
                     //Yes button clicked
                     Control.deletespecificcommand(getActivity(), null, null);

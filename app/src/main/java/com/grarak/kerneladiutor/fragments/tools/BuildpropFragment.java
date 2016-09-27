@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
@@ -54,7 +53,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     private TextView title;
     private SwipeRefreshLayout refreshLayout;
-    private LinkedHashMap<String, String> buildpropItem;
+    private LinkedHashMap < String, String > buildpropItem;
 
     private MenuItem searchItem;
 
@@ -120,24 +119,25 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public void onClick(final View v) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(),
+            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
         dialog.setItems(getResources().getStringArray(R.array.build_prop_menu),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        PopupCardView popupCardView = (PopupCardView) v;
-                        switch (which) {
-                            case 0:
-                                addKeyDialog(popupCardView.getDescription().toString(),
-                                        popupCardView.getItem(), true);
-                                break;
-                            case 1:
-                                deleteDialog(popupCardView.getDescription().toString(),
-                                        popupCardView.getItem());
-                                break;
-                        }
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    PopupCardView popupCardView = (PopupCardView) v;
+                    switch (which) {
+                        case 0:
+                            addKeyDialog(popupCardView.getDescription().toString(),
+                                popupCardView.getItem(), true);
+                            break;
+                        case 1:
+                            deleteDialog(popupCardView.getDescription().toString(),
+                                popupCardView.getItem());
+                            break;
                     }
-                }).show();
+                }
+            }).show();
     }
 
     private final Runnable refresh = new Runnable() {
@@ -164,8 +164,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                         refreshLayout.setRefreshing(false);
                     }
                 });
-            } catch (NullPointerException ignored) {
-            }
+            } catch (NullPointerException ignored) {}
         }
     };
 
@@ -190,24 +189,24 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         dialogLayout.addView(keyEdit);
         dialogLayout.addView(valueEdit);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),
+            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
         builder.setView(dialogLayout).setNegativeButton(getString(android.R.string.cancel),
                 new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+                    public void onClick(DialogInterface dialog, int which) {}
                 })
-                .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog,
-                                        int which) {
-                        if (modify)
-                            overwrite(key.trim(), value.trim(), keyEdit.getText().toString().trim(),
-                                    valueEdit.getText().toString().trim());
-                        else
-                            add(keyEdit.getText().toString().trim(), valueEdit.getText().toString().trim());
-                    }
-                }).show();
+            .setPositiveButton(getString(android.R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog,
+                    int which) {
+                    if (modify)
+                        overwrite(key.trim(), value.trim(), keyEdit.getText().toString().trim(),
+                            valueEdit.getText().toString().trim());
+                    else
+                        add(keyEdit.getText().toString().trim(), valueEdit.getText().toString().trim());
+                }
+            }).show();
     }
 
     private void deleteDialog(final String key, final String value) {
@@ -266,7 +265,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                     if (((String) keys[i]).contains(newText)) {
                         PopupCardView.DPopupCard mPopupCard = new PopupCardView.DPopupCard(null);
                         mPopupCard.setDescription(newText.isEmpty() ?
-                                (String) keys[i] : Html.fromHtml(((String) keys[i]).replace(newText, "" +
+                            (String) keys[i] : Html.fromHtml(((String) keys[i]).replace(newText, "" +
                                 "<b><font color=\"#2A7289\">" + newText + "</font></b>")));
                         mPopupCard.setItem((String) values[i]);
                         mPopupCard.setOnClickListener(BuildpropFragment.this);

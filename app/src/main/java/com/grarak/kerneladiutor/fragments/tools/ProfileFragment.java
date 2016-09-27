@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.appwidget.AppWidgetManager;
@@ -101,11 +100,11 @@ public class ProfileFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
 
-	String ppath = ("/sdcard/KA_profiles/");
-	if (!Utils.existFile(ppath)) {
-	    File dir = new File(ppath);
-	    dir.mkdir();
-	}
+        String ppath = ("/sdcard/KA_profiles/");
+        if (!Utils.existFile(ppath)) {
+            File dir = new File(ppath);
+            dir.mkdir();
+        }
 
         if (taskerMode) {
             fabView.setVisibility(View.GONE);
@@ -116,7 +115,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         fabView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final List<CommandDB.CommandItem> commandItems = new CommandDB(getActivity()).getAllCommands();
+                final List < CommandDB.CommandItem > commandItems = new CommandDB(getActivity()).getAllCommands();
 
                 LinearLayout linearLayout = new LinearLayout(getActivity());
                 linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -147,8 +146,8 @@ public class ProfileFragment extends RecyclerViewFragment {
                 boolean load = true;
                 String start = getString(R.string.kernel);
                 String stop = getString(R.string.downloads);
-                final LinkedHashMap<Class, AppCompatCheckBox> items = new LinkedHashMap<>();
-                for (DAdapter.DView item : Constants.VISIBLE_ITEMS) {
+                final LinkedHashMap < Class, AppCompatCheckBox > items = new LinkedHashMap < > ();
+                for (DAdapter.DView item: Constants.VISIBLE_ITEMS) {
                     if (item.getTitle() != null) {
                         if (item.getTitle().equals(start)) load = false;
                         if (item.getTitle().equals(stop)) load = true;
@@ -169,82 +168,81 @@ public class ProfileFragment extends RecyclerViewFragment {
                 selectAllButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        for (Object checkbox : items.values().toArray())
+                        for (Object checkbox: items.values().toArray())
                             ((AppCompatCheckBox) checkbox).setChecked(true);
                     }
                 });
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(),
+                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
                 dialog.setView(linearLayout).setNegativeButton(getString(R.string.cancel),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        }).setPositiveButton(getString(R.string.ok),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                new Thread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        final ProfileDB profileDB = new ProfileDB(getActivity());
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}
+                    }).setPositiveButton(getString(R.string.ok),
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    final ProfileDB profileDB = new ProfileDB(getActivity());
 
-                                        List<String> applys = new ArrayList<>();
-                                        for (int i = 0; i < items.size(); i++)
-                                            if (((AppCompatCheckBox) items.values().toArray()[i]).isChecked())
-                                                applys.addAll(Utils.getApplys((Class) items.keySet().toArray()[i]));
+                                    List < String > applys = new ArrayList < > ();
+                                    for (int i = 0; i < items.size(); i++)
+                                        if (((AppCompatCheckBox) items.values().toArray()[i]).isChecked())
+                                            applys.addAll(Utils.getApplys((Class) items.keySet().toArray()[i]));
 
-                                        final LinkedHashMap<String, String> commands = new LinkedHashMap<>();
-                                        for (CommandDB.CommandItem commandItem : commandItems)
-                                            for (String s : applys) {
-                                                String path = commandItem.getPath();
-                                                if (s.contains(path) || path.contains(s))
-                                                    commands.put(path, commandItem.getCommand());
-                                            }
-
-                                        final String name = profileName.getText().toString();
-
-                                        if (!name.isEmpty() && commands.size() > 0 && profileDB.containProfile(name)) {
-                                            getHandler().post(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    AlertDialog.Builder replaceDialog = new AlertDialog.Builder(getActivity());
-                                                    replaceDialog.setTitle(getString(R.string.replace_profile, name));
-                                                    replaceDialog.setNegativeButton(getString(R.string.cancel),
-                                                            new DialogInterface.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(DialogInterface dialog, int which) {
-                                                                }
-                                                            }).setPositiveButton(getString(R.string.ok),
-                                                            new DialogInterface.OnClickListener() {
-                                                                @Override
-                                                                public void onClick(DialogInterface dialog, int which) {
-                                                                    profileDB.delete(profileDB.getProfileId(name));
-                                                                    profileDB.putProfile(name, commands);
-                                                                    profileDB.commit();
-                                                                }
-                                                            }).show();
-                                                }
-                                            });
+                                    final LinkedHashMap < String, String > commands = new LinkedHashMap < > ();
+                                    for (CommandDB.CommandItem commandItem: commandItems)
+                                        for (String s: applys) {
+                                            String path = commandItem.getPath();
+                                            if (s.contains(path) || path.contains(s))
+                                                commands.put(path, commandItem.getCommand());
                                         }
-                                        else if (!name.isEmpty() && commands.size() > 0)
-                                            profileDB.putProfile(name, commands);
-                                        profileDB.commit();
 
+                                    final String name = profileName.getText().toString();
+
+                                    if (!name.isEmpty() && commands.size() > 0 && profileDB.containProfile(name)) {
                                         getHandler().post(new Runnable() {
                                             @Override
                                             public void run() {
-                                                if (name.isEmpty())
-                                                    Utils.toast(getString(R.string.empty_name), getActivity());
-                                                else if (commands.size() < 1)
-                                                    Utils.toast(getString(R.string.no_settings), getActivity());
-                                                else create();
+                                                AlertDialog.Builder replaceDialog = new AlertDialog.Builder(getActivity(),
+                                                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
+                                                replaceDialog.setTitle(getString(R.string.replace_profile, name));
+                                                replaceDialog.setNegativeButton(getString(R.string.cancel),
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {}
+                                                    }).setPositiveButton(getString(R.string.ok),
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialog, int which) {
+                                                            profileDB.delete(profileDB.getProfileId(name));
+                                                            profileDB.putProfile(name, commands);
+                                                            profileDB.commit();
+                                                        }
+                                                    }).show();
                                             }
                                         });
-                                    }
-                                }).start();
-                            }
-                        }).show();
+                                    } else if (!name.isEmpty() && commands.size() > 0)
+                                        profileDB.putProfile(name, commands);
+                                    profileDB.commit();
+
+                                    getHandler().post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (name.isEmpty())
+                                                Utils.toast(getString(R.string.empty_name), getActivity());
+                                            else if (commands.size() < 1)
+                                                Utils.toast(getString(R.string.no_settings), getActivity());
+                                            else create();
+                                        }
+                                    });
+                                }
+                            }).start();
+                        }
+                    }).show();
             }
         });
     }
@@ -265,13 +263,13 @@ public class ProfileFragment extends RecyclerViewFragment {
         addView(mInformationCard);
 
         ProfileDB profileDB = new ProfileDB(getActivity());
-        if (profileDB.updateDB(getActivity()) == 1 ) {
+        if (profileDB.updateDB(getActivity()) == 1) {
             removeAllViews();
 
             profileDB = new ProfileDB(getActivity());
         }
 
-        final List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
+        final List < ProfileDB.ProfileItem > profileItems = profileDB.getAllProfiles();
         for (int i = 0; i < profileItems.size(); i++) {
             CardViewItem.DCardView mProfileCard = new CardViewItem.DCardView();
             mProfileCard.setDescription(profileItems.get(i).getName());
@@ -283,53 +281,52 @@ public class ProfileFragment extends RecyclerViewFragment {
                     if (taskerMode) {
                         try {
                             ((AddProfileActivity) getActivity()).finish(profileItems.get(position).getName(),
-                                    profileItems.get(position).getCommands());
+                                profileItems.get(position).getCommands());
                             return;
-                        } catch (ClassCastException ignored) {
-                        }
+                        } catch (ClassCastException ignored) {}
                     }
 
                     new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.profile_menu),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    ProfileDB.ProfileItem profileItem = profileItems.get(position);
-                                    switch (which) {
-                                        case 0:
-                                            List<String> paths = profileItem.getPath();
-                                            for (int i = 0; i < paths.size(); i++) {
-                                                Control.commandSaver(getActivity(), paths.get(i),
-                                                        profileItem.getCommands().get(i));
-                                                RootUtils.runCommand(profileItem.getCommands().get(i));
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ProfileDB.ProfileItem profileItem = profileItems.get(position);
+                                switch (which) {
+                                    case 0:
+                                        List < String > paths = profileItem.getPath();
+                                        for (int i = 0; i < paths.size(); i++) {
+                                            Control.commandSaver(getActivity(), paths.get(i),
+                                                profileItem.getCommands().get(i));
+                                            RootUtils.runCommand(profileItem.getCommands().get(i));
+                                        }
+                                        break;
+                                    case 1:
+                                        ProfileDB profileDB = new ProfileDB(getActivity());
+                                        profileDB.delete(position);
+
+                                        profileDB.commit();
+
+                                        getHandler().post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                create();
                                             }
-                                            break;
-                                        case 1:
-                                            ProfileDB profileDB = new ProfileDB(getActivity());
-                                            profileDB.delete(position);
-
-                                            profileDB.commit();
-
-                                            getHandler().post(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    create();
-                                                }
-                                            });
-                                            break;
-                                        case 2:
-                                            StringBuilder s = new StringBuilder();
-                                            for (String command : profileItem.getCommands())
-                                                s.append(command).append("\n");
-                                            s.setLength(s.length() - 1);
-                                            new AlertDialog.Builder(getActivity()).setMessage(s.toString()).show();
-                                            break;
-                                        case 3:
-                                            dialog.dismiss();
-                                            PerAppDialog(profileItems.get(position).getID());
-                                            break;
-                                    }
+                                        });
+                                        break;
+                                    case 2:
+                                        StringBuilder s = new StringBuilder();
+                                        for (String command: profileItem.getCommands())
+                                            s.append(command).append("\n");
+                                        s.setLength(s.length() - 1);
+                                        new AlertDialog.Builder(getActivity()).setMessage(s.toString()).show();
+                                        break;
+                                    case 3:
+                                        dialog.dismiss();
+                                        PerAppDialog(profileItems.get(position).getID());
+                                        break;
                                 }
-                            }).show();
+                            }
+                        }).show();
                 }
             });
 
@@ -339,7 +336,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (isAdded()){
+                if (isAdded()) {
                     title.setText(getCount() < 2 ? getString(R.string.no_profiles) : getString(R.string.items_found, (getCount() - 1)));
                 }
             }
@@ -362,37 +359,37 @@ public class ProfileFragment extends RecyclerViewFragment {
             mPerAppDialog.setTitle(R.string.per_app_title);
             mPerAppDialog.setCancelable(true);
 
-            final List<Per_App.App> apps = Per_App.getInstalledApps(getActivity());
+            final List < Per_App.App > apps = Per_App.getInstalledApps(getActivity());
 
             final String[] packagelist = Per_App.getPackageNames(apps);
             final String[] mapplist = Per_App.getAppNames(apps);
 
             final String profile_id = id;
-            final List<Integer> mSelectedApps = new ArrayList<Integer>();
-            final List<Integer> mDeSelectedApps = new ArrayList<Integer>();
+            final List < Integer > mSelectedApps = new ArrayList < Integer > ();
+            final List < Integer > mDeSelectedApps = new ArrayList < Integer > ();
 
             final boolean[] checkedValues = Per_App.getExistingSelections(packagelist, profile_id, getActivity());
 
             // Specify the list array, the items to be selected by default (null for none),
             // and the listener through which to receive callbacks when items are selected
             mPerAppDialog.setMultiChoiceItems(mapplist, checkedValues,
-                    new DialogInterface.OnMultiChoiceClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which,
-                                            boolean isChecked) {
-                            if (isChecked) {
-                                // If the user checked the item, add it to the selected items
-                                mSelectedApps.add(which);
-                            }
-                            if (!isChecked) {
-                                mDeSelectedApps.add(which);
-                            }
-                            if (!isChecked && mSelectedApps.contains(which)) {
-                                // Else, if the item is already in the array, remove it
-                                mSelectedApps.remove(Integer.valueOf(which));
-                            }
+                new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which,
+                        boolean isChecked) {
+                        if (isChecked) {
+                            // If the user checked the item, add it to the selected items
+                            mSelectedApps.add(which);
                         }
-                    });
+                        if (!isChecked) {
+                            mDeSelectedApps.add(which);
+                        }
+                        if (!isChecked && mSelectedApps.contains(which)) {
+                            // Else, if the item is already in the array, remove it
+                            mSelectedApps.remove(Integer.valueOf(which));
+                        }
+                    }
+                });
 
             // Set the action buttons
             mPerAppDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -405,7 +402,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                             int y = mSelectedApps.get(i);
                             String packageName = packagelist[y];
 
-                            Log.d(TAG, "Saving "+packageName+" to "+profile_id);
+                            Log.d(TAG, "Saving " + packageName + " to " + profile_id);
                             Per_App.save_app(packageName, profile_id, getActivity());
                         }
                     }

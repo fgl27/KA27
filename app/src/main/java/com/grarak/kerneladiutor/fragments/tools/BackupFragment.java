@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.app.ProgressDialog;
@@ -95,7 +94,7 @@ public class BackupFragment extends RecyclerViewFragment {
     }
 
     private void options(final boolean flashing, final RootFile file) {
-        final LinkedHashMap<String, Backup.PARTITION> menu = new LinkedHashMap<>();
+        final LinkedHashMap < String, Backup.PARTITION > menu = new LinkedHashMap < > ();
         if (Backup.getBootPartition() != null)
             menu.put(getString(R.string.boot), Backup.PARTITION.BOOT);
         if (Backup.getRecoveryPartition() != null)
@@ -106,15 +105,16 @@ public class BackupFragment extends RecyclerViewFragment {
         String[] items = new String[menu.keySet().toArray().length];
         for (int i = 0; i < items.length; i++)
             items[i] = (String) menu.keySet().toArray()[i];
-        new AlertDialog.Builder(getActivity()).setItems(items,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (flashing)
-                            restoreDialog(file, (Backup.PARTITION) menu.values().toArray()[which], false);
-                        else backupDialog((Backup.PARTITION) menu.values().toArray()[which]);
-                    }
-                }).show();
+        new AlertDialog.Builder(getActivity(),
+            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setItems(items,
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if (flashing)
+                        restoreDialog(file, (Backup.PARTITION) menu.values().toArray()[which], false);
+                    else backupDialog((Backup.PARTITION) menu.values().toArray()[which]);
+                }
+            }).show();
     }
 
     private void backupDialog(final Backup.PARTITION partition_type) {
@@ -123,77 +123,77 @@ public class BackupFragment extends RecyclerViewFragment {
 
         final AppCompatEditText editText = new AppCompatEditText(getActivity());
         editText.setTextColor(getResources().getColor(
-                Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
+            Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
         editText.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (partition_type == Backup.PARTITION.BOOT) editText.setText(RootUtils.getKernelVersion());
         editText.setHint(getString(R.string.name));
 
         layout.addView(editText);
 
-        new AlertDialog.Builder(getActivity()).setView(layout)
-                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setView(layout)
+            .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {}
+            }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    final String name = editText.getText().toString().trim();
+                    if (name.isEmpty()) {
+                        Utils.toast(getString(R.string.empty_name), getActivity());
+                        return;
                     }
-                }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                final String name = editText.getText().toString().trim();
-                if (name.isEmpty()) {
-                    Utils.toast(getString(R.string.empty_name), getActivity());
-                    return;
+
+                    RootFile file = null;
+                    switch (partition_type) {
+                        case BOOT:
+                            file = boot;
+                            break;
+                        case RECOVERY:
+                            file = recovery;
+                            break;
+                        case FOTA:
+                            file = fota;
+                            break;
+                    }
+                    if (file != null && new File(file.toString() + "/" + name + ".img").exists()) {
+                        Utils.toast(getString(R.string.backup_already_exists), getActivity());
+                        return;
+                    }
+
+                    new AsyncTask < Void, Void, Void > () {
+                        private ProgressDialog progressDialog;
+
+                        @Override
+                        protected void onPreExecute() {
+                            super.onPreExecute();
+                            progressDialog = new ProgressDialog(getActivity());
+                            progressDialog.setMessage(getString(R.string.backing_up));
+                            progressDialog.setCancelable(false);
+                            progressDialog.show();
+                        }
+
+                        @Override
+                        protected Void doInBackground(Void...params) {
+                            Backup.backup(name, partition_type);
+                            return null;
+                        }
+
+                        @Override
+                        protected void onPostExecute(Void aVoid) {
+                            super.onPostExecute(aVoid);
+                            getHandler().post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    create();
+                                    progressDialog.dismiss();
+                                }
+                            });
+                        }
+                    }.execute();
                 }
-
-                RootFile file = null;
-                switch (partition_type) {
-                    case BOOT:
-                        file = boot;
-                        break;
-                    case RECOVERY:
-                        file = recovery;
-                        break;
-                    case FOTA:
-                        file = fota;
-                        break;
-                }
-                if (file != null && new File(file.toString() + "/" + name + ".img").exists()) {
-                    Utils.toast(getString(R.string.backup_already_exists), getActivity());
-                    return;
-                }
-
-                new AsyncTask<Void, Void, Void>() {
-                    private ProgressDialog progressDialog;
-
-                    @Override
-                    protected void onPreExecute() {
-                        super.onPreExecute();
-                        progressDialog = new ProgressDialog(getActivity());
-                        progressDialog.setMessage(getString(R.string.backing_up));
-                        progressDialog.setCancelable(false);
-                        progressDialog.show();
-                    }
-
-                    @Override
-                    protected Void doInBackground(Void... params) {
-                        Backup.backup(name, partition_type);
-                        return null;
-                    }
-
-                    @Override
-                    protected void onPostExecute(Void aVoid) {
-                        super.onPostExecute(aVoid);
-                        getHandler().post(new Runnable() {
-                            @Override
-                            public void run() {
-                                create();
-                                progressDialog.dismiss();
-                            }
-                        });
-                    }
-                }.execute();
-            }
-        }).show();
+            }).show();
     }
 
     @Override
@@ -216,12 +216,12 @@ public class BackupFragment extends RecyclerViewFragment {
         removeAllViews();
 
         final long size = viewInit(boot, Backup.PARTITION.BOOT) + viewInit(recovery, Backup.PARTITION.RECOVERY) +
-                viewInit(fota, Backup.PARTITION.FOTA);
+            viewInit(fota, Backup.PARTITION.FOTA);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 title.setText(getCount() > 0 ? getString(R.string.items_found, getCount()) + " (" +
-                        size + getString(R.string.mb) + ")" : getString(R.string.no_backups));
+                    size + getString(R.string.mb) + ")" : getString(R.string.no_backups));
             }
         });
     }
@@ -235,7 +235,7 @@ public class BackupFragment extends RecyclerViewFragment {
         else if (folder.toString().endsWith("recovery")) text = getString(R.string.recovery);
         else if (folder.toString().endsWith("fota")) text = getString(R.string.fota);
         if (text == null) return 0;
-        for (final RootFile file : folder.listFiles())
+        for (final RootFile file: folder.listFiles())
             if (file.getName().endsWith(".img")) {
                 CardViewItem.DCardView cardView = new CardViewItem.DCardView();
                 cardView.setTitle(file.getName().replace(".img", ""));
@@ -245,7 +245,9 @@ public class BackupFragment extends RecyclerViewFragment {
                 cardView.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                     @Override
                     public void onClick(CardViewItem.DCardView dCardView) {
-                        new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.backup_menu),
+                        new AlertDialog.Builder(getActivity(),
+                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                            .setItems(getResources().getStringArray(R.array.backup_menu),
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
@@ -271,7 +273,7 @@ public class BackupFragment extends RecyclerViewFragment {
         Utils.confirmDialog(null, getString(R.string.overwrite_question, Backup.getPartition(partition_type)), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                new AsyncTask<Void, Void, Void>() {
+                new AsyncTask < Void, Void, Void > () {
                     private ProgressDialog progressDialog;
 
                     @Override
@@ -284,7 +286,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     }
 
                     @Override
-                    protected Void doInBackground(Void... params) {
+                    protected Void doInBackground(Void...params) {
                         Backup.restore(file, partition_type);
                         return null;
                     }

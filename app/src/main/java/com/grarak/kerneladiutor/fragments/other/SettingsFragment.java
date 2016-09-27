@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.other;
 
 import android.app.ProgressDialog;
@@ -95,15 +94,15 @@ public class SettingsFragment extends RecyclerViewFragment {
         mForceEnglishLanguageCard.setDescription(getString(R.string.force_english_language));
         mForceEnglishLanguageCard.setChecked(Utils.getBoolean("forceenglish", false, getActivity()));
         mForceEnglishLanguageCard.setOnDSwitchCardListener(
-                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
-                    @Override
-                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                        Utils.saveBoolean("forceenglish", checked, getActivity());
-                        if (!checked)
-                            Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
-                        startActivity(new Intent(getActivity(), MainActivity.class));
-                    }
-                });
+            new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+                @Override
+                public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                    Utils.saveBoolean("forceenglish", checked, getActivity());
+                    if (!checked)
+                        Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
+                    startActivity(new Intent(getActivity(), MainActivity.class));
+                }
+            });
 
         addView(mForceEnglishLanguageCard);
     }
@@ -117,7 +116,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                 Utils.saveBoolean("profiletile", checked, getActivity());
                 ProfileTileReceiver.publishProfileTile(checked ? new ProfileDB(getActivity())
-                        .getAllProfiles() : null, getActivity());
+                    .getAllProfiles() : null, getActivity());
             }
         });
 
@@ -145,7 +144,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             addView(mHideApplyOnBootCard);
         }
 
-        final List<String> list = new ArrayList<>();
+        final List < String > list = new ArrayList < > ();
         list.add(0 + " " + getString(R.string.sec));
         for (int i = 5; i < 421; i *= 2)
             list.add(i + " " + getString(R.string.sec));
@@ -157,7 +156,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             @Override
             public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
                 Utils.saveInt("applyonbootdelay", Utils.stringToInt(list.get(position)
-                        .replace(" " + getString(R.string.sec), "")), getActivity());
+                    .replace(" " + getString(R.string.sec), "")), getActivity());
             }
         });
 
@@ -168,12 +167,12 @@ public class SettingsFragment extends RecyclerViewFragment {
         mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
         mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", true, getActivity()));
         mApplyonbootNotificationCard.setOnDSwitchCardListener(
-                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
-                    @Override
-                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                        Utils.saveBoolean("applyonbootnotification", checked, getActivity());
-                    }
-                });
+            new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+                @Override
+                public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                    Utils.saveBoolean("applyonbootnotification", checked, getActivity());
+                }
+            });
 
         addView(mApplyonbootNotificationCard);
 
@@ -196,9 +195,9 @@ public class SettingsFragment extends RecyclerViewFragment {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
                 boolean applyonbootenabled = false;
-                for (DAdapter.DView item : Constants.ITEMS)
-                    if (item.getFragment() != null && Utils.getBoolean(item.getFragment().getClass().getSimpleName()
-                            + "onboot", false, getActivity())) {
+                for (DAdapter.DView item: Constants.ITEMS)
+                    if (item.getFragment() != null && Utils.getBoolean(item.getFragment().getClass().getSimpleName() +
+                            "onboot", false, getActivity())) {
                         applyonbootenabled = true;
                         break;
                     }
@@ -262,38 +261,38 @@ public class SettingsFragment extends RecyclerViewFragment {
         mConfirmNewPassword.setHint(getString(R.string.confirm_new_password));
         linearLayout.addView(mConfirmNewPassword);
 
-        new AlertDialog.Builder(getActivity()).setView(linearLayout)
-                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setView(linearLayout)
+            .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {}
+            })
+            .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if (!oldPass.isEmpty() && !mOldPassword.getText().toString().equals(Utils.decodeString(oldPass))) {
+                        Utils.toast(getString(R.string.old_password_wrong), getActivity());
+                        return;
                     }
-                })
-                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (!oldPass.isEmpty() && !mOldPassword.getText().toString().equals(Utils.decodeString(oldPass))) {
-                            Utils.toast(getString(R.string.old_password_wrong), getActivity());
-                            return;
-                        }
 
-                        if (mNewPassword.getText().toString().isEmpty()) {
-                            Utils.toast(getString(R.string.password_empty), getActivity());
-                            return;
-                        }
-
-                        if (!mNewPassword.getText().toString().equals(mConfirmNewPassword.getText().toString())) {
-                            Utils.toast(getString(R.string.password_not_match), getActivity());
-                            return;
-                        }
-
-                        if (mNewPassword.getText().toString().length() > 20) {
-                            Utils.toast(getString(R.string.password_too_long), getActivity());
-                            return;
-                        }
-
-                        Utils.saveString("password", Utils.encodeString(mNewPassword.getText().toString()), getActivity());
+                    if (mNewPassword.getText().toString().isEmpty()) {
+                        Utils.toast(getString(R.string.password_empty), getActivity());
+                        return;
                     }
-                }).show();
+
+                    if (!mNewPassword.getText().toString().equals(mConfirmNewPassword.getText().toString())) {
+                        Utils.toast(getString(R.string.password_not_match), getActivity());
+                        return;
+                    }
+
+                    if (mNewPassword.getText().toString().length() > 20) {
+                        Utils.toast(getString(R.string.password_too_long), getActivity());
+                        return;
+                    }
+
+                    Utils.saveString("password", Utils.encodeString(mNewPassword.getText().toString()), getActivity());
+                }
+            }).show();
     }
 
     private void deletePasswordDialog(final String password) {
@@ -312,21 +311,22 @@ public class SettingsFragment extends RecyclerViewFragment {
         mPassword.setHint(getString(R.string.password));
         linearLayout.addView(mPassword);
 
-        new AlertDialog.Builder(getActivity()).setView(linearLayout)
-                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (!mPassword.getText().toString().equals(Utils.decodeString(password))) {
-                            Utils.toast(getString(R.string.password_wrong), getActivity());
-                            return;
-                        }
-
-                        Utils.saveString("password", "", getActivity());
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setView(linearLayout)
+            .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if (!mPassword.getText().toString().equals(Utils.decodeString(password))) {
+                        Utils.toast(getString(R.string.password_wrong), getActivity());
+                        return;
                     }
-                }).show();
+
+                    Utils.saveString("password", "", getActivity());
+                }
+            }).show();
     }
 
-    private void perappInit(){
+    private void perappInit() {
         DDivider mPerAppDividerCard = new DDivider();
         mPerAppDividerCard.setText(getString(R.string.per_app));
         addView(mPerAppDividerCard);
@@ -351,18 +351,18 @@ public class SettingsFragment extends RecyclerViewFragment {
         mShowSectionsDividerCard.setText(getString(R.string.show_sections));
         addView(mShowSectionsDividerCard);
 
-        for (final DAdapter.DView section : Constants.ITEMS) {
-            if (section.getFragment() != null
-                    && !section.getFragment().getClass().getSimpleName().equals(getClass().getSimpleName())) {
+        for (final DAdapter.DView section: Constants.ITEMS) {
+            if (section.getFragment() != null &&
+                !section.getFragment().getClass().getSimpleName().equals(getClass().getSimpleName())) {
                 SwitchCardView.DSwitchCard mSectionCard = new SwitchCardView.DSwitchCard();
                 mSectionCard.setDescription(section.getTitle());
-                mSectionCard.setChecked(Utils.getBoolean(section.getFragment().getClass().getSimpleName()
-                        + "visible", true, getActivity()));
+                mSectionCard.setChecked(Utils.getBoolean(section.getFragment().getClass().getSimpleName() +
+                    "visible", true, getActivity()));
                 mSectionCard.setOnDSwitchCardListener(new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
                     @Override
                     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                        Utils.saveBoolean(section.getFragment().getClass().getSimpleName()
-                                + "visible", checked, getActivity());
+                        Utils.saveBoolean(section.getFragment().getClass().getSimpleName() +
+                            "visible", checked, getActivity());
                         ((MainActivity) getActivity()).setItems(SettingsFragment.this);
                     }
                 });
