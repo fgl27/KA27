@@ -357,13 +357,13 @@
   <string name="green">Verde</string>
   <string name="blue">Azul</string>
   <string name="min_rgb">Valor mínimo RGB</string>
-  <string name="invert_screen">Inverter ecrã</string>
+  <string name="invert_screen">Inverter a tela</string>
   <string name="saturation_intensity">Intensidade de saturação</string>
   <string name="grayscale_mode">Modo tons de cinza</string>
-  <string name="screen_hue">Matiz do ecrã</string>
+  <string name="screen_hue">Matiz da tela</string>
   <string name="screen_hue_summary">Você pode ter problemas com SoC MSM8x26 ao definir um valor elevado.</string>
-  <string name="screen_value">Valor do ecrã</string>
-  <string name="screen_contrast">Contraste do ecrã</string>
+  <string name="screen_value">Valor da tela</string>
+  <string name="screen_contrast">Contraste da tela</string>
   <string name="high_brightness_mode">Modo de alto brilho</string>
   <string name="gamma">Gamma</string>
   <string name="gamma_profile">Perfil de gamma</string>

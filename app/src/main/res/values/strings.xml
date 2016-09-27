@@ -198,8 +198,8 @@
     <string name="threshold">Threshold Value</string>
     <string name="debug">Debug</string>
     <string name="debug_summary">Allows you to activate debug mask for this operations.</string>
-    <string name="suspend">Suspend</string>
-    <string name="suspend_summary">Prevent to suspend.</string>
+    <string name="suspend">Allow Suspend</string>
+    <string name="suspend_summary">Allow hotplug to suspend.</string>
     <string name="cpus_boosted">CPUs Boosted</string>
     <string name="cpus_boosted_summary">Maximum number of CPUs boosted at the same time.</string>
     <string name="min_cpu_online">Minimum CPU Online</string>
