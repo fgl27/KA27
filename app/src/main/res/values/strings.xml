@@ -893,6 +893,8 @@
     <string name="forbidden_special">Forbidden Special Character in the text!</string>
     <string name="saved_to">Result saved to:</string>
     <string name="saved_to_summary">\n/sdcard/KA_Logs/grep_a_log%s.txt</string>
+    <string name="logcat_disable_zip">Zip generated but only with Driver message and Get prop!</string>
+    <string name="logcat_disable">Android logging is disable, Logcat, Radio Log and Events Logs is empty!\n\nTurn Android logging on under Misc and try again</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
