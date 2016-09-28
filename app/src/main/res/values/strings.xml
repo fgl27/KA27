@@ -867,9 +867,9 @@
     <string name="log_hint">Enter Text (use a to z, 0 to 9 and space only!)</string>
     <string name="empty_text">Entered text is empty!</string>
     <string name="search_dialog">Write the text to search:</string>
-    <string name="search_dialog_summary">Special characters are forbidden (use a to z, 0 to 9 and space only)\nThe search is case insensitive\nUse only one space between words or numbers (not demanding but logs don\'t usually have double space in it)</string>
+    <string name="search_dialog_summary">Special characters are forbidden (use a to z, 0 to 9 and space only)\nThe search is case insensitive\nRecommendation Use only one space between words or numbers</string>
     <string name="zip_log">One click All Logs to a ZIP</string>
-    <string name="zip_log_summary">Generates a .zip file with all individual logs to:\n/sdcard/KA_Logs/logs%s.txt</string>
+    <string name="zip_log_summary">Generates a .zip file with all individual logs to:\n/sdcard/KA_Logs/logs%s.zip</string>
     <string name="logcat">Logcat</string>
     <string name="logcat_summary">Copy logcat to:\n/sdcard/KA_Logs/logcat%s.txt</string>
     <string name="log_radio">Radio Log</string>
