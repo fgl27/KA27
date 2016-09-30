@@ -281,17 +281,21 @@ public class CPU implements Constants {
     }
 
     public static void setGovernor(String governor, Context context) {
-        //If change Governor after previously had changed Freq, Freq may be wrong after reboot
-        setGovernor(Control.CommandType.CPU, governor, context);
-        for (int i = 0; i < getCoreCount(); i++)
-            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
-        setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
-        setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
+        for (int i = 0; i < getCoreCount(); i++) {
+            while (!governor.equals(getCurGovernor(i, true))) {
+                if (i > 0)
+                    Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
+                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), context);
+                Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 644, context);
+                Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, i), String.format(Locale.US, CPU_SCALING_GOVERNOR, i), context);
+                Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 444, context);
+            }
+        }
     }
 
-    public static void setGovernor(Control.CommandType command, String governor, Context context) {
+    public static void setGovernorBig(Control.CommandType command, String governor, Context context) {
         Control.runCommand(governor, CPU_SCALING_GOVERNOR, command, context);
-    }
+     }
 
     public static String getCurGovernor(boolean forceRead) {
         return getCurGovernor(getBigCore(), forceRead);
@@ -300,7 +304,7 @@ public class CPU implements Constants {
     public static String getCurGovernor(int core, boolean forceRead) {
         if (forceRead && core > 0)
             while (!Utils.existFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core)))
-                activateCore(core, true, null);
+		RootUtils.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
         if (Utils.existFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core))) {
             String value = Utils.readFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core));
             if (value != null) return value;
@@ -388,7 +392,8 @@ public class CPU implements Constants {
     public static void setMinFreq(Control.CommandType command, int freq, Context context) {
         if (getMaxFreq(command == Control.CommandType.CPU ? getBigCore() : getLITTLEcore(), true) < freq)
             setMaxFreq(command, freq, context);
-        Control.runCommand(String.valueOf(freq), CPU_MIN_FREQ, command, context);
+        for (int i = 0; i < getCoreCount(); i++)
+            setPCMinFreq(freq, i, context);
     }
 
     public static int getMinFreq(boolean forceRead) {
@@ -410,8 +415,8 @@ public class CPU implements Constants {
     }
 
     public static void setMaxFreq(Control.CommandType command, int freq, Context context) {
-        if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT)
-                && freq > Utils.stringToInt(Utils.readFile(CPU_MSM_CPUFREQ_LIMIT)))
+        if (command == Control.CommandType.CPU && Utils.existFile(CPU_MSM_CPUFREQ_LIMIT) &&
+            freq > Utils.stringToInt(Utils.readFile(CPU_MSM_CPUFREQ_LIMIT)))
             Control.runCommand(String.valueOf(freq), CPU_MSM_CPUFREQ_LIMIT, Control.CommandType.GENERIC, context);
         if (Utils.existFile(String.format(Locale.US, CPU_ENABLE_OC, 0)))
             Control.runCommand("1", CPU_ENABLE_OC, Control.CommandType.CPU, context);
@@ -419,7 +424,10 @@ public class CPU implements Constants {
             setMinFreq(command, freq, context);
         if (Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, 0)))
             Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
-        else Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ, command, context);
+        else {
+            for (int i = 0; i < getCoreCount(); i++)
+                setPCMaxFreq(freq, i, context);
+        }
     }
 
     public static int getMaxFreq(boolean forceRead) {
@@ -650,73 +658,46 @@ public class CPU implements Constants {
 
     }
 
-    public static boolean isPerCoreControlEnabled(Context context) {
+    public static boolean isPerCoreFreqControlEnabled(Context context) {
         try {
-            return Utils.getBoolean("Per_Core_Control_Enabled", false, context);
+            return Utils.getBoolean("Per_Core_Freq_Control_Enabled", false, context);
         } catch (NullPointerException err) {
             return false;
         }
     }
 
-    public static void setPerCoreControlEnabled(boolean active, Context context) {
-            Utils.saveBoolean("Per_Core_Control_Enabled", active, context);
-            //If deactivate reset freq to core one freq
-            if (!active) {
-                for (int i = 0; i < getCoreCount(); i++)
-                    Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
-                setMinFreq(Control.CommandType.CPU, getMinFreq(true), context);
-                setMaxFreq(Control.CommandType.CPU, getMaxFreq(true), context);
-            }
+    public static void setPerCoreFreqControlEnabled(boolean active, Context context) {
+        Utils.saveBoolean("Per_Core_Freq_Control_Enabled", active, context);
+        //If deactivate reset freq to core 0 freq
+        if (!active) {
+            setMinFreq(getMinFreq(true), context);
+            setMaxFreq(getMaxFreq(true), context);
         }
-        //Rewrite already existent code because of delay using existent function cause command to start before the previously had not finished
+    }
+
+    //Rewrite already existent code because of delay using existent function cause command to start before the previously had not finished
     public static void setPCMaxFreq(int freq, int core, Context context) {
-        if (core > 0) {
-            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
-            Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
+        while (freq != getMaxFreq(core, true)) {
+            if (core > 0) {
+                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
+                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
+            }
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 644, context);
+            Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MAX_FREQ, core), String.format(Locale.US, CPU_MAX_FREQ, core), context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 444, context);
         }
-        Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 644, context);
-        Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MAX_FREQ, core), String.format(Locale.US, CPU_MAX_FREQ, core), context);
-        Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 444, context);
     }
 
     public static void setPCMinFreq(int freq, int core, Context context) {
-        if (core > 0) {
-            Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
-            Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
+        while (freq != getMinFreq(core, true)) {
+            if (core > 0) {
+                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
+                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
+            }
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 644, context);
+            Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MIN_FREQ, core), String.format(Locale.US, CPU_MIN_FREQ, core), context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 444, context);
         }
-        Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 644, context);
-        Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MIN_FREQ, core), String.format(Locale.US, CPU_MIN_FREQ, core), context);
-        Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 444, context);
     }
 
-    public static void setGovernorPC(String governor, Context context) {
-        //If change Governor after previously had changed Freq, Freq may be wrong after reboot
-        //Set Gov
-        for (int i = 0; i < getCoreCount(); i++) {
-            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 644, context);
-            Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, i), String.format(Locale.US, CPU_SCALING_GOVERNOR, i), context);
-            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 444, context);
-        }
-        for (int i = 0; i < getCoreCount(); i++) {
-            String MAX = Integer.toString(getMaxFreq(i, true));
-            String MIN = Integer.toString(getMinFreq(i, true));
-            //Set Max freq
-            if (i > 0) {
-                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
-                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), context);
-            }
-            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, i), 644, context);
-            Control.run("echo " + MAX + " > " + String.format(Locale.US, CPU_MAX_FREQ, i), String.format(Locale.US, CPU_MAX_FREQ, i), context);
-            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, i), 444, context);
-
-            //Set Min freq
-            if (i > 0) {
-                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
-                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), context);
-            }
-            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, i), 644, context);
-            Control.run("echo " + MIN + " > " + String.format(Locale.US, CPU_MIN_FREQ, i), String.format(Locale.US, CPU_MIN_FREQ, i), context);
-            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, i), 444, context);
-        }
-    }
 }

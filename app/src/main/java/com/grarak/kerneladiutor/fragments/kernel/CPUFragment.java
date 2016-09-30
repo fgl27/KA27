@@ -150,9 +150,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         public void init(Bundle savedInstanceState) {
             super.init(savedInstanceState);
 
-            //In case user has made chages to per core, but decide to clean app data, set all to default base on current gov and core 0
-            if (!CPU.isPerCoreControlEnabled(getActivity()))
-                CPU.setGovernor(CPU.getCurGovernor(true), getActivity());
+            //In case user has made changes to per core, but decide to clean app data, set all to default base on current gov and core 0
+            if (!CPU.isPerCoreFreqControlEnabled(getActivity())) {
+                CPU.setGovernor(CPU.getCurGovernor(0, false), getActivity());
+                CPU.setMinFreq(CPU.getMinFreq(0, false), getActivity());
+                CPU.setMaxFreq(CPU.getMaxFreq(0, false), getActivity());
+            }
 
             usageInit();
             if (CPU.hasTemp()) tempInit();
@@ -249,12 +252,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             mPerCoreControlCard = new SwitchCardView.DSwitchCard();
             mPerCoreControlCard.setTitle(getString(R.string.cpu_per_core));
             mPerCoreControlCard.setDescription(getString(R.string.cpu_per_core_summary));
-            mPerCoreControlCard.setChecked(CPU.isPerCoreControlEnabled(getActivity()));
+            mPerCoreControlCard.setChecked(CPU.isPerCoreFreqControlEnabled(getActivity()));
             mPerCoreControlCard.setOnDSwitchCardListener(this);
 
             addView(mPerCoreControlCard);
             //hard code to 4 core only this is need to have a working refresh I only build this to a 4 core only anyway
-            if (CPU.isPerCoreControlEnabled(getActivity())) {
+            if (CPU.isPerCoreFreqControlEnabled(getActivity())) {
 
                 DDivider mMaxFreqPerCoreCard = new DDivider();
                 mMaxFreqPerCoreCard.setText(getString(R.string.cpu_per_core_max_freq));
@@ -709,10 +712,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
             else if (dPopupCard == mMaxScreenOffFreqCard)
                 CPU.setMaxScreenOffFreq(CPU.getFreqs().get(position), getActivity());
-            else if (dPopupCard == mGovernorCard && !CPU.isPerCoreControlEnabled(getActivity()))
+            else if (dPopupCard == mGovernorCard)
                 CPU.setGovernor(CPU.getAvailableGovernors().get(position), getActivity());
-            else if (dPopupCard == mGovernorCard && CPU.isPerCoreControlEnabled(getActivity()))
-                CPU.setGovernorPC(CPU.getAvailableGovernors().get(position), getActivity());
             if (dPopupCard == mMaxFreqLITTLECard)
                 CPU.setMaxFreq(Control.CommandType.CPU_LITTLE, CPU.getFreqs(CPU.getLITTLEcore()).get(position), getActivity());
             else if (dPopupCard == mMinFreqLITTLECard)
@@ -721,7 +722,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setMaxScreenOffFreq(Control.CommandType.CPU_LITTLE, CPU.getFreqs(CPU.getLITTLEcore()).get(position),
                     getActivity());
             else if (dPopupCard == mGovernorLITTLECard)
-                CPU.setGovernor(Control.CommandType.CPU_LITTLE, CPU.getAvailableGovernors(CPU.getLITTLEcore()).get(position),
+                CPU.setGovernorBig(Control.CommandType.CPU_LITTLE, CPU.getAvailableGovernors(CPU.getLITTLEcore()).get(position),
                     getActivity());
             else if (dPopupCard == mCFSSchedulerCard)
                 CPU.setCFSScheduler(CPU.getAvailableCFSSchedulers().get(position), getActivity());
@@ -793,7 +794,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             else if (dSwitchCard == mCpuTouchBoostCard)
                 CPU.activateCpuTouchBoost(checked, getActivity());
             else if (dSwitchCard == mPerCoreControlCard) {
-                CPU.setPerCoreControlEnabled(checked, getActivity());
+                CPU.setPerCoreFreqControlEnabled(checked, getActivity());
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException ignored) {}
@@ -820,7 +821,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 }
             }
 
-            if (CPU.isPerCoreControlEnabled(getActivity())) {
+            if (CPU.isPerCoreFreqControlEnabled(getActivity())) {
                 if (mPCMaxFreqCard0 != null) {
                     int MaxFreqPC = CPU.getMaxFreq(0, false) / 1000;
                     if (MaxFreqPC != 0) mPCMaxFreqCard0.setItem(MaxFreqPC + getString(R.string.mhz));
