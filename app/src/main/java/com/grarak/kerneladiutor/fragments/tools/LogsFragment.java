@@ -354,27 +354,27 @@ public class LogsFragment extends RecyclerViewFragment {
                         if (((AppCompatCheckBox) logcat).isChecked()) {
                             final String logcat = RootUtils.runCommand(logcatC + grep + "'" + name + "'");
                             if (!logcat.isEmpty())
-                                final_logcat = getString(R.string.logcat) + " " + getString(R.string.result) + "\n\n" + logcat + "\n";
+                                final_logcat = getString(R.string.logcat) + " " + getString(R.string.result) + "\n\n" + logcat + "\n\n";
                         }
                         if (((AppCompatCheckBox) log_radio).isChecked()) {
                             final String log_radio = RootUtils.runCommand(radioC + grep + "'" + name + "'");
                             if (!log_radio.isEmpty())
-                                final_log_radio = getString(R.string.log_radio) + " " + getString(R.string.result) + "\n\n" + log_radio + "\n";
+                                final_log_radio = getString(R.string.log_radio) + " " + getString(R.string.result) + "\n\n" + log_radio + "\n\n";
                         }
                         if (((AppCompatCheckBox) log_events).isChecked()) {
                             final String log_events = RootUtils.runCommand(eventsC + grep + "'" + name + "'");
                             if (!log_events.isEmpty())
-                                final_log_events = getString(R.string.log_events) + " " + getString(R.string.result) + "\n\n" + log_events + "\n";
+                                final_log_events = getString(R.string.log_events) + " " + getString(R.string.result) + "\n\n" + log_events + "\n\n";
                         }
                         if (((AppCompatCheckBox) driver_message).isChecked()) {
                             final String driver_message = RootUtils.runCommand(dmesgC + grep + "'" + name + "'");
                             if (!driver_message.isEmpty())
-                                final_driver_message = getString(R.string.driver_message) + " " + getString(R.string.result) + "\n\n" + driver_message + "\n";
+                                final_driver_message = getString(R.string.driver_message) + " " + getString(R.string.result) + "\n\n" + driver_message + "\n\n";
                         }
                         if (((AppCompatCheckBox) get_prop).isChecked()) {
                             final String get_prop = RootUtils.runCommand(getpropC + grep + "'" + name + "'");
                             if (!get_prop.isEmpty())
-                                final_get_prop = getString(R.string.get_prop) + " " + getString(R.string.result) + "\n\n" + get_prop + "\n";
+                                final_get_prop = getString(R.string.get_prop) + " " + getString(R.string.result) + "\n\n" + get_prop + "\n\n\n";
                         }
                         if (!(((AppCompatCheckBox) logcat).isChecked()) && !(((AppCompatCheckBox) log_radio).isChecked()) &&
                             !(((AppCompatCheckBox) log_events).isChecked()) && !(((AppCompatCheckBox) driver_message).isChecked()) &&
