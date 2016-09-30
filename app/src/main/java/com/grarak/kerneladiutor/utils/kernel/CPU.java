@@ -281,16 +281,8 @@ public class CPU implements Constants {
     }
 
     public static void setGovernor(String governor, Context context) {
-        for (int i = 0; i < getCoreCount(); i++) {
-            while (!governor.equals(getCurGovernor(i, true))) {
-                if (i > 0)
-                    Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
-                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), String.format(Locale.US, Constants.CPU_CORE_ONLINE, i), context);
-                Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 644, context);
-                Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, i), String.format(Locale.US, CPU_SCALING_GOVERNOR, i), context);
-                Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, i), 444, context);
-            }
-        }
+        for (int i = 0; i < getCoreCount(); i++)
+            setGovernorPC(governor, i, context);
     }
 
     public static void setGovernorBig(Control.CommandType command, String governor, Context context) {
@@ -697,6 +689,34 @@ public class CPU implements Constants {
             Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 644, context);
             Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MIN_FREQ, core), String.format(Locale.US, CPU_MIN_FREQ, core), context);
             Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 444, context);
+        }
+    }
+
+    public static boolean isPerCoreGovControlEnabled(Context context) {
+        try {
+            return Utils.getBoolean("Per_Core_Gov_Control_Enabled", false, context);
+        } catch (NullPointerException err) {
+            return false;
+        }
+    }
+
+    public static void setPerCoreGovControlEnabled(boolean active, Context context) {
+        Utils.saveBoolean("Per_Core_Gov_Control_Enabled", active, context);
+        //If deactivate reset gov to core 0 freq
+        if (!active) {
+	    setGovernor(getCurGovernor(0, false), context);
+        }
+    }
+
+    public static void setGovernorPC(String governor, int core, Context context) {
+        while (!governor.equals(getCurGovernor(core, true))) {
+            if (core > 0) {
+                Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
+                Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
+            }
+            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 644, context);
+            Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, core), String.format(Locale.US, CPU_SCALING_GOVERNOR, core), context);
+            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 444, context);
         }
     }
 

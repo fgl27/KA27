@@ -115,16 +115,13 @@
     <string name="offline">Offline</string>
     <string name="cpu_max_freq">CPU Maximum Frequency</string>
     <string name="cpu_max_freq_summary">Set the maximum frequency the CPU Cores scales up to.</string>
-    <string name="cpupc_max_freq_summary">Set the maximum frequency the CPU Cores scales up to.\n\nAfter choosing a frequency it will refresh and display the chosen frequency, if it doesn\'t change try again\n\nRare but, some times when setting a frequency to Core 1, 2 or 3 The frequency may not be set, this is do how hotplug control it core if in the particularly moment of change the core is be control by the hotplug the frequency may not be set by the one chosen, usually only need one extra try if the problem happens.</string>
-    <string name="cpu_min_freq">CPU Minimum Frequency</string>
-    <string name="cpupc_min_freq_summary">Set the minimum frequency the CPU Cores scales down to.\n\nAfter choosing a frequency it will refresh and display the chosen frequency, if it doesn\'t change try again\n\nRare but, some times when setting a frequency to Core 1, 2 or 3 The frequency may not be set, this is do how hotplug control it core if in the particularly moment of change the core is be control by the hotplug the frequency may not be set by the one chosen, usually only need one extra try if the problem happens.</string>
     <string name="cpu_min_freq_summary">Set the minimum frequency the CPU Cores scales down to.</string>
     <string name="cpu_max_screen_off_freq">CPU Maximum Screen Off Frequency</string>
     <string name="cpu_max_screen_off_freq_summary">Set the maximum frequency the CPU scales up to when the screen is off.</string>
     <string name="cpu_governor">CPU Governor</string>
     <string name="cpu_governor_summary">The CPU governor determines how the CPU behaves in response to changes in workload. Changing the governor will impact how the CPU scales through the frequency steps available to your CPU.</string>
     <string name="cpu_governor_tunables">CPU Governor Tunables</string>
-    <string name="cpu_governor_tunables_summary">The various configuration items which are Governor-dependent.</string>
+    <string name="cpu_governor_tunables_summary">Click to change the various configuration items which are Governor-dependent.</string>
     <string name="not_tunable">%s is not tunable</string>
     <string name="power_saving_wq">Power Efficient Work queues</string>
     <string name="power_saving_wq_summary">Schedule workqueues on awake CPUs to save power.</string>
@@ -155,12 +152,19 @@
     <string name="wakeup_boost_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
     <string name="hotplug_boost">Hotplug Boost</string>
     <string name="hotplug_boost_summary">Hotplug Boost is similar to input boost but it occurs when CPUs go online.</string>
-    <string name="cpu_per_core">Per Core Frequency Control</string>
-    <string name="cpu_per_core_summary">Enable to set individual frequency for it Core.\nDisabling this will set all Cores frequency to Core 0 current Max/Min frequencies.</string>
+    <string name="cpu_per_core_freq">Per Core Frequency Control</string>
+    <string name="cpu_per_core_freq_summary">Enable to set individual frequency for it Core.\nDisabling this will set all Cores frequency to Core 0 current Max/Min frequencies.</string>
     <string name="cpu_per_core_max_freq">Per Core Maximum Frequency</string>
     <string name="cpu_per_core_min_freq">Per Core Minimum Frequency</string>
-    <string name="cpu_max_per_core">Core %d: Maximum Frequency</string>
-    <string name="cpu_min_per_core">Core %d: Minimum Frequency</string>
+    <string name="cpu_max_per_core_freq">Core %d: Maximum Frequency</string>
+    <string name="cpu_min_per_core_freq">Core %d: Minimum Frequency</string>
+    <string name="cpu_min_freq">CPU Minimum Frequency</string>
+    <string name="cpu_per_core_gov_control">Per Core Governor Control</string>
+    <string name="cpu_per_core_gov_control_summary">Enable to set individual governor for it Core.\nDisabling this will set all Cores Governor to Core 0 current Governor setting.</string>
+    <string name="cpu_per_core_gov">Core %d: Governor</string>
+    <string name="cpu_per_core_gov_tunables">Core %d Governor Tunables:</string>
+    <string name="cpu_per_core_governor_tunables">Core %d Governor Tunables</string>
+    <string name="cpu_per_core_governor_tunables_summary">Click to change the various configuration items which are Governor-dependent, for Core %d.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
