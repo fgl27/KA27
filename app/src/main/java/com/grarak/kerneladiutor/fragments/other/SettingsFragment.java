@@ -165,7 +165,7 @@ public class SettingsFragment extends RecyclerViewFragment {
         SwitchCardView.DSwitchCard mApplyonbootNotificationCard = new SwitchCardView.DSwitchCard();
         mApplyonbootNotificationCard.setTitle(getString(R.string.notification));
         mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
-        mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", true, getActivity()));
+        mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", false, getActivity()));
         mApplyonbootNotificationCard.setOnDSwitchCardListener(
             new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
                 @Override

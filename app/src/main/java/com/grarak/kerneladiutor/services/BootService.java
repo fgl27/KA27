@@ -123,7 +123,7 @@ public class BootService extends Service {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    boolean notification = Utils.getBoolean("applyonbootnotification", true, BootService.this);
+                    boolean notification = Utils.getBoolean("applyonbootnotification", false, BootService.this);
                     for (int i = delay; i >= 0; i--)
                         try {
                             Thread.sleep(1000);
