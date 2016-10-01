@@ -85,22 +85,34 @@ public class LogsFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
         if (!Misc.isLoggerActive())
-            Utils.toast(getString(R.string.logcat_disable), getActivity(), Toast.LENGTH_LONG);
+            Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+
+        if (!Utils.existFile(log_folder)) {
+            File dir = new File(log_folder);
+            dir.mkdir();
+            if (!Utils.existFile(log_folder)) {
+                Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
+                return;
+            }
+        }
     }
 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (!Utils.existFile(log_folder)) {
-            File dir = new File(log_folder);
-            dir.mkdir();
-        }
-
         debuggingInit();
     }
 
     private void debuggingInit() {
+
+        if (!Misc.isLoggerActive()) {
+            CardViewItem.DCardView mLogDisableCard = new CardViewItem.DCardView();
+            mLogDisableCard.setTitle(getString(R.string.logcat_disable));
+            mLogDisableCard.setDescription(getString(R.string.logcat_disable_summary));
+
+            addView(mLogDisableCard);
+        }
 
         DDivider mLogsDividerCard = new DDivider();
         mLogsDividerCard.setText(getString(R.string.logs));
@@ -119,7 +131,7 @@ public class LogsFragment extends RecyclerViewFragment {
                     }
                     if (!Misc.isLoggerActive()) {
                         Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                        Utils.toast(getString(R.string.logcat_disable), getActivity(), Toast.LENGTH_LONG);
+                        Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
                         }
                         else {
                             logs(logcatC, log_temp_folder, "logcat");
@@ -141,7 +153,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
                     if (!Misc.isLoggerActive())
-                        Utils.toast(getString(R.string.logcat_disable), getActivity(), Toast.LENGTH_LONG);
+                        Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
                     GrepLogs();
                 }
             });
@@ -155,7 +167,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 public void onClick(CardViewItem.DCardView dCardView) {
 
                     if (!Misc.isLoggerActive())
-                        Utils.toast(getString(R.string.logcat_disable), getActivity(), Toast.LENGTH_LONG);
+                        Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
                     else
                         logs(logcatC, log_folder, "logcat" + getDate());
                 }
@@ -167,7 +179,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
                     if (!Misc.isLoggerActive())
-                        Utils.toast(getString(R.string.logcat_disable), getActivity(), Toast.LENGTH_LONG);
+                        Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
                     else
                         logs(radioC, log_folder, "radio" + getDate());
                 }
@@ -179,7 +191,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
                     if (!Misc.isLoggerActive())
-                        Utils.toast(getString(R.string.logcat_disable), getActivity(), Toast.LENGTH_LONG);
+                        Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
                     else
                         logs(eventsC, log_folder, "events" + getDate());
                 }

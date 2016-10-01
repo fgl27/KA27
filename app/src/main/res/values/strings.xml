@@ -898,7 +898,9 @@
     <string name="saved_to">Result saved to:</string>
     <string name="saved_to_summary">\n/sdcard/KA_Logs/grep_a_log%s.txt</string>
     <string name="logcat_disable_zip">Zip generated but only with Driver message and Get prop!</string>
-    <string name="logcat_disable">Android logging is disable, Logcat, Radio Log and Events Logs is empty!\n\nTurn Android logging on under Misc and try again</string>
+    <string name="logcat_disable">Android logging is disable!</string>
+    <string name="logcat_disable_summary">Android logging is disable, Logcat, Radio Log and Events Logs is empty!\n\nTurn Android logging on under Misc and try again</string>
+    <string name="log_folder_error">Error!\n\nCan\'t create a Log folder in /sdcard/KA_Logs/ Check permission if the problem persist contact the developer</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
