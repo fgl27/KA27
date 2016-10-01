@@ -61,6 +61,16 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
         showTabs(false);
+        //In case user has made changes to per core, but decide to clean app data, set all cores freq/gov to current core 0 values
+        if (!CPU.isPerCoreFreqControlEnabled(getActivity()) && !CPU.isPerCoreFreqSafeCheck(getActivity())) {
+            CPU.setMinFreq(CPU.getMinFreq(0, false), getActivity());
+            CPU.setMaxFreq(CPU.getMaxFreq(0, false), getActivity());
+            CPU.setPerCoreFreqSafeCheck(true, getActivity());
+        }
+        if (!CPU.isPerCoreGovControlEnabled(getActivity()) && !CPU.isPerCoreGovSafeCheck(getActivity())) {
+            CPU.setGovernor(CPU.getCurGovernor(0, false), getActivity());
+            CPU.setPerCoreGovSafeCheck(true, getActivity());
+        }
     }
 
     @Override
@@ -148,19 +158,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         @Override
         public String getClassName() {
             return CPUFragment.class.getSimpleName();
-        }
-
-        @Override
-        public void preInit(Bundle savedInstanceState) {
-            super.preInit(savedInstanceState);
-            //In case user has made changes to per core, but decide to clean app data, set all to default base on current gov and core 0
-            if (!CPU.isPerCoreFreqControlEnabled(getActivity())) {
-                CPU.setMinFreq(CPU.getMinFreq(0, false), getActivity());
-                CPU.setMaxFreq(CPU.getMaxFreq(0, false), getActivity());
-            }
-            if (!CPU.isPerCoreGovControlEnabled(getActivity())) {
-                CPU.setGovernor(CPU.getCurGovernor(0, false), getActivity());
-            }
         }
 
         @Override
@@ -1003,11 +1000,11 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 if (mGovernorCard3 != null) {
                     String governor = CPU.getCurGovernor(3, true);
                     if (!governor.isEmpty()) mGovernorCard3.setItem(governor);
-                } else {
-                    if (mGovernorCard != null) {
-                        String governor = CPU.getCurGovernor(false);
-                        if (!governor.isEmpty()) mGovernorCard.setItem(governor);
-                    }
+                }
+            } else {
+                if (mGovernorCard != null) {
+                    String governor = CPU.getCurGovernor(false);
+                    if (!governor.isEmpty()) mGovernorCard.setItem(governor);
                 }
             }
 

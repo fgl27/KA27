@@ -720,4 +720,28 @@ public class CPU implements Constants {
         }
     }
 
+    public static boolean isPerCoreGovSafeCheck(Context context) {
+        try {
+            return Utils.getBoolean("Per_Core_Gov_Safe_check", false, context);
+        } catch (NullPointerException err) {
+            return false;
+        }
+    }
+
+    public static void setPerCoreGovSafeCheck(boolean active, Context context) {
+        Utils.saveBoolean("Per_Core_Gov_Safe_check", active, context);
+    }
+
+    public static boolean isPerCoreFreqSafeCheck(Context context) {
+        try {
+            return Utils.getBoolean("Per_Core_Freq_Safe_check", false, context);
+        } catch (NullPointerException err) {
+            return false;
+        }
+    }
+
+    public static void setPerCoreFreqSafeCheck(boolean active, Context context) {
+        Utils.saveBoolean("Per_Core_Freq_Safe_check", active, context);
+    }
+
 }
