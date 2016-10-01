@@ -193,15 +193,16 @@ public class BootService extends Service {
 
         for (String command : commands) {
             log("run: " + command);
-            for (int i = 1; i < CPU.getCoreCount(); i++) {
-                if (command.equals("chmod 644 " + (String.format(Locale.US, Constants.CPU_MIN_FREQ, i))) || command.equals("chmod 644 " + (String.format(Locale.US, Constants.CPU_MAX_FREQ, i)))) {
-                    log("Online if enter in command = " + command);
+            // Core need to be online to any cpu command be accepted make shore of it here
+            if (command.contains("/sys/devices/system/cpu/")) {
+                log("OnlineCores if enter in command = " + command);
+                //Core 0 is always on
+                for (int i = 1; i < CPU.getCoreCount(); i++) {
                     su.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
                     su.runCommand(command);
-                } else
-                    su.runCommand(command);
-            }
-            su.runCommand(command);
+                }
+            } else
+                su.runCommand(command);
         }
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
