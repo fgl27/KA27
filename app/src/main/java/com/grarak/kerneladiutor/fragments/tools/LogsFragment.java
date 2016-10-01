@@ -124,25 +124,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    String log_temp_folder = log_folder + "/tmpziplog/";
-                    if (!Utils.existFile(log_temp_folder)) {
-                        File dir = new File(log_temp_folder);
-                        dir.mkdir();
-                    }
-                    if (!Misc.isLoggerActive()) {
-                        Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                        Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                        }
-                        else {
-                            logs(logcatC, log_temp_folder, "logcat");
-                            logs(radioC, log_temp_folder, "radio");
-                            logs(eventsC, log_temp_folder, "events");
-                        }
-                        logs(dmesgC, log_temp_folder, "dmesg");
-                        logs(getpropC, log_temp_folder, "getprop");
-                        new Execute().execute("zip");
-                        new Execute().execute("rm -rf " + log_temp_folder);
-                    }
+                    new ZipExecute().execute();
+		}
                 });
 
             addView(mAllLogsCard);
@@ -261,10 +244,49 @@ public class LogsFragment extends RecyclerViewFragment {
 
             @Override
             protected Void doInBackground(String...params) {
+                RootUtils.runCommand(params[0]);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                progressDialog.dismiss();
+            }
+        }
+
+        private class ZipExecute extends AsyncTask < String, Void, Void > {
+            private ProgressDialog progressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressDialog = new ProgressDialog(getActivity());
+                progressDialog.setMessage(getString(R.string.execute));
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+            }
+
+            @Override
+            protected Void doInBackground(String...params) {
+                String log_temp_folder = log_folder + "/tmpziplog/";
+                if (!Utils.existFile(log_temp_folder)) {
+                    File dir = new File(log_temp_folder);
+                    dir.mkdir();
+                }
+                if (!Misc.isLoggerActive()) {
+                    Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
+                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                } else {
+                    RootUtils.runCommand(logcatC + " > " + log_temp_folder + "logcat.txt");
+                    RootUtils.runCommand(radioC + " > " + log_temp_folder + "radio.txt");
+                    RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
+                }
+                RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
+                RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
                 // ZipUtil doesnot understand folder name that end with /
-                if (params[0].equals("zip"))
-                    ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
-                else RootUtils.runCommand(params[0]);
+                ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
+                RootUtils.runCommand("rm -rf " + log_temp_folder);
                 return null;
             }
 
