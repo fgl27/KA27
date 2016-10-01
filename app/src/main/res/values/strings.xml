@@ -162,9 +162,11 @@
     <string name="cpu_per_core_gov_control">Per Core Governor Control</string>
     <string name="cpu_per_core_gov_control_summary">Enable to set individual governor for it Core.\nDisabling this will set all Cores Governor to Core 0 current Governor setting.</string>
     <string name="cpu_per_core_gov">Core %d: Governor</string>
-    <string name="cpu_per_core_gov_tunables">Core %d Governor Tunables:</string>
+    <string name="cpu_per_core_gov_summary">Choose Governor to Core %d</string>
     <string name="cpu_per_core_governor_tunables">Core %d Governor Tunables</string>
-    <string name="cpu_per_core_governor_tunables_summary">Click to change the various configuration items which are Governor-dependent, for Core %d.</string>
+    <string name="cpu_per_core_governor_tunables_summary">Click to change the various configuration items which are Governor-dependent for Core %d.</string>
+    <string name="cpu_max_freq_pc_summary">Choose maximum frequency that Core %d scale up to.</string>
+    <string name="cpu_min_freq_pc_summary">Choose minimum frequency that Core %d scale down to.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>

@@ -268,67 +268,65 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
                 DDivider mMaxFreqPerCoreCard = new DDivider();
                 mMaxFreqPerCoreCard.setText(getString(R.string.cpu_per_core_max_freq));
-                mMaxFreqPerCoreCard.setDescription(getString(R.string.cpu_max_freq_summary));
                 addView(mMaxFreqPerCoreCard);
 
                 mPCMaxFreqCard0 = new PopupCardView.DPopupCard(freqs);
                 mPCMaxFreqCard0.setTitle(String.format(getString(R.string.cpu_max_per_core_freq), 0));
-                mPCMaxFreqCard0.setDescription("");
+                mPCMaxFreqCard0.setDescription(String.format(getString(R.string.cpu_max_freq_pc_summary), 0));
                 mPCMaxFreqCard0.setItem(CPU.getMaxFreq(0, true) / 1000 + getString(R.string.mhz));
                 mPCMaxFreqCard0.setOnDPopupCardListener(this);
                 addView(mPCMaxFreqCard0);
 
                 mPCMaxFreqCard1 = new PopupCardView.DPopupCard(freqs);
                 mPCMaxFreqCard1.setTitle(String.format(getString(R.string.cpu_max_per_core_freq), 1));
-                mPCMaxFreqCard1.setDescription("");
+                mPCMaxFreqCard1.setDescription(String.format(getString(R.string.cpu_max_freq_pc_summary), 1));
                 mPCMaxFreqCard1.setItem(CPU.getMaxFreq(1, true) / 1000 + getString(R.string.mhz));
                 mPCMaxFreqCard1.setOnDPopupCardListener(this);
                 addView(mPCMaxFreqCard1);
 
                 mPCMaxFreqCard2 = new PopupCardView.DPopupCard(freqs);
                 mPCMaxFreqCard2.setTitle(String.format(getString(R.string.cpu_max_per_core_freq), 2));
-                mPCMaxFreqCard2.setDescription("");
+                mPCMaxFreqCard2.setDescription(String.format(getString(R.string.cpu_max_freq_pc_summary), 2));
                 mPCMaxFreqCard2.setItem(CPU.getMaxFreq(2, true) / 1000 + getString(R.string.mhz));
                 mPCMaxFreqCard2.setOnDPopupCardListener(this);
                 addView(mPCMaxFreqCard2);
 
                 mPCMaxFreqCard3 = new PopupCardView.DPopupCard(freqs);
                 mPCMaxFreqCard3.setTitle(String.format(getString(R.string.cpu_max_per_core_freq), 3));
-                mPCMaxFreqCard3.setDescription("");
+                mPCMaxFreqCard3.setDescription(String.format(getString(R.string.cpu_max_freq_pc_summary), 3));
                 mPCMaxFreqCard3.setItem(CPU.getMaxFreq(3, true) / 1000 + getString(R.string.mhz));
                 mPCMaxFreqCard3.setOnDPopupCardListener(this);
                 addView(mPCMaxFreqCard3);
 
                 DDivider mMinFreqPerCoreCard = new DDivider();
                 mMinFreqPerCoreCard.setText(getString(R.string.cpu_per_core_min_freq));
-                mMinFreqPerCoreCard.setDescription(getString(R.string.cpu_min_freq_summary));
                 addView(mMinFreqPerCoreCard);
 
 
                 mPCMinFreqCard0 = new PopupCardView.DPopupCard(freqs);
                 mPCMinFreqCard0.setTitle(String.format(getString(R.string.cpu_min_per_core_freq), 0));
-                mPCMinFreqCard0.setDescription("");
+                mPCMinFreqCard0.setDescription(String.format(getString(R.string.cpu_min_freq_pc_summary), 0));
                 mPCMinFreqCard0.setItem(CPU.getMinFreq(0, true) / 1000 + getString(R.string.mhz));
                 mPCMinFreqCard0.setOnDPopupCardListener(this);
                 addView(mPCMinFreqCard0);
 
                 mPCMinFreqCard1 = new PopupCardView.DPopupCard(freqs);
                 mPCMinFreqCard1.setTitle(String.format(getString(R.string.cpu_min_per_core_freq), 1));
-                mPCMinFreqCard1.setDescription("");
+                mPCMinFreqCard1.setDescription(String.format(getString(R.string.cpu_min_freq_pc_summary), 1));
                 mPCMinFreqCard1.setItem(CPU.getMinFreq(1, true) / 1000 + getString(R.string.mhz));
                 mPCMinFreqCard1.setOnDPopupCardListener(this);
                 addView(mPCMinFreqCard1);
 
                 mPCMinFreqCard2 = new PopupCardView.DPopupCard(freqs);
                 mPCMinFreqCard2.setTitle(String.format(getString(R.string.cpu_min_per_core_freq), 2));
-                mPCMinFreqCard2.setDescription("");
+                mPCMinFreqCard2.setDescription(String.format(getString(R.string.cpu_min_freq_pc_summary), 2));
                 mPCMinFreqCard2.setItem(CPU.getMinFreq(2, true) / 1000 + getString(R.string.mhz));
                 mPCMinFreqCard2.setOnDPopupCardListener(this);
                 addView(mPCMinFreqCard2);
 
                 mPCMinFreqCard3 = new PopupCardView.DPopupCard(freqs);
                 mPCMinFreqCard3.setTitle(String.format(getString(R.string.cpu_min_per_core_freq), 3));
-                mPCMinFreqCard3.setDescription("");
+                mPCMinFreqCard3.setDescription(String.format(getString(R.string.cpu_min_freq_pc_summary), 3));
                 mPCMinFreqCard3.setItem(CPU.getMinFreq(3, true) / 1000 + getString(R.string.mhz));
                 mPCMinFreqCard3.setOnDPopupCardListener(this);
                 addView(mPCMinFreqCard3);
@@ -380,7 +378,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 		//Core 0
                 mGovernorCard0 = new PopupCardView.DPopupCard(CPU.getAvailableGovernors());
                 mGovernorCard0.setTitle(String.format(getString(R.string.cpu_per_core_gov), 0));
-                mGovernorCard0.setDescription("");
+                mGovernorCard0.setDescription(String.format(getString(R.string.cpu_per_core_gov_summary), 0));
                 mGovernorCard0.setItem(CPU.getCurGovernor(0, true));
                 mGovernorCard0.setOnDPopupCardListener(this);
 
@@ -395,7 +393,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 		//Core 1
                 mGovernorCard1 = new PopupCardView.DPopupCard(CPU.getAvailableGovernors());
                 mGovernorCard1.setTitle(String.format(getString(R.string.cpu_per_core_gov), 1));
-                mGovernorCard1.setDescription("");
+                mGovernorCard1.setDescription(String.format(getString(R.string.cpu_per_core_gov_summary), 1));
                 mGovernorCard1.setItem(CPU.getCurGovernor(1, true));
                 mGovernorCard1.setOnDPopupCardListener(this);
 
@@ -410,7 +408,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 		//Core 2
                 mGovernorCard2 = new PopupCardView.DPopupCard(CPU.getAvailableGovernors());
                 mGovernorCard2.setTitle(String.format(getString(R.string.cpu_per_core_gov), 2));
-                mGovernorCard2.setDescription("");
+                mGovernorCard2.setDescription(String.format(getString(R.string.cpu_per_core_gov_summary), 2));
                 mGovernorCard2.setItem(CPU.getCurGovernor(2, true));
                 mGovernorCard2.setOnDPopupCardListener(this);
 
@@ -425,7 +423,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 		//Core 3
                 mGovernorCard3 = new PopupCardView.DPopupCard(CPU.getAvailableGovernors());
                 mGovernorCard3.setTitle(String.format(getString(R.string.cpu_per_core_gov), 3));
-                mGovernorCard3.setDescription("");
+                mGovernorCard3.setDescription(String.format(getString(R.string.cpu_per_core_gov_summary), 3));
                 mGovernorCard3.setItem(CPU.getCurGovernor(3, true));
                 mGovernorCard3.setOnDPopupCardListener(this);
 
