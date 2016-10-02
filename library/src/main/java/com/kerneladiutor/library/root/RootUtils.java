@@ -50,9 +50,8 @@ public class RootUtils {
     }
 
     public static boolean hasAppletSupport() {
-        if ( busyboxInstalled() || toyboxInstalled() ) {
-         return true;
-        }
+       if (busyboxInstalled() || toyboxInstalled())
+            return true;
         return false;
     }
 
@@ -62,6 +61,13 @@ public class RootUtils {
 
     public static boolean toyboxInstalled() {
         return existBinary("toybox");
+    }
+
+    public static boolean stockrom() {
+        String rom = RootUtils.runCommand("getprop | grep -i ro.build.display.id");
+        if (rom.contains("MPG24.107"))
+            return false;
+        return true;
     }
 
     private static boolean existBinary(String binary) {

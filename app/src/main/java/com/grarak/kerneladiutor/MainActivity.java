@@ -253,7 +253,7 @@ public class MainActivity extends BaseActivity implements Constants {
                     DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
             ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
-        if (Buildprop.hasBuildprop() && RootUtils.hasAppletSupport())
+        if (Buildprop.hasBuildprop() && RootUtils.hasAppletSupport() && RootUtils.stockrom())
             ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
