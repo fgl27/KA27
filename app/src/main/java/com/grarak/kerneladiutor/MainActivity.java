@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -253,7 +254,7 @@ public class MainActivity extends BaseActivity implements Constants {
                     DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
             ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
-        if (Buildprop.hasBuildprop() && RootUtils.hasAppletSupport() && RootUtils.stockrom())
+        if (Buildprop.hasBuildprop() && RootUtils.toyboxInstalled() && RootUtils.stockrom())
             ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
@@ -446,23 +447,17 @@ public class MainActivity extends BaseActivity implements Constants {
                     if (pressAgain) {
                         Utils.toast(getString(R.string.press_back_again), this);
                         pressAgain = false;
-                        new Thread(new Runnable() {
+                        new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                try {
-                                    Thread.sleep(2000);
-                                    pressAgain = true;
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
+                                pressAgain = true;
                             }
-                        }).start();
+                        }, 2000);
                     } else super.onBackPressed();
                 } else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
 
     /**
      * Exit SU

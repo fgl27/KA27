@@ -35,7 +35,7 @@ public class Buildprop implements Constants {
     public static void delete(String key) {
         if (!key.isEmpty()) {
             RootUtils.mount(true, "/system");
-            RootUtils.runCommand(getBox() + " sed -ir \"/" + key + "=/d\" " + BUILD_PROP);
+            RootUtils.runCommand("toybox sed -ir \"/" + key + "=/d\" " + BUILD_PROP);
         }
     }
 
