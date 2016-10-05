@@ -16,13 +16,13 @@
 
 package com.grarak.kerneladiutor.fragments;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -152,20 +152,17 @@ public class ViewPagerFragment extends BaseFragment {
     }
 
     public void addFragment(ViewPagerItem item) {
-        if (items.indexOf(item) < 0) {
+        if (!items.contains(item)) {
             items.add(item);
             adapter.notifyDataSetChanged();
         }
-        if (getCount() > 1) {
-            Activity activity;
-            if ((activity = getActivity()) != null)
-                activity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (mTabs != null)
-                            mTabs.setIndicatorColor(getResources().getColor(R.color.white));
-                    }
-                });
+        if (!items.isEmpty() && isVisible() && mTabs != null){
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTabs.setIndicatorColor(ContextCompat.getColor(getActivity(),R.color.white));
+                }
+            });
         }
     }
 
@@ -185,7 +182,7 @@ public class ViewPagerFragment extends BaseFragment {
         return items;
     }
 
-    private class Adapter extends FragmentPagerAdapter {
+    private static class Adapter extends FragmentPagerAdapter {
 
         private final List<ViewPagerItem> items;
 
@@ -206,12 +203,12 @@ public class ViewPagerFragment extends BaseFragment {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return items.get(position).getTitle() != null ? items.get(position).getTitle() : super.getPageTitle(position);
+            return items.get(position).getTitle();
         }
 
     }
 
-    public class ViewPagerItem {
+    protected static final class ViewPagerItem {
 
         private final Fragment fragment;
         private final String title;
