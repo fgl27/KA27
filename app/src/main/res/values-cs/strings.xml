@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Nastavení</string>
   <string name="about_us">O aplikaci</string>
-  <string name="unused_cpu_states">Nepoužívané frekvence procesoru</string>
   <string name="uptime">Doba provozu</string>
   <string name="deep_sleep">Hluboký spánek</string>
-  <string name="reset_timer">Resetovat počítadla</string>
-  <string name="restore_timer">Obnovit počítadla</string>
   <string name="kernel_version">Verze jádra</string>
   <string name="cpu_information">Informace o procesoru</string>
   <string name="memory_information">Informace o paměti</string>

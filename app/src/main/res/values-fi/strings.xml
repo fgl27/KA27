@@ -58,11 +58,8 @@
   <string name="profile">Profiili</string>
   <string name="initd">Init.d</string>
   <string name="settings">Asetukset</string>
-  <string name="unused_cpu_states">Käyttömättömät CPU tilat</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Syvä_uni</string>
-  <string name="reset_timer">Nollaa laskurit</string>
-  <string name="restore_timer">Palauta ajastimet</string>
   <string name="kernel_version">Kernel versio</string>
   <string name="cpu_information">CPU informaatio</string>
   <string name="memory_information">Muistitiedot</string>

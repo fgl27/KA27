@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ayarlar</string>
   <string name="about_us">Hakkımızda</string>
-  <string name="unused_cpu_states">Kullanılmayan CPU bölümü</string>
   <string name="uptime">Çalışma süresi</string>
   <string name="deep_sleep">Derin Uyku</string>
-  <string name="reset_timer">Yeniden Zamanlayıcı</string>
-  <string name="restore_timer">Yeniden Yükleme Zamanlayıcı</string>
   <string name="kernel_version">Kernel Sürümü</string>
   <string name="cpu_information">CPU Bilgisi</string>
   <string name="memory_information">Bellek Bilgisi</string>

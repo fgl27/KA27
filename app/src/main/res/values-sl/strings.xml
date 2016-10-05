@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Nastavitve</string>
   <string name="about_us">O nas</string>
-  <string name="unused_cpu_states">Neuporabljene frekvence</string>
   <string name="uptime">Čas delovanja od zadnjega vklopa</string>
   <string name="deep_sleep">Globoko spanje</string>
-  <string name="reset_timer">Ponastavi merilnike časa</string>
-  <string name="restore_timer">Obnovi merilnike časa</string>
   <string name="kernel_version">Različica jedra</string>
   <string name="cpu_information">Informacije o CPU</string>
   <string name="memory_information">Informacije o pomnilniku</string>
@@ -449,13 +446,13 @@
   <string name="vibration_strength">Moč vibriranja</string>
   <string name="android_logger">Android beleženje</string>
   <string name="crc">Nadzor CRC stikala</string>
-  <string name="crc_summary">CRC je mehanizem, namenjen preprečevanju podatkovnih napak. Bloki podatkov lahko izgubijo na hitrosti do 30%, ko je ta vklopljen.</string>
+  <string name="crc_summary">CRC je mehanizem, namenjen preprečevanju podatkovnih napak. Bloki podatkov lahko izgubijo na hitrosti do 30 &#37;, ko je ta vklopljen.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Izključi za boljšo odzivnost datotečnega sistema, pri čemer lahko pride do izgube podatkov ob sesutju sistema.</string>
   <string name="dynamic_fsync">Dinamični Fsync</string>
   <string name="dynamic_fsync_summary">Ko je to omogočeno in je zaslon vklopljen, je fsync operacija asinhrona. Ko je zaslon izklopljen, je operacija opravljena sinhrono.</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
-  <string name="gentlefairsleepers_summary">Dodeljeno jih je le 50% zmožnosti. Izklapljanje tega lahko privarčuje nekaj baterije.</string>
+  <string name="gentlefairsleepers_summary">Dodeljeno jih je le 50&#37; zmožnosti. Izklapljanje tega lahko privarčuje nekaj baterije.</string>
   <string name="power_suspend_mode">Moč pripravljenosti</string>
   <string name="power_suspend_mode_summary">Kernel Mode (Način Jedra), LCD Hooks (Kavlji Zaslona) in Highest Level Hook (Kavelj najvišje stopnje) so uravnavani avtomatsko iz strani jedra. Za ročno nastavljanje Power Suspend stanja izberi User Mode (Uporabniški Način).</string>
   <string name="autosleep">Samodejno spanje</string>

@@ -57,10 +57,8 @@
   <string name="profile">Profil</string>
   <string name="initd">Init.d</string>
   <string name="settings">Nastavenia</string>
-  <string name="unused_cpu_states">Nepoužité stavy CPU</string>
   <string name="uptime">V prevádzke</string>
   <string name="deep_sleep">Hlboký spánok</string>
-  <string name="reset_timer">Vynulovať merače</string>
   <string name="kernel_version">Verzia jadra</string>
   <string name="cpu_information">CPU informácie</string>
   <string name="memory_information">Informácie o pamäti</string>

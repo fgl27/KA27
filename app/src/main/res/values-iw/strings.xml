@@ -56,11 +56,8 @@
   <string name="profile">פרופיל</string>
   <string name="initd">Init.d</string>
   <string name="settings">הגדרות</string>
-  <string name="unused_cpu_states">סטטיסטיקות מעבד שאינן בשימוש</string>
   <string name="uptime">זמן ריצה</string>
   <string name="deep_sleep">שינה עמוקה</string>
-  <string name="reset_timer">איפוס טיימרים</string>
-  <string name="restore_timer">שחזר טיימרים</string>
   <string name="kernel_version">גרסת הקרנל</string>
   <string name="cpu_information">מידע על המעבד</string>
   <string name="memory_information">מידע על הזיכרוו</string>

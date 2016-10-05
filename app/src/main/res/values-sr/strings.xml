@@ -57,11 +57,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Поставке</string>
   <string name="about_us">О нама</string>
-  <string name="unused_cpu_states">Неискоришћена стања ЦПУ-а</string>
   <string name="uptime">Време рада</string>
   <string name="deep_sleep">Дубоки сан</string>
-  <string name="reset_timer">Ресетуј тајмере</string>
-  <string name="restore_timer">Врати тајмере</string>
   <string name="kernel_version">Издање кернела</string>
   <string name="cpu_information">Подаци о процесору</string>
   <string name="memory_information">Подаци о меморији</string>

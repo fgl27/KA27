@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">설정</string>
   <string name="about_us">정보</string>
-  <string name="unused_cpu_states">사용되지 않은 CPU 클럭</string>
   <string name="uptime">가동 시간</string>
   <string name="deep_sleep">딥슬립</string>
-  <string name="reset_timer">타이머 초기화</string>
-  <string name="restore_timer">타이머 복구</string>
   <string name="kernel_version">커널 버전</string>
   <string name="cpu_information">CPU 정보</string>
   <string name="memory_information">메모리 정보</string>

@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Налаштування</string>
   <string name="about_us">Про нас</string>
-  <string name="unused_cpu_states">Незадіяні частоти CPU</string>
   <string name="uptime">Час роботи</string>
   <string name="deep_sleep">Глибокий сон</string>
-  <string name="reset_timer">Обнулити значення</string>
-  <string name="restore_timer">Відновити значення</string>
   <string name="kernel_version">Версія ядра</string>
   <string name="cpu_information">Інформація про CPU</string>
   <string name="memory_information">Інформація про пам\'ять</string>

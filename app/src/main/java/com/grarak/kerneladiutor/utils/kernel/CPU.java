@@ -310,17 +310,16 @@ public class CPU implements Constants {
 
     public static List<Integer> getFreqs(int core) {
         if (mFreqs == null) mFreqs = new Integer[getCoreCount()][];
-        if (mFreqs[core] == null)
-            if (Utils.existFile(String.format(Locale.US, CPU_TIME_STATE, core))
-                    || Utils.existFile(String.format(Locale.US, CPU_TIME_STATE_2, 0))) {
+        if (mFreqs[core] == null) {
+            if (Utils.existFile(Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, core)) || Utils.existFile(Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, 0))) {
+                if (core > 0) {
+                    activateCore(core, true, null);
+                }
                 String file;
-                if (Utils.existFile(String.format(Locale.US, CPU_TIME_STATE, core))) {
-                    file = String.format(Locale.US, CPU_TIME_STATE, core);
+                if (Utils.existFile(Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, core))) {
+                    file = Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, core);
                 } else {
-                    if (core > 0) {
-                        activateCore(core, true, null);
-                        file = String.format(Locale.US, CPU_TIME_STATE_2, core);
-                    } else file = String.format(Locale.US, CPU_TIME_STATE_2, 0);
+                    file = Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, 0);
                 }
                 String values;
                 if ((values = Utils.readFile(file)) != null) {
@@ -342,6 +341,7 @@ public class CPU implements Constants {
                         mFreqs[core][i] = Utils.stringToInt(valueArray[i]);
                 }
             }
+        }
         if (mFreqs[core] == null) {
             return Collections.emptyList();
         }
@@ -617,6 +617,10 @@ public class CPU implements Constants {
 
     public static boolean hasStateDebug() {
         return Utils.existFile(STATE_NOTIFIER_DEBUG);
+    }
+
+    public static boolean isCoreOnline (int core) {
+        return Utils.readFile(String.format(Locale.US, CPU_CORE_ONLINE, core)).equals("1");
     }
 
     private static class Usage {

@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Réglages</string>
   <string name="about_us">À propos</string>
-  <string name="unused_cpu_states">États de processeur inutilisés</string>
   <string name="uptime">Temps de fonctionnement</string>
   <string name="deep_sleep">Sommeil profond</string>
-  <string name="reset_timer">Réinitialiser les timers</string>
-  <string name="restore_timer">Restaurer les timers</string>
   <string name="kernel_version">Version du Kernel</string>
   <string name="cpu_information">Informations sur le CPU</string>
   <string name="memory_information">Informations Mémoire</string>
@@ -415,7 +412,7 @@
   <string name="vibration_strength">Intensité de la Vibration</string>
   <string name="android_logger">Journalisation Android</string>
   <string name="crc">Contrôle CRC logiciel</string>
-  <string name="crc_summary">Le CRC , contrôle de redondance cyclique, est un mécanisme permettant de détecter des erreurs dans les données et de les corriger. Jusqu\'à 30% de pertes de performances si activé.</string>
+  <string name="crc_summary">Le CRC , contrôle de redondance cyclique, est un mécanisme permettant de détecter des erreurs dans les données et de les corriger. Jusqu\'à 30 &#37; de pertes de performances si activé.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Désactiver pour une meilleure performance du système de fichier au risque de perte de données dans le cas d\'une panne système.</string>
   <string name="dynamic_fsync">Fsync dynamique</string>

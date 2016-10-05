@@ -60,11 +60,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">सेटिंग</string>
   <string name="about_us">हमारे विषय में</string>
-  <string name="unused_cpu_states">अप्रयुक्त सीपीयू स्थिति</string>
   <string name="uptime">अपटाइम</string>
   <string name="deep_sleep">गहन निद्रा</string>
-  <string name="reset_timer">काल समंजक रिसेट् करें</string>
-  <string name="restore_timer">काल समंजक पुनः स्थापित करें</string>
   <string name="kernel_version">कर्नेल संस्करण</string>
   <string name="cpu_information">CPU जानकारी</string>
   <string name="memory_information">स्मृति सूचना</string>

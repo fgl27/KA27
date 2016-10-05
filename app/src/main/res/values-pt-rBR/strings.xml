@@ -84,11 +84,8 @@
   <string name="startup_commands_none">Nenhum comando de inicialização encontrado.</string>
   
   <!-- Frequency Table -->
-  <string name="unused_cpu_states">Estados de CPU não utilizados</string>
   <string name="uptime">Tempo de atividade</string>
   <string name="deep_sleep">Sono profundo</string>
-  <string name="reset_timer">Redefinir Cronômetros</string>
-  <string name="restore_timer">Restaurar Cronômetros</string>
   <string name="kernel_version">Versão do Kernel</string>
   <string name="cpu_information">Informações do CPU</string>
   <string name="memory_information">Informações da Memória</string>
@@ -534,13 +531,13 @@
   <string name="vibration_strength">Intensidade da vibração</string>
   <string name="android_logger">Android log</string>
   <string name="crc">Software de controle de CRC</string>
-  <string name="crc_summary">CRC é um mecanismo com o objetivo de evitar a corrupção de dados quando habilitado. Blocos de dados podem perder até 30% do seu desempenho.</string>
+  <string name="crc_summary">CRC é um mecanismo com o objetivo de evitar a corrupção de dados quando habilitado. Blocos de dados podem perder até 30 &#37; do seu desempenho.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Desabilite para melhor desempenho do sistema de arquivos, porém correndo o risco de perda de dados em caso de uma falha no sistema.</string>
   <string name="dynamic_fsync">Fsync dinâmico</string>
   <string name="dynamic_fsync_summary">Quando habilitada e a tela estiver acesa, fsync é operada de forma assíncrona. Quando a tela estiver desligada, esta operação é feita de forma síncrona.</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
-  <string name="gentlefairsleepers_summary">Só permite adormecer 50% do seu déficit de serviço. Desativá-lo pode reduzir um pouco do consumo de bateria.</string>
+  <string name="gentlefairsleepers_summary">Só permite adormecer 50&#37; do seu déficit de serviço. Desativá-lo pode reduzir um pouco do consumo de bateria.</string>
   <string name="power_suspend_mode">Ligar modo de suspenção</string>
   <string name="power_suspend_mode_summary">Modo kernel, ganchos de LCD e gancho de nível mais alto são gerenciados automaticamente pelo kernel, para habilitar ou desabilitar manualmente o estado de suspensão, escolha o Modo Usuário.</string>
   <string name="autosleep">Autosleep</string>

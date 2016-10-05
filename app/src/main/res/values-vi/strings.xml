@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Cài đặt</string>
   <string name="about_us">Giới Thiệu</string>
-  <string name="unused_cpu_states">Trạng thái CPU không sử dụng</string>
   <string name="uptime">Thời gian hoạt động</string>
   <string name="deep_sleep">Ngủ sâu</string>
-  <string name="reset_timer">Đặt lại thời gian</string>
-  <string name="restore_timer">Khôi phục thời gian</string>
   <string name="kernel_version">Phiên bản nhân</string>
   <string name="cpu_information">Thông tin vi xử lý</string>
   <string name="memory_information">Thông tin bộ nhớ RAM</string>

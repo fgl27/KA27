@@ -48,7 +48,7 @@
     <!-- Special signs -->
     <string name="minus" translatable="false">-</string>
     <string name="plus" translatable="false">+</string>
-    <string name="percent" translatable="false">%</string>
+    <string name="percent" translatable="false">&#37;</string>
 
     <!-- Headers -->
     <string name="information">Information</string>
@@ -83,7 +83,7 @@
     <string name="logs">Logs</string>
     <string name="startup_commands">Start-Up Commands</string>
     <string name="startup_commands_list">Start-Up Commands List:</string>
-    <string name="startup_commands_list_info">Tap on an individual command to choose between copying it or deleteing it from the database.</string>
+    <string name="startup_commands_list_info">Tap on an individual command to choose between copying it or deleting it from the database.</string>
     <string name="all_startup_commands">Tap this card to copy or delete all saved startup settings</string>
     <string name="startup_commands_delete_all">Are you sure you want to delete all Start-up Commands?</string>
     <string name="startup_commands_delete_all_yes">Yes</string>
@@ -95,11 +95,12 @@
     <!-- Frequency Table -->
     <string name="big" translatable="false">Big</string>
     <string name="little" translatable="false">Little</string>
-    <string name="unused_cpu_states">Unused CPU states</string>
-    <string name="uptime">Uptime</string>
-    <string name="deep_sleep">Deep Sleep</string>
-    <string name="reset_timer">Reset Timers</string>
-    <string name="restore_timer">Restore Timers</string>
+    <string name="system_uptime">System Times:</string>
+    <string name="uptime">Uptime:</string>
+    <string name="awake">Awake Time:</string>
+    <string name="deep_sleep">Deep Sleep:</string>
+    <string name="core_time_in_state">Core: %d - Frequencies Time:\nOnline for:</string>
+    <string name="unused_cpu_states_new">Core: %d Frequencies Used For Less Than 1</string>
 
     <!-- Kernel Information -->
     <string name="kernel_version">Kernel Version</string>
@@ -725,13 +726,13 @@
     <string name="bcl_hotplug">Battery Current Limit Driver - Hotplugging</string>
     <string name="bcl_hotplug_summary">Enable or Disable BCL Hotplugging</string>
     <string name="crc">Software CRC control</string>
-    <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30% of their performance.</string>
+    <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30 &#37; of their performance.</string>
     <string name="fsync">Fsync</string>
     <string name="fsync_summary">Disable for better file system performance at the risk of data loss in case of a system crash.</string>
     <string name="dynamic_fsync">Dynamic Fsync</string>
     <string name="dynamic_fsync_summary">When enabled and screen is on, fsync operation is asynchronous. When screen is off, this operation is done synchronously.</string>
     <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
-    <string name="gentlefairsleepers_summary">Only give sleepers 50% of their service deficit. Disabling this can save a little battery power.</string>
+    <string name="gentlefairsleepers_summary">Only give sleepers 50 &#37; of their service deficit. Disabling this can save a little battery power.</string>
     <string name="power_suspend_mode">Power Suspend Mode</string>
     <string name="power_suspend_mode_summary">Kernel Mode, LCD Hooks and Highest Level Hook are automatically managed by the kernel. To manually enable or disable the Power Suspend State choose User Mode.</string>
     <string name="state_notifier">State Notifier</string>

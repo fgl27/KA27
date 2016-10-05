@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">设置</string>
   <string name="about_us">关于我们</string>
-  <string name="unused_cpu_states">未使用的 CPU 状态</string>
   <string name="uptime">启动时间</string>
   <string name="deep_sleep">深度睡眠</string>
-  <string name="reset_timer">重置计时器</string>
-  <string name="restore_timer">还原计时器</string>
   <string name="kernel_version">内核版本</string>
   <string name="cpu_information">CPU 信息</string>
   <string name="memory_information">内存信息</string>

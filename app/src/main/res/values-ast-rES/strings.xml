@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Axustes</string>
   <string name="about_us">Tocante a nós</string>
-  <string name="unused_cpu_states">Estaos de CPU ensin usu</string>
   <string name="uptime">Tiempu prendíu</string>
   <string name="deep_sleep">Sueñu fondo</string>
-  <string name="reset_timer">Reafitar contadores</string>
-  <string name="restore_timer">Restaurar contadores</string>
   <string name="kernel_version">Versión del kernel</string>
   <string name="cpu_information">Información de CPU</string>
   <string name="memory_information">Información de memoria</string>
@@ -414,7 +411,7 @@
   <string name="write">Escritura</string>
   <string name="vibration_strength">Fuercia de vibración</string>
   <string name="android_logger">Rexistru d\'Android</string>
-  <string name="crc_summary">CRC ye un mecanismu que tien como oxetivu evitar el toyimientu de datos al habilitase. Los bloques de datos puen perder fasta un 30% del so rindimientu.</string>
+  <string name="crc_summary">CRC ye un mecanismu que tien como oxetivu evitar el toyimientu de datos al habilitase. Los bloques de datos puen perder fasta un 30 &#37; del so rindimientu.</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Fsync dinámicu</string>
   <string name="power_suspend_mode">Mou de suspensión d\'enerxía</string>

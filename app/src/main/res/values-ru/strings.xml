@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Настройки</string>
   <string name="about_us">О нас</string>
-  <string name="unused_cpu_states">Неиспользуемые частоты процессора</string>
   <string name="uptime">Время работы</string>
   <string name="deep_sleep">Глубокий сон</string>
-  <string name="reset_timer">Сброс таймера</string>
-  <string name="restore_timer">Восстановить таймеры</string>
   <string name="kernel_version">Версия ядра</string>
   <string name="cpu_information">Сведения о процессоре</string>
   <string name="memory_information">Информация о памяти</string>
@@ -451,13 +448,13 @@
   <string name="vibration_strength">Интенсивность вибрации</string>
   <string name="android_logger">Логгинг Android</string>
   <string name="crc">Управление CRC программ</string>
-  <string name="crc_summary">CRC - механизм, включаемый для предотвращения повреждения данных. Блоки данных могут потерять до 30% своей производительности.</string>
+  <string name="crc_summary">CRC - механизм, включаемый для предотвращения повреждения данных. Блоки данных могут потерять до 30 &#37; своей производительности.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Отключите для улучшения производительности файловой системы с риском потери данных в случае сбоя.</string>
   <string name="dynamic_fsync">Динамический Fsync</string>
   <string name="dynamic_fsync_summary">При активированной функции и включенном экране fsync не синхронизируется. Когда экран выключен, операция выполняется синхронно.</string>
   <string name="gentlefairsleepers">Вежливое обращение со спящими</string>
-  <string name="gentlefairsleepers_summary">Предоставление спящим службам только 50% их функционала. Отключение этой функции может способствовать небольшой экономии батареи.</string>
+  <string name="gentlefairsleepers_summary">Предоставление спящим службам только 50&#37; их функционала. Отключение этой функции может способствовать небольшой экономии батареи.</string>
   <string name="power_suspend_mode">Режим понижения питания</string>
   <string name="power_suspend_mode_summary">Режим ядра, инструменты LCD и средства высшего уровня автоматически управляются ядром. Чтобы вручную включить или отключить состояние приостановки питания, выберите режим пользователя.</string>
   <string name="autosleep">Автосон</string>

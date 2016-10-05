@@ -63,11 +63,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ustawienia</string>
   <string name="about_us">O nas</string>
-  <string name="unused_cpu_states">Nieużywane stany CPU</string>
   <string name="uptime">Czas działania</string>
   <string name="deep_sleep">Głęboki sen</string>
-  <string name="reset_timer">Wyzeruj liczniki</string>
-  <string name="restore_timer">Przywróć liczniki</string>
   <string name="kernel_version">Wersja kernela</string>
   <string name="cpu_information">Informacje o CPU</string>
   <string name="memory_information">Informacje o pamięci</string>

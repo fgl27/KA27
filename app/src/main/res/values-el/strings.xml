@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ρυθμίσεις</string>
   <string name="about_us">Σχετικά με εμας</string>
-  <string name="unused_cpu_states">Αχρησιμοποίητες καταστάσεις CPU</string>
   <string name="uptime">Χρόνος Uptime</string>
   <string name="deep_sleep">Deep Sleep</string>
-  <string name="reset_timer">Επανεκκίνηση Timers</string>
-  <string name="restore_timer">Επαναφορά Timers</string>
   <string name="kernel_version">Έκδοση Πυρήνα</string>
   <string name="cpu_information">Πληροφορίες για τη CPU</string>
   <string name="memory_information">Πληροφορίες Μνήμης</string>

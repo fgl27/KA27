@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Pengaturan</string>
   <string name="about_us">Tentang Kami</string>
-  <string name="unused_cpu_states">CPU tak terpakai</string>
   <string name="uptime">Uptime</string>
   <string name="deep_sleep">Deep sleep</string>
-  <string name="reset_timer">Reset waktu</string>
-  <string name="restore_timer">Kembalikan Waktu</string>
   <string name="kernel_version">Versi Kernel</string>
   <string name="cpu_information">Informasi CPU</string>
   <string name="memory_information">Informasi Memori</string>
@@ -445,7 +442,7 @@
   <string name="vibration_strength">Kekuatan Getaran</string>
   <string name="android_logger">Pencatatan Android</string>
   <string name="crc">Kontrol CRC Perangkat Lunak</string>
-  <string name="crc_summary">CRC adalah suatu mekanisme yang bertujuan untuk mencegah korupsi data ketika diaktifkan. Blok data dapat membebaskan hingga 30% dari kinerja mereka.</string>
+  <string name="crc_summary">CRC adalah suatu mekanisme yang bertujuan untuk mencegah korupsi data ketika diaktifkan. Blok data dapat membebaskan hingga 30 &#37; dari kinerja mereka.</string>
   <string name="fsync">Fsync</string>
   <string name="dynamic_fsync">Dinamis Fsync</string>
   <string name="dynamic_fsync_summary">Ketika aktif dan layar hidup, operasi fsync menjadi asynchronous. Ketika layar mati, operasi ini menjadi synchronously</string>

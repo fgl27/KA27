@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Postavke</string>
   <string name="about_us">O nama</string>
-  <string name="unused_cpu_states">Statistika nekorištenog dijela CPU-a</string>
   <string name="uptime">Vrijeme u pogonu</string>
   <string name="deep_sleep">Stanje mirovanja</string>
-  <string name="reset_timer">Poništi odbrojavanje</string>
-  <string name="restore_timer">Obnovi odbrojavanje</string>
   <string name="kernel_version">Verzija kernela</string>
   <string name="cpu_information">CPU podaci</string>
   <string name="memory_information">O memoriji</string>

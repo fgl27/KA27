@@ -58,11 +58,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Beállítások</string>
   <string name="about_us">Rólunk</string>
-  <string name="unused_cpu_states">Nem használt CPU frekvenciák</string>
   <string name="uptime">Üzemidő</string>
   <string name="deep_sleep">Mélyalvás</string>
-  <string name="reset_timer">Idők törlése</string>
-  <string name="restore_timer">Idők visszaállítása</string>
   <string name="kernel_version">Kernel verzió</string>
   <string name="cpu_information">CPU információ</string>
   <string name="memory_information">Memória információ</string>
@@ -448,13 +445,13 @@
   <string name="vibration_strength">Rezgés erőssége</string>
   <string name="android_logger">Android naplózás</string>
   <string name="crc">Szoftver CRC vezérlés</string>
-  <string name="crc_summary">CRC egy olyan mechanizmus, amelynek célja, hogy védje az adatokat, ha engedélyezve van. Adatblokkok elveszíthetik akár 30% -ukat a teljesítményüknek.</string>
+  <string name="crc_summary">CRC egy olyan mechanizmus, amelynek célja, hogy védje az adatokat, ha engedélyezve van. Adatblokkok elveszíthetik akár 30 &#37; -ukat a teljesítményüknek.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Letilthatja a jobb fájlendszer teljesítmény érdekében, figyelembe véve azt a kockázatot, hogy a rendszer összeomlása esetén adatai eveszhetnek.</string>
   <string name="dynamic_fsync">Dinamikus Fsync</string>
   <string name="dynamic_fsync_summary">Amikor engedélyezett és a képernyő be van kapcsolva, az fsync művelet aszinkron működik. Amikor a képernyő ki van kapcsolva, ez a művelet elkötelezetten szinkron működik.</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
-  <string name="gentlefairsleepers_summary">Az alvóknak csak a szolgáltatásuk hiányának 50%-át adja. Letiltásával egy kis akkumulátor energiát spórolhat.</string>
+  <string name="gentlefairsleepers_summary">Az alvóknak csak a szolgáltatásuk hiányának 50 &#37; -át adja. Letiltásával egy kis akkumulátor energiát spórolhat.</string>
   <string name="power_suspend_mode">Energia felfüggesztési üzemmód</string>
   <string name="power_suspend_mode_summary">Kernel üzemmód, az LCD Hook-ok és a Legmagasabb Szintű Hook-ok automatikusan a kernel által kezeltek, manuálisan engedélyezheti vagy letilthatja az Energia felfüggesztési állapotot, ha a felhasználói módot választja.</string>
   <string name="autosleep">Autosleep</string>

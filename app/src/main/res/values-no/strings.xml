@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Innstillinger</string>
   <string name="about_us">Om oss</string>
-  <string name="unused_cpu_states">Ubenyttede CPU-tilstander</string>
   <string name="uptime">Driftstid</string>
   <string name="deep_sleep">Dyp søvn</string>
-  <string name="reset_timer">Tilbakestillinsur</string>
-  <string name="restore_timer">Gjenoppretningsur</string>
   <string name="kernel_version">Kjerneversjon</string>
   <string name="cpu_information">CPU-informasjon</string>
   <string name="memory_information">Minneinformasjon</string>

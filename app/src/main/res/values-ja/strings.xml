@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">設定</string>
   <string name="about_us">アプリについて</string>
-  <string name="unused_cpu_states">未使用の CPU テーブル</string>
   <string name="uptime">使用時間</string>
   <string name="deep_sleep">Deep Sleep</string>
-  <string name="reset_timer">タイマーのリセット</string>
-  <string name="restore_timer">タイマーのリストア</string>
   <string name="kernel_version">カーネルバージョン</string>
   <string name="cpu_information">CPU 情報</string>
   <string name="memory_information">メモリ情報</string>
@@ -450,13 +447,13 @@
   <string name="vibration_strength">バイブの強さ</string>
   <string name="android_logger">Androidログ出力</string>
   <string name="crc">ソフトウェア CRC 制御</string>
-  <string name="crc_summary">CRC は、データの破損を防ぐための仕組みです。有効にすると、データブロックのパフォーマンスが最大 30% 低下することがあります。</string>
+  <string name="crc_summary">CRC は、データの破損を防ぐための仕組みです。有効にすると、データブロックのパフォーマンスが最大 30 &#37; 低下することがあります。</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">無効にするとファイルシステムのパフォーマンスが向上しますが、クラッシュ時にデータ喪失する可能性があります。</string>
   <string name="dynamic_fsync">Dynamic Fsync</string>
   <string name="dynamic_fsync_summary">有効にすると画面点灯中のfsync操作が非同期になります。画面が消灯すると操作が同期的に実行されます。</string>
   <string name="gentlefairsleepers">Gentle Fair Sleepers</string>
-  <string name="gentlefairsleepers_summary">Sleepersの動作をデフォルトの50%にします。無効にすると少しバッテリー消費を抑えられます。</string>
+  <string name="gentlefairsleepers_summary">Sleepersの動作をデフォルトの50 &#37;にします。無効にすると少しバッテリー消費を抑えられます。</string>
   <string name="power_suspend_mode">Power Suspendモード</string>
   <string name="power_suspend_mode_summary">Kernel Mode、LCD Hooks、Highest Level Hookはカーネルによって自動的に制御されます。Power Suspend State を手動で有効/無効化したい場合は User Mode を選択してください。</string>
   <string name="autosleep">Autosleep</string>

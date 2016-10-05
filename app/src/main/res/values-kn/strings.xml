@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">ಸೆಟ್ಟಿಂಗ್ಸ್</string>
   <string name="about_us">ನಮ್ಮ ಬಗ್ಗೆ</string>
-  <string name="unused_cpu_states">ಬಳಕೆಯಾಗಿರದ ಸಿಪಿಯು ಆವರ್ತನಗಳು</string>
   <string name="uptime">ಕಾರ್ಯನಿರತ ಅವಧಿ</string>
   <string name="deep_sleep">ದೀರ್ಘ ನಿದ್ರೆ</string>
-  <string name="reset_timer">ಕಾಲಮಾಪಕಗಳನ್ನು ಮರುಹೊಂದಿಸಿ</string>
-  <string name="restore_timer">ಕಾಲಮಾಪಕಗಳನ್ನು ಮರುಸ್ಥಾಪಿಸಿ</string>
   <string name="kernel_version">ಕೆರ್ನಲ್ ಆವೃತ್ತಿ</string>
   <string name="cpu_information">ಸಿಪಿಯು ಮಾಹಿತಿ</string>
   <string name="memory_information">ಮೆಮೊರಿ ಮಾಹಿತಿ</string>

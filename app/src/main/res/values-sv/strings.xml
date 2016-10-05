@@ -58,11 +58,8 @@
   <string name="profile">Profiler</string>
   <string name="initd">Init.d</string>
   <string name="settings">Inställningar</string>
-  <string name="unused_cpu_states">Oanvända CPU-lägen</string>
   <string name="uptime">Drifttid</string>
   <string name="deep_sleep">Djup Sömn</string>
-  <string name="reset_timer">Nollställ Timers</string>
-  <string name="restore_timer">Återställ Timers</string>
   <string name="kernel_version">Kernel-version</string>
   <string name="cpu_information">Information om CPU:n</string>
   <string name="memory_information">Information om minnet</string>

@@ -57,11 +57,8 @@
   <string name="profile">الملفّ الشّخصي</string>
   <string name="initd">Init.d</string>
   <string name="settings">الاعدادات</string>
-  <string name="unused_cpu_states">حالات المعالج الغير نشطة</string>
   <string name="uptime">مدة التشغيل</string>
   <string name="deep_sleep">خمول</string>
-  <string name="reset_timer">اعادة ضبط المؤقتات</string>
-  <string name="restore_timer">استعادة الضبط للمؤقتات</string>
   <string name="kernel_version">نسخة أصدار النواة</string>
   <string name="cpu_information">معلومات المعالج</string>
   <string name="memory_information">معلومات الذاكرة</string>

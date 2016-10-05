@@ -458,6 +458,7 @@ public class MainActivity extends BaseActivity implements Constants {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
     /**
      * Exit SU

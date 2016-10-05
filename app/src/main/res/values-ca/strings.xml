@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Configuració</string>
   <string name="about_us">Sobre nosaltres</string>
-  <string name="unused_cpu_states">Freqüències de la CPU no utilitzades</string>
   <string name="uptime">Temps en funcionament</string>
   <string name="deep_sleep">Son profund</string>
-  <string name="reset_timer">Reiniciar temporitzadors</string>
-  <string name="restore_timer">Restaurar temporitzadors</string>
   <string name="kernel_version">Versió del nucli</string>
   <string name="cpu_information">Informació de CPU</string>
   <string name="memory_information">Informació de la memòria</string>

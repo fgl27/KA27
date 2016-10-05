@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Einstellungen</string>
   <string name="about_us">Über uns</string>
-  <string name="unused_cpu_states">Ungenutzte CPU-Stadien</string>
   <string name="uptime">Laufzeit</string>
   <string name="deep_sleep">Tiefschlaf</string>
-  <string name="reset_timer">Timer zurücksetzen</string>
-  <string name="restore_timer">Timer wiederherstellen</string>
   <string name="kernel_version">Kernel-Version</string>
   <string name="cpu_information">CPU-Information</string>
   <string name="memory_information">Speicherinformation</string>

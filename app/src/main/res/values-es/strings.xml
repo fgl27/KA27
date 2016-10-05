@@ -59,11 +59,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Ajustes</string>
   <string name="about_us">Acerca de Nosotros</string>
-  <string name="unused_cpu_states">Frecuencias de CPU no utilizadas</string>
   <string name="uptime">Tiempo de actividad</string>
   <string name="deep_sleep">Sueño profundo</string>
-  <string name="reset_timer">Reiniciar Contadores</string>
-  <string name="restore_timer">Restaurar Contadores</string>
   <string name="kernel_version">Version del Kernel</string>
   <string name="cpu_information">Información del CPU</string>
   <string name="memory_information">Información sobre la memoria</string>
@@ -449,13 +446,13 @@
   <string name="vibration_strength">Intensidad de vibración</string>
   <string name="android_logger">Registro de Android</string>
   <string name="crc">Control de CRC por Software</string>
-  <string name="crc_summary">CRC es un mecanismo que apunta a prevenir la corrupción de datos cuando está activado. Los bloques de datos pueden perder hasta un 30% de su rendimiento.</string>
+  <string name="crc_summary">CRC es un mecanismo que apunta a prevenir la corrupción de datos cuando está activado. Los bloques de datos pueden perder hasta un 30 &#37; de su rendimiento.</string>
   <string name="fsync">Fsync</string>
   <string name="fsync_summary">Deshabilitar para un mejor rendimiento del sistema de archivos con el riesgo de perder datos en caso de un fallo de sistema.</string>
   <string name="dynamic_fsync">Fsync dinámico</string>
   <string name="dynamic_fsync_summary">Cuando esté activado y la pantalla esté encendida, la operación fsync es asincrónica. Cuando la pantalla esté apagada, esta operación es realizada sincrónicamente.</string>
   <string name="gentlefairsleepers">Fair Sleepers Ligeros</string>
-  <string name="gentlefairsleepers_summary">Permitir sólo un 50% del déficit de servicio de los sleepers. Deshabilitar esta opcion puede salvar un poco de batería.</string>
+  <string name="gentlefairsleepers_summary">Permitir sólo un 50&#37; del déficit de servicio de los sleepers. Deshabilitar esta opcion puede salvar un poco de batería.</string>
   <string name="power_suspend_mode">Modo de suspensión de energía</string>
   <string name="power_suspend_mode_summary">El modo de Kernel, Ganchos de LCD y El gancho de nivel más alto son gestionados automáticamente por el Kernel. Para activar o desactivar manualmente el Estado de Suspensión de Energía elige el Modo de Usuario.</string>
   <string name="autosleep">AutoSuspensión</string>

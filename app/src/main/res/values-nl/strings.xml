@@ -58,11 +58,8 @@
   <string name="initd">Init.d</string>
   <string name="settings">Instellingen</string>
   <string name="about_us">Over ons</string>
-  <string name="unused_cpu_states">Ongebruikte CPU Staten</string>
   <string name="uptime">Bedrijfstijd</string>
   <string name="deep_sleep">Diepe slaap</string>
-  <string name="reset_timer">Reset Timers</string>
-  <string name="restore_timer">Herstel Timers</string>
   <string name="kernel_version">Kernel Versie</string>
   <string name="cpu_information">CPU informatie</string>
   <string name="memory_information">Geheugen Informatie</string>

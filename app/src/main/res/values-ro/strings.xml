@@ -58,11 +58,8 @@
   <string name="profile">Profilul</string>
   <string name="initd">Init.d</string>
   <string name="settings">Opțiuni</string>
-  <string name="unused_cpu_states">Stări neutilizate CPU</string>
   <string name="uptime">Timp de funcționare</string>
   <string name="deep_sleep">Somn profund</string>
-  <string name="reset_timer">Resetare cronometre</string>
-  <string name="restore_timer">Restabiliți cronometre</string>
   <string name="kernel_version">Versiunea Kernel</string>
   <string name="cpu_information">Informaţiile de CPU</string>
   <string name="memory_information">Informaţii Memorie</string>
