@@ -247,21 +247,27 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                 tar = line.split(" ");
                 switch (tar[0]) {
                     case "echo":
-                        {
-                            sb.append("write " + tar[3] + " " + tar[1] + "\n");
-                            break;
-                        }
+                        sb.append("write ");
+                        sb.append(tar[3]);
+                        sb.append(" ");
+                        sb.append(tar[1]);
+                        sb.append("\n");
+                        break;
                     case "chmod":
-                        {
-                            sb.append(tar[0] + " " + tar[1] + " " + tar[2] + "\n");
-                            break;
-                        }
+                        sb.append(tar[0]);
+                        sb.append(" ");
+                        sb.append(tar[1]);
+                        sb.append(" ");
+                        sb.append(tar[2]);
+                        sb.append("\n");
+                        break;
                     case "start":
                     case "stop":
-                        {
-                            sb.append(tar[0] + " " + tar[1] + "\n");
-                            break;
-                        }
+                        sb.append(tar[0]);
+                        sb.append(" ");
+                        sb.append(tar[1]);
+                        sb.append("\n");
+                        break;
                 }
             }
         } catch (IOException x) {}
