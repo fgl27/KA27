@@ -399,7 +399,7 @@ public class LogsFragment extends RecyclerViewFragment {
                         Utils.toast(getString(R.string.empty_text), getActivity(), Toast.LENGTH_LONG);
                         return;
                     } else {
-                        Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
+                        Pattern pattern = Pattern.compile("[^a-z0-9_ ]", Pattern.CASE_INSENSITIVE);
                         Matcher name_test = pattern.matcher(name);
                         boolean test_special = name_test.find();
                         if (test_special) {
