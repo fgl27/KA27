@@ -52,8 +52,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.zeroturnaround.zip.ZipUtil;
 /**
@@ -398,14 +396,9 @@ public class LogsFragment extends RecyclerViewFragment {
                     if (name.isEmpty()) {
                         Utils.toast(getString(R.string.empty_text), getActivity(), Toast.LENGTH_LONG);
                         return;
-                    } else {
-                        Pattern pattern = Pattern.compile("[^a-z0-9_ ]", Pattern.CASE_INSENSITIVE);
-                        Matcher name_test = pattern.matcher(name);
-                        boolean test_special = name_test.find();
-                        if (test_special) {
-                            Utils.toast(getString(R.string.forbidden_special), getActivity(), Toast.LENGTH_LONG);
-                            return;
-                        }
+                    } else if (name.contains("-") || name.contains("'") || name.contains("\"")) {
+                        Utils.toast(getString(R.string.forbidden_special), getActivity(), Toast.LENGTH_LONG);
+                        return;
                     }
                     if (((AppCompatCheckBox) logcat).isChecked()) {
                         final String logcat = RootUtils.runCommand(logcatC + grep + "'" + name + "'");
