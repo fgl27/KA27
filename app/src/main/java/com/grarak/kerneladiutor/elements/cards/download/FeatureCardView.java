@@ -65,7 +65,7 @@ public class FeatureCardView extends BaseCardView {
     @Override
     public void setMargin() {
         int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(0, padding, 0, 0);
         setLayoutParams(layoutParams);
     }

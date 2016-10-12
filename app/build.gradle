@@ -32,7 +32,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
-    compile 'io.karim:materialtabs:2.0.3'
+    compile 'io.karim:materialtabs:2.0.5'
     compile 'net.i2p.android.ext:floatingactionbutton:1.10.1'
     compile 'org.cyanogenmod:platform.sdk:6.0'
     compile 'org.zeroturnaround:zt-zip:1.9'

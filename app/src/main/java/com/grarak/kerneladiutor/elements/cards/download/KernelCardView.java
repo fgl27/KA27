@@ -82,6 +82,14 @@ public class KernelCardView extends BaseCardView {
         descriptionView = (TextView) view.findViewById(R.id.description);
     }
 
+    @Override
+    public void setMargin() {
+        int padding = getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        layoutParams.setMargins(0, padding, 0, 0);
+        setLayoutParams(layoutParams);
+    }
+
     public static class DKernelCard implements DAdapter.DView {
 
         private final Downloads.KernelContent kernelContent;
