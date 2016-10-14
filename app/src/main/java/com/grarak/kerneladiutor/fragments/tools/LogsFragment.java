@@ -123,6 +123,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
+                if (!Misc.isLoggerActive())
+                    Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
                 new Execute().execute("zip");
             }
         });
@@ -273,8 +275,6 @@ public class LogsFragment extends RecyclerViewFragment {
                     dir.mkdir();
                 }
                 if (!Misc.isLoggerActive()) {
-                    Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
                     // ZipUtil doesnot understand folder name that end with /
