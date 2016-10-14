@@ -67,6 +67,7 @@ public class LogsFragment extends RecyclerViewFragment {
     private static String final_grep;
 
     private final String logcatC = "logcat -d ";
+    private final String logcat_while = " && echo logcatdone > ";
     private final String radioC = "logcat  -b radio -v time -d ";
     private final String eventsC = "logcat -b events -v time -d ";
     private final String dmesgC = "dmesg ";
@@ -122,7 +123,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new ZipExecute().execute();
+                new Execute().execute("zip");
             }
         });
 
@@ -264,49 +265,43 @@ public class LogsFragment extends RecyclerViewFragment {
 
         @Override
         protected Void doInBackground(String...params) {
-            RootUtils.runCommand(params[0]);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            progressDialog.dismiss();
-        }
-    }
-
-    private class ZipExecute extends AsyncTask < String, Void, Void > {
-        private ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage(getString(R.string.execute));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(String...params) {
-            String log_temp_folder = log_folder + "/tmpziplog/";
-            if (!Utils.existFile(log_temp_folder)) {
-                File dir = new File(log_temp_folder);
-                dir.mkdir();
-            }
-            if (!Misc.isLoggerActive()) {
-                Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-            } else {
-                RootUtils.runCommand(logcatC + " > " + log_temp_folder + "logcat.txt");
-                RootUtils.runCommand(radioC + " > " + log_temp_folder + "radio.txt");
-                RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
-            }
-            RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
-            RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
-            // ZipUtil doesnot understand folder name that end with /
-            ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
-            RootUtils.runCommand("rm -rf " + log_temp_folder);
+            if (params[0].equals("zip")) {
+                String log_temp_folder = log_folder + "/tmpziplog/";
+                String cat_logcat_while = "";
+                if (!Utils.existFile(log_temp_folder)) {
+                    File dir = new File(log_temp_folder);
+                    dir.mkdir();
+                }
+                if (!Misc.isLoggerActive()) {
+                    Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
+                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                    RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
+                    RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                    // ZipUtil doesnot understand folder name that end with /
+                    ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
+                    RootUtils.runCommand("rm -rf " + log_temp_folder);
+                } else {
+                    // Logcat some times is too long and the zip may be empty, use && after logcat command to write a file check it in a  
+                    // while + if to do the rest after logcat has finished
+                    RootUtils.runCommand(logcatC + " > " + log_temp_folder + "logcat.txt" + logcat_while +
+                        log_temp_folder + "logcat_wile.txt");
+                    while (!cat_logcat_while.contains("logcatdone")) {
+                        cat_logcat_while = RootUtils.runCommand("cat " + log_temp_folder + "logcat_wile.txt") + "";
+                        if (cat_logcat_while.contains("logcatdone")) {
+                            RootUtils.runCommand(radioC + " > " + log_temp_folder + "radio.txt");
+                            RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
+                            RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
+                            RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                            RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
+                            // ZipUtil doesn’t understand folder name that end with /
+                            ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
+                            RootUtils.runCommand("rm -rf " + log_temp_folder);
+                            break;
+                        }
+                    }
+                }
+            } else
+                RootUtils.runCommand(params[0]);
             return null;
         }
 
