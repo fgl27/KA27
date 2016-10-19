@@ -82,10 +82,11 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         CardViewItem.DCardView muptimeCard = new CardViewItem.DCardView();
         muptimeCard.setTitle(getString(R.string.system_uptime));
         muptimeCard.setDescription(
-	getString(R.string.uptime) + " " + getDurationBreakdown(SystemClock.elapsedRealtime()) +
-        "\n" + getString(R.string.awake) + " " + getDurationBreakdown(SystemClock.uptimeMillis()) +
-        "\n" + getString(R.string.deep_sleep) + " " + getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis())
-        );
+            getString(R.string.uptime) + " " + getDurationBreakdown(SystemClock.elapsedRealtime()) +
+            "\n" + getString(R.string.awake) + " " + getDurationBreakdown(SystemClock.uptimeMillis()) + " (" +
+            ((SystemClock.uptimeMillis() * 100 ) / SystemClock.elapsedRealtime()) + "%)" +
+            "\n" + getString(R.string.deep_sleep) + " " + getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()) +
+            " (" + (100 - ((SystemClock.uptimeMillis() * 100 ) / SystemClock.elapsedRealtime())) + "%)");
         addView(muptimeCard);
         int wasoffline = 0;
         for (int i = 0; i < CPU.getCoreCount(); i++) {
