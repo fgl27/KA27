@@ -268,18 +268,22 @@ public class LogsFragment extends RecyclerViewFragment {
         @Override
         protected Void doInBackground(String...params) {
             if (params[0].equals("zip")) {
-                String log_temp_folder = log_folder + "/tmpziplog/";
+                String log_temp_folder = log_folder + "/.tmpziplog/";
                 String cat_logcat_while = "";
-                if (!Utils.existFile(log_temp_folder)) {
+                if (Utils.existFile(log_temp_folder)) {
+                    RootUtils.runCommand("rm -rf " + log_temp_folder);
                     File dir = new File(log_temp_folder);
                     dir.mkdir();
-                }
+                } else {
+                    File dir = new File(log_temp_folder);
+                    dir.mkdir();
+                } 
                 if (!Misc.isLoggerActive()) {
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
                     // ZipUtil doesnot understand folder name that end with /
-                    ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
-                    RootUtils.runCommand("rm -rf " + log_temp_folder);
+                    ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
+
                 } else {
                     // Logcat some times is too long and the zip may be empty, use && after logcat command to write a file check it in a  
                     // while + if to do the rest after logcat has finished
@@ -294,8 +298,7 @@ public class LogsFragment extends RecyclerViewFragment {
                             RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
                             RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
                             // ZipUtil doesn’t understand folder name that end with /
-                            ZipUtil.pack(new File(log_folder + "/tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
-                            RootUtils.runCommand("rm -rf " + log_temp_folder);
+                            ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
                             break;
                         }
                     }
