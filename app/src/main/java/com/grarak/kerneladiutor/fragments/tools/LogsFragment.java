@@ -33,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import com.grarak.kerneladiutor.MainActivity;
 import com.grarak.kerneladiutor.R;
@@ -40,6 +41,7 @@ import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 import com.kerneladiutor.library.root.RootUtils;
@@ -268,8 +270,11 @@ public class LogsFragment extends RecyclerViewFragment {
         @Override
         protected Void doInBackground(String...params) {
             if (params[0].equals("zip")) {
-                String log_temp_folder = log_folder + "/.tmpziplog/";
-                String cat_logcat_while = "";
+                String log_temp_folder = log_folder + ".tmpziplog/";
+                int logcat_while = 0;
+                String zip_file = log_folder + "logs" + getDate() + ".zip";
+		String logcat = log_temp_folder + "logcat.txt";
+		String tmplogcat = log_temp_folder + "tmplogcat.txt";
                 if (Utils.existFile(log_temp_folder)) {
                     RootUtils.runCommand("rm -rf " + log_temp_folder);
                     File dir = new File(log_temp_folder);
@@ -277,29 +282,32 @@ public class LogsFragment extends RecyclerViewFragment {
                 } else {
                     File dir = new File(log_temp_folder);
                     dir.mkdir();
-                } 
+                }
                 if (!Misc.isLoggerActive()) {
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
                     // ZipUtil doesnot understand folder name that end with /
                     ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
-
                 } else {
-                    // Logcat some times is too long and the zip may be empty, use && after logcat command to write a file check it in a  
-                    // while + if to do the rest after logcat has finished
-                    RootUtils.runCommand(logcatC + " > " + log_temp_folder + "logcat.txt" + logcat_while +
-                        log_temp_folder + "logcat_wile.txt");
-                    while (!cat_logcat_while.contains("logcatdone")) {
-                        cat_logcat_while = RootUtils.runCommand("cat " + log_temp_folder + "logcat_wile.txt") + "";
-                        if (cat_logcat_while.contains("logcatdone")) {
-                            RootUtils.runCommand(radioC + " > " + log_temp_folder + "radio.txt");
-                            RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
-                            RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
-                            RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
-                            RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
-                            // ZipUtil doesn’t understand folder name that end with /
-                            ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
-                            break;
+                    RootUtils.runCommand(logcatC + " > " + logcat);
+                    RootUtils.runCommand(radioC + " > " + log_temp_folder + "radio.txt");
+                    RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
+                    RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
+                    RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                    RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
+                    // ZipUtil doesn’t understand folder name that end with /
+                    // Logcat some times is too long and the zip logcat.txt may be empty, do some check
+                    while (logcat_while == 0) {
+                        ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(zip_file));
+                        ZipUtil.unpackEntry(new File(zip_file), "logcat.txt", new File(tmplogcat));
+                        if (Utils.compareFiles(logcat, tmplogcat)) {
+                            Log.i(Constants.TAG, "ziped logcat.txt is ok");
+                            RootUtils.runCommand("rm -rf " + log_temp_folder);
+                            logcat_while = 1;
+                        } else {
+                            Log.i(Constants.TAG, "logcat.txt is nok");
+                            RootUtils.runCommand("rm -rf " + zip_file);
+                            RootUtils.runCommand("rm -rf " + tmplogcat);
                         }
                     }
                 }

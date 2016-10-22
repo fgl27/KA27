@@ -516,6 +516,10 @@ public class Utils implements Constants {
         return Tools.existFile(file, true);
     }
 
+    public static boolean compareFiles(String file, String file2) {
+        return Tools.compareFiles(file, file2, true);
+    }
+
     public static void writeFile(String path, String text, boolean append) {
         Tools.writeFile(path, text, append, true);
     }

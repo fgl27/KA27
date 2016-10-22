@@ -77,6 +77,13 @@ public class Tools {
         return new File(file).exists();
     }
 
+    public static boolean compareFiles(String file, String file2, boolean asRoot) {
+        Log.i("Kernel adiutor", "compareFiles " + file + " size is " + new RootFile(file).length() + " and " +
+            file2 + " size is " + new RootFile(file2).length());
+        if (asRoot) return new RootFile(file).length() == new RootFile(file2).length();
+        return new File(file).length() == new RootFile(file2).length();
+    }
+
     /**
      * Write a string to any file
      *
