@@ -131,10 +131,10 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        File genericFolder = new File("/sdcard/KernelAdiutor/" + folder);
+        File genericFolder = new File("/sdcard/KA_Backups/" + folder);
         genericFolder.mkdir();
         if (genericFolder.exists()) return genericFolder.toString();
-        File genericFolder2 = new File("/sdcard/KernelAdiutor/" + folder);
+        File genericFolder2 = new File("/sdcard/KA_Backups/" + folder);
         genericFolder2.mkdir();
         return genericFolder2.toString();
     }
