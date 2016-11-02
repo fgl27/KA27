@@ -635,7 +635,6 @@
   <string name="file_name">Nome do arquivo</string>
   <string name="dark_theme">Tema escuro</string>
   <string name="force_english_language">Forçar em língua inglesa</string>
-  <string name="show_profile_tile">Mostrar Título do Perfil</string>
   <string name="notification">Notificação</string>
   <string name="notification_summary">Mostrar uma notificação quando as aplicações forem definidas no início. Por favor, desative se você tiver algum problema.</string>
   <string name="show_toast">Mostrar alerta</string>

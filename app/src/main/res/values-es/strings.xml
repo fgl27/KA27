@@ -549,7 +549,6 @@
   <string name="file_name">Nombre del archivo</string>
   <string name="dark_theme">Tema Oscuro</string>
   <string name="force_english_language">Forzar idioma inglés</string>
-  <string name="show_profile_tile">Mostrar la teja del perfil</string>
   <string name="notification">Notificación</string>
   <string name="notification_summary">Mostrar una notificación cuando se aplica la configuración al arranque. Desactivar si da algún problema.</string>
   <string name="show_toast">Mostrar notificación emergente</string>

@@ -388,7 +388,6 @@
   <string name="file_name">Název souboru</string>
   <string name="dark_theme">Tmavý motiv</string>
   <string name="force_english_language">Vynutit použití angličtiny</string>
-  <string name="show_profile_tile">Zobrazovat profilovou dlaždici</string>
   <string name="notification">Upozornění</string>
   <string name="notification_summary">Zobrazit upozornění na spuštění služby po startu systému. Pokud dochází k nějakým problémům, vypněte tuto funkci.</string>
   <string name="show_toast">Zobrazovat rychlá oznámení</string>

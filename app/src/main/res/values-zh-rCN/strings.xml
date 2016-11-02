@@ -533,7 +533,6 @@
   <string name="file_name">文件名</string>
   <string name="dark_theme">暗色主题</string>
   <string name="force_english_language">强制使用英语</string>
-  <string name="show_profile_tile">显示配置文件标题</string>
   <string name="notification">通知</string>
   <string name="notification_summary">当设置在设备启动中被应用时显示一个通知。如果你遇到任何问题请禁用此选项。</string>
   <string name="show_toast">显示提示</string>

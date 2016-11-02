@@ -550,7 +550,6 @@
   <string name="file_name">ファイル名</string>
   <string name="dark_theme">ダークテーマ</string>
   <string name="force_english_language">英語表示にする</string>
-  <string name="show_profile_tile">プロファイルタイルの表示</string>
   <string name="notification">通知</string>
   <string name="notification_summary">起動時に適用するときに通知を表示します。問題があれば無効にしてください。</string>
   <string name="show_toast">トーストの表示</string>

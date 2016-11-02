@@ -375,7 +375,6 @@
   <string name="file_name">Dosya adı</string>
   <string name="dark_theme">Koyu tema</string>
   <string name="force_english_language">İngilizce Diline Zorla</string>
-  <string name="show_profile_tile">Profil döşeme göster</string>
   <string name="notification">Bildirim</string>
   <string name="notification_summary">Açılış servisi başlatıldığında bildirim gösterilir. Eğer bir problemle karşılaşırsanız lütfen devre dışı bırakın.</string>
   <string name="show_toast">Hızlı bildirimleri göster</string>

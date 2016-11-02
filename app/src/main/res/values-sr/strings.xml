@@ -272,7 +272,6 @@
   <string name="file_name">Назив фајла</string>
   <string name="dark_theme">Тамна тема</string>
   <string name="force_english_language">Присили енглески језик</string>
-  <string name="show_profile_tile">Прикажи плочицу профила</string>
   <string name="notification">Обавештење</string>
   <string name="notification_summary">Приказ обавештења када се покрене сервис примене при подизању. Искључите ово ако дође до било каквих проблема.</string>
   <string name="show_toast">Прикажи тост</string>

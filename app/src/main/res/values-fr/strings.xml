@@ -514,7 +514,6 @@
   <string name="file_name">Nom du fichier</string>
   <string name="dark_theme">Thème sombre</string>
   <string name="force_english_language">Forcer la Langue Anglaise</string>
-  <string name="show_profile_tile">Voir la tuile de profil</string>
   <string name="notification">Notification</string>
   <string name="notification_summary">Afficher une notification lors de l\'application des paramètres au démarrage. Merci de désactiver cette option si vous rencontrez des problèmes.</string>
   <string name="show_toast">Afficher la bulle d\'infos</string>

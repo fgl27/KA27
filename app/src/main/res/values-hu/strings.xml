@@ -548,7 +548,6 @@
   <string name="file_name">Fájl neve</string>
   <string name="dark_theme">Sötét téma</string>
   <string name="force_english_language">Angol nyelv kényszerítése</string>
-  <string name="show_profile_tile">Profil csempe megjelenítése</string>
   <string name="notification">Értesítés</string>
   <string name="notification_summary">Értesítés megjelenítése, ha a bootoláskor alkalmaz szolgáltatás fut. Kérem, tiltsa le, ha bármi problémát észlel.</string>
   <string name="show_toast">Buborékszöveg mutatása</string>

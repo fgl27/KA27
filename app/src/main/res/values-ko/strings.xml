@@ -485,7 +485,6 @@
   <string name="file_name">파일명</string>
   <string name="dark_theme">어두운 테마</string>
   <string name="force_english_language">강제로 영어 사용</string>
-  <string name="show_profile_tile">프로필 타일 보기</string>
   <string name="notification">알림</string>
   <string name="notification_summary">\"부팅 시 적용\" 서비스가 시작되었을 때 알림을 보여줍니다. 문제가 발생하면 사용을 중지해 주세요.</string>
   <string name="show_toast">토스트 메시지 보이기</string>

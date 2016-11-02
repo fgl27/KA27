@@ -549,7 +549,6 @@
   <string name="file_name">Имя файла</string>
   <string name="dark_theme">Тёмная тема</string>
   <string name="force_english_language">Принудительно использовать английский язык</string>
-  <string name="show_profile_tile">Показать профиль плитка</string>
   <string name="notification">Уведомление</string>
   <string name="notification_summary">Показывать уведомление при запуске сервиса восстановления настроек. Пожалуйста отключите, если у вас возникли проблемы.</string>
   <string name="show_toast">Показывать всплывающие уведомления</string>

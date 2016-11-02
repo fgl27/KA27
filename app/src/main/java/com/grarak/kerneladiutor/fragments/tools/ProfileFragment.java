@@ -40,7 +40,6 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.InformationCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.services.PerAppMonitor;
-import com.grarak.kerneladiutor.services.ProfileTileReceiver;
 import com.grarak.kerneladiutor.services.ProfileWidget;
 import com.grarak.kerneladiutor.tasker.AddProfileActivity;
 import com.grarak.kerneladiutor.utils.Constants;
@@ -348,7 +347,6 @@ public class ProfileFragment extends RecyclerViewFragment {
             int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
             appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
         }
-        ProfileTileReceiver.publishProfileTile(profileItems, getActivity());
     }
     private void PerAppDialog(String id) {
         if (!Per_App.isAccessibilityEnabled(getActivity(), PerAppMonitor.accessibilityId)) {

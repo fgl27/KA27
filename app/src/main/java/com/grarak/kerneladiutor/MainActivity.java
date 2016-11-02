@@ -78,10 +78,8 @@ import com.grarak.kerneladiutor.fragments.tools.StartUpCommandsFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
 import com.grarak.kerneladiutor.fragments.tools.download.DownloadsFragment;
-import com.grarak.kerneladiutor.services.ProfileTileReceiver;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
@@ -412,9 +410,6 @@ public class MainActivity extends BaseActivity implements Constants {
                     break;
                 }
             }
-
-            ProfileTileReceiver.publishProfileTile(new ProfileDB(MainActivity.this).getAllProfiles(),
-                    MainActivity.this);
         }
     }
 

@@ -549,7 +549,6 @@
   <string name="file_name">Ime datoteke</string>
   <string name="dark_theme">Temna preobleka</string>
   <string name="force_english_language">Vsili angleški jezik</string>
-  <string name="show_profile_tile">Pokaži ploščico za profil</string>
   <string name="notification">Obvestilo</string>
   <string name="notification_summary">Pokaži obvestilo, ko se zažene storitev uporabe ob zagonu. Prosim onemogočite, če se pojavijo težave.</string>
   <string name="show_toast">Pokaži toast obvestilo</string>

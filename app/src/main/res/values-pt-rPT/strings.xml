@@ -494,7 +494,6 @@
   <string name="file_name">Nome do ficheiro</string>
   <string name="dark_theme">Tema escuro</string>
   <string name="force_english_language">Força de língua inglesa</string>
-  <string name="show_profile_tile">Mostrar o perfil</string>
   <string name="notification">Notificação</string>
   <string name="notification_summary">Mostrar notificação quando aplicar um serviço no arranque. Desative esta opção se tiver algum problema.</string>
   <string name="show_toast">Mostrar toast</string>

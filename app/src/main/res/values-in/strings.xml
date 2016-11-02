@@ -543,7 +543,6 @@
   <string name="file_name">Nama file</string>
   <string name="dark_theme">Tema gelap</string>
   <string name="force_english_language">Paksa Bahasa Inggris</string>
-  <string name="show_profile_tile">Tampilkan profil tile</string>
   <string name="notification">Pemberitahuan</string>
   <string name="notification_summary">Tampilkan pemberitahuan ketika layanan on-boot dimulai. Harap Nonaktifkan ini jika Anda mendapatkan masalah.</string>
   <string name="show_toast">Tampilkan toast</string>

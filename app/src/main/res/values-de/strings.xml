@@ -490,7 +490,6 @@
   <string name="file_name">Name der Datei</string>
   <string name="dark_theme">Dunkles Design</string>
   <string name="force_english_language">Englische Sprache erzwingen</string>
-  <string name="show_profile_tile">Zeige Profil-Kachel (Benachrichtigungsanzeige)</string>
   <string name="notification">Benachrichtigung</string>
   <string name="notification_summary">Zeige eine Benachrichtigung wenn \"Beim Systemstart anwenden\" gestartet wird. Bei Problemen bitte deaktivieren.</string>
   <string name="show_toast">Toast-Benachrichtigungen anzeigen</string>
