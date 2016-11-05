@@ -446,7 +446,7 @@ public class LogsFragment extends RecyclerViewFragment {
                         linearLayout.setPadding(30, 20, 30, 20);
 
                         TextView result_tip = new TextView(getActivity());
-                        result_tip.setText(getString(R.string.result_tip));
+                        result_tip.setText(getString(R.string.result_tip) + name + "\n");
                         linearLayout.addView(result_tip);
 
                         ScrollView scrollView = new ScrollView(getActivity());
