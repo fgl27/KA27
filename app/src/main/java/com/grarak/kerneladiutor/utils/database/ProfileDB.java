@@ -22,12 +22,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.grarak.kerneladiutor.utils.Utils;
-
-import com.kerneladiutor.library.root.RootFile;
-import com.kerneladiutor.library.root.RootUtils;
-import com.kerneladiutor.library.Tools;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
