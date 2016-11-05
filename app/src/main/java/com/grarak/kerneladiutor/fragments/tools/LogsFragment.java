@@ -172,8 +172,6 @@ public class LogsFragment extends RecyclerViewFragment {
             }
         });
 
-        addView(mLogcatCard);
-
         CardViewItem.DCardView mLogRadioCard = new CardViewItem.DCardView();
         mLogRadioCard.setTitle(getString(R.string.log_radio));
         mLogRadioCard.setDescription(String.format(getString(R.string.log_radio_summary), getDate()));
@@ -186,8 +184,6 @@ public class LogsFragment extends RecyclerViewFragment {
                     logs(radioC, log_folder, "radio" + getDate());
             }
         });
-
-        addView(mLogRadioCard);
 
         CardViewItem.DCardView mLogEventsCard = new CardViewItem.DCardView();
         mLogEventsCard.setTitle(getString(R.string.log_events));
@@ -202,7 +198,42 @@ public class LogsFragment extends RecyclerViewFragment {
             }
         });
 
+        CardViewItem.DCardView mDmesgCard = new CardViewItem.DCardView();
+        mDmesgCard.setTitle(getString(R.string.driver_message));
+        mDmesgCard.setDescription(String.format(getString(R.string.driver_message_summary), getDate()));
+        mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                logs(dmesgC, log_folder, "dmesg" + getDate());
+            }
+        });
+
+        CardViewItem.DCardView mGetPropCard = new CardViewItem.DCardView();
+        mGetPropCard.setTitle(getString(R.string.get_prop));
+        mGetPropCard.setDescription(String.format(getString(R.string.get_prop_summary), getDate()));
+        mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                logs(getpropC, log_folder, "getprop" + getDate());
+            }
+        });
+
+        CardViewItem.DCardView mDumpSysFs = new CardViewItem.DCardView();
+        mDumpSysFs.setTitle(getString(R.string.dump_sysfs));
+        mDumpSysFs.setDescription(String.format(getString(R.string.dump_sysfs_summary), getDate()));
+        mDumpSysFs.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                new Execute().execute("dumpsysfs");
+            }
+        });
+
+        addView(mDmesgCard);
         addView(mLogEventsCard);
+        addView(mGetPropCard);
+        addView(mDumpSysFs);
+        addView(mLogcatCard);
+        addView(mLogRadioCard);
 
         final StringBuilder lastKmsg = new StringBuilder();
         if (Utils.existFile("/proc/last_kmsg")) lastKmsg.append("/proc/last_kmsg");
@@ -221,42 +252,6 @@ public class LogsFragment extends RecyclerViewFragment {
 
             addView(mLastKmsgCard);
         }
-
-        CardViewItem.DCardView mDmesgCard = new CardViewItem.DCardView();
-        mDmesgCard.setTitle(getString(R.string.driver_message));
-        mDmesgCard.setDescription(String.format(getString(R.string.driver_message_summary), getDate()));
-        mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs(dmesgC, log_folder, "dmesg" + getDate());
-            }
-        });
-
-        addView(mDmesgCard);
-
-        CardViewItem.DCardView mGetPropCard = new CardViewItem.DCardView();
-        mGetPropCard.setTitle(getString(R.string.get_prop));
-        mGetPropCard.setDescription(String.format(getString(R.string.get_prop_summary), getDate()));
-        mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                logs(getpropC, log_folder, "getprop" + getDate());
-            }
-        });
-
-        addView(mGetPropCard);
-
-        CardViewItem.DCardView mDumpSysFs = new CardViewItem.DCardView();
-        mDumpSysFs.setTitle(getString(R.string.dump_sysfs));
-        mDumpSysFs.setDescription(String.format(getString(R.string.dump_sysfs_summary), getDate()));
-        mDumpSysFs.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("dumpsysfs");
-            }
-        });
-
-        addView(mDumpSysFs);
     }
 
     private void logs(String log, String path, String file) {
