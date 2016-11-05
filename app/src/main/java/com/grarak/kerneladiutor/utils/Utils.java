@@ -38,6 +38,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.ImageView;
+import android.view.Gravity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
@@ -457,7 +459,10 @@ public class Utils implements Constants {
 
    @MainThread
     public static void toast(String message, Context context, int duration) {
-        Toast.makeText(context, message, duration).show();
+        Toast toast = Toast.makeText(context, message, duration);
+        TextView view = (TextView) toast.getView().findViewById(android.R.id.message);
+        if (view != null) view.setGravity(Gravity.CENTER);
+        toast.show();
     }
 
     public static int getInt(String name, int defaults, Context context) {
