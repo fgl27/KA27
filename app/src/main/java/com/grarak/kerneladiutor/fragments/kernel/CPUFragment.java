@@ -186,7 +186,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             }
             int count = getCount();
             if (CPU.hasStateNotifier()) statenotifierInit();
-            ExtraFlagDividerInit();
+            if (CPU.hasPowerSavingWq() || CPU.hasCFSScheduler()) ExtraFlagDividerInit();
             if (CPU.hasPowerSavingWq()) powerSavingWqInit();
             if (CPU.hasCFSScheduler()) cfsSchedulerInit();
             if (CPU.hasCpuQuiet()) cpuQuietInit();
