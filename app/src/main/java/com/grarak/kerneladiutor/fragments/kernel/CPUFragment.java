@@ -889,11 +889,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             else if (dSwitchCard == mStateNotifierStateCard) {
                 CPU.activateStateNotifier(checked, getActivity());
                 mStateNotifierStateCard.setDescription(getString(checked ? R.string.state_notifier_mode_summary_enabled : R.string.state_notifier_mode_summary_disabled));
-                try {
-                    Thread.sleep(250);
-                } catch (InterruptedException ignored) {}
-                CPUFragment.cpuFragment.cpuPart.view.invalidate();
-                getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+		ForceRefresh();
             } else if (dSwitchCard == mStateDebugCard)
                 CPU.activateStateDebug(checked, getActivity());
             else if (dSwitchCard == mCpuBoostWakeupCard)
@@ -904,19 +900,21 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.activateCpuTouchBoost(checked, getActivity());
             else if (dSwitchCard == mPerCoreFreqControlCard) {
                 CPU.setPerCoreFreqControlEnabled(checked, getActivity());
-                try {
-                    Thread.sleep(250);
-                } catch (InterruptedException ignored) {}
-                CPUFragment.cpuFragment.cpuPart.view.invalidate();
-                getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+		ForceRefresh();
             } else if (dSwitchCard == mPerCoreGovControlCard) {
                 CPU.setPerCoreGovControlEnabled(checked, getActivity());
-                try {
-                    Thread.sleep(250);
-                } catch (InterruptedException ignored) {}
-                CPUFragment.cpuFragment.cpuPart.view.invalidate();
-                getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+		ForceRefresh();
             }
+        }
+
+        private void ForceRefresh() {
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            }
+            CPUFragment.cpuFragment.cpuPart.view.invalidate();
+            getActivity().getSupportFragmentManager().beginTransaction().detach(CPUFragment.cpuFragment).attach(CPUFragment.cpuFragment).commit();
         }
 
         @Override
