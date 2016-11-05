@@ -42,6 +42,8 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.kerneladiutor.library.root.RootFile;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -61,16 +63,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
         showTabs(false);
-        //In case user has made changes to per core, but decide to clean app data, set all cores freq/gov to current core 0 values
-        if (!CPU.isPerCoreFreqControlEnabled(getActivity()) && !CPU.isPerCoreFreqSafeCheck(getActivity())) {
-            CPU.setMinFreq(CPU.getMinFreq(0, false), getActivity());
-            CPU.setMaxFreq(CPU.getMaxFreq(0, false), getActivity());
-            CPU.setPerCoreFreqSafeCheck(true, getActivity());
-        }
-        if (!CPU.isPerCoreGovControlEnabled(getActivity()) && !CPU.isPerCoreGovSafeCheck(getActivity())) {
-            CPU.setGovernor(CPU.getCurGovernor(0, false), getActivity());
-            CPU.setPerCoreGovSafeCheck(true, getActivity());
-        }
     }
 
     @Override
@@ -772,25 +764,32 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-            if (dPopupCard == mPCMaxFreqCard0)
-                CPU.setPCMaxFreq(CPU.getFreqs().get(position), 0, getActivity());
-            if (dPopupCard == mPCMaxFreqCard1)
-                CPU.setPCMaxFreq(CPU.getFreqs().get(position), 1, getActivity());
-            if (dPopupCard == mPCMaxFreqCard2)
-                CPU.setPCMaxFreq(CPU.getFreqs().get(position), 2, getActivity());
-            if (dPopupCard == mPCMaxFreqCard3)
-                CPU.setPCMaxFreq(CPU.getFreqs().get(position), 3, getActivity());
-            if (dPopupCard == mPCMinFreqCard0)
+            if (dPopupCard == mPCMaxFreqCard0) {
+                if (!CPU.setPCMaxFreq(CPU.getFreqs().get(position), 0, getActivity()))
+                    Utils.toast(String.format(getString(R.string.cpu_set_freq_erro), 0), getActivity(), Toast.LENGTH_LONG);
+            } else if (dPopupCard == mPCMaxFreqCard1) {
+                if (!CPU.setPCMaxFreq(CPU.getFreqs().get(position), 1, getActivity()))
+                    Utils.toast(String.format(getString(R.string.cpu_set_freq_erro), 1), getActivity(), Toast.LENGTH_LONG);
+            } else if (dPopupCard == mPCMaxFreqCard2) {
+                if (!CPU.setPCMaxFreq(CPU.getFreqs().get(position), 2, getActivity()))
+                    Utils.toast(String.format(getString(R.string.cpu_set_freq_erro), 2), getActivity(), Toast.LENGTH_LONG);
+            } else if (dPopupCard == mPCMaxFreqCard3) {
+                if (!CPU.setPCMaxFreq(CPU.getFreqs().get(position), 3, getActivity()))
+                    Utils.toast(String.format(getString(R.string.cpu_set_freq_erro), 3), getActivity(), Toast.LENGTH_LONG);
+            } else if (dPopupCard == mPCMinFreqCard0)
                 CPU.setPCMinFreq(CPU.getFreqs().get(position), 0, getActivity());
-            if (dPopupCard == mPCMinFreqCard1)
+            else if (dPopupCard == mPCMinFreqCard1)
                 CPU.setPCMinFreq(CPU.getFreqs().get(position), 1, getActivity());
-            if (dPopupCard == mPCMinFreqCard2)
+            else if (dPopupCard == mPCMinFreqCard2)
                 CPU.setPCMinFreq(CPU.getFreqs().get(position), 2, getActivity());
-            if (dPopupCard == mPCMinFreqCard3)
+            else if (dPopupCard == mPCMinFreqCard3)
                 CPU.setPCMinFreq(CPU.getFreqs().get(position), 3, getActivity());
-            else if (dPopupCard == mMaxFreqCard)
-                CPU.setMaxFreq(CPU.getFreqs().get(position), getActivity());
-            else if (dPopupCard == mMinFreqCard)
+            else if (dPopupCard == mMaxFreqCard) {
+                for (int i = 0; i < CPU.getCoreCount(); i++) {
+                    if (!CPU.setPCMaxFreq(CPU.getFreqs().get(position), i, getActivity()))
+                        Utils.toast(String.format(getString(R.string.cpu_set_freq_erro), i), getActivity(), Toast.LENGTH_LONG);
+                }
+            } else if (dPopupCard == mMinFreqCard)
                 CPU.setMinFreq(CPU.getFreqs().get(position), getActivity());
             else if (dPopupCard == mMaxScreenOffFreqCard)
                 CPU.setMaxScreenOffFreq(CPU.getFreqs().get(position), getActivity());
@@ -804,7 +803,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 CPU.setGovernorPC(CPU.getAvailableGovernors().get(position), 2, getActivity());
             else if (dPopupCard == mGovernorCard3)
                 CPU.setGovernorPC(CPU.getAvailableGovernors().get(position), 3, getActivity());
-            if (dPopupCard == mMaxFreqLITTLECard)
+            else if (dPopupCard == mMaxFreqLITTLECard)
                 CPU.setMaxFreq(Control.CommandType.CPU_LITTLE, CPU.getFreqs(CPU.getLITTLEcore()).get(position), getActivity());
             else if (dPopupCard == mMinFreqLITTLECard)
                 CPU.setMinFreq(Control.CommandType.CPU_LITTLE, CPU.getFreqs(CPU.getLITTLEcore()).get(position), getActivity());

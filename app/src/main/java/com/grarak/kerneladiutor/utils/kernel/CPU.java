@@ -416,10 +416,6 @@ public class CPU implements Constants {
             setMinFreq(command, freq, context);
         if (Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, 0)))
             Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
-        else {
-            for (int i = 0; i < getCoreCount(); i++)
-                setPCMaxFreq(freq, i, context);
-        }
     }
 
     public static int getMaxFreq(boolean forceRead) {
@@ -670,10 +666,10 @@ public class CPU implements Constants {
             setMaxFreq(getMaxFreq(true), context);
         }
     }
-
     //Rewrite already existent code because of delay using existent function cause command to start before the previously had not finished
-    public static void setPCMaxFreq(int freq, int core, Context context) {
-        while (freq != getMaxFreq(core, true)) {
+    // some times the freq is not set in the first try or never get set because thermal driver has set Max freq lower then the requested
+    public static boolean setPCMaxFreq(int freq, int core, Context context) {
+        for (int i = 0; i < 10; i++) {
             if (core > 0) {
                 Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
                 Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
@@ -681,7 +677,10 @@ public class CPU implements Constants {
             Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 644, context);
             Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MAX_FREQ, core), String.format(Locale.US, CPU_MAX_FREQ, core), context);
             Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 444, context);
+            if (freq == getMaxFreq(core, true))
+                return true;
         }
+        return false;
     }
 
     public static void setPCMinFreq(int freq, int core, Context context) {
@@ -722,30 +721,6 @@ public class CPU implements Constants {
             Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, core), String.format(Locale.US, CPU_SCALING_GOVERNOR, core), context);
             Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 444, context);
         }
-    }
-
-    public static boolean isPerCoreGovSafeCheck(Context context) {
-        try {
-            return Utils.getBoolean("Per_Core_Gov_Safe_check", false, context);
-        } catch (NullPointerException err) {
-            return false;
-        }
-    }
-
-    public static void setPerCoreGovSafeCheck(boolean active, Context context) {
-        Utils.saveBoolean("Per_Core_Gov_Safe_check", active, context);
-    }
-
-    public static boolean isPerCoreFreqSafeCheck(Context context) {
-        try {
-            return Utils.getBoolean("Per_Core_Freq_Safe_check", false, context);
-        } catch (NullPointerException err) {
-            return false;
-        }
-    }
-
-    public static void setPerCoreFreqSafeCheck(boolean active, Context context) {
-        Utils.saveBoolean("Per_Core_Freq_Safe_check", active, context);
     }
 
 }

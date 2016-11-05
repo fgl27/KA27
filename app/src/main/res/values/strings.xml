@@ -168,6 +168,7 @@
     <string name="cpu_per_core_governor_tunables_summary">Click to change the various configuration items which are Governor-dependent for Core %d.</string>
     <string name="cpu_max_freq_pc_summary">Choose maximum frequency that Core %d scale up to.</string>
     <string name="cpu_min_freq_pc_summary">Choose minimum frequency that Core %d scale down to.</string>
+    <string name="cpu_set_freq_erro">Unable to set requested frequency to core %d, try again.\nIf no success after a few try possible the thermal-driver has set the max frequency lower then the one you are trying.</string>
 
     <!-- CPU Voltage -->
     <string name="global_offset">Global Offset</string>
