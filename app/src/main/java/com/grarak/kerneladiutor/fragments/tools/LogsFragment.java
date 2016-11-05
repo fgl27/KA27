@@ -42,17 +42,21 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
-import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
+import com.grarak.kerneladiutor.utils.Utils;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.zeroturnaround.zip.ZipUtil;
@@ -69,7 +73,6 @@ public class LogsFragment extends RecyclerViewFragment {
     private static String final_grep;
 
     private final String logcatC = "logcat -d ";
-    private final String logcat_while = " && echo logcatdone > ";
     private final String radioC = "logcat  -b radio -v time -d ";
     private final String eventsC = "logcat -b events -v time -d ";
     private final String dmesgC = "dmesg ";
@@ -242,6 +245,18 @@ public class LogsFragment extends RecyclerViewFragment {
         });
 
         addView(mGetPropCard);
+
+        CardViewItem.DCardView mDumpSysFs = new CardViewItem.DCardView();
+        mDumpSysFs.setTitle(getString(R.string.dump_sysfs));
+        mDumpSysFs.setDescription(String.format(getString(R.string.dump_sysfs_summary), getDate()));
+        mDumpSysFs.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                new Execute().execute("dumpsysfs");
+            }
+        });
+
+        addView(mDumpSysFs);
     }
 
     private void logs(String log, String path, String file) {
@@ -262,6 +277,7 @@ public class LogsFragment extends RecyclerViewFragment {
         protected void onPreExecute() {
             super.onPreExecute();
             progressDialog = new ProgressDialog(getActivity());
+            progressDialog.setTitle(getString(R.string.logs));
             progressDialog.setMessage(getString(R.string.execute));
             progressDialog.setCancelable(false);
             progressDialog.show();
@@ -273,8 +289,8 @@ public class LogsFragment extends RecyclerViewFragment {
                 String log_temp_folder = log_folder + ".tmpziplog/";
                 int logcat_while = 0;
                 String zip_file = log_folder + "logs" + getDate() + ".zip";
-		String logcat = log_temp_folder + "logcat.txt";
-		String tmplogcat = log_temp_folder + "tmplogcat.txt";
+                String logcat = log_temp_folder + "logcat.txt";
+                String tmplogcat = log_temp_folder + "tmplogcat.txt";
                 if (Utils.existFile(log_temp_folder)) {
                     RootUtils.runCommand("rm -rf " + log_temp_folder);
                     File dir = new File(log_temp_folder);
@@ -286,6 +302,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 if (!Misc.isLoggerActive()) {
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                    dumpsysfs(log_temp_folder, false);
                     // ZipUtil doesnot understand folder name that end with /
                     ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
                 } else {
@@ -294,6 +311,7 @@ public class LogsFragment extends RecyclerViewFragment {
                     RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                    dumpsysfs(log_temp_folder, false);
                     RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
                     // ZipUtil doesn’t understand folder name that end with /
                     // Logcat some times is too long and the zip logcat.txt may be empty, do some check
@@ -311,7 +329,9 @@ public class LogsFragment extends RecyclerViewFragment {
                         }
                     }
                 }
-            } else
+            } else if (params[0].equals("dumpsysfs"))
+                dumpsysfs(log_folder, true);
+            else
                 RootUtils.runCommand(params[0]);
             return null;
         }
@@ -494,5 +514,94 @@ public class LogsFragment extends RecyclerViewFragment {
                         Utils.toast(getString(R.string.result_empty), getActivity(), Toast.LENGTH_LONG);
                 }
             }).show();
+    }
+
+    private void dumpsysfs(String path, boolean date) {
+        String arrays[][] = {
+            Constants.CPU_ARRAY,
+            Constants.CPU_VOLTAGE_ARRAY,
+            Constants.BATTERY_ARRAY,
+            Constants.IO_ARRAY,
+            Constants.VM_ARRAY
+        };
+        String twodarrays[][][] = {
+            Constants.CPU_HOTPLUG_ARRAY,
+            Constants.THERMAL_ARRAYS,
+            Constants.SCREEN_ARRAY,
+            Constants.WAKE_ARRAY,
+            Constants.SOUND_ARRAY,
+            Constants.MISC_ARRAY
+        };
+        String file_name = "";
+        String arrays_one = "";
+        String arrays_one_formated = "";
+        if (date)
+            file_name = "kernel_state" + getDate() + ".txt";
+        else
+            file_name = "kernel_state.txt";
+        // loop through each array in the constants file. These contain all the other arrays.
+        // have to do this once for the 1d arrays and again for the 2 arrays
+        try {
+            File sysfsdump = new File(path, file_name);
+            if (sysfsdump.exists())
+                sysfsdump.delete();
+            FileWriter output = new FileWriter(sysfsdump);
+            for (int i = 0; i < arrays.length; i++) {
+                for (int a = 0; a < arrays[i].length; a++) {
+                    arrays_one = arrays[i][a];
+                    if (arrays_one.contains("cpu") && arrays_one.contains("%d")) {
+                        for (int c = 0; c < CPU.getCoreCount(); c++) {
+                            arrays_one_formated = String.format(Locale.US, arrays_one, c);
+                            if (Utils.existFile(arrays_one_formated) && !arrays_one_formated.contains("/system/bin"))
+                                output.write(sysfsrecord(arrays_one_formated));
+                        }
+                    } else if (Utils.existFile(arrays_one) && !arrays_one.contains("/system/bin"))
+                        output.write(sysfsrecord(arrays_one));
+                }
+            }
+            for (int i = 0; i < twodarrays.length; i++) {
+                for (int a = 0; a < twodarrays[i].length; a++) {
+                    for (int b = 0; b < twodarrays[i][a].length; b++) {
+                        if (Utils.existFile(twodarrays[i][a][b]) && !twodarrays[i][a][b].contains("/system/bin"))
+                            output.write(sysfsrecord(twodarrays[i][a][b]));
+                    }
+                }
+            }
+            output.flush();
+            output.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String sysfsrecord(String file) {
+        String ret = "";
+        File sysfspath = new File(file);
+        if (sysfspath.isDirectory())
+            return ret = sysfspathIsdirectory(file);
+        else {
+            Log.i(Constants.TAG, "Path: " + file + " | Value: " + Utils.readFile(file));
+            return ret = ret + "Path: " + file + " | Value: " + Utils.readFile(file) + "\n";
+        }
+    }
+
+    private String sysfspathIsdirectory(String file) {
+        String ret = "";
+        Log.i(Constants.TAG, "Dir: " + file);
+        String path = file;
+        ret = ret + "Dir: " + path + "\n";
+        File dir = new File(path);
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+            for (File child: directoryListing) {
+                if (!child.isDirectory()) {
+                    Log.i(Constants.TAG, "File: " + child + " | Value: " + Utils.readFile(child.toString()));
+                    ret = ret + "File: " + child + " | Value: " + Utils.readFile(child.toString()) + "\n";
+                } else
+                    ret = ret + sysfspathIsdirectory(child.getAbsolutePath());
+            }
+        }
+        return ret;
     }
 }

@@ -861,7 +861,7 @@
     <string name="emulate_initd">Emulate Init.d</string>
     <string name="emulate_initd_summary">If your device does not support Init.d you can enable Emulate Init.d. By enabling the Init.d Emulation the application will run the scripts after your device boots up, but before apply on boot.</string>
     <string name="executing">Executing</string>
-    <string name="execute">Execute</string>
+    <string name="execute">Execute...</string>
     <string name="no_scripts_found">No scripts found!</string>
     <string name="starting_initd">Starting Init.d emulation</string>
     <string name="finishing_initd">Finishing Init.d emulation</string>
@@ -905,6 +905,8 @@
     <string name="logcat_disable">Android logging is disable!</string>
     <string name="logcat_disable_summary">Android logging is disable, Logcat, Radio Log and Events Logs is empty!\n\nTurn Android logging on under Misc and try again</string>
     <string name="log_folder_error">Error!\n\nCan\'t create a Log folder in /sdcard/KA_Logs/ Check permission if the problem persist contact the developer</string>
+    <string name="dump_sysfs">Kernel State</string>
+    <string name="dump_sysfs_summary">Copy Current Kernel Status and Configuration to:\n/sdcard/KA_Logs/kernel_state%s.txtr</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>
