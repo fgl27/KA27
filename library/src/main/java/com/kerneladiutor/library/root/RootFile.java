@@ -84,6 +84,11 @@ public class RootFile {
         return list;
     }
 
+    public boolean isDirectory() {
+        String output = RootUtils.runCommand("[ -d '" + file + "' ] && echo true");
+        return output != null && output.contains("true");
+    }
+
     public float length() {
         try {
             return Float.parseFloat(RootUtils.runCommand("du '" + file + "'").split(file)[0].trim());

@@ -46,6 +46,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.kerneladiutor.library.root.RootUtils;
+import com.kerneladiutor.library.root.RootFile;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -572,7 +573,7 @@ public class LogsFragment extends RecyclerViewFragment {
 
     private String sysfsrecord(String file) {
         String ret = "";
-        File sysfspath = new File(file);
+        RootFile sysfspath = new RootFile(file);
         if (sysfspath.isDirectory())
             return ret = sysfspathIsdirectory(file);
         else {
@@ -583,18 +584,19 @@ public class LogsFragment extends RecyclerViewFragment {
 
     private String sysfspathIsdirectory(String file) {
         String ret = "";
+	List<RootFile> directoryListing;
         Log.i(Constants.TAG, "Dir: " + file);
         String path = file;
         ret = ret + "Dir: " + path + "\n";
-        File dir = new File(path);
-        File[] directoryListing = dir.listFiles();
+        RootFile dir = new RootFile(path);
+        directoryListing = dir.listFiles();
         if (directoryListing != null) {
-            for (File child: directoryListing) {
+            for (RootFile child: directoryListing) {
                 if (!child.isDirectory()) {
                     Log.i(Constants.TAG, "File: " + child + " | Value: " + Utils.readFile(child.toString()));
                     ret = ret + "File: " + child + " | Value: " + Utils.readFile(child.toString()) + "\n";
                 } else
-                    ret = ret + sysfspathIsdirectory(child.getAbsolutePath());
+                    ret = ret + sysfspathIsdirectory(child.toString());
             }
         }
         return ret;
