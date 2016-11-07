@@ -367,26 +367,26 @@ public class LogsFragment extends RecyclerViewFragment {
 
         final AppCompatCheckBox logcat = new AppCompatCheckBox(getActivity());
         logcat.setText(getString(R.string.logcat));
-        if (Misc.isLoggerActive())
-            checkBoxLayout.addView(logcat);
 
         final AppCompatCheckBox log_radio = new AppCompatCheckBox(getActivity());
         log_radio.setText(getString(R.string.log_radio));
-        if (Misc.isLoggerActive())
-            checkBoxLayout.addView(log_radio);
 
         final AppCompatCheckBox log_events = new AppCompatCheckBox(getActivity());
         log_events.setText(getString(R.string.log_events));
-        if (Misc.isLoggerActive())
-            checkBoxLayout.addView(log_events);
 
         final AppCompatCheckBox driver_message = new AppCompatCheckBox(getActivity());
         driver_message.setText(getString(R.string.driver_message));
-        checkBoxLayout.addView(driver_message);
 
         final AppCompatCheckBox get_prop = new AppCompatCheckBox(getActivity());
         get_prop.setText(getString(R.string.get_prop));
+
+        checkBoxLayout.addView(driver_message);
+        if (Misc.isLoggerActive()) checkBoxLayout.addView(log_events);
         checkBoxLayout.addView(get_prop);
+        if (Misc.isLoggerActive()) {
+            checkBoxLayout.addView(logcat);
+            checkBoxLayout.addView(log_radio);
+	}
 
         selectAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
