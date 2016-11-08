@@ -683,8 +683,8 @@ public class CPU implements Constants {
         return false;
     }
 
-    public static void setPCMinFreq(int freq, int core, Context context) {
-        while (freq != getMinFreq(core, true)) {
+    public static boolean setPCMinFreq(int freq, int core, Context context) {
+        for (int i = 0; i < 10; i++) {
             if (core > 0) {
                 Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
                 Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
@@ -692,7 +692,10 @@ public class CPU implements Constants {
             Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 644, context);
             Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MIN_FREQ, core), String.format(Locale.US, CPU_MIN_FREQ, core), context);
             Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 444, context);
+            if (freq == getMinFreq(core, true))
+                return true;
         }
+        return false;
     }
 
     public static boolean isPerCoreGovControlEnabled(Context context) {
@@ -711,8 +714,8 @@ public class CPU implements Constants {
         }
     }
 
-    public static void setGovernorPC(String governor, int core, Context context) {
-        while (!governor.equals(getCurGovernor(core, true))) {
+    public static boolean setGovernorPC(String governor, int core, Context context) {
+        for (int i = 0; i < 10; i++) {
             if (core > 0) {
                 Control.deletespecificcommand(context, null, "echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
                 Control.run("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), String.format(Locale.US, Constants.CPU_CORE_ONLINE, core), context);
@@ -720,7 +723,10 @@ public class CPU implements Constants {
             Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 644, context);
             Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, core), String.format(Locale.US, CPU_SCALING_GOVERNOR, core), context);
             Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 444, context);
+            if (governor.equals(getCurGovernor(core, true)))
+                return true;
         }
+        return false;
     }
 
 }
