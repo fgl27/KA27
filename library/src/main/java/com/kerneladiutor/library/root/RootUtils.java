@@ -156,6 +156,8 @@ public class RootUtils {
                 }
                 firstTry = false;
                 return sb.toString().trim();
+            } catch (NullPointerException e) {
+                Log.e(Tools.TAG, "catch NullPointerException runCommand as Su");
             } catch (IOException e) {
                 closed = true;
                 e.printStackTrace();
@@ -177,6 +179,8 @@ public class RootUtils {
                 process.waitFor();
                 Log.i(Tools.TAG, root ? "SU closed: " + process.exitValue() : "SH closed: " + process.exitValue());
                 closed = true;
+            } catch (NullPointerException e) {
+                Log.e(Tools.TAG, "catch NullPointerException close Su");
             } catch (Exception e) {
                 e.printStackTrace();
             }
