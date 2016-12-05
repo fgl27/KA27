@@ -416,6 +416,9 @@ public class CPU implements Constants {
             setMinFreq(command, freq, context);
         if (Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, 0)))
             Control.runCommand(String.valueOf(freq), CPU_MAX_FREQ_KT, command, context);
+        else
+            for (int i = 0; i < getCoreCount(); i++)
+                setPCMaxFreq(freq, i, context);
     }
 
     public static int getMaxFreq(boolean forceRead) {
@@ -662,8 +665,8 @@ public class CPU implements Constants {
         Utils.saveBoolean("Per_Core_Freq_Control_Enabled", active, context);
         //If deactivate reset freq to core 0 freq
         if (!active) {
-            setMinFreq(getMinFreq(true), context);
-            setMaxFreq(getMaxFreq(true), context);
+            setMinFreq(getMinFreq(0, false), context);
+            setMaxFreq(getMaxFreq(0, false), context);
         }
     }
     //Rewrite already existent code because of delay using existent function cause command to start before the previously had not finished
