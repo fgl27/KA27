@@ -99,7 +99,7 @@
   <string name="input_interval">Укажите интервал</string>
   <string name="input_interval_summary">Минимальный интервал ускорения процессора при регистрации ввода.</string>
   <string name="input_boost_freq">Частота ускорения на входе</string>
-  <string name="input_boost_freq_core">Ускорение ввода частоты ядра %s</string>
+  <string name="input_boost_freq_core">Ускорение ввода частоты ядра %d</string>
   <string name="input_boost_freq_summary">Значение, до которого будет повышена частота процессора при регистрации ввода.</string>
   <string name="wakeup_boost">Усиление пробуждения</string>
   <string name="wakeup_boost_summary">Wakeup Boost схож с input boost,  но срабатывает при включенном экране</string>

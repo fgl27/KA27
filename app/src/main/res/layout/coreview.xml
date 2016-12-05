@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:ellipsize="end"
             android:gravity="end|center_vertical"
-            android:singleLine="true" />
+            android:maxLines="1" />
 
     </LinearLayout>
 

@@ -98,7 +98,7 @@
   <string name="input_interval">Unos razdoblja</string>
   <string name="input_interval_summary">Najkraće razdoblje kroz koje je CPU ubrzan nakon odčitavanja unosa.</string>
   <string name="input_boost_freq">Rast frekvencije pri unosu</string>
-  <string name="input_boost_freq_core">Unos povećanja frekvencija jezgre %s</string>
+  <string name="input_boost_freq_core">Unos povećanja frekvencija jezgre %d</string>
   <string name="input_boost_freq_summary">CPU frekvencija će porasti do ove vrijednosti pri otkrivanju unosa.</string>
   <string name="global_offset">Global Offset</string>
   <string name="override_vmin">Preinači minimalni napon</string>

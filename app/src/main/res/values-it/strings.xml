@@ -99,7 +99,7 @@
   <string name="input_interval">Intervallo di input</string>
   <string name="input_interval_summary">Intervallo minimo nella quale una CPU è potenziata quando l\'input viene rilevato.</string>
   <string name="input_boost_freq">Boost frequenza al tocco</string>
-  <string name="input_boost_freq_core">Boost della frequenza al tocco %s</string>
+  <string name="input_boost_freq_core">Boost della frequenza al tocco %d</string>
   <string name="input_boost_freq_summary">La frequenza a cui la CPU sarà portata al rilevamento di un input.</string>
   <string name="wakeup_boost">Accelerazione al risveglio</string>
   <string name="wakeup_boost_summary">Il Boost di risveglio è simile al boot di input ma si verifica quando lo schermo viene acceso.</string>

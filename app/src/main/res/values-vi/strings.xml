@@ -99,7 +99,7 @@
   <string name="input_interval">Khoảng thời gian đầu vào</string>
   <string name="input_interval_summary">Khoảng thời gian tối thiểu tăng cường một CPU khi phát hiện đầu vào.</string>
   <string name="input_boost_freq">Tần số đầu vào tăng cường</string>
-  <string name="input_boost_freq_core">Đầu vào tăng cường tần số lõi %s</string>
+  <string name="input_boost_freq_core">Đầu vào tăng cường tần số lõi %d</string>
   <string name="override_vmin">Ghi đè lên điện áp tối thiểu</string>
   <string name="balanced">Cân đối</string>
   <string name="performance">Hiệu suất cao</string>

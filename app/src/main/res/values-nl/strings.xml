@@ -97,7 +97,7 @@
   <string name="input_interval">Input Interval</string>
   <string name="input_interval_summary">Minimuminterval een CPU wordt versterkt wanneer invoer wordt gedetecteerd.</string>
   <string name="input_boost_freq">Input Boost frequentie</string>
-  <string name="input_boost_freq_core">Input Boost Frequentie Kern %s</string>
+  <string name="input_boost_freq_core">Input Boost Frequentie Kern %d</string>
   <string name="input_boost_freq_summary">CPU frequentie te stimuleren om deze frequentie na invoer detectie.</string>
   <string name="override_vmin">Minimale spanning overschrijven</string>
   <string name="override_vmin_summary">Schakel uit om fabrikant\'s limieten op ondervoltage uit te schakelen</string>

@@ -16,5 +16,5 @@
         android:drawablePadding="20dp"
         android:ellipsize="middle"
         android:gravity="center_vertical"
-        android:singleLine="true" />
+        android:maxLines="1" />
 </FrameLayout>

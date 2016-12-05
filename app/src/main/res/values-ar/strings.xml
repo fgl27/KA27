@@ -94,7 +94,7 @@
   <string name="input_interval">قم بأدخال فترة زمنية</string>
   <string name="input_interval_summary">اقصر فترة زمنية لتعزيز المعالج عند تحديد الادخال.</string>
   <string name="input_boost_freq">أدخل مقدار تردد التعزيز</string>
-  <string name="input_boost_freq_core">ادخل مقدار التعزيز للنواة %s</string>
+  <string name="input_boost_freq_core">ادخل مقدار التعزيز للنواة %d</string>
   <string name="input_boost_freq_summary">تردد المعالج لتعزيزه للتردد المدخل الذي تم تحديده.</string>
   <string name="override_vmin">تجاوز الحد الادنى للفولطية</string>
   <string name="override_vmin_summary">قم بالايقاف لازالة حدود المجهز في تقليل الفولطية</string>

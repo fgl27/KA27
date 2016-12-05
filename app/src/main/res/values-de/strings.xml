@@ -98,7 +98,7 @@
   <string name="input_interval">Eingabe-Intervall</string>
   <string name="input_interval_summary">Minimales Intervall des CPU-Boost, wenn eine Eingabe erfolgt.</string>
   <string name="input_boost_freq">Eingabe CPU-Boost Frequenz</string>
-  <string name="input_boost_freq_core">Eingang Frequenz Core Boost %s</string>
+  <string name="input_boost_freq_core">Eingang Frequenz Core Boost %d</string>
   <string name="input_boost_freq_summary">Die CPU-Frequenz wird bei Berühren des Bildschirms auf diesen Wert gesetzt.</string>
   <string name="wakeup_boost">Wakeup-Boost</string>
   <string name="wakeup_boost_summary">»Wakeup Boost« ist ähnlich wie »input boost« aber es wird angewendet, wenn der Bildschirm eingeschaltet wird.</string>

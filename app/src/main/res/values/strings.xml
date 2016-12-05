@@ -147,7 +147,7 @@
     <string name="input_interval">Input Interval</string>
     <string name="input_interval_summary">Minimum interval a CPU is boosted when input is detected.</string>
     <string name="input_boost_freq">Input Boost Frequency</string>
-    <string name="input_boost_freq_core">Input Boost Frequency Core %s</string>
+    <string name="input_boost_freq_core">Input Boost Frequency Core %d</string>
     <string name="input_boost_freq_summary">CPU frequency to be boosted to this frequency upon input detection.</string>
     <string name="wakeup_boost">Wakeup Boost</string>
     <string name="wakeup_boost_summary">Wakeup Boost is similar to input boost but it occurs when screen is turned on.</string>
@@ -865,7 +865,7 @@
     <string name="emulate_initd">Emulate Init.d</string>
     <string name="emulate_initd_summary">If your device does not support Init.d you can enable Emulate Init.d. By enabling the Init.d Emulation the application will run the scripts after your device boots up, but before apply on boot.</string>
     <string name="executing">Executing</string>
-    <string name="execute">Execute...</string>
+    <string name="execute">Execute&#8230;</string>
     <string name="no_scripts_found">No scripts found!</string>
     <string name="starting_initd">Starting Init.d emulation</string>
     <string name="finishing_initd">Finishing Init.d emulation</string>
