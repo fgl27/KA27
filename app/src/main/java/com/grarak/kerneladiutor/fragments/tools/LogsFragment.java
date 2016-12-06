@@ -260,7 +260,7 @@ public class LogsFragment extends RecyclerViewFragment {
     }
 
     public static String getDate() {
-        DateFormat dateformate = new SimpleDateFormat("MMM_dd_yyyy_HH_mm");
+        DateFormat dateformate = new SimpleDateFormat("MMM_dd_yyyy_HH_mm", Locale.US);
         Date date = new Date();
         String Final_Date = "_" + dateformate.format(date);
         return Final_Date;
