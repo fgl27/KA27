@@ -38,4 +38,9 @@
         android:paddingStart="@dimen/card_padding"
         android:visibility="gone" />
 
+    <FrameLayout
+        android:id="@+id/null_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

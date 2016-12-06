@@ -85,8 +85,11 @@ public abstract class BaseCardView extends CardView {
         ta.recycle();
         setForeground(d);
 
+        // null parent avoid Layout Inflation without a Parent
+        ViewGroup null_parent = (ViewGroup) findViewById(R.id.null_parent);
+
         // Add the base view
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.base_cardview, null, false);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.base_cardview, null_parent, false);
         addView(view);
 
         headerLayout = (LinearLayout) view.findViewById(R.id.header_layout);
