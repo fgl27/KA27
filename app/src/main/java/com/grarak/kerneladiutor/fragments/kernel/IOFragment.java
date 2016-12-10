@@ -103,10 +103,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
             readheads.clear();
 
             internalStorageInit();
-            if (IO.hasExternalStorage())
-                externalStorageInit();
-            if (IO.hasRotational()) RotationalInit();
-            if (IO.hasIORandom()) IORandomInit();
+            if (IO.hasExternalStorage()) externalStorageInit();
             if (IO.hasIOStats()) IOStatsInit();
             if (IO.hasIOAffinity()) IOAffintyInit();
         }
