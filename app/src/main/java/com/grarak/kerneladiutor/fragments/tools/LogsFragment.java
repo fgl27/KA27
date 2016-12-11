@@ -546,11 +546,9 @@ public class LogsFragment extends RecyclerViewFragment {
                 for (int a = 0; a < arrays[i].length; a++) {
                     arrays_one = arrays[i][a];
                     if (arrays_one.contains("cpu") && arrays_one.contains("%d")) {
-                        for (int c = 0; c < CPU.getCoreCount(); c++) {
-                            arrays_one_formated = String.format(Locale.US, arrays_one, c);
+                            arrays_one_formated = String.format(Locale.US, arrays_one, 0);
                             if (Utils.existFile(arrays_one_formated) && !arrays_one_formated.contains("/system/bin"))
                                 output.write(sysfsrecord(arrays_one_formated));
-                        }
                     } else if (Utils.existFile(arrays_one) && !arrays_one.contains("/system/bin"))
                         output.write(sysfsrecord(arrays_one));
                 }
