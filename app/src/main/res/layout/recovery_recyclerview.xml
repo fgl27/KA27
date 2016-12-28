@@ -44,6 +44,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
+            fab:fab_icon="@drawable/ic_wipe"
             fab:fab_size="mini"
             fab:fab_title="@string/wipe_data" />
 
@@ -53,6 +54,7 @@
             android:layout_height="wrap_content"
             fab:fab_colorNormal="@color/fab_normal_menu"
             fab:fab_colorPressed="@color/fab_pressed_menu"
+            fab:fab_icon="@drawable/ic_wipe"
             fab:fab_size="mini"
             fab:fab_title="@string/wipe_cache" />
 
