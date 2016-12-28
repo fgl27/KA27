@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.1"
 
     defaultConfig {
-        applicationId "com.bhb27.kerneladiutor"
+        applicationId "com.csk.kerneladiutor"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 36

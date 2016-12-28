@@ -2,19 +2,19 @@
 
 Mod version of original  [Grarak/KernelAdiutor](https://github.com/Grarak/KernelAdiutor)
 
-![Screenshot](https://raw.githubusercontent.com/bhb27/KA27/master/screenshots/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png)
 
-* [Download](https://www.androidfilehost.com/?w=files&flid=48767)
+* [Download](https://www.androidfilehost.com/?w=files&flid=139371)
 
-* [XDA thread](http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526)
+* [XDA thread](http://forum.xda-developers.com/galaxy-s5/orig-development/kernel-crazysuperkernel-v1-t3485246)
 
-* [Changelog](https://github.com/bhb27/KernelAdiutor/wiki/Changelog)
+* [Changelog](https://github.com/FrancescoCG/KernelAdiutor/wiki/Changelog)
 
 
 ## Report a bug or request a feature
 
-You can report a bug or request a feature by [opening an issue](https://github.com/bhb27/KA27/issues/new) or
-mention @baybutcher27 with the request/bug on the XDA thread [XDA thread](http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526)
+You can report a bug or request a feature by [opening an issue](https://github.com/FrancescoCG/CrazySuperKernelAdiutor/issues/new) or
+mention @CrazyGamerGR with the request/bug on the XDA thread [XDA thread](http://forum.xda-developers.com/galaxy-s5/orig-development/kernel-crazysuperkernel-v1-t3485246)
 
 #### How to report a bug
 * A detailed description of the bug
@@ -34,7 +34,7 @@ mention @baybutcher27 with the request/bug on the XDA thread [XDA thread](http:/
 Clone the project and come in:
 
 ``` bash
-$ git clone git://github.com/bhb27/KA27.git
+$ git clone git://github.com/FrancescoCG/KA27.git
 $ cd KernelAdiutor
 $ ./gradlew build
 ```

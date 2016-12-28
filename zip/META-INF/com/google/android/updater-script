@@ -9,7 +9,7 @@ ui_print("             Kernel adiutor                    ");
 ui_print("           created by Grarak                   ");
 ui_print("                                               ");
 ui_print("                 Mod by                        ");
-ui_print("         baybutcher27 - AKA - BHB27            ");
+ui_print("           BHB27 AND CrazyGamerGR              ");
 ui_print("-----------------------------------------------");
 run_program("/sbin/busybox", "sleep", "1");
 
@@ -20,8 +20,7 @@ set_perm(0, 0, 0644, "/system/priv-app/KernelAdiutor/KernelAdiutor.apk");
 unmount("/system");
 ui_print("-----------------------------------------------");
 ui_print("                                               ");
-ui_print("     Instalation finished, enjoy.              ");
-ui_print("                  Bye...                       ");
+ui_print("            Instalation finished               ");
 ui_print("                                               ");
 ui_print("-----------------------------------------------");
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
 
-    <string name="app_name">BHB27 Kernel Adiutor</string>
+    <string name="app_name">CSK Adiutor</string>
     <string name="root_waiting">Waiting for root access</string>
     <string name="no_root">No root available</string>
     <string name="no_busybox">No busybox available</string>
@@ -967,8 +967,8 @@
     <string name="feature_requestb_summary">Do you want more features? or found a bug?\nClick here and mention @baybutcher27 with the request or bug on the XDA thread.</string>
     <string name="xda_summary">This app is supported via XDA thread check it here</string>
 
-    <string name="modification">Modified for BHB27-Kernel</string>
-    <string name="modification_summary">This application is being heavily modified for the kernel BHB27-Kernel for Quark Motorola (Moto Maxx, Turbo or Droid Turbo). Check it out in the downloads section!</string>
+    <string name="modification">Modified for CrazySuperKernel</string>
+    <string name="modification_summary">This application is being heavily modified for the CrazySuperKernel. Check it out in the downloads section!</string>
 
     <string name="modification_version">BHB27 Mod Version</string>
     <string name="modification_version_number">0.9.9.4.+33</string>
