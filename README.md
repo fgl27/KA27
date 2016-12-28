@@ -8,7 +8,7 @@ Mod version of original  [Grarak/KernelAdiutor](https://github.com/Grarak/Kernel
 
 * [XDA thread](http://forum.xda-developers.com/galaxy-s5/orig-development/kernel-crazysuperkernel-v1-t3485246)
 
-* [Changelog](https://github.com/FrancescoCG/KernelAdiutor/wiki/Changelog)
+* [Changelog](https://github.com/FrancescoCG/CrazySuperKernelAdiutor/wiki/Changelog)
 
 
 ## Report a bug or request a feature
@@ -34,7 +34,7 @@ mention @CrazyGamerGR with the request/bug on the XDA thread [XDA thread](http:/
 Clone the project and come in:
 
 ``` bash
-$ git clone git://github.com/FrancescoCG/KA27.git
+$ git clone git://github.com/FrancescoCG/CrazySuperKernelAdiutor.git
 $ cd KernelAdiutor
 $ ./gradlew build
 ```
