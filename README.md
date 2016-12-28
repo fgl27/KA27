@@ -2,7 +2,7 @@
 
 Mod version of original  [Grarak/KernelAdiutor](https://github.com/Grarak/KernelAdiutor)
 
-![Screenshot](https://raw.githubusercontent.com/Grarak/KernelAdiutor/master/screenshots/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/FrancescoCG/CrazySuperKernelAdiutor/master/screenshots/screenshot.png)
 
 * [Download](https://www.androidfilehost.com/?w=files&flid=139371)
 
