@@ -29,7 +29,7 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 public class AboutusFragment extends RecyclerViewFragment {
 
-    private final String APP_SOURCE = "https://github.com/FrancescoCG/CrazySuperKernelAdiutor/";
+    private final String APP_SOURCE = "https://github.com/CrazyGamerGR/CrazySuperKernelAdiutor/";
     private final String XDA_LINK = "http://forum.xda-developers.com/galaxy-s5/orig-development/kernel-crazysuperkernel-v1-t3485246";
 
     @Override

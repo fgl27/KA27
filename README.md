@@ -2,18 +2,18 @@
 
 Mod version of original  [Grarak/KernelAdiutor](https://github.com/Grarak/KernelAdiutor)
 
-![Screenshot](https://raw.githubusercontent.com/FrancescoCG/CrazySuperKernelAdiutor/master/screenshots/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/CrazyGamerGR/CrazySuperKernelAdiutor/master/screenshots/screenshot.png)
 
 * [Download](https://www.androidfilehost.com/?w=files&flid=139371)
 
 * [XDA thread](http://forum.xda-developers.com/galaxy-s5/orig-development/kernel-crazysuperkernel-v1-t3485246)
 
-* [Changelog](https://github.com/FrancescoCG/CrazySuperKernelAdiutor/wiki/Changelog)
+* [Changelog](https://github.com/CrazyGamerGR/CrazySuperKernelAdiutor/wiki/Changelog)
 
 
 ## Report a bug or request a feature
 
-You can report a bug or request a feature by [opening an issue](https://github.com/FrancescoCG/CrazySuperKernelAdiutor/issues/new) or
+You can report a bug or request a feature by [opening an issue](https://github.com/CrazyGamerGR/CrazySuperKernelAdiutor/issues/new) or
 mention @CrazyGamerGR with the request/bug on the XDA thread [XDA thread](http://forum.xda-developers.com/galaxy-s5/orig-development/kernel-crazysuperkernel-v1-t3485246)
 
 #### How to report a bug
@@ -34,7 +34,7 @@ mention @CrazyGamerGR with the request/bug on the XDA thread [XDA thread](http:/
 Clone the project and come in:
 
 ``` bash
-$ git clone git://github.com/FrancescoCG/CrazySuperKernelAdiutor.git
+$ git clone git://github.com/CrazyGamerGR/CrazySuperKernelAdiutor.git
 $ cd KernelAdiutor
 $ ./gradlew build
 ```
