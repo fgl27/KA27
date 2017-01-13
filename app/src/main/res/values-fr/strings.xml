@@ -432,17 +432,10 @@
   <string name="hostname">Nom d\'hôte</string>
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">Wakelock smb135x</string>
-  <string name="smb135x_wakelock_summary">Empêcher les wakelocks lorsque l\'appareil n\'est pas branché.</string>
   <string name="sensor_ind_wakelock">Wakelock sensor_ind</string>
-  <string name="sensor_ind_wakelock_summary">Empêche le wakelock quand la fonction \"Ambient Display\" est active.</string>
-  <string name="msm_hsic_host_wakelock">Wakelock msm_hsic_host</string>
-  <string name="msm_hsic_host_wakelock_summary">Prévenir les wakelock msm_hsic_host.</string>
   <string name="wlan_rx_wakelock">Wakelock wlan_rx</string>
-  <string name="wlan_rx_wakelock_summary">Empêche le wakelock wlan_rx.</string>
   <string name="wlan_ctrl_wakelock">Wakelock wlan_ctrl</string>
-  <string name="wlan_ctrl_wakelock_summary">Empêche le wakelock wlan_ctrl.</string>
   <string name="wlan_wakelock">Wakelock wlan</string>
-  <string name="wlan_wakelock_summary">Empêche le wakelock wlan.</string>
   <string name="wlan_rx_wakelock_divider">Diviseur du wakelock wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Diviseur du wakelock msm_hsic</string>
   <string name="no_kernels">Aucun noyau n\'a été trouvé</string>

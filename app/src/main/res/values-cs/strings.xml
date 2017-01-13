@@ -317,8 +317,6 @@
   <string name="tcp_summary">„Transmission Control Protocol“ je jedním z hlavních protokolů sady internetových protokolů (IP) a je natolik běžný, že se pro celou sadu běžně používá označení TCP/IP.</string>
   <string name="hostname">Název hostitele</string>
   <string name="wakelock">Zákaz úsporného režimu</string>
-  <string name="smb135x_wakelock_summary">Zamezení zákazu úsporného režimu při odpojení napájení.</string>
-  <string name="sensor_ind_wakelock_summary">Zamezení zákazu úsporného režimu při vypnutém zobrazování upozornění na zamykací obrazovce.</string>
   <string name="no_kernels">Nenalezeny žádné kernely</string>
   <string name="logo">Logo</string>
   <string name="features">Funkce</string>

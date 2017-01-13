@@ -41,6 +41,7 @@ import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakeLockFragment;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -89,7 +90,8 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
             SoundFragment.class,
             ThermalFragment.class,
             VMFragment.class,
-            WakeFragment.class
+            WakeFragment.class,
+            WakeLockFragment.class
         };
 
         for (Class mClass: classes)

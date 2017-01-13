@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.database;
 
 import android.content.Context;
@@ -42,9 +41,9 @@ public class ProfileDB extends JsonDB {
     }
 
     public boolean containProfile(String name) {
-        List<ProfileItem> profiles = getAllProfiles();
+        List < ProfileItem > profiles = getAllProfiles();
 
-        for (ProfileItem profile : profiles) {
+        for (ProfileItem profile: profiles) {
             if (profile.getName().equals(name)) {
                 return true;
             }
@@ -55,7 +54,7 @@ public class ProfileDB extends JsonDB {
 
     public int getProfileId(String name) {
 
-        List<ProfileItem> profiles = getAllProfiles();
+        List < ProfileItem > profiles = getAllProfiles();
         for (int i = 0; i < profiles.size(); i++) {
             if (profiles.get(i).getName().equals(name)) {
                 return i;
@@ -64,7 +63,7 @@ public class ProfileDB extends JsonDB {
         return -1;
     }
 
-    public void putProfile(String name, LinkedHashMap<String, String> commands) {
+    public void putProfile(String name, LinkedHashMap < String, String > commands) {
         try {
 
             JSONObject items = new JSONObject();
@@ -88,18 +87,18 @@ public class ProfileDB extends JsonDB {
         }
     }
 
-    public List<ProfileItem> getAllProfiles() {
-        List<ProfileItem> items = new ArrayList<>();
-        for (DBJsonItem jsonItem : getAllItems())
+    public List < ProfileItem > getAllProfiles() {
+        List < ProfileItem > items = new ArrayList < > ();
+        for (DBJsonItem jsonItem: getAllItems())
             items.add((ProfileItem) jsonItem);
         return items;
     }
 
-    public int updateDB (Context context) {
+    public int updateDB(Context context) {
         ProfileDB profileDB = new ProfileDB(context);
         int result = 0;
 
-        List<ProfileDB.ProfileItem> profileItems = profileDB.getAllProfiles();
+        List < ProfileDB.ProfileItem > profileItems = profileDB.getAllProfiles();
         for (int i = 0; i < profileItems.size(); i++) {
             JSONObject temp = profileItems.get(i).getItem();
             if (profileItems.get(i).getID().equals("111")) {
@@ -129,20 +128,19 @@ public class ProfileDB extends JsonDB {
         public String getID() {
             if (getString("id") != null) {
                 return getString("id");
-            }
-            else return "111";
+            } else return "111";
         }
 
-        public List<String> getPath() {
+        public List < String > getPath() {
             return getList("path");
         }
 
-        public List<String> getCommands() {
+        public List < String > getCommands() {
             return getList("command");
         }
 
-        private List<String> getList(String name) {
-            List<String> list = new ArrayList<>();
+        private List < String > getList(String name) {
+            List < String > list = new ArrayList < > ();
             try {
                 JSONArray items = item.getJSONArray("commands");
                 for (int i = 0; i < items.length(); i++) {

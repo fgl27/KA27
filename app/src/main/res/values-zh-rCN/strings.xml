@@ -452,17 +452,10 @@
   <string name="hostname">主机名</string>
   <string name="wakelock">唤醒锁</string>
   <string name="smb135x_wakelock">smb135x 唤醒锁</string>
-  <string name="smb135x_wakelock_summary">当充电器未连接时阻止唤醒锁。</string>
   <string name="sensor_ind_wakelock">sensor_ind 唤醒锁</string>
-  <string name="sensor_ind_wakelock_summary">当主动显示被禁用时阻止唤醒锁。</string>
-  <string name="msm_hsic_host_wakelock">msm_hsic_host 唤醒锁</string>
-  <string name="msm_hsic_host_wakelock_summary">阻止 msm_hsic_host 唤醒锁。</string>
   <string name="wlan_rx_wakelock">wlan_rx 唤醒锁</string>
-  <string name="wlan_rx_wakelock_summary">阻止 wlan_rx 取得唤醒锁</string>
   <string name="wlan_ctrl_wakelock">wlan_ctrl 唤醒锁</string>
-  <string name="wlan_ctrl_wakelock_summary">阻止 wlan_ctrl 取得唤醒锁</string>
   <string name="wlan_wakelock">wlan 唤醒锁</string>
-  <string name="wlan_wakelock_summary">阻止 wlan 取得唤醒锁</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock 分频器</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock 分频器</string>
   <string name="no_kernels">发现没有内核</string>

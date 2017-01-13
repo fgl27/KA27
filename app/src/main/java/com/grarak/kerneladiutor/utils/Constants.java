@@ -819,6 +819,54 @@ public interface Constants {
 
     String[] ENTROPY_ARRAY = {PROC_RANDOM};
 
+    // Wakelocks
+    String[] SMB135X_WAKELOCKS = {
+        "/sys/module/smb135x_charger/parameters/use_wlock",
+        "/sys/module/wakeup/parameters/enable_smb135x_wake_ws"
+    };
+
+    String BLUESLEEP_WAKELOCK = "/sys/module/wakeup/parameters/enable_bluesleep_ws";
+
+    String BLUEDROID_TIMER_WAKELOCK = "/sys/module/wakeup/parameters/enable_bluedroid_timer_ws";
+
+    String SENSOR_IND_WAKELOCK = "/sys/module/wakeup/parameters/enable_si_ws";
+    String MSM_HSIC_HOST_WAKELOCK = "/sys/module/wakeup/parameters/enable_msm_hsic_ws";
+
+    String[] WLAN_RX_WAKELOCKS = {
+        "/sys/module/wakeup/parameters/wlan_rx_wake",
+        "/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws"
+    };
+
+    String[] WLAN_CTRL_WAKELOCKS = {
+        "/sys/module/wakeup/parameters/wlan_ctrl_wake",
+        "/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws"
+    };
+
+    String[] WLAN_WAKELOCKS = {
+        "/sys/module/wakeup/parameters/wlan_wake",
+        "/sys/module/wakeup/parameters/enable_wlan_wake_ws"
+    };
+
+    String WLAN_RX_WAKELOCK_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
+    String MSM_HSIC_WAKELOCK_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
+    String BCMDHD_WAKELOCK_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
+
+    String[][] WAKELOCK_ARRAY = {
+        SMB135X_WAKELOCKS,
+        WLAN_RX_WAKELOCKS,
+        WLAN_CTRL_WAKELOCKS,
+        WLAN_WAKELOCKS,
+        {
+            SENSOR_IND_WAKELOCK,
+            MSM_HSIC_HOST_WAKELOCK,
+            WLAN_RX_WAKELOCK_DIVIDER,
+            MSM_HSIC_WAKELOCK_DIVIDER,
+            BCMDHD_WAKELOCK_DIVIDER,
+            BLUESLEEP_WAKELOCK,
+            BLUEDROID_TIMER_WAKELOCK
+        }
+    };
+
     // Misc
 
     // Vibration
@@ -854,33 +902,6 @@ public interface Constants {
 
     String VIB_LIGHT = "/sys/devices/virtual/timed_output/vibrator/vmax_mv_light";
     String VIB_ENABLE = "/sys/devices/i2c-3/3-0033/vibrator/vib0/vib_enable";
-
-    // Wakelock
-    String[] SMB135X_WAKELOCKS = {
-            "/sys/module/smb135x_charger/parameters/use_wlock",
-            "/sys/module/wakeup/parameters/enable_smb135x_wake_ws"
-    };
-
-    String SENSOR_IND_WAKELOCK = "/sys/module/wakeup/parameters/enable_si_ws";
-    String MSM_HSIC_HOST_WAKELOCK = "/sys/module/wakeup/parameters/enable_msm_hsic_ws";
-
-    String[] WLAN_RX_WAKELOCKS = {
-            "/sys/module/wakeup/parameters/wlan_rx_wake",
-            "/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws"
-    };
-
-    String[] WLAN_CTRL_WAKELOCKS = {
-            "/sys/module/wakeup/parameters/wlan_ctrl_wake",
-            "/sys/module/wakeup/parameters/enable_wlan_ctrl_wake_ws"
-    };
-
-    String[] WLAN_WAKELOCKS = {
-            "/sys/module/wakeup/parameters/wlan_wake",
-            "/sys/module/wakeup/parameters/enable_wlan_wake_ws"
-    };
-
-    String WLAN_RX_WAKELOCK_DIVIDER = "/sys/module/bcmdhd/parameters/wl_divide";
-    String MSM_HSIC_WAKELOCK_DIVIDER = "/sys/module/xhci_hcd/parameters/wl_divide";
 
     // Logging
     String LOGGER_MODE = "/sys/kernel/logger_mode/logger_mode";
@@ -926,10 +947,9 @@ public interface Constants {
 
     String[][] MISC_ARRAY = {
             VIBRATION_ARRAY,
-            {VIB_LIGHT, VIB_ENABLE, SENSOR_IND_WAKELOCK, MSM_HSIC_HOST_WAKELOCK, WLAN_RX_WAKELOCK_DIVIDER,
-                    MSM_HSIC_WAKELOCK_DIVIDER, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS,  POWER_SUSPEND_MODE,
+            {VIB_LIGHT, VIB_ENABLE, LOGGER_ENABLED, DYNAMIC_FSYNC, GENTLE_FAIR_SLEEPERS,  POWER_SUSPEND_MODE,
                     POWER_SUSPEND_STATE, BCL_HOTPLUG, TCP_AVAILABLE_CONGESTIONS, HOSTNAME_KEY, GETENFORCE, SETENFORCE, ADB_OVER_WIFI},
-            SMB135X_WAKELOCKS, WLAN_RX_WAKELOCKS, WLAN_CTRL_WAKELOCKS, WLAN_WAKELOCKS, LOGGER_ARRAY, CRC_ARRAY, FSYNC_ARRAY, BCL_ARRAY};
+                    LOGGER_ARRAY, CRC_ARRAY, FSYNC_ARRAY, BCL_ARRAY};
 
     // Build prop
     String BUILD_PROP = "/system/build.prop";

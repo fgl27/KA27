@@ -428,17 +428,10 @@
   <string name="hostname">Nome d\'agospiu</string>
   <string name="wakelock">Esconsueñu calteníu</string>
   <string name="smb135x_wakelock">Esconsueñu calteníu de smb135x</string>
-  <string name="smb135x_wakelock_summary">Evita l\'esconsueñu calteníu al desconeutar la enerxía.</string>
   <string name="sensor_ind_wakelock">Esconsueñu calteníu de sensor_ind</string>
-  <string name="sensor_ind_wakelock_summary">Evita l\'esconsueñu calteníu cuando tea deshabilitada la pantalla ambiente.</string>
-  <string name="msm_hsic_host_wakelock">Esconsueñu calteníu de msm_hsic_host</string>
-  <string name="msm_hsic_host_wakelock_summary">Evita l\'esconsueñu calteníu de msm_hsic_host.</string>
   <string name="wlan_rx_wakelock">Esconsueñu calteníu de wlan_rx</string>
-  <string name="wlan_rx_wakelock_summary">Evita l\'esconsueñu calteníu de wlan_rx.</string>
   <string name="wlan_ctrl_wakelock">Esconsueñu calteníu de wlan_ctrl</string>
-  <string name="wlan_ctrl_wakelock_summary">Evita l\'esconsueñu calteníu de wlan_ctrl.</string>
   <string name="wlan_wakelock">Esconsueñu calteníu de wlan</string>
-  <string name="wlan_wakelock_summary">Evita l\'esconsueñu calteníu de wlan.</string>
   <string name="wlan_rx_wakelock_divider">Divisor d\'esconsueñu calteníu de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor d\'esconsueñu calteníu de msm_hsic</string>
   <string name="no_kernels">Nun s\'alcontraron kernels</string>

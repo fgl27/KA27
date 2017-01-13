@@ -403,17 +403,10 @@
   <string name="hostname">호스트 이름</string>
   <string name="wakelock">웨이크락</string>
   <string name="smb135x_wakelock">smb135x 웨이크락</string>
-  <string name="smb135x_wakelock_summary">전원의 연결이 끊어질 때 웨이크락을 방지합니다.</string>
   <string name="sensor_ind_wakelock">sensor_ind 웨이크락</string>
-  <string name="sensor_ind_wakelock_summary">Ambient Display를 사용하지 않을 때 웨이크락을 방지합니다.</string>
-  <string name="msm_hsic_host_wakelock">msm_hsic_host 웨이크락</string>
-  <string name="msm_hsic_host_wakelock_summary">msm_hsic_host 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock">wlan_rx 웨이크락</string>
-  <string name="wlan_rx_wakelock_summary">wlan_rx 웨이크락을 방지합니다.</string>
   <string name="wlan_ctrl_wakelock">wlan_ctrl 웨이크락</string>
-  <string name="wlan_ctrl_wakelock_summary">wlan_ctrl 웨이크락을 방지합니다.</string>
   <string name="wlan_wakelock">wlan 웨이크락</string>
-  <string name="wlan_wakelock_summary">wlan 웨이크락을 방지합니다.</string>
   <string name="wlan_rx_wakelock_divider">wlan_rx 웨이크락 디바이더</string>
   <string name="msm_hsic_wakelock_divider">msm_hsic 웨이크락 디바이더</string>
   <string name="no_kernels">커널을 찾을 수 없습니다.</string>

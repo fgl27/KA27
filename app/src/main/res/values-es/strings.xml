@@ -467,17 +467,10 @@
   <string name="hostname">Nombre de host</string>
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
-  <string name="smb135x_wakelock_summary">Prevenir wakelock cuando está desconectado a la red.</string>
   <string name="sensor_ind_wakelock">Wakelock de sensor_ind</string>
-  <string name="sensor_ind_wakelock_summary">Prevenir wakelock cuando Ambient Display esta desactivado.</string>
-  <string name="msm_hsic_host_wakelock">Wakelock de msm_hsic_host</string>
-  <string name="msm_hsic_host_wakelock_summary">Evitar msm_hsic_host wakelock.</string>
   <string name="wlan_rx_wakelock">Wakelock de wlan_rx</string>
-  <string name="wlan_rx_wakelock_summary">Evitar Wakelock de wlan_rx.</string>
   <string name="wlan_ctrl_wakelock">Wakelock de wlan_ctrl</string>
-  <string name="wlan_ctrl_wakelock_summary">Evitar Wakelock de wlan_ctrl.</string>
   <string name="wlan_wakelock">WLAN Wakelock</string>
-  <string name="wlan_wakelock_summary">Evitar wlan wakelock.</string>
   <string name="wlan_rx_wakelock_divider">Divisor de Wakelock de wlan_rx</string>
   <string name="msm_hsic_wakelock_divider">Divisor del Wakelock msm_hsic</string>
   <string name="no_kernels">No se encontraron kernels</string>
