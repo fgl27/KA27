@@ -762,7 +762,7 @@
     <string name="adb_over_wifi_summary">Enable ADB over WiFi</string>
     <string name="adb_over_wifi_connect_summary">Enable ADB over WiFi. Connect to: </string>
     <string name="wakelock">Wakelocks</string>
-    <string name="wakelocks_summary">Toggle on: Service can acquire a wakelock. Toggle off: Service cannot acquire a wakelock.</string>
+    <string name="wakelocks_summary">Wakelock is a mechanism of power management service in Android OS, which can be used to keep CPU awake (Partial wakelock) and keep the screen on (Full wakelock).\n\nToggle on: Service can acquire a wakelock.\nToggle off: Service cannot acquire a wakelock.\n\nDefault state for all wakelocks is ON, disable a wakelock can have a reverse effect (over discharge of the battery) and is rare but can cause a random reboot, so re-enable in case of a problem.</string>
     <string name="smb135x_wakelock">smb135x Wakelock</string>
     <string name="smb135x_wakelock_summary">Allow wakelock when power disconnected.\n Currently: %s</string>
     <string name="bluesleep_wakelock">BlueSleep Wakelock</string>
