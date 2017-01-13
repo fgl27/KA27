@@ -482,7 +482,7 @@ public class LogsFragment extends RecyclerViewFragment {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                        ClipData clip = ClipData.newPlainText("Logs", final_grep);
+                                        ClipData clip = ClipData.newPlainText("Logs", getString(R.string.search_text) + name + "\n\n" + final_grep);
                                         clipboard.setPrimaryClip(clip);
                                         Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
                                         return;
@@ -492,7 +492,7 @@ public class LogsFragment extends RecyclerViewFragment {
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        RootUtils.runCommand("echo " + "'" + final_grep + "'" + " > " + log_folder + "grep_a_log" + getDate() + ".txt");
+                                        RootUtils.runCommand("echo " + "'" + getString(R.string.search_text) + name + "\n\n" + final_grep + "'" + " > " + log_folder + "grep_a_log" + getDate() + ".txt");
                                         new AlertDialog.Builder(getActivity(),
                                                 (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
                                             .setTitle(getString(R.string.saved_to))
