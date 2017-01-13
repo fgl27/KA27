@@ -13,9 +13,9 @@ ui_print("         baybutcher27 - AKA - BHB27            ");
 ui_print("-----------------------------------------------");
 run_program("/sbin/busybox", "sleep", "1");
 
-set_perm_recursive(0, 0, 0755, 0755, "/system/priv-app/KernelAdiutor");
+set_perm_recursive(0, 0, 0755, 0755, "/system/app/KernelAdiutor");
 
-set_perm(0, 0, 0644, "/system/priv-app/KernelAdiutor/KernelAdiutor.apk");
+set_perm(0, 0, 0644, "/system/app/KernelAdiutor/KernelAdiutor.apk");
 
 unmount("/system");
 ui_print("-----------------------------------------------");
