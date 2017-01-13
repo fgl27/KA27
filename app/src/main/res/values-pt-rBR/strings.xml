@@ -680,7 +680,6 @@
     <string name="modification_summary">Este aplicativo foi extremamente modificado para melhor servir O Kernel BHB27-Kernel para o dispositivo Quark Motorola (Moto MAXX, Turbo or Droid Turbo). Confira o kernel na seção Download!</string>
 
     <string name="modification_version">Versão modificada BHB27</string>
-    <string name="modification_version_number">0.9.9.4.+10</string>
 
     <string name="accessibility_service_label">BHB27-Kernel-Adiutor Monitor de perfil por App</string>
     <string name="accessibility_service_desc">Serviço para monitorar quando um app é utilizado para carregar o perfil por app configurado.</string>

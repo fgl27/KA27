@@ -23,6 +23,7 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.BuildConfig;
 
 /**
  * Created by willi on 27.12.14.
@@ -60,7 +61,7 @@ public class AboutusFragment extends RecyclerViewFragment {
     private void ModififactionVersionInit() {
         CardViewItem.DCardView mModificationVersionCard = new CardViewItem.DCardView();
         mModificationVersionCard.setTitle(getString(R.string.modification_version));
-        mModificationVersionCard.setDescription(getString(R.string.modification_version_number));
+        mModificationVersionCard.setDescription(BuildConfig.VERSION_NAME);
 
         addView(mModificationVersionCard);
     }
