@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -68,10 +69,12 @@ import com.squareup.picasso.Target;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -323,6 +326,35 @@ public class Utils implements Constants {
             }
         }
         return null;
+    }
+
+    public static void extractAssets(Context context, String executableFilePath, String filename) {
+
+        AssetManager assetManager = context.getAssets();
+        InputStream inStream = null;
+        OutputStream outStream = null;
+
+        try {
+
+            inStream = assetManager.open(filename);
+            outStream = new FileOutputStream(executableFilePath); // for override file content
+            //outStream = new FileOutputStream(out,true); // for append file content
+
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = inStream.read(buffer)) > 0) {
+                outStream.write(buffer, 0, length);
+            }
+
+            if (inStream != null) inStream.close();
+            if (outStream != null) outStream.close();
+
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to copy asset file: " + filename, e);
+        }
+        File execFile = new File(executableFilePath);
+        execFile.setExecutable(true);
+        Log.e(TAG, "Copy success: " + filename);
     }
 
     public static void setLocale(String lang, Context context) {

@@ -27,15 +27,15 @@ import java.util.LinkedHashMap;
  */
 public class Buildprop implements Constants {
 
-    public static void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
+    public static void overwrite(String oldKey, String oldValue, String newKey, String newValue, String busybox) {
         RootUtils.mount(true, "/system");
-        RootUtils.runCommand("toybox sed -ir \"s/" + oldKey+ "=" + oldValue + "/" + newKey + "=" + newValue + "/\" "  + BUILD_PROP);
+        RootUtils.runCommand(busybox + " sed -ir \"s/" + oldKey+ "=" + oldValue + "/" + newKey + "=" + newValue + "/\" "  + BUILD_PROP);
     }
 
-    public static void delete(String key) {
+    public static void delete(String key, String busybox) {
         if (!key.isEmpty()) {
             RootUtils.mount(true, "/system");
-            RootUtils.runCommand("toybox sed -ir \"/" + key + "=/d\" " + BUILD_PROP);
+            RootUtils.runCommand(busybox + " sed -ir \"/" + key + "=/d\" " + BUILD_PROP);
         }
     }
 

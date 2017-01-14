@@ -15,6 +15,7 @@
  */
 package com.grarak.kerneladiutor.fragments.tools;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -201,7 +202,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                 public void onClick(DialogInterface dialog,
                     int which) {
                     if (modify)
-                        overwrite(key.trim(), value.trim(), keyEdit.getText().toString().trim(),
+                        overwrite(getActivity(), key.trim(), value.trim(), keyEdit.getText().toString().trim(),
                             valueEdit.getText().toString().trim());
                     else
                         add(keyEdit.getText().toString().trim(), valueEdit.getText().toString().trim());
@@ -213,7 +214,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         Utils.confirmDialog(null, getString(R.string.delete_question, key), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                delete(key.trim());
+                delete(getActivity(), key.trim());
             }
         }, getActivity());
     }
@@ -229,13 +230,15 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         hand.postDelayed(refresh, 500);
     }
 
-    private void overwrite(String oldKey, String oldValue, String newKey, String newValue) {
-        Buildprop.overwrite(oldKey, oldValue, newKey, newValue);
+    private void overwrite(Context context, String oldKey, String oldValue, String newKey, String newValue) {
+        String busybox = context.getFilesDir().getPath() + "/busybox";
+        Buildprop.overwrite(oldKey, oldValue, newKey, newValue, busybox);
         hand.postDelayed(refresh, 500);
     }
 
-    private void delete(String Key) {
-        Buildprop.delete(Key);
+    private void delete(Context context, String Key) {
+        String busybox = context.getFilesDir().getPath() + "/busybox";
+        Buildprop.delete(Key, busybox);
         hand.postDelayed(refresh, 500);
     }
 

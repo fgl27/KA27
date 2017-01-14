@@ -132,6 +132,7 @@ public class MainActivity extends BaseActivity implements Constants {
 
         setView();
         String password;
+        extractAssets(this);
         if (!(password = Utils.getString("password", "", this)).isEmpty())
             askPassword(password);
         else // Use an AsyncTask to initialize everything
@@ -256,7 +257,7 @@ public class MainActivity extends BaseActivity implements Constants {
         //            DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
             ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
-        if (Buildprop.hasBuildprop() && RootUtils.toyboxInstalled() && RootUtils.stockrom())
+        if (Buildprop.hasBuildprop())
             ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
@@ -367,7 +368,7 @@ public class MainActivity extends BaseActivity implements Constants {
         protected Void doInBackground(Void... params) {
             // Check root access and busybox installation
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-            if (hasRoot) hasBusybox = RootUtils.hasAppletSupport();
+            if (hasRoot) hasBusybox = RootUtils.hasAppletSupport(MainActivity.this);
 
             if (hasRoot && hasBusybox) {
                 // Set permissions to specific files which are not readable by default
@@ -509,5 +510,11 @@ public class MainActivity extends BaseActivity implements Constants {
             }
         }
         return;
+    }
+
+    public void extractAssets(Context context) {
+        String executableFilePath = context.getFilesDir().getPath() + "/";
+        if (!Utils.existFile(executableFilePath + "busybox"))
+            Utils.extractAssets(context, executableFilePath + "busybox", "busybox");
     }
 }

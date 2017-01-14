@@ -151,7 +151,12 @@ public class BootService extends Service {
         boolean hasRoot = false;
         boolean hasBusybox = false;
         if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-        if (hasRoot) hasBusybox = RootUtils.hasAppletSupport();
+        if (hasRoot) {
+            String executableFilePath = this.getFilesDir().getPath() + "/";
+            if (!Utils.existFile(executableFilePath + "busybox"))
+                Utils.extractAssets(this, executableFilePath + "busybox", "busybox");
+            hasBusybox = RootUtils.hasAppletSupport(this);
+        }
         RootUtils.closeSU();
 
         String message = getString(R.string.apply_on_boot_failed);

@@ -16,6 +16,7 @@
 
 package com.kerneladiutor.library.root;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.kerneladiutor.library.Tools;
@@ -49,25 +50,11 @@ public class RootUtils {
         return !su.denied;
     }
 
-    public static boolean hasAppletSupport() {
-       if (busyboxInstalled() || toyboxInstalled())
+    public static boolean hasAppletSupport(Context context) {
+        String busybox = context.getFilesDir().getPath() + "/busybox";
+       if (Tools.existFile(busybox, true))
             return true;
         return false;
-    }
-
-    public static boolean busyboxInstalled() {
-        return existBinary("busybox");
-    }
-
-    public static boolean toyboxInstalled() {
-        return existBinary("toybox");
-    }
-
-    public static boolean stockrom() {
-        String rom = RootUtils.runCommand("getprop | grep -i ro.build.display.id");
-        if (rom.contains("MPG24.107"))
-            return false;
-        return true;
     }
 
     private static boolean existBinary(String binary) {
