@@ -915,6 +915,14 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         private void SetFreq(int freq, int core, String min_max, Context context) {
             if (min_max.equals("min")) {
+                // sleep for input boots duration to avoid false negative of the error toast
+                if (CPU.hasCpuBoostInputMs()) {
+                    try {
+                        Thread.sleep(CPU.getCpuBootInputMs());
+                    } catch (InterruptedException ex) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
                 if (core == 10) {
                     for (int i = 0; i < CPU.getCoreCount(); i++) {
                         if (freq >= CPU.getMaxFreq(i, true))
