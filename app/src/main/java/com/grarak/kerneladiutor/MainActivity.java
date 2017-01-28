@@ -97,6 +97,8 @@ import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.Buildprop;
 import com.kerneladiutor.library.root.RootUtils;
 
+import java.io.File;
+import java.io.IOException; 
 import java.util.ArrayList;
 import java.util.List;
 
@@ -379,6 +381,17 @@ public class MainActivity extends BaseActivity implements Constants {
                 setList();
             }
             check_writeexternalstorage();
+
+            // Create a blank profiles.json to prevent logspam.
+            File file = new File(getFilesDir() + "/profiles.json");
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
             return null;
         }
 
