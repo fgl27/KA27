@@ -948,6 +948,8 @@
     <string name="per_app">Per App Profiles</string>
     <string name="per_app_toast">Per App Toast</string>
     <string name="per_app_toast_summary">Show a toast when applying a profile for Per App detection</string>
+    <string name="navigation_drawer">Navigation Drawer</string>
+    <string name="navigation_drawer_summary">Enable to relocate Navigation Drawer to opposite side of the screen.</string>
 
     <!-- FAQ -->
 
