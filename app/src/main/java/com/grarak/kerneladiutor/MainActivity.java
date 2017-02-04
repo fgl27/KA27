@@ -367,15 +367,17 @@ public class MainActivity extends BaseActivity implements Constants {
         private boolean hasBusybox;
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void...params) {
             // Check root access and busybox installation
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
             if (hasRoot) hasBusybox = RootUtils.hasAppletSupport(MainActivity.this);
 
             if (hasRoot && hasBusybox) {
                 // Set permissions to specific files which are not readable by default
-                String[] writePermission = {LMK_MINFREE};
-                for (String file : writePermission)
+                String[] writePermission = {
+                    LMK_MINFREE
+                };
+                for (String file: writePermission)
                     RootUtils.runCommand("chmod 644 " + file);
 
                 setList();
@@ -383,10 +385,25 @@ public class MainActivity extends BaseActivity implements Constants {
             check_writeexternalstorage();
 
             // Create a blank profiles.json to prevent logspam.
-            File file = new File(getFilesDir() + "/profiles.json");
-            if (!file.exists()) {
+            String profpath = ("/sdcard/KA_profiles/");
+            if (!Utils.existFile(profpath)) {
+                File dir = new File(profpath);
+                dir.mkdir();
+            }
+            String file = "/sdcard/KA_profiles/profiles.json";
+            if (!Utils.existFile(file)) {
+                File pfile = new File(file);
                 try {
-                    file.createNewFile();
+                    pfile.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            file = "/sdcard/KA_profiles/per_app.json";
+            if (!Utils.existFile(file)) {
+                File apfile = new File(file);
+                try {
+                    apfile.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
