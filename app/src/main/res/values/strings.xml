@@ -907,7 +907,7 @@
     <string name="result_tip">*Only display log result that did not output empty\nThe below text is scrollable and selectable you can copy and share.Tip: Copy a word and then re-run the search using that word or a characters combination\n\nSearch text:\n</string>
     <string name="search_text">Search text:\n</string>
     <string name="no_log_selected">Choose at least one type of log!</string>
-    <string name="copy_clipboard">Copy All Result to Clipboard</string>
+    <string name="copy_clipboard">Copy all Result to clipboard</string>
     <string name="copy_clipboard_ok">Result copied OK.</string>
     <string name="save_to_file">Save To a File</string>
     <string name="close">close</string>
@@ -918,8 +918,8 @@
     <string name="logcat_disable">Android logging is disable!</string>
     <string name="logcat_disable_summary">Android logging is disable, Logcat, Radio Log and Events Logs is empty!\n\nTurn Android logging on under Misc and try again</string>
     <string name="log_folder_error">Error!\n\nCan\'t create a Log folder in /sdcard/KA_Logs/ Check permission if the problem persist contact the developer</string>
-    <string name="dump_sysfs">Kernel State</string>
-    <string name="dump_sysfs_summary">Copy Current Kernel Status and Configuration to:\n/sdcard/KA_Logs/kernel_state%s.txtr</string>
+    <string name="kernel_changes">Kernel Changes</string>
+    <string name="kernel_changes_summary">Copy current kernel saved changes (section with changes and apply on boot enable) to:\n/sdcard/KA_Logs/kernel_state%s.txt</string>
 
     <!-- Settings -->
     <string name="dark_theme">Dark theme</string>

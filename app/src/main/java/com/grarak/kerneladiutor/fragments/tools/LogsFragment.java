@@ -48,6 +48,24 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.kerneladiutor.library.root.RootUtils;
 import com.kerneladiutor.library.root.RootFile;
 
+import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUHotplugFragment;
+import com.grarak.kerneladiutor.fragments.kernel.CPUVoltageFragment;
+import com.grarak.kerneladiutor.fragments.kernel.EntropyFragment;
+import com.grarak.kerneladiutor.fragments.kernel.GPUFragment;
+import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
+import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
+import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
+import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
+import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
+import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
+import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
+import com.grarak.kerneladiutor.fragments.kernel.WakeLockFragment;
+import com.grarak.kerneladiutor.utils.database.CommandDB;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -219,20 +237,20 @@ public class LogsFragment extends RecyclerViewFragment {
             }
         });
 
-        CardViewItem.DCardView mDumpSysFs = new CardViewItem.DCardView();
-        mDumpSysFs.setTitle(getString(R.string.dump_sysfs));
-        mDumpSysFs.setDescription(String.format(getString(R.string.dump_sysfs_summary), getDate()));
-        mDumpSysFs.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+        CardViewItem.DCardView mKernelChanges = new CardViewItem.DCardView();
+        mKernelChanges.setTitle(getString(R.string.kernel_changes));
+        mKernelChanges.setDescription(String.format(getString(R.string.kernel_changes_summary), getDate()));
+        mKernelChanges.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("dumpsysfs");
+                new Execute().execute("kernel_changes");
             }
         });
 
         addView(mDmesgCard);
         addView(mLogEventsCard);
         addView(mGetPropCard);
-        addView(mDumpSysFs);
+        addView(mKernelChanges);
         addView(mLogcatCard);
         addView(mLogRadioCard);
 
@@ -283,7 +301,7 @@ public class LogsFragment extends RecyclerViewFragment {
         protected Void doInBackground(String...params) {
             if (params[0].equals("zip")) {
                 String log_temp_folder = log_folder + ".tmpziplog/";
-                int logcat_while = 0;
+                boolean zip_ok = false;
                 String zip_file = log_folder + "logs" + getDate() + ".zip";
                 String logcat = log_temp_folder + "logcat.txt";
                 String tmplogcat = log_temp_folder + "tmplogcat.txt";
@@ -298,7 +316,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 if (!Misc.isLoggerActive()) {
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
-                    dumpsysfs(log_temp_folder, false);
+                    KernelChanges(log_temp_folder, false, getActivity());
                     // ZipUtil doesnot understand folder name that end with /
                     ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
                 } else {
@@ -307,17 +325,17 @@ public class LogsFragment extends RecyclerViewFragment {
                     RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
-                    dumpsysfs(log_temp_folder, false);
+                    KernelChanges(log_temp_folder, false, getActivity());
                     RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
                     // ZipUtil doesn’t understand folder name that end with /
                     // Logcat some times is too long and the zip logcat.txt may be empty, do some check
-                    while (logcat_while == 0) {
+                    while (!zip_ok) {
                         ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(zip_file));
                         ZipUtil.unpackEntry(new File(zip_file), "logcat.txt", new File(tmplogcat));
                         if (Utils.compareFiles(logcat, tmplogcat)) {
                             Log.i(Constants.TAG, "ziped logcat.txt is ok");
                             RootUtils.runCommand("rm -rf " + log_temp_folder);
-                            logcat_while = 1;
+                            zip_ok = true;
                         } else {
                             Log.i(Constants.TAG, "logcat.txt is nok");
                             RootUtils.runCommand("rm -rf " + zip_file);
@@ -325,8 +343,8 @@ public class LogsFragment extends RecyclerViewFragment {
                         }
                     }
                 }
-            } else if (params[0].equals("dumpsysfs"))
-                dumpsysfs(log_folder, true);
+            } else if (params[0].equals("kernel_changes"))
+                KernelChanges(log_folder, true, getActivity());
             else
                 RootUtils.runCommand(params[0]);
             return null;
@@ -386,7 +404,7 @@ public class LogsFragment extends RecyclerViewFragment {
         if (Misc.isLoggerActive()) {
             checkBoxLayout.addView(logcat);
             checkBoxLayout.addView(log_radio);
-	}
+        }
 
         selectAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -546,9 +564,9 @@ public class LogsFragment extends RecyclerViewFragment {
                 for (int a = 0; a < arrays[i].length; a++) {
                     arrays_one = arrays[i][a];
                     if (arrays_one.contains("cpu") && arrays_one.contains("%d")) {
-                            arrays_one_formated = String.format(Locale.US, arrays_one, 0);
-                            if (Utils.existFile(arrays_one_formated) && !arrays_one_formated.contains("/system/bin"))
-                                output.write(sysfsrecord(arrays_one_formated));
+                        arrays_one_formated = String.format(Locale.US, arrays_one, 0);
+                        if (Utils.existFile(arrays_one_formated) && !arrays_one_formated.contains("/system/bin"))
+                            output.write(sysfsrecord(arrays_one_formated));
                     } else if (Utils.existFile(arrays_one) && !arrays_one.contains("/system/bin"))
                         output.write(sysfsrecord(arrays_one));
                 }
@@ -582,7 +600,7 @@ public class LogsFragment extends RecyclerViewFragment {
 
     private String sysfspathIsdirectory(String file) {
         String ret = "";
-	List<RootFile> directoryListing;
+        List < RootFile > directoryListing;
         Log.i(Constants.TAG, "Dir: " + file);
         String path = file;
         ret = ret + "Dir: " + path + "\n";
@@ -598,5 +616,64 @@ public class LogsFragment extends RecyclerViewFragment {
             }
         }
         return ret;
+    }
+
+    private void KernelChanges(String path, boolean date, Context context) {
+        String file_name;
+        if (date)
+            file_name = path + "kernel_changes" + getDate() + ".txt";
+        else
+            file_name = path + "kernel_changes.txt";
+        RootUtils.runCommand("echo " + "'" + listcommands(context) + "'" + " > " + file_name);
+    }
+
+    private String listcommands(Context context) {
+        CommandDB commandDB = new CommandDB(context);
+        List < CommandDB.CommandItem > commandItems = commandDB.getAllCommands();
+        final List < String > applys = new ArrayList < > ();
+        List < String > commands = new ArrayList < > ();
+
+        Class[] classes = {
+            BatteryFragment.class,
+            CPUFragment.class,
+            CPUHotplugFragment.class,
+            CPUVoltageFragment.class,
+            EntropyFragment.class,
+            GPUFragment.class,
+            IOFragment.class,
+            KSMFragment.class,
+            LMKFragment.class,
+            MiscFragment.class,
+            ScreenFragment.class,
+            SoundFragment.class,
+            ThermalFragment.class,
+            VMFragment.class,
+            WakeFragment.class,
+            WakeLockFragment.class
+        };
+
+        for (Class mClass: classes) {
+            if (Utils.getBoolean(mClass.getSimpleName() + "onboot", false, context)) {
+                applys.addAll(Utils.getApplys(mClass));
+            }
+        }
+
+        if (applys.size() > 0) {
+            for (CommandDB.CommandItem commandItem: commandItems)
+                for (String sys: applys) {
+                    String path = commandItem.getPath();
+                    if ((sys.contains(path) || path.contains(sys))) {
+                        String command = commandItem.getCommand();
+                        if (commands.indexOf(command) < 0)
+                            commands.add(command);
+                    }
+                }
+        }
+
+        if (commands.size() > 0) {
+            final String allcommands = android.text.TextUtils.join("\n", commands);
+            return allcommands;
+        }
+        return "No changes";
     }
 }
