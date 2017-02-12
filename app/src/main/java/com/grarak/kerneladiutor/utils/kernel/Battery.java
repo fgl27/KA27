@@ -154,4 +154,20 @@ public class Battery implements Constants {
         return Utils.existFile(C3STATE);
     }
 
+    public static boolean getBatteryLed() {
+        if (Utils.existFile(BATTERY_LED))
+            return Utils.readFile(BATTERY_LED).contains("[battery-full]");
+        return false;
+    }
+
+    public static void setBatteryLed(boolean on_off, Context context) {
+        Control.runCommand(on_off ? "battery-full" :
+            "none", BATTERY_LED, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean hasBatteryLed() {
+        if (Utils.existFile(BATTERY_LED))
+            return Utils.readFile(BATTERY_LED).contains("battery-full");
+        return false;
+    }
 }

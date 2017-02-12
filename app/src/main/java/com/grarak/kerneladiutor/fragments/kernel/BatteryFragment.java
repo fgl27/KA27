@@ -47,7 +47,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
     private UsageCardView.DUsageCard mBatteryLevelCard;
     private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
 
-    private SwitchCardView.DSwitchCard mForceFastChargeCard;
+    private SwitchCardView.DSwitchCard mForceFastChargeCard, mBatteryLedCard;
 
     private SeekBarCardView.DSeekBarCard mBlxCard;
 
@@ -61,6 +61,7 @@ public class BatteryFragment extends RecyclerViewFragment implements
         super.init(savedInstanceState);
 
         batteryLevelInit();
+        if (Battery.hasBatteryLed()) BatteryLedInit();
 	batteryHealthInit();
         batteryVoltageInit();
 	batteryChargingCurrentInit();
@@ -88,6 +89,16 @@ public class BatteryFragment extends RecyclerViewFragment implements
         mBatteryLevelCard.setText(getString(R.string.battery_level));
 
         addView(mBatteryLevelCard);
+    }
+
+    private void BatteryLedInit() {
+        mBatteryLedCard = new SwitchCardView.DSwitchCard();
+        mBatteryLedCard.setTitle(getString(R.string.battery_led));
+        mBatteryLedCard.setDescription(getString(R.string.battery_led_summary));
+        mBatteryLedCard.setChecked(Battery.getBatteryLed());
+        mBatteryLedCard.setOnDSwitchCardListener(this);
+
+        addView(mBatteryLedCard);
     }
 
     private void batteryVoltageInit() {
@@ -277,6 +288,8 @@ public class BatteryFragment extends RecyclerViewFragment implements
             Battery.activateC2State(checked, getActivity());
         else if (dSwitchCard == mC3StateCard)
             Battery.activateC3State(checked, getActivity());
+        else if (dSwitchCard == mBatteryLedCard)
+            Battery.setBatteryLed(checked, getActivity());
     }
 
     @Override

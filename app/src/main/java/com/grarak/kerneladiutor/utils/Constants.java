@@ -712,13 +712,15 @@ public interface Constants {
     String CHARGE_RATE_ENABLE = CHARGE_RATE + "/enabled";
     String CUSTOM_CHARGING_RATE = CHARGE_RATE + "/custom_current";
 
+    String BATTERY_LED = "/sys/class/leds/charging/trigger";
+
     // C-States
     String C0STATE = "/sys/module/msm_pm/modes/cpu0/wfi/idle_enabled";
     String C1STATE = "/sys/module/msm_pm/modes/cpu0/retention/idle_enabled";
     String C2STATE = "/sys/module/msm_pm/modes/cpu0/standalone_power_collapse/idle_enabled";
     String C3STATE = "/sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled";
 
-    String[] BATTERY_ARRAY = {FORCE_FAST_CHARGE, BLX, CHARGE_RATE, C0STATE, C1STATE, C2STATE, C3STATE};
+    String[] BATTERY_ARRAY = {FORCE_FAST_CHARGE, BLX, BATTERY_LED, CHARGE_RATE, C0STATE, C1STATE, C2STATE, C3STATE};
 
     // Extra Battery values for quark and maybe other Moto devices
     String BATTERY_PARAMETERS = "/sys/class/power_supply/battery";
