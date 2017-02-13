@@ -793,7 +793,7 @@
     <string name="c3state">C3 (Power Collapse)</string>
     <string name="c3state_summary">Really deep sleep with longest latency when waking up.</string>
     <string name="battery_led">Battery LED Full charge</string>
-    <string name="battery_led_summary">Turn on green front LED when battery is 100&#37;</string>
+    <string name="battery_led_summary">Turn on green front LED when battery reaches 100&#37;</string>
 
     <!-- Plugins -->
 
