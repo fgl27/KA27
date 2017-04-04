@@ -119,7 +119,7 @@ public class Backup {
     }
 
     private static String getPath(PARTITION PARTITION_type) {
-        String folder = null;
+        String folder = "";
         switch (PARTITION_type) {
             case BOOT:
                 folder = "boot";
@@ -131,11 +131,12 @@ public class Backup {
                 folder = "fota";
                 break;
         }
-        File genericFolder = new File("/sdcard/KA_Backups/" + folder);
+        String sdcard_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Backups/" + folder;
+        File genericFolder = new File(sdcard_folder);
         genericFolder.mkdir();
         if (genericFolder.exists()) return genericFolder.toString();
-        File genericFolder2 = new File("/sdcard/KA_Backups/" + folder);
-        genericFolder2.mkdir();
+            File genericFolder2 = new File(sdcard_folder);
+            genericFolder2.mkdir();
         return genericFolder2.toString();
     }
 

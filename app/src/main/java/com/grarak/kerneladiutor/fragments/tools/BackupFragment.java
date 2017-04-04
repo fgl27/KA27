@@ -21,6 +21,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
@@ -200,7 +201,7 @@ public class BackupFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
 
-        String kafolder = "/sdcard/KA_Backups/";
+        String kafolder = Environment.getExternalStorageDirectory().getPath() + "/KA_Backups/";
         boot = new RootFile(kafolder + "boot");
         recovery = new RootFile(kafolder + "recovery");
         fota = new RootFile(kafolder + "fota");

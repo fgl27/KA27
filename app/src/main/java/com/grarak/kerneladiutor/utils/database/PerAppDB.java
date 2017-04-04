@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.utils.database;
 
 import android.content.Context;
+import android.os.Environment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +31,7 @@ import java.util.List;
 public class PerAppDB extends JsonDB {
 
     public PerAppDB(Context context) {
-        super("/sdcard/KA_profiles/per_app.json", 1);
+        super(Environment.getExternalStorageDirectory().getPath() + "/KA_profiles/per_app.json", 1);
     }
 
     @Override

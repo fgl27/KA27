@@ -29,6 +29,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -385,12 +386,13 @@ public class MainActivity extends BaseActivity implements Constants {
             check_writeexternalstorage();
 
             // Create a blank profiles.json to prevent logspam.
-            String profpath = ("/sdcard/KA_profiles/");
+            String sdcard = Environment.getExternalStorageDirectory().getPath();
+            String profpath = (sdcard +"/KA_profiles/");
             if (!Utils.existFile(profpath)) {
                 File dir = new File(profpath);
                 dir.mkdir();
             }
-            String file = "/sdcard/KA_profiles/profiles.json";
+            String file = sdcard + "/KA_profiles/profiles.json";
             if (!Utils.existFile(file)) {
                 File pfile = new File(file);
                 try {
@@ -399,7 +401,7 @@ public class MainActivity extends BaseActivity implements Constants {
                     e.printStackTrace();
                 }
             }
-            file = "/sdcard/KA_profiles/per_app.json";
+            file = sdcard + "/KA_profiles/per_app.json";
             if (!Utils.existFile(file)) {
                 File apfile = new File(file);
                 try {

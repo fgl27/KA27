@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -99,7 +100,7 @@ public class ProfileFragment extends RecyclerViewFragment {
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
 
-        String ppath = ("/sdcard/KA_profiles/");
+        String ppath = (Environment.getExternalStorageDirectory().getPath() + "/KA_profiles/");
         if (!Utils.existFile(ppath)) {
             File dir = new File(ppath);
             dir.mkdir();

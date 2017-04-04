@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -96,7 +97,7 @@ public class LogsFragment extends RecyclerViewFragment {
     private final String eventsC = "logcat -b events -v time -d ";
     private final String dmesgC = "dmesg ";
     private final String getpropC = "getprop ";
-    private final String log_folder = "/sdcard/KA_Logs/";
+    private final String log_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Logs/";
     private final String grep = " | grep -i ";
 
     @Override
