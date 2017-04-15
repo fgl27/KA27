@@ -976,12 +976,12 @@
     <string name="zero" translatable="false">ZeroTurnaround</string>
     <string name="open_source">Open source</string>
     <string name="open_source_summary">This application is open source. Check it out on my GitHub!</string>
-    <string name="feature_request">Feature request or Bugs</string>
-    <string name="feature_requestb_summary">Do you want more features? or found a bug?\nClick here and mention @baybutcher27 with the request or bug on the XDA thread.</string>
-    <string name="xda_summary">This app is supported via XDA thread check it here</string>
+    <string name="feature_request">Feature Requests and Bugs</string>
+    <string name="feature_requestb_summary">Do you want more features? Found a bug?\nTap and mention @baybutcher27 with the request or bug in the XDA thread.</string>
+    <string name="xda_summary">This app is also supported via the XDA thread. Tap to check it out!</string>
 
     <string name="modification">Modified for BHB27-Kernel</string>
-    <string name="modification_summary">This application is being heavily modified for the kernel BHB27-Kernel for Quark Motorola (Moto Maxx, Turbo or Droid Turbo). Check it out in the downloads section!</string>
+    <string name="modification_summary">This application has been heavily modified for the BHB27-Kernel for the Motorola Quark (Moto Maxx, Turbo or Droid Turbo). Check it out in the downloads section!</string>
 
     <string name="modification_version">BHB27 Mod Version</string>
 
