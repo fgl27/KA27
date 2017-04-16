@@ -34,7 +34,7 @@ import java.util.List;
 
 public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
-    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard, mBlueSleepWakeLockCard, mBlueDroidTimeWakeLockCard, mSensorIndWakeLockCard, mMsmHsicHostWakeLockCard;
+    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard, mBlueSleepWakeLockCard, mBlueDroidTimeWakeLockCard, mSensorIndWakeLockCard, mMsmHsicHostWakeLockCard, mTimerFdWakeLockCard, mNetlinkWakeLockCard;
     private SwitchCardView.DSwitchCard mWlanrxWakelockCard, mWlanctrlWakelockCard, mWlanWakelockCard;
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard, mMsmHsicWakelockDividerCard, mBCMDHDWakelockDividerCard;
 
@@ -86,6 +86,26 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             mSensorIndWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mSensorIndWakeLockCard);
+        }
+
+        if (WakeLock.hasTimerFdWakeLock()) {
+            mTimerFdWakeLockCard = new SwitchCardView.DSwitchCard();
+            mTimerFdWakeLockCard.setTitle(getString(R.string.timerfd_wakelock));
+            mTimerFdWakeLockCard.setDescription(String.format(getString(R.string.timerfd_wakelock_summary), WakeLock.isTimerFdWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mTimerFdWakeLockCard.setChecked(WakeLock.isTimerFdWakeLockActive());
+            mTimerFdWakeLockCard.setOnDSwitchCardListener(this);
+
+            views.add(mTimerFdWakeLockCard);
+        }
+
+        if (WakeLock.hasNetlinkWakeLock()) {
+            mNetlinkWakeLockCard = new SwitchCardView.DSwitchCard();
+            mNetlinkWakeLockCard.setTitle(getString(R.string.netlink_wakelock));
+            mNetlinkWakeLockCard.setDescription(String.format(getString(R.string.netlink_wakelock_summary), WakeLock.isNetlinkWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mNetlinkWakeLockCard.setChecked(WakeLock.isNetlinkWakeLockActive());
+            mNetlinkWakeLockCard.setOnDSwitchCardListener(this);
+
+            views.add(mNetlinkWakeLockCard);
         }
 
         if (WakeLock.hasMsmHsicHostWakeLock()) {
@@ -206,6 +226,12 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
         } else if (dSwitchCard == mSensorIndWakeLockCard) {
             mSensorIndWakeLockCard.setDescription(String.format(getString(R.string.sensor_ind_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateSensorIndWakeLock(checked, getActivity());
+        } else if (dSwitchCard == mTimerFdWakeLockCard) {
+            mTimerFdWakeLockCard.setDescription(String.format(getString(R.string.timerfd_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            WakeLock.activateTimerFdWakeLock(checked, getActivity());
+        } else if (dSwitchCard == mNetlinkWakeLockCard) {
+            mNetlinkWakeLockCard.setDescription(String.format(getString(R.string.netlink_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            WakeLock.activateNetlinkWakeLock(checked, getActivity());
         } else if (dSwitchCard == mMsmHsicHostWakeLockCard) {
             mMsmHsicHostWakeLockCard.setDescription(String.format(getString(R.string.msm_hsic_host_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateMsmHsicHostWakeLock(checked, getActivity());

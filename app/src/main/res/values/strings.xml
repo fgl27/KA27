@@ -772,6 +772,10 @@
     <string name="bluedroid_time_wakelock_summary">Allow BlueDroid Time Wakelock.\n Currently: %s</string>
     <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
     <string name="sensor_ind_wakelock_summary">Allow wakelock when Ambient Display disabled.\n Currently: %s</string>
+    <string name="timerfd_wakelock">TimerFd Wakelock</string>
+    <string name="timerfd_wakelock_summary">Allow TimerFd wakelock.\n Currently: %s</string>
+    <string name="netlink_wakelock">NetLink Wakelock</string>
+    <string name="netlink_wakelock_summary">Allow NetLink wakelock.\n Currently: %s</string>
     <string name="msm_hsic_host_wakelock">msm_hsic_host Wakelock</string>
     <string name="msm_hsic_host_wakelock_summary">Allow msm_hsic_host wakelock.\n Currently: %s</string>
     <string name="wlan_rx_wakelock">wlan_rx Wakelock</string>

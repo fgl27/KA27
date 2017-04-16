@@ -216,4 +216,27 @@ public class WakeLock implements Constants {
         return false;
     }
 
+    public static void activateTimerFdWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", TIMERFD_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isTimerFdWakeLockActive() {
+        return Utils.readFile(TIMERFD_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasTimerFdWakeLock() {
+        return Utils.existFile(TIMERFD_WAKELOCK);
+    }
+
+    public static void activateNetlinkWakeLock(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", NETLINK_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isNetlinkWakeLockActive() {
+        return Utils.readFile(NETLINK_WAKELOCK).equals("Y");
+    }
+
+    public static boolean hasNetlinkWakeLock() {
+        return Utils.existFile(NETLINK_WAKELOCK);
+    }
 }
