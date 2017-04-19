@@ -89,6 +89,7 @@ public class LogsFragment extends RecyclerViewFragment {
     private static String final_log_radio;
     private static String final_log_events;
     private static String final_driver_message;
+    private static String final_last_driver_message;
     private static String final_get_prop;
     private static String final_grep;
 
@@ -97,6 +98,8 @@ public class LogsFragment extends RecyclerViewFragment {
     private final String eventsC = "logcat -b events -v time -d ";
     private final String dmesgC = "dmesg ";
     private final String getpropC = "getprop ";
+    private final String consoleramoopsC = "cat /sys/fs/pstore/console-ramoops*";
+    private final String dmesgramoopsC = "cat /sys/fs/pstore/dmesg-ramoops*";
     private final String log_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Logs/";
     private final String grep = " | grep -i ";
 
@@ -218,6 +221,16 @@ public class LogsFragment extends RecyclerViewFragment {
             }
         });
 
+        CardViewItem.DCardView mLastDmesgCard = new CardViewItem.DCardView();
+        mLastDmesgCard.setTitle(getString(R.string.last_driver_message));
+        mLastDmesgCard.setDescription(String.format(getString(R.string.last_driver_message_summary), getDate()));
+        mLastDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                new Execute().execute("lastdmesg");
+            }
+        });
+
         CardViewItem.DCardView mDmesgCard = new CardViewItem.DCardView();
         mDmesgCard.setTitle(getString(R.string.driver_message));
         mDmesgCard.setDescription(String.format(getString(R.string.driver_message_summary), getDate()));
@@ -248,6 +261,7 @@ public class LogsFragment extends RecyclerViewFragment {
             }
         });
 
+        addView(mLastDmesgCard);
         addView(mDmesgCard);
         addView(mLogEventsCard);
         addView(mGetPropCard);
@@ -317,6 +331,9 @@ public class LogsFragment extends RecyclerViewFragment {
                 if (!Misc.isLoggerActive()) {
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                    RootUtils.runCommand(consoleramoopsC + " > " + log_temp_folder + "lastdmesg.txt");
+                    RootUtils.runCommand("echo '\ndmesgramoops\n' >> " + log_temp_folder + "lastdmesg.txt");
+                    RootUtils.runCommand(dmesgramoopsC + " >> " + log_temp_folder + "lastdmesg.txt");
                     KernelChanges(log_temp_folder, false, getActivity());
                     // ZipUtil doesnot understand folder name that end with /
                     ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
@@ -326,6 +343,9 @@ public class LogsFragment extends RecyclerViewFragment {
                     RootUtils.runCommand(eventsC + " > " + log_temp_folder + "events.txt");
                     RootUtils.runCommand(dmesgC + " > " + log_temp_folder + "dmesg.txt");
                     RootUtils.runCommand(getpropC + " > " + log_temp_folder + "getprop.txt");
+                    RootUtils.runCommand(consoleramoopsC + " > " + log_temp_folder + "lastdmesg.txt");
+                    RootUtils.runCommand("echo '\ndmesgramoops\n' >> " + log_temp_folder + "lastdmesg.txt");
+                    RootUtils.runCommand(dmesgramoopsC + " >> " + log_temp_folder + "lastdmesg.txt");
                     KernelChanges(log_temp_folder, false, getActivity());
                     RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
                     // ZipUtil doesn’t understand folder name that end with /
@@ -346,7 +366,12 @@ public class LogsFragment extends RecyclerViewFragment {
                 }
             } else if (params[0].equals("kernel_changes"))
                 KernelChanges(log_folder, true, getActivity());
-            else
+            else if (params[0].equals("lastdmesg")) {
+                String lastdate = getDate();
+                RootUtils.runCommand(consoleramoopsC + " > " + log_folder + "lastdmesg" + lastdate + ".txt");
+                RootUtils.runCommand("echo '\ndmesgramoops\n' >> " + log_folder + "lastdmesg" + lastdate + ".txt");
+                RootUtils.runCommand(dmesgramoopsC + " >> " + log_folder + "lastdmesg" + lastdate + ".txt");
+            } else
                 RootUtils.runCommand(params[0]);
             return null;
         }
@@ -396,9 +421,13 @@ public class LogsFragment extends RecyclerViewFragment {
         final AppCompatCheckBox driver_message = new AppCompatCheckBox(getActivity());
         driver_message.setText(getString(R.string.driver_message));
 
+        final AppCompatCheckBox last_driver_message = new AppCompatCheckBox(getActivity());
+        last_driver_message.setText(getString(R.string.last_driver_message));
+
         final AppCompatCheckBox get_prop = new AppCompatCheckBox(getActivity());
         get_prop.setText(getString(R.string.get_prop));
 
+        checkBoxLayout.addView(last_driver_message);
         checkBoxLayout.addView(driver_message);
         if (Misc.isLoggerActive()) checkBoxLayout.addView(log_events);
         checkBoxLayout.addView(get_prop);
@@ -413,6 +442,7 @@ public class LogsFragment extends RecyclerViewFragment {
                 ((AppCompatCheckBox) logcat).setChecked(true);
                 ((AppCompatCheckBox) log_radio).setChecked(true);
                 ((AppCompatCheckBox) log_events).setChecked(true);
+                ((AppCompatCheckBox) last_driver_message).setChecked(true);
                 ((AppCompatCheckBox) driver_message).setChecked(true);
                 ((AppCompatCheckBox) get_prop).setChecked(true);
             }
@@ -433,6 +463,7 @@ public class LogsFragment extends RecyclerViewFragment {
                     final_log_radio = "";
                     final_log_events = "";
                     final_driver_message = "";
+                    final_last_driver_message = "";
                     final_get_prop = "";
                     if (name.isEmpty()) {
                         Utils.toast(getString(R.string.empty_text), getActivity(), Toast.LENGTH_LONG);
@@ -461,6 +492,13 @@ public class LogsFragment extends RecyclerViewFragment {
                         if (!driver_message.isEmpty())
                             final_driver_message = getString(R.string.driver_message) + " " + getString(R.string.result) + "\n\n" + driver_message + "\n\n";
                     }
+                    if (((AppCompatCheckBox) last_driver_message).isChecked()) {
+                        String last_driver_message = "";
+                        last_driver_message = last_driver_message + RootUtils.runCommand(consoleramoopsC + grep + "'" + name + "'");
+                        last_driver_message = last_driver_message + RootUtils.runCommand(dmesgramoopsC + grep + "'" + name + "'");
+                        if (!last_driver_message.isEmpty())
+                            final_last_driver_message = getString(R.string.last_driver_message) + " " + getString(R.string.result) + "\n\n" + last_driver_message + "\n\n";
+                    }
                     if (((AppCompatCheckBox) get_prop).isChecked()) {
                         final String get_prop = RootUtils.runCommand(getpropC + grep + "'" + name + "'");
                         if (!get_prop.isEmpty())
@@ -468,12 +506,12 @@ public class LogsFragment extends RecyclerViewFragment {
                     }
                     if (!(((AppCompatCheckBox) logcat).isChecked()) && !(((AppCompatCheckBox) log_radio).isChecked()) &&
                         !(((AppCompatCheckBox) log_events).isChecked()) && !(((AppCompatCheckBox) driver_message).isChecked()) &&
-                        !(((AppCompatCheckBox) get_prop).isChecked())) {
+                        !(((AppCompatCheckBox) get_prop).isChecked()) && !(((AppCompatCheckBox) last_driver_message).isChecked())) {
                         Utils.toast(getString(R.string.no_log_selected), getActivity(), Toast.LENGTH_LONG);
                         return;
                     } else
                         final_grep = final_logcat + final_log_radio + final_log_events +
-                        final_driver_message + final_get_prop;
+                        final_last_driver_message + final_driver_message + final_get_prop;
                     if (!final_grep.isEmpty()) {
                         LinearLayout linearLayout = new LinearLayout(getActivity());
                         linearLayout.setOrientation(LinearLayout.VERTICAL);

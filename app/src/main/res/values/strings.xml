@@ -908,6 +908,8 @@
     <string name="get_prop_summary">Copy device properties (getprop) to:\n/sdcard/KA_Logs/getprop%s.txt</string>
     <string name="driver_message">Driver Message</string>
     <string name="driver_message_summary">Copy driver message (dmesg) to:\n/sdcard/KA_Logs/dmesg%s.txt</string>
+    <string name="last_driver_message">Last Driver Message</string>
+    <string name="last_driver_message_summary">Copy last driver message (this log contains info from yours previously reboot or random reboot) to:\n/sdcard/KA_Logs/lastdmesg%s.txt</string>
     <string name="result">Result:</string>
     <string name="result_empty">The search result return empty!</string>
     <string name="result_tip">*Only display log result that did not output empty\nThe below text is scrollable and selectable you can copy and share.Tip: Copy a word and then re-run the search using that word or a characters combination\n\nSearch text:\n</string>
