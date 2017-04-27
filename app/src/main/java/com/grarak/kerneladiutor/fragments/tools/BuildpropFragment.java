@@ -92,8 +92,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     @Override
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-            fabView.setVisibility(View.VISIBLE);
+        fabView.setVisibility(View.VISIBLE);
     }
 
     @Override

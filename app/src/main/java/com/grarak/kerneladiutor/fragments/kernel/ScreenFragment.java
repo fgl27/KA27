@@ -117,8 +117,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     @Override
     public RecyclerView getRecyclerView() {
         mColorPalette = (ColorPalette) getParentView(R.layout.screen_fragment).findViewById(R.id.colorpalette);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-            mColorPalette.setVisibility(View.INVISIBLE);
+        mColorPalette.setVisibility(View.INVISIBLE);
         return (RecyclerView) getParentView(R.layout.screen_fragment).findViewById(R.id.recycler_view);
     }
 

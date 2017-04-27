@@ -342,12 +342,10 @@ public class ProfileFragment extends RecyclerViewFragment {
             }
         });
 
-        // Update Profilewidget here
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
-            int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
-            appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
-        }
+
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(getActivity());
+        int appWidgetIds[] = appWidgetManager.getAppWidgetIds(new ComponentName(getActivity(), ProfileWidget.class));
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.profile_list);
     }
     private void PerAppDialog(String id) {
         if (!Per_App.isAccessibilityEnabled(getActivity(), PerAppMonitor.accessibilityId)) {

@@ -174,8 +174,7 @@ public class Utils implements Constants {
     }
 
     public static boolean isRTL(Context context) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
-                && context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+        return context.getResources().getConfiguration().getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 
     public static Bitmap scaleDownBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
@@ -272,21 +271,19 @@ public class Utils implements Constants {
     public static void circleAnimate(final View view, int cx, int cy) {
         if (view == null) return;
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                view.setVisibility(View.INVISIBLE);
+            view.setVisibility(View.INVISIBLE);
 
-                int finalRadius = Math.max(view.getWidth(), view.getHeight());
-                Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
-                anim.setDuration(500);
-                anim.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationStart(Animator animation) {
-                        super.onAnimationStart(animation);
-                        view.setVisibility(View.VISIBLE);
-                    }
-                });
-                anim.start();
-            }
+            int finalRadius = Math.max(view.getWidth(), view.getHeight());
+            Animator anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0, finalRadius);
+            anim.setDuration(500);
+            anim.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationStart(Animator animation) {
+                    super.onAnimationStart(animation);
+                    view.setVisibility(View.VISIBLE);
+                }
+            });
+            anim.start();
         } catch (IllegalStateException e) {
             view.setVisibility(View.VISIBLE);
         }
@@ -471,7 +468,7 @@ public class Utils implements Constants {
     }
 
     public static boolean isTV(Context context) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2 && ((UiModeManager) context
+        return ((UiModeManager) context
                 .getSystemService(Context.UI_MODE_SERVICE))
                 .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
     }
@@ -580,10 +577,7 @@ public class Utils implements Constants {
     }
 
     public static boolean is64bit() {
-        if (Build.VERSION.SDK_INT < 21) {
-            return false;
-        }
-        else if (Build.SUPPORTED_64_BIT_ABIS.length >= 1) {
+        if (Build.SUPPORTED_64_BIT_ABIS.length >= 1) {
                 return true;
         }
         return false;

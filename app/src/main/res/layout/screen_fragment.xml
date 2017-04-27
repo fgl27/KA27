@@ -24,6 +24,7 @@
         android:layout_height="48dp"
         android:background="@color/color_primary_light"
         android:clickable="true"
+        android:focusable="true"
         android:foreground="?attr/selectableItemBackground"
         android:paddingEnd="16dp"
         android:paddingStart="72dp">

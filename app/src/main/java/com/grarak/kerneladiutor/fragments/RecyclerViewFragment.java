@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments;
 
 import android.content.res.Configuration;
@@ -80,9 +79,8 @@ public class RecyclerViewFragment extends BaseFragment {
         Log.i(Constants.TAG, "Opening " + getClassName());
 
         try {
-            if (view != null) ((ViewGroup) view.getParent()).removeView(view);
-        } catch (NullPointerException ignored) {
-        }
+            if (view != null)((ViewGroup) view.getParent()).removeView(view);
+        } catch (NullPointerException ignored) {}
 
         recyclerView = getRecyclerView();
         recyclerView.setHasFixedSize(true);
@@ -94,8 +92,7 @@ public class RecyclerViewFragment extends BaseFragment {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            }
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {}
 
             @Override
             public int getItemCount() {
@@ -135,12 +132,10 @@ public class RecyclerViewFragment extends BaseFragment {
 
         backgroundView = view.findViewById(R.id.background_view);
         fabView = view.findViewById(R.id.fab_view);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (backgroundView != null) backgroundView.setVisibility(View.INVISIBLE);
-            if (fabView != null) {
-                fabView.setTranslationZ(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
-                fabView.setVisibility(View.INVISIBLE);
-            }
+        if (backgroundView != null) backgroundView.setVisibility(View.INVISIBLE);
+        if (fabView != null) {
+            fabView.setTranslationZ(getResources().getDimensionPixelSize(R.dimen.fab_elevation));
+            fabView.setVisibility(View.INVISIBLE);
         }
 
         if (fabView != null && Utils.isTV(getActivity())) {
@@ -154,8 +149,8 @@ public class RecyclerViewFragment extends BaseFragment {
         if (!showApplyOnBoot()) showApplyOnBoot(false);
 
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
-        if(refreshLayout != null){
-            if(pullToRefreshIsEnabled()){
+        if (refreshLayout != null) {
+            if (pullToRefreshIsEnabled()) {
                 refreshLayout.setEnabled(true);
 
                 refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -171,11 +166,11 @@ public class RecyclerViewFragment extends BaseFragment {
         }
 
 
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTask < Void, Void, Void > () {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                adapter = new DAdapter.Adapter(new ArrayList<DAdapter.DView>());
+                adapter = new DAdapter.Adapter(new ArrayList < DAdapter.DView > ());
                 try {
                     if (isAdded()) preInit(savedInstanceState);
                 } catch (IllegalStateException e) {
@@ -184,7 +179,7 @@ public class RecyclerViewFragment extends BaseFragment {
             }
 
             @Override
-            protected Void doInBackground(Void... params) {
+            protected Void doInBackground(Void...params) {
                 try {
                     if (isAdded()) init(savedInstanceState);
                 } catch (IllegalStateException e) {
@@ -202,16 +197,13 @@ public class RecyclerViewFragment extends BaseFragment {
 
                 try {
                     ((ViewGroup) progressBar.getParent()).removeView(progressBar);
-                } catch (NullPointerException ignored) {
-                }
+                } catch (NullPointerException ignored) {}
                 try {
                     if (isAdded()) {
                         postInit(savedInstanceState);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                            if (backgroundView != null) Utils.circleAnimate(backgroundView, 0, 0);
-                            if (fabView != null)
-                                Utils.circleAnimate(fabView, fabView.getWidth() / 2, fabView.getHeight() / 2);
-                        }
+                        if (backgroundView != null) Utils.circleAnimate(backgroundView, 0, 0);
+                        if (fabView != null)
+                            Utils.circleAnimate(fabView, fabView.getWidth() / 2, fabView.getHeight() / 2);
                     }
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
@@ -250,41 +242,38 @@ public class RecyclerViewFragment extends BaseFragment {
     public void applyOnBootChecked(boolean isChecked) {
         Utils.saveBoolean(getClassName() + "onboot", isChecked, getActivity());
         Utils.toast(getString(isChecked ? R.string.apply_on_boot_enabled : R.string.apply_on_boot_disabled,
-                getActionBar().getTitle()), getActivity());
+            getActionBar().getTitle()), getActivity());
     }
 
     public void setProgressBar(ProgressBar progressBar) {
         progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
-                getResources().getColor(android.R.color.white)));
+            getResources().getColor(android.R.color.white)));
         ActionBar actionBar;
         if ((actionBar = getActionBar()) != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);
             actionBar.setCustomView(progressBar, new ActionBar.LayoutParams(ActionBar.LayoutParams.WRAP_CONTENT,
-                    ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
+                ActionBar.LayoutParams.WRAP_CONTENT, Gravity.CENTER_VERTICAL | Gravity.END));
         }
     }
 
     @MainThread
-    public void preInit(Bundle savedInstanceState) {
-    }
+    public void preInit(Bundle savedInstanceState) {}
 
     @WorkerThread
-    public void init(Bundle savedInstanceState) {
-    }
+    public void init(Bundle savedInstanceState) {}
 
     @MainThread
-    public void postInit(Bundle savedInstanceState) {
-    }
+    public void postInit(Bundle savedInstanceState) {}
 
     public void addView(DAdapter.DView view) {
         if (adapter.DViews.indexOf(view) < 0) {
             adapter.DViews.add(view);
 
             // Ensure we always call notifyDataSetChanged() on the main thread
-            if(Looper.myLooper() == Looper.getMainLooper()){
+            if (Looper.myLooper() == Looper.getMainLooper()) {
                 adapter.notifyDataSetChanged();
             } else {
-                new Handler(Looper.getMainLooper()).post(new Runnable(){
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
                         adapter.notifyDataSetChanged();
@@ -307,7 +296,7 @@ public class RecyclerViewFragment extends BaseFragment {
         adapter.notifyDataSetChanged();
     }
 
-    public void addAllViews(List<DAdapter.DView> views) {
+    public void addAllViews(List < DAdapter.DView > views) {
         adapter.DViews.addAll(views);
         adapter.notifyDataSetChanged();
     }
@@ -327,8 +316,7 @@ public class RecyclerViewFragment extends BaseFragment {
     public void animateRecyclerView() {
         try {
             recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.recyclerview));
-        } catch (NullPointerException ignored) {
-        }
+        } catch (NullPointerException ignored) {}
     }
 
     @Override
@@ -346,17 +334,17 @@ public class RecyclerViewFragment extends BaseFragment {
 
     public void setOnScrollListener(RecyclerView recyclerView) {
         if (recyclerView != null) {
-            int paddingBottom = recyclerView.getPaddingBottom()
-                    + getResources().getDimensionPixelSize(R.dimen.basecard_padding);
+            int paddingBottom = recyclerView.getPaddingBottom() +
+                getResources().getDimensionPixelSize(R.dimen.basecard_padding);
             if (applyOnBootLayout != null) {
-                recyclerView.setPadding(0, applyOnBootLayout.getHeight(), 0, firstOpening ? paddingBottom
-                        : recyclerView.getPaddingBottom());
+                recyclerView.setPadding(0, applyOnBootLayout.getHeight(), 0, firstOpening ? paddingBottom :
+                    recyclerView.getPaddingBottom());
                 resetTranslations();
 
                 if (!Utils.isTV(getActivity()))
                     recyclerView.addOnScrollListener(onScrollListener = new CustomScrollListener());
-            } else recyclerView.setPadding(0, 0, 0, firstOpening ? paddingBottom
-                    : recyclerView.getPaddingBottom());
+            } else recyclerView.setPadding(0, 0, 0, firstOpening ? paddingBottom :
+                recyclerView.getPaddingBottom());
             recyclerView.setClipToPadding(false);
         }
     }
@@ -430,7 +418,7 @@ public class RecyclerViewFragment extends BaseFragment {
         if (onScrollListener != null) onScrollListener.reset();
     }
 
-    protected boolean pullToRefreshIsEnabled(){
+    protected boolean pullToRefreshIsEnabled() {
         return false;
     }
 
@@ -441,12 +429,11 @@ public class RecyclerViewFragment extends BaseFragment {
     public void showApplyOnBoot(boolean visible) {
         try {
             getParentView(R.layout.recyclerview_vertical).findViewById(R.id.apply_on_boot_layout).setVisibility(
-                    visible ? View.VISIBLE : View.GONE);
+                visible ? View.VISIBLE : View.GONE);
             int paddingTop = visible ? recyclerView.getPaddingTop() + applyOnBootLayout.getHeight() :
-                    recyclerView.getPaddingTop() - applyOnBootLayout.getHeight();
+                recyclerView.getPaddingTop() - applyOnBootLayout.getHeight();
             recyclerView.setPadding(recyclerView.getPaddingLeft(), paddingTop, recyclerView.getPaddingRight(), 0);
-        } catch (NullPointerException ignored) {
-        }
+        } catch (NullPointerException ignored) {}
     }
 
     public int getSpan() {
@@ -468,11 +455,11 @@ public class RecyclerViewFragment extends BaseFragment {
     private final Runnable run = new Runnable() {
         @Override
         public void run() {
-                if (isAdded() && onRefresh()) {
-                    handler.postDelayed(run, 1000);
-                } else{
-                    handler.removeCallbacks(run);
-                }
+            if (isAdded() && onRefresh()) {
+                handler.postDelayed(run, 1000);
+            } else {
+                handler.removeCallbacks(run);
+            }
         }
     };
 

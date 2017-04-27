@@ -38,8 +38,7 @@ public class InformationCardView extends BaseCardView {
     public InformationCardView(Context context) {
         super(context, R.layout.information_cardview);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) setTranslationZ(getResources()
-                .getDimensionPixelSize(R.dimen.information_card_elevation));
+        setTranslationZ(getResources().getDimensionPixelSize(R.dimen.information_card_elevation));
     }
 
     @Override

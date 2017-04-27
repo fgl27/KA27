@@ -15,9 +15,15 @@
         <item name="android:textColorPrimary">@color/textcolor_dark</item>
     </style>
 
-    <style name="AppThemeLight" parent="AppBaseThemeLight" />
+    <style name="AppThemeLight" parent="AppBaseThemeLight">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
-    <style name="AppThemeDark" parent="AppBaseThemeDark" />
+    <style name="AppThemeDark" parent="AppBaseThemeDark">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
 
     <style name="AppThemeActionBarLight" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/color_primary</item>

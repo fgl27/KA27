@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.elements;
 
 import android.app.Activity;
@@ -61,18 +60,18 @@ public class DAdapter {
 
     }
 
-    public static class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public static class Adapter extends RecyclerView.Adapter < RecyclerView.ViewHolder > {
 
         public interface OnItemClickListener {
             void onItemClick(View view, int position);
         }
 
-        public final List<DView> DViews;
+        public final List < DView > DViews;
         private OnItemClickListener onItemClickListener;
         private int selectedItem;
         private boolean itemOnly;
 
-        public Adapter(List<DView> DViews) {
+        public Adapter(List < DView > DViews) {
             this.DViews = DViews;
         }
 
@@ -95,8 +94,7 @@ public class DAdapter {
             try {
                 ((Item) DViews.get(position)).setChecked(checked);
                 ((Item) DViews.get(selectedItem)).setChecked(false);
-            } catch (ClassCastException ignored) {
-            }
+            } catch (ClassCastException ignored) {}
             selectedItem = position;
         }
 
@@ -167,9 +165,8 @@ public class DAdapter {
             defaultTextColor = view.getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black);
             defaultBackgroundColor = view.getResources().getColor(android.R.color.transparent);
             checkedBackgroundColor = view.getResources().getColor(Utils.DARKTHEME ?
-                    R.color.navigationdrawer_selected_background_dark : R.color.navigationdrawer_selected_background_light);
-            return new RecyclerView.ViewHolder(view) {
-            };
+                R.color.navigationdrawer_selected_background_dark : R.color.navigationdrawer_selected_background_light);
+            return new RecyclerView.ViewHolder(view) {};
         }
 
         @Override
@@ -216,8 +213,7 @@ public class DAdapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
             return new RecyclerView.ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                    .inflate(R.layout.list_header, viewGroup, false)) {
-            };
+                .inflate(R.layout.list_header, viewGroup, false)) {};
         }
 
         @Override
@@ -225,7 +221,7 @@ public class DAdapter {
             ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title.toUpperCase(Locale.US));
             if (Utils.DARKTHEME)
                 viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(viewHolder.itemView.getResources()
-                        .getColor(R.color.divider_background_dark));
+                    .getColor(R.color.divider_background_dark));
         }
 
     }
@@ -266,24 +262,24 @@ public class DAdapter {
                 @Override
                 public void onClick(final View v) {
                     new AlertDialog.Builder(v.getContext()).setItems(v.getResources()
-                            .getStringArray(R.array.main_header_picture_items), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            switch (which) {
-                                case 0:
-                                    v.getContext().startActivity(new Intent(v.getContext(), MainHeaderActivity.class));
-                                    break;
-                                case 1:
-                                    if (Utils.getString("previewpicture", null, v.getContext()).equals("nopicture"))
-                                        return;
-                                    Utils.saveString("previewpicture", "nopicture", v.getContext());
-                                    image.setImageDrawable(null);
-                                    animate();
-                                    break;
-                            }
+                        .getStringArray(R.array.main_header_picture_items), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which) {
+                                    case 0:
+                                        v.getContext().startActivity(new Intent(v.getContext(), MainHeaderActivity.class));
+                                        break;
+                                    case 1:
+                                        if (Utils.getString("previewpicture", null, v.getContext()).equals("nopicture"))
+                                            return;
+                                        Utils.saveString("previewpicture", "nopicture", v.getContext());
+                                        image.setImageDrawable(null);
+                                        animate();
+                                        break;
+                                }
 
-                        }
-                    }).show();
+                            }
+                        }).show();
                 }
             });
 
@@ -291,13 +287,11 @@ public class DAdapter {
                 view.setFocusable(true);
                 view.setFocusableInTouchMode(true);
             }
-            return new RecyclerView.ViewHolder(view) {
-            };
+            return new RecyclerView.ViewHolder(view) {};
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
-        }
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {}
 
         public static class MainHeaderActivity extends Activity {
             @Override
@@ -305,12 +299,7 @@ public class DAdapter {
                 super.onCreate(savedInstanceState);
 
                 Intent intent;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                    intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                } else {
-                    intent = new Intent();
-                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                }
+                intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
                 intent.setType("image/*");
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), 0);
@@ -335,18 +324,15 @@ public class DAdapter {
         }
 
         public static void animate() {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                image.setVisibility(View.INVISIBLE);
-                Utils.circleAnimate(image, image.getWidth() / 2, image.getHeight() / 2);
-            }
+            image.setVisibility(View.INVISIBLE);
+            Utils.circleAnimate(image, image.getWidth() / 2, image.getHeight() / 2);
         }
 
         public static void setImage(Uri uri) throws IOException, NullPointerException {
             String selectedImagePath = null;
             try {
                 selectedImagePath = getPath(uri, image.getContext());
-            } catch (Exception ignored) {
-            }
+            } catch (Exception ignored) {}
             Bitmap bitmap;
             if ((bitmap = selectedImagePath != null ? BitmapFactory.decodeFile(selectedImagePath) :
                     uriToBitmap(uri, image.getContext())) != null)
@@ -355,8 +341,7 @@ public class DAdapter {
         }
 
         private static Bitmap uriToBitmap(Uri uri, Context context) throws IOException {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT)
-                context.getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            context.getContentResolver().takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
             InputStream inputStream = context.getContentResolver().openInputStream(uri);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
             inputStream.close();
@@ -364,8 +349,10 @@ public class DAdapter {
         }
 
         private static String getPath(Uri uri, Context context) {
-            Cursor cursor = context.getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DATA},
-                    null, null, null);
+            Cursor cursor = context.getContentResolver().query(uri, new String[] {
+                    MediaStore.Images.Media.DATA
+                },
+                null, null, null);
             if (cursor != null) {
                 int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                 cursor.moveToFirst();
