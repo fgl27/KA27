@@ -5,8 +5,8 @@ apply plugin: 'com.jfrog.bintray'
 version = "0.1.1"
 group = "com.kerneladiutor.plugin"
 
-def siteUrl = 'https://github.com/Grarak/KernelAdiutor'      // Homepage URL of the library
-def gitUrl = 'https://github.com/Grarak/KernelAdiutor.git'   // Git repository URL
+def siteUrl = 'https://github.com/bhb27/KA27'      // Homepage URL of the library
+def gitUrl = 'https://github.com/bhb27/KA27.git'   // Git repository URL
 
 android {
     compileSdkVersion 25

@@ -135,7 +135,7 @@ public class ParentFragment extends ViewPagerFragment {
         private boolean isColored;
 
         public CustomOnScrollListener() {
-            context = parentFragment.logoContainer.getContext();
+            context = parentFragment.logoContainer.getContext().getApplicationContext();
         }
 
         @Override

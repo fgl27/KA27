@@ -246,7 +246,7 @@ public class DAdapter {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.header_main, viewGroup, false);
             image = (ImageView) view.findViewById(R.id.picture);
             try {
-                String uri = Utils.getString("previewpicture", null, image.getContext());
+                String uri = Utils.getString("previewpicture", null, image.getContext().getApplicationContext());
                 if (uri == null || uri.equals("nopicture")) noPic = true;
                 else {
                     setImage(Uri.parse(uri));
@@ -257,7 +257,7 @@ public class DAdapter {
                 noPic = true;
             }
 
-            if (noPic) Utils.saveString("previewpicture", "nopicture", image.getContext());
+            if (noPic) Utils.saveString("previewpicture", "nopicture", image.getContext().getApplicationContext());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
