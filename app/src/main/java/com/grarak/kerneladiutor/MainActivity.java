@@ -19,9 +19,11 @@ package com.grarak.kerneladiutor;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -30,6 +32,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -99,7 +102,8 @@ import com.grarak.kerneladiutor.utils.tools.Buildprop;
 import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.File;
-import java.io.IOException; 
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +128,8 @@ public class MainActivity extends BaseActivity implements Constants {
 
     private boolean pressAgain = true;
 
+    private static WeakReference<AppCompatActivity> mActivity;
+
     /**
      * Current Fragment position
      */
@@ -132,14 +138,32 @@ public class MainActivity extends BaseActivity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mActivity = new WeakReference<AppCompatActivity>(this);
+
+        try {
+            this.registerReceiver(setInterfaceReceiver, new IntentFilter("setInterfaceReceiver"));
+        } catch (NullPointerException ignored) {}
+
+        try {
+            this.registerReceiver(selectItemReceiver, new IntentFilter("selectItemReceiver"));
+        } catch (NullPointerException ignored) {}
+
+        try {
+            this.registerReceiver(finishReceiver, new IntentFilter("finishReceiver"));
+        } catch (NullPointerException ignored) {}
+
+        try {
+            this.registerReceiver(SplashfinishReceiver, new IntentFilter("SplashfinishReceiver"));
+        } catch (NullPointerException ignored) {}
 
         setView();
         String password;
         extractAssets(this);
+
         if (!(password = Utils.getString("password", "", this)).isEmpty())
             askPassword(password);
         else // Use an AsyncTask to initialize everything
-            new Task().execute();
+            new Task(this, mActivity.get()).execute();
     }
 
     @Override
@@ -182,7 +206,7 @@ public class MainActivity extends BaseActivity implements Constants {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         if (mPassword.getText().toString().equals(Utils.decodeString(password)))
-                            new Task().execute();
+                            new Task(MainActivity.this, mActivity.get()).execute();
                         else {
                             Utils.toast(getString(R.string.password_wrong), MainActivity.this);
                             finish();
@@ -218,58 +242,58 @@ public class MainActivity extends BaseActivity implements Constants {
     /**
      * Add all fragments in a list
      */
-    private void setList() {
+    private static void setList(Context context) {
         ITEMS.clear();
         ITEMS.add(new DAdapter.MainHeader());
-        ITEMS.add(new DAdapter.Header(getString(R.string.information)));
-        ITEMS.add(new DAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
-        ITEMS.add(new DAdapter.Header(getString(R.string.kernel)));
-        ITEMS.add(new DAdapter.Item(getString(R.string.cpu), new CPUFragment()));
+        ITEMS.add(new DAdapter.Header(context.getString(R.string.information)));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.kernel_information), new KernelInformationFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.frequency_table), new FrequencyTableFragment()));
+        ITEMS.add(new DAdapter.Header(context.getString(R.string.kernel)));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.cpu), new CPUFragment()));
         if (CPUVoltage.hasCpuVoltage())
-            ITEMS.add(new DAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.cpu_voltage), new CPUVoltageFragment()));
         if (CPUHotplug.hasCpuHotplug())
-            ITEMS.add(new DAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
         if (Thermal.hasThermal())
-            ITEMS.add(new DAdapter.Item(getString(R.string.thermal), new ThermalFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.thermal), new ThermalFragment()));
         if (GPU.hasGpuControl())
-            ITEMS.add(new DAdapter.Item(getString(R.string.gpu), new GPUFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.gpu), new GPUFragment()));
         if (Screen.hasScreen())
-            ITEMS.add(new DAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())
-            ITEMS.add(new DAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.wake_controls), new WakeFragment()));
         if (Sound.hasSound())
-            ITEMS.add(new DAdapter.Item(getString(R.string.sound), new SoundFragment()));
-        if (!Utils.isTV(this))
-            ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.sound), new SoundFragment()));
+        if (!Utils.isTV(context))
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.battery), new BatteryFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.io_scheduler), new IOFragment()));
         if (KSM.hasKsm())
-            ITEMS.add(new DAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.ksm), new KSMFragment()));
         if (LMK.getMinFrees() != null)
-            ITEMS.add(new DAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.low_memory_killer), new LMKFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.virtual_memory), new VMFragment()));
         if (WakeLock.hasAnyWakelocks())
-            ITEMS.add(new DAdapter.Item(getString(R.string.wakelocks), new WakeLockFragment())); 
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.wakelocks), new WakeLockFragment())); 
         if (Entropy.hasEntropy())
-            ITEMS.add(new DAdapter.Item(getString(R.string.entropy), new EntropyFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
-        ITEMS.add(new DAdapter.Header(getString(R.string.tools)));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.entropy), new EntropyFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.misc_controls), new MiscFragment()));
+        ITEMS.add(new DAdapter.Header(context.getString(R.string.tools)));
         //Downloads downloads;
         //if ((downloads = new Downloads(this)).isSupported())
-        //    ITEMS.add(new DAdapter.Item(getString(R.string.downloads),
+        //    ITEMS.add(new DAdapter.Item(context.getString(R.string.downloads),
         //            DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
-            ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.backup), new BackupFragment()));
         if (Buildprop.hasBuildprop())
-            ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.initd), new InitdFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.logs), new LogsFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.startup_commands), new StartUpCommandsFragment()));
-        ITEMS.add(new DAdapter.Header(getString(R.string.other)));
-        ITEMS.add(new DAdapter.Item(getString(R.string.settings), new SettingsFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.about_us), new AboutusFragment()));
+            ITEMS.add(new DAdapter.Item(context.getString(R.string.build_prop_editor), new BuildpropFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.profile), new ProfileFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.recovery), new RecoveryFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.initd), new InitdFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.logs), new LogsFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.startup_commands), new StartUpCommandsFragment()));
+        ITEMS.add(new DAdapter.Header(context.getString(R.string.other)));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.settings), new SettingsFragment()));
+        ITEMS.add(new DAdapter.Item(context.getString(R.string.about_us), new AboutusFragment()));
     }
 
     /**
@@ -362,18 +386,25 @@ public class MainActivity extends BaseActivity implements Constants {
         }
     }
 
-    private class Task extends AsyncTask<Void, Void, Void> {
+    private static class Task extends AsyncTask<Void, Void, Void> {
 
         private boolean hasRoot;
-        private boolean hasBusybox;
+        private WeakReference < Context > contextRef;
+        private WeakReference < AppCompatActivity > activityRef;
+
+        public Task(Context context, AppCompatActivity mActivity) {
+            contextRef = new WeakReference < > (context);
+            activityRef = new WeakReference < AppCompatActivity > (mActivity);
+        }
 
         @Override
         protected Void doInBackground(Void...params) {
-            // Check root access and busybox installation
+            Context mContext = contextRef.get();
+            AppCompatActivity mActivity = activityRef.get();
+            // Check root access
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-            if (hasRoot) hasBusybox = RootUtils.hasAppletSupport(MainActivity.this);
 
-            if (hasRoot && hasBusybox) {
+            if (hasRoot) {
                 // Set permissions to specific files which are not readable by default
                 String[] writePermission = {
                     LMK_MINFREE
@@ -381,9 +412,9 @@ public class MainActivity extends BaseActivity implements Constants {
                 for (String file: writePermission)
                     RootUtils.runCommand("chmod 644 " + file);
 
-                setList();
+                setList(mContext);
             }
-            check_writeexternalstorage();
+            check_writeexternalstorage(mContext, mActivity);
 
             // Create a blank profiles.json to prevent logspam.
             String sdcard = Environment.getExternalStorageDirectory().getPath();
@@ -417,36 +448,24 @@ public class MainActivity extends BaseActivity implements Constants {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (!hasRoot || !hasBusybox) {
-                Intent i = new Intent(MainActivity.this, TextActivity.class);
+            Context mContext = contextRef.get();
+            if (!hasRoot) {
+                Intent i = new Intent(mContext, TextActivity.class);
                 Bundle args = new Bundle();
-                args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root)
-                        : getString(R.string.no_busybox));
-                Log.d(TAG, !hasRoot ? "no root" : "no busybox");
+                args.putString(TextActivity.ARG_TEXT, mContext.getString(R.string.no_root));
+                Log.d(TAG, "no root");
                 i.putExtras(args);
-                startActivity(i);
+                mContext.startActivity(i);
 
-                if (hasRoot)
-                    // Root is there but busybox is missing
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
-                    } catch (ActivityNotFoundException ignored) {
-                    }
                 cancel(true);
-                finish();
+
+                MainActivity.SendBroadcast("finishReceiver", mContext);
                 return;
             }
 
-            mSplashView.finish();
-            setInterface();
-
-            // Start with the very first fragment on the list
-            for (int i = 0; i < VISIBLE_ITEMS.size(); i++) {
-                if (VISIBLE_ITEMS.get(i).getFragment() != null) {
-                    selectItem(i);
-                    break;
-                }
-            }
+            MainActivity.SendBroadcast("setInterfaceReceiver", mContext);
+            MainActivity.SendBroadcast("selectItemReceiver", mContext);
+            MainActivity.SendBroadcast("SplashfinishReceiver", mContext);
         }
     }
 
@@ -533,14 +552,14 @@ public class MainActivity extends BaseActivity implements Constants {
         boolean onBackPressed();
     }
 
-    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
+    final static private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
-    @TargetApi(23)
-    private void check_writeexternalstorage() {
+    @TargetApi(23 | 24 | 25)
+    private static void check_writeexternalstorage(Context context, AppCompatActivity mActivity) {
         if (Build.VERSION.SDK_INT >= 23) {
-            int hasWriteExternalPermission = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            int hasWriteExternalPermission = mActivity.checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (hasWriteExternalPermission != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                mActivity.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         REQUEST_CODE_ASK_PERMISSIONS);
                 return;
             }
@@ -565,6 +584,46 @@ public class MainActivity extends BaseActivity implements Constants {
                 params.gravity = Gravity.START;
             }
         }
+    }
+
+    private final BroadcastReceiver setInterfaceReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setInterface();
+        }
+    };
+
+    private final BroadcastReceiver selectItemReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Start with the very first fragment on the list
+            for (int i = 0; i < VISIBLE_ITEMS.size(); i++) {
+                if (VISIBLE_ITEMS.get(i).getFragment() != null) {
+                    selectItem(i);
+                    break;
+                }
+            }
+        }
+    };
+
+    private final BroadcastReceiver finishReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
+
+    private final BroadcastReceiver SplashfinishReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mSplashView.finish();
+        }
+    };
+
+    public static void SendBroadcast(String action, Context context) {
+        final Intent NewIntent = new Intent();
+        NewIntent.setAction(action);
+        context.sendBroadcast(NewIntent);
     }
 
 }
