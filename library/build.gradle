@@ -10,7 +10,7 @@ def gitUrl = 'https://github.com/bhb27/KA27.git'   // Git repository URL
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.0-rc2"
+    buildToolsVersion "26.0.0"
 
     defaultConfig {
         minSdkVersion 21
@@ -23,10 +23,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     dexOptions {
         preDexLibraries = true
