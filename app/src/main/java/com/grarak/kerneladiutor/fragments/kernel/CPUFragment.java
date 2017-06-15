@@ -44,6 +44,7 @@ import com.kerneladiutor.library.root.RootFile;
 
 import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -54,7 +55,7 @@ import java.util.Locale;
  */
 public class CPUFragment extends ViewPagerFragment implements Constants {
 
-    private static CPUFragment cpuFragment;
+    private static WeakReference<CPUFragment> cpuFragment;
     private CPUPart cpuPart;
     private GovernorPart governorPart;
     private int core;
@@ -68,7 +69,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        cpuFragment = this;
+        cpuFragment = new WeakReference<CPUFragment>(this);
 
         allowSwipe(false);
         addFragment(new ViewPagerItem(cpuPart == null ? cpuPart = new CPUPart() : cpuPart, null));
@@ -829,31 +830,31 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         public void onClick(CardViewItem.DCardView dCardView) {
             if (CPU.isPerCoreGovControlEnabled(getActivity())) {
                 if (dCardView == mGovernorTunableCard0) {
-                    cpuFragment.core = 0;
-                    cpuFragment.governorPart.reload();
-                    cpuFragment.setCurrentItem(1);
+                    cpuFragment.get().core = 0;
+                    cpuFragment.get().governorPart.reload();
+                    cpuFragment.get().setCurrentItem(1);
                 } else if (dCardView == mGovernorTunableCard1) {
-                    cpuFragment.core = 1;
-                    cpuFragment.governorPart.reload();
-                    cpuFragment.setCurrentItem(1);
+                    cpuFragment.get().core = 1;
+                    cpuFragment.get().governorPart.reload();
+                    cpuFragment.get().setCurrentItem(1);
                 } else if (dCardView == mGovernorTunableCard2) {
-                    cpuFragment.core = 2;
-                    cpuFragment.governorPart.reload();
-                    cpuFragment.setCurrentItem(1);
+                    cpuFragment.get().core = 2;
+                    cpuFragment.get().governorPart.reload();
+                    cpuFragment.get().setCurrentItem(1);
                 } else if (dCardView == mGovernorTunableCard3) {
-                    cpuFragment.core = 3;
-                    cpuFragment.governorPart.reload();
-                    cpuFragment.setCurrentItem(1);
+                    cpuFragment.get().core = 3;
+                    cpuFragment.get().governorPart.reload();
+                    cpuFragment.get().setCurrentItem(1);
                 }
             } else {
                 if (dCardView == mGovernorTunableCard) {
-                    cpuFragment.core = CPU.getBigCore();
-                    cpuFragment.governorPart.reload();
-                    cpuFragment.setCurrentItem(1);
+                    cpuFragment.get().core = CPU.getBigCore();
+                    cpuFragment.get().governorPart.reload();
+                    cpuFragment.get().setCurrentItem(1);
                 } else if (dCardView == mGovernorTunableLITTLECard) {
-                    cpuFragment.core = CPU.getLITTLEcore();
-                    cpuFragment.governorPart.reload();
-                    cpuFragment.setCurrentItem(1);
+                    cpuFragment.get().core = CPU.getLITTLEcore();
+                    cpuFragment.get().governorPart.reload();
+                    cpuFragment.get().setCurrentItem(1);
                 }
             }
         }
@@ -909,8 +910,8 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-            CPUFragment.cpuFragment.cpuPart.view.invalidate();
-            getActivity().getSupportFragmentManager().beginTransaction().detach(CPUFragment.cpuFragment).attach(CPUFragment.cpuFragment).commit();
+            CPUFragment.cpuFragment.get().cpuPart.view.invalidate();
+            getActivity().getSupportFragmentManager().beginTransaction().detach(CPUFragment.cpuFragment.get()).attach(CPUFragment.cpuFragment.get()).commit();
         }
 
         private void SetFreq(int freq, int core, boolean min, Context context) {
@@ -1139,13 +1140,13 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getName() {
-            return CPU.getCurGovernor(cpuFragment.core, true);
+            return CPU.getCurGovernor(cpuFragment.get().core, true);
         }
 
         @Override
         public String getPath() {
-            return getPath(CPU.isBigLITTLE() ? String.format(Locale.US, CPU_GOVERNOR_TUNABLES_CORE, cpuFragment.core) :
-                    CPU_GOVERNOR_TUNABLES, CPU.getCurGovernor(cpuFragment.core, true));
+            return getPath(CPU.isBigLITTLE() ? String.format(Locale.US, CPU_GOVERNOR_TUNABLES_CORE, cpuFragment.get().core) :
+                    CPU_GOVERNOR_TUNABLES, CPU.getCurGovernor(cpuFragment.get().core, true));
         }
 
         private String getPath(String path, String governor) {
@@ -1163,7 +1164,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getError(Context context) {
-            return context.getString(R.string.not_tunable, CPU.getCurGovernor(cpuFragment.core, true));
+            return context.getString(R.string.not_tunable, CPU.getCurGovernor(cpuFragment.get().core, true));
         }
     }
 
