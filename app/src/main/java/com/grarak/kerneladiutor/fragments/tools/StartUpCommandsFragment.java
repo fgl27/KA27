@@ -46,9 +46,6 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -133,18 +130,11 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                                             case 0:
                                                 {
                                                     ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                                    ClipData clip = ClipData.newPlainText("Startup Comnmands Shell", allcommands);
+                                                    ClipData clip = ClipData.newPlainText("Startup Comnmand", allcommands);
                                                     clipboard.setPrimaryClip(clip);
                                                     break;
                                                 }
                                             case 1:
-                                                {
-                                                    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                                    ClipData clip = ClipData.newPlainText("Startup Comnmands RC", convert_to_rc(allcommands));
-                                                    clipboard.setPrimaryClip(clip);
-                                                    break;
-                                                }
-                                            case 2:
                                                 {
                                                     AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),
                                                         (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
@@ -236,36 +226,5 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
             }
         }
     };
-
-    private String convert_to_rc(String text) {
-        StringBuilder sb = new StringBuilder();
-        BufferedReader bufReader = new BufferedReader(new StringReader(text));
-        try {
-            String line = null;
-            while ((line = bufReader.readLine()) != null) {
-                String[] tar = null;
-                tar = line.split(" ");
-                switch (tar[0]) {
-                    case "echo":
-                        {
-                            sb.append("write " + tar[3] + " " + tar[1] + "\n");
-                            break;
-                        }
-                    case "chmod":
-                        {
-                            sb.append(tar[0] + " " + tar[1] + " " + tar[2] + "\n");
-                            break;
-                        }
-                    case "start":
-                    case "stop":
-                        {
-                            sb.append(tar[0] + " " + tar[1] + "\n");
-                            break;
-                        }
-                }
-            }
-        } catch (IOException x) {}
-        return sb.toString();
-    }
 
 }
