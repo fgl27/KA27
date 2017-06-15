@@ -40,6 +40,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Locale;
 
@@ -228,7 +229,8 @@ public class DAdapter {
 
     public static class MainHeader implements DView {
 
-        private static ImageView image;
+        private static WeakReference<ImageView> image;
+        //private static ImageView image;
         private boolean noPic;
 
         @Override
@@ -244,9 +246,10 @@ public class DAdapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.header_main, viewGroup, false);
-            image = (ImageView) view.findViewById(R.id.picture);
+            image = new WeakReference<ImageView>((ImageView) view.findViewById(R.id.picture));
+//            image = (ImageView) view.findViewById(R.id.picture);
             try {
-                String uri = Utils.getString("previewpicture", null, image.getContext().getApplicationContext());
+                String uri = Utils.getString("previewpicture", null, image.get().getContext().getApplicationContext());
                 if (uri == null || uri.equals("nopicture")) noPic = true;
                 else {
                     setImage(Uri.parse(uri));
@@ -257,7 +260,7 @@ public class DAdapter {
                 noPic = true;
             }
 
-            if (noPic) Utils.saveString("previewpicture", "nopicture", image.getContext().getApplicationContext());
+            if (noPic) Utils.saveString("previewpicture", "nopicture", image.get().getContext().getApplicationContext());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
@@ -273,7 +276,7 @@ public class DAdapter {
                                         if (Utils.getString("previewpicture", null, v.getContext()).equals("nopicture"))
                                             return;
                                         Utils.saveString("previewpicture", "nopicture", v.getContext());
-                                        image.setImageDrawable(null);
+                                        image.get().setImageDrawable(null);
                                         animate();
                                         break;
                                 }
@@ -324,19 +327,19 @@ public class DAdapter {
         }
 
         public static void animate() {
-            image.setVisibility(View.INVISIBLE);
-            Utils.circleAnimate(image, image.getWidth() / 2, image.getHeight() / 2);
+            image.get().setVisibility(View.INVISIBLE);
+            Utils.circleAnimate(image.get(), image.get().getWidth() / 2, image.get().getHeight() / 2);
         }
 
         public static void setImage(Uri uri) throws IOException, NullPointerException {
             String selectedImagePath = null;
             try {
-                selectedImagePath = getPath(uri, image.getContext());
+                selectedImagePath = getPath(uri, image.get().getContext());
             } catch (Exception ignored) {}
             Bitmap bitmap;
             if ((bitmap = selectedImagePath != null ? BitmapFactory.decodeFile(selectedImagePath) :
-                    uriToBitmap(uri, image.getContext())) != null)
-                image.setImageBitmap(Utils.scaleDownBitmap(bitmap, 1024, 1024));
+                    uriToBitmap(uri, image.get().getContext())) != null)
+                image.get().setImageBitmap(Utils.scaleDownBitmap(bitmap, 1024, 1024));
             else throw new NullPointerException("Getting Bitmap failed");
         }
 
