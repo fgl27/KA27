@@ -37,3 +37,4 @@
 
 # picasso.OkHttpDownloade
 -dontwarn com.squareup.picasso.**
+-dontnote com.squareup.picasso.**
