@@ -31,6 +31,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.IO;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ import java.util.List;
  */
 public class IOFragment extends ViewPagerFragment implements Constants {
 
-    private static IOFragment ioFragment;
+    private static WeakReference<IOFragment> ioFragment;
     private IOPart ioPart;
     private SchedulerPart schedulerPart;
     private IO.StorageType storageType;
@@ -54,7 +55,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        ioFragment = this;
+        ioFragment = new WeakReference<IOFragment>(this);
 
         allowSwipe(false);
         addFragment(new ViewPagerItem(ioPart == null ? ioPart = new IOPart() : ioPart, null));
@@ -233,9 +234,9 @@ public class IOFragment extends ViewPagerFragment implements Constants {
         
     @Override
     public void onClick(CardViewItem.DCardView dCardView) {
-            ioFragment.storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
-            ioFragment.schedulerPart.reload();
-            ioFragment.setCurrentItem(1);
+            ioFragment.get().storageType = dCardView == mInternalTunableCard ? IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL;
+            ioFragment.get().schedulerPart.reload();
+            ioFragment.get().setCurrentItem(1);
         }
 
         @Override
@@ -253,13 +254,13 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getName() {
-            return IO.getScheduler(ioFragment.storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL :
+            return IO.getScheduler(ioFragment.get().storageType == IO.StorageType.INTERNAL ? IO.StorageType.INTERNAL :
                     IO.StorageType.EXTERNAL);
         }
 
         @Override
         public String getPath() {
-            return ioFragment.storageType == IO.StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER_TUNABLE :
+            return ioFragment.get().storageType == IO.StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER_TUNABLE :
                     IO_EXTERNAL_SCHEDULER_TUNABLE;
         }
 
@@ -270,7 +271,7 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
         @Override
         public String getError(Context context) {
-            return context.getString(R.string.not_tunable, IO.getScheduler(ioFragment.storageType == IO.StorageType.INTERNAL ?
+            return context.getString(R.string.not_tunable, IO.getScheduler(ioFragment.get().storageType == IO.StorageType.INTERNAL ?
                     IO.StorageType.INTERNAL : IO.StorageType.EXTERNAL));
         }
 
