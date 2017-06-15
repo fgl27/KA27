@@ -70,6 +70,7 @@ import com.grarak.kerneladiutor.utils.database.CommandDB;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -93,15 +94,15 @@ public class LogsFragment extends RecyclerViewFragment {
     private static String final_get_prop;
     private static String final_grep;
 
-    private final String logcatC = "logcat -d ";
-    private final String radioC = "logcat  -b radio -v time -d ";
-    private final String eventsC = "logcat -b events -v time -d ";
-    private final String dmesgC = "dmesg ";
-    private final String getpropC = "getprop ";
-    private final String consoleramoopsC = "cat /sys/fs/pstore/console-ramoops*";
-    private final String dmesgramoopsC = "cat /sys/fs/pstore/dmesg-ramoops*";
-    private final String log_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Logs/";
-    private final String grep = " | grep -i ";
+    private static final String logcatC = "logcat -d ";
+    private static final String radioC = "logcat  -b radio -v time -d ";
+    private static final String eventsC = "logcat -b events -v time -d ";
+    private static final String dmesgC = "dmesg ";
+    private static final String getpropC = "getprop ";
+    private static final String consoleramoopsC = "cat /sys/fs/pstore/console-ramoops*";
+    private static final String dmesgramoopsC = "cat /sys/fs/pstore/dmesg-ramoops*";
+    private static final String log_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Logs/";
+    private static final String grep = " | grep -i ";
 
     @Override
     public boolean showApplyOnBoot() {
@@ -153,7 +154,7 @@ public class LogsFragment extends RecyclerViewFragment {
             public void onClick(CardViewItem.DCardView dCardView) {
                 if (!Misc.isLoggerActive())
                     Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                new Execute().execute("zip");
+                new Execute(getActivity()).execute("zip");
             }
         });
 
@@ -227,7 +228,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mLastDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("lastdmesg");
+                new Execute(getActivity()).execute("lastdmesg");
             }
         });
 
@@ -257,7 +258,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mKernelChanges.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute().execute("kernel_changes");
+                new Execute(getActivity()).execute("kernel_changes");
             }
         });
 
@@ -289,7 +290,7 @@ public class LogsFragment extends RecyclerViewFragment {
     }
 
     private void logs(String log, String path, String file) {
-        new Execute().execute(log + " > " + path + file + ".txt");
+        new Execute(getActivity()).execute(log + " > " + path + file + ".txt");
     }
 
     public static String getDate() {
@@ -299,21 +300,28 @@ public class LogsFragment extends RecyclerViewFragment {
         return Final_Date;
     }
 
-    private class Execute extends AsyncTask < String, Void, Void > {
+    private static class Execute extends AsyncTask < String, Void, Void > {
         private ProgressDialog progressDialog;
+        private WeakReference < Context > contextRef;
+
+        public Execute(Context context) {
+            contextRef = new WeakReference < > (context);
+        }
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setTitle(getString(R.string.logs));
-            progressDialog.setMessage(getString(R.string.execute));
+            Context mContext = contextRef.get();
+            progressDialog = new ProgressDialog(mContext, (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
+            progressDialog.setTitle(mContext.getString(R.string.logs));
+            progressDialog.setMessage(mContext.getString(R.string.execute));
             progressDialog.setCancelable(false);
             progressDialog.show();
         }
 
         @Override
         protected Void doInBackground(String...params) {
+            Context mContext = contextRef.get();
             if (params[0].equals("zip")) {
                 String log_temp_folder = log_folder + ".tmpziplog/";
                 boolean zip_ok = false;
@@ -334,7 +342,7 @@ public class LogsFragment extends RecyclerViewFragment {
                     RootUtils.runCommand(consoleramoopsC + " > " + log_temp_folder + "lastdmesg.txt");
                     RootUtils.runCommand("echo '\ndmesgramoops\n' >> " + log_temp_folder + "lastdmesg.txt");
                     RootUtils.runCommand(dmesgramoopsC + " >> " + log_temp_folder + "lastdmesg.txt");
-                    KernelChanges(log_temp_folder, false, getActivity());
+                    KernelChanges(log_temp_folder, false, mContext);
                     // ZipUtil doesnot understand folder name that end with /
                     ZipUtil.pack(new File(log_folder + "/.tmpziplog"), new File(log_folder + "logs" + getDate() + ".zip"));
                 } else {
@@ -346,7 +354,7 @@ public class LogsFragment extends RecyclerViewFragment {
                     RootUtils.runCommand(consoleramoopsC + " > " + log_temp_folder + "lastdmesg.txt");
                     RootUtils.runCommand("echo '\ndmesgramoops\n' >> " + log_temp_folder + "lastdmesg.txt");
                     RootUtils.runCommand(dmesgramoopsC + " >> " + log_temp_folder + "lastdmesg.txt");
-                    KernelChanges(log_temp_folder, false, getActivity());
+                    KernelChanges(log_temp_folder, false, mContext);
                     RootUtils.runCommand("rm -rf " + log_temp_folder + "logcat_wile.txt");
                     // ZipUtil doesn’t understand folder name that end with /
                     // Logcat some times is too long and the zip logcat.txt may be empty, do some check
@@ -365,7 +373,7 @@ public class LogsFragment extends RecyclerViewFragment {
                     }
                 }
             } else if (params[0].equals("kernel_changes"))
-                KernelChanges(log_folder, true, getActivity());
+                KernelChanges(log_folder, true, mContext);
             else if (params[0].equals("lastdmesg")) {
                 String lastdate = getDate();
                 RootUtils.runCommand(consoleramoopsC + " > " + log_folder + "lastdmesg" + lastdate + ".txt");
@@ -657,7 +665,7 @@ public class LogsFragment extends RecyclerViewFragment {
         return ret;
     }
 
-    private void KernelChanges(String path, boolean date, Context context) {
+    private static void KernelChanges(String path, boolean date, Context context) {
         String file_name;
         if (date)
             file_name = path + "kernel_changes" + getDate() + ".txt";
@@ -666,7 +674,7 @@ public class LogsFragment extends RecyclerViewFragment {
         RootUtils.runCommand("echo " + "'" + listcommands(context) + "'" + " > " + file_name);
     }
 
-    private String listcommands(Context context) {
+    private static String listcommands(Context context) {
         CommandDB commandDB = new CommandDB(context);
         List < CommandDB.CommandItem > commandItems = commandDB.getAllCommands();
         final List < String > applys = new ArrayList < > ();
