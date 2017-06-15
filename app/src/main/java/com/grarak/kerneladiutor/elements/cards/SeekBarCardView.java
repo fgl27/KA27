@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.util.AttributeSet;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
@@ -89,6 +90,23 @@ public class SeekBarCardView extends BaseCardView {
         headerCardView = new HeaderCardView(getContext());
         setUpTitle();
         setUpDescription();
+    }
+
+    public SeekBarCardView(Context context) {
+        super(context);
+        this.list = null;
+        headerCardView = new HeaderCardView(getContext());
+    }
+    public SeekBarCardView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.list = null;
+        headerCardView = new HeaderCardView(getContext());
+    }
+
+    public SeekBarCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.list = null;
+        headerCardView = new HeaderCardView(getContext());
     }
 
     @Override

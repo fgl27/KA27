@@ -25,6 +25,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,6 +59,17 @@ public class DownloadCardView extends BaseCardView {
     private TextView descriptionText;
     private TextView changelogText;
     private FloatingActionButton downloadButton;
+
+    public DownloadCardView(Context context) {
+        super(context);
+    }
+    public DownloadCardView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public DownloadCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     public DownloadCardView(Context context, final Downloads.Download download) {
         super(context, R.layout.download_cardview);

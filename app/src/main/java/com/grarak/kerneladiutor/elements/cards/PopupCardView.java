@@ -24,6 +24,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.util.AttributeSet;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.cardview.HeaderCardView;
@@ -74,6 +75,21 @@ public class PopupCardView extends BaseCardView {
         }
 
         if (onPopupCardListener != null) setListener();
+    }
+
+    public PopupCardView(Context context) {
+        super(context);
+        this.list = null;
+    }
+
+    public PopupCardView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        this.list = null;
+    }
+
+    public PopupCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        this.list = null;
     }
 
     @Override

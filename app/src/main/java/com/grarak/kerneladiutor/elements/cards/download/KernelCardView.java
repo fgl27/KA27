@@ -30,6 +30,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.util.AttributeSet;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.KernelActivity;
@@ -47,6 +48,17 @@ public class KernelCardView extends BaseCardView {
     private ImageView logoView;
     private TextView nameView;
     private TextView descriptionView;
+
+    public KernelCardView(Context context) {
+        super(context);
+    }
+    public KernelCardView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public KernelCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     public KernelCardView(Context context, @NonNull final Downloads.KernelContent kernelContent) {
         super(context, R.layout.kernel_cardview);

@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.util.AttributeSet;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
@@ -46,6 +47,17 @@ public class DownloadInfoCardView extends BaseCardView {
 
     private TextView shortDescription;
     private TextView longDescription;
+
+    public DownloadInfoCardView(Context context) {
+        super(context);
+    }
+    public DownloadInfoCardView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public DownloadInfoCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     public DownloadInfoCardView(Context context, @NonNull Downloads.KernelContent kernelContent) {
         super(context, R.layout.downloadinfo_cardview);

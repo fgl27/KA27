@@ -24,6 +24,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.util.AttributeSet;
 
 import com.grarak.cardview.BaseCardView;
 import com.grarak.kerneladiutor.R;
@@ -38,6 +39,17 @@ public class FeatureCardView extends BaseCardView {
 
     private TextView mainFeatureText;
     private TextView subFeatureText;
+
+    public FeatureCardView(Context context) {
+        super(context);
+    }
+    public FeatureCardView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public FeatureCardView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     public FeatureCardView(Context context, @NonNull Downloads.Feature feature) {
         super(context, R.layout.feature_cardview);
