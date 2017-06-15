@@ -41,6 +41,7 @@ import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.nineoldandroids.view.ViewHelper;
 
 import java.util.List;
+import java.lang.ref.WeakReference;
 
 /**
  * Created by willi on 20.06.15.
@@ -53,7 +54,7 @@ public class ParentFragment extends ViewPagerFragment {
         return fragment;
     }
 
-    private static ParentFragment parentFragment;
+    private static WeakReference<ParentFragment> parentFragment;
     private Downloads.KernelContent kernelContent;
     private TextView descriptionText;
     private View viewContainer;
@@ -74,7 +75,7 @@ public class ParentFragment extends ViewPagerFragment {
     @Override
     public void preInit(Bundle savedInstanceState) {
         super.preInit(savedInstanceState);
-        parentFragment = this;
+        parentFragment = new WeakReference<ParentFragment>(this);
 
         String description;
         if (kernelContent != null && (description = kernelContent.getShortDescription()) != null)
@@ -135,7 +136,7 @@ public class ParentFragment extends ViewPagerFragment {
         private boolean isColored;
 
         public CustomOnScrollListener() {
-            context = parentFragment.logoContainer.getContext().getApplicationContext();
+            context = parentFragment.get().logoContainer.getContext().getApplicationContext();
         }
 
         @Override
@@ -145,40 +146,40 @@ public class ParentFragment extends ViewPagerFragment {
             scrollDistance += dy;
             logoViewContainer += dy;
             float logoViewTranslation = logoViewContainer / 2;
-            int logoContainerHeight = parentFragment.logoContainer.getHeight();
+            int logoContainerHeight = parentFragment.get().logoContainer.getHeight();
             if (logoViewTranslation > logoContainerHeight)
                 logoViewTranslation = logoContainerHeight;
             else if (logoViewTranslation < 0) logoViewTranslation = 0;
-            ViewHelper.setTranslationY(parentFragment.logoContainer, -logoViewTranslation);
+            ViewHelper.setTranslationY(parentFragment.get().logoContainer, -logoViewTranslation);
 
             viewContainerOffset += dy;
-            int viewContainerHeight = parentFragment.viewContainer.getHeight();
+            int viewContainerHeight = parentFragment.get().viewContainer.getHeight();
             if (viewContainerOffset > viewContainerHeight)
                 viewContainerOffset = viewContainerHeight;
             else if (viewContainerOffset < 0) viewContainerOffset = 0;
-            ViewHelper.setTranslationY(parentFragment.viewContainer, -viewContainerOffset);
+            ViewHelper.setTranslationY(parentFragment.get().viewContainer, -viewContainerOffset);
 
-            int toolbarHeight = parentFragment.toolbar.getHeight();
+            int toolbarHeight = parentFragment.get().toolbar.getHeight();
             if (viewContainerOffset >= viewContainerHeight -
-                    toolbarHeight - parentFragment.mTabs.getHeight() || dy < 0) {
+                    toolbarHeight - parentFragment.get().mTabs.getHeight() || dy < 0) {
                 toolbarOffset += dy;
                 if (toolbarOffset > toolbarHeight)
                     toolbarOffset = toolbarHeight;
                 else if (toolbarOffset < 0) toolbarOffset = 0;
-                ViewHelper.setTranslationY(parentFragment.toolbar, -toolbarOffset);
+                ViewHelper.setTranslationY(parentFragment.get().toolbar, -toolbarOffset);
             }
 
             if (!isColored && scrollDistance >= viewContainerHeight - toolbarHeight && dy < 0) {
-                parentFragment.toolbar.setBackgroundColor(context.getResources().getColor(R.color.color_primary));
-                parentFragment.descriptionText.setVisibility(View.VISIBLE);
-                parentFragment.viewContainerBackground.setBackgroundColor(context.getResources()
+                parentFragment.get().toolbar.setBackgroundColor(context.getResources().getColor(R.color.color_primary));
+                parentFragment.get().descriptionText.setVisibility(View.VISIBLE);
+                parentFragment.get().viewContainerBackground.setBackgroundColor(context.getResources()
                         .getColor(R.color.color_primary));
                 isColored = true;
             }
 
             if (isColored && scrollDistance == 0) {
-                parentFragment.toolbar.setBackgroundColor(Color.TRANSPARENT);
-                parentFragment.viewContainerBackground.startAnimation(parentFragment.animation);
+                parentFragment.get().toolbar.setBackgroundColor(Color.TRANSPARENT);
+                parentFragment.get().viewContainerBackground.startAnimation(parentFragment.get().animation);
                 isColored = false;
             }
         }
@@ -189,9 +190,9 @@ public class ParentFragment extends ViewPagerFragment {
             viewContainerOffset = 0;
             toolbarOffset = 0;
 
-            ViewHelper.setTranslationY(parentFragment.logoContainer, 0);
-            ViewHelper.setTranslationY(parentFragment.viewContainer, 0);
-            ViewHelper.setTranslationY(parentFragment.toolbar, 0);
+            ViewHelper.setTranslationY(parentFragment.get().logoContainer, 0);
+            ViewHelper.setTranslationY(parentFragment.get().viewContainer, 0);
+            ViewHelper.setTranslationY(parentFragment.get().toolbar, 0);
         }
     }
 
@@ -229,17 +230,17 @@ public class ParentFragment extends ViewPagerFragment {
 
         @Override
         public void resetTranslations() {
-            parentFragment.toolbar.setBackgroundColor(Color.TRANSPARENT);
-            parentFragment.viewContainerBackground.setBackgroundColor(Color.TRANSPARENT);
-            parentFragment.descriptionText.setVisibility(View.GONE);
+            parentFragment.get().toolbar.setBackgroundColor(Color.TRANSPARENT);
+            parentFragment.get().viewContainerBackground.setBackgroundColor(Color.TRANSPARENT);
+            parentFragment.get().descriptionText.setVisibility(View.GONE);
 
             int orientation = Utils.getScreenOrientation(getActivity());
             float density = getResources().getDisplayMetrics().density;
 
             float tabsPadding = orientation == Configuration.ORIENTATION_PORTRAIT ? 0 : density * 48;
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) parentFragment.mTabs.getLayoutParams();
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) parentFragment.get().mTabs.getLayoutParams();
             layoutParams.setMargins((int) tabsPadding, 0, (int) tabsPadding, 0);
-            parentFragment.mTabs.requestLayout();
+            parentFragment.get().mTabs.requestLayout();
 
             setPaddingRecyclerview(orientation, density);
             if (onScrollListener != null) onScrollListener.reset();
