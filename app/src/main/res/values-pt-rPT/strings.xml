@@ -340,7 +340,7 @@
   <string name="draw_w">Desenhar W</string>
   <string name="draw_c">Desenhar C</string>
   <string name="draw_m">Desenhar M</string>
-  <string name="camera_gesture">Gesto de camera</string>
+  <string name="camera_gesture">Gesto de câmera</string>
   <string name="pocket_mode">Modo de bolso</string>
   <string name="wake_timeout">Acordar Timeout</string>
   <string name="wake_timeout_summary">Defina o tempo quando os wake controls serão desabilitados após o ecrã desligar.</string>

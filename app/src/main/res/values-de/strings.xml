@@ -461,7 +461,7 @@
   <string name="flashing">Flashen</string>
   <string name="backing_up">Sicherung erstellen</string>
   <string name="empty_name">Leerer Name!</string>
-  <string name="backup_already_exists">Ein Backup mit dem selben Namen existiert bereits. Lösche es zuerst!</string>
+  <string name="backup_already_exists">Ein Backup mit demselben Namen existiert bereits. Lösche es zuerst!</string>
   <string name="restore">Wiederherstellen</string>
   <string name="delete">Löschen</string>
   <string name="overwrite_question">Soll %s überschrieben werden?</string>

@@ -579,7 +579,7 @@
     <string name="headset_highperf_mode">Headset High Performance Mode</string>
     <string name="headset_highperf_mode_summary">This helps prevent distortion at higher volumes.</string>
     <string name="headphone_gain_independent">Independent Headphone Gain</string>
-    <string name="headphone_gain_independent_summary">Set seperate Left/Right values.</string>
+    <string name="headphone_gain_independent_summary">Set separete Left/Right values.</string>
     <string name="headphone_gain_l">Headphone Gain Left</string>
     <string name="headphone_gain_r">Headphone Gain Right</string>
     <string name="headphone_gain">Headphone Gain</string>

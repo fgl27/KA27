@@ -463,7 +463,7 @@
   <string name="power_suspend_state_summary">Controlador de manejo de energia del Kernel con la pantalla apagada. Mejora la batería si esta activo. Nota: Solo podrás cambiar esta configuración si el Modo de Suspención de Energia esta en Modo Usuario.</string>
   <string name="network">Red</string>
   <string name="tcp">Algoritmo de congestión TCP</string>
-  <string name="tcp_summary">Protocolo de Control de transmisión es uno de los principales protocolos de la suite de protocolo de Internet (IP), comunmente llamado TCP/IP.</string>
+  <string name="tcp_summary">Protocolo de Control de transmisión es uno de los principales protocolos de la suite de protocolo de Internet (IP), comúnmente llamado TCP/IP.</string>
   <string name="hostname">Nombre de host</string>
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
