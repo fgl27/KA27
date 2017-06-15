@@ -101,7 +101,9 @@ public class DownloadCardView extends BaseCardView {
     }
 
     private void showDownload(final String name, final String md5, String link, final String installMethod) {
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.download_dialog, null, false);
+        // null parent avoid Layout Inflation without a Parent
+        ViewGroup null_parent = (ViewGroup) findViewById(R.id.null_parent);
+        View view = LayoutInflater.from(getContext()).inflate(R.layout.download_dialog, null_parent, false);
         final CircleChart circleProgress = (CircleChart) view.findViewById(R.id.circle_progress);
         final View progressView = view.findViewById(R.id.progress_view);
 

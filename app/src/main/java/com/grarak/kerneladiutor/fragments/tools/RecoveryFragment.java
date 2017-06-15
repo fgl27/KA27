@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
@@ -116,8 +117,9 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
         final Recovery recovery = new Recovery(recovery_command, new File(description));
         mCommands.add(recovery);
-
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, null, false);
+        // null parent avoid Layout Inflation without a Parent
+        ViewGroup null_parent = (ViewGroup) getActivity().findViewById(R.id.null_parent);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, null_parent, false);
 
         final CardViewItem.DCardView mActionCard = new CardViewItem.DCardView();
 
