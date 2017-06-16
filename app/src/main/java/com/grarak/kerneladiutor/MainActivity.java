@@ -19,9 +19,11 @@ package com.grarak.kerneladiutor;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -132,6 +134,10 @@ public class MainActivity extends BaseActivity implements Constants {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            this.registerReceiver(updateMainReceiver, new IntentFilter("updateMainReceiver"));
+        } catch (NullPointerException ignored) {}
 
         setView();
         String password;
@@ -558,4 +564,10 @@ public class MainActivity extends BaseActivity implements Constants {
         }
     }
 
+    private final BroadcastReceiver updateMainReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    };
 }

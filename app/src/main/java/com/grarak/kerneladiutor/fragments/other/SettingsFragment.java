@@ -103,6 +103,9 @@ public class SettingsFragment extends RecyclerViewFragment {
             @Override
             public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                 Utils.saveBoolean("darktheme", checked, getActivity());
+                final Intent NewIntent = new Intent();
+                NewIntent.setAction("updateMainReceiver");
+                getActivity().sendBroadcast(NewIntent);
                 startActivity(new Intent(getActivity(), MainActivity.class));
             }
         });
