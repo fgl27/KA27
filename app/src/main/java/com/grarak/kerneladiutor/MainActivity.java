@@ -365,15 +365,13 @@ public class MainActivity extends BaseActivity implements Constants {
     private class Task extends AsyncTask<Void, Void, Void> {
 
         private boolean hasRoot;
-        private boolean hasBusybox;
 
         @Override
         protected Void doInBackground(Void...params) {
-            // Check root access and busybox installation
+            // Check root access
             if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
-            if (hasRoot) hasBusybox = RootUtils.hasAppletSupport(MainActivity.this);
 
-            if (hasRoot && hasBusybox) {
+            if (hasRoot) {
                 // Set permissions to specific files which are not readable by default
                 String[] writePermission = {
                     LMK_MINFREE
@@ -417,21 +415,14 @@ public class MainActivity extends BaseActivity implements Constants {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            if (!hasRoot || !hasBusybox) {
+            if (!hasRoot) {
                 Intent i = new Intent(MainActivity.this, TextActivity.class);
                 Bundle args = new Bundle();
-                args.putString(TextActivity.ARG_TEXT, !hasRoot ? getString(R.string.no_root)
-                        : getString(R.string.no_busybox));
-                Log.d(TAG, !hasRoot ? "no root" : "no busybox");
+                args.putString(TextActivity.ARG_TEXT, getString(R.string.no_root));
+                Log.d(TAG, "no root");
                 i.putExtras(args);
                 startActivity(i);
 
-                if (hasRoot)
-                    // Root is there but busybox is missing
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=stericson.busybox")));
-                    } catch (ActivityNotFoundException ignored) {
-                    }
                 cancel(true);
                 finish();
                 return;
