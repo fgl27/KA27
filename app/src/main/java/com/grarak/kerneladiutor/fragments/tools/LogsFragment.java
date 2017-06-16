@@ -312,7 +312,7 @@ public class LogsFragment extends RecyclerViewFragment {
         protected void onPreExecute() {
             super.onPreExecute();
             Context mContext = contextRef.get();
-            progressDialog = new ProgressDialog(mContext, (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
+            progressDialog = new ProgressDialog(mContext);
             progressDialog.setTitle(mContext.getString(R.string.logs));
             progressDialog.setMessage(mContext.getString(R.string.execute));
             progressDialog.setCancelable(false);
