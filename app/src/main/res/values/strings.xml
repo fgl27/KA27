@@ -729,6 +729,12 @@
     <string name="android_logger_summary">Disable android logging can save some power, but in the case of a problem there will be no logs to check, let it enabled to debug a problem.</string>
     <string name="bcl">Battery Current Limit Driver(BCL)</string>
     <string name="bcl_summary">Enable or Disable BCL completely</string>
+    <string name="bcl_max_freq">BCL Max Frequency</string>
+    <string name="bcl_max_freq_summary">The maximum frequency value the BCL driver will mitigate the CPU\'s.</string>
+    <string name="bcl_voltage_high">BCL high voltage threshold</string>
+    <string name="bcl_voltage_high_summary">The battery voltage threshold above which the BCL driver clears the previously applied mitigation, disables the battery current monitoring, and starts monitoring for low battery voltage.</string>
+    <string name="bcl_voltage_low">BCL low voltage threshold</string>
+    <string name="bcl_voltage_low_summary">The battery voltage threshold below which the BCL driver starts monitoring the battery current thresholds and mitigates the CPU on the event of high load.</string>
     <string name="bcl_hotplug">Battery Current Limit Driver - Hotplugging</string>
     <string name="bcl_hotplug_summary">Enable or Disable BCL Hotplugging</string>
     <string name="crc">Software CRC control</string>

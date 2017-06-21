@@ -581,13 +581,13 @@ public class LogsFragment extends RecyclerViewFragment {
         String arrays[][] = {
             Constants.CPU_ARRAY,
             Constants.CPU_VOLTAGE_ARRAY,
-            Constants.BATTERY_ARRAY,
             Constants.IO_ARRAY,
             Constants.VM_ARRAY
         };
         String twodarrays[][][] = {
             Constants.CPU_HOTPLUG_ARRAY,
             Constants.THERMAL_ARRAYS,
+            Constants.BATTERY_ARRAY,
             Constants.SCREEN_ARRAY,
             Constants.WAKE_ARRAY,
             Constants.SOUND_ARRAY,

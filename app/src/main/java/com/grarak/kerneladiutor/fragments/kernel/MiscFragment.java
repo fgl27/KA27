@@ -47,7 +47,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
     private SwitchCardView.DSwitchCard mLoggerEnableCard;
     
-    private SwitchCardView.DSwitchCard mSELinuxCard, mBclCard, mBclHotplugCard;
+    private SwitchCardView.DSwitchCard mSELinuxCard;
 
     private SwitchCardView.DSwitchCard mCrcCard;
 
@@ -71,8 +71,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
 	selinuxInit();
         if (Misc.hasLoggerEnable()) loggerInit();
-        if (Misc.hasBcl()) bclInit();
-	if (Misc.hasBclHotplug()) bclHotplugInit();
+
         if (Misc.hasCrc()) crcInit();
         fsyncInit();
         if (Misc.hasVibration()) vibrationInit();
@@ -120,26 +119,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         mLoggerEnableCard.setOnDSwitchCardListener(this);
 
         addView(mLoggerEnableCard);
-    }
-
-    private void bclInit() {
-         mBclCard = new SwitchCardView.DSwitchCard();
-         mBclCard.setTitle(getString(R.string.bcl));
-         mBclCard.setDescription(getString(R.string.bcl_summary));
-         mBclCard.setChecked(Misc.isBclActive());
-         mBclCard.setOnDSwitchCardListener(this);
- 
-         addView(mBclCard);
-     }
-
-    private void bclHotplugInit() {
-        mBclHotplugCard = new SwitchCardView.DSwitchCard();
-        mBclHotplugCard.setTitle(getString(R.string.bcl_hotplug));
-        mBclHotplugCard.setDescription(getString(R.string.bcl_hotplug_summary));
-        mBclHotplugCard.setChecked(Misc.isBclHotplugActive());
-        mBclHotplugCard.setOnDSwitchCardListener(this);
-
-        addView(mBclHotplugCard);
     }
 
     private void crcInit() {
@@ -219,6 +198,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
             addView(mNewPowerSuspendStateCard);
         }
+
     }
 
     private void networkInit() {
@@ -272,7 +252,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+     }
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
@@ -294,10 +274,11 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
                     }
                 }
             }).start();
-        } else if (dSeekBarCard == mNewPowerSuspendStateCard)
+        } else if (dSeekBarCard == mNewPowerSuspendStateCard) {
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.setNewPowerSuspend(position, getActivity());
             } else dSeekBarCard.setProgress(Misc.getNewPowerSuspendState());
+        }
     }
 
     @Override
@@ -314,10 +295,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         }
         else if (dSwitchCard == mLoggerEnableCard)
             Misc.activateLogger(checked, getActivity());
-        else if (dSwitchCard == mBclCard)
-            Misc.activateBcl(checked, getActivity());
-        else if (dSwitchCard == mBclHotplugCard)
-            Misc.activateBclHotplug(checked, getActivity());
         else if (dSwitchCard == mCrcCard)
             Misc.activateCrc(checked, getActivity());
         else if (dSwitchCard == mFsyncCard)
@@ -350,12 +327,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public boolean onRefresh() {
-        if (mBclCard != null) {
-            mBclCard.setChecked(Misc.isBclActive());
-        }
-        if (mBclHotplugCard != null) {
-            mBclHotplugCard.setChecked(Misc.isBclHotplugActive());
-        }
         return true;
     }
 }

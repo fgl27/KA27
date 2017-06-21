@@ -27,10 +27,12 @@ import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.elements.cards.UsageCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
 
@@ -41,13 +43,20 @@ import java.util.List;
  * Created by willi on 03.01.15.
  */
 public class BatteryFragment extends RecyclerViewFragment implements
+        PopupCardView.DPopupCard.OnDPopupCardListener,
         SwitchCardView.DSwitchCard.OnDSwitchCardListener,
         SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+
+    private int bclFreqCount = 0, bclArraylist = 60;
 
     private UsageCardView.DUsageCard mBatteryLevelCard;
     private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
 
     private SwitchCardView.DSwitchCard mForceFastChargeCard, mBatteryLedCard;
+    private SwitchCardView.DSwitchCard mBclCard, mBclHotplugCard;
+
+    private PopupCardView.DPopupCard mBclMaxFreqCard;
+    private SeekBarCardView.DSeekBarCard mBclVphLowCard, mBclVphHighCard;
 
     private SeekBarCardView.DSeekBarCard mBlxCard;
 
@@ -75,6 +84,13 @@ public class BatteryFragment extends RecyclerViewFragment implements
             getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         } catch (NullPointerException ignored) {
         }
+
+        if (Battery.hasBcl()) bclInit();
+        if (Battery.hasBclFreq()) bclMaxFreqInit();
+        if (Battery.hasBclVphLow()) BclVphLowInit();
+        if (Battery.hasBclVphHigh()) BclVphHighInit();
+	if (Battery.hasBclHotplug()) bclHotplugInit();
+
         cstatesInit();
     }
 
@@ -184,6 +200,82 @@ public class BatteryFragment extends RecyclerViewFragment implements
         }
     }
 
+    private void bclInit() {
+         DDivider mBclDivider = new DDivider();
+         mBclDivider.setText(getString(R.string.bcl));
+         addView(mBclDivider);
+
+         mBclCard = new SwitchCardView.DSwitchCard();
+         mBclCard.setTitle(getString(R.string.bcl));
+         mBclCard.setDescription(getString(R.string.bcl_summary));
+         mBclCard.setChecked(Battery.isBclActive());
+         mBclCard.setOnDSwitchCardListener(this);
+ 
+         addView(mBclCard);
+     }
+
+    private void bclMaxFreqInit() {
+            bclFreqCount = 0;
+            List < String > freqs = new ArrayList < > ();
+            for (int freq: CPU.getFreqs()) {
+                if (freq >= Battery.getBclLimitFreq()) {
+                    bclFreqCount++;
+                    freqs.add(freq / 1000 + getString(R.string.mhz));
+                }
+            }
+        mBclMaxFreqCard = new PopupCardView.DPopupCard(freqs);
+         mBclMaxFreqCard.setTitle(getString(R.string.bcl_max_freq));
+         mBclMaxFreqCard.setDescription(getString(R.string.bcl_max_freq_summary));
+         mBclMaxFreqCard.setItem(Battery.getBclFreq() / 1000 + getString(R.string.mhz));
+         mBclMaxFreqCard.setOnDPopupCardListener(this);
+ 
+         addView(mBclMaxFreqCard);
+     }
+
+    private void BclVphLowInit() {
+            int position = 0;
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 30; i++) {
+                position = ((i + bclArraylist) * 50);
+                list.add(String.valueOf(position + getString(R.string.mv)));
+            }
+
+            mBclVphLowCard = new SeekBarCardView.DSeekBarCard(list);
+            mBclVphLowCard.setTitle(getString(R.string.bcl_voltage_low));
+            mBclVphLowCard.setDescription(getString(R.string.bcl_voltage_low_summary));
+            mBclVphLowCard.setProgress((((Battery.getBclVphLow()) / 1000) - (bclArraylist * 50)) / 50);
+            mBclVphLowCard.setOnDSeekBarCardListener(this);
+
+            addView(mBclVphLowCard);
+    }
+
+    private void BclVphHighInit() {
+            int position = 0;
+            List<String> list = new ArrayList<>();
+            for (int i = 0; i < 30; i++) {
+                position = ((i + bclArraylist) * 50);
+                list.add(String.valueOf(position + getString(R.string.mv)));
+            }
+
+            mBclVphHighCard = new SeekBarCardView.DSeekBarCard(list);
+            mBclVphHighCard.setTitle(getString(R.string.bcl_voltage_high));
+            mBclVphHighCard.setDescription(getString(R.string.bcl_voltage_high_summary));
+            mBclVphHighCard.setProgress((((Battery.getBclVphHigh()) / 1000) - (bclArraylist * 50)) / 50);
+            mBclVphHighCard.setOnDSeekBarCardListener(this);
+
+            addView(mBclVphHighCard);
+    }
+
+    private void bclHotplugInit() {
+        mBclHotplugCard = new SwitchCardView.DSwitchCard();
+        mBclHotplugCard.setTitle(getString(R.string.bcl_hotplug));
+        mBclHotplugCard.setDescription(getString(R.string.bcl_hotplug_summary));
+        mBclHotplugCard.setChecked(Battery.isBclHotplugActive());
+        mBclHotplugCard.setOnDSwitchCardListener(this);
+
+        addView(mBclHotplugCard);
+    }
+
     private void cstatesInit() {
         List<DAdapter.DView> views = new ArrayList<>();
 
@@ -255,6 +347,12 @@ public class BatteryFragment extends RecyclerViewFragment implements
     };
 
     @Override
+    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
+        if (dPopupCard == mBclMaxFreqCard)
+            Battery.setBclFreq(CPU.getFreqs().get((CPU.getFreqs().size() - bclFreqCount) + position), getActivity());
+    }
+
+    @Override
     public boolean onRefresh() {
         if (mBatteryChargingCurrentCard != null) {
             double amperage = (double) Battery.getChargingCurrent() / 1000;
@@ -270,7 +368,12 @@ public class BatteryFragment extends RecyclerViewFragment implements
         }
         if (mBatteryHealthCard != null)
             mBatteryHealthCard.setDescription(Battery.getHealth());
-
+        if (mBclCard != null) {
+            mBclCard.setChecked(Battery.isBclActive());
+        }
+        if (mBclHotplugCard != null) {
+            mBclHotplugCard.setChecked(Battery.isBclHotplugActive());
+        }
         return true;
     }
 
@@ -290,6 +393,10 @@ public class BatteryFragment extends RecyclerViewFragment implements
             Battery.activateC3State(checked, getActivity());
         else if (dSwitchCard == mBatteryLedCard)
             Battery.setBatteryLed(checked, getActivity());
+        else if (dSwitchCard == mBclCard)
+            Battery.activateBcl(checked, getActivity());
+        else if (dSwitchCard == mBclHotplugCard)
+            Battery.activateBclHotplug(checked, getActivity());
     }
 
     @Override
@@ -302,6 +409,10 @@ public class BatteryFragment extends RecyclerViewFragment implements
             Battery.setBlx(position, getActivity());
         else if (dSeekBarCard == mChargingRateCard)
             Battery.setChargingRate((position * 10) + 100, getActivity());
+        else if (dSeekBarCard == mBclVphLowCard)
+                Battery.setBclVphLow((position + bclArraylist) * 50000, getActivity());
+        else if (dSeekBarCard == mBclVphHighCard)
+                Battery.setBclVphHigh((position + bclArraylist) * 50000, getActivity());
     }
 
     @Override
