@@ -15,7 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -76,10 +75,6 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
-
-        try {
-            getActivity().registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-        } catch (NullPointerException ignored) {}
 
         if (Battery.hasBcl()) bclInit();
         if (Battery.hasBclFreq()) bclMaxFreqInit();
@@ -324,24 +319,6 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         }
     }
 
-    private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context arg0, Intent intent) {
-            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
-            int voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, 0);
-            int temperature = intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0);
-            int current = Battery.getChargingCurrent();
-
-            if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(level);
-            if (mBatteryVoltageCard != null)
-                mBatteryVoltageCard.setDescription(voltage + getString(R.string.mv));
-            if (mBatteryTemperature != null) {
-                double celsius = (double) temperature / 10;
-                mBatteryTemperature.setDescription(Utils.formatCelsius(celsius) + " " + Utils.celsiusToFahrenheit(celsius));
-            }
-        }
-    };
-
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mBclMaxFreqCard)
@@ -350,10 +327,19 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
     @Override
     public boolean onRefresh() {
+        if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(Battery.getBatteryLevel());
         if (mBatteryChargingCurrentCard != null) {
             double amperage = (double) Battery.getChargingCurrent() / 1000;
             if (amperage < 0) mBatteryChargingCurrentCard.setDescription(amperage + getString(R.string.ma));
             else mBatteryChargingCurrentCard.setDescription("+" + amperage + getString(R.string.ma));
+        }
+        if (mBatteryVoltageCard != null) {
+            double voltage_now = (double) Battery.getBatteryVoltageNow() / 1000;
+            mBatteryVoltageCard.setDescription(voltage_now + getString(R.string.mv));
+        }
+        if (mBatteryTemperature != null) {
+            double celsius = (double) Battery.getBatteryTemp() / 10;
+            mBatteryTemperature.setDescription(Utils.formatCelsius(celsius) + " " + Utils.celsiusToFahrenheit(celsius));
         }
         if (mBatteryChargingTypeCard != null) {
             if (Battery.getChargingType().equals("None"))
@@ -413,8 +399,5 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     @Override
     public void onDestroy() {
         super.onDestroy();
-        try {
-            getActivity().unregisterReceiver(mBatInfoReceiver);
-        } catch (IllegalArgumentException ignored) {}
     }
 }

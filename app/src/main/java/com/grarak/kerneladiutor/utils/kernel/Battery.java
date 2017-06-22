@@ -267,4 +267,16 @@ public class Battery implements Constants {
     public static void setBclVphHigh(int value, Context context) {
         Control.runCommand(String.valueOf(value), BCL_VPH_HIGH_FILE, Control.CommandType.GENERIC, context);
     }
+
+    public static int getBatteryVoltageNow() {
+        return Utils.stringToInt(Utils.readFile(BATTERY_VOLTAGE_NOW));
+    }
+
+    public static int getBatteryTemp() {
+        return Utils.stringToInt(Utils.readFile(BATTERY_TEMP));
+    }
+
+    public static int getBatteryLevel() {
+        return Utils.stringToInt(Utils.readFile(BATTERY_LEVEL));
+    }
 }

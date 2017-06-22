@@ -1071,6 +1071,9 @@ public interface Constants {
     String BATTERY_CHARGING_TYPE = BATTERY_PARAMETERS + "/charge_rate";
     // Battery health
     String BATTERY_HEALTH = BATTERY_PARAMETERS + "/health";
+    String BATTERY_VOLTAGE_NOW = BATTERY_PARAMETERS + "/voltage_now";
+    String BATTERY_TEMP = BATTERY_PARAMETERS + "/temp";
+    String BATTERY_LEVEL = BATTERY_PARAMETERS + "/capacity";
 
     // I/O
     String IO_INTERNAL_SCHEDULER = "/sys/block/mmcblk0/queue/scheduler";
