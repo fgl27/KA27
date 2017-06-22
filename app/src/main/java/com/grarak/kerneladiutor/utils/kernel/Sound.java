@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -40,7 +39,7 @@ public class Sound implements Constants {
         return Utils.readFile(VOLUME_BOOST);
     }
 
-    public static List<String> getVolumeGainLimits() {
+    public static List < String > getVolumeGainLimits() {
         return getFrancoSoundLimits();
     }
 
@@ -56,7 +55,7 @@ public class Sound implements Constants {
         return Utils.readFile(MIC_BOOST);
     }
 
-    public static List<String> getMicrophoneGainLimits() {
+    public static List < String > getMicrophoneGainLimits() {
         return getFrancoSoundLimits();
     }
 
@@ -72,8 +71,8 @@ public class Sound implements Constants {
         return Utils.readFile(HEADPHONE_POWERAMP_GAIN).split(" ")[0];
     }
 
-    public static List<String> getHeadphonePowerAmpGainLimits() {
-        List<String> list = new ArrayList<>();
+    public static List < String > getHeadphonePowerAmpGainLimits() {
+        List < String > list = new ArrayList < > ();
         for (int i = -6; i < 7; i++)
             list.add(String.valueOf(i));
         return list;
@@ -85,7 +84,7 @@ public class Sound implements Constants {
 
     public static void setSpeakerGain(String value, Context context) {
         Control.runCommand(value + " " + value, SPEAKER_GAIN_FILE,
-                SPEAKER_GAIN_FILE.equals(SPEAKER_GAIN) ? Control.CommandType.FAUX_GENERIC : Control.CommandType.GENERIC, context);
+            SPEAKER_GAIN_FILE.equals(SPEAKER_GAIN) ? Control.CommandType.FAUX_GENERIC : Control.CommandType.GENERIC, context);
     }
 
     public static String getCurSpeakerGain() {
@@ -98,7 +97,7 @@ public class Sound implements Constants {
         return null;
     }
 
-    public static List<String> getSpeakerGainLimits() {
+    public static List < String > getSpeakerGainLimits() {
         switch (SPEAKER_GAIN_FILE) {
             case SPEAKER_GAIN:
                 return getHeadphoneGainLimits();
@@ -109,7 +108,7 @@ public class Sound implements Constants {
     }
 
     public static boolean hasSpeakerGain() {
-        for (String file : SPEAKER_GAIN_ARRAY)
+        for (String file: SPEAKER_GAIN_ARRAY)
             if (Utils.existFile(file)) {
                 SPEAKER_GAIN_FILE = file;
                 return true;
@@ -117,8 +116,8 @@ public class Sound implements Constants {
         return false;
     }
 
-    public static List<String> getFrancoSoundLimits() {
-        List<String> list = new ArrayList<>();
+    public static List < String > getFrancoSoundLimits() {
+        List < String > list = new ArrayList < > ();
         for (int i = -20; i < 21; i++)
             list.add(String.valueOf(i));
         return list;
@@ -132,7 +131,7 @@ public class Sound implements Constants {
         return Utils.readFile(CAM_MICROPHONE_GAIN);
     }
 
-    public static List<String> getCamMicrophoneGainLimits() {
+    public static List < String > getCamMicrophoneGainLimits() {
         return getHeadphoneGainLimits();
     }
 
@@ -148,7 +147,7 @@ public class Sound implements Constants {
         return Utils.readFile(HANDSET_MICROPONE_GAIN);
     }
 
-    public static List<String> getHandsetMicrophoneGainLimits() {
+    public static List < String > getHandsetMicrophoneGainLimits() {
         return getHeadphoneGainLimits();
     }
 
@@ -193,8 +192,8 @@ public class Sound implements Constants {
         return "0";
     }
 
-    public static List<String> getHeadphoneGainLimits() {
-        List<String> list = new ArrayList<>();
+    public static List < String > getHeadphoneGainLimits() {
+        List < String > list = new ArrayList < > ();
         for (int i = 0; i < 31; i++)
             list.add(String.valueOf(i));
         return list;
@@ -229,8 +228,8 @@ public class Sound implements Constants {
     }
 
     public static boolean hasSound() {
-        for (String[] array : SOUND_ARRAY)
-            for (String file : array)
+        for (String[] array: SOUND_ARRAY)
+            for (String file: array)
                 if (Utils.existFile(file)) return true;
         return false;
     }

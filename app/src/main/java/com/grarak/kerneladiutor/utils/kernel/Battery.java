@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -93,9 +92,9 @@ public class Battery implements Constants {
         return Utils.existFile(FORCE_FAST_CHARGE);
     }
 
-    public static void activateC0State (boolean active, Context context) {
+    public static void activateC0State(boolean active, Context context) {
         String path = C0STATE;
-        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+        for (int i = 0; i < CPU.getCoreCount(); i++) {
             Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
         }
     }
@@ -105,13 +104,13 @@ public class Battery implements Constants {
         return Utils.readFile(C0STATE).equals("1");
     }
 
-    public static boolean hasC0State () {
+    public static boolean hasC0State() {
         return Utils.existFile(C0STATE);
     }
 
-    public static void activateC1State (boolean active, Context context) {
+    public static void activateC1State(boolean active, Context context) {
         String path = C1STATE;
-        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+        for (int i = 0; i < CPU.getCoreCount(); i++) {
             Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
         }
     }
@@ -121,13 +120,13 @@ public class Battery implements Constants {
         return Utils.readFile(C1STATE).equals("1");
     }
 
-    public static boolean hasC1State () {
+    public static boolean hasC1State() {
         return Utils.existFile(C1STATE);
     }
 
-    public static void activateC2State (boolean active, Context context) {
+    public static void activateC2State(boolean active, Context context) {
         String path = C2STATE;
-        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+        for (int i = 0; i < CPU.getCoreCount(); i++) {
             Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
         }
     }
@@ -137,13 +136,13 @@ public class Battery implements Constants {
         return Utils.readFile(C2STATE).equals("1");
     }
 
-    public static boolean hasC2State () {
+    public static boolean hasC2State() {
         return Utils.existFile(C2STATE);
     }
 
-    public static void activateC3State (boolean active, Context context) {
+    public static void activateC3State(boolean active, Context context) {
         String path = C3STATE;
-        for (int i = 0; i < CPU.getCoreCount(); i++ ) {
+        for (int i = 0; i < CPU.getCoreCount(); i++) {
             Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
         }
     }
@@ -152,7 +151,7 @@ public class Battery implements Constants {
         return Utils.readFile(C3STATE).equals("1");
     }
 
-    public static boolean hasC3State () {
+    public static boolean hasC3State() {
         return Utils.existFile(C3STATE);
     }
 
@@ -186,7 +185,7 @@ public class Battery implements Constants {
     }
 
     public static boolean hasBcl() {
-        for (int i = 0; i < BCL_ARRAY.length;i++) {
+        for (int i = 0; i < BCL_ARRAY.length; i++) {
             if (Utils.existFile(BCL_ARRAY[i])) {
                 BCL_FILE = BCL_ARRAY[i];
                 return true;
@@ -211,7 +210,7 @@ public class Battery implements Constants {
     }
 
     public static boolean hasBclFreq() {
-        for (int i = 0; i < BCL_FREQ_MAX_ARRAY.length;i++) {
+        for (int i = 0; i < BCL_FREQ_MAX_ARRAY.length; i++) {
             if (Utils.existFile(BCL_FREQ_MAX_ARRAY[i]) && Utils.existFile(BCL_FREQ_LIMIT_ARRAY[i])) {
                 BCL_FREQ_MAX_FILE = BCL_FREQ_MAX_ARRAY[i];
                 BCL_FREQ_LIMIT_FILE = BCL_FREQ_LIMIT_ARRAY[i];
@@ -234,7 +233,7 @@ public class Battery implements Constants {
     }
 
     public static boolean hasBclVphLow() {
-        for (int i = 0; i < BCL_VPH_LOW_ARRAY.length;i++) {
+        for (int i = 0; i < BCL_VPH_LOW_ARRAY.length; i++) {
             if (Utils.existFile(BCL_VPH_LOW_ARRAY[i])) {
                 BCL_VPH_LOW_FILE = BCL_VPH_LOW_ARRAY[i];
                 return true;
@@ -252,7 +251,7 @@ public class Battery implements Constants {
     }
 
     public static boolean hasBclVphHigh() {
-        for (int i = 0; i < BCL_VPH_HIGH_ARRAY.length;i++) {
+        for (int i = 0; i < BCL_VPH_HIGH_ARRAY.length; i++) {
             if (Utils.existFile(BCL_VPH_HIGH_ARRAY[i])) {
                 BCL_VPH_HIGH_FILE = BCL_VPH_HIGH_ARRAY[i];
                 return true;

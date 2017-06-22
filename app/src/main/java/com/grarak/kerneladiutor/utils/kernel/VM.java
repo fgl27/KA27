@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -34,9 +33,9 @@ public class VM implements Constants {
         if (size != 0) {
             Control.runCommand(String.valueOf(size), ZRAM_DISKSIZE, Control.CommandType.GENERIC, context);
             Control.runCommand("mkswap " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK,
-                    Control.CommandType.CUSTOM, "mkswap", context);
+                Control.CommandType.CUSTOM, "mkswap", context);
             Control.runCommand("swapon " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK,
-                    Control.CommandType.CUSTOM, "swapon", context);
+                Control.CommandType.CUSTOM, "swapon", context);
         }
     }
 

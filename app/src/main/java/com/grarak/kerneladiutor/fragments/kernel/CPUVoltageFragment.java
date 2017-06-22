@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.DialogInterface;
@@ -47,11 +46,11 @@ import java.util.Map;
  * Created by willi on 26.12.14.
  */
 public class CPUVoltageFragment extends RecyclerViewFragment implements
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener {
+SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private EditTextCardView.DEditTextCard[] mVoltageCard;
     private SwitchCardView.DSwitchCard mOverrideVminCard;
-    Map<String, String> voltagetable = new HashMap<String, String>();
+    Map < String, String > voltagetable = new HashMap < String, String > ();
 
     @Override
     public int getSpan() {
@@ -68,7 +67,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
         // Save the current Voltage table if it doesn't exist. This will prevent issues in the table if they open it before a reboot.
         // On reboot, the default table will overwrite this as it will have any adjustments done since boot as the reference. This is imperfect, but no better way to do it.
         String toasttext = "";
-        List<String> frequencies = CPUVoltage.getFreqs();
+        List < String > frequencies = CPUVoltage.getFreqs();
         if (frequencies.isEmpty()) return;
         if (storedvoltagetable.getString(frequencies.get(0), "-1").equals("-1")) {
             toasttext = getString(R.string.non_default_reference) + " -- ";
@@ -81,14 +80,14 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         SharedPreferences storedvoltagetable = getContext().getSharedPreferences("voltage_table", 0);
-        for( Map.Entry entry : storedvoltagetable.getAll().entrySet() )
-            voltagetable.put( entry.getKey().toString(), entry.getValue().toString() );
+        for (Map.Entry entry: storedvoltagetable.getAll().entrySet())
+            voltagetable.put(entry.getKey().toString(), entry.getValue().toString());
 
         Log.i(Constants.TAG, "Volt Table: " + voltagetable);
 
         mVoltageCard = new EditTextCardView.DEditTextCard[CPUVoltage.getFreqs().size()];
-        List<String> voltages = CPUVoltage.getVoltages();
-	List<String> frequencies = CPUVoltage.getFreqs();
+        List < String > voltages = CPUVoltage.getVoltages();
+        List < String > frequencies = CPUVoltage.getFreqs();
         if (voltages.isEmpty()) return;
 
         if (CPUVoltage.hasOverrideVmin()) {
@@ -112,11 +111,10 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
                 int current = Integer.parseInt(voltages.get(i));
                 String diff;
                 if (stock > current) {
-                    diff =  "(-" + (stock-current) +")";
+                    diff = "(-" + (stock - current) + ")";
                 } else if (stock < current) {
                     diff = "(+" + (current - stock) + ")";
-                }
-                else {
+                } else {
                     diff = "";
                 }
                 mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv) + diff);
@@ -128,7 +126,7 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
             mVoltageCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
                 @Override
                 public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-                    List<String> freqs = CPUVoltage.getFreqs();
+                    List < String > freqs = CPUVoltage.getFreqs();
 
                     for (int i = 0; i < mVoltageCard.length; i++)
                         if (dEditTextCard == mVoltageCard[i])
@@ -153,20 +151,19 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            List<String> voltages = CPUVoltage.getVoltages();
+                            List < String > voltages = CPUVoltage.getVoltages();
                             if (voltages != null)
                                 for (int i = 0; i < mVoltageCard.length; i++) {
                                     try {
-                                         if (voltagetable.get(CPUVoltage.getFreqs().get(i)) != null) {
+                                        if (voltagetable.get(CPUVoltage.getFreqs().get(i)) != null) {
                                             int stock = Integer.parseInt(voltagetable.get(CPUVoltage.getFreqs().get(i)));
                                             int current = Integer.parseInt(voltages.get(i));
                                             String diff;
                                             if (stock > current) {
-                                                diff =  "(-" + (stock-current) +")";
+                                                diff = "(-" + (stock - current) + ")";
                                             } else if (stock < current) {
                                                 diff = "(+" + (current - stock) + ")";
-                                            }
-                                            else {
+                                            } else {
                                                 diff = "";
                                             }
                                             mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv) + diff);
@@ -235,18 +232,17 @@ public class CPUVoltageFragment extends RecyclerViewFragment implements
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setView(view)
-                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        CPUVoltage.setGlobalOffset(textView.getText().toString(), getActivity());
+                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}
+                    }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            CPUVoltage.setGlobalOffset(textView.getText().toString(), getActivity());
 
-                        refresh();
-                    }
-                }).show();
+                            refresh();
+                        }
+                    }).show();
 
                 break;
         }

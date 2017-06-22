@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -33,17 +32,18 @@ import java.util.List;
 public class IO implements Constants {
 
     public enum StorageType {
-        INTERNAL, EXTERNAL
+        INTERNAL,
+        EXTERNAL
     }
 
     public static void setReadahead(StorageType type, int readahead, Context context) {
         Control.runCommand(String.valueOf(readahead), type == StorageType.INTERNAL ? IO_INTERNAL_READ_AHEAD :
-                IO_EXTERNAL_READ_AHEAD, Control.CommandType.GENERIC, context);
+            IO_EXTERNAL_READ_AHEAD, Control.CommandType.GENERIC, context);
     }
 
     public static int getReadahead(StorageType type) {
-        String file = type == StorageType.INTERNAL ? IO_INTERNAL_READ_AHEAD
-                : IO_EXTERNAL_READ_AHEAD;
+        String file = type == StorageType.INTERNAL ? IO_INTERNAL_READ_AHEAD :
+            IO_EXTERNAL_READ_AHEAD;
         if (Utils.existFile(file)) {
             String values = Utils.readFile(file);
             if (values != null) return Utils.stringToInt(values);
@@ -53,12 +53,12 @@ public class IO implements Constants {
 
     public static void setScheduler(StorageType type, String scheduler, Context context) {
         Control.runCommand(scheduler, type == StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER :
-                IO_EXTERNAL_SCHEDULER, Control.CommandType.GENERIC, context);
+            IO_EXTERNAL_SCHEDULER, Control.CommandType.GENERIC, context);
     }
 
-    public static List<String> getSchedulers(StorageType type) {
-        String file = type == StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER
-                : IO_EXTERNAL_SCHEDULER;
+    public static List < String > getSchedulers(StorageType type) {
+        String file = type == StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER :
+            IO_EXTERNAL_SCHEDULER;
         if (Utils.existFile(file)) {
             String values = Utils.readFile(file);
             if (values != null) {
@@ -67,22 +67,22 @@ public class IO implements Constants {
 
                 for (int i = 0; i < valueArray.length; i++)
                     out[i] = valueArray[i].replace("[", "").replace("]", "");
-		Collections.sort(Arrays.asList(out), String.CASE_INSENSITIVE_ORDER);
-                return new ArrayList<>(Arrays.asList(out));
+                Collections.sort(Arrays.asList(out), String.CASE_INSENSITIVE_ORDER);
+                return new ArrayList < > (Arrays.asList(out));
             }
         }
         return null;
     }
 
     public static String getScheduler(StorageType type) {
-        String file = type == StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER
-                : IO_EXTERNAL_SCHEDULER;
+        String file = type == StorageType.INTERNAL ? IO_INTERNAL_SCHEDULER :
+            IO_EXTERNAL_SCHEDULER;
         if (Utils.existFile(file)) {
             String values = Utils.readFile(file);
             if (values != null) {
                 String[] valueArray = values.split(" ");
 
-                for (String value : valueArray)
+                for (String value: valueArray)
                     if (value.contains("["))
                         return value.replace("[", "").replace("]", "");
             }
@@ -91,23 +91,23 @@ public class IO implements Constants {
     }
 
     public static boolean hasExternalStorage() {
-        return Utils.existFile(IO_EXTERNAL_READ_AHEAD)
-                || Utils.existFile(IO_EXTERNAL_SCHEDULER);
+        return Utils.existFile(IO_EXTERNAL_READ_AHEAD) ||
+            Utils.existFile(IO_EXTERNAL_SCHEDULER);
     }
 
-     public static void activaterotational (boolean active, Context context) {
-         Control.runCommand(active ? "1" : "0", IO_ROTATIONAL, Control.CommandType.GENERIC, context);
-     }
+    public static void activaterotational(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", IO_ROTATIONAL, Control.CommandType.GENERIC, context);
+    }
 
-     public static boolean isRotationalActive() {
+    public static boolean isRotationalActive() {
         return Utils.readFile(IO_ROTATIONAL).equals("1");
-     }
+    }
 
-     public static boolean hasRotational () {
+    public static boolean hasRotational() {
         return Utils.existFile(IO_ROTATIONAL);
-     }
+    }
 
-    public static void activateIORandom (boolean active, Context context) {
+    public static void activateIORandom(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", IO_RANDOM, Control.CommandType.GENERIC, context);
     }
 
@@ -115,11 +115,11 @@ public class IO implements Constants {
         return Utils.readFile(IO_RANDOM).equals("1");
     }
 
-    public static boolean hasIORandom () {
+    public static boolean hasIORandom() {
         return Utils.existFile(IO_RANDOM);
     }
 
-    public static void activateIOstats (boolean active, Context context) {
+    public static void activateIOstats(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", IO_STATS, Control.CommandType.GENERIC, context);
     }
 
@@ -127,7 +127,7 @@ public class IO implements Constants {
         return Utils.readFile(IO_STATS).equals("1");
     }
 
-    public static boolean hasIOStats () {
+    public static boolean hasIOStats() {
         return Utils.existFile(IO_STATS);
     }
 
@@ -135,7 +135,7 @@ public class IO implements Constants {
         return Utils.existFile(IO_AFFINITY);
     }
 
-    public static int getIOAffinity () {
+    public static int getIOAffinity() {
         String value = Utils.readFile(IO_AFFINITY);
         return Utils.stringToInt(value);
     }

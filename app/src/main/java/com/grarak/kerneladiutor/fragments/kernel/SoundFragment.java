@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -28,9 +27,7 @@ import com.grarak.kerneladiutor.utils.kernel.Sound;
 /**
  * Created by willi on 06.01.15.
  */
-public class SoundFragment extends RecyclerViewFragment implements
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class SoundFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private SwitchCardView.DSwitchCard mSoundControlEnableCard;
     private SwitchCardView.DSwitchCard mHighPerfModeEnableCard;
@@ -143,9 +140,7 @@ public class SoundFragment extends RecyclerViewFragment implements
 
             addView(mHeadphoneGainRCard);
 
-        }
-
-        else {
+        } else {
 
             mHeadphoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHeadphoneGainLimits());
             mHeadphoneGainCard.setTitle(getString(R.string.headphone_gain));
@@ -160,7 +155,7 @@ public class SoundFragment extends RecyclerViewFragment implements
         mHandsetMicrophoneGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHandsetMicrophoneGainLimits());
         mHandsetMicrophoneGainCard.setTitle(getString(R.string.handset_microphone_gain));
         mHandsetMicrophoneGainCard.setProgress(Sound.getHandsetMicrophoneGainLimits().indexOf(
-                Sound.getCurHandsetMicrophoneGain()));
+            Sound.getCurHandsetMicrophoneGain()));
         mHandsetMicrophoneGainCard.setOnDSeekBarCardListener(this);
 
         addView(mHandsetMicrophoneGainCard);
@@ -188,7 +183,7 @@ public class SoundFragment extends RecyclerViewFragment implements
         mHeadphonePowerAmpGainCard = new SeekBarCardView.DSeekBarCard(Sound.getHeadphonePowerAmpGainLimits());
         mHeadphonePowerAmpGainCard.setTitle(getString(R.string.headphone_poweramp_gain));
         mHeadphonePowerAmpGainCard.setProgress(Sound.getHeadphonePowerAmpGainLimits().indexOf(
-                Sound.getCurHeadphonePowerAmpGain()));
+            Sound.getCurHeadphonePowerAmpGain()));
         mHeadphonePowerAmpGainCard.setOnDSeekBarCardListener(this);
 
         addView(mHeadphonePowerAmpGainCard);
@@ -225,8 +220,7 @@ public class SoundFragment extends RecyclerViewFragment implements
                 Thread.currentThread().interrupt();
             }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-        }
-        else if (dSwitchCard == mHighPerfModeEnableCard)
+        } else if (dSwitchCard == mHighPerfModeEnableCard)
             Sound.activateHighPerfMode(checked, getActivity());
         else if (dSwitchCard == mwcdHighPerfModeEnableCard)
             Sound.activateWcdHighPerfMode(checked, getActivity());
@@ -235,8 +229,7 @@ public class SoundFragment extends RecyclerViewFragment implements
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {

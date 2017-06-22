@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.app.ProgressDialog;
@@ -47,13 +46,11 @@ import java.util.List;
 /**
  * Created by willi on 26.12.14.
  */
-public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener,
-        PopupCardView.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener {
+public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener, PopupCardView.DPopupCard.OnDPopupCardListener, CardViewItem.DCardView.OnDCardListener {
 
     private ColorPalette mColorPalette;
 
-    private List<String> mColorCalibrationLimits;
+    private List < String > mColorCalibrationLimits;
     private SeekBarCardView.DSeekBarCard[] mColorCalibrationCard;
     private SeekBarCardView.DSeekBarCard mColorCalibrationMinCard;
     private SwitchCardView.DSwitchCard mInvertScreenCard;
@@ -150,7 +147,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         GammaProfiles.ScreenColorProfiles screenColorProfiles = Screen.getScreenColorProfiles(getActivity());
         if (screenColorProfiles != null) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             list.add("Custom");
             for (int i = 0; i < screenColorProfiles.length(); i++)
                 list.add(screenColorProfiles.getName(i));
@@ -166,7 +163,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
 
         if (Screen.hasColorCalibration()) {
-            List<String> colors = Screen.getColorCalibration();
+            List < String > colors = Screen.getColorCalibration();
             mColorCalibrationLimits = Screen.getColorCalibrationLimits();
             mColorCalibrationCard = new SeekBarCardView.DSeekBarCard[colors.size()];
             for (int i = 0; i < mColorCalibrationCard.length; i++) {
@@ -198,7 +195,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasSaturationIntensity()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 159; i++)
                 list.add(String.valueOf(i));
 
@@ -220,7 +217,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasScreenHue()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 1537; i++)
                 list.add(String.valueOf(i));
 
@@ -234,7 +231,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasScreenValue()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 256; i++)
                 list.add(String.valueOf(i));
 
@@ -247,7 +244,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasScreenContrast()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 256; i++)
                 list.add(String.valueOf(i));
 
@@ -303,7 +300,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         GammaProfiles.KGammaProfiles kGammaProfiles = Screen.getKGammaProfiles(getActivity());
         if (kGammaProfiles != null) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < kGammaProfiles.length(); i++)
                 list.add(kGammaProfiles.getName(i));
 
@@ -459,7 +456,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         GammaProfiles.GammaControlProfiles gammaControlProfiles = Screen.getGammaControlProfiles(getActivity());
         if (gammaControlProfiles != null) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < gammaControlProfiles.length(); i++)
                 list.add(gammaControlProfiles.getName(i));
 
@@ -543,7 +540,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
 
         GammaProfiles.DsiPanelProfiles dsiPanelProfiles = Screen.getDsiPanelProfiles(getActivity());
         if (dsiPanelProfiles != null) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < dsiPanelProfiles.length(); i++)
                 list.add(dsiPanelProfiles.getName(i));
 
@@ -567,7 +564,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void lcdBackLightInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
+        List < DAdapter.DView > views = new ArrayList < > ();
 
         if (Screen.hasBrightnessMode()) {
             mBrightnessModeCard = new SwitchCardView.DSwitchCard();
@@ -579,7 +576,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasLcdMinBrightness()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 2; i < 115; i++)
                 list.add(String.valueOf(i));
 
@@ -593,7 +590,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasLcdMaxBrightness()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 2; i < 115; i++)
                 list.add(String.valueOf(i));
 
@@ -616,7 +613,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void backlightDimmerInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
+        List < DAdapter.DView > views = new ArrayList < > ();
 
         if (Screen.hasBackLightDimmerEnable()) {
             mBackLightDimmerEnableCard = new SwitchCardView.DSwitchCard();
@@ -628,7 +625,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasMinBrightness()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i <= Screen.getMaxMinBrightness(); i++)
                 list.add(String.valueOf(i));
 
@@ -642,7 +639,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasBackLightDimmerThreshold()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 51; i++)
                 list.add(String.valueOf(i));
 
@@ -655,7 +652,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         }
 
         if (Screen.hasBackLightDimmerOffset()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 51; i++)
                 list.add(String.valueOf(i));
 
@@ -688,7 +685,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     }
 
     private void mdnieGlobalInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
+        List < DAdapter.DView > views = new ArrayList < > ();
 
         if (Screen.hasRegisterHook()) {
             mRegisterHookCard = new SwitchCardView.DSwitchCard();
@@ -732,12 +729,12 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     @Override
     public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mColorCalibrationMinCard) {
-            for (SeekBarCardView.DSeekBarCard seekBarCardView : mColorCalibrationCard)
+            for (SeekBarCardView.DSeekBarCard seekBarCardView: mColorCalibrationCard)
                 if (position > seekBarCardView.getProgress())
                     seekBarCardView.setProgress(position);
         } else {
             if (mColorCalibrationCard != null)
-                for (SeekBarCardView.DSeekBarCard seekBarCardView : mColorCalibrationCard)
+                for (SeekBarCardView.DSeekBarCard seekBarCardView: mColorCalibrationCard)
                     if (dSeekBarCard == seekBarCardView) {
                         if (mColorCalibrationMinCard != null)
                             if (position < mColorCalibrationMinCard.getProgress())
@@ -770,7 +767,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
         else if (dSeekBarCard == mBackLightDimmerOffsetCard)
             Screen.setBackLightDimmerOffset(position, getActivity());
         else {
-            for (SeekBarCardView.DSeekBarCard seekBarCardView : mColorCalibrationCard)
+            for (SeekBarCardView.DSeekBarCard seekBarCardView: mColorCalibrationCard)
                 if (dSeekBarCard == seekBarCardView) {
                     if (mColorCalibrationMinCard != null) {
                         int current = Utils.stringToInt(mColorCalibrationLimits.get(position));
@@ -783,7 +780,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                         int g = mColorCalibrationCard[1].getProgress();
                         int b = mColorCalibrationCard[2].getProgress();
                         Screen.setColorCalibration(mColorCalibrationLimits.get(r) + " " +
-                                mColorCalibrationLimits.get(g) + " " + mColorCalibrationLimits.get(b), getActivity());
+                            mColorCalibrationLimits.get(g) + " " + mColorCalibrationLimits.get(b), getActivity());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         Utils.errorDialog(getActivity(), e);
                         e.printStackTrace();
@@ -889,7 +886,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                 // This sleep isn't great, but the update was happening while the values were being set.
                 try {
                     Thread.sleep(100);
-                } catch(InterruptedException ex) {
+                } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
                 getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
@@ -989,7 +986,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     private void refreshKGamma() {
         for (int i = 0; i < mColorCalibrationCard.length; i++)
             mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                    .indexOf(Screen.getColorCalibration().get(i)));
+                .indexOf(Screen.getColorCalibration().get(i)));
 
         String red = Screen.getKGammaRed();
         mKGammaRedCard.setDescription(red);
@@ -1011,7 +1008,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
             for (int i = 0; i < mColorCalibrationCard.length; i++)
                 if (mColorCalibrationCard[i] != null)
                     mColorCalibrationCard[i].setProgress(Screen.getColorCalibrationLimits()
-                            .indexOf(Screen.getColorCalibration().get(i)));
+                        .indexOf(Screen.getColorCalibration().get(i)));
 
         String redGreys = Screen.getRedGreys();
         mGammaControlRedGreysCard.setDescription(redGreys);

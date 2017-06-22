@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -39,7 +38,7 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
     private PopupCardView.DPopupCard mReadCard;
     private PopupCardView.DPopupCard mWriteCard;
 
-    private final List<String> items = new ArrayList<>();
+    private final List < String > items = new ArrayList < > ();
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -60,7 +59,8 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
         addView(mPoolsizeCard);
 
         items.clear();
-        for (int i = 64; i < poolsize; i *= 2) if (i < poolsize) items.add(String.valueOf(i));
+        for (int i = 64; i < poolsize; i *= 2)
+            if (i < poolsize) items.add(String.valueOf(i));
         items.add(String.valueOf(poolsize));
 
         DDivider mENTDividerCard = new DDivider();

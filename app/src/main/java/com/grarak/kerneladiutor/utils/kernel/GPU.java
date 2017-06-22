@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -84,7 +83,7 @@ public class GPU implements Constants {
     }
 
     public static boolean isAdrenoIdlerActive() {
-        return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals(Utils.isLetter(Utils.readFile(ADRENO_IDLER_ACTIVATE)) ? "Y" :"1");
+        return Utils.readFile(ADRENO_IDLER_ACTIVATE).equals(Utils.isLetter(Utils.readFile(ADRENO_IDLER_ACTIVATE)) ? "Y" : "1");
     }
 
     public static boolean hasAdrenoIdler() {
@@ -148,18 +147,18 @@ public class GPU implements Constants {
     }
 
     public static void activateGamingMode(boolean active, Context context) {
-         Control.runCommand(active ? "0" : Integer.toString(mGPU_Min_Pwr) , GPU_MIN_POWER_LEVEL, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "0" : Integer.toString(mGPU_Min_Pwr), GPU_MIN_POWER_LEVEL, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isGamingModeActive() {
-           return Utils.readFile(GPU_MIN_POWER_LEVEL).equals("0");
+        return Utils.readFile(GPU_MIN_POWER_LEVEL).equals("0");
     }
 
     public static boolean hasGPUMinPowerLevel() {
         if (Utils.existFile(GPU_NUM_POWER_LEVELS)) {
             mGPU_Min_Pwr = Utils.stringToInt(Utils.readFile(GPU_NUM_POWER_LEVELS)) - 1;
         }
-            return Utils.existFile(GPU_MIN_POWER_LEVEL);
+        return Utils.existFile(GPU_MIN_POWER_LEVEL);
     }
 
     public static void setGpu2dGovernor(String governor, Context context) {
@@ -167,14 +166,14 @@ public class GPU implements Constants {
             Control.runCommand(governor, GPU_2D_SCALING_GOVERNOR, Control.CommandType.GENERIC, context);
     }
 
-    public static List<String> getGpu2dGovernors() {
+    public static List < String > getGpu2dGovernors() {
         if (mAvail_2D_Govs == null) mAvail_2D_Govs = new String[0];
         String value = Utils.readFile(GPU_GENERIC_GOVERNORS);
         if (value != null) {
             mAvail_2D_Govs = value.split(" ");
             Collections.sort(Arrays.asList(mAvail_2D_Govs), String.CASE_INSENSITIVE_ORDER);
         }
-        return new ArrayList<>(Arrays.asList(mAvail_2D_Govs));
+        return new ArrayList < > (Arrays.asList(mAvail_2D_Govs));
     }
 
     public static String getGpu2dGovernor() {
@@ -188,7 +187,7 @@ public class GPU implements Constants {
 
     public static boolean hasGpu2dGovernor() {
         if (GPU_2D_SCALING_GOVERNOR == null)
-            for (String file : GPU_2D_SCALING_GOVERNOR_ARRAY)
+            for (String file: GPU_2D_SCALING_GOVERNOR_ARRAY)
                 if (Utils.existFile(file)) GPU_2D_SCALING_GOVERNOR = file;
         return GPU_2D_SCALING_GOVERNOR != null;
     }
@@ -198,7 +197,7 @@ public class GPU implements Constants {
             Control.runCommand(String.valueOf(freq), GPU_2D_MAX_FREQ, Control.CommandType.GENERIC, context);
     }
 
-    public static List<Integer> getGpu2dFreqs() {
+    public static List < Integer > getGpu2dFreqs() {
         if (GPU_2D_AVAILABLE_FREQS != null)
             if (mGpu2dFreqs == null)
                 if (Utils.existFile(GPU_2D_AVAILABLE_FREQS)) {
@@ -210,12 +209,12 @@ public class GPU implements Constants {
                             mGpu2dFreqs[i] = Utils.stringToInt(freqs[i]);
                     }
                 }
-        return new ArrayList<>(Arrays.asList(mGpu2dFreqs));
+        return new ArrayList < > (Arrays.asList(mGpu2dFreqs));
     }
 
     public static boolean hasGpu2dFreqs() {
         if (GPU_2D_AVAILABLE_FREQS == null) {
-            for (String file : GPU_2D_AVAILABLE_FREQS_ARRAY)
+            for (String file: GPU_2D_AVAILABLE_FREQS_ARRAY)
                 if (Utils.existFile(file)) GPU_2D_AVAILABLE_FREQS = file;
         }
         String value = Utils.readFile(GPU_2D_AVAILABLE_FREQS);
@@ -224,32 +223,34 @@ public class GPU implements Constants {
     }
 
     public static int getGpu2dMaxFreq() {
-        if (GPU_2D_MAX_FREQ != null) if (Utils.existFile(GPU_2D_MAX_FREQ)) {
-            String value = Utils.readFile(GPU_2D_MAX_FREQ);
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (GPU_2D_MAX_FREQ != null)
+            if (Utils.existFile(GPU_2D_MAX_FREQ)) {
+                String value = Utils.readFile(GPU_2D_MAX_FREQ);
+                if (value != null) return Utils.stringToInt(value);
+            }
         return 0;
     }
 
     public static boolean hasGpu2dMaxFreq() {
         if (GPU_2D_MAX_FREQ == null) {
-            for (String file : GPU_2D_MAX_FREQ_ARRAY)
+            for (String file: GPU_2D_MAX_FREQ_ARRAY)
                 if (Utils.existFile(file)) GPU_2D_MAX_FREQ = file;
         }
         return GPU_2D_MAX_FREQ != null;
     }
 
     public static int getGpu2dCurFreq() {
-        if (GPU_2D_CUR_FREQ != null) if (Utils.existFile(GPU_2D_CUR_FREQ)) {
-            String value = Utils.readFile(GPU_2D_CUR_FREQ);
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (GPU_2D_CUR_FREQ != null)
+            if (Utils.existFile(GPU_2D_CUR_FREQ)) {
+                String value = Utils.readFile(GPU_2D_CUR_FREQ);
+                if (value != null) return Utils.stringToInt(value);
+            }
         return 0;
     }
 
     public static boolean hasGpu2dCurFreq() {
         if (GPU_2D_CUR_FREQ == null) {
-            for (String file : GPU_2D_CUR_FREQ_ARRAY)
+            for (String file: GPU_2D_CUR_FREQ_ARRAY)
                 if (Utils.existFile(file)) GPU_2D_CUR_FREQ = file;
         }
         return GPU_2D_CUR_FREQ != null;
@@ -260,18 +261,18 @@ public class GPU implements Constants {
             Control.runCommand(governor, GPU_SCALING_GOVERNOR, Control.CommandType.GENERIC, context);
     }
 
-    public static List<String> getGpuGovernors() {
+    public static List < String > getGpuGovernors() {
         if (GPU_AVAILABLE_GOVERNORS == null)
-            for (String file : GPU_AVAILABLE_GOVERNORS_ARRAY)
+            for (String file: GPU_AVAILABLE_GOVERNORS_ARRAY)
                 if (GPU_AVAILABLE_GOVERNORS == null)
                     if (Utils.existFile(file)) {
                         String value = Utils.readFile(file);
                         if (value != null)
                             GPU_AVAILABLE_GOVERNORS = value.split(" ");
-                            Collections.sort(Arrays.asList(GPU_AVAILABLE_GOVERNORS), String.CASE_INSENSITIVE_ORDER);
+                        Collections.sort(Arrays.asList(GPU_AVAILABLE_GOVERNORS), String.CASE_INSENSITIVE_ORDER);
                     }
-        return new ArrayList<>(Arrays.asList(GPU_AVAILABLE_GOVERNORS == null ? GPU_GENERIC_GOVERNORS
-                .split(" ") : GPU_AVAILABLE_GOVERNORS));
+        return new ArrayList < > (Arrays.asList(GPU_AVAILABLE_GOVERNORS == null ? GPU_GENERIC_GOVERNORS
+            .split(" ") : GPU_AVAILABLE_GOVERNORS));
     }
 
     public static String getGpuGovernor() {
@@ -285,7 +286,7 @@ public class GPU implements Constants {
 
     public static boolean hasGpuGovernor() {
         if (GPU_SCALING_GOVERNOR == null)
-            for (String file : GPU_SCALING_GOVERNOR_ARRAY)
+            for (String file: GPU_SCALING_GOVERNOR_ARRAY)
                 if (Utils.existFile(file)) GPU_SCALING_GOVERNOR = file;
         return GPU_SCALING_GOVERNOR != null;
     }
@@ -300,7 +301,7 @@ public class GPU implements Constants {
             Control.runCommand(String.valueOf(freq), GPU_MAX_FREQ, Control.CommandType.GENERIC, context);
     }
 
-    public static List<Integer> getGpuFreqs() {
+    public static List < Integer > getGpuFreqs() {
         if (GPU_AVAILABLE_FREQS != null)
             if (mGpuFreqs == null)
                 if (Utils.existFile(GPU_AVAILABLE_FREQS)) {
@@ -312,68 +313,72 @@ public class GPU implements Constants {
                             mGpuFreqs[i] = Utils.stringToInt(freqs[i]);
                     }
                 }
-        return new ArrayList<>(Arrays.asList(mGpuFreqs));
+        return new ArrayList < > (Arrays.asList(mGpuFreqs));
     }
 
     public static boolean hasGpuFreqs() {
         if (GPU_AVAILABLE_FREQS == null) {
-            for (String file : GPU_AVAILABLE_FREQS_ARRAY)
+            for (String file: GPU_AVAILABLE_FREQS_ARRAY)
                 if (Utils.existFile(file)) GPU_AVAILABLE_FREQS = file;
         }
         return GPU_AVAILABLE_FREQS != null;
     }
 
     public static int getGpuMinFreq() {
-        if (GPU_MIN_FREQ != null) if (Utils.existFile(GPU_MIN_FREQ)) {
-            String value = Utils.readFile(GPU_MIN_FREQ);
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (GPU_MIN_FREQ != null)
+            if (Utils.existFile(GPU_MIN_FREQ)) {
+                String value = Utils.readFile(GPU_MIN_FREQ);
+                if (value != null) return Utils.stringToInt(value);
+            }
         return 0;
     }
 
     public static boolean hasGpuMinFreq() {
         if (GPU_MIN_FREQ == null) {
-            for (String file : GPU_MIN_FREQ_ARRAY)
+            for (String file: GPU_MIN_FREQ_ARRAY)
                 if (Utils.existFile(file)) GPU_MIN_FREQ = file;
         }
         return GPU_MIN_FREQ != null;
     }
 
     public static int getGpuMaxFreq() {
-        if (GPU_MAX_FREQ != null) if (Utils.existFile(GPU_MAX_FREQ)) {
-            String value = Utils.readFile(GPU_MAX_FREQ);
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (GPU_MAX_FREQ != null)
+            if (Utils.existFile(GPU_MAX_FREQ)) {
+                String value = Utils.readFile(GPU_MAX_FREQ);
+                if (value != null) return Utils.stringToInt(value);
+            }
         return 0;
     }
 
     public static boolean hasGpuMaxFreq() {
         if (GPU_MAX_FREQ == null) {
-            for (String file : GPU_MAX_FREQ_ARRAY)
+            for (String file: GPU_MAX_FREQ_ARRAY)
                 if (Utils.existFile(file)) GPU_MAX_FREQ = file;
         }
         return GPU_MAX_FREQ != null;
     }
 
     public static int getGpuCurFreq() {
-        if (GPU_CUR_FREQ != null) if (Utils.existFile(GPU_CUR_FREQ)) {
-            String value = Utils.readFile(GPU_CUR_FREQ);
-            if (value != null) return Utils.stringToInt(value);
-        }
+        if (GPU_CUR_FREQ != null)
+            if (Utils.existFile(GPU_CUR_FREQ)) {
+                String value = Utils.readFile(GPU_CUR_FREQ);
+                if (value != null) return Utils.stringToInt(value);
+            }
         return 0;
     }
 
     public static boolean hasGpuCurFreq() {
         if (GPU_CUR_FREQ == null) {
-            for (String file : GPU_CUR_FREQ_ARRAY)
+            for (String file: GPU_CUR_FREQ_ARRAY)
                 if (Utils.existFile(file)) GPU_CUR_FREQ = file;
         }
         return GPU_CUR_FREQ != null;
     }
 
     public static boolean hasGpuControl() {
-        for (String[] files : GPU_ARRAY)
-            for (String file : files) if (Utils.existFile(file)) return true;
+        for (String[] files: GPU_ARRAY)
+            for (String file: files)
+                if (Utils.existFile(file)) return true;
         return false;
     }
 

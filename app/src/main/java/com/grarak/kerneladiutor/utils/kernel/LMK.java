@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -35,13 +34,13 @@ public class LMK implements Constants {
         Control.runCommand(minFree, LMK_MINFREE, Control.CommandType.GENERIC, context);
     }
 
-    public static int getMinFree(List<String> minfrees, int position) {
+    public static int getMinFree(List < String > minfrees, int position) {
         return Utils.stringToInt(minfrees.get(position));
     }
 
-    public static List<String> getMinFrees() {
+    public static List < String > getMinFrees() {
         String value = Utils.readFile(LMK_MINFREE);
-        if (value != null) return new ArrayList<>(Arrays.asList(value.split(",")));
+        if (value != null) return new ArrayList < > (Arrays.asList(value.split(",")));
         return null;
     }
 

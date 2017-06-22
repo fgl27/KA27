@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -37,8 +36,7 @@ import java.util.List;
  * Created by willi on 06.02.15.
  */
 public class CPUHotplugFragment extends RecyclerViewFragment implements
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private SwitchCardView.DSwitchCard mMpdecisionCard;
 
@@ -175,14 +173,14 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
     private SwitchCardView.DSwitchCard mMSMSleeperEnableCard;
     private SeekBarCardView.DSeekBarCard mMSMSleeperUpThresholdCard, mMSMSleeperMaxOnlineCard, mMSMSleeperSuspendMaxOnlineCard,
-            mMSMSleeperUpCountMaxCard, mMSMSleeperDownCountMaxCard;
+        mMSMSleeperUpCountMaxCard, mMSMSleeperDownCountMaxCard;
 
     private SwitchCardView.DSwitchCard mStateHelperEnableCard;
     private SwitchCardView.DSwitchCard mStateHelperDebugCard;
     private SwitchCardView.DSwitchCard mStateHelperDynamicCard;
     private SeekBarCardView.DSeekBarCard mStateHelper_batt_level_eco_Card, mStateHelperUpThresholdCard, mStateHelperDownThresholdCard,
-            mStateHelper_max_cpus_eco_Card,mStateHelper_batt_level_cri_Card, mStateHelperMinOnlineCard, mStateHelperDynamicIntervalCard,
-            mStateHelper_max_cpus_cri_Card, mStateHelper_max_cpus_online_Card, mStateHelper_max_cpus_susp_Card;
+        mStateHelper_max_cpus_eco_Card, mStateHelper_batt_level_cri_Card, mStateHelperMinOnlineCard, mStateHelperDynamicIntervalCard,
+        mStateHelper_max_cpus_cri_Card, mStateHelper_max_cpus_online_Card, mStateHelper_max_cpus_susp_Card;
 
     private SeekBarCardView.DSeekBarCard msmperformanceCard;
 
@@ -226,13 +224,13 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void intelliPlugInit() {
-            mIntelliPlugCard = new SwitchCardView.DSwitchCard();
-            mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
-            mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
-            mIntelliPlugCard.setChecked(CPUHotplug.isIntelliPlugActive());
-            mIntelliPlugCard.setOnDSwitchCardListener(this);
+        mIntelliPlugCard = new SwitchCardView.DSwitchCard();
+        mIntelliPlugCard.setTitle(getString(R.string.intelliplug));
+        mIntelliPlugCard.setDescription(getString(R.string.intelliplug_summary));
+        mIntelliPlugCard.setChecked(CPUHotplug.isIntelliPlugActive());
+        mIntelliPlugCard.setOnDSwitchCardListener(this);
 
-            addView(mIntelliPlugCard);
+        addView(mIntelliPlugCard);
     }
 
     private void bluPlugInit() {
@@ -390,8 +388,15 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void msmperformanceInit() {
-        List<String> list = new ArrayList<>();
-        String[] listitems = {"Disabled", "-----", "1", "2", "3", "4"};
+        List < String > list = new ArrayList < > ();
+        String[] listitems = {
+            "Disabled",
+            "-----",
+            "1",
+            "2",
+            "3",
+            "4"
+        };
         list.addAll(Arrays.asList(listitems));
 
         DDivider mmsmperformanceDivider = new DDivider();
@@ -431,7 +436,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
     }
 
     private void tunablesInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
+        List < DAdapter.DView > views = new ArrayList < > ();
         views.clear();
 
         if (CPUHotplug.isIntelliPlugActive() || (!CPUHotplug.hasIntelliPlugEnable() && CPUHotplug.hasIntelliPlug())) {
@@ -474,7 +479,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugHysteresis()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 17; i++)
                     list.add(String.valueOf(i));
 
@@ -488,7 +493,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugThresold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 1001; i++)
                     list.add(String.valueOf(i));
 
@@ -501,9 +506,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugScreenOffMax() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 list.add(getString(R.string.disabled));
-                for (int freq : CPU.getFreqs())
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mIntelliPlugScreenOffMaxCard = new PopupCardView.DPopupCard(list);
@@ -536,7 +541,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugCpusBoosted()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -551,7 +556,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugMinCpusOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -565,7 +570,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugMaxCpusOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -579,7 +584,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugMaxCpusOnlineSusp()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -593,7 +598,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugSuspendDeferTime()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 501; i++)
                     list.add((i * 10) + getString(R.string.ms));
 
@@ -606,7 +611,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugDeferSampling()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 1001; i++)
                     list.add(i + getString(R.string.ms));
 
@@ -619,7 +624,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugBoostLockDuration()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 5001; i++)
                     list.add(i + getString(R.string.ms));
 
@@ -633,7 +638,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugDownLockDuration()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 5001; i++)
                     list.add(i + getString(R.string.ms));
 
@@ -647,7 +652,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasIntelliPlugFShift()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 4; i++)
                     list.add(String.valueOf(i));
 
@@ -679,7 +684,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugMinOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -693,7 +698,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugMaxOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -707,7 +712,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugMaxCoresScreenOff()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -721,9 +726,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugMaxFreqScreenOff() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 list.add(getString(R.string.disabled));
-                for (int freq : CPU.getFreqs())
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mBluPlugMaxFreqScreenOffCard = new PopupCardView.DPopupCard(list);
@@ -736,7 +741,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugUpThreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(i + "%");
 
@@ -750,7 +755,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugUpTimerCnt()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (float i = 0; i < 21; i++)
                     list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
@@ -764,7 +769,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBluPlugDownTimerCnt()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (float i = 0; i < 21; i++)
                     list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
@@ -797,7 +802,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugMinCpusOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -811,7 +816,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugMaxCpusOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -825,7 +830,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugCpusBoosted()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 list.add(getString(R.string.disabled));
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
@@ -840,7 +845,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugMaxCpusOnlineSusp()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -854,7 +859,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugBoostLockDuration()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 5001; i++)
                     list.add(String.valueOf(i));
 
@@ -868,7 +873,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugDownLockDuration()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 5001; i++)
                     list.add(String.valueOf(i));
 
@@ -882,7 +887,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugHistorySize()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 61; i++)
                     list.add(String.valueOf(i));
 
@@ -896,7 +901,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugUpdateRate()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 61; i++)
                     list.add(String.valueOf(i));
 
@@ -910,7 +915,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugFastLaneLoad()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 401; i++)
                     list.add(String.valueOf(i));
 
@@ -924,8 +929,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugFastLaneMinFreq() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
-                for (int freq : CPU.getFreqs())
+                List < String > list = new ArrayList < > ();
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mMsmHotplugFastLaneMinFreqCard = new PopupCardView.DPopupCard(list);
@@ -938,7 +943,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugOfflineLoad()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(String.valueOf(i));
 
@@ -962,7 +967,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugSuspendMaxCpus()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 list.add(getString(R.string.disabled));
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
@@ -977,8 +982,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugSuspendFreq() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
-                for (int freq : CPU.getFreqs())
+                List < String > list = new ArrayList < > ();
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mMsmHotplugSuspendFreqCard = new PopupCardView.DPopupCard(list);
@@ -991,7 +996,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMsmHotplugSuspendDeferTime()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i <= 5001; i += 10)
                     list.add(String.valueOf(i));
 
@@ -1013,7 +1018,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mMakoHotplugDividerCard);
 
             if (CPUHotplug.hasMakoHotplugCoresOnTouch()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1027,21 +1032,21 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugCpuFreqUnplugLimit() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
-                for (int freq : CPU.getFreqs())
+                List < String > list = new ArrayList < > ();
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mMakoHotplugCpuFreqUnplugLimitCard = new PopupCardView.DPopupCard(list);
                 mMakoHotplugCpuFreqUnplugLimitCard.setDescription(getString(R.string.cpu_freq_unplug_limit));
-                mMakoHotplugCpuFreqUnplugLimitCard.setItem((CPUHotplug.getMakoHotplugCpuFreqUnplugLimit() / 1000)
-                        + getString(R.string.mhz));
+                mMakoHotplugCpuFreqUnplugLimitCard.setItem((CPUHotplug.getMakoHotplugCpuFreqUnplugLimit() / 1000) +
+                    getString(R.string.mhz));
                 mMakoHotplugCpuFreqUnplugLimitCard.setOnDPopupCardListener(this);
 
                 views.add(mMakoHotplugCpuFreqUnplugLimitCard);
             }
 
             if (CPUHotplug.hasMakoHotplugFirstLevel()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(i + "%");
 
@@ -1055,7 +1060,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugHighLoadCounter()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(String.valueOf(i));
 
@@ -1068,7 +1073,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugLoadThreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(i + "%");
 
@@ -1082,7 +1087,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugMaxLoadCounter()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(String.valueOf(i));
 
@@ -1095,7 +1100,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugMinTimeCpuOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(String.valueOf(i));
 
@@ -1108,7 +1113,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugMinCoresOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1122,7 +1127,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugTimer()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(String.valueOf(i));
 
@@ -1135,8 +1140,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMakoHotplugSuspendFreq() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
-                for (int freq : CPU.getFreqs())
+                List < String > list = new ArrayList < > ();
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mMakoSuspendFreqCard = new PopupCardView.DPopupCard(list);
@@ -1168,7 +1173,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugMinCpus()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1182,7 +1187,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugMaxCpus()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1196,7 +1201,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugMaxCpusOnlineSusp()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1210,8 +1215,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugIdleFreq() && CPU.getFreqs() != null) {
-                List<String> list = new ArrayList<>();
-                for (int freq : CPU.getFreqs())
+                List < String > list = new ArrayList < > ();
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mMBHotplugIdleFreqCard = new PopupCardView.DPopupCard(list);
@@ -1234,7 +1239,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugBoostTime()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 51; i++)
                     list.add((i * 100) + getString(R.string.ms));
 
@@ -1247,7 +1252,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugCpusBoosted()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 list.add(getString(R.string.disabled));
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
@@ -1262,9 +1267,9 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugBoostFreqs() && CPU.getFreqs() != null) {
-                List<Integer> freqs = CPUHotplug.getMBHotplugBoostFreqs();
-                List<String> list = new ArrayList<>();
-                for (int freq : CPU.getFreqs())
+                List < Integer > freqs = CPUHotplug.getMBHotplugBoostFreqs();
+                List < String > list = new ArrayList < > ();
+                for (int freq: CPU.getFreqs())
                     list.add((freq / 1000) + getString(R.string.mhz));
 
                 mMBHotplugBoostFreqsCard = new PopupCardView.DPopupCard[freqs.size()];
@@ -1279,7 +1284,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasBrickedDownLockDuration()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 300; i < 5001; i++)
                     list.add(i + getString(R.string.ms));
 
@@ -1294,7 +1299,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
 
 
             if (CPUHotplug.hasMBHotplugStartDelay()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 51; i++)
                     list.add((i * 1000) + getString(R.string.ms));
 
@@ -1308,7 +1313,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugDelay()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 201; i++)
                     list.add(String.valueOf(i));
 
@@ -1322,7 +1327,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMBHotplugPause()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 51; i++)
                     list.add((i * 1000) + getString(R.string.ms));
 
@@ -1341,7 +1346,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 mBrickedNWNSDividerCard.setText(getString(R.string.bricked_runqueue_threshold));
                 views.add(mBrickedNWNSDividerCard);
 
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++)
                     list.add(i + getString(R.string.percent));
 
@@ -1363,7 +1368,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 mBrickedTWTSDividerCard.setText(getString(R.string.bricked_time_threshold));
                 views.add(mBrickedTWTSDividerCard);
 
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 1001; i++)
                     list.add(i + getString(R.string.ms));
                 int cores = (CPU.getCoreCount() * 2);
@@ -1398,7 +1403,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAlucardHotplugSamplingRate()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 101; i++)
                     list.add(i + "%");
 
@@ -1421,7 +1426,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAlucardHotplugMinCpusOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1435,7 +1440,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAlucardHotplugMaxCoresLimit()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1449,7 +1454,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAlucardHotplugMaxCoresLimitSleep()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i));
 
@@ -1463,7 +1468,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAlucardHotplugCpuDownRate()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 101; i++)
                     list.add(i + "%");
 
@@ -1476,7 +1481,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAlucardHotplugCpuUpRate()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 101; i++)
                     list.add(i + "%");
 
@@ -1497,19 +1502,19 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
             views.add(mThunderPlugDividerCard);
 
-	if (CPUHotplug.hasThunderPlughpstyle()) {
-		mThunderPlugHPStyleCard = new PopupCardView.DPopupCard(new ArrayList<>(Arrays
-				.asList(getResources().getStringArray(R.array.thunderplug_hp_style))));
-		mThunderPlugHPStyleCard.setTitle(getString(R.string.hp_style));
-		mThunderPlugHPStyleCard.setDescription(getString(R.string.hp_style));
-		mThunderPlugHPStyleCard.setItem(CPUHotplug.getThunderPlughpstyle() - 1);
-		mThunderPlugHPStyleCard.setOnDPopupCardListener(this);
+            if (CPUHotplug.hasThunderPlughpstyle()) {
+                mThunderPlugHPStyleCard = new PopupCardView.DPopupCard(new ArrayList < > (Arrays
+                    .asList(getResources().getStringArray(R.array.thunderplug_hp_style))));
+                mThunderPlugHPStyleCard.setTitle(getString(R.string.hp_style));
+                mThunderPlugHPStyleCard.setDescription(getString(R.string.hp_style));
+                mThunderPlugHPStyleCard.setItem(CPUHotplug.getThunderPlughpstyle() - 1);
+                mThunderPlugHPStyleCard.setOnDPopupCardListener(this);
 
-		views.add(mThunderPlugHPStyleCard);
-	}
+                views.add(mThunderPlugHPStyleCard);
+            }
 
             if (CPUHotplug.hasThunderPlugSuspendCpus()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
                 mThunderPlugSuspendCpusCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1522,8 +1527,8 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasThunderPlugEnduranceLevel()) {
-                mThunderPlugEnduranceLevelCard = new PopupCardView.DPopupCard(new ArrayList<>(Arrays
-                        .asList(getResources().getStringArray(R.array.thunderplug_endurance_level_items))));
+                mThunderPlugEnduranceLevelCard = new PopupCardView.DPopupCard(new ArrayList < > (Arrays
+                    .asList(getResources().getStringArray(R.array.thunderplug_endurance_level_items))));
                 mThunderPlugEnduranceLevelCard.setTitle(getString(R.string.endurance_level));
                 mThunderPlugEnduranceLevelCard.setDescription(getString(R.string.endurance_level_summary));
                 mThunderPlugEnduranceLevelCard.setItem(CPUHotplug.getThunderPlugEnduranceLevel());
@@ -1533,7 +1538,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasThunderPlugSamplingRate()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 51; i++) list.add(String.valueOf(i * 50));
 
                 mThunderPlugSamplingRateCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1545,7 +1550,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasThunderPlugLoadThreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 11; i < 101; i++) list.add(String.valueOf(i));
 
                 mThunderPlugLoadThresholdCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1567,15 +1572,15 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
                 views.add(mThunderPlugTouchBoostCard);
             }
 
-	if (CPUHotplug.hasThunderPlugSchedBoost()) {
-		mThunderPlugSchedBoostCard = new SwitchCardView.DSwitchCard();
-		mThunderPlugSchedBoostCard.setTitle(getString(R.string.sched_boost));
-		mThunderPlugSchedBoostCard.setDescription(getString(R.string.sched_boost_summary));
-		mThunderPlugSchedBoostCard.setChecked(CPUHotplug.isThunderPlugSchedBoostActive());
-		mThunderPlugSchedBoostCard.setOnDSwitchCardListener(this);
+            if (CPUHotplug.hasThunderPlugSchedBoost()) {
+                mThunderPlugSchedBoostCard = new SwitchCardView.DSwitchCard();
+                mThunderPlugSchedBoostCard.setTitle(getString(R.string.sched_boost));
+                mThunderPlugSchedBoostCard.setDescription(getString(R.string.sched_boost_summary));
+                mThunderPlugSchedBoostCard.setChecked(CPUHotplug.isThunderPlugSchedBoostActive());
+                mThunderPlugSchedBoostCard.setOnDSwitchCardListener(this);
 
-		views.add(mThunderPlugSchedBoostCard);
-	}
+                views.add(mThunderPlugSchedBoostCard);
+            }
 
         }
 
@@ -1589,7 +1594,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mZenDecisionDividerCard);
 
             if (CPUHotplug.hasZenDecisionWakeWaitTime()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 61; i++) list.add((i * 1000) + getString(R.string.ms));
 
                 mZenDecisionWakeWaitTimeCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1602,7 +1607,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasZenDecisionBatThresholdIgnore()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 list.add(getString(R.string.disabled));
                 for (int i = 1; i < 101; i++) list.add(i + "%");
 
@@ -1625,7 +1630,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mAutoSmpDividerCard);
 
             if (CPUHotplug.hasAutoSmpCpufreqDown()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++) list.add(i + "%");
 
                 mAutoSmpCpufreqDownCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1637,7 +1642,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoSmpCpufreqUp()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++) list.add(i + "%");
 
                 mAutoSmpCpufreqUpCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1649,7 +1654,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoSmpCycleDown()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
                 mAutoSmpCycleDownCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1662,7 +1667,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoSmpCycleUp()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
                 mAutoSmpCycleUpCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1675,7 +1680,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoSmpDelay()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 501; i++) list.add(i + getString(R.string.ms));
 
                 mAutoSmpDelayCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1688,7 +1693,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoSmpMaxCpus()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
                 mAutoSmpMaxCpusCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1701,7 +1706,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoSmpMinCpus()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i <= CPU.getCoreCount(); i++) list.add(String.valueOf(i));
 
                 mAutoSmpMinCpusCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1733,7 +1738,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mLazyPlugDividerCard);
 
             if (CPUHotplug.hasLazyPlugCpuNrRunTreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 1001; i++)
                     list.add(String.valueOf(i));
 
@@ -1746,7 +1751,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasLazyPlugNrPossibleCores()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++) list.add(String.valueOf(i + 1));
 
                 mLazyPlugNrPossibleCoresCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1758,7 +1763,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasLazyPlugNrRunHysteresis()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 17; i++)
                     list.add(String.valueOf(i));
 
@@ -1801,7 +1806,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mDynPlugDividerCard);
 
             if (CPUHotplug.hasDynPlugUpThreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 1001; i++)
                     list.add(String.valueOf(i));
 
@@ -1814,7 +1819,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasDynPlugUpTimerCnt()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (float i = 0; i < 21; i++)
                     list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
@@ -1828,7 +1833,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasDynPlugDownTimerCnt()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (float i = 0; i < 21; i++)
                     list.add(String.valueOf(i / (float) 2).replace(".0", ""));
 
@@ -1842,7 +1847,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasDynPlugMaxOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++) list.add(String.valueOf(i + 1));
 
                 mDynPlugMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1855,7 +1860,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasDynPlugMinOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -1878,7 +1883,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mAutoHotplugDividerCard);
 
             if (CPUHotplug.hasAutoHotplugEnableLoadTreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 251; i++)
                     list.add(String.valueOf(i));
 
@@ -1892,7 +1897,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoHotplugEnableAllLoadTreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 551; i++)
                     list.add(String.valueOf(i));
 
@@ -1906,7 +1911,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoHotplugDisableLoadTreshold()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 126; i++)
                     list.add(String.valueOf(i));
 
@@ -1920,7 +1925,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoHotplugMaxOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++) list.add(String.valueOf(i + 1));
 
                 mAutoHotplugMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1933,7 +1938,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoHotplugMinOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -1947,7 +1952,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasAutoHotplugSamplingPeriods()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 51; i++)
                     list.add(String.valueOf(i));
 
@@ -1971,7 +1976,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             views.add(mMSMSleeperDividerCard);
 
             if (CPUHotplug.hasMSMSleeperMaxOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 5; i++) list.add(i + " Cores");
 
                 mMSMSleeperMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1983,7 +1988,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMSMSleeperSuspendMaxOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 1; i < 5; i++) list.add(i + " Cores");
 
                 mMSMSleeperSuspendMaxOnlineCard = new SeekBarCardView.DSeekBarCard(list);
@@ -1995,7 +2000,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMSMSleeperUpThresh()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 101; i++) list.add(i + getString(R.string.percent));
 
                 mMSMSleeperUpThresholdCard = new SeekBarCardView.DSeekBarCard(list);
@@ -2007,7 +2012,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMSMSleeperUpCountMax()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 41; i++) list.add(i + getString(R.string.ms));
 
                 mMSMSleeperUpCountMaxCard = new SeekBarCardView.DSeekBarCard(list);
@@ -2019,7 +2024,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasMSMSleeperDownCountMax()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 41; i++) list.add(i + getString(R.string.ms));
 
                 mMSMSleeperDownCountMaxCard = new SeekBarCardView.DSeekBarCard(list);
@@ -2219,7 +2224,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasHimaMinOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -2232,7 +2237,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasHimaMaxOnline()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < CPU.getCoreCount(); i++)
                     list.add(String.valueOf(i + 1));
 
@@ -2245,7 +2250,7 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             }
 
             if (CPUHotplug.hasHimaSamplingRate()) {
-                List<String> list = new ArrayList<>();
+                List < String > list = new ArrayList < > ();
                 for (int i = 0; i < 100; i++)
                     list.add(String.valueOf(i + 1));
 
@@ -2361,30 +2366,27 @@ public class CPUHotplugFragment extends RecyclerViewFragment implements
             CPUHotplug.setThunderPlugEnduranceLevel(position, getActivity());
         else if (dPopupCard == mThunderPlugHPStyleCard)
             CPUHotplug.setThunderPlughpstyle(position + 1, getActivity());
-        else if (mMBHotplugBoostFreqsCard != null ){
+        else if (mMBHotplugBoostFreqsCard != null) {
             for (int i = 0; i < mMBHotplugBoostFreqsCard.length; i++)
                 if (dPopupCard == mMBHotplugBoostFreqsCard[i]) {
                     CPUHotplug.setMBHotplugBoostFreqs(i, CPU.getFreqs().get(position), getActivity());
                     return;
                 }
-        else if (dPopupCard == mLazyPlugProfileCard)
-            CPUHotplug.setLazyPlugProfile(position, getActivity());
-        }
-        else if (dPopupCard == mHimaProfileCard)
+            else if (dPopupCard == mLazyPlugProfileCard)
+                CPUHotplug.setLazyPlugProfile(position, getActivity());
+        } else if (dPopupCard == mHimaProfileCard)
             CPUHotplug.setHimaProfile(position, getActivity());
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         for (int i = 0; i < (CPU.getCoreCount() * 2); i++) {
             if (mBrickedNWNSCard != null && dSeekBarCard == mBrickedNWNSCard[i]) {
                 CPUHotplug.setBrickedNWNS(i, position, getActivity());
-            }
-            else if (mBrickedTWTSCard != null && dSeekBarCard == mBrickedTWTSCard[i]) {
+            } else if (mBrickedTWTSCard != null && dSeekBarCard == mBrickedTWTSCard[i]) {
                 CPUHotplug.setBrickedTWTS(i, position, getActivity());
             }
         }

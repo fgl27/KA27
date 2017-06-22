@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -31,8 +30,7 @@ import java.util.List;
 /**
  * Created by willi on 27.12.14.
  */
-public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView[] mInfos;
 
@@ -80,7 +78,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
         }
 
         if (KSM.hasPagesToScan()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 1025; i++) list.add(String.valueOf(i));
 
             mPagesToScanCard = new SeekBarCardView.DSeekBarCard(list);
@@ -92,7 +90,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
         }
 
         if (KSM.hasSleepMilliseconds()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 5001; i++) list.add(i + getString(R.string.ms));
 
             mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCard(list);
@@ -104,7 +102,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
         }
 
         if (KSM.hasCpuUse()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 101; i++) list.add(i + getString(R.string.percent));
 
             mCpuUseCard = new SeekBarCardView.DSeekBarCard(list);
@@ -126,8 +124,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
@@ -140,8 +137,9 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
 
     @Override
     public boolean onRefresh() {
-        if (mInfos != null) for (int i = 0; i < mInfos.length; i++)
-            if (mInfos[i] != null) mInfos[i].setDescription(KSM.getInfo(i));
+        if (mInfos != null)
+            for (int i = 0; i < mInfos.length; i++)
+                if (mInfos[i] != null) mInfos[i].setDescription(KSM.getInfo(i));
         return true;
     }
 

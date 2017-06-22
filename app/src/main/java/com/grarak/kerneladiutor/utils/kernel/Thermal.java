@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -32,8 +31,9 @@ import java.util.List;
  */
 public class Thermal implements Constants {
 
-  private enum MSMTHERMAL_TYPE {
-        SULTAN, NOTSULTAN
+    private enum MSMTHERMAL_TYPE {
+        SULTAN,
+        NOTSULTAN
     }
 
     private static MSMTHERMAL_TYPE TYPE;
@@ -297,8 +297,8 @@ public class Thermal implements Constants {
         return 40;
     }
 
-    public static List<String> getTempLimitList() {
-        List<String> list = new ArrayList<>();
+    public static List < String > getTempLimitList() {
+        List < String > list = new ArrayList < > ();
         for (double i = getTempLimitMin(); i <= getTempLimitMax(); i++)
             list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
         return list;
@@ -317,7 +317,7 @@ public class Thermal implements Constants {
 
     public static boolean hasTempLimit() {
         if (TEMP_LIMIT_FILE == null)
-            for (String file : TEMP_LIMIT_ARRAY)
+            for (String file: TEMP_LIMIT_ARRAY)
                 if (Utils.existFile(file)) {
                     TEMP_LIMIT_FILE = file;
                     return true;
@@ -513,8 +513,7 @@ public class Thermal implements Constants {
         if (active) {
             Control.stopService(THERMAL_ENGINE, context);
             Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-        }
-        else {
+        } else {
             Control.startService(THERMAL_ENGINE, context);
             Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
         }
@@ -555,8 +554,9 @@ public class Thermal implements Constants {
 
     public static boolean hasThermal() {
         if (hasThermald()) return true;
-        for (String[] arrays : THERMAL_ARRAYS)
-            for (String file : arrays) if (Utils.existFile(file)) return true;
+        for (String[] arrays: THERMAL_ARRAYS)
+            for (String file: arrays)
+                if (Utils.existFile(file)) return true;
         return false;
     }
 
@@ -564,8 +564,7 @@ public class Thermal implements Constants {
         if (active) {
             Control.startService(THERMAL_ENGINE, context);
             Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-        }
-        else {
+        } else {
             Control.stopService(THERMAL_ENGINE, context);
             Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
         }

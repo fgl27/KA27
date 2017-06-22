@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -132,7 +131,7 @@ public class Screen implements Constants {
 
     public static boolean hasMinBrightness() {
         if (MIN_BRIGHTNESS == null)
-            for (String file : MIN_BRIGHTNESS_ARRAY)
+            for (String file: MIN_BRIGHTNESS_ARRAY)
                 if (Utils.existFile(file)) {
                     MIN_BRIGHTNESS = file;
                     return true;
@@ -266,12 +265,13 @@ public class Screen implements Constants {
     }
 
     public static boolean hasDsiPanel() {
-        for (String file : DSI_PANEL_ARRAY) if (Utils.existFile(file)) return true;
+        for (String file: DSI_PANEL_ARRAY)
+            if (Utils.existFile(file)) return true;
         return false;
     }
 
     public static void setGammaControlProfile(int profile, GammaProfiles.GammaControlProfiles gammaControlProfiles,
-                                              Context context) {
+        Context context) {
         setColorCalibration(gammaControlProfiles.getKCAL(profile), context);
         setRedGreys(gammaControlProfiles.getRedGreys(profile), context);
         setRedMids(gammaControlProfiles.getRedMids(profile), context);
@@ -481,7 +481,8 @@ public class Screen implements Constants {
     }
 
     public static boolean hasKGamma() {
-        for (String file : K_GAMMA_ARRAY) if (Utils.existFile(file)) return true;
+        for (String file: K_GAMMA_ARRAY)
+            if (Utils.existFile(file)) return true;
         return false;
     }
 
@@ -583,18 +584,18 @@ public class Screen implements Constants {
         switch (SCREEN_CALIBRATION) {
             case SCREEN_SAMOLED_COLOR_RED:
                 Control.runCommand(String.valueOf(Utils.stringToLong(col[0]) * 10000000), SCREEN_SAMOLED_COLOR_RED,
-                        Control.CommandType.GENERIC, context);
+                    Control.CommandType.GENERIC, context);
                 Control.runCommand(String.valueOf(Utils.stringToLong(col[1]) * 10000000), SCREEN_SAMOLED_COLOR_GREEN,
-                        Control.CommandType.GENERIC, context);
+                    Control.CommandType.GENERIC, context);
                 Control.runCommand(String.valueOf(Utils.stringToLong(col[2]) * 10000000), SCREEN_SAMOLED_COLOR_BLUE,
-                        Control.CommandType.GENERIC, context);
+                    Control.CommandType.GENERIC, context);
                 break;
             case SCREEN_COLOR_CONTROL:
                 String red = String.valueOf(Utils.stringToLong(col[0]) * 10000000);
                 String green = String.valueOf(Utils.stringToLong(col[1]) * 10000000);
                 String blue = String.valueOf(Utils.stringToLong(col[2]) * 10000000);
                 Control.runCommand(red + " " + green + " " + blue,
-                        SCREEN_COLOR_CONTROL, Control.CommandType.GENERIC, context);
+                    SCREEN_COLOR_CONTROL, Control.CommandType.GENERIC, context);
                 break;
             default:
                 Control.runCommand(colors, SCREEN_CALIBRATION, Control.CommandType.GENERIC, context);
@@ -605,8 +606,8 @@ public class Screen implements Constants {
             Control.runCommand("1", SCREEN_CALIBRATION_CTRL, Control.CommandType.GENERIC, context);
     }
 
-    public static List<String> getColorCalibrationLimits() {
-        List<String> list = new ArrayList<>();
+    public static List < String > getColorCalibrationLimits() {
+        List < String > list = new ArrayList < > ();
         switch (SCREEN_CALIBRATION) {
             case SCREEN_SAMOLED_COLOR_RED:
             case SCREEN_COLOR_CONTROL:
@@ -623,7 +624,7 @@ public class Screen implements Constants {
                 break;
             default:
                 int max = 255;
-                for (String file : SCREEN_KCAL_CTRL_NEW_ARRAY)
+                for (String file: SCREEN_KCAL_CTRL_NEW_ARRAY)
                     if (Utils.existFile(file)) {
                         max = 256;
                         break;
@@ -635,8 +636,8 @@ public class Screen implements Constants {
         return list;
     }
 
-    public static List<String> getColorCalibration() {
-        List<String> list = new ArrayList<>();
+    public static List < String > getColorCalibration() {
+        List < String > list = new ArrayList < > ();
         if (SCREEN_CALIBRATION != null) {
             if (SCREEN_CALIBRATION.equals(SCREEN_SAMOLED_COLOR_RED)) {
                 long red = Utils.stringToLong(Utils.readFile(SCREEN_SAMOLED_COLOR_RED));
@@ -648,7 +649,7 @@ public class Screen implements Constants {
             } else {
                 String value = Utils.readFile(SCREEN_CALIBRATION);
                 if (value != null) {
-                    for (String color : value.split(" ")) {
+                    for (String color: value.split(" ")) {
                         if (SCREEN_CALIBRATION.equals(SCREEN_COLOR_CONTROL))
                             list.add(String.valueOf(Utils.stringToLong(color) / 10000000));
                         else list.add(color);
@@ -661,7 +662,7 @@ public class Screen implements Constants {
 
     public static boolean hasColorCalibrationCtrl() {
         if (SCREEN_CALIBRATION_CTRL == null)
-            for (String file : SCREEN_RGB_CTRL_ARRAY)
+            for (String file: SCREEN_RGB_CTRL_ARRAY)
                 if (Utils.existFile(file)) {
                     SCREEN_CALIBRATION_CTRL = file;
                     return true;
@@ -670,21 +671,23 @@ public class Screen implements Constants {
     }
 
     public static boolean hasColorCalibration() {
-        if (SCREEN_CALIBRATION == null) for (String file : SCREEN_RGB_ARRAY)
-            if (Utils.existFile(file)) {
-                SCREEN_CALIBRATION = file;
-                return true;
-            }
+        if (SCREEN_CALIBRATION == null)
+            for (String file: SCREEN_RGB_ARRAY)
+                if (Utils.existFile(file)) {
+                    SCREEN_CALIBRATION = file;
+                    return true;
+                }
         return SCREEN_CALIBRATION != null;
     }
 
     public static boolean hasScreen() {
-        for (String[] array : SCREEN_ARRAY)
-            for (String file : array) if (Utils.existFile(file)) return true;
+        for (String[] array: SCREEN_ARRAY)
+            for (String file: array)
+                if (Utils.existFile(file)) return true;
         return false;
     }
 
-    public static GammaProfiles.ScreenColorProfiles getScreenColorProfiles (Context context) {
+    public static GammaProfiles.ScreenColorProfiles getScreenColorProfiles(Context context) {
         if (GAMMA_PROFILES == null) {
             if (Utils.existFile(context.getFilesDir() + "/gamma_profiles.json")) {
                 GAMMA_PROFILES = new GammaProfiles(Utils.readFile(context.getFilesDir() + "/gamma_profiles.json"));
@@ -695,11 +698,11 @@ public class Screen implements Constants {
         return GAMMA_PROFILES.getScreenColorProfiles();
     }
 
-    public static String getCurrentColorProfile (Context context) {
+    public static String getCurrentColorProfile(Context context) {
         getScreenColorProfiles(context);
         String current = Utils.readFile(SCREEN_KCAL_CTRL) + "," + Utils.readFile(SCREEN_KCAL_CTRL_SAT) + "," + Utils.readFile(SCREEN_KCAL_CTRL_VAL) + "," + Utils.readFile(SCREEN_KCAL_CTRL_CONT) + "," + Utils.readFile(SCREEN_KCAL_CTRL_HUE);
         GammaProfiles.ScreenColorProfiles screenColorProfiles = Screen.getScreenColorProfiles(context);
-        for (int i = 0 ;i < screenColorProfiles.length(); i++) {
+        for (int i = 0; i < screenColorProfiles.length(); i++) {
             if (current.equals(screenColorProfiles.getValues(i))) {
                 return screenColorProfiles.getName(i);
             }
@@ -707,7 +710,7 @@ public class Screen implements Constants {
         return "Custom";
     }
 
-    public static void setScreenColorProfile (int profile, GammaProfiles.ScreenColorProfiles screenColorProfiles, Context context) {
+    public static void setScreenColorProfile(int profile, GammaProfiles.ScreenColorProfiles screenColorProfiles, Context context) {
         if (screenColorProfiles == null) return;
         setColorCalibrationKcal(screenColorProfiles.getRGB(profile), context);
         setSaturationIntensityKcal(screenColorProfiles.getSat(profile), context);
@@ -720,18 +723,18 @@ public class Screen implements Constants {
     public static void setColorCalibrationKcal(String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL, Control.CommandType.GENERIC, context);
     }
-    public static void setScreenValueKcal (String value, Context context) {
+    public static void setScreenValueKcal(String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL_VAL, Control.CommandType.GENERIC, context);
     }
 
-    public static void setScreenContrastKcal (String value, Context context) {
+    public static void setScreenContrastKcal(String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL_CONT, Control.CommandType.GENERIC, context);
     }
-    public static void setSaturationIntensityKcal (String value, Context context) {
+    public static void setSaturationIntensityKcal(String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL_SAT, Control.CommandType.GENERIC, context);
     }
 
-    public static void setScreenHueKcal (String value, Context context) {
+    public static void setScreenHueKcal(String value, Context context) {
         Control.runCommand(value, SCREEN_KCAL_CTRL_HUE, Control.CommandType.GENERIC, context);
     }
 

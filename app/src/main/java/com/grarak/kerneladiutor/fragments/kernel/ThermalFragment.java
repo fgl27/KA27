@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -37,8 +36,7 @@ import android.widget.Toast;
 /**
  * Created by willi on 03.05.15.
  */
-public class ThermalFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, PopupCardView.DPopupCard.OnDPopupCardListener {
+public class ThermalFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, PopupCardView.DPopupCard.OnDPopupCardListener {
 
     private SwitchCardView.DSwitchCard mThermaldCard;
 
@@ -103,14 +101,14 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     private void thermalInit() {
 
         if (Thermal.hasThermalengine()) {
-        mThermalEngineEnableCard = new SwitchCardView.DSwitchCard();
-        mThermalEngineEnableCard.setTitle(getString(R.string.termal_engine));
-        mThermalEngineEnableCard.setDescription(getString(R.string.termal_engine_summary));
-        mThermalEngineEnableCard.setChecked(Thermal.isThermalengineActive());
-        mThermalEngineEnableCard.setOnDSwitchCardListener(this);
+            mThermalEngineEnableCard = new SwitchCardView.DSwitchCard();
+            mThermalEngineEnableCard.setTitle(getString(R.string.termal_engine));
+            mThermalEngineEnableCard.setDescription(getString(R.string.termal_engine_summary));
+            mThermalEngineEnableCard.setChecked(Thermal.isThermalengineActive());
+            mThermalEngineEnableCard.setOnDSwitchCardListener(this);
 
-        addView(mThermalEngineEnableCard);
-	}
+            addView(mThermalEngineEnableCard);
+        }
 
         if (Thermal.hasIntelliThermalEnable()) {
             mIntelliThermalEnableCard = new SwitchCardView.DSwitchCard();
@@ -142,84 +140,84 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             addView(mThermalDebugModeCard);
         }
 
-	if (!Thermal.hasIntelliThermalEnable()) {
-		if (Thermal.hasCoreControlEnable()) {
-		    mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
-		    mCoreControlEnableCard.setTitle(getString(R.string.core_control));
-		    mCoreControlEnableCard.setChecked(Thermal.isCoreControlActive());
-		    mCoreControlEnableCard.setOnDSwitchCardListener(this);
+        if (!Thermal.hasIntelliThermalEnable()) {
+            if (Thermal.hasCoreControlEnable()) {
+                mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
+                mCoreControlEnableCard.setTitle(getString(R.string.core_control));
+                mCoreControlEnableCard.setChecked(Thermal.isCoreControlActive());
+                mCoreControlEnableCard.setOnDSwitchCardListener(this);
 
-		    addView(mCoreControlEnableCard);
-		}
+                addView(mCoreControlEnableCard);
+            }
 
-		if (Thermal.hasVddRestrictionEnable()) {
-		    mVddRestrictionEnableCard = new SwitchCardView.DSwitchCard();
-		    mVddRestrictionEnableCard.setTitle(getString(R.string.vdd_restriction));
-		    mVddRestrictionEnableCard.setChecked(Thermal.isVddRestrictionActive());
-		    mVddRestrictionEnableCard.setOnDSwitchCardListener(this);
+            if (Thermal.hasVddRestrictionEnable()) {
+                mVddRestrictionEnableCard = new SwitchCardView.DSwitchCard();
+                mVddRestrictionEnableCard.setTitle(getString(R.string.vdd_restriction));
+                mVddRestrictionEnableCard.setChecked(Thermal.isVddRestrictionActive());
+                mVddRestrictionEnableCard.setOnDSwitchCardListener(this);
 
-		    addView(mVddRestrictionEnableCard);
-		}
-	}
+                addView(mVddRestrictionEnableCard);
+            }
+        }
 
-	if (Thermal.isIntelliThermalActive()) {
-		if (Thermal.hasLimitTempDegC()) {
-		    List<String> list = new ArrayList<>();
-		    for (double i = 50; i < 101; i++)
-		        list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
+        if (Thermal.isIntelliThermalActive()) {
+            if (Thermal.hasLimitTempDegC()) {
+                List < String > list = new ArrayList < > ();
+                for (double i = 50; i < 101; i++)
+                    list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
-		    mLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
-		    mLimitTempDegCCard.setTitle(getString(R.string.freq_throttle_temp));
-		    mLimitTempDegCCard.setDescription(getString(R.string.freq_throttle_temp_summary));
-		    mLimitTempDegCCard.setProgress(Thermal.getLimitTempDegC() - 50);
-		    mLimitTempDegCCard.setOnDSeekBarCardListener(this);
+                mLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
+                mLimitTempDegCCard.setTitle(getString(R.string.freq_throttle_temp));
+                mLimitTempDegCCard.setDescription(getString(R.string.freq_throttle_temp_summary));
+                mLimitTempDegCCard.setProgress(Thermal.getLimitTempDegC() - 50);
+                mLimitTempDegCCard.setOnDSeekBarCardListener(this);
 
-		    addView(mLimitTempDegCCard);
-		}
+                addView(mLimitTempDegCCard);
+            }
 
-		if (Thermal.hasCoreLimitTempDegC()) {
-		    List<String> list = new ArrayList<>();
-		    for (double i = 50; i < 101; i++)
-		        list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
+            if (Thermal.hasCoreLimitTempDegC()) {
+                List < String > list = new ArrayList < > ();
+                for (double i = 50; i < 101; i++)
+                    list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
-		    mCoreLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
-		    mCoreLimitTempDegCCard.setTitle(getString(R.string.core_throttle_temp));
-		    mCoreLimitTempDegCCard.setDescription(getString(R.string.core_throttle_temp_summary));
-		    mCoreLimitTempDegCCard.setProgress(Thermal.getCoreLimitTempDegC() - 50);
-		    mCoreLimitTempDegCCard.setOnDSeekBarCardListener(this);
+                mCoreLimitTempDegCCard = new SeekBarCardView.DSeekBarCard(list);
+                mCoreLimitTempDegCCard.setTitle(getString(R.string.core_throttle_temp));
+                mCoreLimitTempDegCCard.setDescription(getString(R.string.core_throttle_temp_summary));
+                mCoreLimitTempDegCCard.setProgress(Thermal.getCoreLimitTempDegC() - 50);
+                mCoreLimitTempDegCCard.setOnDSeekBarCardListener(this);
 
-		    addView(mCoreLimitTempDegCCard);
-		}
+                addView(mCoreLimitTempDegCCard);
+            }
 
-		if (Thermal.hasCoreTempHysteresisDegC()) {
-		    List<String> list = new ArrayList<>();
-		    for (double i = 0; i < 21; i++)
-		        list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
+            if (Thermal.hasCoreTempHysteresisDegC()) {
+                List < String > list = new ArrayList < > ();
+                for (double i = 0; i < 21; i++)
+                    list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
-		    mCoreTempHysteresisDegCCard = new SeekBarCardView.DSeekBarCard(list);
-		    mCoreTempHysteresisDegCCard.setTitle(getString(R.string.core_temp_hysteresis));
-		    mCoreTempHysteresisDegCCard.setProgress(Thermal.getCoreTempHysteresisDegC());
-		    mCoreTempHysteresisDegCCard.setOnDSeekBarCardListener(this);
+                mCoreTempHysteresisDegCCard = new SeekBarCardView.DSeekBarCard(list);
+                mCoreTempHysteresisDegCCard.setTitle(getString(R.string.core_temp_hysteresis));
+                mCoreTempHysteresisDegCCard.setProgress(Thermal.getCoreTempHysteresisDegC());
+                mCoreTempHysteresisDegCCard.setOnDSeekBarCardListener(this);
 
-		    addView(mCoreTempHysteresisDegCCard);
-		}
+                addView(mCoreTempHysteresisDegCCard);
+            }
 
-		if (Thermal.hasPollMs()) {
-		    List<String> list = new ArrayList<>();
-		    for (int i = 0; i < 301; i++) list.add((i * 10) + getString(R.string.ms));
+            if (Thermal.hasPollMs()) {
+                List < String > list = new ArrayList < > ();
+                for (int i = 0; i < 301; i++) list.add((i * 10) + getString(R.string.ms));
 
-		    mPollMsCard = new SeekBarCardView.DSeekBarCard(list);
-		    mPollMsCard.setTitle(getString(R.string.poll));
-		    mPollMsCard.setDescription(getString(R.string.poll_summary));
-		    mPollMsCard.setProgress(Thermal.getPollMs() / 10);
-		    mPollMsCard.setOnDSeekBarCardListener(this);
+                mPollMsCard = new SeekBarCardView.DSeekBarCard(list);
+                mPollMsCard.setTitle(getString(R.string.poll));
+                mPollMsCard.setDescription(getString(R.string.poll_summary));
+                mPollMsCard.setProgress(Thermal.getPollMs() / 10);
+                mPollMsCard.setOnDSeekBarCardListener(this);
 
-		    addView(mPollMsCard);
-		}
-	}
+                addView(mPollMsCard);
+            }
+        }
 
         if (Thermal.hasFreqStep()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 1; i < 11; i++) list.add(String.valueOf(i));
 
             mFreqStepCard = new SeekBarCardView.DSeekBarCard(list);
@@ -240,7 +238,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasTempHysteresisDegC()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 0; i < 21; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -253,7 +251,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasThermalLimitLow()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 1; i < 31; i++) list.add(String.valueOf(i));
 
             mThermalLimitLowCard = new SeekBarCardView.DSeekBarCard(list);
@@ -265,7 +263,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasThermalLimitHigh()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 1; i < 31; i++) list.add(String.valueOf(i));
 
             mThermalLimitHighCard = new SeekBarCardView.DSeekBarCard(list);
@@ -316,8 +314,8 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasMinFreqIndex() && CPU.getFreqs() != null) {
-            List<String> list = new ArrayList<>();
-            for (int freq : CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
+            List < String > list = new ArrayList < > ();
+            for (int freq: CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
 
             mMinFreqIndexCard = new PopupCardView.DPopupCard(list);
             mMinFreqIndexCard.setTitle(getString(R.string.temp_limit_min_freq));
@@ -331,20 +329,20 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     }
 
     private void msmThermalInit() {
-        List<DAdapter.DView> views = new ArrayList<>();
+        List < DAdapter.DView > views = new ArrayList < > ();
 
         if (Thermal.hasEnabled()) {
-        mEnabledCard = new SwitchCardView.DSwitchCard();
-        mEnabledCard.setTitle(getString(R.string.msm_thermal_enabled));
-        mEnabledCard.setDescription(getString(R.string.msm_thermal_enabled_summary));
-        mEnabledCard.setChecked(Thermal.isEnabledActive());
-        mEnabledCard.setOnDSwitchCardListener(this);
+            mEnabledCard = new SwitchCardView.DSwitchCard();
+            mEnabledCard.setTitle(getString(R.string.msm_thermal_enabled));
+            mEnabledCard.setDescription(getString(R.string.msm_thermal_enabled_summary));
+            mEnabledCard.setChecked(Thermal.isEnabledActive());
+            mEnabledCard.setOnDSwitchCardListener(this);
 
-        addView(mEnabledCard);
+            addView(mEnabledCard);
         }
 
         if (Thermal.hasAllowedLowLow()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -357,7 +355,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedLowHigh()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -370,8 +368,8 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedLowFreq() && CPU.getFreqs() != null) {
-            List<String> list = new ArrayList<>();
-            for (int freq : CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
+            List < String > list = new ArrayList < > ();
+            for (int freq: CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
 
             mAllowedLowFreqCard = new PopupCardView.DPopupCard(list);
             mAllowedLowFreqCard.setTitle(getString(R.string.allowed_low_freq));
@@ -382,7 +380,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedMidLow()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -395,7 +393,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedMidHigh()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -408,8 +406,8 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedMidFreq() && CPU.getFreqs() != null) {
-            List<String> list = new ArrayList<>();
-            for (int freq : CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
+            List < String > list = new ArrayList < > ();
+            for (int freq: CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
 
             mAllowedMidFreqCard = new PopupCardView.DPopupCard(list);
             mAllowedMidFreqCard.setTitle(getString(R.string.allowed_mid_freq));
@@ -420,7 +418,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedMaxLow()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -433,7 +431,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedMaxHigh()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -446,8 +444,8 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasAllowedMaxFreq() && CPU.getFreqs() != null) {
-            List<String> list = new ArrayList<>();
-            for (int freq : CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
+            List < String > list = new ArrayList < > ();
+            for (int freq: CPU.getFreqs()) list.add((freq / 1000) + getString(R.string.mhz));
 
             mAllowedMaxFreqCard = new PopupCardView.DPopupCard(list);
             mAllowedMaxFreqCard.setTitle(getString(R.string.allowed_max_freq));
@@ -458,7 +456,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasCheckIntervalMs()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 61; i++) list.add((i * 50) + getString(R.string.ms));
 
             mCheckIntervalMsCard = new SeekBarCardView.DSeekBarCard(list);
@@ -470,7 +468,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.hasShutdownTemp()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (double i = 40; i < 101; i++)
                 list.add(Utils.formatCelsius(i) + " " + Utils.celsiusToFahrenheit(i));
 
@@ -496,28 +494,26 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mThermaldCard) Thermal.activateThermald(checked, getActivity());
         else if (dSwitchCard == mIntelliThermalEnableCard) {
-	    Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
+            Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateIntelliThermal(checked, getActivity());
-	    view.invalidate();
-	    try {
+            view.invalidate();
+            try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-	}
-        else if (dSwitchCard == mThermalEngineEnableCard) {
-	    Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        } else if (dSwitchCard == mThermalEngineEnableCard) {
+            Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateThermalengine(checked, getActivity());
-	    view.invalidate();
-	    try {
+            view.invalidate();
+            try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
-	    getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-	}
-        else if (dSwitchCard == mIntelliThermalOptimizedEnableCard)
+            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+        } else if (dSwitchCard == mIntelliThermalOptimizedEnableCard)
             Thermal.activateIntelliThermalOptimized(checked, getActivity());
         else if (dSwitchCard == mThermalDebugModeCard)
             Thermal.activateThermalDebugMode(checked, getActivity());
@@ -537,8 +533,7 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {

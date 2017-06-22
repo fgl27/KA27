@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -111,15 +110,14 @@ public class CPU implements Constants {
 
             }
             Control.runCommand(newvalues, CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
-        }
-        else
+        } else
             Control.runCommand(String.valueOf(value), CPU_BOOST_INPUT_BOOST_FREQ, Control.CommandType.GENERIC, context);
     }
 
-    public static List<Integer> getCpuBootInputFreq() {
-        List<Integer> list = new ArrayList<>();
+    public static List < Integer > getCpuBootInputFreq() {
+        List < Integer > list = new ArrayList < > ();
         String value = Utils.readFile(CPU_BOOST_INPUT_BOOST_FREQ);
-        for (String core : value.split(" ")) {
+        for (String core: value.split(" ")) {
             if (core.contains(":")) core = core.split(":")[1];
             if (core.equals("0")) list.add(0);
             else list.add(CPU.getFreqs().indexOf(Utils.stringToInt(core)) + 1);
@@ -198,7 +196,7 @@ public class CPU implements Constants {
         return Utils.readFile(CPU_QUIET_CURRENT_GOVERNOR);
     }
 
-    public static List<String> getCpuQuietAvailableGovernors() {
+    public static List < String > getCpuQuietAvailableGovernors() {
         if (mCpuQuietAvailableGovernors == null) {
             String[] governors = Utils.readFile(CPU_QUIET_AVAILABLE_GOVERNORS).split(" ");
             if (governors.length > 0) {
@@ -207,12 +205,12 @@ public class CPU implements Constants {
             }
         }
         if (mCpuQuietAvailableGovernors == null) return null;
-        return new ArrayList<>(Arrays.asList(mCpuQuietAvailableGovernors));
+        return new ArrayList < > (Arrays.asList(mCpuQuietAvailableGovernors));
     }
 
     public static boolean hasCpuQuietGovernors() {
-        return Utils.existFile(CPU_QUIET_AVAILABLE_GOVERNORS) && Utils.existFile(CPU_QUIET_CURRENT_GOVERNOR)
-                && !Utils.readFile(CPU_QUIET_AVAILABLE_GOVERNORS).equals("none");
+        return Utils.existFile(CPU_QUIET_AVAILABLE_GOVERNORS) && Utils.existFile(CPU_QUIET_CURRENT_GOVERNOR) &&
+            !Utils.readFile(CPU_QUIET_AVAILABLE_GOVERNORS).equals("none");
     }
 
     public static void activateCpuQuiet(boolean active, Context context) {
@@ -239,10 +237,10 @@ public class CPU implements Constants {
         return Utils.readFile(CPU_CURRENT_CFS_SCHEDULER);
     }
 
-    public static List<String> getAvailableCFSSchedulers() {
+    public static List < String > getAvailableCFSSchedulers() {
         if (mAvailableCFSSchedulers == null)
             mAvailableCFSSchedulers = Utils.readFile(CPU_AVAILABLE_CFS_SCHEDULERS).split(" ");
-        return new ArrayList<>(Arrays.asList(mAvailableCFSSchedulers));
+        return new ArrayList < > (Arrays.asList(mAvailableCFSSchedulers));
     }
 
     public static boolean hasCFSScheduler() {
@@ -263,11 +261,11 @@ public class CPU implements Constants {
         return Utils.existFile(CPU_WQ_POWER_SAVING);
     }
 
-    public static List<String> getAvailableGovernors() {
+    public static List < String > getAvailableGovernors() {
         return getAvailableGovernors(getBigCore());
     }
 
-    public static List<String> getAvailableGovernors(int core) {
+    public static List < String > getAvailableGovernors(int core) {
         if (mAvailableGovernors == null) mAvailableGovernors = new String[getCoreCount()][];
         if (mAvailableGovernors[core] == null) {
             String value = Utils.readFile(CPU_AVAILABLE_GOVERNORS);
@@ -277,7 +275,7 @@ public class CPU implements Constants {
             }
         }
         if (mAvailableGovernors[core] == null) return null;
-        return new ArrayList<>(Arrays.asList(mAvailableGovernors[core]));
+        return new ArrayList < > (Arrays.asList(mAvailableGovernors[core]));
     }
 
     public static void setGovernor(String governor, Context context) {
@@ -287,7 +285,7 @@ public class CPU implements Constants {
 
     public static void setGovernorBig(Control.CommandType command, String governor, Context context) {
         Control.runCommand(governor, CPU_SCALING_GOVERNOR, command, context);
-     }
+    }
 
     public static String getCurGovernor(boolean forceRead) {
         return getCurGovernor(getBigCore(), forceRead);
@@ -296,7 +294,7 @@ public class CPU implements Constants {
     public static String getCurGovernor(int core, boolean forceRead) {
         if (forceRead && core > 0)
             while (!Utils.existFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core)))
-		RootUtils.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
+                RootUtils.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, core));
         if (Utils.existFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core))) {
             String value = Utils.readFile(String.format(Locale.US, CPU_SCALING_GOVERNOR, core));
             if (value != null) return value;
@@ -304,11 +302,11 @@ public class CPU implements Constants {
         return "";
     }
 
-    public static List<Integer> getFreqs() {
+    public static List < Integer > getFreqs() {
         return getFreqs(getBigCore());
     }
 
-    public static List<Integer> getFreqs(int core) {
+    public static List < Integer > getFreqs(int core) {
         if (mFreqs == null) mFreqs = new Integer[getCoreCount()][];
         if (mFreqs[core] == null) {
             if (Utils.existFile(Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, core)) || Utils.existFile(Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, 0))) {
@@ -345,7 +343,7 @@ public class CPU implements Constants {
         if (mFreqs[core] == null) {
             return Collections.emptyList();
         }
-        List<Integer> freqs = Arrays.asList(mFreqs[core]);
+        List < Integer > freqs = Arrays.asList(mFreqs[core]);
         Collections.sort(freqs);
         return freqs;
     }
@@ -393,8 +391,9 @@ public class CPU implements Constants {
     }
 
     public static int getMinFreq(int core, boolean forceRead) {
-        if (forceRead && core > 0) while (!Utils.existFile(String.format(Locale.US, CPU_MIN_FREQ, core)))
-            activateCore(core, true, null);
+        if (forceRead && core > 0)
+            while (!Utils.existFile(String.format(Locale.US, CPU_MIN_FREQ, core)))
+                activateCore(core, true, null);
         if (Utils.existFile(String.format(Locale.US, CPU_MIN_FREQ, core))) {
             String value = Utils.readFile(String.format(Locale.US, CPU_MIN_FREQ, core));
             if (value != null) return Utils.stringToInt(value);
@@ -426,8 +425,9 @@ public class CPU implements Constants {
     }
 
     public static int getMaxFreq(int core, boolean forceRead) {
-        if (forceRead && core > 0) while (!Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ, core)))
-            activateCore(core, true, null);
+        if (forceRead && core > 0)
+            while (!Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ, core)))
+                activateCore(core, true, null);
         if (forceRead && core > 0 && Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, 0)))
             while (!Utils.existFile(String.format(Locale.US, CPU_MAX_FREQ_KT, core)))
                 activateCore(core, true, null);
@@ -462,19 +462,25 @@ public class CPU implements Constants {
             RootUtils.runCommand(String.format("echo %s > " + String.format(Locale.US, CPU_CORE_ONLINE, core), active ? "1" : "0"));
     }
 
-    public static List<Integer> getLITTLECoreRange() {
-        List<Integer> list = new ArrayList<>();
-        if (!isBigLITTLE()) for (int i = 0; i < getCoreCount(); i++) list.add(i);
-        else if (getLITTLEcore() == 0) for (int i = 0; i < 4; i++) list.add(i);
-        else for (int i = getLITTLEcore(); i < getCoreCount(); i++) list.add(i);
+    public static List < Integer > getLITTLECoreRange() {
+        List < Integer > list = new ArrayList < > ();
+        if (!isBigLITTLE())
+            for (int i = 0; i < getCoreCount(); i++) list.add(i);
+        else if (getLITTLEcore() == 0)
+            for (int i = 0; i < 4; i++) list.add(i);
+        else
+            for (int i = getLITTLEcore(); i < getCoreCount(); i++) list.add(i);
         return list;
     }
 
-    public static List<Integer> getBigCoreRange() {
-        List<Integer> list = new ArrayList<>();
-        if (!isBigLITTLE()) for (int i = 0; i < getCoreCount(); i++) list.add(i);
-        else if (getBigCore() == 0) for (int i = 0; i < 4; i++) list.add(i);
-        else for (int i = getBigCore(); i < getCoreCount(); i++) list.add(i);
+    public static List < Integer > getBigCoreRange() {
+        List < Integer > list = new ArrayList < > ();
+        if (!isBigLITTLE())
+            for (int i = 0; i < getCoreCount(); i++) list.add(i);
+        else if (getBigCore() == 0)
+            for (int i = 0; i < 4; i++) list.add(i);
+        else
+            for (int i = getBigCore(); i < getCoreCount(); i++) list.add(i);
         return list;
     }
 
@@ -493,8 +499,8 @@ public class CPU implements Constants {
         if (!bigLITTLE) return false;
 
         if (bigCore == -1 || LITTLEcore == -1) {
-            List<Integer> cpu0Freqs = getFreqs(0);
-            List<Integer> cpu4Freqs = getFreqs(4);
+            List < Integer > cpu0Freqs = getFreqs(0);
+            List < Integer > cpu4Freqs = getFreqs(4);
             if (cpu0Freqs != null && cpu4Freqs != null) {
                 if (cpu0Freqs.size() > cpu4Freqs.size()) {
                     bigCore = 0;
@@ -550,7 +556,7 @@ public class CPU implements Constants {
                     float cpu = -1f;
                     if (idle1 >= 0 && up1 >= 0 && idle2 >= 0 && up2 >= 0) {
                         if ((up2 + idle2) > (up1 + idle1) && up2 >= up1) {
-                            cpu = (up2 - up1) / (float) ((up2 + idle2) - (up1 + idle1));
+                            cpu = (up2 - up1) / (float)((up2 + idle2) - (up1 + idle1));
                             cpu *= 100.0f;
                         }
                     }
@@ -590,7 +596,7 @@ public class CPU implements Constants {
         return Utils.readFile(STATE_NOTIFIER_ENABLED).equals("Y");
     }
 
-    public static boolean hasStateNotifier()  {
+    public static boolean hasStateNotifier() {
         return Utils.existFile(STATE_NOTIFIER_ENABLED);
     }
 
@@ -618,7 +624,7 @@ public class CPU implements Constants {
         return Utils.existFile(STATE_NOTIFIER_DEBUG);
     }
 
-    public static boolean isCoreOnline (int core) {
+    public static boolean isCoreOnline(int core) {
         return Utils.readFile(String.format(Locale.US, CPU_CORE_ONLINE, core)).equals("1");
     }
 
@@ -713,7 +719,7 @@ public class CPU implements Constants {
         Utils.saveBoolean("Per_Core_Gov_Control_Enabled", active, context);
         //If deactivate reset gov to core 0 freq
         if (!active) {
-	    setGovernor(getCurGovernor(0, false), context);
+            setGovernor(getCurGovernor(0, false), context);
         }
     }
 

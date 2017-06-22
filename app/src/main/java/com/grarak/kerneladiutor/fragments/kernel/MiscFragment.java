@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -38,15 +37,12 @@ import java.util.List;
 /**
  * Created by willi on 02.01.15.
  */
-public class MiscFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener,
-        EditTextCardView.DEditTextCard.OnDEditTextCardListener {
+public class MiscFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener, EditTextCardView.DEditTextCard.OnDEditTextCardListener {
 
     private SeekBarCardView.DSeekBarCard mVibrationCard;
 
     private SwitchCardView.DSwitchCard mLoggerEnableCard;
-    
+
     private SwitchCardView.DSwitchCard mSELinuxCard;
 
     private SwitchCardView.DSwitchCard mCrcCard;
@@ -69,7 +65,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-	selinuxInit();
+        selinuxInit();
         if (Misc.hasLoggerEnable()) loggerInit();
 
         if (Misc.hasCrc()) crcInit();
@@ -77,7 +73,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         if (Misc.hasVibration()) vibrationInit();
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
-	networkInit();
+        networkInit();
     }
 
     private void selinuxInit() {
@@ -95,7 +91,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void vibrationInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         for (int i = 0; i < 101; i++)
             list.add(i + "%");
 
@@ -165,8 +161,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
     private void powersuspendInit() {
         if (Misc.hasPowerSuspendMode()) {
-            mPowerSuspendModeCard = new PopupCardView.DPopupCard(new ArrayList<>(
-                    Arrays.asList(getResources().getStringArray(R.array.powersuspend_items))));
+            mPowerSuspendModeCard = new PopupCardView.DPopupCard(new ArrayList < > (
+                Arrays.asList(getResources().getStringArray(R.array.powersuspend_items))));
             mPowerSuspendModeCard.setTitle(getString(R.string.power_suspend_mode));
             mPowerSuspendModeCard.setDescription(getString(R.string.power_suspend_mode_summary));
             mPowerSuspendModeCard.setItem(Misc.getPowerSuspendMode());
@@ -186,7 +182,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         }
 
         if (Misc.hasNewPowerSuspendState()) {
-            List<String> list = new ArrayList<>();
+            List < String > list = new ArrayList < > ();
             for (int i = 0; i < 3; i++)
                 list.add(String.valueOf(i));
 
@@ -230,10 +226,9 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
         mEnableADBOverWifiCard = new SwitchCardView.DSwitchCard();
         mEnableADBOverWifiCard.setTitle(getString(R.string.adb_over_wifi));
-         if (Misc.isADBOverWifiActive()) {
+        if (Misc.isADBOverWifiActive()) {
             mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_connect_summary) + Misc.getIpAddr(getActivity()) + ":5555");
-        }
-        else {
+        } else {
             mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_summary));
         }
         mEnableADBOverWifiCard.setChecked(Misc.isADBOverWifiActive());
@@ -251,8 +246,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-     }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
@@ -285,15 +279,14 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSELinuxCard) {
             Misc.activateSELinux(checked, getActivity());
-	    view.invalidate();
+            view.invalidate();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
             }
             getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-        }
-        else if (dSwitchCard == mLoggerEnableCard)
+        } else if (dSwitchCard == mLoggerEnableCard)
             Misc.activateLogger(checked, getActivity());
         else if (dSwitchCard == mCrcCard)
             Misc.activateCrc(checked, getActivity());
@@ -309,7 +302,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
         else if (dSwitchCard == mEnableADBOverWifiCard) {
             Misc.activateADBOverWifi(checked, getActivity());
-	    view.invalidate();
+            view.invalidate();
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {

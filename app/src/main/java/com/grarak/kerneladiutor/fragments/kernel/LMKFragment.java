@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -41,15 +40,27 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     private CardViewItem.DCardView[] mProfileCard;
     private SwitchCardView.DSwitchCard mAdaptiveCard;
 
-    private final List<String> values = new ArrayList<>(), modifiedvalues = new ArrayList<>();
+    private final List < String > values = new ArrayList < > (), modifiedvalues = new ArrayList < > ();
 
-    private final String[] mProfileValues7 = new String[]{
-            "16,32,65,114,184,204,207", "172,190,208,226,244,280,283", "2,4,5,8,12,16,17", "4,8,10,16,24,32,33", 
-            "4,8,16,32,48,64,66", "8,16,32,64,96,128,130", "16,32,64,128,192,256,259"};
+    private final String[] mProfileValues7 = new String[] {
+        "16,32,65,114,184,204,207",
+        "172,190,208,226,244,280,283",
+        "2,4,5,8,12,16,17",
+        "4,8,10,16,24,32,33",
+        "4,8,16,32,48,64,66",
+        "8,16,32,64,96,128,130",
+        "16,32,64,128,192,256,259"
+    };
 
-    private final String[] mProfileValues6 = new String[]{
-            "16,32,65,114,184,204", "172,190,208,226,244,280", "2,4,5,8,12,16", "4,8,10,16,24,32", 
-            "4,8,16,32,48,64", "8,16,32,64,96,128", "16,32,64,128,192,256"};
+    private final String[] mProfileValues6 = new String[] {
+        "16,32,65,114,184,204",
+        "172,190,208,226,244,280",
+        "2,4,5,8,12,16",
+        "4,8,10,16,24,32",
+        "4,8,16,32,48,64",
+        "8,16,32,64,96,128",
+        "16,32,64,128,192,256"
+    };
 
     private static String[] mProfileValues;
 
@@ -78,7 +89,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
         mLmkMinFreeDividerCard.setText(getString(R.string.lmk_minfree));
         addView(mLmkMinFreeDividerCard);
 
-        List<String> minfrees = LMK.getMinFrees();
+        List < String > minfrees = LMK.getMinFrees();
         mMinFreeCard = new SeekBarCardView.DSeekBarCard[minfrees.size()];
         try {
             for (int i = 0; i < minfrees.size(); i++) {
@@ -87,12 +98,11 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
                 mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 + getString(R.string.mb)));
                 mMinFreeCard[i].setOnDSeekBarCardListener(new SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener() {
                     @Override
-                    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-                    }
+                    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
                     @Override
                     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-                        List<String> minFrees = LMK.getMinFrees();
+                        List < String > minFrees = LMK.getMinFrees();
                         String minFree = "";
 
                         for (int i = 0; i < mMinFreeCard.length; i++)
@@ -112,19 +122,19 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
             e.printStackTrace();
         }
 
-	if (LMK.hasVmPressureFileMin()) {
-	    List<String> list = new ArrayList<>();
-	    for (int i = 0; i < 513; i++)
-        	list.add(i + getString(R.string.mb));
+        if (LMK.hasVmPressureFileMin()) {
+            List < String > list = new ArrayList < > ();
+            for (int i = 0; i < 513; i++)
+                list.add(i + getString(R.string.mb));
 
-	    mVmPressureFileMinCard = new SeekBarCardView.DSeekBarCard(list);
-	    mVmPressureFileMinCard.setTitle(getString(R.string.vmpressure_file_min));
-	    mVmPressureFileMinCard.setDescription(getString(R.string.vmpressure_file_min_summary));
-	    mVmPressureFileMinCard.setProgress((LMK.getVmPressureFileMin()) / 256);
-	    mVmPressureFileMinCard.setOnDSeekBarCardListener(this);
+            mVmPressureFileMinCard = new SeekBarCardView.DSeekBarCard(list);
+            mVmPressureFileMinCard.setTitle(getString(R.string.vmpressure_file_min));
+            mVmPressureFileMinCard.setDescription(getString(R.string.vmpressure_file_min_summary));
+            mVmPressureFileMinCard.setProgress((LMK.getVmPressureFileMin()) / 256);
+            mVmPressureFileMinCard.setOnDSeekBarCardListener(this);
 
-	    addView(mVmPressureFileMinCard);
-	}
+            addView(mVmPressureFileMinCard);
+        }
 
         DDivider mProfilesDividerCard = new DDivider();
         mProfilesDividerCard.setText(getString(R.string.lmk_profiles));
@@ -135,50 +145,50 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
         mProfilesBHBDividerCard.setText(getString(R.string.lmk_bhb_profiles));
         addView(mProfilesBHBDividerCard);
 
-	LMKFragment ProfileFinalSize  = new LMKFragment();
-	if (LMK.hasVmPressureFileMin())
-	    ProfileFinalSize.mProfileValues = mProfileValues7;
-	else
-	    ProfileFinalSize.mProfileValues = mProfileValues6;
+        LMKFragment ProfileFinalSize = new LMKFragment();
+        if (LMK.hasVmPressureFileMin())
+            ProfileFinalSize.mProfileValues = mProfileValues7;
+        else
+            ProfileFinalSize.mProfileValues = mProfileValues6;
 
-	mProfileCard = new CardViewItem.DCardView[mProfileValues.length];
-	for (int i = 0; i < mProfileValues.length; i++) {
-	    mProfileCard[i] = new CardViewItem.DCardView();
-	    mProfileCard[i].setTitle(getResources().getStringArray(R.array.lmk_profiles)[i]);
-	    mProfileCard[i].setDescription(mProfileValues[i] + getString(R.string.values_in_mb));
-	    mProfileCard[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-	        @Override
-	        public void onClick(CardViewItem.DCardView dCardView) {
-	            for (CardViewItem.DCardView profile : mProfileCard)
-	                if (dCardView == profile) {
-	                    String description = dCardView.getDescription().toString();
-	                    String[] descriptionSplitted  = description.split("\\(");
-	                    String descriptionSplittedFirstHalf = descriptionSplitted[0];
-	                    String[] descriptionFinal = descriptionSplittedFirstHalf.split(",");
-	                    int minfree_1  = Utils.stringToInt(descriptionFinal[0]) * 256;
-	                    int minfree_2  = Utils.stringToInt(descriptionFinal[1]) * 256;
-	                    int minfree_3  = Utils.stringToInt(descriptionFinal[2]) * 256;
-	                    int minfree_4  = Utils.stringToInt(descriptionFinal[3]) * 256;
-	                    int minfree_5  = Utils.stringToInt(descriptionFinal[4]) * 256;
-	                    int minfree_6  = Utils.stringToInt(descriptionFinal[5]) * 256;
-	                    String minfree = minfree_1 + "," + minfree_2 + "," + minfree_3 + "," + minfree_4
-						       + "," + minfree_5 + "," + minfree_6 ;
-	                    LMK.setMinFree(minfree, getActivity());
-	                    if (LMK.hasVmPressureFileMin()) {
-	                        int vmfileminInt  = Utils.stringToInt(descriptionFinal[6]) * 256;
-			   	LMK.setVmPressureFileMin(vmfileminInt, getActivity());
-	                    }
-	                    refresh();
-	                }
-	        }
-	    });
+        mProfileCard = new CardViewItem.DCardView[mProfileValues.length];
+        for (int i = 0; i < mProfileValues.length; i++) {
+            mProfileCard[i] = new CardViewItem.DCardView();
+            mProfileCard[i].setTitle(getResources().getStringArray(R.array.lmk_profiles)[i]);
+            mProfileCard[i].setDescription(mProfileValues[i] + getString(R.string.values_in_mb));
+            mProfileCard[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+                @Override
+                public void onClick(CardViewItem.DCardView dCardView) {
+                    for (CardViewItem.DCardView profile: mProfileCard)
+                        if (dCardView == profile) {
+                            String description = dCardView.getDescription().toString();
+                            String[] descriptionSplitted = description.split("\\(");
+                            String descriptionSplittedFirstHalf = descriptionSplitted[0];
+                            String[] descriptionFinal = descriptionSplittedFirstHalf.split(",");
+                            int minfree_1 = Utils.stringToInt(descriptionFinal[0]) * 256;
+                            int minfree_2 = Utils.stringToInt(descriptionFinal[1]) * 256;
+                            int minfree_3 = Utils.stringToInt(descriptionFinal[2]) * 256;
+                            int minfree_4 = Utils.stringToInt(descriptionFinal[3]) * 256;
+                            int minfree_5 = Utils.stringToInt(descriptionFinal[4]) * 256;
+                            int minfree_6 = Utils.stringToInt(descriptionFinal[5]) * 256;
+                            String minfree = minfree_1 + "," + minfree_2 + "," + minfree_3 + "," + minfree_4 +
+                                "," + minfree_5 + "," + minfree_6;
+                            LMK.setMinFree(minfree, getActivity());
+                            if (LMK.hasVmPressureFileMin()) {
+                                int vmfileminInt = Utils.stringToInt(descriptionFinal[6]) * 256;
+                                LMK.setVmPressureFileMin(vmfileminInt, getActivity());
+                            }
+                            refresh();
+                        }
+                }
+            });
 
             DDivider mProfilesOriginalDividerCard = new DDivider();
             mProfilesOriginalDividerCard.setText(getString(R.string.lmk_profiles_original));
-	    if (i == 2)
-            addView(mProfilesOriginalDividerCard);
-	    addView(mProfileCard[i]);
-	}
+            if (i == 2)
+                addView(mProfilesOriginalDividerCard);
+            addView(mProfileCard[i]);
+        }
     }
 
     private void refresh() {
@@ -190,13 +200,13 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
 
                         @Override
                         public void run() {
-                            List<String> minfrees = LMK.getMinFrees();
+                            List < String > minfrees = LMK.getMinFrees();
                             if (minfrees == null) return;
                             for (int i = 0; i < minfrees.size(); i++)
                                 try {
-                                    mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256
-                                            + getString(R.string.mb)));
-				    mVmPressureFileMinCard.setProgress((LMK.getVmPressureFileMin()) / 256);
+                                    mMinFreeCard[i].setProgress(modifiedvalues.indexOf(LMK.getMinFree(minfrees, i) / 256 +
+                                        getString(R.string.mb)));
+                                    mVmPressureFileMinCard.setProgress((LMK.getVmPressureFileMin()) / 256);
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -217,11 +227,10 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     }
 
     @Override
-	public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-	if (dSeekBarCard == mVmPressureFileMinCard) LMK.setVmPressureFileMin(position * 256, getActivity());
+        if (dSeekBarCard == mVmPressureFileMinCard) LMK.setVmPressureFileMin(position * 256, getActivity());
     }
 }

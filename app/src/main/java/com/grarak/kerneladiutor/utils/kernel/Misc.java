@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -56,14 +55,14 @@ public class Misc implements Constants {
 
     public static void setTcpCongestion(String tcpCongestion, Context context) {
         Control.runCommand("sysctl -w net.ipv4.tcp_congestion_control=" + tcpCongestion,
-                TCP_AVAILABLE_CONGESTIONS, Control.CommandType.CUSTOM, context);
+            TCP_AVAILABLE_CONGESTIONS, Control.CommandType.CUSTOM, context);
     }
 
     public static String getCurTcpCongestion() {
         return getTcpAvailableCongestions(false).get(0);
     }
 
-    public static List<String> getTcpAvailableCongestions(boolean sort) {
+    public static List < String > getTcpAvailableCongestions(boolean sort) {
         if (mAvailableTCPCongestions == null) mAvailableTCPCongestions = new String[0];
         String value = Utils.readFile(TCP_AVAILABLE_CONGESTIONS);
         if (value != null) {
@@ -72,7 +71,7 @@ public class Misc implements Constants {
                 Collections.sort(Arrays.asList(mAvailableTCPCongestions), String.CASE_INSENSITIVE_ORDER);
             }
         }
-        return new ArrayList<>(Arrays.asList(mAvailableTCPCongestions));
+        return new ArrayList < > (Arrays.asList(mAvailableTCPCongestions));
     }
 
     public static String getIpAddr(Context context) {
@@ -80,12 +79,12 @@ public class Misc implements Constants {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
         int ip = wifiInfo.getIpAddress();
 
-        String ipString = String.format(Locale.US, 
-                "%d.%d.%d.%d",
-                (ip & 0xff),
-                (ip >> 8 & 0xff),
-                (ip >> 16 & 0xff),
-                (ip >> 24 & 0xff));
+        String ipString = String.format(Locale.US,
+            "%d.%d.%d.%d",
+            (ip & 0xff),
+            (ip >> 8 & 0xff),
+            (ip >> 16 & 0xff),
+            (ip >> 24 & 0xff));
 
         return ipString;
     }
@@ -93,8 +92,7 @@ public class Misc implements Constants {
     public static void activateADBOverWifi(boolean active, Context context) {
         if (active) {
             Control.setProp("service.adb.tcp.port", "5555", context);
-        }
-        else {
+        } else {
             Control.setProp("service.adb.tcp.port", "-1", context);
         }
     }
@@ -202,11 +200,12 @@ public class Misc implements Constants {
     }
 
     public static boolean hasCrc() {
-        if (CRC_FILE == null) for (String file : CRC_ARRAY)
-            if (Utils.existFile(file)) {
-                CRC_FILE = file;
-                return true;
-            }
+        if (CRC_FILE == null)
+            for (String file: CRC_ARRAY)
+                if (Utils.existFile(file)) {
+                    CRC_FILE = file;
+                    return true;
+                }
         return CRC_FILE != null;
     }
 
@@ -236,11 +235,12 @@ public class Misc implements Constants {
     }
 
     public static boolean hasLoggerEnable() {
-        if (LOGGER_FILE == null) for (String file : LOGGER_ARRAY)
-            if (Utils.existFile(file)) {
-                LOGGER_FILE = file;
-                return true;
-            }
+        if (LOGGER_FILE == null)
+            for (String file: LOGGER_ARRAY)
+                if (Utils.existFile(file)) {
+                    LOGGER_FILE = file;
+                    return true;
+                }
         return LOGGER_FILE != null;
     }
 
@@ -251,41 +251,41 @@ public class Misc implements Constants {
         Control.runCommand(String.valueOf(value), VIBRATION_PATH, Control.CommandType.GENERIC, context);
         if (Utils.existFile(VIB_LIGHT))
             Control.runCommand(String.valueOf(value - 300 < 116 ? 116 : value - 300), VIB_LIGHT,
-                    Control.CommandType.GENERIC, context);
+                Control.CommandType.GENERIC, context);
         if (enable) Control.runCommand("0", enablePath, Control.CommandType.GENERIC, context);
     }
 
     public static int getVibrationMin() {
         if (VIBRATION_MIN == null) {
-            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level")
-                    && Utils.existFile("/sys/class/timed_output/vibrator/vtg_min")) {
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level") &&
+                Utils.existFile("/sys/class/timed_output/vibrator/vtg_min")) {
                 VIBRATION_MIN = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/vtg_min"));
                 return VIBRATION_MIN;
             }
 
-            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/pwm_value")
-                    && Utils.existFile("/sys/class/timed_output/vibrator/pwm_min")) {
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/pwm_value") &&
+                Utils.existFile("/sys/class/timed_output/vibrator/pwm_min")) {
                 VIBRATION_MIN = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/pwm_min"));
                 return VIBRATION_MIN;
             }
 
             for (int i = 0; i < VIBRATION_ARRAY.length; i++)
                 if (VIBRATION_PATH.equals(VIBRATION_ARRAY[i]))
-                     VIBRATION_MIN = VIBRATION_MAX_MIN_ARRAY[i][1];
+                    VIBRATION_MIN = VIBRATION_MAX_MIN_ARRAY[i][1];
         }
         return VIBRATION_MIN != null ? VIBRATION_MIN : 0;
     }
 
     public static int getVibrationMax() {
         if (VIBRATION_MAX == null) {
-            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level")
-                    && Utils.existFile("/sys/class/timed_output/vibrator/vtg_max")) {
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/vtg_level") &&
+                Utils.existFile("/sys/class/timed_output/vibrator/vtg_max")) {
                 VIBRATION_MAX = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/vtg_max"));
                 return VIBRATION_MAX;
             }
 
-            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/pwm_value")
-                    && Utils.existFile("/sys/class/timed_output/vibrator/pwm_max")) {
+            if (VIBRATION_PATH.equals("/sys/class/timed_output/vibrator/pwm_value") &&
+                Utils.existFile("/sys/class/timed_output/vibrator/pwm_max")) {
                 VIBRATION_MAX = Utils.stringToInt(Utils.readFile("/sys/class/timed_output/vibrator/pwm_max"));
                 return VIBRATION_MAX;
             }
@@ -302,7 +302,7 @@ public class Misc implements Constants {
     }
 
     public static boolean hasVibration() {
-        for (String vibration : VIBRATION_ARRAY)
+        for (String vibration: VIBRATION_ARRAY)
             if (Utils.existFile(vibration)) {
                 VIBRATION_PATH = vibration;
                 break;
@@ -310,17 +310,17 @@ public class Misc implements Constants {
         return VIBRATION_PATH != null;
     }
 
-   public static boolean isSELinuxActive () {
+    public static boolean isSELinuxActive() {
         String result = RootUtils.runCommand(GETENFORCE);
         if (result.equals("Enforcing")) return true;
         return false;
     }
 
-    public static void activateSELinux (boolean active, Context context) {
+    public static void activateSELinux(boolean active, Context context) {
         Control.runCommand(active ? "1" : "0", SETENFORCE, Control.CommandType.SHELL, context);
     }
 
-    public static String getSELinuxStatus () {
+    public static String getSELinuxStatus() {
         String result = RootUtils.runCommand(GETENFORCE);
         if (result != null) {
             if (result.equals("Enforcing")) return "Enforcing";

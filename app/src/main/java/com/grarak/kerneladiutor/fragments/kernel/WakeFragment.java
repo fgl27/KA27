@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.os.Bundle;
@@ -34,9 +33,7 @@ import android.widget.Toast;
 /**
  * Created by willi on 02.01.15.
  */
-public class WakeFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener,
-        SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
-        SwitchCardView.DSwitchCard.OnDSwitchCardListener {
+public class WakeFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private SwitchCardView.DSwitchCard mDt2wCard;
     private PopupCardView.DPopupCard mS2wCard;
@@ -76,7 +73,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void vibstrengthInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         for (int i = 0; i < 91; i++)
             list.add(Integer.toString(i));
 
@@ -159,7 +156,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void gestureInit() {
-        List<String> gestures = Wake.getGestures(getActivity());
+        List < String > gestures = Wake.getGestures(getActivity());
         mGestureCards = new SwitchCardView.DSwitchCard[gestures.size()];
         for (int i = 0; i < mGestureCards.length; i++) {
             mGestureCards[i] = new SwitchCardView.DSwitchCard();
@@ -192,7 +189,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void wakeTimeoutInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         list.add(getString(R.string.disabled));
         for (int i = 1; i <= Wake.getWakeTimeoutMax(); i++)
             list.add(i + getString(R.string.min));
@@ -217,7 +214,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void S2WTimeInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         for (int i = 1; i <= 200; i++)
             list.add(i * 10 + getString(R.string.ms));
 
@@ -231,7 +228,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void DT2WTimeBetweenTapsInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         for (int i = 25; i <= 100; i++)
             list.add(i * 10 + getString(R.string.ms));
 
@@ -245,7 +242,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void DT2WFeatherXInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         for (int i = 1; i <= 500; i++)
             list.add(i + getString(R.string.pixel));
 
@@ -259,7 +256,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void DT2WFeatherYInit() {
-        List<String> list = new ArrayList<>();
+        List < String > list = new ArrayList < > ();
         for (int i = 1; i <= 500; i++)
             list.add(i + getString(R.string.pixel));
 
@@ -274,16 +271,15 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-	if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
-	else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
+        if (dPopupCard == mT2wCard) Wake.setT2w(position, getActivity());
+        else if (dPopupCard == mS2wCard) Wake.setS2w(position, getActivity());
         else if (dPopupCard == mSleepMiscCard) Wake.setSleepMisc(position, getActivity());
         else if (dPopupCard == mWakeMiscCard) Wake.setWakeMisc(position, getActivity());
         else if (dPopupCard == mDt2sCard) Wake.setDt2s(position, getActivity());
     }
 
     @Override
-    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
-    }
+    public void onChanged(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {}
 
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {

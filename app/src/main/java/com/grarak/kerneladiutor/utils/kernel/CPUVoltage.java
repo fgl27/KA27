@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -62,10 +61,10 @@ public class CPUVoltage implements Constants {
                 break;
             default:
                 command = "";
-                for (String volt : getVoltages())
+                for (String volt: getVoltages())
                     if (volt != null)
                         command += command.isEmpty() ? (Utils.stringToInt(volt) + adjust) :
-                                " " + (Utils.stringToInt(volt) + adjust);
+                        " " + (Utils.stringToInt(volt) + adjust);
                 break;
         }
 
@@ -86,7 +85,7 @@ public class CPUVoltage implements Constants {
                 Control.runCommand(command, CPU_VOLTAGE_FILE, Control.CommandType.GENERIC, String.valueOf(position), context);
                 break;
             default:
-                List<String> voltages = getVoltages();
+                List < String > voltages = getVoltages();
                 for (int i = 0; i < voltages.size(); i++)
                     if (i == position)
                         command += command.isEmpty() ? voltage : " " + voltage;
@@ -97,7 +96,7 @@ public class CPUVoltage implements Constants {
         }
     }
 
-    public static List<String> getVoltages() {
+    public static List < String > getVoltages() {
         String value = Utils.readFile(CPU_VOLTAGE_FILE);
         if (value != null) {
             String[] lines;
@@ -134,16 +133,16 @@ public class CPUVoltage implements Constants {
                     }
                 }
             }
-            return new ArrayList<>(Arrays.asList(voltages));
+            return new ArrayList < > (Arrays.asList(voltages));
         }
         return Collections.emptyList();
     }
 
-    public static List<String> getFreqs() {
+    public static List < String > getFreqs() {
 
         if (mCpuFreqs == null) {
 
-            if(CPU_VOLTAGE_FILE == null){
+            if (CPU_VOLTAGE_FILE == null) {
                 Log.e(TAG, "CPU_VOLTAGE_FILE is null ??");
                 return Collections.emptyList();
             }
@@ -175,9 +174,9 @@ public class CPUVoltage implements Constants {
                     }
                 }
             }
-            return new ArrayList<>(Arrays.asList(mCpuFreqs));
+            return new ArrayList < > (Arrays.asList(mCpuFreqs));
         } else {
-            return new ArrayList<>(Arrays.asList(mCpuFreqs));
+            return new ArrayList < > (Arrays.asList(mCpuFreqs));
         }
     }
 
@@ -186,18 +185,18 @@ public class CPUVoltage implements Constants {
     }
 
     public static boolean hasCpuVoltage() {
-        for (String file : CPU_VOLTAGE_ARRAY)
+        for (String file: CPU_VOLTAGE_ARRAY)
             if (Utils.existFile(file)) {
                 CPU_VOLTAGE_FILE = file;
                 return true;
             }
         return false;
     }
-    public static boolean storeVoltageTable (Context context) {
+    public static boolean storeVoltageTable(Context context) {
         // Have to call this function to pre-load variables
-        if(CPUVoltage.hasCpuVoltage() && !CPUVoltage.getFreqs().isEmpty() && !CPUVoltage.getVoltages().isEmpty()){
-            List<String> freqs = CPUVoltage.getFreqs();
-            List<String> voltages = CPUVoltage.getVoltages();
+        if (CPUVoltage.hasCpuVoltage() && !CPUVoltage.getFreqs().isEmpty() && !CPUVoltage.getVoltages().isEmpty()) {
+            List < String > freqs = CPUVoltage.getFreqs();
+            List < String > voltages = CPUVoltage.getVoltages();
 
             // Store Kernel's Stock Freq/Voltage table
             SharedPreferences.Editor preferences = context.getSharedPreferences("voltage_table", 0).edit();

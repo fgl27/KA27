@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
@@ -129,7 +128,7 @@ public class Wake implements Constants {
     }
 
     public static boolean hasWakeTimeout() {
-        for (String file : WAKE_TIMEOUT_ARRAY)
+        for (String file: WAKE_TIMEOUT_ARRAY)
             if (Utils.existFile(file)) {
                 WAKE_TIMEOUT_FILE = file;
                 return true;
@@ -150,7 +149,7 @@ public class Wake implements Constants {
     }
 
     public static void activateCameraGesture(boolean active, Context context) {
-	Control.runCommand(active ? "1" : "0", CAMERA_GESTURE, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "1" : "0", CAMERA_GESTURE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isCameraGestureActive() {
@@ -163,7 +162,7 @@ public class Wake implements Constants {
 
     public static void activateGesture(boolean active, int gesture, Context context) {
         Control.runCommand(GESTURE_STRING_VALUES[gesture] + "=" + active, GESTURE_CRTL, Control.CommandType.GENERIC,
-                GESTURE_STRING_VALUES[gesture], context);
+            GESTURE_STRING_VALUES[gesture], context);
     }
 
     public static boolean isGestureActive(int gesture) {
@@ -175,8 +174,8 @@ public class Wake implements Constants {
         }
     }
 
-    public static List<String> getGestures(Context context) {
-        List<String> list = new ArrayList<>();
+    public static List < String > getGestures(Context context) {
+        List < String > list = new ArrayList < > ();
         list.add(context.getString(R.string.slide_up));
         list.add(context.getString(R.string.slide_down));
         list.add(context.getString(R.string.slide_left));
@@ -202,8 +201,8 @@ public class Wake implements Constants {
         return Utils.stringToInt(Utils.readFile(DT2S_FILE));
     }
 
-    public static List<String> getDt2sMenu(Context context) {
-        List<String> list = new ArrayList<>();
+    public static List < String > getDt2sMenu(Context context) {
+        List < String > list = new ArrayList < > ();
         if (DT2S_FILE != null) {
             list.add(context.getString(R.string.disabled));
             list.add(context.getString(R.string.enabled));
@@ -213,7 +212,7 @@ public class Wake implements Constants {
 
     public static boolean hasDt2s() {
         if (DT2S_FILE == null)
-            for (String file : DT2S_ARRAY)
+            for (String file: DT2S_ARRAY)
                 if (Utils.existFile(file)) {
                     DT2S_FILE = file;
                     return true;
@@ -241,7 +240,7 @@ public class Wake implements Constants {
     }
 
     public static boolean hasSleepMisc() {
-        for (String file : SLEEP_MISC_ARRAY)
+        for (String file: SLEEP_MISC_ARRAY)
             if (Utils.existFile(file)) {
                 SLEEP_MISC_FILE = file;
                 return true;
@@ -257,8 +256,8 @@ public class Wake implements Constants {
         return Utils.stringToInt(Utils.readFile(WAKE_MISC_FILE));
     }
 
-    public static List<String> getWakeMiscMenu(Context context) {
-        List<String> list = new ArrayList<>();
+    public static List < String > getWakeMiscMenu(Context context) {
+        List < String > list = new ArrayList < > ();
         list.add(context.getString(R.string.disabled));
         if (WAKE_MISC_FILE != null) {
             switch (WAKE_MISC_FILE) {
@@ -276,7 +275,7 @@ public class Wake implements Constants {
     }
 
     public static boolean hasWakeMisc() {
-        for (String file : WAKE_MISC_ARRAY)
+        for (String file: WAKE_MISC_ARRAY)
             if (Utils.existFile(file)) {
                 WAKE_MISC_FILE = file;
                 return true;
@@ -300,8 +299,8 @@ public class Wake implements Constants {
         return 0;
     }
 
-    public static List<String> getT2wMenu(Context context) {
-        List<String> list = new ArrayList<>();
+    public static List < String > getT2wMenu(Context context) {
+        List < String > list = new ArrayList < > ();
         if (T2W_FILE != null) {
             list.add(context.getString(R.string.disabled));
             list.add(context.getString(R.string.enabled));
@@ -311,7 +310,7 @@ public class Wake implements Constants {
 
     public static boolean hasT2w() {
         if (T2W_FILE == null)
-            for (String file : T2W_ARRAY)
+            for (String file: T2W_ARRAY)
                 if (Utils.existFile(file)) {
                     T2W_FILE = file;
                     return true;
@@ -325,13 +324,13 @@ public class Wake implements Constants {
 
     public static int getS2wValue() {
         int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
-        if (val == 0 ) return 0;
+        if (val == 0) return 0;
         return val;
     }
 
     public static List < String > getS2wMenu(Context context) {
         List < String > list = new ArrayList < > ();
-	String or = " " + context.getString(R.string.or) + " ";
+        String or = " " + context.getString(R.string.or) + " ";
         if (S2W_FILE != null) {
             list.add(context.getString(R.string.disabled));
             list.add(context.getString(R.string.right));
@@ -355,7 +354,7 @@ public class Wake implements Constants {
 
     public static boolean hasS2w() {
         if (S2W_FILE == null)
-            for (String file : S2W_ARRAY)
+            for (String file: S2W_ARRAY)
                 if (Utils.existFile(file)) {
                     S2W_FILE = file;
                     break;
@@ -385,12 +384,12 @@ public class Wake implements Constants {
     }
 
     public static boolean hasDt2w() {
-	return Utils.existFile(DT2W);
+        return Utils.existFile(DT2W);
     }
 
     public static boolean hasWake() {
-        for (String[] wakes : WAKE_ARRAY)
-            for (String file : wakes)
+        for (String[] wakes: WAKE_ARRAY)
+            for (String file: wakes)
                 if (Utils.existFile(file)) return true;
         return false;
     }
