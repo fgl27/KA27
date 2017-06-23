@@ -350,12 +350,14 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         }
         if (mBatteryHealthCard != null)
             mBatteryHealthCard.setDescription(Battery.getHealth());
-        if (mBclCard != null) {
+        if (mBclCard != null)
             mBclCard.setChecked(Battery.isBclActive());
-        }
-        if (mBclHotplugCard != null) {
+        if (mBclHotplugCard != null)
             mBclHotplugCard.setChecked(Battery.isBclHotplugActive());
-        }
+        if (mBclVphHighCard != null)
+            mBclVphHighCard.setProgress((((Battery.getBclVphHigh()) / 1000) - (bclArraylist * 50)) / 50);
+        if (mBclVphLowCard != null)
+            mBclVphLowCard.setProgress((((Battery.getBclVphLow()) / 1000) - (bclArraylist * 50)) / 50);
         return true;
     }
 
