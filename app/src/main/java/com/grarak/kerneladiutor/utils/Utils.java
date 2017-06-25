@@ -31,6 +31,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.SystemClock;
 import android.support.annotation.MainThread;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
@@ -81,8 +82,11 @@ import java.math.RoundingMode;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -602,4 +606,24 @@ public class Utils implements Constants {
         }
         return "";
     }
+
+    public static String getDate(long time) {
+        DateFormat dateformate = new SimpleDateFormat("Y/m/dd HH:mm", Locale.US);
+        Date date = new Date(time);
+        return dateformate.format(date);
+    }
+
+    public static String getwakeSources() {
+        long time_locale = System.currentTimeMillis();
+        String out = "";
+        String[] dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'").split("\\r?\\n");
+        String[] dmesg_time = RootUtils.runCommand("dmesg | grep 'wakeup source' | cut -d'[' -f2 | cut -d. -f1").split("\\r?\\n");
+        for (int i = 0; i < dmesg_time.length; i++) {
+             long time = (time_locale -(SystemClock.elapsedRealtime() - (Utils.stringToInt(dmesg_time[i]) * 1000)));
+             String time_result = Utils.getDate(time);
+             out += time_result  + " " + dmesg[i] + "\n";
+        }
+        return out;
+    }
+
 }
