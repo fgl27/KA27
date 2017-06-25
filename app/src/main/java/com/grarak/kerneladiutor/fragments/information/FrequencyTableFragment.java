@@ -50,7 +50,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
     @Override
     public void refreshView() {
-        new AsyncTask<Void, Void, Void>(){
+        new AsyncTask < Void, Void, Void > () {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -58,7 +58,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             }
 
             @Override
-            protected Void doInBackground(Void... params) {
+            protected Void doInBackground(Void...params) {
                 generateView();
                 return null;
             }
@@ -94,21 +94,21 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         muptimeCard.setDescription(
             getString(R.string.uptime) + " " + getDurationBreakdown(SystemClock.elapsedRealtime()) +
             "\n" + getString(R.string.awake) + " " + getDurationBreakdown(SystemClock.uptimeMillis()) + " (" +
-            ((SystemClock.uptimeMillis() * 100 ) / SystemClock.elapsedRealtime()) + "%)" +
+            ((SystemClock.uptimeMillis() * 100) / SystemClock.elapsedRealtime()) + "%)" +
             "\n" + getString(R.string.deep_sleep) + " " + getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()) +
-            " (" + (100 - ((SystemClock.uptimeMillis() * 100 ) / SystemClock.elapsedRealtime())) + "%)");
+            " (" + (100 - ((SystemClock.uptimeMillis() * 100) / SystemClock.elapsedRealtime())) + "%)");
         addView(muptimeCard);
 
-        wake_sources = Utils.getwakeSources(); 
+        wake_sources = Utils.getwakeSources();
         CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
         wakesourceCard.setTitle(getString(R.string.wakeup_source));
         wakesourceCard.setDescription(getString(R.string.wakeup_source_summary));
-         wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                @Override
-                public void onClick(CardViewItem.DCardView dCardView) {
-                    getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
+        wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                getHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
                         LinearLayout linearLayout = new LinearLayout(getActivity());
                         linearLayout.setOrientation(LinearLayout.VERTICAL);
                         linearLayout.setGravity(Gravity.CENTER);
@@ -140,13 +140,12 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                             .setPositiveButton(getString(R.string.close),
                                 new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                    }
+                                    public void onClick(DialogInterface dialogInterface, int i) {}
                                 }).show();
-                        }
-                    });
-                }
-            });
+                    }
+                });
+            }
+        });
         if (!wake_sources.isEmpty()) addView(wakesourceCard);
 
         int wasoffline = 0;
@@ -157,14 +156,14 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             }
             // <Freq, time>
             int total_time = 0;
-            Map<Integer, Integer> freq_use_list = new HashMap<>();
+            Map < Integer, Integer > freq_use_list = new HashMap < > ();
             StringBuilder unusedStates = new StringBuilder();
 
             try {
                 FileInputStream fileInputStream = new FileInputStream(Utils.getsysfspath(CPU_TIME_IN_STATE_ARRAY, i));
                 InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
                 BufferedReader buffreader = new BufferedReader(inputStreamReader);
-                if (buffreader != null ) {
+                if (buffreader != null) {
                     String line;
                     String[] linePieces;
                     while ((line = buffreader.readLine()) != null) {
@@ -182,7 +181,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                 continue;
             }
 
-            List<Integer> allfreqs = CPU.getFreqs(i);
+            List < Integer > allfreqs = CPU.getFreqs(i);
             LinearLayout uiStatesView = new LinearLayout(getActivity());
             uiStatesView.setOrientation(LinearLayout.VERTICAL);
             CardViewItem.DCardView frequencyCard = new CardViewItem.DCardView();
@@ -190,12 +189,12 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             frequencyCard.setView(uiStatesView);
             frequencyCard.setFullSpan(true);
             for (int x = 0; x < freq_use_list.size(); x++) {
-                if(allfreqs.size() < x || allfreqs.get(x) == null){
+                if (allfreqs.size() < x || allfreqs.get(x) == null) {
                     continue;
                 }
 
                 Integer time = freq_use_list.get(allfreqs.get(x));
-                if(time == null){
+                if (time == null) {
                     continue;
                 }
                 int freq_time = time;
@@ -203,7 +202,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                 //Limit the freqs shown to only anything with at least 1% use
                 if (pct >= 1) {
                     FrameLayout layout = (FrameLayout) LayoutInflater.from(getActivity())
-                            .inflate(R.layout.state_row, uiStatesView, false);
+                        .inflate(R.layout.state_row, uiStatesView, false);
 
                     // map UI elements to objects
                     TextView freqText = (TextView) layout.findViewById(R.id.ui_freq_text);
@@ -220,10 +219,10 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
                     uiStatesView.addView(layout);
                 } else {
-                    if(unusedStates.length() > 0){
+                    if (unusedStates.length() > 0) {
                         unusedStates.append(", ");
                     }
-                    unusedStates.append(allfreqs.get(x)/ 1000).append(getString(R.string.mhz));
+                    unusedStates.append(allfreqs.get(x) / 1000).append(getString(R.string.mhz));
                 }
             }
             addView(frequencyCard);
@@ -250,11 +249,9 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
      *
      * Function modified from answer here: http://stackoverflow.com/questions/625433/how-to-convert-milliseconds-to-x-mins-x-seconds-in-java
      */
-    public static String getDurationBreakdown(long millis)
-    {
+    public static String getDurationBreakdown(long millis) {
         StringBuilder sb = new StringBuilder(64);
-        if(millis <= 0)
-        {
+        if (millis <= 0) {
             sb.append("00m00s");
             return sb.toString();
         }

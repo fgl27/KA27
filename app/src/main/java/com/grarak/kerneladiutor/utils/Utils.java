@@ -619,9 +619,9 @@ public class Utils implements Constants {
         String[] dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'").split("\\r?\\n");
         String[] dmesg_time = RootUtils.runCommand("dmesg | grep 'wakeup source' | cut -d'[' -f2 | cut -d. -f1").split("\\r?\\n");
         for (int i = dmesg_time.length - 1; i >= 0; i--) {
-             long time = (time_locale -(SystemClock.elapsedRealtime() - (Utils.stringToInt(dmesg_time[i]) * 1000)));
-             String time_result = Utils.getDate(time);
-             out += time_result  + ":\n" + dmesg[i] + "\n";
+            long time = (time_locale - (SystemClock.elapsedRealtime() - (Utils.stringToInt(dmesg_time[i]) * 1000)));
+            String time_result = Utils.getDate(time);
+            out += time_result + ":\n" + dmesg[i] + "\n";
         }
         return out;
     }
