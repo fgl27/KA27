@@ -608,7 +608,7 @@ public class Utils implements Constants {
     }
 
     public static String getDate(long time) {
-        DateFormat dateformate = new SimpleDateFormat("Y/m/dd HH:mm", Locale.US);
+        DateFormat dateformate = new SimpleDateFormat("MM/dd HH:mm", Locale.US);
         Date date = new Date(time);
         return dateformate.format(date);
     }
@@ -618,10 +618,10 @@ public class Utils implements Constants {
         String out = "";
         String[] dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'").split("\\r?\\n");
         String[] dmesg_time = RootUtils.runCommand("dmesg | grep 'wakeup source' | cut -d'[' -f2 | cut -d. -f1").split("\\r?\\n");
-        for (int i = 0; i < dmesg_time.length; i++) {
+        for (int i = dmesg_time.length - 1; i >= 0; i--) {
              long time = (time_locale -(SystemClock.elapsedRealtime() - (Utils.stringToInt(dmesg_time[i]) * 1000)));
              String time_result = Utils.getDate(time);
-             out += time_result  + " " + dmesg[i] + "\n";
+             out += time_result  + ":\n" + dmesg[i] + "\n";
         }
         return out;
     }

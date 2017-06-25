@@ -1,15 +1,23 @@
 package com.grarak.kerneladiutor.fragments.information;
 
+import android.app.AlertDialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.res.Configuration;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
@@ -32,6 +40,8 @@ This rewrite is re-using code that Grarak had originally used in his fragment. C
 
  */
 public class FrequencyTableFragment extends RecyclerViewFragment implements Constants {
+
+    private String wake_sources;
 
     @Override
     protected boolean pullToRefreshIsEnabled() {
@@ -88,6 +98,57 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             "\n" + getString(R.string.deep_sleep) + " " + getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()) +
             " (" + (100 - ((SystemClock.uptimeMillis() * 100 ) / SystemClock.elapsedRealtime())) + "%)");
         addView(muptimeCard);
+
+        wake_sources = Utils.getwakeSources(); 
+        CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
+        wakesourceCard.setTitle(getString(R.string.wakeup_source));
+        wakesourceCard.setDescription(getString(R.string.wakeup_source_summary));
+         wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+                @Override
+                public void onClick(CardViewItem.DCardView dCardView) {
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                        LinearLayout linearLayout = new LinearLayout(getActivity());
+                        linearLayout.setOrientation(LinearLayout.VERTICAL);
+                        linearLayout.setGravity(Gravity.CENTER);
+                        linearLayout.setPadding(30, 20, 30, 20);
+
+                        ScrollView scrollView = new ScrollView(getActivity());
+                        scrollView.setPadding(0, 0, 0, 10);
+                        linearLayout.addView(scrollView);
+
+                        TextView final_result = new TextView(getActivity());
+                        final_result.setText(wake_sources);
+                        final_result.setTextIsSelectable(true);
+                        scrollView.addView(final_result);
+
+                        new AlertDialog.Builder(getActivity(),
+                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                            .setTitle(getString(R.string.wakeup_source))
+                            .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                        ClipData clip = ClipData.newPlainText("FreqFrag", wake_sources);
+                                        clipboard.setPrimaryClip(clip);
+                                        Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
+                                        return;
+                                    }
+                                })
+                            .setPositiveButton(getString(R.string.close),
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                }).show();
+                        }
+                    });
+                }
+            });
+        if (!wake_sources.isEmpty()) addView(wakesourceCard);
+
         int wasoffline = 0;
         for (int i = 0; i < CPU.getCoreCount(); i++) {
             if (!CPU.isCoreOnline(i)) {
@@ -221,4 +282,18 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         return sb.toString();
     }
 
+    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            switch (which) {
+                case DialogInterface.BUTTON_POSITIVE:
+                    //Yes button clicked
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    //No button clicked
+                    break;
+            }
+        }
+    };
 }
