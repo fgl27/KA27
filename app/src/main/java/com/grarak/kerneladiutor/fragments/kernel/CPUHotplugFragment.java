@@ -916,7 +916,7 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
 
             if (CPUHotplug.hasMsmHotplugFastLaneLoad()) {
                 List < String > list = new ArrayList < > ();
-                for (int i = 0; i < 401; i++)
+                for (int i = 0; i < 100; i++)
                     list.add(String.valueOf(i));
 
                 mMsmHotplugFastLaneLoadCard = new SeekBarCardView.DSeekBarCard(list);
