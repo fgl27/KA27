@@ -129,8 +129,8 @@ public class IOFragment extends ViewPagerFragment implements Constants {
 
                 addView(mInternalTunableCard);
 
-                for (int i = 0; i < 32; i++)
-                    readheads.add((i * 128 + 128) + getString(R.string.kb));
+                for (int i = 0; i < 256; i++)
+                    readheads.add((i * 64 + 64) + getString(R.string.kb));
 
                 mInternalReadAheadCard = new PopupCardView.DPopupCard(readheads);
                 mInternalReadAheadCard.setTitle(getString(R.string.read_ahead));

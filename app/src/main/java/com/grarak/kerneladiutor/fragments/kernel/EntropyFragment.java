@@ -59,7 +59,7 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
         addView(mPoolsizeCard);
 
         items.clear();
-        for (int i = 64; i < poolsize; i *= 2)
+        for (int i = 64; i < poolsize; i += 64)
             if (i < poolsize) items.add(String.valueOf(i));
         items.add(String.valueOf(poolsize));
 
