@@ -267,6 +267,10 @@ public interface Constants {
     String ALUCARD_HOTPLUG_MAX_CORES_LIMIT_SLEEP = ALUCARD_HOTPLUG + "/maxcoreslimit_sleep";
     String ALUCARD_HOTPLUG_CPU_DOWN_RATE = ALUCARD_HOTPLUG + "/cpu_down_rate";
     String ALUCARD_HOTPLUG_CPU_UP_RATE = ALUCARD_HOTPLUG + "/cpu_up_rate";
+    String ALUCARD_HOTPLUG_HOTPLUG_RATE = ALUCARD_HOTPLUG + "/hotplug_rate_%s";
+    String ALUCARD_HOTPLUG_LOAD = ALUCARD_HOTPLUG + "/hotplug_load_%s";
+    String ALUCARD_HOTPLUG_RQ = ALUCARD_HOTPLUG + "/hotplug_rq_%s";
+    String ALUCARD_HOTPLUG_FREQ = ALUCARD_HOTPLUG + "/hotplug_freq_%s";
 
     String[] ALUCARD_HOTPLUG_ARRAY = {
         ALUCARD_HOTPLUG

@@ -677,6 +677,54 @@ public class CPUHotplug implements Constants {
         return Utils.existFile(ALUCARD_HOTPLUG);
     }
 
+    public static void setAlucardHotplugHotplugRate(String core_hotplug, int value, Context context) {
+        Control.runCommand(String.valueOf(value), String.format(ALUCARD_HOTPLUG_HOTPLUG_RATE, core_hotplug), Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugHotplugRate(String core_hotplug) {
+        return Utils.stringToInt(Utils.readFile(String.format(ALUCARD_HOTPLUG_HOTPLUG_RATE, core_hotplug)));
+    }
+
+    public static boolean hasAlucardHotplugHotplugRate(String core_hotplug) {
+        return Utils.existFile(String.format(ALUCARD_HOTPLUG_HOTPLUG_RATE, core_hotplug));
+    }
+
+    public static void setAlucardHotplugLoad(String core_hotplug, int value, Context context) {
+        Control.runCommand(String.valueOf(value), String.format(ALUCARD_HOTPLUG_LOAD, core_hotplug), Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugLoad(String core_hotplug) {
+        return Utils.stringToInt(Utils.readFile(String.format(ALUCARD_HOTPLUG_LOAD, core_hotplug)));
+    }
+
+    public static boolean hasAlucardHotplugLoad(String core_hotplug) {
+        return Utils.existFile(String.format(ALUCARD_HOTPLUG_LOAD, core_hotplug));
+    }
+
+    public static void setAlucardHotplugRq(String core_hotplug, int value, Context context) {
+        Control.runCommand(String.valueOf(value), String.format(ALUCARD_HOTPLUG_RQ, core_hotplug), Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugRq(String core_hotplug) {
+        return Utils.stringToInt(Utils.readFile(String.format(ALUCARD_HOTPLUG_RQ, core_hotplug)));
+    }
+
+    public static boolean hasAlucardHotplugRq(String core_hotplug) {
+        return Utils.existFile(String.format(ALUCARD_HOTPLUG_RQ, core_hotplug));
+    }
+
+    public static void setAlucardHotplugFreq(String core_hotplug, int value, Context context) {
+        Control.runCommand(String.valueOf(value), String.format(ALUCARD_HOTPLUG_FREQ, core_hotplug), Control.CommandType.GENERIC, context);
+    }
+
+    public static int getAlucardHotplugFreq(String core_hotplug) {
+        return Utils.stringToInt(Utils.readFile(String.format(ALUCARD_HOTPLUG_FREQ, core_hotplug)));
+    }
+
+    public static boolean hasAlucardHotplugFreq(String core_hotplug) {
+        return Utils.existFile(String.format(ALUCARD_HOTPLUG_FREQ, core_hotplug));
+    }
+
     public static void setMBHotplugPause(int value, Context context) {
         Control.runCommand(String.valueOf(value), Utils.getsysfspath(MB_HOTPLUG_ARRAY) + "/" + MB_PAUSE, Control.CommandType.GENERIC, context);
     }

@@ -125,6 +125,14 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
     private SeekBarCardView.DSeekBarCard mAlucardHotplugMaxCoresLimitSleepCard;
     private SeekBarCardView.DSeekBarCard mAlucardHotplugCpuDownRateCard;
     private SeekBarCardView.DSeekBarCard mAlucardHotplugCpuUpRateCard;
+    private SeekBarCardView.DSeekBarCard[] mAlucardHotplugHotplugRateIn;
+    private SeekBarCardView.DSeekBarCard[] mAlucardHotplugHotplugRateOut;
+    private SeekBarCardView.DSeekBarCard[] mAlucardHotplugLoadIn;
+    private SeekBarCardView.DSeekBarCard[] mAlucardHotplugLoadOut;
+    private SeekBarCardView.DSeekBarCard[] mAlucardHotplugRqIn;
+    private SeekBarCardView.DSeekBarCard[] mAlucardHotplugRqOut;
+    private PopupCardView.DPopupCard[] mAlucardHotplugFreqIn;
+    private PopupCardView.DPopupCard[] mAlucardHotplugFreqOut;
 
     private SwitchCardView.DSwitchCard mThunderPlugEnableCard;
     private SeekBarCardView.DSeekBarCard mThunderPlugSuspendCpusCard;
@@ -1402,19 +1410,6 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
                 views.add(mAlucardHotplugHpIoIsBusyCard);
             }
 
-            if (CPUHotplug.hasAlucardHotplugSamplingRate()) {
-                List < String > list = new ArrayList < > ();
-                for (int i = 1; i < 101; i++)
-                    list.add(i + "%");
-
-                mAlucardHotplugSamplingRateCard = new SeekBarCardView.DSeekBarCard(list);
-                mAlucardHotplugSamplingRateCard.setTitle(getString(R.string.sampling_rate));
-                mAlucardHotplugSamplingRateCard.setProgress(CPUHotplug.getAlucardHotplugSamplingRate() - 1);
-                mAlucardHotplugSamplingRateCard.setOnDSeekBarCardListener(this);
-
-                views.add(mAlucardHotplugSamplingRateCard);
-            }
-
             if (CPUHotplug.hasAlucardHotplugSuspend()) {
                 mAlucardHotplugSuspendCard = new SwitchCardView.DSwitchCard();
                 mAlucardHotplugSuspendCard.setTitle(getString(R.string.suspend));
@@ -1492,6 +1487,126 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
 
                 views.add(mAlucardHotplugCpuUpRateCard);
             }
+
+            if (CPUHotplug.hasAlucardHotplugSamplingRate()) {
+                List < String > list = new ArrayList < > ();
+                for (int i = 2; i < 21; i++)
+                    list.add(i * 5 + getString(R.string.ms));
+
+                mAlucardHotplugSamplingRateCard = new SeekBarCardView.DSeekBarCard(list);
+                mAlucardHotplugSamplingRateCard.setTitle(getString(R.string.sampling_rate));
+                mAlucardHotplugSamplingRateCard.setDescription(getString(R.string.sampling_rate_summary));
+                mAlucardHotplugSamplingRateCard.setProgress((CPUHotplug.getAlucardHotplugSamplingRate() - 10) / 5);
+                mAlucardHotplugSamplingRateCard.setOnDSeekBarCardListener(this);
+
+                views.add(mAlucardHotplugSamplingRateCard);
+            }
+
+            mAlucardHotplugHotplugRateIn = new SeekBarCardView.DSeekBarCard[(CPU.getCoreCount() - 1)];
+            mAlucardHotplugHotplugRateOut = new SeekBarCardView.DSeekBarCard[(CPU.getCoreCount() - 1)];
+            for (int i = 0; i < mAlucardHotplugHotplugRateIn.length; i++) {
+                List < String > list = new ArrayList < > ();
+                for (int j = 1; j <= 11; j++)
+                    list.add(String.valueOf(j));
+                if (CPUHotplug.hasAlucardHotplugHotplugRate((i + 1) + "_1")) {
+                    mAlucardHotplugHotplugRateIn[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mAlucardHotplugHotplugRateIn[i].setTitle(String.format(getString(R.string.alucard_hotplug_hotplug_rate_up), (i + 2)));
+                    mAlucardHotplugHotplugRateIn[i].setDescription(String.format(getString(R.string.alucard_hotplug_hotplug_rate_up_summary), (i + 2)));
+                    mAlucardHotplugHotplugRateIn[i].setProgress(CPUHotplug.getAlucardHotplugHotplugRate((i + 1) + "_1") - 1);
+                    mAlucardHotplugHotplugRateIn[i].setOnDSeekBarCardListener(this);
+
+                    views.add(mAlucardHotplugHotplugRateIn[i]);
+                }
+                if (CPUHotplug.hasAlucardHotplugHotplugRate((i + 2) + "_0")) {
+                    mAlucardHotplugHotplugRateOut[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mAlucardHotplugHotplugRateOut[i].setTitle(String.format(getString(R.string.alucard_hotplug_hotplug_rate_out), (i + 2)));
+                    mAlucardHotplugHotplugRateOut[i].setDescription(String.format(getString(R.string.alucard_hotplug_hotplug_rate_out_summary), (i + 2)));
+                    mAlucardHotplugHotplugRateOut[i].setProgress(CPUHotplug.getAlucardHotplugHotplugRate((i + 2) + "_0") - 1);
+                    mAlucardHotplugHotplugRateOut[i].setOnDSeekBarCardListener(this);
+
+                    views.add(mAlucardHotplugHotplugRateOut[i]);
+                }
+            }
+
+            mAlucardHotplugLoadIn = new SeekBarCardView.DSeekBarCard[(CPU.getCoreCount() - 1)];
+            mAlucardHotplugLoadOut = new SeekBarCardView.DSeekBarCard[(CPU.getCoreCount() - 1)];
+            for (int i = 0; i < mAlucardHotplugLoadIn.length; i++) {
+                List < String > list = new ArrayList < > ();
+                for (int j = 0; j <= 101; j++)
+                    list.add(String.valueOf(j) + getString(R.string.percent));
+                if (CPUHotplug.hasAlucardHotplugLoad((i + 1) + "_1")) {
+                    mAlucardHotplugLoadIn[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mAlucardHotplugLoadIn[i].setTitle(String.format(getString(R.string.alucard_hotplug_load_up), (i + 2)));
+                    mAlucardHotplugLoadIn[i].setDescription(String.format(getString(R.string.alucard_hotplug_load_up_summary), (i + 2)));
+                    mAlucardHotplugLoadIn[i].setProgress(CPUHotplug.getAlucardHotplugLoad((i + 1) + "_1"));
+                    mAlucardHotplugLoadIn[i].setOnDSeekBarCardListener(this);
+
+                    views.add(mAlucardHotplugLoadIn[i]);
+                }
+                if (CPUHotplug.hasAlucardHotplugLoad((i + 2) + "_0")) {
+                    mAlucardHotplugLoadOut[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mAlucardHotplugLoadOut[i].setTitle(String.format(getString(R.string.alucard_hotplug_load_out), (i + 2)));
+                    mAlucardHotplugLoadOut[i].setDescription(String.format(getString(R.string.alucard_hotplug_load_out_summary), (i + 2)));
+                    mAlucardHotplugLoadOut[i].setProgress(CPUHotplug.getAlucardHotplugLoad((i + 2) + "_0"));
+                    mAlucardHotplugLoadOut[i].setOnDSeekBarCardListener(this);
+
+                    views.add(mAlucardHotplugLoadOut[i]);
+                }
+            }
+
+            mAlucardHotplugRqIn = new SeekBarCardView.DSeekBarCard[(CPU.getCoreCount() - 1)];
+            mAlucardHotplugRqOut = new SeekBarCardView.DSeekBarCard[(CPU.getCoreCount() - 1)];
+            for (int i = 0; i < mAlucardHotplugRqIn.length; i++) {
+                List < String > list = new ArrayList < > ();
+                for (int j = 0; j <= 1200; j += 100)
+                    list.add(String.valueOf(j));
+                if (CPUHotplug.hasAlucardHotplugRq((i + 1) + "_1")) {
+                    mAlucardHotplugRqIn[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mAlucardHotplugRqIn[i].setTitle(String.format(getString(R.string.alucard_hotplug_rq_up), (i + 2)));
+                    mAlucardHotplugRqIn[i].setDescription(String.format(getString(R.string.alucard_hotplug_rq_up_summary), (i + 2)));
+                    mAlucardHotplugRqIn[i].setProgress(CPUHotplug.getAlucardHotplugRq((i + 1) + "_1") / 100);
+                    mAlucardHotplugRqIn[i].setOnDSeekBarCardListener(this);
+
+                    views.add(mAlucardHotplugRqIn[i]);
+                }
+                if (CPUHotplug.hasAlucardHotplugRq((i + 2) + "_0")) {
+                    mAlucardHotplugRqOut[i] = new SeekBarCardView.DSeekBarCard(list);
+                    mAlucardHotplugRqOut[i].setTitle(String.format(getString(R.string.alucard_hotplug_rq_out), (i + 2)));
+                    mAlucardHotplugRqOut[i].setDescription(String.format(getString(R.string.alucard_hotplug_rq_out_summary), (i + 2)));
+                    mAlucardHotplugRqOut[i].setProgress(CPUHotplug.getAlucardHotplugRq((i + 2) + "_0") / 100);
+                    mAlucardHotplugRqOut[i].setOnDSeekBarCardListener(this);
+
+                    views.add(mAlucardHotplugRqOut[i]);
+                }
+            }
+
+            List < String > freqs = new ArrayList < > ();
+            for (int freq: CPU.getFreqs())
+                freqs.add(freq / 1000 + getString(R.string.mhz));
+
+            mAlucardHotplugFreqIn = new PopupCardView.DPopupCard[freqs.size()];
+            mAlucardHotplugFreqOut = new PopupCardView.DPopupCard[freqs.size()];
+            for (int i = 0; i < mAlucardHotplugFreqIn.length; i++) {
+                if (CPUHotplug.hasAlucardHotplugFreq((i + 1) + "_1")) {
+                    mAlucardHotplugFreqIn[i] = new PopupCardView.DPopupCard(freqs);
+                    mAlucardHotplugFreqIn[i].setTitle(String.format(getString(R.string.alucard_hotplug_freq_up), (i + 2)));
+                    mAlucardHotplugFreqIn[i].setDescription(String.format(getString(R.string.alucard_hotplug_freq_up_summary), (i + 2)));
+                    mAlucardHotplugFreqIn[i].setItem(CPUHotplug.getAlucardHotplugFreq((i + 1) + "_1") / 1000 + getString(R.string.mhz));
+                    mAlucardHotplugFreqIn[i].setOnDPopupCardListener(this);
+
+                    views.add(mAlucardHotplugFreqIn[i]);
+                }
+                if (CPUHotplug.hasAlucardHotplugFreq((i + 2) + "_0")) {
+                    mAlucardHotplugFreqOut[i] = new PopupCardView.DPopupCard(freqs);
+                    mAlucardHotplugFreqOut[i].setTitle(String.format(getString(R.string.alucard_hotplug_freq_out), (i + 2)));
+                    mAlucardHotplugFreqOut[i].setDescription(String.format(getString(R.string.alucard_hotplug_freq_out_summary), (i + 2)));
+                    mAlucardHotplugFreqOut[i].setItem(CPUHotplug.getAlucardHotplugFreq((i + 2) + "_0") / 1000 + getString(R.string.mhz));
+                    mAlucardHotplugFreqOut[i].setOnDPopupCardListener(this);
+
+                    views.add(mAlucardHotplugFreqOut[i]);
+                }
+            }
+
         }
 
         if (CPUHotplug.isThunderPlugActive() || (!CPUHotplug.hasThunderPlugEnable() && CPUHotplug.hasThunderPlug())) {
@@ -2346,6 +2461,23 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
 
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
+        if (mMBHotplugBoostFreqsCard != null) {
+            for (int i = 0; i < mMBHotplugBoostFreqsCard.length; i++) {
+                if (dPopupCard == mMBHotplugBoostFreqsCard[i]) {
+                    CPUHotplug.setMBHotplugBoostFreqs(i, CPU.getFreqs().get(position), getActivity());
+                    return;
+                }
+            }
+        }
+        for (int i = 0; i < (CPU.getCoreCount() - 1); i++) {
+            if (mAlucardHotplugFreqIn != null && dPopupCard == mAlucardHotplugFreqIn[i]) {
+                CPUHotplug.setAlucardHotplugFreq((i + 1) + "_1", CPU.getFreqs().get(position), getActivity());
+                return;
+            } else if (mAlucardHotplugFreqOut != null && dPopupCard == mAlucardHotplugFreqOut[i]) {
+                CPUHotplug.setAlucardHotplugFreq((i + 2) + "_0", CPU.getFreqs().get(position), getActivity());
+                return;
+            }
+        }
         if (dPopupCard == mIntelliPlugProfileCard)
             CPUHotplug.setIntelliPlugProfile(position, getActivity());
         else if (dPopupCard == mIntelliPlugScreenOffMaxCard)
@@ -2366,15 +2498,9 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
             CPUHotplug.setThunderPlugEnduranceLevel(position, getActivity());
         else if (dPopupCard == mThunderPlugHPStyleCard)
             CPUHotplug.setThunderPlughpstyle(position + 1, getActivity());
-        else if (mMBHotplugBoostFreqsCard != null) {
-            for (int i = 0; i < mMBHotplugBoostFreqsCard.length; i++)
-                if (dPopupCard == mMBHotplugBoostFreqsCard[i]) {
-                    CPUHotplug.setMBHotplugBoostFreqs(i, CPU.getFreqs().get(position), getActivity());
-                    return;
-                }
-            else if (dPopupCard == mLazyPlugProfileCard)
-                CPUHotplug.setLazyPlugProfile(position, getActivity());
-        } else if (dPopupCard == mHimaProfileCard)
+       else if (dPopupCard == mLazyPlugProfileCard)
+            CPUHotplug.setLazyPlugProfile(position, getActivity());
+        else if (dPopupCard == mHimaProfileCard)
             CPUHotplug.setHimaProfile(position, getActivity());
     }
 
@@ -2386,8 +2512,31 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
         for (int i = 0; i < (CPU.getCoreCount() * 2); i++) {
             if (mBrickedNWNSCard != null && dSeekBarCard == mBrickedNWNSCard[i]) {
                 CPUHotplug.setBrickedNWNS(i, position, getActivity());
+                return;
             } else if (mBrickedTWTSCard != null && dSeekBarCard == mBrickedTWTSCard[i]) {
                 CPUHotplug.setBrickedTWTS(i, position, getActivity());
+                return;
+            }
+        }
+        for (int i = 0; i < (CPU.getCoreCount() - 1); i++) {
+            if (mAlucardHotplugHotplugRateIn != null && dSeekBarCard == mAlucardHotplugHotplugRateIn[i]) {
+                CPUHotplug.setAlucardHotplugHotplugRate((i + 1) + "_1", position + 1, getActivity());
+                return;
+            } else if (mAlucardHotplugHotplugRateOut != null && dSeekBarCard == mAlucardHotplugHotplugRateOut[i]) {
+                CPUHotplug.setAlucardHotplugHotplugRate((i + 2) + "_0", position + 1, getActivity());
+                return;
+            } else if (mAlucardHotplugLoadIn != null && dSeekBarCard == mAlucardHotplugLoadIn[i]) {
+                CPUHotplug.setAlucardHotplugLoad((i + 1) + "_1", position, getActivity());
+                return;
+            } else if (mAlucardHotplugLoadOut != null && dSeekBarCard == mAlucardHotplugLoadOut[i]) {
+                CPUHotplug.setAlucardHotplugLoad((i + 2) + "_0", position, getActivity());
+                return;
+            } else if (mAlucardHotplugRqIn != null && dSeekBarCard == mAlucardHotplugRqIn[i]) {
+                CPUHotplug.setAlucardHotplugRq((i + 1) + "_1", position * 100, getActivity());
+                return;
+            } else if (mAlucardHotplugRqOut != null && dSeekBarCard == mAlucardHotplugRqOut[i]) {
+                CPUHotplug.setAlucardHotplugRq((i + 2) + "_0", position * 100, getActivity());
+                return;
             }
         }
         if (dSeekBarCard == mIntelliPlugHysteresisCard)
@@ -2483,7 +2632,7 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
         else if (dSeekBarCard == mMBHotplugPauseCard)
             CPUHotplug.setMBHotplugPause(position * 1000, getActivity());
         else if (dSeekBarCard == mAlucardHotplugSamplingRateCard)
-            CPUHotplug.setAlucardHotplugSamplingRate(position + 1, getActivity());
+            CPUHotplug.setAlucardHotplugSamplingRate((position * 5) + 10, getActivity());
         else if (dSeekBarCard == mAlucardHotplugMinCpusOnlineCard)
             CPUHotplug.setAlucardHotplugMinCpusOnline(position + 1, getActivity());
         else if (dSeekBarCard == mAlucardHotplugMaxCoresLimitCard)
