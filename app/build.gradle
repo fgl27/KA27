@@ -45,5 +45,5 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'io.karim:materialtabs:2.0.5'
     compile 'net.i2p.android.ext:floatingactionbutton:1.10.1'
-    compile 'org.zeroturnaround:zt-zip:1.11'
+    compile 'org.zeroturnaround:zt-zip:1.12'
 }
