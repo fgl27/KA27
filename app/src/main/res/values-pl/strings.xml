@@ -250,16 +250,6 @@
   <string name="hostname">Nazwa hosta</string>
   <string name="wakelock">Wakelock</string>
   <string name="xda">XDA</string>
-  <string name="github">GitHub</string>
-  <string name="google_plus">Google Plus</string>
-  <string name="paypal">PayPal</string>
-  <string name="download">Pobierz</string>
-  <string name="downloading_counting">%1$s/%2$s</string>
-  <string name="resume">Wznów</string>
-  <string name="checking_md5">Sprawdzanie MD5sum</string>
-  <string name="md5_mismatch">Niezgodna suma MD5</string>
-  <string name="download_success">Pobrano %s. Czy chcesz teraz zainstalować?</string>
-  <string name="file_location">Pobrany plik jest w %s</string>
   <string name="no_backups">Brak kopii zapasowych</string>
   <string name="backing_up">Tworzenie kopii zapasowej</string>
   <string name="empty_name">Nazwa jest pusta!</string>
@@ -288,7 +278,6 @@
   <string name="reboot_bootloader">Reboot Bootloader</string>
   <string name="reboot_download">Reboot Download</string>
   <string name="confirm">Jesteś pewny?</string>
-  <string name="twrp">TWRP</string>
   <string name="wipe_data">Wyczyść dane</string>
   <string name="wipe_cache">Wyczyść pamięć podręczną</string>
   <string name="flash_zip">Instaluj z ZIP</string>

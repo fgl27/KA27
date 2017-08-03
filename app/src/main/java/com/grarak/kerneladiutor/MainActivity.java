@@ -81,10 +81,8 @@ import com.grarak.kerneladiutor.fragments.tools.LogsFragment;
 import com.grarak.kerneladiutor.fragments.tools.StartUpCommandsFragment;
 import com.grarak.kerneladiutor.fragments.tools.ProfileFragment;
 import com.grarak.kerneladiutor.fragments.tools.RecoveryFragment;
-//import com.grarak.kerneladiutor.fragments.tools.download.DownloadsFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-//import com.grarak.kerneladiutor.utils.json.Downloads;
 import com.grarak.kerneladiutor.utils.kernel.CPUHotplug;
 import com.grarak.kerneladiutor.utils.kernel.CPUVoltage;
 import com.grarak.kerneladiutor.utils.kernel.Entropy;
@@ -260,10 +258,6 @@ public class MainActivity extends BaseActivity implements Constants {
             ITEMS.add(new DAdapter.Item(getString(R.string.entropy), new EntropyFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
         ITEMS.add(new DAdapter.Header(getString(R.string.tools)));
-        //Downloads downloads;
-        //if ((downloads = new Downloads(this)).isSupported())
-        //    ITEMS.add(new DAdapter.Item(getString(R.string.downloads),
-        //            DownloadsFragment.newInstance(downloads.getLink())));
         if (Backup.hasBackup())
             ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
         if (Buildprop.hasBuildprop())

@@ -217,9 +217,7 @@
   <string name="hybrid">Hybrid</string>
   <string name="network">Nätverk</string>
   <string name="hostname">Värdnamn</string>
-  <string name="features">Funktioner</string>
   <string name="xda">XDA</string>
-  <string name="google_plus">Google Plus</string>
   <string name="restore">Återställ</string>
   <string name="delete">Radera</string>
   <string name="overwrite_question">Skriva över %s?</string>

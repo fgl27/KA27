@@ -43,9 +43,6 @@
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation"
             android:theme="@style/AppThemeActionBarLight" />
         <activity
-            android:name=".KernelActivity"
-            android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
-        <activity
             android:name=".FileBrowserActivity"
             android:configChanges="locale|keyboard|keyboardHidden|orientation|screenSize|navigation" />
         <activity

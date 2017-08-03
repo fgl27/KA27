@@ -826,24 +826,7 @@
     <!-- Plugins -->
 
     <!-- Downloads -->
-    <string name="no_kernels">No kernels found</string>
-    <string name="logo">Logo</string>
-    <string name="features">Features</string>
-    <string name="loading_counting">Loading %1$d/%2$d</string>
-    <string name="downloading_db">Downloading Database</string>
     <string name="xda">XDA</string>
-    <string name="github">GitHub</string>
-    <string name="google_plus">Google Plus</string>
-    <string name="paypal">PayPal</string>
-    <string name="download">Download</string>
-    <string name="downloading_counting">%1$s/%2$s</string>
-    <string name="resume">Resume</string>
-    <string name="checking_md5">Checking MD5sum</string>
-    <string name="md5_mismatch">MD5 Mismatch</string>
-    <string name="md5_mismatch_summary">The downloaded file has a different MD5. This has following reasons:\n\n\u2022 The downloaded file is corrupted\n\u2022 The developer has declared a wrong MD5\n\nTry to download the file again. If you still get this error, please contact the developer of this kernel.</string>
-    <string name="download_success">Successfully downloaded %s. Do you want to install it now?</string>
-    <string name="manual_flashing">I will use my hands</string>
-    <string name="file_location">Downloaded file is in %s</string>
 
     <!-- Backup -->
     <string name="no_backups">No backups</string>
@@ -891,7 +874,6 @@
     <string name="reboot_bootloader">Reboot Bootloader</string>
     <string name="reboot_download">Reboot Download</string>
     <string name="confirm">Are you sure?</string>
-    <string name="twrp">TWRP</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_cache">Wipe Cache</string>
     <string name="flash_zip">Flash Zip</string>

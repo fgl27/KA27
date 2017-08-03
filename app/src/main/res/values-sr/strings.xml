@@ -210,19 +210,7 @@
   <string name="network">Мрежа</string>
   <string name="tcp">ТЦП алгоритам загушења</string>
   <string name="hostname">Име домаћина</string>
-  <string name="logo">Лого</string>
-  <string name="features">Карактеристике</string>
-  <string name="loading_counting">Учитавам %1$d/%2$d</string>
-  <string name="downloading_db">Преузимам базу података</string>
   <string name="xda">XDA</string>
-  <string name="google_plus">Гугл Плус</string>
-  <string name="downloading_counting">%1$s/%2$s</string>
-  <string name="resume">Настави</string>
-  <string name="checking_md5">Проверавам МД5 суму</string>
-  <string name="md5_mismatch">МД5 се не поклапа</string>
-  <string name="download_success">Успешно преузет %s. Желите ли да га инсталирате одмах?</string>
-  <string name="manual_flashing">Ручно ћу</string>
-  <string name="file_location">Преузети фајл је у %s</string>
   <string name="no_backups">Нема резервних копија</string>
   <string name="flash_img">Флешуј одраз (IMG)</string>
   <string name="flashing">Флешујем</string>
@@ -255,7 +243,6 @@
   <string name="reboot_bootloader">Поново покрени у учитавач</string>
   <string name="reboot_download">Поново покрени у преузимање</string>
   <string name="confirm">Да ли сте сигурни?</string>
-  <string name="twrp">TWRP</string>
   <string name="wipe_data">Обриши податке</string>
   <string name="wipe_cache">Обриши кеш</string>
   <string name="flash_zip">Флешуј зип фајл</string>

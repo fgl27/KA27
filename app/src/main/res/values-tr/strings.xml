@@ -332,7 +332,6 @@
   <string name="wakelock">Wakelock</string>
   <string name="smb135x_wakelock">smb135x Wakelock</string>
   <string name="sensor_ind_wakelock">sensor_ind Wakelock</string>
-  <string name="google_plus">Google Plus</string>
   <string name="backup_already_exists">Aynı ada sahip bir yedek zaten var. Önce silin!</string>
   <string name="restore">Geri yükleme</string>
   <string name="delete">Sil</string>
@@ -361,7 +360,6 @@
   <string name="reboot_bootloader">BootLoader\'da Başlat</string>
   <string name="reboot_download">İndir ve Yeniden Başlat</string>
   <string name="confirm">Emin misiniz?</string>
-  <string name="twrp">TWRP</string>
   <string name="wipe_data">Verileri Sil</string>
   <string name="wipe_cache">Önbelleği sil</string>
   <string name="flash_zip">Zip flashla</string>

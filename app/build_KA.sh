@@ -1,6 +1,8 @@
 #!/bin/bash
 # simple build sh to build a apk check folder and sign ...set on yours .bashrc to call this sh from anywhere alias bt='/home/user/this.sh'
 
+#clean strings
+#find . -path '**' -name '*.xml' -exec sed  --in-place "/\"twrp\"/d" '{}' \;
 #timer counter
 START=$(date +%s.%N);
 START2="$(date)";

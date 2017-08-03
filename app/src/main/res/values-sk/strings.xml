@@ -131,11 +131,9 @@
   <string name="battery_level">Úroveň batérie</string>
   <string name="battery_temperature">Teplota batérie</string>
   <string name="scheduler">Plánovač</string>
-  <string name="google_plus">Google Plus</string>
   <string name="name">Názov</string>
   <string name="reboot">Reštartovať</string>
   <string name="confirm">Ste si istý?</string>
-  <string name="twrp">TWRP</string>
   <string name="emulate_initd">Emulovať Init.d</string>
   <string name="dark_theme">Tmavá téma</string>
   <string name="force_english_language">Vynútiť anglický jazyk</string>

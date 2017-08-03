@@ -87,12 +87,7 @@
   <string name="hybrid">Hübriid</string>
   <string name="network">Võrk</string>
   <string name="hostname">Hosti nimi</string>
-  <string name="logo">Logo</string>
-  <string name="features">Funktsionaalsus</string>
-  <string name="downloading_db">Andmebaasi allalaadimine</string>
   <string name="xda">XDA</string>
-  <string name="google_plus">Google Plus</string>
-  <string name="resume">Jätka</string>
   <string name="no_backups">Varundused puuduvad</string>
   <string name="backing_up">Varundamine</string>
   <string name="restore">Taasta</string>
@@ -115,7 +110,6 @@
   <string name="reboot_recovery">Taaskäivita Recovery\'sse</string>
   <string name="reboot_bootloader">Taaskäivita Bootloader\'sse</string>
   <string name="confirm">Olete kindel?</string>
-  <string name="twrp">TWRP</string>
   <string name="wipe_cache">Pühkige vahemälu</string>
   <string name="no_scripts_found">Skripte ei leitud!</string>
   <string name="file_name">Faili nimi</string>
