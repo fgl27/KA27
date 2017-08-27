@@ -29,7 +29,7 @@ import com.grarak.kerneladiutor.utils.kernel.CPU;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.HashMap;
+import android.util.SparseIntArray;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -156,7 +156,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             }
             // <Freq, time>
             int total_time = 0;
-            Map < Integer, Integer > freq_use_list = new HashMap < > ();
+            SparseIntArray freq_use_list = new SparseIntArray();
             StringBuilder unusedStates = new StringBuilder();
 
             try {
