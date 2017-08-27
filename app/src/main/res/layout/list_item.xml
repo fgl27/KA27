@@ -15,7 +15,7 @@
         android:layout_gravity="center_vertical"
         android:ellipsize="middle"
         android:gravity="center_vertical"
-        android:maxLines="1"
+        android:singleLine="true"
         android:textColor="@color/black"
         android:textSize="14sp" />
 </FrameLayout>
