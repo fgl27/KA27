@@ -65,7 +65,7 @@ public class PopupCardView extends BaseCardView {
                 public boolean onMenuItemClick(MenuItem item) {
                     if (valueView != null) {
                         valueText = list.get(item.getItemId()) + " ";
-                        valueView.setText(list.get(item.getItemId()) + " ");
+                        valueView.setText(valueText);
                     }
                     if (onPopupCardListener != null)
                         onPopupCardListener.onItemSelected(PopupCardView.this, item.getItemId());

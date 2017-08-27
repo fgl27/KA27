@@ -41,7 +41,7 @@ This rewrite is re-using code that Grarak had originally used in his fragment. C
  */
 public class FrequencyTableFragment extends RecyclerViewFragment implements Constants {
 
-    private String wake_sources;
+    private String wake_sources, this_freq, this_pct;
 
     @Override
     protected boolean pullToRefreshIsEnabled() {
@@ -211,8 +211,10 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                     ProgressBar bar = (ProgressBar) layout.findViewById(R.id.ui_bar);
 
                     // modify the row
-                    freqText.setText(allfreqs.get(x) / 1000 + getString(R.string.mhz));
-                    perText.setText(pct + "%");
+                    this_freq = allfreqs.get(x) / 1000 + getString(R.string.mhz);
+                    this_pct = pct + getString(R.string.percent);
+                    freqText.setText(this_freq);
+                    perText.setText(this_pct);
                     // Multiple the time_in_state time value by 10 as it is stored in UserTime Units (10ms)
                     durText.setText(getDurationBreakdown((freq_use_list.get(allfreqs.get(x))) * 10));
                     bar.setProgress(pct);
