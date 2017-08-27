@@ -31,7 +31,7 @@ APP_FINAL_NAME=KernelAdiutor.apk;
 # make zip only used if you have the need to make a zip of this a flash zip template is need
 # ZIPFOLDER = folder of the zip the contains the flash zip template, 
 # ZIPAPPFOLDER = folder of the zip the contains the apk inside the zip
-MKZIP=1;
+MKZIP=0;
 ZIPFOLDER=$FOLDER/zip/;
 ZIPAPPFOLDER=$ZIPFOLDER/system/app/KernelAdiutor;
 ZIPNAME=kerneladiutor-update-0.9.9.4.+35.BHB27-Mod;
