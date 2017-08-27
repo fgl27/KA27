@@ -251,7 +251,7 @@
   <string name="temp_safety">Hőmérséklet biztonság</string>
   <string name="msm_thermal">MSM Thermal</string>
   <string name="msm_thermal_summary">Egy kernelen belüli Qualcomm Thermald helyettesítő. Fejlesztő: show-p1984.</string>
-  <string name="allowed_low_low">1. szakasz: Engedélyezett Alacsony Alacsony</string>
+  <string tools:ignore="Typos" name="allowed_low_low">1. szakasz: Engedélyezett Alacsony Alacsony</string>
   <string name="allowed_low_high">1. szakasz: Engedélyezett Alacsony Magas</string>
   <string name="allowed_low_freq">1. szakasz: Engedélyezett Alacsony Frekvencia</string>
   <string name="allowed_mid_low">2. szakasz: Engedélyezett Közepes Alacsony</string>
@@ -537,7 +537,7 @@
   <string name="driver_message">Vezérlő üzenet (dmesg)</string>
   <string name="security">Biztonság</string>
   <string name="set_password">Jelszó beállítása</string>
-  <string name="set_password_summary">Védje a Kernel Adiutor alkalmazást jelszó beállításával. Minden egyes megnyitáskor meg kell adja jelszavát. Ha elfelejtené, törölje az az alkalmazás adatait a készülék beállításaiban. Ne aggódjon, jelszava nem kerül megosztásra.</string>
+  <string tools:ignore="Typos" name="set_password_summary">Védje a Kernel Adiutor alkalmazást jelszó beállításával. Minden egyes megnyitáskor meg kell adja jelszavát. Ha elfelejtené, törölje az az alkalmazás adatait a készülék beállításaiban. Ne aggódjon, jelszava nem kerül megosztásra.</string>
   <string name="delete_password">Jelszó törlése</string>
   <string name="new_password">Új jelszó</string>
   <string name="confirm_new_password">Új jelszó megerősítése</string>

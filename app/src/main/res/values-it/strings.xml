@@ -250,7 +250,7 @@
   <string name="temp_safety">Temperatura di sicurezza</string>
   <string name="msm_thermal">MSM Thermal</string>
   <string name="msm_thermal_summary">Sostituzione in-kernel per Thermald di Qualcomm. Sviluppato da show-p1984.</string>
-  <string name="allowed_low_low">Fase 1: Permesso basso basso</string>
+  <string tools:ignore="Typos" name="allowed_low_low">Fase 1: Permesso basso basso</string>
   <string name="allowed_low_high">Fase 1: Permesso basso alto</string>
   <string name="allowed_low_freq">Fase 1: Permesso bassa frequenza</string>
   <string name="allowed_mid_low">Fase 2: Permesso medio basso</string>

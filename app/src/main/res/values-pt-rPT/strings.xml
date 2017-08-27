@@ -229,7 +229,7 @@
   <string name="temp_hysteresis">Histerese da temperatura</string>
   <string name="temp_safety">Segurança de temperatura</string>
   <string name="msm_thermal">MSM Thermal</string>
-  <string name="allowed_low_low">Fase 1: Permitido baixo baixo</string>
+  <string tools:ignore="Typos" name="allowed_low_low">Fase 1: Permitido baixo baixo</string>
   <string name="allowed_low_high">Fase 1: Permitido alto baixo</string>
   <string name="allowed_low_freq">Fase 1: Permitido frequência baixa </string>
   <string name="allowed_mid_low">Fase 2: Permitido baixo médio</string>

@@ -309,7 +309,7 @@
   <string name="very_aggressive">Çok Agresif</string>
   <string name="zram">Z-RAM</string>
   <string name="disksize">Disk boyutu</string>
-  <string name="disksize_summary">Disk belleği fiziksel depolama, bunun yerine sıkıştırılmış bir sanal aygıt RAM\'de kullanarak kaçınarak performans arttırmaya çalışır. Takas alanı üzerinde fiziksel depolama alanı alanı kullanmak gereklidir. Ayarladığınız kadar disk belleği RAM yer alır.</string>
+  <string tools:ignore="Typos" name="disksize_summary">Disk belleği fiziksel depolama, bunun yerine sıkıştırılmış bir sanal aygıt RAM\'de kullanarak kaçınarak performans arttırmaya çalışır. Takas alanı üzerinde fiziksel depolama alanı alanı kullanmak gereklidir. Ayarladığınız kadar disk belleği RAM yer alır.</string>
   <string name="available">Kullanılabilir</string>
   <string name="poolsize">HavuzBoyutu</string>
   <string name="read">Okuma</string>
