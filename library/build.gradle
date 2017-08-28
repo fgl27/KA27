@@ -31,6 +31,11 @@ android {
     dexOptions {
         preDexLibraries = true
     }
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
 }
 
 Properties properties = new Properties()
