@@ -25,6 +25,7 @@ import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
+import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -91,12 +92,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
 
         CardViewItem.DCardView muptimeCard = new CardViewItem.DCardView();
         muptimeCard.setTitle(getString(R.string.system_uptime));
-        muptimeCard.setDescription(
-            getString(R.string.uptime) + " " + getDurationBreakdown(SystemClock.elapsedRealtime()) +
-            "\n" + getString(R.string.awake) + " " + getDurationBreakdown(SystemClock.uptimeMillis()) + " (" +
-            ((SystemClock.uptimeMillis() * 100) / SystemClock.elapsedRealtime()) + "%)" +
-            "\n" + getString(R.string.deep_sleep) + " " + getDurationBreakdown(SystemClock.elapsedRealtime() - SystemClock.uptimeMillis()) +
-            " (" + (100 - ((SystemClock.uptimeMillis() * 100) / SystemClock.elapsedRealtime())) + "%)");
+        muptimeCard.setDescription(getSysTimers());
         addView(muptimeCard);
 
         wake_sources = Utils.getwakeSources();
@@ -295,4 +291,30 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             }
         }
     };
+
+    private String getSysTimers() {
+        long uptime = SystemClock.uptimeMillis();
+        long realtime = SystemClock.elapsedRealtime();
+
+        String timers = getString(R.string.uptime) + " " + getDurationBreakdown(realtime); //Up time string + total uptime
+        timers += "\n" + getString(R.string.awake) + " " + getDurationBreakdown(uptime); // Wake time string + total wake
+        timers += " (" + ((uptime * 100) / realtime) + "%)"; // Wake time %
+        timers += "\n" + getString(R.string.deep_sleep) + " " + getDurationBreakdown(realtime - uptime); // Sleep time string + total sleep
+        timers += " (" + (100 - ((uptime * 100) / realtime)) + "%)"; // Sleep time %
+
+        return timers;
+    }
+
+    private String getBatTimers() {
+        String timers = "";
+        // workaround to get screen on time, dump output = Screen on: 2h 20m 26s 504ms (8.4%) 41x, Interactive: 2h 20m 12s 676ms (8.4%)
+        // dumpsys batterystats --charged | grep -A 60 'Statistics since last charge'
+        String ScreenOnTime = RootUtils.runCommand("dumpsys batterystats | grep 'Time on battery' | head -1 | cut -d':' -f2 | cut -d's' -f1");
+        if ((ScreenOnTime != null) && !ScreenOnTime.isEmpty())
+            timers += ScreenOnTime + "s";
+        ScreenOnTime = RootUtils.runCommand("dumpsys batterystats | grep Interactive | head -1 | cut -d':' -f2 | cut -d's' -f1");
+        if ((ScreenOnTime != null) && !ScreenOnTime.isEmpty())
+            timers += ScreenOnTime + "s";
+        return timers;
+   }
 }
