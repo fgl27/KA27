@@ -15,7 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.other;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -47,7 +46,6 @@ import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.zeroturnaround.zip.ZipUtil;
 /**
  * Created by willi on 09.03.15.
  */

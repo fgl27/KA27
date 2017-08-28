@@ -15,7 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.tools;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -43,6 +42,8 @@ import com.kerneladiutor.library.root.RootUtils;
 
 import java.io.File;
 import java.util.LinkedHashMap;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 /**
  * Created by willi on 17.05.15.
@@ -165,15 +166,16 @@ public class BackupFragment extends RecyclerViewFragment {
                     }
 
                     new AsyncTask < Void, Void, Void > () {
-                        private ProgressDialog progressDialog;
+                        private MaterialDialog progressDialog;
 
                         @Override
                         protected void onPreExecute() {
                             super.onPreExecute();
-                            progressDialog = new ProgressDialog(getActivity());
-                            progressDialog.setMessage(getString(R.string.backing_up));
-                            progressDialog.setCancelable(false);
-                            progressDialog.show();
+                            progressDialog = new MaterialDialog.Builder(getActivity())
+                            .content(getString(R.string.backing_up))
+                            .progress(true, 0)
+                            .canceledOnTouchOutside(false)
+                            .show();
                         }
 
                         @Override
@@ -276,15 +278,16 @@ public class BackupFragment extends RecyclerViewFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 new AsyncTask < Void, Void, Void > () {
-                    private ProgressDialog progressDialog;
+                    private MaterialDialog progressDialog;
 
                     @Override
                     protected void onPreExecute() {
                         super.onPreExecute();
-                        progressDialog = new ProgressDialog(getActivity());
-                        progressDialog.setMessage(getString(restoring ? R.string.restoring : R.string.flashing));
-                        progressDialog.setCancelable(false);
-                        progressDialog.show();
+                        progressDialog = new MaterialDialog.Builder(getActivity())
+                        .content(restoring ? R.string.restoring : R.string.flashing)
+                        .progress(true, 0)
+                        .canceledOnTouchOutside(false)
+                        .show();
                     }
 
                     @Override

@@ -16,7 +16,6 @@
 
 package com.grarak.kerneladiutor.fragments.tools;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -41,6 +40,7 @@ import com.kerneladiutor.library.root.RootUtils;
 import com.nineoldandroids.view.ViewHelper;
 
 import net.i2p.android.ext.floatingactionbutton.AddFloatingActionButton;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 /**
  * Created by willi on 25.04.15.
@@ -219,15 +219,16 @@ public class InitdFragment extends RecyclerViewFragment {
                                     break;
                                 case 1:
                                     new AsyncTask<Void, Void, String>() {
-                                        private ProgressDialog progressDialog;
+                                        private MaterialDialog progressDialog;
 
                                         @Override
                                         protected void onPreExecute() {
                                             super.onPreExecute();
-                                            progressDialog = new ProgressDialog(getActivity());
-                                            progressDialog.setMessage(getString(R.string.executing));
-                                            progressDialog.setCancelable(false);
-                                            progressDialog.show();
+                                            progressDialog = new MaterialDialog.Builder(getActivity())
+                                            .content(getString(R.string.executing))
+                                            .progress(true, 0)
+                                            .canceledOnTouchOutside(false)
+                                            .show();
                                         }
 
                                         @Override

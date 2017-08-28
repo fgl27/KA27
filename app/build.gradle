@@ -60,4 +60,5 @@ dependencies {
     api 'io.karim:materialtabs:2.0.5'
     api 'net.i2p.android.ext:floatingactionbutton:1.10.1'
     api 'org.zeroturnaround:zt-zip:1.12'
+    api 'com.afollestad.material-dialogs:core:0.9.4.7'
 }

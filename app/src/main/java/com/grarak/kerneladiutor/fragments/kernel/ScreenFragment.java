@@ -15,7 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -42,6 +41,8 @@ import com.kerneladiutor.library.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.afollestad.materialdialogs.MaterialDialog;
 
 /**
  * Created by willi on 26.12.14.
@@ -897,10 +898,11 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     @Override
     public void onClick(CardViewItem.DCardView dCardView) {
         if (dCardView == mAdditionalProfilesCard) {
-            final ProgressDialog progressDialog = new ProgressDialog(getActivity());
-            progressDialog.setMessage(getString(R.string.loading));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            final MaterialDialog progressDialog = new MaterialDialog.Builder(getActivity())
+            .content(getString(R.string.loading))
+            .progress(true, 0)
+            .canceledOnTouchOutside(false)
+            .show();
             new WebpageReader(new WebpageReader.WebpageCallback() {
                 @Override
                 public void onCallback(String raw, String html) {

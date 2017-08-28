@@ -15,7 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.tools;
 
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -81,6 +80,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.zeroturnaround.zip.ZipUtil;
+import com.afollestad.materialdialogs.MaterialDialog;
 /**
  * Created by willi on 09.03.15. Mod by Felipe L 09.26.16
  */
@@ -301,7 +301,7 @@ public class LogsFragment extends RecyclerViewFragment {
     }
 
     private static class Execute extends AsyncTask < String, Void, Void > {
-        private ProgressDialog progressDialog;
+        private MaterialDialog progressDialog;
         private WeakReference < Context > contextRef;
 
         public Execute(Context context) {
@@ -312,11 +312,12 @@ public class LogsFragment extends RecyclerViewFragment {
         protected void onPreExecute() {
             super.onPreExecute();
             Context mContext = contextRef.get();
-            progressDialog = new ProgressDialog(mContext);
-            progressDialog.setTitle(mContext.getString(R.string.logs));
-            progressDialog.setMessage(mContext.getString(R.string.execute));
-            progressDialog.setCancelable(false);
-            progressDialog.show();
+            progressDialog = new MaterialDialog.Builder(mContext)
+            .title(mContext.getString(R.string.logs))
+            .content(mContext.getString(R.string.execute))
+            .progress(true, 0)
+            .canceledOnTouchOutside(false)
+            .show();
         }
 
         @Override
