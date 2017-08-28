@@ -357,7 +357,7 @@ public class MainActivity extends BaseActivity implements Constants {
         setItems(null);
         if (mDrawerLayout != null) {
             mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, 0, 0);
-            mDrawerLayout.setDrawerListener(mDrawerToggle);
+            mDrawerLayout.addDrawerListener(mDrawerToggle);
 
             mDrawerLayout.post(new Runnable() {
                 @Override
