@@ -62,7 +62,7 @@ public class SettingsFragment extends RecyclerViewFragment {
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        if (!Resources.getSystem().getConfiguration().locale.getLanguage().startsWith("en") && !Utils.isTV(getActivity()))
+        if (!Utils.sysLocale().startsWith("en") && !Utils.isTV(getActivity()))
             forceenglishlanguageInit();
         darkthemeInit();
         applyonbootInit();
@@ -123,7 +123,7 @@ public class SettingsFragment extends RecyclerViewFragment {
                 public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                     Utils.saveBoolean("forceenglish", checked, getActivity());
                     if (!checked)
-                        Utils.setLocale(Resources.getSystem().getConfiguration().locale.getLanguage(), getActivity());
+                        Utils.setLocale(Utils.sysLocale(), getActivity());
                     startActivity(new Intent(getActivity(), MainActivity.class));
                 }
             });

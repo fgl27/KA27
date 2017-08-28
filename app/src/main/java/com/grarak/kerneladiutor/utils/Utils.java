@@ -26,6 +26,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -464,6 +465,14 @@ public class Utils implements Constants {
              return Html.fromHtml(link, Html.FROM_HTML_MODE_LEGACY);
         else
              return Html.fromHtml(link);
+    }
+
+    @SuppressWarnings("deprecation")
+    public static String sysLocale() {
+        if (Build.VERSION.SDK_INT >= 24)
+            return Resources.getSystem().getConfiguration().getLocales().get(0).getLanguage();
+        else
+            return Resources.getSystem().getConfiguration().locale.getLanguage();
     }
 
     public static void launchUrl(Context context, String link) {
