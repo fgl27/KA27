@@ -38,3 +38,6 @@
 # picasso.OkHttpDownloade
 -dontwarn com.squareup.picasso.**
 -dontnote com.squareup.picasso.**
+
+# afollestad.material-dialogs
+-dontnote com.afollestad.materialdialogs.**
