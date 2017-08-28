@@ -361,14 +361,6 @@ public class Utils implements Constants {
         Log.e(TAG, "Copy success: " + filename);
     }
 
-    public static void setLocale(String lang, Context context) {
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration();
-        config.locale = locale;
-        context.getApplicationContext().getResources().updateConfiguration(config, null);
-    }
-
     public static void vibrate(int duration) {
         RootUtils.runCommand("echo " + duration + " > /sys/class/timed_output/vibrator/enable");
     }

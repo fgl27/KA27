@@ -102,7 +102,7 @@ public class BootService extends Service {
          if (applys.size() > 0 ) {
             final int delay = Utils.getInt("applyonbootdelay", 0, this);
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            mBuilder = new NotificationCompat.Builder(this);
+            mBuilder = new NotificationCompat.Builder(this, "KA_apply_on_boot");
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
                     .setContentText(getString(R.string.apply_on_boot_time, delay))
                     .setSmallIcon(R.drawable.ic_launcher_preview);

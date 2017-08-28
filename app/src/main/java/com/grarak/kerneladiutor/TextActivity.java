@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -26,6 +27,11 @@ public class TextActivity extends BaseActivity {
 
     public static final String ARG_TEXT = "text";
     private TextView textView;
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CustomContextWrapper.wrap(context));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

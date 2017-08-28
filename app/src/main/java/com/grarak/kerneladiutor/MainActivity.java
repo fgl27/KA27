@@ -131,6 +131,11 @@ public class MainActivity extends BaseActivity implements Constants {
     private int cur_position;
 
     @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CustomContextWrapper.wrap(context));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 

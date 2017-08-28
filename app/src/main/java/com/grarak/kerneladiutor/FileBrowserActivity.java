@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,6 +56,11 @@ public class FileBrowserActivity extends BaseActivity {
     private FileBrowserFragment fileBrowserFragment;
     private StorageFragment internalStorage;
     private StorageFragment externalStorage;
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CustomContextWrapper.wrap(context));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

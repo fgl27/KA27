@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -37,11 +38,13 @@ import com.grarak.kerneladiutor.utils.Utils;
 public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CustomContextWrapper.wrap(context));
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Set english as default language if option is enabled
-        if (Utils.getBoolean("forceenglish", false, this)) Utils.setLocale("en_US", this);
 
         // Check if darktheme is in use and cache it as boolean
         if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this)) {

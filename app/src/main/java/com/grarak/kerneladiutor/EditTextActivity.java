@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -39,6 +40,11 @@ public class EditTextActivity extends BaseActivity {
     private String originalText;
     private AppCompatEditText editText;
     private String name;
+
+    @Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(CustomContextWrapper.wrap(context));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -122,8 +122,6 @@ public class SettingsFragment extends RecyclerViewFragment {
                 @Override
                 public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
                     Utils.saveBoolean("forceenglish", checked, getActivity());
-                    if (!checked)
-                        Utils.setLocale(Utils.sysLocale(), getActivity());
                     startActivity(new Intent(getActivity(), MainActivity.class));
                 }
             });
