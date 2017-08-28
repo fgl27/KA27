@@ -34,6 +34,8 @@ import android.os.Build;
 import android.os.SystemClock;
 import android.support.annotation.MainThread;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
@@ -454,6 +456,14 @@ public class Utils implements Constants {
             } catch (Exception ignored){}
         }
         return 0;
+    }
+
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String link) {
+        if (Build.VERSION.SDK_INT >= 24)
+             return Html.fromHtml(link, Html.FROM_HTML_MODE_LEGACY);
+        else
+             return Html.fromHtml(link);
     }
 
     public static void launchUrl(Context context, String link) {

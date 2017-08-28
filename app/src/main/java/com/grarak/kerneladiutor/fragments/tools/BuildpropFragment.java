@@ -17,7 +17,6 @@ package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
@@ -26,7 +25,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.text.Html;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -268,7 +266,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
                     if (((String) keys[i]).contains(newText)) {
                         PopupCardView.DPopupCard mPopupCard = new PopupCardView.DPopupCard(null);
                         mPopupCard.setDescription(newText.isEmpty() ?
-                            (String) keys[i] : Html.fromHtml(((String) keys[i]).replace(newText, "" +
+                            (String) keys[i] : Utils.fromHtml(((String) keys[i]).replace(newText, "" +
                                 "<b><font color=\"#2A7289\">" + newText + "</font></b>")));
                         mPopupCard.setItem((String) values[i]);
                         mPopupCard.setOnClickListener(BuildpropFragment.this);

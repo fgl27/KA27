@@ -17,7 +17,6 @@
 package com.grarak.kerneladiutor.utils;
 
 import android.os.AsyncTask;
-import android.text.Html;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -27,6 +26,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 03.04.15.
@@ -99,7 +100,7 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
 
-        webpageCallback.onCallback(s, Html.fromHtml(s).toString());
+        webpageCallback.onCallback(s, Utils.fromHtml(s).toString());
     }
 
     public void cancel() {
