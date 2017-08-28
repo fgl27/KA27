@@ -107,12 +107,12 @@ public class ViewPagerFragment extends BaseFragment {
                 try {
                     if (isAdded()) postInit(savedInstanceState);
 
-                    mTabs.setTextColorSelected(getResources().getColor(R.color.white));
-                    mTabs.setTextColorUnselected(getResources().getColor(R.color.textcolor_dark));
+                    mTabs.setTextColorSelected(ContextCompat.getColor(getActivity(), R.color.white));
+                    mTabs.setTextColorUnselected(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                     if (getCount() > 1)
-                        mTabs.setIndicatorColor(getResources().getColor(R.color.white));
+                        mTabs.setIndicatorColor(ContextCompat.getColor(getActivity(), R.color.white));
                     else
-                        mTabs.setIndicatorColor(getResources().getColor(R.color.color_primary));
+                        mTabs.setIndicatorColor(ContextCompat.getColor(getActivity(), R.color.color_primary));
                     mTabs.setViewPager(mViewPager);
                 } catch (IllegalStateException e) {
                     e.printStackTrace();
@@ -160,7 +160,7 @@ public class ViewPagerFragment extends BaseFragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    mTabs.setIndicatorColor(ContextCompat.getColor(getActivity(),R.color.white));
+                    mTabs.setIndicatorColor(ContextCompat.getColor(getActivity(), R.color.white));
                 }
             });
         }

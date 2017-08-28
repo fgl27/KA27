@@ -17,6 +17,7 @@
 package com.grarak.kerneladiutor.elements.cards;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -145,7 +146,7 @@ public class SeekBarCardView extends BaseCardView {
         });
 
         if (Utils.DARKTHEME) {
-            int color = getResources().getColor(R.color.textcolor_dark);
+            int color = ContextCompat.getColor(view.getContext(), R.color.textcolor_dark);
             minusButton.setTextColor(color);
             plusButton.setTextColor(color);
         }

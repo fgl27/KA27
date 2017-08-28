@@ -26,6 +26,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -162,10 +163,10 @@ public class DAdapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
             view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
-            checkedTextColor = view.getResources().getColor(R.color.color_primary);
-            defaultTextColor = view.getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black);
-            defaultBackgroundColor = view.getResources().getColor(android.R.color.transparent);
-            checkedBackgroundColor = view.getResources().getColor(Utils.DARKTHEME ?
+            checkedTextColor = ContextCompat.getColor(viewGroup.getContext(), R.color.color_primary);
+            defaultTextColor = ContextCompat.getColor(viewGroup.getContext(), Utils.DARKTHEME ? R.color.white : R.color.black);
+            defaultBackgroundColor = ContextCompat.getColor(viewGroup.getContext(), android.R.color.transparent);
+            checkedBackgroundColor = ContextCompat.getColor(viewGroup.getContext(), Utils.DARKTHEME ?
                 R.color.navigationdrawer_selected_background_dark : R.color.navigationdrawer_selected_background_light);
             return new RecyclerView.ViewHolder(view) {};
         }
@@ -221,8 +222,8 @@ public class DAdapter {
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
             ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title.toUpperCase(Locale.US));
             if (Utils.DARKTHEME)
-                viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(viewHolder.itemView.getResources()
-                    .getColor(R.color.divider_background_dark));
+                viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(ContextCompat.
+                getColor(viewHolder.itemView.getContext(), R.color.divider_background_dark));
         }
 
     }

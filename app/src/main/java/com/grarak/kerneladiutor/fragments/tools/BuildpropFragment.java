@@ -20,6 +20,7 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -175,13 +176,13 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         dialogLayout.setPadding(30, 20, 30, 20);
 
         final AppCompatEditText keyEdit = new AppCompatEditText(getActivity());
-        keyEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
+        keyEdit.setTextColor(ContextCompat.getColor(getActivity(), Utils.DARKTHEME ? R.color.white : R.color.black));
 
         if (modify) keyEdit.setText(key.trim());
         else keyEdit.setHint(getString(R.string.key));
 
         final AppCompatEditText valueEdit = new AppCompatEditText(getActivity());
-        valueEdit.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
+        valueEdit.setTextColor(ContextCompat.getColor(getActivity(), Utils.DARKTHEME ? R.color.white : R.color.black));
 
         if (modify) valueEdit.setText(value.trim());
         else valueEdit.setHint(getString(R.string.value));

@@ -24,6 +24,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.MainThread;
 import android.support.annotation.WorkerThread;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
@@ -247,7 +248,7 @@ public class RecyclerViewFragment extends BaseFragment {
 
     public void setProgressBar(ProgressBar progressBar) {
         progressBar.getIndeterminateDrawable().setColorFilter(new LightingColorFilter(0xFF000000,
-            getResources().getColor(android.R.color.white)));
+            ContextCompat.getColor(getActivity(), android.R.color.white)));
         ActionBar actionBar;
         if ((actionBar = getActionBar()) != null) {
             actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM, ActionBar.DISPLAY_SHOW_CUSTOM);

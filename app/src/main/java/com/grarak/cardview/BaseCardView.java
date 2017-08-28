@@ -19,6 +19,7 @@ package com.grarak.cardview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -76,7 +77,7 @@ public abstract class BaseCardView extends CardView {
         setRadius();
 
         // Set background color depending on the current theme
-        setCardBackgroundColor(getResources().getColor(Utils.DARKTHEME ?
+        setCardBackgroundColor(ContextCompat.getColor(context, Utils.DARKTHEME ?
                 R.color.card_background_dark : R.color.card_background_light));
 
         // This will enable the touch feedback of the card

@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
@@ -44,7 +45,7 @@ public class EditTextActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         editText = (AppCompatEditText) findViewById(R.id.edittext);
-        editText.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
+        editText.setTextColor(ContextCompat.getColor(this, Utils.DARKTHEME ? R.color.white : R.color.black));
         if ((originalText = getIntent().getExtras().getString(TEXT_ARG)) != null)
             editText.setText(originalText);
 

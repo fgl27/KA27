@@ -26,6 +26,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -60,9 +61,9 @@ public class SplashView extends View {
     public SplashView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        setBackgroundColor(getResources().getColor(R.color.color_primary));
+        setBackgroundColor(ContextCompat.getColor(context, R.color.color_primary));
         density = getResources().getDisplayMetrics().density;
-        textColor = getResources().getColor(R.color.white);
+        textColor = ContextCompat.getColor(context, R.color.white);
         textSize = getResources().getDimensionPixelSize(R.dimen.splashview_textsize);
 
         mPaintCircle = new Paint();
@@ -98,7 +99,7 @@ public class SplashView extends View {
 
     public void finish() {
         if (Utils.DARKTHEME)
-            mPaintCircle.setColor(getResources().getColor(R.color.navigationdrawer_background_dark));
+            mPaintCircle.setColor(ContextCompat.getColor(getContext(), R.color.navigationdrawer_background_dark));
         new Thread(new Runnable() {
             @Override
             public void run() {

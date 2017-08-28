@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         // Check if darktheme is in use and cache it as boolean
         if (Utils.DARKTHEME = Utils.getBoolean("darktheme", false, this)) {
             super.setTheme(getDarkTheme());
-            getWindow().getDecorView().getRootView().setBackgroundColor(getResources().getColor(R.color.black));
+            getWindow().getDecorView().getRootView().setBackgroundColor(ContextCompat.getColor(this, R.color.black));
         }
 
         if (getParentViewId() != 0) setContentView(getParentViewId());
@@ -87,7 +88,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        window.setStatusBarColor(getResources().getColor(R.color.color_primary_dark));
+        window.setStatusBarColor(ContextCompat.getColor(this, R.color.color_primary_dark));
     }
 
     @Override

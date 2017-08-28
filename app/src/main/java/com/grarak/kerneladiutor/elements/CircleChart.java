@@ -21,6 +21,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -53,7 +54,7 @@ public class CircleChart extends View {
     public CircleChart(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        mCircleColor = getResources().getColor(R.color.circlebar_text);
+        mCircleColor = ContextCompat.getColor(context, R.color.circlebar_text);
         mPadding = getResources().getDimensionPixelSize(R.dimen.circlechart_padding);
         mTextsize = getResources().getDimensionPixelSize(R.dimen.circlechart_textsize);
 
@@ -61,7 +62,7 @@ public class CircleChart extends View {
         mPaintBackground.setStrokeWidth(getResources().getDimensionPixelSize(R.dimen.circlechart_background_stroke));
         mPaintBackground.setAntiAlias(true);
         mPaintBackground.setStyle(Paint.Style.STROKE);
-        mPaintBackground.setColor(getResources().getColor(Utils.DARKTHEME ? R.color.circlebar_background_dark :
+        mPaintBackground.setColor(ContextCompat.getColor(context, Utils.DARKTHEME ? R.color.circlebar_background_dark :
                 R.color.circlebar_background_light));
         mPaintBackground.setStrokeCap(Paint.Cap.ROUND);
 

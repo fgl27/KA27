@@ -33,6 +33,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -279,7 +280,7 @@ public class MainActivity extends BaseActivity implements Constants {
         mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.scrimInsetsFrameLayout);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (mDrawerLayout != null) {
-            mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.statusbar_color));
+            mDrawerLayout.setStatusBarBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.statusbar_color));
             mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         }
         mDrawerList = (RecyclerView) findViewById(R.id.drawer_list);
@@ -345,7 +346,7 @@ public class MainActivity extends BaseActivity implements Constants {
         if (mScrimInsetsFrameLayout != null) {
             mScrimInsetsFrameLayout.setLayoutParams(getDrawerParams());
             if (Utils.DARKTHEME)
-                mScrimInsetsFrameLayout.setBackgroundColor(getResources().getColor(R.color.navigationdrawer_background_dark));
+                mScrimInsetsFrameLayout.setBackgroundColor(ContextCompat.getColor(MainActivity.this, R.color.navigationdrawer_background_dark));
         }
 
         setItems(null);

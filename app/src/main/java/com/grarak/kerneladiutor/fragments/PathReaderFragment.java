@@ -19,6 +19,7 @@ package com.grarak.kerneladiutor.fragments;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -60,7 +61,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         View view = getParentView(R.layout.swiperefresh_fragment);
         title = (TextView) view.findViewById(R.id.title_view);
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh_layout);
-        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.color_primary));
+        refreshLayout.setColorSchemeColors(ContextCompat.getColor(getActivity(), R.color.color_primary));
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -142,7 +143,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (!Utils.DARKTHEME)
-            editText.setTextColor(getResources().getColor(R.color.black));
+            editText.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
         editText.setText(value);
 
         layout.addView(editText);

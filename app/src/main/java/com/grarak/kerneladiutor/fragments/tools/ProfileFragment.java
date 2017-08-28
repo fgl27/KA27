@@ -23,6 +23,7 @@ import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -127,7 +128,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                 linearLayout.addView(descriptionText);
 
                 final AppCompatEditText profileName = new AppCompatEditText(getActivity());
-                profileName.setTextColor(getResources().getColor(Utils.DARKTHEME ? R.color.white : R.color.black));
+                profileName.setTextColor(ContextCompat.getColor(getActivity(), Utils.DARKTHEME ? R.color.white : R.color.black));
                 profileName.setHint(getString(R.string.name));
                 linearLayout.addView(profileName);
 

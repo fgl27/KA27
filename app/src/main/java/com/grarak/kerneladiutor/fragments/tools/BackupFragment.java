@@ -22,6 +22,7 @@ import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
@@ -123,7 +124,7 @@ public class BackupFragment extends RecyclerViewFragment {
         layout.setPadding(30, 30, 30, 30);
 
         final AppCompatEditText editText = new AppCompatEditText(getActivity());
-        editText.setTextColor(getResources().getColor(
+        editText.setTextColor(ContextCompat.getColor(getActivity(), 
             Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
         editText.setLayoutParams(new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));

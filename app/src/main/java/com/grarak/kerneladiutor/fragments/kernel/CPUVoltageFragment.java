@@ -19,6 +19,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatButton;
 import android.text.InputType;
@@ -199,12 +200,12 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
                 final TextView textView = (TextView) view.findViewById(R.id.offset_text);
                 if (Utils.DARKTHEME)
-                    textView.setTextColor(getResources().getColor(R.color.textcolor_dark));
+                    textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                 textView.setText("0");
 
                 AppCompatButton minus = (AppCompatButton) view.findViewById(R.id.button_minus);
                 if (Utils.DARKTHEME)
-                    minus.setTextColor(getResources().getColor(R.color.textcolor_dark));
+                    minus.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                 minus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -218,7 +219,7 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
                 AppCompatButton plus = (AppCompatButton) view.findViewById(R.id.button_plus);
                 if (Utils.DARKTHEME)
-                    plus.setTextColor(getResources().getColor(R.color.textcolor_dark));
+                    plus.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                 plus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

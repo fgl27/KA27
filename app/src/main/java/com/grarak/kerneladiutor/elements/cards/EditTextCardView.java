@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.elements.cards;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
@@ -51,7 +52,7 @@ public class EditTextCardView extends CardViewItem {
 
                 final AppCompatEditText editText = new AppCompatEditText(getContext());
                 editText.setGravity(Gravity.CENTER);
-                editText.setTextColor(getContext().getResources().getColor(
+                editText.setTextColor(ContextCompat.getColor(getContext(),
                         Utils.DARKTHEME ? R.color.white : R.color.black));
                 editText.setLayoutParams(new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
