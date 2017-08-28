@@ -21,7 +21,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
@@ -144,7 +143,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     private final Runnable refresh = new Runnable() {
         @Override
         public void run() {
-            if (searchItem != null) MenuItemCompat.collapseActionView(searchItem);
+            if (searchItem != null) searchItem.collapseActionView();
 
             removeAllViews();
             buildpropItem = Buildprop.getProps();
@@ -251,7 +250,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
         SearchView searchView = new SearchView(getActionBar().getThemedContext());
         searchView.setQueryHint(getString(R.string.search));
 
-        MenuItemCompat.setActionView(searchItem, searchView);
+        searchItem.setActionView(searchView);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -284,7 +284,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.search:
-                MenuItemCompat.expandActionView(searchItem);
+                searchItem.expandActionView();
                 break;
         }
         return true;
@@ -292,8 +292,8 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public boolean onBackPressed() {
-        if (searchItem != null && MenuItemCompat.isActionViewExpanded(searchItem)) {
-            MenuItemCompat.collapseActionView(searchItem);
+        if (searchItem != null && searchItem.isActionViewExpanded()) {
+            searchItem.collapseActionView();
             return true;
         }
         return false;
