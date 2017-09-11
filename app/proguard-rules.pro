@@ -28,10 +28,10 @@
 
 -dontnote com.google.android.gms.**
 
--keep class org.spongycastle.** { *; }
 -dontwarn javax.naming.**
 
 # zeroturnaround
+-keep class org.slf4j.** { *; }
 -dontwarn org.slf4j.**
 -dontwarn org.zeroturnaround.zip.**
 
