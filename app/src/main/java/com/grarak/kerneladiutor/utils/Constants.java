@@ -1007,64 +1007,27 @@ public interface Constants {
     String C3STATE = "/sys/module/msm_pm/modes/cpu0/power_collapse/idle_enabled";
 
     // BCL
-    String[] BCL_ARRAY = {
-        "/sys/devices/qcom,bcl.36/mode",
-        "/sys/devices/qcom,bcl.37/mode",
-        "/sys/devices/qcom,bcl.38/mode",
-        "/sys/devices/qcom,bcl.39/mode",
-        "/sys/devices/qcom,bcl.40/mode",
-        "/sys/devices/soc.0/qcom,bcl.60/mode"
-    };
-    String[] BCL_FREQ_MAX_ARRAY = {
-        "/sys/devices/qcom,bcl.36/freq_max",
-        "/sys/devices/qcom,bcl.37/freq_max",
-        "/sys/devices/qcom,bcl.38/freq_max",
-        "/sys/devices/qcom,bcl.39/freq_max",
-        "/sys/devices/qcom,bcl.40/freq_max",
-        "/sys/devices/soc.0/qcom,bcl.60/freq_max"
-    };
-    String[] BCL_FREQ_LIMIT_ARRAY = {
-        "/sys/devices/qcom,bcl.36/thermal_freq_limit",
-        "/sys/devices/qcom,bcl.37/thermal_freq_limit",
-        "/sys/devices/qcom,bcl.38/thermal_freq_limit",
-        "/sys/devices/qcom,bcl.39/thermal_freq_limit",
-        "/sys/devices/qcom,bcl.40/thermal_freq_limit",
-        "/sys/devices/soc.0/qcom,bcl.60/thermal_freq_limit"
-    };
-    String[] BCL_VPH_LOW_ARRAY = {
-        "/sys/devices/qcom,bcl.36/vph_low_thresh_uv",
-        "/sys/devices/qcom,bcl.37/vph_low_thresh_uv",
-        "/sys/devices/qcom,bcl.38/vph_low_thresh_uv",
-        "/sys/devices/qcom,bcl.39/vph_low_thresh_uv",
-        "/sys/devices/qcom,bcl.40/vph_low_thresh_uv",
-        "/sys/devices/soc.0/qcom,bcl.60/vph_low_thresh_uv"
-    };
-    String[] BCL_VPH_HIGH_ARRAY = {
-        "/sys/devices/qcom,bcl.36/vph_high_thresh_uv",
-        "/sys/devices/qcom,bcl.37/vph_high_thresh_uv",
-        "/sys/devices/qcom,bcl.38/vph_high_thresh_uv",
-        "/sys/devices/qcom,bcl.39/vph_high_thresh_uv",
-        "/sys/devices/qcom,bcl.40/vph_high_thresh_uv",
-        "/sys/devices/soc.0/qcom,bcl.60/vph_high_thresh_uv"
-    };
+    String BCL = "/sys/devices/qcom,bcl.*/mode";
+    String BCL_FREQ_MAX = "/sys/devices/qcom,bcl.*/freq_max";
+    String BCL_FREQ_LIMIT = "/sys/devices/qcom,bcl.*/thermal_freq_limit";
+    String BCL_VPH_LOW = "/sys/devices/qcom,bcl.*/vph_low_thresh_uv";
+    String BCL_VPH_HIGH = "/sys/devices/qcom,bcl.*/vph_high_thresh_uv";
     String BCL_HOTPLUG = "/sys/module/battery_current_limit/parameters/bcl_hotplug_enable";
 
-    String[][] BATTERY_ARRAY = {
-        BCL_ARRAY,
-        BCL_FREQ_MAX_ARRAY,
-        BCL_FREQ_LIMIT_ARRAY,
-        BCL_VPH_LOW_ARRAY,
-        BCL_VPH_HIGH_ARRAY,
-        {
-            FORCE_FAST_CHARGE,
-            BLX,
-            BATTERY_LED,
-            CHARGE_RATE,
-            C0STATE,
-            C1STATE,
-            C2STATE,
-            C3STATE
-        }
+    String[] BATTERY_ARRAY = {
+        BCL,
+        BCL_FREQ_MAX,
+        BCL_FREQ_LIMIT,
+        BCL_VPH_LOW,
+        BCL_VPH_HIGH,
+        FORCE_FAST_CHARGE,
+        BLX,
+        BATTERY_LED,
+        CHARGE_RATE,
+        C0STATE,
+        C1STATE,
+        C2STATE,
+        C3STATE
     };
 
     // Extra Battery values for quark and maybe other Moto devices

@@ -368,8 +368,8 @@ public class Utils implements Constants {
     public static List<String> getApplys(Class mClass) {
         List<String> applys = new ArrayList<>();
 
-        if (mClass == BatteryFragment.class) for (String[] arrays : BATTERY_ARRAY)
-           applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+        if (mClass == BatteryFragment.class)
+           applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
         else if (mClass == CPUFragment.class) {
             for (String cpu : CPU_ARRAY)
                 if (cpu.startsWith("/sys/devices/system/cpu/cpu%d"))

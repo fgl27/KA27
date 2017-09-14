@@ -26,8 +26,6 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class Battery implements Constants {
 
-    private static String BCL_FILE, BCL_FREQ_MAX_FILE, BCL_FREQ_LIMIT_FILE, BCL_VPH_LOW_FILE, BCL_VPH_HIGH_FILE;
-
     public static int getChargingCurrent() {
         return Utils.stringToInt(Utils.readFile(BATTERY_CHARGING_CURRENT));
     }
@@ -177,20 +175,15 @@ public class Battery implements Constants {
         if (!active && Battery.hasBclHotplug() && Battery.isBclHotplugActive()) {
             Battery.activateBclHotplug(false, context);
         }
-        Control.runCommand(active ? "enabled" : "disabled", BCL_FILE, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "enabled" : "disabled", BCL, Control.CommandType.GENERIC, context);
     }
 
     public static boolean isBclActive() {
-        return Utils.readFile(BCL_FILE).equals("enabled");
+        return Utils.readFile(BCL).equals("enabled");
     }
 
     public static boolean hasBcl() {
-        for (int i = 0; i < BCL_ARRAY.length; i++) {
-            if (Utils.existFile(BCL_ARRAY[i])) {
-                BCL_FILE = BCL_ARRAY[i];
-                return true;
-            }
-        }
+        if (Utils.existFile(BCL)) return true;
         return false;
     }
 
@@ -210,62 +203,46 @@ public class Battery implements Constants {
     }
 
     public static boolean hasBclFreq() {
-        for (int i = 0; i < BCL_FREQ_MAX_ARRAY.length; i++) {
-            if (Utils.existFile(BCL_FREQ_MAX_ARRAY[i]) && Utils.existFile(BCL_FREQ_LIMIT_ARRAY[i])) {
-                BCL_FREQ_MAX_FILE = BCL_FREQ_MAX_ARRAY[i];
-                BCL_FREQ_LIMIT_FILE = BCL_FREQ_LIMIT_ARRAY[i];
-                return true;
-            }
-        }
+        if (Utils.existFile(BCL_FREQ_MAX) && Utils.existFile(BCL_FREQ_LIMIT)) return true;
         return false;
     }
 
     public static int getBclLimitFreq() {
-        return Utils.stringToInt(Utils.readFile(BCL_FREQ_LIMIT_FILE));
+        return Utils.stringToInt(Utils.readFile(BCL_FREQ_LIMIT));
     }
 
     public static int getBclFreq() {
-        return Utils.stringToInt(Utils.readFile(BCL_FREQ_MAX_FILE));
+        return Utils.stringToInt(Utils.readFile(BCL_FREQ_MAX));
     }
 
     public static void setBclFreq(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BCL_FREQ_MAX_FILE, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), BCL_FREQ_MAX, Control.CommandType.GENERIC, context);
     }
 
     public static boolean hasBclVphLow() {
-        for (int i = 0; i < BCL_VPH_LOW_ARRAY.length; i++) {
-            if (Utils.existFile(BCL_VPH_LOW_ARRAY[i])) {
-                BCL_VPH_LOW_FILE = BCL_VPH_LOW_ARRAY[i];
-                return true;
-            }
-        }
+        if (Utils.existFile(BCL_VPH_LOW)) return true;
         return false;
     }
 
     public static int getBclVphLow() {
-        return Utils.stringToInt(Utils.readFile(BCL_VPH_LOW_FILE));
+        return Utils.stringToInt(Utils.readFile(BCL_VPH_LOW));
     }
 
     public static void setBclVphLow(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BCL_VPH_LOW_FILE, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), BCL_VPH_LOW, Control.CommandType.GENERIC, context);
     }
 
     public static boolean hasBclVphHigh() {
-        for (int i = 0; i < BCL_VPH_HIGH_ARRAY.length; i++) {
-            if (Utils.existFile(BCL_VPH_HIGH_ARRAY[i])) {
-                BCL_VPH_HIGH_FILE = BCL_VPH_HIGH_ARRAY[i];
-                return true;
-            }
-        }
+        if (Utils.existFile(BCL_VPH_HIGH)) return true;
         return false;
     }
 
     public static int getBclVphHigh() {
-        return Utils.stringToInt(Utils.readFile(BCL_VPH_HIGH_FILE));
+        return Utils.stringToInt(Utils.readFile(BCL_VPH_HIGH));
     }
 
     public static void setBclVphHigh(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BCL_VPH_HIGH_FILE, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), BCL_VPH_HIGH, Control.CommandType.GENERIC, context);
     }
 
     public static int getBatteryVoltageNow() {

@@ -106,12 +106,12 @@ public class RootFile {
     }
 
     public boolean exists() {
-        String output = RootUtils.runCommand("[ -e '" + file + "' ] && echo true");
+        String output = RootUtils.runCommand("files=(" + file + ") && [ -e \"${files[0]}\" ] && echo true");
         return output != null && output.contains("true");
     }
 
     public String readFile() {
-        return RootUtils.runCommand("cat '" + file + "'");
+        return RootUtils.runCommand("files=(" + file + ") && cat \"${files[0]}\"");
     }
 
     public String toString() {
