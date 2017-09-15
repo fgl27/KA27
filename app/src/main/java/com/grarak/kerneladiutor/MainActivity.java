@@ -67,6 +67,7 @@ import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
+import com.grarak.kerneladiutor.fragments.kernel.RamFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
@@ -90,6 +91,7 @@ import com.grarak.kerneladiutor.utils.kernel.Entropy;
 import com.grarak.kerneladiutor.utils.kernel.GPU;
 import com.grarak.kerneladiutor.utils.kernel.KSM;
 import com.grarak.kerneladiutor.utils.kernel.LMK;
+import com.grarak.kerneladiutor.utils.kernel.Ram;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
 import com.grarak.kerneladiutor.utils.kernel.Sound;
 import com.grarak.kerneladiutor.utils.kernel.Thermal;
@@ -244,6 +246,8 @@ public class MainActivity extends BaseActivity implements Constants {
             ITEMS.add(new DAdapter.Item(getString(R.string.thermal), new ThermalFragment()));
         if (GPU.hasGpuControl())
             ITEMS.add(new DAdapter.Item(getString(R.string.gpu), new GPUFragment()));
+        if (Ram.hasRamControl())
+            ITEMS.add(new DAdapter.Item(getString(R.string.ram), new RamFragment()));
         if (Screen.hasScreen())
             ITEMS.add(new DAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Wake.hasWake())

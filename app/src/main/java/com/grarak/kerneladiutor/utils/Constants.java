@@ -1030,6 +1030,37 @@ public interface Constants {
         C3STATE
     };
 
+    // RAM
+    String RAM_FREQ_MAX = "/sys/devices/qcom,cpubw.*/devfreq/qcom,cpubw.*/max_freq";
+    String RAM_FREQ_MIN = "/sys/devices/qcom,cpubw.*/devfreq/qcom,cpubw.*/min_freq";
+    String RAM_POLL = "/sys/devices/qcom,cpubw.*/devfreq/qcom,cpubw.*/polling_interval";
+    String RAM_CUR_FREQ = "/sys/devices/qcom,cpubw.*/devfreq/qcom,cpubw.*/cur_freq";
+    String RAM_AVA_FREQ = "/sys/devices/qcom,cpubw.*/devfreq/qcom,cpubw.*/available_frequencies";
+
+    String[] RAM_APQ8084_AVA_FREQ = {
+        "50",
+        "75",
+        "100",
+        "150",
+        "200",
+        "259",
+        "307",
+        "393",
+        "460",
+        "528",
+        "662",
+        "796",
+        "1065"
+    };
+
+    String[] RAM_ARRAY = {
+        RAM_FREQ_MAX,
+        RAM_FREQ_MIN,
+        RAM_POLL,
+        RAM_CUR_FREQ,
+        RAM_CUR_FREQ
+    };
+
     // Extra Battery values for quark and maybe other Moto devices
     String BATTERY_PARAMETERS = "/sys/class/power_supply/battery";
     // Battery charging current

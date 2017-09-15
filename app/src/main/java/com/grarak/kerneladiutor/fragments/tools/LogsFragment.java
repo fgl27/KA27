@@ -58,6 +58,7 @@ import com.grarak.kerneladiutor.fragments.kernel.IOFragment;
 import com.grarak.kerneladiutor.fragments.kernel.KSMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.LMKFragment;
 import com.grarak.kerneladiutor.fragments.kernel.MiscFragment;
+import com.grarak.kerneladiutor.fragments.kernel.RamFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ScreenFragment;
 import com.grarak.kerneladiutor.fragments.kernel.SoundFragment;
 import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
@@ -585,6 +586,7 @@ public class LogsFragment extends RecyclerViewFragment {
             Constants.CPU_ARRAY,
             Constants.CPU_VOLTAGE_ARRAY,
             Constants.IO_ARRAY,
+            Constants.RAM_ARRAY,
             Constants.VM_ARRAY
         };
         String twodarrays[][][] = {
@@ -693,6 +695,7 @@ public class LogsFragment extends RecyclerViewFragment {
             KSMFragment.class,
             LMKFragment.class,
             MiscFragment.class,
+            RamFragment.class,
             ScreenFragment.class,
             SoundFragment.class,
             ThermalFragment.class,

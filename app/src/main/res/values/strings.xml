@@ -440,6 +440,15 @@
     <string name="termal_engine_summary">An system binary thermald, this thermald have no user control.</string>
     <string name="termal_toast">Only one thermal drive can be enable\nEnable one disable the other\nand vice versa</string>
 
+    <!-- RAM -->
+    <string name="ram">RAM</string>
+    <string name="ram_cur_freq">RAM Current Frequency</string>
+    <string name="ram_max_freq">RAM Maximum Frequency</string>
+    <string name="ram_max_freq_summary">Set the maximum frequency the RAM scales up to.</string>
+    <string name="ram_min_freq">RAM Minimum Frequency</string>
+    <string name="ram_min_freq_summary">Set the minimum frequency the RAM scales down to.</string>
+    <string name="poll_ram_summary">Polling time to check if frequencie need to be change.\n(Default 50ms)</string>
+
     <!-- GPU -->
     <string name="gpu_2d_cur_freq">GPU 2D Current Frequency</string>
     <string name="gpu_cur_freq">GPU Current Frequency</string>

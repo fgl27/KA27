@@ -175,7 +175,7 @@ public class Battery implements Constants {
         if (!active && Battery.hasBclHotplug() && Battery.isBclHotplugActive()) {
             Battery.activateBclHotplug(false, context);
         }
-        Control.runCommand(active ? "enabled" : "disabled", BCL, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "enabled" : "disabled", BCL, Control.CommandType.ASTERISK, context);
     }
 
     public static boolean isBclActive() {
@@ -191,7 +191,7 @@ public class Battery implements Constants {
         if (active && Battery.hasBcl() && !Battery.isBclActive()) {
             Battery.activateBcl(true, context);
         }
-        Control.runCommand(active ? "Y" : "N", BCL_HOTPLUG, Control.CommandType.GENERIC, context);
+        Control.runCommand(active ? "Y" : "N", BCL_HOTPLUG, Control.CommandType.ASTERISK, context);
     }
 
     public static boolean isBclHotplugActive() {
@@ -216,7 +216,7 @@ public class Battery implements Constants {
     }
 
     public static void setBclFreq(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BCL_FREQ_MAX, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), BCL_FREQ_MAX, Control.CommandType.ASTERISK, context);
     }
 
     public static boolean hasBclVphLow() {
@@ -229,7 +229,7 @@ public class Battery implements Constants {
     }
 
     public static void setBclVphLow(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BCL_VPH_LOW, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), BCL_VPH_LOW, Control.CommandType.ASTERISK, context);
     }
 
     public static boolean hasBclVphHigh() {
@@ -242,7 +242,7 @@ public class Battery implements Constants {
     }
 
     public static void setBclVphHigh(int value, Context context) {
-        Control.runCommand(String.valueOf(value), BCL_VPH_HIGH, Control.CommandType.GENERIC, context);
+        Control.runCommand(String.valueOf(value), BCL_VPH_HIGH, Control.CommandType.ASTERISK, context);
     }
 
     public static int getBatteryVoltageNow() {

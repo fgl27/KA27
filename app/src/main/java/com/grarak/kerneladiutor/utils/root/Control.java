@@ -36,7 +36,7 @@ import java.util.Locale;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU, CPU_LITTLE, FAUX_GENERIC, CUSTOM, SHELL
+        GENERIC, CPU, CPU_LITTLE, FAUX_GENERIC, CUSTOM, SHELL, ASTERISK
     }
 
     public static void commandSaver(final Context context, final String path, final String command) {
@@ -80,6 +80,10 @@ public class Control implements Constants {
 
     private static void runGeneric(String file, String value, String id, Context context) {
         run("echo " + value + " > " + file, id != null ? file + id : file, context);
+    }
+
+    private static void runAsterisk(String file, String value, String id, Context context) {
+        run("path=(" + file + ") && echo " + value + " > \"${path[0]}\"", id != null ? file + id : file, context);
     }
 
     private static void runShell(String value, String command, Context context) {
@@ -139,6 +143,8 @@ public class Control implements Constants {
                     if (mpd) startService(HOTPLUG_MPDEC, null);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, id, context);
+                } else if (command == CommandType.ASTERISK) {
+                    runAsterisk(file, value, id, context);
                 } else if (command == CommandType.FAUX_GENERIC) {
                     runFauxGeneric(file, value, context);
                 } else if (command == CommandType.CUSTOM) {
