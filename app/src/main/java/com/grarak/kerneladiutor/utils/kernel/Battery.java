@@ -159,9 +159,10 @@ public class Battery implements Constants {
         return false;
     }
 
-    public static void setBatteryLed(boolean on_off, Context context) {
-        Control.runCommand(on_off ? "battery-full" :
+    public static void setBatteryLed(boolean active, Context context) {
+        Control.runCommand(active ? "battery-full" :
             "none", BATTERY_LED, Control.CommandType.GENERIC, context);
+        Control.setProp(BATTERY_LED_PROP, active ? "1" : "0", context);
     }
 
     public static boolean hasBatteryLed() {

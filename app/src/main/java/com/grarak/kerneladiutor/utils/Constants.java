@@ -999,6 +999,7 @@ public interface Constants {
     String CUSTOM_CHARGING_RATE = CHARGE_RATE + "/custom_current";
 
     String BATTERY_LED = "/sys/class/leds/charging/trigger";
+    String BATTERY_LED_PROP = "led.batton";
 
     // C-States
     String C0STATE = "/sys/module/msm_pm/modes/cpu0/wfi/idle_enabled";
@@ -1023,6 +1024,7 @@ public interface Constants {
         FORCE_FAST_CHARGE,
         BLX,
         BATTERY_LED,
+        BATTERY_LED_PROP,
         CHARGE_RATE,
         C0STATE,
         C1STATE,

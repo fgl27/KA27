@@ -348,6 +348,8 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
                 mBatteryChargingTypeCard.setDescription(getString(R.string.battery_charging_mode_weak));
             else mBatteryChargingTypeCard.setDescription(Battery.getChargingType());
         }
+        if (mBatteryLedCard != null)
+            mBatteryLedCard.setChecked(Battery.getBatteryLed());
         if (mBatteryHealthCard != null)
             mBatteryHealthCard.setDescription(Battery.getHealth());
         if (mBclCard != null)
