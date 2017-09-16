@@ -8,8 +8,8 @@ android {
         applicationId "com.bhb27.kerneladiutor"
         minSdkVersion 21
         targetSdkVersion 26
-        versionCode 48
-        versionName "Quark.46"
+        versionCode 49
+        versionName "Quark.47"
     }
     buildTypes {
         release {
