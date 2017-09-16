@@ -46,9 +46,11 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         super.init(savedInstanceState);
 
         freqs = Ram.getFreqs();
-        freqs_dev = new ArrayList < > ();
-        for (String freq: Ram.devFreqs())
-            freqs_dev.add(freq + getString(R.string.mhz));
+        if (Ram.device("quark", "8084")) {
+            freqs_dev = new ArrayList < > ();
+            for (String freq: Ram.devFreqs())
+                freqs_dev.add(freq + getString(R.string.mhz));
+        } else freqs_dev = Ram.getFreqs();
         RamInit();
     }
 
