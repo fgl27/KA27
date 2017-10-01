@@ -33,6 +33,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.support.annotation.MainThread;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
@@ -638,6 +639,28 @@ public class Utils implements Constants {
             out += time_result + ":\n" + dmesg[i] + "\n";
         }
         return out;
+    }
+
+    public static void StartAppService(boolean enable, String service) {
+        RootUtils.runCommand("am " + (enable ? "startservice " : "stopservice ") + service);
+    }
+
+    public static boolean GlobalIntGet(Context context, String name) {
+        return (Settings.Global.getInt(context.getContentResolver(), name, 0) != 0);
+    }
+
+    public static void GlobalIntSet(Boolean isChecked, Context context, String name) {
+        if (context.checkCallingOrSelfPermission("android.permission.WRITE_SECURE_SETTINGS") == PackageManager.PERMISSION_GRANTED)
+            Settings.Global.putInt(context.getContentResolver(), name, isChecked ? 1 : 0);
+    }
+
+    public static int HasGlobalInt(Context context, String name, int def) {
+        return (Settings.Global.getInt(context.getContentResolver(), name, def)); // e.g. SHOW_CPU can only be 0 or 1, def=10 if return 10 name doesn't exist
+    }
+
+    public static void WriteSettings(Context context) {
+        if (context.checkCallingOrSelfPermission("android.permission.WRITE_SECURE_SETTINGS") != PackageManager.PERMISSION_GRANTED)
+            RootUtils.runCommand("pm grant " + context.getPackageName() + " android.permission.WRITE_SECURE_SETTINGS");
     }
 
 }

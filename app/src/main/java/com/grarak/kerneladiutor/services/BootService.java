@@ -86,6 +86,7 @@ public class BootService extends Service {
         final List<String> applys = new ArrayList<>();
 
         CPUVoltage.storeVoltageTable(this);
+        Utils.WriteSettings(this);
 
         Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
                 CPUVoltageFragment.class, EntropyFragment.class, GPUFragment.class, IOFragment.class,

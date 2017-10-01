@@ -973,6 +973,8 @@
     <string name="per_app_toast_summary">Show a toast when applying a profile for Per App detection</string>
     <string name="navigation_drawer">Navigation Drawer</string>
     <string name="navigation_drawer_summary">Enable to relocate Navigation Drawer to opposite side of the screen.</string>
+    <string name="show_cpu_info">CPU info</string>
+    <string name="not_available">Not Available</string>
 
     <!-- FAQ -->
 

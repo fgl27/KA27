@@ -1405,4 +1405,5 @@ public interface Constants {
     // Init.d
     String INITD = "/system/etc/init.d";
 
+    String SHOW_CPU = "show_cpu";
 }
