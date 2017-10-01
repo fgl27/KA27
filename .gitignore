@@ -11,3 +11,6 @@ local.properties
 
 # Misc
 .DS_Store
+
+#build log
+build_log.txt

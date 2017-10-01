@@ -1,3 +1,4 @@
+apply from: '../versions.gradle'
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
@@ -13,8 +14,8 @@ android {
     buildToolsVersion "26.0.1"
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 26
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
         versionCode 2
         versionName version
     }
