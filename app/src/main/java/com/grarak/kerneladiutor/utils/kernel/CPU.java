@@ -685,7 +685,6 @@ public class CPU implements Constants {
             }
             Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 644, context);
             Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MAX_FREQ, core), String.format(Locale.US, CPU_MAX_FREQ, core), context);
-            Control.setPermission(String.format(Locale.US, Constants.CPU_MAX_FREQ, core), 444, context);
             if (freq == getMaxFreq(core, true))
                 return true;
         }
@@ -700,7 +699,6 @@ public class CPU implements Constants {
             }
             Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 644, context);
             Control.run("echo " + Integer.toString(freq) + " > " + String.format(Locale.US, CPU_MIN_FREQ, core), String.format(Locale.US, CPU_MIN_FREQ, core), context);
-            Control.setPermission(String.format(Locale.US, Constants.CPU_MIN_FREQ, core), 444, context);
             if (freq == getMinFreq(core, true))
                 return true;
         }
@@ -731,7 +729,6 @@ public class CPU implements Constants {
             }
             Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 644, context);
             Control.run("echo " + governor + " > " + String.format(Locale.US, CPU_SCALING_GOVERNOR, core), String.format(Locale.US, CPU_SCALING_GOVERNOR, core), context);
-            Control.setPermission(String.format(Locale.US, Constants.CPU_SCALING_GOVERNOR, core), 444, context);
             if (governor.equals(getCurGovernor(core, true)))
                 return true;
         }
