@@ -6,7 +6,7 @@ ext.versions = [
         publishVersion       : 'Quark.48',
         publishVersionCode   : 50,
 
-        gradlePlugin         : '3.0.0-beta6',
+        gradlePlugin         : '3.0.0-beta7',
         benmanes             : '0.15.0',
 
         picasso              : '2.5.2',

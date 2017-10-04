@@ -10,8 +10,8 @@ def siteUrl = 'https://github.com/bhb27/KA27'      // Homepage URL of the librar
 def gitUrl = 'https://github.com/bhb27/KA27.git'   // Git repository URL
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
 
     defaultConfig {
         minSdkVersion versions.minSdk
