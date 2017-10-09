@@ -50,6 +50,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
     private SwitchCardView.DSwitchCard mFsyncCard;
     private SwitchCardView.DSwitchCard mDynamicFsyncCard;
 
+    private SwitchCardView.DSwitchCard mMotoTouchxCard;
+
     private SwitchCardView.DSwitchCard mGentleFairSleepersCard;
 
     private PopupCardView.DPopupCard mPowerSuspendModeCard;
@@ -66,6 +68,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         super.init(savedInstanceState);
 
         selinuxInit();
+        MotoTouchxInit();
         if (Misc.hasLoggerEnable()) loggerInit();
 
         if (Misc.hasCrc()) crcInit();
@@ -146,6 +149,18 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             mDynamicFsyncCard.setOnDSwitchCardListener(this);
 
             addView(mDynamicFsyncCard);
+        }
+    }
+
+    private void MotoTouchxInit() {
+        if (Misc.hasMotoTouchx()) {
+            mMotoTouchxCard = new SwitchCardView.DSwitchCard();
+            mMotoTouchxCard.setTitle(getString(R.string.moto_touchx));
+            mMotoTouchxCard.setDescription(getString(R.string.moto_touchx_summary));
+            mMotoTouchxCard.setChecked(Misc.isMotoTouchxActive());
+            mMotoTouchxCard.setOnDSwitchCardListener(this);
+
+            addView(mMotoTouchxCard);
         }
     }
 
@@ -294,6 +309,8 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
             Misc.activateFsync(checked, getActivity());
         else if (dSwitchCard == mDynamicFsyncCard)
             Misc.activateDynamicFsync(checked, getActivity());
+        else if (dSwitchCard == mMotoTouchxCard)
+            Misc.activateMotoTouchx(checked, getActivity());
         else if (dSwitchCard == mGentleFairSleepersCard)
             Misc.activateGentleFairSleepers(checked, getActivity());
         else if (dSwitchCard == mOldPowerSuspendStateCard)

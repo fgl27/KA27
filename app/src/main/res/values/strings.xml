@@ -666,7 +666,7 @@
     <string name="ksm_pages_to_scan">Pages to scan</string>
     <string name="ksm_sleep_milliseconds">Sleep between scans</string>
     <string name="ksm_deferred_timer">Deferred timer</string>
-    <string name="ksm_deferred_timer_summary">Reduces some CPU usage in return for less memory savings.</string>
+    <string name="ksm_deferred_timer_summary">Prevents KSM activities when the CPU is at sleep, reduces some CPU usage in return for less memory savings.</string>
     <string name="uksm_cpu_use">Max CPU Usage</string>
     <string name="uksm_cpu_use_summary">Max CPU percentage for UKSM to use when merging pages</string>
 
@@ -831,6 +831,8 @@
     <string name="c3state_summary">Really deep sleep with longest latency when waking up.</string>
     <string name="battery_led">Battery LED Full charge</string>
     <string name="battery_led_summary">Turn on green front LED when battery reaches 100&#37;</string>
+    <string name="moto_touchx">Moto Predictive Touch driver</string>
+    <string name="moto_touchx_summary">A algorithm that uses past position and velocity of a touch event to predict touch position in the future, so that screen updates are made anticipating the future position, mitigating the inherent latency of the system, making the system more responsive.</string>
 
     <!-- Plugins -->
 

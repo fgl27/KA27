@@ -325,4 +325,15 @@ public class Misc implements Constants {
         return "Unknown Status";
     }
 
+    public static boolean hasMotoTouchx() {
+        return Utils.existFile(MOTO_TOUCHX);
+    }
+
+    public static void activateMotoTouchx(boolean active, Context context) {
+        Control.runCommand(active ? "1" : "0", MOTO_TOUCHX, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isMotoTouchxActive() {
+        return Utils.readFile(MOTO_TOUCHX).equals("1");
+    }
 }

@@ -1377,6 +1377,8 @@ public interface Constants {
     String GETENFORCE = "getenforce";
     String SETENFORCE = "setenforce";
 
+    String MOTO_TOUCHX = "/sys/kernel/touchx/touchx_state";
+
     String[][] MISC_ARRAY = {
         VIBRATION_ARRAY,
         {
@@ -1392,7 +1394,8 @@ public interface Constants {
             HOSTNAME_KEY,
             GETENFORCE,
             SETENFORCE,
-            ADB_OVER_WIFI
+            ADB_OVER_WIFI,
+            MOTO_TOUCHX
         },
         LOGGER_ARRAY,
         CRC_ARRAY,
