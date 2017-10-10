@@ -21,6 +21,7 @@ import android.text.InputType;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.EditTextCardView;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.elements.DDivider;
@@ -34,14 +35,16 @@ import java.util.List;
  * Created by willi on 27.12.14.
  */
 
-public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
+public class VMFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
     private CardViewItem.DCardView mPRPressureCard, mPRAcgEffCard;
 
     private EditTextCardView.DEditTextCard mMinFreeKbytesCard, mExtraFreeKbytesCard;
 
-    private SeekBarCardView.DSeekBarCard mPRPerSwapSizeCard, mPRSwapWinCard, mPRSwapOptEffCard, mPRPressureMaxCard, mPRPressureMinCard, mDirtyRatioCard, mDirtyBackgroundRatioCard, mDirtyExpireCard, mDirtyWritebackCard, mOverCommitRatioCard, mSwappinessCard, mVFSCachePressureCard, mZRAMDisksizeCard;
+    private SeekBarCardView.DSeekBarCard mPRPerSwapSizeCard, mPRSwapWinCard, mPRSwapOptEffCard, mPRPressureMaxCard, mPRPressureMinCard, mDirtyRatioCard, mDirtyBackgroundRatioCard, mDirtyExpireCard, mDirtyWritebackCard, mOverCommitRatioCard, mSwappinessCard, mVFSCachePressureCard, mZRAMDisksizeCard, mZRAMMaxCompStreamsCard;
     private SeekBarCardView.DSeekBarCard mDirty_Writeback_SuspendCard, mDirty_Writeback_ActiveCard;
+
+    private PopupCardView.DPopupCard mZRAMCompAlgosCard;
 
     private SwitchCardView.DSwitchCard mProcessReclaimCard, mLaptopModeCard, mDynamic_Dirty_WritebackCard;
 
@@ -389,6 +392,29 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         mZRAMDisksizeCard.setOnDSeekBarCardListener(this);
 
         addView(mZRAMDisksizeCard);
+
+        if (VM.hasZRAMCompAlgos()) {
+            mZRAMCompAlgosCard = new PopupCardView.DPopupCard(VM.getZRAMCompAlgos());
+            mZRAMCompAlgosCard.setTitle(getString(R.string.zram_comp_algo));
+            mZRAMCompAlgosCard.setDescription(getString(R.string.zram_comp_algo_summary));
+            mZRAMCompAlgosCard.setItem(VM.getZRAMCompAlgo());
+            mZRAMCompAlgosCard.setOnDPopupCardListener(this);
+
+            addView(mZRAMCompAlgosCard);
+        }
+
+        if (VM.hasZRAMMaxCompStreams()) {
+            List < String > listCS = new ArrayList < > ();
+            for (int i = 1; i <= 4; i++)
+                listCS.add(i + "");
+
+            mZRAMMaxCompStreamsCard = new SeekBarCardView.DSeekBarCard(listCS);
+            mZRAMMaxCompStreamsCard.setTitle(getString(R.string.zram_comp_streams));
+            mZRAMMaxCompStreamsCard.setProgress(VM.getZRAMMaxCompStreams() - 1);
+            mZRAMMaxCompStreamsCard.setOnDSeekBarCardListener(this);
+
+            addView(mZRAMMaxCompStreamsCard);
+        }
     }
 
     @Override
@@ -410,7 +436,14 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
         else if (dSeekBarCard == mOverCommitRatioCard) VM.setOverCommitRatio(position, getActivity());
         else if (dSeekBarCard == mSwappinessCard) VM.setSwappiness(position, getActivity());
         else if (dSeekBarCard == mVFSCachePressureCard) VM.setVFSCachePressure(position + 1, getActivity());
-        else if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAMDisksize(position * 10, getActivity());
+        else if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAM(null, String.valueOf(position * 10), null,  getActivity());
+        else if (dSeekBarCard == mZRAMMaxCompStreamsCard) VM.setZRAM(null, null, String.valueOf(position + 1),  getActivity());
+    }
+
+    @Override
+    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
+        if (dPopupCard == mZRAMCompAlgosCard)
+            VM.setZRAM(VM.getZRAMCompAlgos().get(position), null, null, getActivity());
     }
 
     @Override
@@ -445,6 +478,15 @@ public class VMFragment extends RecyclerViewFragment implements SeekBarCardView.
 
         if (mPRPressureCard != null) mPRPressureCard.setDescription(String.valueOf(pressure));
         if (mPRAcgEffCard != null) mPRAcgEffCard.setDescription(String.valueOf(avg));
+
+        try {
+            Thread.sleep(250);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        if (mZRAMDisksizeCard != null) mZRAMDisksizeCard.setProgress(VM.getZRAMDisksize() / 10);
+        if (mZRAMMaxCompStreamsCard != null) mZRAMMaxCompStreamsCard.setProgress(VM.getZRAMMaxCompStreams() - 1);
+        if (mZRAMCompAlgosCard != null) mZRAMCompAlgosCard.setItem(VM.getZRAMCompAlgo());
 
         return true;
     }

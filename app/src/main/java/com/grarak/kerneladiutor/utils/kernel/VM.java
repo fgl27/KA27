@@ -17,6 +17,11 @@ package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -26,17 +31,75 @@ import com.grarak.kerneladiutor.utils.root.Control;
  */
 public class VM implements Constants {
 
-    public static void setZRAMDisksize(final int value, final Context context) {
-        int size = value * 1024 * 1024;
+    private static String[] mAvail_Comp_Algo;
+
+    public static void setZRAM(String algo, String disksize, String max_comp, Context context) {
+        if (max_comp == null && hasZRAMMaxCompStreams()) {
+            max_comp = String.valueOf(getZRAMMaxCompStreams());
+        }
+        if (algo == null && hasZRAMCompAlgos()) {
+            algo = getZRAMCompAlgo();
+        }
+        if (disksize == null) {
+            disksize = String.valueOf(getZRAMDisksize());
+        }
+
         Control.runCommand("swapoff " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK, Control.CommandType.CUSTOM, "swapoff", context);
         Control.runCommand("1", ZRAM_RESET, Control.CommandType.GENERIC, context);
-        if (size != 0) {
-            Control.runCommand(String.valueOf(size), ZRAM_DISKSIZE, Control.CommandType.GENERIC, context);
-            Control.runCommand("mkswap " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK,
-                Control.CommandType.CUSTOM, "mkswap", context);
-            Control.runCommand("swapon " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK,
-                Control.CommandType.CUSTOM, "swapon", context);
+        Control.runCommand("0", ZRAM_DISKSIZE, Control.CommandType.GENERIC, context);
+        if (algo != null) {
+            Control.runCommand(algo, ZRAM_COMP_ALGO, Control.CommandType.GENERIC, context);
         }
+        if (max_comp != null) {
+            Control.runCommand(max_comp, ZRAM_MAX_COMP_STREAMS, Control.CommandType.GENERIC, context);
+        }
+        Control.runCommand(disksize + "M", ZRAM_DISKSIZE, Control.CommandType.GENERIC, context);
+        Control.runCommand("mkswap " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK,
+            Control.CommandType.CUSTOM, "mkswap", context);
+        Control.runCommand("swapon " + ZRAM_BLOCK + " > /dev/null 2>&1", ZRAM_BLOCK,
+            Control.CommandType.CUSTOM, "swapon", context);
+    }
+
+    public static List < String > getZRAMCompAlgos() {
+        if (Utils.existFile(ZRAM_COMP_ALGO)) {
+            String values = Utils.readFile(ZRAM_COMP_ALGO);
+            if (values != null) {
+                String[] valueArray = values.split(" ");
+                String[] out = new String[valueArray.length];
+
+                for (int i = 0; i < valueArray.length; i++)
+                    out[i] = valueArray[i].replace("[", "").replace("]", "");
+                Collections.sort(Arrays.asList(out), String.CASE_INSENSITIVE_ORDER);
+                return new ArrayList < > (Arrays.asList(out));
+            }
+        }
+        return null;
+    }
+
+    public static String getZRAMCompAlgo() {
+        if (Utils.existFile(ZRAM_COMP_ALGO)) {
+            String values = Utils.readFile(ZRAM_COMP_ALGO);
+            if (values != null) {
+                String[] valueArray = values.split(" ");
+
+                for (String value: valueArray)
+                    if (value.contains("["))
+                        return value.replace("[", "").replace("]", "");
+            }
+        }
+        return "";
+    }
+
+    public static boolean hasZRAMCompAlgos() {
+        return Utils.existFile(ZRAM_COMP_ALGO);
+    }
+
+    public static int getZRAMMaxCompStreams() {
+        return Utils.stringToInt(Utils.readFile(ZRAM_MAX_COMP_STREAMS));
+    }
+
+    public static boolean hasZRAMMaxCompStreams() {
+        return Utils.existFile(ZRAM_MAX_COMP_STREAMS);
     }
 
     public static int getZRAMDisksize() {

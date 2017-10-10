@@ -1159,6 +1159,8 @@ public interface Constants {
     String ZRAM_BLOCK = "/dev/block/zram0";
     String ZRAM_DISKSIZE = "/sys/block/zram0/disksize";
     String ZRAM_RESET = "/sys/block/zram0/reset";
+    String ZRAM_MAX_COMP_STREAMS = "/sys/block/zram0/max_comp_streams";
+    String ZRAM_COMP_ALGO = "/sys/block/zram0/comp_algorithm ";
 
     // Process Reclaim
     String PROCESS_RECLAIM = "/sys/module/process_reclaim/parameters";
@@ -1175,6 +1177,8 @@ public interface Constants {
         ZRAM_BLOCK,
         ZRAM_DISKSIZE,
         ZRAM_RESET,
+        ZRAM_MAX_COMP_STREAMS,
+        ZRAM_COMP_ALGO,
         VM_DIRTY_RATIO,
         VM_DIRTY_BACKGROUND_RATIO,
         VM_DIRTY_EXPIRE_CENTISECS,
