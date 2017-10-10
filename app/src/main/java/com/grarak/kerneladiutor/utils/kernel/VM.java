@@ -25,6 +25,7 @@ import java.util.List;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.kerneladiutor.library.root.RootUtils;
 
 /**
  * Created by willi on 27.12.14.
@@ -32,6 +33,42 @@ import com.grarak.kerneladiutor.utils.root.Control;
 public class VM implements Constants {
 
     private static String[] mAvail_Comp_Algo;
+
+    public static boolean hasZRAMDataSize() {
+        return Utils.existFile(ZRAM_ORG_DATA_SIZE) && Utils.existFile(ZRAM_COMP_DATA_SIZE);
+    }
+
+    public static int getZramOrigDataSize() {
+        return Utils.stringToInt(Utils.readFile(ZRAM_ORG_DATA_SIZE));
+    }
+
+    public static int getZramCompDataSize() {
+        return Utils.stringToInt(Utils.readFile(ZRAM_COMP_DATA_SIZE));
+    }
+
+    public static boolean hasZRAMReadWrites() {
+        return Utils.existFile(ZRAM_READ) && Utils.existFile(ZRAM_WRITES);
+    }
+
+    public static boolean hasZRAMFailReadWrites() {
+        return Utils.existFile(ZRAM_FAIL_READ) && Utils.existFile(ZRAM_FAIL_WRITES);
+    }
+
+    public static String getZramReadWrites() {
+        return " " + Utils.readFile(ZRAM_READ) + " | " + Utils.readFile(ZRAM_WRITES);
+    }
+
+    public static String getZramFailReadWrites() {
+        return " " + Utils.readFile(ZRAM_FAIL_READ) + " | " + Utils.readFile(ZRAM_FAIL_WRITES);
+    }
+
+    public static boolean hasZRAMReadOnly() {
+        return RootUtils.runCommand("cat proc/swaps").contains("dev/block/zram0");
+    }
+
+    public static String getFreeSwap(Context context) {
+        return RootUtils.runCommand(context.getFilesDir().getPath() + "/busybox free | grep Swap");
+    }
 
     public static void setZRAM(String algo, String disksize, String max_comp, Context context) {
         if (max_comp == null && hasZRAMMaxCompStreams()) {

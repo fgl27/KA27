@@ -1162,6 +1162,14 @@ public interface Constants {
     String ZRAM_MAX_COMP_STREAMS = "/sys/block/zram0/max_comp_streams";
     String ZRAM_COMP_ALGO = "/sys/block/zram0/comp_algorithm ";
 
+    String ZRAM_READ = "/sys/block/zram0/num_reads";
+    String ZRAM_WRITES = "/sys/block/zram0/num_writes";
+    String ZRAM_FAIL_READ = "/sys/block/zram0/failed_reads";
+    String ZRAM_FAIL_WRITES = "/sys/block/zram0/failed_writes";
+
+    String ZRAM_ORG_DATA_SIZE = "/sys/block/zram0/orig_data_size";
+    String ZRAM_COMP_DATA_SIZE = "/sys/block/zram0/compr_data_size";
+
     // Process Reclaim
     String PROCESS_RECLAIM = "/sys/module/process_reclaim/parameters";
     String PROCESS_RECLAIM_ENABLE = PROCESS_RECLAIM + "/enable_process_reclaim";

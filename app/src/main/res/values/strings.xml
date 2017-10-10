@@ -713,11 +713,15 @@
     <string name="zram">Z-RAM</string>
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>
-
     <string name="zram_comp_algo">Compression Algorithm</string>
     <string name="zram_comp_algo_summary">Compression size LZO smaler then LZ4, compression/decompression speed LZ4 better then LZO</string>
     <string name="zram_comp_streams">Concurrent Compress Operations</string>
-
+    <string name="zram_ro">Z-RAM Read Only</string>
+    <string name="disksize_used">DiskSize | Free | Used | Used &#37;</string>
+    <string name="read_write">Read | Write</string>
+    <string name="total">Total</string>
+    <string name="fail">Fail</string>
+    <string name="zram_data_size">Data size\nOriginal | Compressed | Compress Ratio &#37;</string>
     <string name="dirty_ratio">Dirty Ratio</string>
     <string name="dirty_ratio_summary">Contains, as a percentage of total system memory, the number of pages at which a process which is generating disk writes will itself start writing out dirty data. Lower the amount of unwritten write cache to reduce lags when a huge write is required.</string>
     <string name="dirty_background_ratio">Dirty Background Ratio</string>
