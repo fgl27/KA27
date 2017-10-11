@@ -718,6 +718,7 @@
     <string name="zram_comp_streams">Concurrent Compress Operations</string>
     <string name="zram_ro">Z-RAM Read Only</string>
     <string name="disksize_used">DiskSize | Free | Used | Used &#37;</string>
+    <string name="memosize_used">Total Size | Free | Free &#37;</string>
     <string name="read_write">Read | Write</string>
     <string name="total">Total</string>
     <string name="fail">Fail</string>

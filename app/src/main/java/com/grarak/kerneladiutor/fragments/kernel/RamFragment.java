@@ -15,6 +15,9 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
+import android.content.Context;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
@@ -25,6 +28,7 @@ import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.Ram;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,16 +38,19 @@ import java.util.List;
  */
 public class RamFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
-    private CardViewItem.DCardView mCurFreqCard;
+    private CardViewItem.DCardView mCurFreqCard, mRamUsedCard;
     private PopupCardView.DPopupCard mMaxFreqCard, mMinFreqCard;
     private SeekBarCardView.DSeekBarCard mPollMsCard;
 
     private List < String > freqs;
     private List < String > freqs_dev;
 
+    ActivityManager mActivityManager;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        mActivityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
 
         freqs = Ram.getFreqs();
         if (Ram.device("quark", "8084")) {
@@ -55,6 +62,11 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
     }
 
     private void RamInit() {
+
+            mRamUsedCard = new CardViewItem.DCardView();
+            mRamUsedCard.setTitle(getString(R.string.memosize_used));
+
+            addView(mRamUsedCard);
 
         mCurFreqCard = new CardViewItem.DCardView();
         mCurFreqCard.setTitle(getString(R.string.ram_cur_freq));
@@ -118,6 +130,12 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
             mMinFreqCard.setItem(FreqValue(Ram.getRamMinFreq()));
         if (mPollMsCard != null)
             mPollMsCard.setProgress((Ram.getRamPoll() / 10) - 1);
+        if (mRamUsedCard != null) {
+            int free = readAvailMem();
+            int total = readTotalMem();
+            mRamUsedCard.setDescription(total + getString(R.string.mb) + " | " +
+                free + getString(R.string.mb) + " | " + Utils.percentage(total, free, getActivity()));
+        }
         return true;
     }
 
@@ -127,5 +145,19 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
 
     private int getListPos(List list, String value) {
         return list.indexOf(value);
+    }
+
+    private int readAvailMem() {
+        MemoryInfo mi = new MemoryInfo();
+        mActivityManager.getMemoryInfo(mi);
+        long availableMem = mi.availMem;
+        return (int)(availableMem / 1048576L);
+    }
+
+    private int readTotalMem() {
+        MemoryInfo mi = new MemoryInfo();
+        mActivityManager.getMemoryInfo(mi);
+        long totalMem = mi.totalMem;
+        return (int)(totalMem / 1048576L);
     }
 }

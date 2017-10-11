@@ -67,7 +67,7 @@ public class VM implements Constants {
     }
 
     public static String getFreeSwap(Context context) {
-        return RootUtils.runCommand(context.getFilesDir().getPath() + "/busybox free | grep Swap");
+        return RootUtils.runCommand(context.getFilesDir().getPath() + "/busybox free | grep Swap | head -1");
     }
 
     public static void setZRAM(String algo, String disksize, String max_comp, Context context) {

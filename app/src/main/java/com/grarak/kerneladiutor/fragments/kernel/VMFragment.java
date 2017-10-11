@@ -27,13 +27,12 @@ import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.VM;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import com.grarak.kerneladiutor.utils.Utils;
 
 /**
  * Created by willi on 27.12.14.
@@ -544,16 +543,16 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
             int total = Utils.stringToInt(swap_split[1]);
             int free = Utils.stringToInt(swap_split[3]);
             int used = Utils.stringToInt(swap_split[2]);
-            mZramSwapUsedCard.setDescription(MbKb(total) + " | " +
-                MbKb(free) + " | " + MbKb(used) + " | " +
-                percentage(total, used));
+            mZramSwapUsedCard.setDescription(Utils.MbKb(total, getActivity()) + " | " +
+                Utils.MbKb(free, getActivity()) + " | " + Utils.MbKb(used, getActivity()) + " | " +
+                Utils.percentage(total, used, getActivity()));
         }
 
         if (mZramDataSizeCard != null) {
             int original = VM.getZramOrigDataSize() / 1024;
             int compressed = VM.getZramCompDataSize() / 1024;
-            mZramDataSizeCard.setDescription(MbKb(original) + " | " +
-                MbKb(compressed) + " | " + percentage(original / 1024, compressed / 1024));
+            mZramDataSizeCard.setDescription(Utils.MbKb(original, getActivity()) + " | " +
+                Utils.MbKb(compressed, getActivity()) + " | " + Utils.percentage(original / 1024, compressed / 1024, getActivity()));
         }
 
         if (mZramRWCard != null)
@@ -562,15 +561,4 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         return true;
     }
 
-    public String MbKb(int value) {
-        String converted = "";
-        if (value < 1024) converted = value + getString(R.string.kb);
-        else converted = ((int) Math.round(value / 1024)) + getString(R.string.mb);
-        return converted;
-    }
-
-    public String percentage(int total, int tocheck) {
-        float value = (float)((tocheck * 100.0f) / total);
-        return String.format(Locale.US, "%.2f", value) + getString(R.string.percent);
-    }
 }

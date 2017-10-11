@@ -112,5 +112,4 @@ public class Ram implements Constants {
             (RootUtils.runCommand("getprop ro.board.plataform").contains(board)) ||
             (RootUtils.runCommand("getprop ro.product.board").contains(board)));
     }
-
 }

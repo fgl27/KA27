@@ -104,6 +104,20 @@ public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
 
+    public static String MbKb(int value, Context context) {
+        String converted = "";
+        if (value < 1024) converted = value + context.getString(R.string.kb);
+        else converted = ((int) Math.round(value / 1024)) + context.getString(R.string.mb);
+        return converted;
+    }
+
+    public static String percentage(int total, int tocheck, Context context) {
+        float value;
+        if (tocheck > 0) value = (float)((tocheck * 100.0f) / total);
+        else value = 0;
+        return String.format(Locale.US, "%.2f", value) + context.getString(R.string.percent);
+    }
+
     public static boolean isAppInstalled(String packagename, Context context) {
         try {
             context.getPackageManager().getApplicationInfo(packagename, 0);
