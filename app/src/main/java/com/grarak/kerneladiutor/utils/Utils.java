@@ -107,7 +107,7 @@ public class Utils implements Constants {
     public static String MbKb(int value, Context context) {
         String converted = "";
         if (value < 1024) converted = value + context.getString(R.string.kb);
-        else converted = ((int) Math.round(value / 1024)) + context.getString(R.string.mb);
+        else converted = (Math.round((float)value / 1024)) + context.getString(R.string.mb);
         return converted;
     }
 
