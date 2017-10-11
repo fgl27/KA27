@@ -43,7 +43,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     private final List < String > values = new ArrayList < > (), modifiedvalues = new ArrayList < > ();
 
     private final String[] mProfileValues7 = new String[] {
-        "16,32,65,114,184,204,207",
+        "8,16,32,64,96,100,106",
         "172,190,208,226,244,280,283",
         "2,4,5,8,12,16,17",
         "4,8,10,16,24,32,33",
@@ -53,7 +53,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     };
 
     private final String[] mProfileValues6 = new String[] {
-        "16,32,65,114,184,204",
+        "8,16,32,64,96,100",
         "172,190,208,226,244,280",
         "2,4,5,8,12,16",
         "4,8,10,16,24,32",
