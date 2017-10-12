@@ -45,7 +45,10 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
     private List < String > freqs;
     private List < String > freqs_dev;
 
-    ActivityManager mActivityManager;
+    private ActivityManager mActivityManager;
+    private MemoryInfo mMemoryInfo = new MemoryInfo();
+    private long mMemoryDivider = 1048576L; // 1024*1024
+    private int mFreeRAM, mTotalRAM;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -131,10 +134,11 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         if (mPollMsCard != null)
             mPollMsCard.setProgress((Ram.getRamPoll() / 10) - 1);
         if (mRamUsedCard != null) {
-            int free = readAvailMem();
-            int total = readTotalMem();
-            mRamUsedCard.setDescription(total + getString(R.string.mb) + " | " +
-                free + getString(R.string.mb) + " | " + Utils.percentage(total, free, getActivity()));
+            mActivityManager.getMemoryInfo(mMemoryInfo);
+            mFreeRAM = (int)(mMemoryInfo.availMem / mMemoryDivider);
+            mTotalRAM = (int)(mMemoryInfo.totalMem / mMemoryDivider);
+            mRamUsedCard.setDescription(mTotalRAM + getString(R.string.mb) + " | " +
+                mFreeRAM + getString(R.string.mb) + " | " + Utils.percentage(mTotalRAM, mFreeRAM, getActivity()));
         }
         return true;
     }
@@ -147,17 +151,4 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         return list.indexOf(value);
     }
 
-    private int readAvailMem() {
-        MemoryInfo mi = new MemoryInfo();
-        mActivityManager.getMemoryInfo(mi);
-        long availableMem = mi.availMem;
-        return (int)(availableMem / 1048576L);
-    }
-
-    private int readTotalMem() {
-        MemoryInfo mi = new MemoryInfo();
-        mActivityManager.getMemoryInfo(mi);
-        long totalMem = mi.totalMem;
-        return (int)(totalMem / 1048576L);
-    }
 }
