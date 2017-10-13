@@ -335,8 +335,4 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         if (dEditTextCard == mHostnameCard) Misc.setHostname(value, getActivity());
     }
 
-    @Override
-    public boolean onRefresh() {
-        return true;
-    }
 }

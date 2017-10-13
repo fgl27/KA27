@@ -194,6 +194,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 if (CPU.hasCpuTouchBoost()) cpuTouchBoostInit();
                 if (othersDivider != null && (count == getCount() || getView(count) instanceof DDivider))
                     removeView(othersDivider);
+                Update();
             }
 
             private void usageInit() {
@@ -966,6 +967,10 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
             @Override
             public boolean onRefresh() {
+                Update();
+                return true;
+            }
+            public void Update() {
 
                 if (mTempCard != null) mTempCard.setDescription(CPU.getTemp());
 
@@ -1077,8 +1082,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                     String governor = CPU.getCurGovernor(CPU.getLITTLEcore(), false);
                     if (!governor.isEmpty()) mGovernorLITTLECard.setItem(governor);
                 }
-
-                return true;
             }
 
             private final Runnable cpuUsage = new Runnable() {

@@ -64,6 +64,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
         minFreqInit();
         governorInit();
         tunablesInit();
+        Update();
     }
 
     private void curFreqInit() {
@@ -285,6 +286,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             addAllViews(views);
         }
     }
+
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mMax2dFreqCard)
@@ -362,11 +364,15 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
 
     @Override
     public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
         if (mCur2dFreqCard != null)
             mCur2dFreqCard.setDescription((GPU.getGpu2dCurFreq() / 1000000) + getString(R.string.mhz));
 
         if (mCurFreqCard != null)
             mCurFreqCard.setDescription((GPU.getGpuCurFreq() / 1000000) + getString(R.string.mhz));
-        return true;
     }
 }

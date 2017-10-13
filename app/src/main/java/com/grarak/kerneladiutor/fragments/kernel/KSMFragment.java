@@ -44,6 +44,7 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
 
         ksmInit();
         ksmInfoInit();
+        Update();
     }
 
     private void ksmInfoInit() {
@@ -137,10 +138,14 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
 
     @Override
     public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
         if (mInfos != null)
             for (int i = 0; i < mInfos.length; i++)
                 if (mInfos[i] != null) mInfos[i].setDescription(KSM.getInfo(i));
-        return true;
     }
 
 }

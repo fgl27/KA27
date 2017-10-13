@@ -81,6 +81,7 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
         mWriteCard.setOnDPopupCardListener(this);
 
         addView(mWriteCard);
+        Update();
     }
 
     @Override
@@ -97,13 +98,16 @@ public class EntropyFragment extends RecyclerViewFragment implements PopupCardVi
 
     @Override
     public boolean onRefresh() {
+        Update();
+        return true;
+    }
+    public void Update() {
         int poolsize = Entropy.getPoolsize();
         if (mAvailableCard != null)
             mAvailableCard.setDescription(getAvailableDescription(Entropy.getAvailable(), poolsize));
         if (mPoolsizeCard != null) mPoolsizeCard.setDescription(String.valueOf(poolsize));
         if (mReadCard != null) mReadCard.setItem(String.valueOf(Entropy.getRead()));
         if (mWriteCard != null) mWriteCard.setItem(String.valueOf(Entropy.getWrite()));
-        return true;
     }
 
 }

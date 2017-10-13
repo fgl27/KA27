@@ -83,6 +83,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         if (Battery.hasBclHotplug()) bclHotplugInit();
 
         cstatesInit();
+        Update();
     }
 
     @Override
@@ -327,6 +328,11 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
     @Override
     public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
         if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(Battery.getBatteryLevel());
         if (mBatteryChargingCurrentCard != null) {
             double amperage = (double) Battery.getChargingCurrent() / 1000;
@@ -360,7 +366,6 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
             mBclVphHighCard.setProgress((((Battery.getBclVphHigh()) / 1000) - (bclArraylist * 50)) / 50);
         if (mBclVphLowCard != null)
             mBclVphLowCard.setProgress((((Battery.getBclVphLow()) / 1000) - (bclArraylist * 50)) / 50);
-        return true;
     }
 
     @Override

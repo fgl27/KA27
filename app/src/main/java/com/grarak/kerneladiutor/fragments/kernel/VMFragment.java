@@ -77,6 +77,7 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
             else zramInit();
             ExtraZramInit();
         }
+        Update();
     }
 
     private void processreclaimInit() {
@@ -520,6 +521,11 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
 
     @Override
     public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
         int pressure = VM.getPRPressure();
         int avg = VM.getPRAvgEff();
 
@@ -558,7 +564,6 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         if (mZramRWCard != null)
             mZramRWCard.setDescription(getString(R.string.total) + VM.getZramReadWrites() + "\n" +
                 getString(R.string.fail) + VM.getZramFailReadWrites());
-        return true;
     }
 
 }
