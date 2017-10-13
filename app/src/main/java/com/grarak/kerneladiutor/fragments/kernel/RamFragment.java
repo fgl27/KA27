@@ -54,6 +54,8 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
         mActivityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
+        mActivityManager.getMemoryInfo(mMemoryInfo);
+        mTotalRAM = (int)(mMemoryInfo.totalMem / mMemoryDivider);
 
         freqs = Ram.getFreqs();
         if (Ram.device("quark", "8084")) {
@@ -105,6 +107,8 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         mPollMsCard.setOnDSeekBarCardListener(this);
 
         addView(mPollMsCard);
+
+        Update();
     }
 
     @Override
@@ -125,6 +129,11 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
 
     @Override
     public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
         if (mCurFreqCard != null)
             mCurFreqCard.setDescription(FreqValue(Ram.getRamCurFreq()));
         if (mMaxFreqCard != null)
@@ -136,11 +145,9 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         if (mRamUsedCard != null) {
             mActivityManager.getMemoryInfo(mMemoryInfo);
             mFreeRAM = (int)(mMemoryInfo.availMem / mMemoryDivider);
-            mTotalRAM = (int)(mMemoryInfo.totalMem / mMemoryDivider);
             mRamUsedCard.setDescription(mTotalRAM + getString(R.string.mb) + " | " +
                 mFreeRAM + getString(R.string.mb) + " | " + Utils.percentage(mTotalRAM, mFreeRAM, getActivity()));
         }
-        return true;
     }
 
     private String FreqValue(String value) {
