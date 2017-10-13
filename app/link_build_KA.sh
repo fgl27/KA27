@@ -1,1 +1,0 @@
-../../scripts/build_scripts/build_KA.sh
