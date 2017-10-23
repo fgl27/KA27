@@ -689,6 +689,8 @@
     <string name="adaptive">Adaptive Low Memory Killer</string>
     <string name="adaptive_summary">Make LMK more aggressive dynamically when a thrashing scenario is detected.</string>
     <string name="values_in_mb">(values in MB)</string>
+    <string name="lmk_count">LMK Kill Count</string>
+    <string name="lmk_count_summary">Tasked Killed</string>
     <string name="lmk_profiles_original">Profiles (General use)</string>
     <string name="lmk_bhb_profiles">BHB27 Profiles</string>
     <string name="lmk_profiles">LMK Profiles</string>

@@ -38,6 +38,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     private SeekBarCardView.DSeekBarCard[] mMinFreeCard;
     private SeekBarCardView.DSeekBarCard mVmPressureFileMinCard;
     private CardViewItem.DCardView[] mProfileCard;
+    private CardViewItem.DCardView mLMKcount;
     private SwitchCardView.DSwitchCard mAdaptiveCard;
 
     private final List < String > values = new ArrayList < > (), modifiedvalues = new ArrayList < > ();
@@ -73,6 +74,12 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
         for (int x = 0; x < 513; x++) {
             modifiedvalues.add(x + getString(R.string.mb));
             values.add(String.valueOf(x * 256));
+        }
+
+        if (LMK.hasLMKcount()) {
+            mLMKcount = new CardViewItem.DCardView();
+            mLMKcount.setTitle(getString(R.string.lmk_count));
+            addView(mLMKcount);
         }
 
         if (LMK.hasAdaptive()) {
@@ -189,6 +196,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
                 addView(mProfilesOriginalDividerCard);
             addView(mProfileCard[i]);
         }
+        Update();
     }
 
     private void refresh() {
@@ -232,5 +240,16 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     @Override
     public void onStop(SeekBarCardView.DSeekBarCard dSeekBarCard, int position) {
         if (dSeekBarCard == mVmPressureFileMinCard) LMK.setVmPressureFileMin(position * 256, getActivity());
+    }
+
+    @Override
+    public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
+        if (mLMKcount != null) 
+            mLMKcount.setDescription(LMK.getLMKcount() + " " + getString(R.string.lmk_count_summary));
     }
 }

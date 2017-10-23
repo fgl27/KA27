@@ -1129,6 +1129,7 @@ public interface Constants {
     };
 
     // Low Memory Killer
+    String LMK_ACOUNT = "/sys/module/lowmemorykiller/parameters/lmkcount";
     String LMK_MINFREE = "/sys/module/lowmemorykiller/parameters/minfree";
     String LMK_ADAPTIVE = "/sys/module/lowmemorykiller/parameters/enable_adaptive_lmk";
     String LMK_VMPRESSURE_FILE_MIN = "/sys/module/lowmemorykiller/parameters/vmpressure_file_min";

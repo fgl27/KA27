@@ -67,4 +67,12 @@ public class LMK implements Constants {
     public static int getVmPressureFileMin() {
         return Utils.stringToInt(Utils.readFile(LMK_VMPRESSURE_FILE_MIN));
     }
+
+    public static boolean hasLMKcount() {
+        return Utils.existFile(LMK_ACOUNT);
+    }
+
+    public static int getLMKcount() {
+        return Utils.stringToInt(LMK_ACOUNT);
+    }
 }
