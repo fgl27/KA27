@@ -1,18 +1,18 @@
 ext.versions = [
         minSdk               : 21,
-        compileSdk           : 26,
-        buildTools           : '26.0.2',
+        compileSdk           : 27,
+        buildTools           : '27.0.0',
 
         publishVersion       : 'Quark.52',
         publishVersionCode   : 54,
 
-        gradlePlugin         : '3.0.0-rc2',
-        benmanes             : '0.16.0',
+        gradlePlugin         : '3.0.0',
+        benmanes             : '0.17.0',
 
         picasso              : '2.5.2',
-        supportLib           : '26.1.0',
+        supportLib           : '27.0.0',
         ztzip                : '1.12',
-        materialdialogs      : '0.9.4.7',
+        materialdialogs      : '0.9.5.0',
         materialtabs         : '2.0.5',
         bintrayplugin        : '1.7.3',
         mavengradleplugin    : '2.0',
