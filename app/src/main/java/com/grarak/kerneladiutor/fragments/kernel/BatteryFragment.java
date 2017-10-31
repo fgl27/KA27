@@ -28,7 +28,6 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
-import com.grarak.kerneladiutor.elements.cards.UsageCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -45,8 +44,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
     private int bclFreqCount = 0, bclArraylist = 60;
 
-    private UsageCardView.DUsageCard mBatteryLevelCard;
-    private CardViewItem.DCardView mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
+    private CardViewItem.DCardView mBatteryLevelCard, mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
 
     private SwitchCardView.DSwitchCard mForceFastChargeCard, mBatteryLedCard;
     private SwitchCardView.DSwitchCard mBclCard, mBclHotplugCard;
@@ -65,8 +63,8 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
 
-        batteryLevelInit();
         if (Battery.hasBatteryLed()) BatteryLedInit();
+        batteryLevelInit();
         batteryHealthInit();
         batteryVoltageInit();
         batteryChargingCurrentInit();
@@ -93,8 +91,8 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     }
 
     private void batteryLevelInit() {
-        mBatteryLevelCard = new UsageCardView.DUsageCard();
-        mBatteryLevelCard.setText(getString(R.string.battery_level));
+        mBatteryLevelCard = new CardViewItem.DCardView();
+        mBatteryLevelCard.setTitle(getString(R.string.battery_level));
 
         addView(mBatteryLevelCard);
     }
@@ -333,7 +331,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     }
 
     public void Update() {
-        if (mBatteryLevelCard != null) mBatteryLevelCard.setProgress(Battery.getBatteryLevel());
+        if (mBatteryLevelCard != null) mBatteryLevelCard.setDescription(Battery.getBatteryLevel() + getString(R.string.percent));
         if (mBatteryChargingCurrentCard != null) {
             double amperage = (double) Battery.getChargingCurrent() / 1000;
             if (amperage < 0) mBatteryChargingCurrentCard.setDescription(amperage + getString(R.string.ma));
