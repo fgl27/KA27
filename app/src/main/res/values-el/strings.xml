@@ -64,7 +64,6 @@
   <string name="kernel_version">Έκδοση Πυρήνα</string>
   <string name="cpu_information">Πληροφορίες για τη CPU</string>
   <string name="memory_information">Πληροφορίες Μνήμης</string>
-  <string name="cpu_usage">Χρήση της CPU</string>
   <string name="cpu_temp">Θερμοκρασία CPU</string>
   <string name="current_freq">Τρέχουσα Συχνότητα</string>
   <string name="core">Πυρήνας %d</string>

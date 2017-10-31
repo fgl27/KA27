@@ -65,7 +65,6 @@
   <string name="kernel_version">कर्नेल संस्करण</string>
   <string name="cpu_information">CPU जानकारी</string>
   <string name="memory_information">स्मृति सूचना</string>
-  <string name="cpu_usage">सीपीयू उपयोग</string>
   <string name="cpu_temp">CPU तापमान</string>
   <string name="current_freq">वर्तमान आवृत्ति</string>
   <string name="core">कोर %d</string>

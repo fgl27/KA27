@@ -64,7 +64,6 @@
   <string name="kernel_version">Kernel Sürümü</string>
   <string name="cpu_information">CPU Bilgisi</string>
   <string name="memory_information">Bellek Bilgisi</string>
-  <string name="cpu_usage">İşlemci Kullanımı</string>
   <string name="cpu_temp">İşlemci Sıcaklığı</string>
   <string name="current_freq">Geçerli Frekans</string>
   <string name="core">Çekirdek %d</string>

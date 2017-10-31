@@ -64,7 +64,6 @@
   <string name="kernel_version">Verzija kernela</string>
   <string name="cpu_information">CPU podaci</string>
   <string name="memory_information">O memoriji</string>
-  <string name="cpu_usage">Korišćenje CPU-a</string>
   <string name="cpu_temp">Temperatura CPU-a</string>
   <string name="current_freq">Trenutna frekvencija</string>
   <string name="core">Jezgra %d</string>

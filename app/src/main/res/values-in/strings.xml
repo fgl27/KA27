@@ -64,7 +64,6 @@
   <string name="kernel_version">Versi Kernel</string>
   <string name="cpu_information">Informasi CPU</string>
   <string name="memory_information">Informasi Memori</string>
-  <string name="cpu_usage">Penggunaan CPU</string>
   <string name="cpu_temp">Suhu CPU</string>
   <string name="current_freq">Frekuensi Sekarang</string>
   <string name="core">Inti %d</string>

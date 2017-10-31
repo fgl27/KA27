@@ -63,7 +63,6 @@
   <string name="kernel_version">Versiunea Kernel</string>
   <string name="cpu_information">Informaţiile de CPU</string>
   <string name="memory_information">Informaţii Memorie</string>
-  <string name="cpu_usage">Utilizare CPU</string>
   <string name="cpu_temp">Temperatura Procesor</string>
   <string name="current_freq">Frecvenţă actuală</string>
   <string name="core">Core %d</string>

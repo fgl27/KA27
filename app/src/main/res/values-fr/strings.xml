@@ -64,7 +64,6 @@
   <string name="kernel_version">Version du Kernel</string>
   <string name="cpu_information">Informations sur le CPU</string>
   <string name="memory_information">Informations Mémoire</string>
-  <string name="cpu_usage">Utilisation CPU</string>
   <string name="cpu_temp">Température du CPU</string>
   <string name="current_freq">Fréquence Actuelle</string>
   <string name="core">Coeur %d</string>

@@ -62,7 +62,6 @@
   <string name="kernel_version">Издање кернела</string>
   <string name="cpu_information">Подаци о процесору</string>
   <string name="memory_information">Подаци о меморији</string>
-  <string name="cpu_usage">ЦПУ употреба</string>
   <string name="cpu_temp">ЦПУ температура</string>
   <string name="current_freq">Тренутна фреквенција</string>
   <string name="core">Језгро %d</string>

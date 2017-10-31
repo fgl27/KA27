@@ -64,7 +64,6 @@
   <string name="kernel_version">커널 버전</string>
   <string name="cpu_information">CPU 정보</string>
   <string name="memory_information">메모리 정보</string>
-  <string name="cpu_usage">CPU 사용량</string>
   <string name="cpu_temp">CPU 온도</string>
   <string name="current_freq">현재 CPU 클럭</string>
   <string name="core">%d 번째 코어</string>

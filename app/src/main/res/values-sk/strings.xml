@@ -62,7 +62,6 @@
   <string name="kernel_version">Verzia jadra</string>
   <string name="cpu_information">CPU informácie</string>
   <string name="memory_information">Informácie o pamäti</string>
-  <string name="cpu_usage">Využitie CPU</string>
   <string name="cpu_temp">Teplota CPU</string>
   <string name="current_freq">Aktuálna frekvencia</string>
   <string name="core">Jadro %d</string>

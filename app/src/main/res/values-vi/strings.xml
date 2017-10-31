@@ -64,7 +64,6 @@
   <string name="kernel_version">Phiên bản nhân</string>
   <string name="cpu_information">Thông tin vi xử lý</string>
   <string name="memory_information">Thông tin bộ nhớ RAM</string>
-  <string name="cpu_usage">Sử dụng CPU</string>
   <string name="cpu_temp">Nhiệt độ vi xử lí</string>
   <string name="current_freq">Xung nhịp hiện tại</string>
   <string name="core">Lõi %d</string>

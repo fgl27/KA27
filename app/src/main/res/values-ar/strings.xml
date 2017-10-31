@@ -62,7 +62,6 @@
   <string name="kernel_version">نسخة أصدار النواة</string>
   <string name="cpu_information">معلومات المعالج</string>
   <string name="memory_information">معلومات الذاكرة</string>
-  <string name="cpu_usage">المستخدم من المعالج</string>
   <string name="cpu_temp">درجة حرارة المعالج</string>
   <string name="current_freq">التردد حاليا</string>
   <string name="core">نواة %d</string>

@@ -63,7 +63,6 @@
   <string name="kernel_version">Kernel-version</string>
   <string name="cpu_information">Information om CPU:n</string>
   <string name="memory_information">Information om minnet</string>
-  <string name="cpu_usage">CPU-användning</string>
   <string name="cpu_temp">CPU-temperatur</string>
   <string name="current_freq">Aktuell Frekvens</string>
   <string name="core">Kärna %d</string>

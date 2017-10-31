@@ -64,7 +64,6 @@
   <string name="kernel_version">ಕೆರ್ನಲ್ ಆವೃತ್ತಿ</string>
   <string name="cpu_information">ಸಿಪಿಯು ಮಾಹಿತಿ</string>
   <string name="memory_information">ಮೆಮೊರಿ ಮಾಹಿತಿ</string>
-  <string name="cpu_usage">ಸಿಪಿಯು ಬಳಕೆ</string>
   <string name="cpu_temp">ಸಿಪಿಯು ತಾಪಮಾನ</string>
   <string name="current_freq">ಪ್ರಸ್ತುತ ಆವರ್ತನ</string>
   <string name="core">ಕೋರ್ %d</string>

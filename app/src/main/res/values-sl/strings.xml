@@ -64,7 +64,6 @@
   <string name="kernel_version">Različica jedra</string>
   <string name="cpu_information">Informacije o CPU</string>
   <string name="memory_information">Informacije o pomnilniku</string>
-  <string name="cpu_usage">Poraba CPU</string>
   <string name="cpu_temp">Temperatura CPU</string>
   <string name="current_freq">Trenutna frekvenca</string>
   <string name="core">Jedro %d</string>

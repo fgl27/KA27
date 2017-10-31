@@ -64,7 +64,6 @@
   <string name="kernel_version">カーネルバージョン</string>
   <string name="cpu_information">CPU 情報</string>
   <string name="memory_information">メモリ情報</string>
-  <string name="cpu_usage">CPU 使用率</string>
   <string name="cpu_temp">CPU温度</string>
   <string name="current_freq">現在の周波数</string>
   <string name="core">コア %d</string>

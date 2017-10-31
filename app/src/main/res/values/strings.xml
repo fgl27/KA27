@@ -111,7 +111,6 @@
     <string name="memory_information">Memory Information</string>
 
     <!-- CPU -->
-    <string name="cpu_usage">CPU Usage</string>
     <string name="cpu_temp">CPU Temperature</string>
     <string name="cpu_extra">CPU Efficiency Flags</string>
     <string name="current_freq">Current Frequency</string>

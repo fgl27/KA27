@@ -42,7 +42,6 @@
   <string name="settings">Seaded</string>
   <string name="kernel_version">Tuuma versioon</string>
   <string name="cpu_information">CPU andmed</string>
-  <string name="cpu_usage">CPU kasutus</string>
   <string name="cpu_temp">CPU temperatuur</string>
   <string name="current_freq">Praegune sagedus</string>
   <string name="core">Tuum  %d</string>

@@ -63,7 +63,6 @@
   <string name="kernel_version">Kernel verzió</string>
   <string name="cpu_information">CPU információ</string>
   <string name="memory_information">Memória információ</string>
-  <string name="cpu_usage">CPU használat</string>
   <string name="cpu_temp">CPU hőmérséklet</string>
   <string name="current_freq">Jelenlegi frekvencia</string>
   <string name="core">Mag %d</string>

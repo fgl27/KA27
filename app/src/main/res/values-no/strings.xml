@@ -64,7 +64,6 @@
   <string name="kernel_version">Kjerneversjon</string>
   <string name="cpu_information">CPU-informasjon</string>
   <string name="memory_information">Minneinformasjon</string>
-  <string name="cpu_usage">CPU-bruk</string>
   <string name="cpu_temp">CPU-temperatur</string>
   <string name="current_freq">Gjeldende frekvens</string>
   <string name="core">Kjernen %d</string>

@@ -64,7 +64,6 @@
   <string name="kernel_version">Versió del nucli</string>
   <string name="cpu_information">Informació de CPU</string>
   <string name="memory_information">Informació de la memòria</string>
-  <string name="cpu_usage">Ús de CPU</string>
   <string name="cpu_temp">Temperatura de la CPU</string>
   <string name="current_freq">Freqüència actual</string>
   <string name="core">Nucli %d</string>

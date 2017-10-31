@@ -63,7 +63,6 @@
   <string name="kernel_version">核心版本</string>
   <string name="cpu_information">CPU 資訊</string>
   <string name="memory_information">記憶體資訊</string>
-  <string name="cpu_usage">CPU 使用率</string>
   <string name="cpu_temp">CPU 溫度</string>
   <string name="current_freq">目前頻率</string>
   <string name="core">核心 %d</string>

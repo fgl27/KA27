@@ -63,7 +63,6 @@
   <string name="kernel_version">Kernel versio</string>
   <string name="cpu_information">CPU informaatio</string>
   <string name="memory_information">Muistitiedot</string>
-  <string name="cpu_usage">CPU-käyttö</string>
   <string name="cpu_temp">CPUn lämpötila</string>
   <string name="current_freq">Nykyinen taajuus</string>
   <string name="offline">Offline</string>

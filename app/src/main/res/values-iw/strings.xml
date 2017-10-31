@@ -61,7 +61,6 @@
   <string name="kernel_version">גרסת הקרנל</string>
   <string name="cpu_information">מידע על המעבד</string>
   <string name="memory_information">מידע על הזיכרוו</string>
-  <string name="cpu_usage">שימוש במעבד</string>
   <string name="cpu_temp">טמפרטורת מעבד</string>
   <string name="current_freq">תדר נוכחי</string>
   <string name="core">ליבה %d</string>

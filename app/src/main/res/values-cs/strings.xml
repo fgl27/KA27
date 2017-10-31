@@ -64,7 +64,6 @@
   <string name="kernel_version">Verze jádra</string>
   <string name="cpu_information">Informace o procesoru</string>
   <string name="memory_information">Informace o paměti</string>
-  <string name="cpu_usage">Využití procesoru</string>
   <string name="cpu_temp">Teplota procesoru</string>
   <string name="current_freq">Aktuální frekvence</string>
   <string name="core">Jádro %d</string>

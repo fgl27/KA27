@@ -32,7 +32,6 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
-import com.grarak.kerneladiutor.elements.cards.UsageCardView;
 import com.grarak.kerneladiutor.fragments.PathReaderFragment;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.fragments.ViewPagerFragment;
@@ -96,8 +95,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
         SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener,
         SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
-            private UsageCardView.DUsageCard mUsageCard;
-
             private CardViewItem.DCardView mTempCard;
 
             private AppCompatCheckBox[] mCoreCheckBox;
@@ -157,7 +154,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             public void init(Bundle savedInstanceState) {
                 super.init(savedInstanceState);
 
-                usageInit();
                 if (CPU.hasTemp()) tempInit();
                 if (CPU.getFreqs() != null) {
                     if (CPU.isBigLITTLE()) {
@@ -196,12 +192,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 if (othersDivider != null && (count == getCount() || getView(count) instanceof DDivider))
                     removeView(othersDivider);
                 Update();
-            }
-
-            private void usageInit() {
-                mUsageCard = new UsageCardView.DUsageCard();
-                mUsageCard.setText(getString(R.string.cpu_usage));
-                addView(mUsageCard);
             }
 
             private void tempInit() {
@@ -1083,72 +1073,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                     String governor = CPU.getCurGovernor(CPU.getLITTLEcore(), false);
                     if (!governor.isEmpty()) mGovernorLITTLECard.setItem(governor);
                 }
-            }
-
-            private final Runnable cpuUsage = new Runnable() {
-                @Override
-                public void run() {
-                    new Handler().postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            final float[] usage = CPU.getCpuUsage();
-                            try {
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (usage != null) {
-                                            if (mUsageCard != null)
-                                                mUsageCard.setProgress(Math.round(usage[0]));
-
-                                            if (mCoreUsageText != null) {
-                                                List < Integer > cores = CPU.getBigCoreRange();
-                                                for (int i = 0; i < mCoreUsageText.length; i++) {
-                                                    String message = Math.round(usage[cores.get(i) + 1]) + "%";
-                                                    if (mCoreUsageText[i] != null) {
-                                                        if (mCoreProgressBar != null && mCoreProgressBar[i] != null && mCoreProgressBar[i].getProgress() == 0) {
-                                                            mCoreUsageText[i].setText("");
-                                                        } else {
-                                                            mCoreUsageText[i].setText(message);
-                                                        }
-                                                    }
-
-                                                }
-                                            }
-
-                                            if (mCoreUsageTextLITTLE != null) {
-                                                List < Integer > cores = CPU.getLITTLECoreRange();
-                                                for (int i = 0; i < mCoreUsageTextLITTLE.length; i++) {
-                                                    String message = Math.round(usage[cores.get(i) + 1]) + "%";
-                                                    if (mCoreUsageTextLITTLE[i] != null) {
-                                                        if (mCoreProgressBarLITTLE != null && mCoreProgressBarLITTLE[i] != null && mCoreProgressBarLITTLE[i].getProgress() == 0) {
-                                                            mCoreUsageTextLITTLE[i].setText("");
-                                                        } else {
-                                                            mCoreUsageTextLITTLE[i].setText(message);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
-                            } catch (NullPointerException ignored) {}
-                        }
-                    }, 100);
-
-                    getHandler().postDelayed(cpuUsage, 1000);
-                }
-            };
-
-            @Override
-            public void onResume() {
-                super.onResume();
-                getHandler().post(cpuUsage);
-            }
-
-            @Override
-            public void onPause() {
-                super.onPause();
-                getHandler().removeCallbacks(cpuUsage);
             }
 
         }

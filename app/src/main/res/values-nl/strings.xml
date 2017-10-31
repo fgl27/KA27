@@ -63,7 +63,6 @@
   <string name="kernel_version">Kernel Versie</string>
   <string name="cpu_information">CPU informatie</string>
   <string name="memory_information">Geheugen Informatie</string>
-  <string name="cpu_usage">CPU-gebruik</string>
   <string name="cpu_temp">CPU temperatuur</string>
   <string name="current_freq">Huidige frequentie</string>
   <string name="core">Kern %d</string>

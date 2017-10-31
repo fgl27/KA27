@@ -64,7 +64,6 @@
   <string name="kernel_version">Версия ядра</string>
   <string name="cpu_information">Сведения о процессоре</string>
   <string name="memory_information">Информация о памяти</string>
-  <string name="cpu_usage">Использование процессора</string>
   <string name="cpu_temp">Температура процессора</string>
   <string name="current_freq">Текущая частота</string>
   <string name="core">Ядро %d</string>
