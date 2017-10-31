@@ -17,6 +17,7 @@ package com.grarak.kerneladiutor.fragments.kernel;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
@@ -1087,7 +1088,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             private final Runnable cpuUsage = new Runnable() {
                 @Override
                 public void run() {
-                    new Thread(new Runnable() {
+                    new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             final float[] usage = CPU.getCpuUsage();
@@ -1132,7 +1133,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                                 });
                             } catch (NullPointerException ignored) {}
                         }
-                    }).start();
+                    }, 100);
 
                     getHandler().postDelayed(cpuUsage, 1000);
                 }
