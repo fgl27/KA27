@@ -538,56 +538,6 @@ public class CPU implements Constants {
         return TEMP_FILE != null;
     }
 
-    public static float[] getCpuUsage() {
-        try {
-            Usage[] usage1 = getUsages();
-            Thread.sleep(500);
-            Usage[] usage2 = getUsages();
-
-            if (usage1 != null && usage2 != null) {
-                float[] pers = new float[usage1.length];
-                for (int i = 0; i < usage1.length; i++) {
-                    long idle1 = usage1[i].getIdle();
-                    long up1 = usage1[i].getUptime();
-
-                    long idle2 = usage2[i].getIdle();
-                    long up2 = usage2[i].getUptime();
-
-                    float cpu = -1f;
-                    if (idle1 >= 0 && up1 >= 0 && idle2 >= 0 && up2 >= 0) {
-                        if ((up2 + idle2) > (up1 + idle1) && up2 >= up1) {
-                            cpu = (up2 - up1) / (float)((up2 + idle2) - (up1 + idle1));
-                            cpu *= 100.0f;
-                        }
-                    }
-
-                    pers[i] = cpu < 0 ? 0 : cpu > 100 ? 100 : cpu;
-                }
-                return pers;
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    private static Usage[] getUsages() {
-        try {
-            RandomAccessFile reader = new RandomAccessFile("/proc/stat", "r");
-            Usage[] usage = new Usage[getCoreCount() + 1];
-            for (int i = 0; i < usage.length; i++)
-                usage[i] = new Usage(reader.readLine());
-            reader.close();
-            return usage;
-        } catch (FileNotFoundException e) {
-            Log.i(TAG, "/proc/stat does not exist");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public static void activateStateNotifier(boolean active, Context context) {
         Control.runCommand(active ? "Y" : "N", STATE_NOTIFIER_ENABLED, Control.CommandType.GENERIC, context);
     }
