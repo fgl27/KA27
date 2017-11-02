@@ -18,9 +18,12 @@ package com.grarak.kerneladiutor.utils.kernel;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.Arrays;
+
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.kerneladiutor.library.root.RootUtils;
 
 /**
  * Created by willi on 27.12.14.
@@ -238,5 +241,98 @@ public class WakeLock implements Constants {
 
     public static boolean hasNetlinkWakeLock() {
         return Utils.existFile(NETLINK_WAKELOCK);
+    }
+
+    public static void activateWakeLockDebug(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", WAKELOCK_DEBUG, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isWakeLockDebugActive() {
+        return Utils.readFile(WAKELOCK_DEBUG).equals("Y");
+    }
+
+    public static boolean hasWakeLockDebug() {
+        return Utils.existFile(WAKELOCK_DEBUG);
+    }
+
+    public static void setTestWakeLock(String value, Context context) {
+        Control.runCommand(value, TEST_WAKELOCK, Control.CommandType.GENERIC, context);
+    }
+
+    public static String getTestWakeLock() {
+        return Utils.readFile(TEST_WAKELOCK);
+    }
+
+    public static boolean hasTestWakeLock() {
+        return Utils.existFile(TEST_WAKELOCK);
+    }
+
+    public static String getWakeLocks() {
+        String result = "";
+        int count = 1;
+        String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
+        String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
+        if (wakes != null && wakes.length > 0) {
+            Arrays.sort(wakes);
+            String result_temp = "Total wakelock request " + wakes.length + ", in the last " + timeMs(getWakeLocksDuration()) + "(hh:mm:ss)" + "\n";
+            for (int i = 0; i < wakes.length; ++i) {
+                if (i + 1 == wakes.length) {
+                    result += count + " times " + wakes[i] + "\n";
+                    count = 1;
+                } else if (wakes[i].equals(wakes[i + 1])) {
+                    count++;
+                } else {
+                    result += count + " times " + wakes[i] + "\n";
+                    count = 1;
+                }
+            }
+            wakes = result.split("\\r?\\n");
+            for (int a = 0; a < wakes.length; a++) {
+                for (int b = 0; b < wakes.length; b++) {
+                    if ((b + 1) != wakes.length) {
+                        String[] wake_temp1 = wakes[b].split(" ");
+                        String[] wake_temp2 = wakes[b + 1].split(" ");
+                        int temp1 = Utils.stringToInt(wake_temp1[0]);
+                        int temp2 = Utils.stringToInt(wake_temp2[0]);
+                        if (temp1 < temp2) {
+                            String temp = wakes[b];
+                            wakes[b] = wakes[b + 1];
+                            wakes[b + 1] = temp;
+                        }
+                    }
+                }
+            }
+
+            result = result_temp;
+            for (int i = 0; i < wakes.length; i++) {
+                result += wakes[i] + "\n";
+            }
+        }
+        return result;
+    }
+
+    public static long getWakeLocksDuration() {
+        long first = Utils.stringToInt(RootUtils.runCommand("dmesg | grep wakelock | head -n1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
+        long last = Utils.stringToInt(RootUtils.runCommand("dmesg | grep wakelock | tail -1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
+        return last - first;
+    }
+
+    public static int lessthanten(int time) {
+        return (time < 10) ? 0 + time : time;
+    }
+
+    public static String timeMs(long time) {
+        int seconds, minutes, hours;
+
+        time = time / 1000;
+        seconds = lessthanten((int)time % 60);
+
+        time = time / 60;
+        minutes = lessthanten((int)time % 60);
+
+        time = (time / 60) % 24;
+        hours = lessthanten((int)time);
+
+        return (hours + ":" + minutes + ":" + seconds);
     }
 }

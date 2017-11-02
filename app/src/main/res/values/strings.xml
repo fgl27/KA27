@@ -831,6 +831,16 @@
     <string name="wlan_rx_wakelock_divider">wlan_rx Wakelock Divider</string>
     <string name="msm_hsic_wakelock_divider">msm_hsic Wakelock Divider</string>
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
+    <string name="wakelock_debug">Wakelock Debug</string>
+    <string name="wakelock_debug_summary">Log Wakelock request to drivers message.\n Currently: %s</string>
+    <string name="wakelock_list">List wakelocks</string>
+    <string name="wakelock_list_summary">Shows a list with the latest wakelock request, depends Wakelock Debug be enable for some time, click here will disable Wakelock Debug</string>
+    <string name="wakelock_test_clean">Empty</string>
+    <string name="wakelock_test">Disable a wakelock by name</string>
+    <string name="wakelock_test_summary">Allows to disable one wakelock by it\'s name\n Currently: %s</string>
+    <string name="wakelock_test_hint">The wakelock name</string>
+    <string name="wakelock_test_forbidden_special">Forbidden space in the wakelock name!</string>
+    <string name="wakelock_empty">Test wakelock is empty!</string>
     <string name="cstates">Krait C-States Settings</string>
     <string name="c0state">C0 (WFI)</string>
     <string name="c0state_summary">Shallowest Sleep with instant wake up.</string>

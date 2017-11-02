@@ -645,12 +645,24 @@ public class Utils implements Constants {
     public static String getwakeSources() {
         long time_locale = System.currentTimeMillis();
         String out = "";
-        String[] dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'").split("\\r?\\n");
-        String[] dmesg_time = RootUtils.runCommand("dmesg | grep 'wakeup source' | cut -d'[' -f2 | cut -d. -f1").split("\\r?\\n");
-        for (int i = dmesg_time.length - 1; i >= 0; i--) {
-            long time = (time_locale - (SystemClock.elapsedRealtime() - (Utils.stringToInt(dmesg_time[i]) * 1000)));
-            String time_result = Utils.getDate(time);
-            out += time_result + ":\n" + dmesg[i] + "\n";
+
+        String pre_dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'");
+        String[] dmesg = (pre_dmesg != null  && !pre_dmesg.isEmpty()) ? pre_dmesg.split("\\r?\\n") : null;
+
+        String pre_dmesg_time = RootUtils.runCommand("dmesg | grep 'wakeup source' | cut -d'[' -f2 | cut -d. -f1");
+        String[] dmesg_time = (pre_dmesg_time != null && !pre_dmesg_time.isEmpty()) ? pre_dmesg_time.split("\\r?\\n") : null;
+
+        if ((dmesg != null && dmesg.length > 0) && (dmesg_time != null && dmesg_time.length > 0)) {
+            for (int i = 0; i < dmesg_time.length / 2; i++) {
+                String temp = dmesg_time[i];
+                dmesg_time[i] = dmesg_time[dmesg_time.length - i - 1];
+                dmesg_time[dmesg_time.length - i - 1] = temp;
+            }
+            for (int i = 0; i < dmesg_time.length; i++) {
+                long time = (time_locale - (SystemClock.elapsedRealtime() - (Utils.stringToInt(dmesg_time[i]) * 1000)));
+                String time_result = Utils.getDate(time);
+                out += time_result + ":\n" + dmesg[i] + "\n";
+            }
         }
         return out;
     }

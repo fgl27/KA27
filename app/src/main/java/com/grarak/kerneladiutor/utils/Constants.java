@@ -1236,6 +1236,9 @@ public interface Constants {
     String NETLINK_WAKELOCK = "/sys/module/wakeup/parameters/enable_netlink_ws";
     String TIMERFD_WAKELOCK = "/sys/module/wakeup/parameters/enable_timerfd_ws";
 
+    String WAKELOCK_DEBUG = "/sys/module/wakeup/parameters/enable_debug_ws";
+    String TEST_WAKELOCK = "/sys/module/wakeup/parameters/disable_test_ws";
+
     String[] WLAN_RX_WAKELOCKS = {
         "/sys/module/wakeup/parameters/wlan_rx_wake",
         "/sys/module/wakeup/parameters/enable_wlan_rx_wake_ws"
@@ -1269,7 +1272,8 @@ public interface Constants {
             MSM_HSIC_WAKELOCK_DIVIDER,
             BCMDHD_WAKELOCK_DIVIDER,
             BLUESLEEP_WAKELOCK,
-            BLUEDROID_TIMER_WAKELOCK
+            BLUEDROID_TIMER_WAKELOCK,
+            TEST_WAKELOCK
         }
     };
 

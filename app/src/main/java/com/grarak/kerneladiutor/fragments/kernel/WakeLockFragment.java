@@ -15,15 +15,29 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatEditText;
+import android.text.InputType;
+import android.view.Gravity;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.elements.DDivider;
+import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.WakeLock;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,85 +48,158 @@ import java.util.List;
 
 public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
-    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard, mBlueSleepWakeLockCard, mBlueDroidTimeWakeLockCard, mSensorIndWakeLockCard, mMsmHsicHostWakeLockCard, mTimerFdWakeLockCard, mNetlinkWakeLockCard;
+    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard, mBlueSleepWakeLockCard, mBlueDroidTimeWakeLockCard, mSensorIndWakeLockCard, mMsmHsicHostWakeLockCard, mTimerFdWakeLockCard, mNetlinkWakeLockCard, mWakeLockDebugCard;
     private SwitchCardView.DSwitchCard mWlanrxWakelockCard, mWlanctrlWakelockCard, mWlanWakelockCard;
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard, mMsmHsicWakelockDividerCard, mBCMDHDWakelockDividerCard;
 
+    private CardViewItem.DCardView mTestWakeLock;
+    private boolean temp_bool = false;
+    private String wake_sources, test_wake, getTestWakeLock;
 
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
+        wakelockDebugInit();
         wakelockInit();
     }
 
+
+    private void wakelockDebugInit() {
+
+        if (WakeLock.hasWakeLockDebug()) {
+            temp_bool = WakeLock.isWakeLockDebugActive();
+            mWakeLockDebugCard = new SwitchCardView.DSwitchCard();
+            mWakeLockDebugCard.setTitle(getString(R.string.wakelock_debug));
+            mWakeLockDebugCard.setDescription(String.format(getString(R.string.wakelock_debug_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mWakeLockDebugCard.setChecked(temp_bool);
+            mWakeLockDebugCard.setOnDSwitchCardListener(this);
+
+            addView(mWakeLockDebugCard);
+
+            CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
+            wakesourceCard.setTitle(getString(R.string.wakelock_list));
+            wakesourceCard.setDescription(getString(R.string.wakelock_list_summary));
+            wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+                @Override
+                public void onClick(CardViewItem.DCardView dCardView) {
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            wake_sources = WakeLock.getWakeLocks();
+                            if (!wake_sources.isEmpty()) getWakeLocksAlert();
+                            else Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
+                        }
+                    });
+                }
+            });
+            addView(wakesourceCard);
+        }
+
+        if (WakeLock.hasTestWakeLock()) {
+
+            getTestWakeLock = WakeLock.getTestWakeLock();
+            mTestWakeLock = new CardViewItem.DCardView();
+            mTestWakeLock.setTitle(getString(R.string.wakelock_test));
+            mTestWakeLock.setDescription(String.format(getString(R.string.wakelock_test_summary), !getTestWakeLock.isEmpty() ?
+                getTestWakeLock : getString(R.string.wakelock_empty)));
+            mTestWakeLock.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+                @Override
+                public void onClick(CardViewItem.DCardView dCardView) {
+                    getHandler().post(new Runnable() {
+                        @Override
+                        public void run() {
+                            getTestWakeLock();
+                        }
+                    });
+                }
+            });
+            addView(mTestWakeLock);
+
+        }
+    }
 
     private void wakelockInit() {
         List < DAdapter.DView > views = new ArrayList < > ();
 
         if (WakeLock.hasSmb135xWakeLock()) {
+            temp_bool = WakeLock.isSmb135xWakeLockActive();
             mSmb135xWakeLockCard = new SwitchCardView.DSwitchCard();
             mSmb135xWakeLockCard.setTitle(getString(R.string.smb135x_wakelock));
-            mSmb135xWakeLockCard.setDescription(String.format(getString(R.string.smb135x_wakelock_summary), WakeLock.isSmb135xWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mSmb135xWakeLockCard.setChecked(WakeLock.isSmb135xWakeLockActive());
+            mSmb135xWakeLockCard.setDescription(String.format(getString(R.string.smb135x_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mSmb135xWakeLockCard.setChecked(temp_bool);
             mSmb135xWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mSmb135xWakeLockCard);
         }
 
         if (WakeLock.hasBlueSleepWakeLock()) {
+            temp_bool = WakeLock.isBlueSleepWakeLockActive();
             mBlueSleepWakeLockCard = new SwitchCardView.DSwitchCard();
             mBlueSleepWakeLockCard.setTitle(getString(R.string.bluesleep_wakelock));
-            mBlueSleepWakeLockCard.setDescription(String.format(getString(R.string.bluesleep_wakelock_summary), WakeLock.isBlueSleepWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mBlueSleepWakeLockCard.setChecked(WakeLock.isBlueSleepWakeLockActive());
+            mBlueSleepWakeLockCard.setDescription(String.format(getString(R.string.bluesleep_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mBlueSleepWakeLockCard.setChecked(temp_bool);
             mBlueSleepWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mBlueSleepWakeLockCard);
         }
 
         if (WakeLock.hasBlueDroidTimeWakeLock()) {
+            temp_bool = WakeLock.isBlueDroidTimeWakeLockActive();
             mBlueDroidTimeWakeLockCard = new SwitchCardView.DSwitchCard();
             mBlueDroidTimeWakeLockCard.setTitle(getString(R.string.bluedroid_time_wakelock));
-            mBlueDroidTimeWakeLockCard.setDescription(String.format(getString(R.string.bluedroid_time_wakelock_summary), WakeLock.isBlueDroidTimeWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mBlueDroidTimeWakeLockCard.setChecked(WakeLock.isBlueDroidTimeWakeLockActive());
+            mBlueDroidTimeWakeLockCard.setDescription(String.format(getString(R.string.bluedroid_time_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mBlueDroidTimeWakeLockCard.setChecked(temp_bool);
             mBlueDroidTimeWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mBlueDroidTimeWakeLockCard);
         }
 
         if (WakeLock.hasSensorIndWakeLock()) {
+            temp_bool = WakeLock.isSensorIndWakeLockActive();
             mSensorIndWakeLockCard = new SwitchCardView.DSwitchCard();
             mSensorIndWakeLockCard.setTitle(getString(R.string.sensor_ind_wakelock));
-            mSensorIndWakeLockCard.setDescription(String.format(getString(R.string.sensor_ind_wakelock_summary), WakeLock.isSensorIndWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mSensorIndWakeLockCard.setChecked(WakeLock.isSensorIndWakeLockActive());
+            mSensorIndWakeLockCard.setDescription(String.format(getString(R.string.sensor_ind_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mSensorIndWakeLockCard.setChecked(temp_bool);
             mSensorIndWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mSensorIndWakeLockCard);
         }
 
         if (WakeLock.hasTimerFdWakeLock()) {
+            temp_bool = WakeLock.isSensorIndWakeLockActive();
             mTimerFdWakeLockCard = new SwitchCardView.DSwitchCard();
             mTimerFdWakeLockCard.setTitle(getString(R.string.timerfd_wakelock));
-            mTimerFdWakeLockCard.setDescription(String.format(getString(R.string.timerfd_wakelock_summary), WakeLock.isTimerFdWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mTimerFdWakeLockCard.setChecked(WakeLock.isTimerFdWakeLockActive());
+            mTimerFdWakeLockCard.setDescription(String.format(getString(R.string.timerfd_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mTimerFdWakeLockCard.setChecked(temp_bool);
             mTimerFdWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mTimerFdWakeLockCard);
         }
 
         if (WakeLock.hasNetlinkWakeLock()) {
+            temp_bool = WakeLock.isNetlinkWakeLockActive();
             mNetlinkWakeLockCard = new SwitchCardView.DSwitchCard();
             mNetlinkWakeLockCard.setTitle(getString(R.string.netlink_wakelock));
-            mNetlinkWakeLockCard.setDescription(String.format(getString(R.string.netlink_wakelock_summary), WakeLock.isNetlinkWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mNetlinkWakeLockCard.setChecked(WakeLock.isNetlinkWakeLockActive());
+            mNetlinkWakeLockCard.setDescription(String.format(getString(R.string.netlink_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mNetlinkWakeLockCard.setChecked(temp_bool);
             mNetlinkWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mNetlinkWakeLockCard);
         }
 
         if (WakeLock.hasMsmHsicHostWakeLock()) {
+            temp_bool = WakeLock.isMsmHsicHostWakeLockActive();
             mMsmHsicHostWakeLockCard = new SwitchCardView.DSwitchCard();
             mMsmHsicHostWakeLockCard.setTitle(getString(R.string.msm_hsic_host_wakelock));
-            mMsmHsicHostWakeLockCard.setDescription(String.format(getString(R.string.msm_hsic_host_wakelock_summary), WakeLock.isMsmHsicHostWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mMsmHsicHostWakeLockCard.setChecked(WakeLock.isMsmHsicHostWakeLockActive());
+            mMsmHsicHostWakeLockCard.setDescription(String.format(getString(R.string.msm_hsic_host_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mMsmHsicHostWakeLockCard.setChecked(temp_bool);
             mMsmHsicHostWakeLockCard.setOnDSwitchCardListener(this);
 
             views.add(mMsmHsicHostWakeLockCard);
@@ -132,30 +219,36 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
         }
 
         if (WakeLock.hasWlanrxWakeLock()) {
+            temp_bool = WakeLock.isWlanrxWakeLockActive();
             mWlanrxWakelockCard = new SwitchCardView.DSwitchCard();
             mWlanrxWakelockCard.setTitle(getString(R.string.wlan_rx_wakelock));
-            mWlanrxWakelockCard.setDescription(String.format(getString(R.string.wlan_rx_wakelock_summary), WakeLock.isWlanrxWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mWlanrxWakelockCard.setChecked(WakeLock.isWlanrxWakeLockActive());
+            mWlanrxWakelockCard.setDescription(String.format(getString(R.string.wlan_rx_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mWlanrxWakelockCard.setChecked(temp_bool);
             mWlanrxWakelockCard.setOnDSwitchCardListener(this);
 
             views.add(mWlanrxWakelockCard);
         }
 
         if (WakeLock.hasWlanctrlWakeLock()) {
+            temp_bool = WakeLock.isWlanctrlWakeLockActive();
             mWlanctrlWakelockCard = new SwitchCardView.DSwitchCard();
             mWlanctrlWakelockCard.setTitle(getString(R.string.wlan_ctrl_wakelock));
-            mWlanctrlWakelockCard.setDescription(String.format(getString(R.string.wlan_ctrl_wakelock_summary), WakeLock.isWlanctrlWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mWlanctrlWakelockCard.setChecked(WakeLock.isWlanctrlWakeLockActive());
+            mWlanctrlWakelockCard.setDescription(String.format(getString(R.string.wlan_ctrl_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mWlanctrlWakelockCard.setChecked(temp_bool);
             mWlanctrlWakelockCard.setOnDSwitchCardListener(this);
 
             views.add(mWlanctrlWakelockCard);
         }
 
         if (WakeLock.hasWlanWakeLock()) {
+            temp_bool = WakeLock.isWlanWakeLockActive();
             mWlanWakelockCard = new SwitchCardView.DSwitchCard();
             mWlanWakelockCard.setTitle(getString(R.string.wlan_wakelock));
-            mWlanWakelockCard.setDescription(String.format(getString(R.string.wlan_wakelock_summary), WakeLock.isWlanWakeLockActive() ? getString(R.string.enabled) : getString(R.string.disabled)));
-            mWlanWakelockCard.setChecked(WakeLock.isWlanWakeLockActive());
+            mWlanWakelockCard.setDescription(String.format(getString(R.string.wlan_wakelock_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mWlanWakelockCard.setChecked(temp_bool);
             mWlanWakelockCard.setOnDSwitchCardListener(this);
 
             views.add(mWlanWakelockCard);
@@ -215,35 +308,147 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSmb135xWakeLockCard) {
-            mSmb135xWakeLockCard.setDescription(String.format(getString(R.string.smb135x_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mSmb135xWakeLockCard.setDescription(String.format(getString(R.string.smb135x_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateSmb135xWakeLock(checked, getActivity());
         } else if (dSwitchCard == mBlueSleepWakeLockCard) {
-            mBlueSleepWakeLockCard.setDescription(String.format(getString(R.string.bluesleep_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mBlueSleepWakeLockCard.setDescription(String.format(getString(R.string.bluesleep_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateBlueSleepWakeLock(checked, getActivity());
         } else if (dSwitchCard == mBlueDroidTimeWakeLockCard) {
-            mBlueDroidTimeWakeLockCard.setDescription(String.format(getString(R.string.bluedroid_time_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mBlueDroidTimeWakeLockCard.setDescription(String.format(getString(R.string.bluedroid_time_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateBlueDroidTimeWakeLock(checked, getActivity());
         } else if (dSwitchCard == mSensorIndWakeLockCard) {
-            mSensorIndWakeLockCard.setDescription(String.format(getString(R.string.sensor_ind_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mSensorIndWakeLockCard.setDescription(String.format(getString(R.string.sensor_ind_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateSensorIndWakeLock(checked, getActivity());
         } else if (dSwitchCard == mTimerFdWakeLockCard) {
-            mTimerFdWakeLockCard.setDescription(String.format(getString(R.string.timerfd_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mTimerFdWakeLockCard.setDescription(String.format(getString(R.string.timerfd_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateTimerFdWakeLock(checked, getActivity());
         } else if (dSwitchCard == mNetlinkWakeLockCard) {
-            mNetlinkWakeLockCard.setDescription(String.format(getString(R.string.netlink_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mNetlinkWakeLockCard.setDescription(String.format(getString(R.string.netlink_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateNetlinkWakeLock(checked, getActivity());
         } else if (dSwitchCard == mMsmHsicHostWakeLockCard) {
-            mMsmHsicHostWakeLockCard.setDescription(String.format(getString(R.string.msm_hsic_host_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mMsmHsicHostWakeLockCard.setDescription(String.format(getString(R.string.msm_hsic_host_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateMsmHsicHostWakeLock(checked, getActivity());
         } else if (dSwitchCard == mWlanrxWakelockCard) {
-            mWlanrxWakelockCard.setDescription(String.format(getString(R.string.wlan_rx_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mWlanrxWakelockCard.setDescription(String.format(getString(R.string.wlan_rx_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateWlanrxWakeLock(checked, getActivity());
         } else if (dSwitchCard == mWlanctrlWakelockCard) {
-            mWlanctrlWakelockCard.setDescription(String.format(getString(R.string.wlan_ctrl_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mWlanctrlWakelockCard.setDescription(String.format(getString(R.string.wlan_ctrl_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateWlanctrlWakeLock(checked, getActivity());
         } else if (dSwitchCard == mWlanWakelockCard) {
-            mWlanWakelockCard.setDescription(String.format(getString(R.string.wlan_wakelock_summary), checked ? getString(R.string.enabled) : getString(R.string.disabled)));
+            mWlanWakelockCard.setDescription(String.format(getString(R.string.wlan_wakelock_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateWlanWakeLock(checked, getActivity());
+        } else if (dSwitchCard == mWakeLockDebugCard) {
+            mWakeLockDebugCard.setDescription(String.format(getString(R.string.wakelock_debug_summary), checked ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            WakeLock.activateWakeLockDebug(checked, getActivity());
+        }
+    }
+
+    private void getWakeLocksAlert() {
+        WakeLock.activateWakeLockDebug(false, getActivity());
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.setPadding(30, 20, 30, 20);
+
+        ScrollView scrollView = new ScrollView(getActivity());
+        scrollView.setPadding(0, 0, 0, 10);
+        linearLayout.addView(scrollView);
+
+        TextView final_result = new TextView(getActivity());
+        final_result.setText(wake_sources);
+        final_result.setTextIsSelectable(true);
+        scrollView.addView(final_result);
+
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+            .setTitle(getString(R.string.wakeup_source))
+            .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("WakeFrag", wake_sources);
+                        clipboard.setPrimaryClip(clip);
+                        Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
+                        return;
+                    }
+                })
+            .setPositiveButton(getString(R.string.close),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                }).show();
+    }
+
+    private void getTestWakeLock() {
+        test_wake = WakeLock.getTestWakeLock();
+
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.setPadding(30, 20, 30, 20);
+
+        final AppCompatEditText mTestWakeLockText = new AppCompatEditText(getActivity());
+        mTestWakeLockText.setInputType(InputType.TYPE_CLASS_TEXT);
+        if (test_wake.isEmpty()) mTestWakeLockText.setHint(getString(R.string.wakelock_test_hint));
+        else  mTestWakeLockText.setText(test_wake);
+
+        linearLayout.addView(mTestWakeLockText);
+
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setView(linearLayout)
+            .setNeutralButton(getString(R.string.wakelock_test_clean), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    WakeLock.setTestWakeLock("", getActivity());
+               }
+            })
+            .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {}
+            })
+            .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    final String name = mTestWakeLockText.getText().toString();
+
+                    if (name.contains(" ")) {
+                        Utils.toast(getString(R.string.wakelock_test_forbidden_special), getActivity(), Toast.LENGTH_LONG);
+                        return;
+                    }
+                    WakeLock.setTestWakeLock(name, getActivity());
+                }
+            }).show();
+    }
+
+    @Override
+    public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
+        if (mTestWakeLock != null) {
+            getTestWakeLock = WakeLock.getTestWakeLock();
+            mTestWakeLock.setDescription(String.format(getString(R.string.wakelock_test_summary), !getTestWakeLock.isEmpty() ?
+                getTestWakeLock : getString(R.string.wakelock_empty)));
+        }
+        if (mWakeLockDebugCard != null) {
+            temp_bool = WakeLock.isWakeLockDebugActive();
+            mWakeLockDebugCard.setDescription(String.format(getString(R.string.wakelock_debug_summary), temp_bool ?
+                getString(R.string.enabled) : getString(R.string.disabled)));
+            mWakeLockDebugCard.setChecked(temp_bool);
         }
     }
 }

@@ -184,8 +184,7 @@ public class Battery implements Constants {
     }
 
     public static boolean hasBcl() {
-        if (Utils.existFile(BCL)) return true;
-        return false;
+        return Utils.existFile(BCL);
     }
 
     public static void activateBclHotplug(boolean active, Context context) {
