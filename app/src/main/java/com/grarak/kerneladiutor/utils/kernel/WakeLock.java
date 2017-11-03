@@ -267,43 +267,57 @@ public class WakeLock implements Constants {
         return Utils.existFile(TEST_WAKELOCK);
     }
 
-    public static String getWakeLocks() {
-        String result = "";
-        int count = 1;
+    public static int getWakeLocksCount() {
+        int count = 0;
+
         String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
         String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
+
+        if (wakes != null && wakes.length > 0)
+            count = wakes.length;
+
+        return count;
+    }
+
+    public static String getWakeLocks() {
+        String result = "", tempSort = "";
+        int count = 1;
+
+        String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
+        String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
+
         if (wakes != null && wakes.length > 0) {
+
+            //sort add number of duplicated for it result and remove duplicated result
             Arrays.sort(wakes);
-            String result_temp = "Total wakelock request " + wakes.length + ", in the last " + timeMs(getWakeLocksDuration()) + "(hh:mm:ss)" + "\n";
             for (int i = 0; i < wakes.length; ++i) {
                 if (i + 1 == wakes.length) {
-                    result += count + " times " + wakes[i] + "\n";
+                    result += count + " " + wakes[i] + "\n";
                     count = 1;
                 } else if (wakes[i].equals(wakes[i + 1])) {
                     count++;
                 } else {
-                    result += count + " times " + wakes[i] + "\n";
+                    result += count + " " + wakes[i] + "\n";
                     count = 1;
                 }
             }
+
+            //sort bigger to lower
             wakes = result.split("\\r?\\n");
             for (int a = 0; a < wakes.length; a++) {
                 for (int b = 0; b < wakes.length; b++) {
                     if ((b + 1) != wakes.length) {
-                        String[] wake_temp1 = wakes[b].split(" ");
-                        String[] wake_temp2 = wakes[b + 1].split(" ");
-                        int temp1 = Utils.stringToInt(wake_temp1[0]);
-                        int temp2 = Utils.stringToInt(wake_temp2[0]);
-                        if (temp1 < temp2) {
-                            String temp = wakes[b];
+                        if (Utils.stringToInt(wakes[b].split(" ")[0]) < Utils.stringToInt(wakes[b + 1].split(" ")[0])) {
+                            tempSort = wakes[b];
                             wakes[b] = wakes[b + 1];
-                            wakes[b + 1] = temp;
+                            wakes[b + 1] = tempSort;
                         }
                     }
                 }
             }
 
-            result = result_temp;
+            //Make a \n from array on to a string
+            result = "";
             for (int i = 0; i < wakes.length; i++) {
                 result += wakes[i] + "\n";
             }
@@ -312,8 +326,8 @@ public class WakeLock implements Constants {
     }
 
     public static long getWakeLocksDuration() {
-        long first = Utils.stringToInt(RootUtils.runCommand("dmesg | grep wakelock | head -n1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
-        long last = Utils.stringToInt(RootUtils.runCommand("dmesg | grep wakelock | tail -1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
+        long first = Utils.stringToInt(RootUtils.runCommand("dmesg | grep 'wakelock activated' | head -n1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
+        long last = Utils.stringToInt(RootUtils.runCommand("dmesg | grep 'wakelock activated' | tail -1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
         return last - first;
     }
 
@@ -325,13 +339,13 @@ public class WakeLock implements Constants {
         int seconds, minutes, hours;
 
         time = time / 1000;
-        seconds = lessthanten((int)time % 60);
+        seconds = lessthanten((int) time % 60);
 
         time = time / 60;
-        minutes = lessthanten((int)time % 60);
+        minutes = lessthanten((int) time % 60);
 
         time = (time / 60) % 24;
-        hours = lessthanten((int)time);
+        hours = lessthanten((int) time);
 
         return (hours + ":" + minutes + ":" + seconds);
     }

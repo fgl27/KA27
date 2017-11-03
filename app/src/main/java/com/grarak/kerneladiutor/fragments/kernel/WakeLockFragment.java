@@ -55,6 +55,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
     private CardViewItem.DCardView mTestWakeLock;
     private boolean temp_bool = false;
     private String wake_sources, test_wake, getTestWakeLock;
+    private int wakelockcount = 0;
 
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -85,9 +86,10 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
                     getHandler().post(new Runnable() {
                         @Override
                         public void run() {
-                            wake_sources = WakeLock.getWakeLocks();
-                            if (!wake_sources.isEmpty()) getWakeLocksAlert();
-                            else Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
+                            WakeLock.activateWakeLockDebug(false, getActivity());
+                            wakelockcount = WakeLock.getWakeLocksCount();
+                            if (wakelockcount != 0) getWakeLocksAlert();
+                            else Utils.toast(getString(R.string.wakelock_list_empty), getActivity(), Toast.LENGTH_LONG);
                         }
                     });
                 }
@@ -101,7 +103,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             mTestWakeLock = new CardViewItem.DCardView();
             mTestWakeLock.setTitle(getString(R.string.wakelock_test));
             mTestWakeLock.setDescription(String.format(getString(R.string.wakelock_test_summary), !getTestWakeLock.isEmpty() ?
-                getTestWakeLock : getString(R.string.wakelock_empty)));
+                getTestWakeLock : getString(R.string.wakelock_test_empty)));
             mTestWakeLock.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
@@ -355,16 +357,23 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
     }
 
     private void getWakeLocksAlert() {
-        WakeLock.activateWakeLockDebug(false, getActivity());
+
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.CENTER);
         linearLayout.setPadding(30, 20, 30, 20);
 
+        TextView result_title = new TextView(getActivity());
+        String result_title_content = String.format(getString(R.string.wakelock_list_result), wakelockcount) +
+            " " + WakeLock.timeMs(WakeLock.getWakeLocksDuration()) + "(hh:mm:ss)" + "\n\n" + getString(R.string.wakelock_list_info);
+        result_title.setText(result_title_content);
+        linearLayout.addView(result_title);
+
         ScrollView scrollView = new ScrollView(getActivity());
         scrollView.setPadding(0, 0, 0, 10);
         linearLayout.addView(scrollView);
 
+        wake_sources = WakeLock.getWakeLocks();
         TextView final_result = new TextView(getActivity());
         final_result.setText(wake_sources);
         final_result.setTextIsSelectable(true);
@@ -372,7 +381,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
 
         new AlertDialog.Builder(getActivity(),
                 (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-            .setTitle(getString(R.string.wakeup_source))
+            .setTitle(getString(R.string.wakelock_list))
             .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -402,17 +411,17 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
         final AppCompatEditText mTestWakeLockText = new AppCompatEditText(getActivity());
         mTestWakeLockText.setInputType(InputType.TYPE_CLASS_TEXT);
         if (test_wake.isEmpty()) mTestWakeLockText.setHint(getString(R.string.wakelock_test_hint));
-        else  mTestWakeLockText.setText(test_wake);
+        else mTestWakeLockText.setText(test_wake);
 
         linearLayout.addView(mTestWakeLockText);
 
         new AlertDialog.Builder(getActivity(),
                 (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setView(linearLayout)
-            .setNeutralButton(getString(R.string.wakelock_test_clean), new DialogInterface.OnClickListener() {
+            .setNeutralButton(getString(R.string.wakelock_test_empty), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     WakeLock.setTestWakeLock("", getActivity());
-               }
+                }
             })
             .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                 @Override
@@ -442,7 +451,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
         if (mTestWakeLock != null) {
             getTestWakeLock = WakeLock.getTestWakeLock();
             mTestWakeLock.setDescription(String.format(getString(R.string.wakelock_test_summary), !getTestWakeLock.isEmpty() ?
-                getTestWakeLock : getString(R.string.wakelock_empty)));
+                getTestWakeLock : getString(R.string.wakelock_test_empty)));
         }
         if (mWakeLockDebugCard != null) {
             temp_bool = WakeLock.isWakeLockDebugActive();
