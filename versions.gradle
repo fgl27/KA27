@@ -14,7 +14,7 @@ ext.versions = [
         ztzip                : '1.12',
         materialdialogs      : '0.9.5.0',
         materialtabs         : '2.0.5',
-        bintrayplugin        : '1.7.3',
+        bintrayplugin        : '1.8.0',
         mavengradleplugin    : '2.0',
         dashclock            : '2.0.0',
         floatingactionbutton : '1.10.1'
