@@ -273,7 +273,7 @@ public class WakeLock implements Constants {
         String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
         String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
 
-        if (wakes != null && wakes.length > 0)
+        if (wakes != null && wakes.length > 1)
             count = wakes.length;
 
         return count;
@@ -286,7 +286,7 @@ public class WakeLock implements Constants {
         String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
         String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
 
-        if (wakes != null && wakes.length > 0) {
+        if (wakes != null && wakes.length > 1) {
 
             //sort add number of duplicated for it result and remove duplicated result
             Arrays.sort(wakes);
