@@ -365,7 +365,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
 
         TextView result_title = new TextView(getActivity());
         String result_title_content = String.format(getString(R.string.wakelock_list_result), wakelockcount) +
-            " " + WakeLock.timeMs(WakeLock.getWakeLocksDuration()) + "(hh:mm:ss)" + "\n\n" + getString(R.string.wakelock_list_info);
+            " " + Utils.timeMs(WakeLock.getWakeLocksDuration()) + "(hh:mm:ss)" + "\n\n" + getString(R.string.wakelock_list_info);
         result_title.setText(result_title_content);
         linearLayout.addView(result_title);
 

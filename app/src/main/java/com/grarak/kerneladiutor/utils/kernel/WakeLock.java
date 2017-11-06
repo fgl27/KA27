@@ -331,22 +331,4 @@ public class WakeLock implements Constants {
         return last - first;
     }
 
-    public static int lessthanten(int time) {
-        return (time < 10) ? 0 + time : time;
-    }
-
-    public static String timeMs(long time) {
-        int seconds, minutes, hours;
-
-        time = time / 1000;
-        seconds = lessthanten((int) time % 60);
-
-        time = time / 60;
-        minutes = lessthanten((int) time % 60);
-
-        time = (time / 60) % 24;
-        hours = lessthanten((int) time);
-
-        return (hours + ":" + minutes + ":" + seconds);
-    }
 }

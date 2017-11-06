@@ -104,6 +104,7 @@
     <string name="unused_cpu_states_new">Core: %d - Frequencies Used For Less Than 1</string>
     <string name="wakeup_source">Wakeup sources</string>
     <string name="wakeup_source_summary">Click to see last active kernel wakeup sources</string>
+    <string name="wakeup_source_dialog_summary">(hh:mm:ss) ago wakeup sources type and name:\n</string>
 
     <!-- Kernel Information -->
     <string name="kernel_version">Kernel Version</string>
