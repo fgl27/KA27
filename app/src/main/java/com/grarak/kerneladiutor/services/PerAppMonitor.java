@@ -23,7 +23,6 @@ public class PerAppMonitor extends AccessibilityService {
     public static String sPackageName, accessibilityId;
     String last_package = "", last_profile = "";
     long time = System.currentTimeMillis();
-    private boolean Prof_exist;
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -61,34 +60,32 @@ public class PerAppMonitor extends AccessibilityService {
     }
 
     private void process_window_change(String packageName) {
-        Prof_exist = Per_App.app_profile_exists(packageName, getApplicationContext());
-        if (!Prof_exist) {
+        if (!Per_App.app_profile_exists(packageName, getApplicationContext())) {
             packageName = "Default";
             Log.d(TAG, "Profile does not exist. Using Default");
         }
-        if (Prof_exist) {
-            ArrayList < String > info = new ArrayList < String > ();
-            // Item 0 is package name Item 1 is the profile ID
-            info = Per_App.app_profile_info(packageName, getApplicationContext());
 
-            if (!packageName.equals(last_package) && !info.get(1).equals(last_profile)) {
-                last_package = packageName;
-                last_profile = info.get(1);
-                time = System.currentTimeMillis();
-                ProfileDB profileDB = new ProfileDB(getApplicationContext());
-                final List < ProfileDB.ProfileItem > profileItems = profileDB.getAllProfiles();
+        ArrayList < String > info = new ArrayList < String > ();
+        // Item 0 is package name Item 1 is the profile ID
+        info = Per_App.app_profile_info(packageName, getApplicationContext());
 
-                for (int i = 0; i < profileItems.size(); i++) {
-                    if (profileItems.get(i).getID().equals(info.get(1))) {
-                        if (Utils.getBoolean("Per_App_Toast", false, this)) {
-                            Utils.toast("Applying Profile: " + profileItems.get(i).getName(), this);
-                        }
-                        Log.i(TAG, "Applying Profile:  " + profileItems.get(i).getName() + " for package " + packageName);
-                        ProfileDB.ProfileItem profileItem = profileItems.get(i);
-                        List < String > paths = profileItem.getPath();
-                        for (int x = 0; x < paths.size(); x++) {
-                            RootUtils.runCommand(profileItem.getCommands().get(x));
-                        }
+        if (!packageName.equals(last_package) && !info.get(1).equals(last_profile)) {
+            last_package = packageName;
+            last_profile = info.get(1);
+            time = System.currentTimeMillis();
+            ProfileDB profileDB = new ProfileDB(getApplicationContext());
+            final List < ProfileDB.ProfileItem > profileItems = profileDB.getAllProfiles();
+
+            for (int i = 0; i < profileItems.size(); i++) {
+                if (profileItems.get(i).getID().equals(info.get(1))) {
+                    if (Utils.getBoolean("Per_App_Toast", false, this)) {
+                        Utils.toast("Applying Profile: " + profileItems.get(i).getName(), this);
+                    }
+                    Log.i(TAG, "Applying Profile:  " + profileItems.get(i).getName() + " for package " + packageName);
+                    ProfileDB.ProfileItem profileItem = profileItems.get(i);
+                    List < String > paths = profileItem.getPath();
+                    for (int x = 0; x < paths.size(); x++) {
+                        RootUtils.runCommand(profileItem.getCommands().get(x));
                     }
                 }
             }
