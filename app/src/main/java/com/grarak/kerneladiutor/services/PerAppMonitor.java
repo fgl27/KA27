@@ -64,6 +64,7 @@ public class PerAppMonitor extends AccessibilityService {
             packageName = "Default";
             Log.d(TAG, "Profile does not exist. Using Default");
         }
+        if (!Per_App.app_profile_exists(packageName, getApplicationContext())) return;
 
         ArrayList < String > info = new ArrayList < String > ();
         // Item 0 is package name Item 1 is the profile ID
