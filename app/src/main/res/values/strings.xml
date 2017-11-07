@@ -102,9 +102,6 @@
     <string name="deep_sleep">Deep Sleep:</string>
     <string name="core_time_in_state">Core: %d - Frequencies Time:\nOnline for:</string>
     <string name="unused_cpu_states_new">Core: %d - Frequencies Used For Less Than 1</string>
-    <string name="wakeup_source">Wakeup sources</string>
-    <string name="wakeup_source_summary">Click to see last active kernel wakeup sources</string>
-    <string name="wakeup_source_dialog_summary">(hh:mm:ss) ago wakeup sources type and name:\n</string>
 
     <!-- Kernel Information -->
     <string name="kernel_version">Kernel Version</string>
@@ -834,10 +831,10 @@
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
     <string name="wakelock_debug">Wakelock Debug</string>
     <string name="wakelock_debug_summary">Log wakelock requests to drivers message.\n Currently: %s</string>
-    <string name="wakelock_list">List wakelocks</string>
+    <string name="wakelock_list">Wakelocks request list</string>
     <string name="wakelock_list_summary">Shows a list with the latest wakelock requests, depends Wakelock Debug be enable for some time, click here will
  disable Wakelock Debug</string>
-    <string name="wakelock_list_empty">Wakelocks list is empty</string>
+    <string name="wakelock_list_empty">List is empty</string>
     <string name="wakelock_list_result">Total request %d, in</string>
     <string name="wakelock_list_info">Is possible to click and copy a individual wakelock\nNumber of requests / Wakelock name:\n</string>
     <string name="wakelock_test_empty">Empty</string>
@@ -845,6 +842,9 @@
     <string name="wakelock_test_summary">Allows to disable one wakelock by it\'s name as a test\n Currently: %s</string>
     <string name="wakelock_test_hint">The wakelock name</string>
     <string name="wakelock_test_forbidden_special">Forbidden space in the wakelock name!</string>
+    <string name="active_wakelock">Active Wakelock List</string>
+    <string name="active_wakelock_summary">Click to see active and last active kernel wakelocks</string>
+    <string name="active_wakelock_dialog_summary">(hh:mm:ss) ago wakeup sources type and name:\n</string>
     <string name="cstates">Krait C-States Settings</string>
     <string name="c0state">C0 (WFI)</string>
     <string name="c0state_summary">Shallowest Sleep with instant wake up.</string>

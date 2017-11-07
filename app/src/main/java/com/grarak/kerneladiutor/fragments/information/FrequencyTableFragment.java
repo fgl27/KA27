@@ -42,7 +42,7 @@ This rewrite is re-using code that Grarak had originally used in his fragment. C
  */
 public class FrequencyTableFragment extends RecyclerViewFragment implements Constants {
 
-    private String wake_sources, this_freq, this_pct;
+    private String this_freq, this_pct;
 
     @Override
     protected boolean pullToRefreshIsEnabled() {
@@ -94,61 +94,6 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         muptimeCard.setTitle(getString(R.string.system_uptime));
         muptimeCard.setDescription(getSysTimers());
         addView(muptimeCard);
-
-        wake_sources = Utils.getwakeSources();
-        if (!wake_sources.isEmpty()) {
-            CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
-            wakesourceCard.setTitle(getString(R.string.wakeup_source));
-            wakesourceCard.setDescription(getString(R.string.wakeup_source_summary));
-            wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                @Override
-                public void onClick(CardViewItem.DCardView dCardView) {
-                    getHandler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            LinearLayout linearLayout = new LinearLayout(getActivity());
-                            linearLayout.setOrientation(LinearLayout.VERTICAL);
-                            linearLayout.setGravity(Gravity.CENTER);
-                            linearLayout.setPadding(30, 20, 30, 20);
-
-                            TextView under_title = new TextView(getActivity());
-                            under_title.setText(getString(R.string.wakeup_source_dialog_summary));
-                            linearLayout.addView(under_title);
-
-                            ScrollView scrollView = new ScrollView(getActivity());
-                            scrollView.setPadding(0, 0, 0, 10);
-                            linearLayout.addView(scrollView);
-
-                            TextView final_result = new TextView(getActivity());
-                            final_result.setText(wake_sources);
-                            final_result.setTextIsSelectable(true);
-                            scrollView.addView(final_result);
-
-                            new AlertDialog.Builder(getActivity(),
-                                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-                                .setTitle(getString(R.string.wakeup_source))
-                                .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                            ClipData clip = ClipData.newPlainText("FreqFrag", wake_sources);
-                                            clipboard.setPrimaryClip(clip);
-                                            Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
-                                            return;
-                                        }
-                                    })
-                                .setPositiveButton(getString(R.string.close),
-                                    new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {}
-                                    }).show();
-                        }
-                    });
-                }
-            });
-            addView(wakesourceCard);
-        }
 
         int wasoffline = 0;
         for (int i = 0; i < CPU.getCoreCount(); i++) {

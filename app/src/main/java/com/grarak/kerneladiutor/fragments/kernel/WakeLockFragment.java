@@ -54,7 +54,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
 
     private CardViewItem.DCardView mTestWakeLock;
     private boolean temp_bool = false;
-    private String wake_sources, test_wake, getTestWakeLock;
+    private String ActiveWakeSources, WakeLocks, test_wake, getTestWakeLock;
     private int wakelockcount = 0;
 
     public void init(Bundle savedInstanceState) {
@@ -96,6 +96,24 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             });
             addView(wakesourceCard);
         }
+
+        CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
+        wakesourceCard.setTitle(getString(R.string.active_wakelock));
+        wakesourceCard.setDescription(getString(R.string.active_wakelock_summary));
+        wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+            @Override
+            public void onClick(CardViewItem.DCardView dCardView) {
+                getHandler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        ActiveWakeSources = Utils.getActiveWakeLock();
+                        if (!ActiveWakeSources.isEmpty()) ActiveWakeLockCard();
+                        else Utils.toast(getString(R.string.wakelock_list_empty), getActivity(), Toast.LENGTH_LONG);
+                    }
+                });
+            }
+        });
+        addView(wakesourceCard);
 
         if (WakeLock.hasTestWakeLock()) {
 
@@ -373,9 +391,9 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
         scrollView.setPadding(0, 0, 0, 10);
         linearLayout.addView(scrollView);
 
-        wake_sources = WakeLock.getWakeLocks();
+        WakeLocks = WakeLock.getWakeLocks();
         TextView final_result = new TextView(getActivity());
-        final_result.setText(wake_sources);
+        final_result.setText(WakeLocks);
         final_result.setTextIsSelectable(true);
         scrollView.addView(final_result);
 
@@ -387,7 +405,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText("WakeFrag", wake_sources);
+                        ClipData clip = ClipData.newPlainText("WakeFrag", WakeLocks);
                         clipboard.setPrimaryClip(clip);
                         Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
                         return;
@@ -439,6 +457,47 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
                     WakeLock.setTestWakeLock(name, getActivity());
                 }
             }).show();
+    }
+
+    private void ActiveWakeLockCard() {
+
+        LinearLayout linearLayout = new LinearLayout(getActivity());
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setGravity(Gravity.CENTER);
+        linearLayout.setPadding(30, 20, 30, 20);
+
+        TextView under_title = new TextView(getActivity());
+        under_title.setText(getString(R.string.active_wakelock_dialog_summary));
+        linearLayout.addView(under_title);
+
+        ScrollView scrollView = new ScrollView(getActivity());
+        scrollView.setPadding(0, 0, 0, 10);
+        linearLayout.addView(scrollView);
+
+        TextView final_result = new TextView(getActivity());
+        final_result.setText(ActiveWakeSources);
+        final_result.setTextIsSelectable(true);
+        scrollView.addView(final_result);
+
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+            .setTitle(getString(R.string.active_wakelock))
+            .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText("FreqFrag", ActiveWakeSources);
+                        clipboard.setPrimaryClip(clip);
+                        Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
+                        return;
+                    }
+                })
+            .setPositiveButton(getString(R.string.close),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {}
+                }).show();
     }
 
     @Override

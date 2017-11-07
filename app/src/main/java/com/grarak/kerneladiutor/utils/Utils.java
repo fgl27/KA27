@@ -634,7 +634,7 @@ public class Utils implements Constants {
         return "";
     }
 
-    public static String getwakeSources() {
+    public static String getActiveWakeLock() {
         String out = "";
 
         String pre_dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'");
@@ -651,7 +651,7 @@ public class Utils implements Constants {
                 dmesg_time[dmesg_time.length - i - 1] = temp;
             }
             for (int i = 0; i < dmesg_time.length; i++) {
-                if (!dmesg[i].contains("event1") || !dmesg[i].contains("eventpoll") || !dmesg[i].contains("KeyEvents"))
+                if (!dmesg[i].contains("event1") && !dmesg[i].contains("eventpoll") && !dmesg[i].contains("KeyEvents"))
                     out += timeMs(last_time - (stringToInt(dmesg_time[i]) * 1000)) + " " + dmesg[i] + "\n";
             }
         }
