@@ -831,7 +831,7 @@
     <string name="bcmdhd_wakelock_divider">BCMDHD Wakelock Divider</string>
     <string name="wakelock_debug">Wakelock Debug</string>
     <string name="wakelock_debug_summary">Log wakelock requests to drivers message.\n Currently: %s</string>
-    <string name="wakelock_list">Wakelocks request list</string>
+    <string name="wakelock_list">Wakelock requests list</string>
     <string name="wakelock_list_summary">Shows a list with the latest wakelock requests, depends Wakelock Debug be enable for some time, click here will
  disable Wakelock Debug</string>
     <string name="wakelock_list_empty">List is empty</string>
