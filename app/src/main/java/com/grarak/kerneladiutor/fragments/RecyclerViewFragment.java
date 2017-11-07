@@ -381,35 +381,38 @@ public class RecyclerViewFragment extends BaseFragment {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-
-            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                int height = applyOnBootLayout.getHeight();
-                if (offset > 0 && offset < height && ViewHelper.getTranslationY(applyOnBootLayout) != 0)
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                float density = getResources().getDisplayMetrics().density * 2;
-                                for (; offset >= 0; offset -= density) {
+            try {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    int height = applyOnBootLayout.getHeight();
+                    if (offset > 0 && offset < height && ViewHelper.getTranslationY(applyOnBootLayout) != 0)
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    float density = getResources().getDisplayMetrics().density * 2;
+                                    for (; offset >= 0; offset -= density) {
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                move(offset);
+                                            }
+                                        });
+                                        Thread.sleep(16);
+                                    }
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            move(offset);
+                                            if (offset != 0) move(offset = 0);
                                         }
                                     });
-                                    Thread.sleep(16);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
                                 }
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        if (offset != 0) move(offset = 0);
-                                    }
-                                });
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
                             }
-                        }
-                    }).start();
+                        });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
