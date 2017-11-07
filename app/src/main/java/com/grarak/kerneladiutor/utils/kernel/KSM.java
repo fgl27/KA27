@@ -17,6 +17,10 @@ package com.grarak.kerneladiutor.utils.kernel;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
@@ -106,4 +110,43 @@ public class KSM implements Constants {
         return KSM_FILE != null;
     }
 
+
+    public static void setCpuGov(String governor, Context context) {
+        Control.runCommand(governor, getKsmFile(UKSM_CPU_GOV), Control.CommandType.GENERIC, context);
+    }
+
+    public static List < String > getCpuGovs() {
+        String file = getKsmFile(UKSM_CPU_GOV);
+        if (Utils.existFile(file)) {
+            String values = Utils.readFile(file);
+            if (values != null) {
+                String[] valueArray = values.split(" ");
+                String[] out = new String[valueArray.length];
+
+                for (int i = 0; i < valueArray.length; i++)
+                    out[i] = valueArray[i].replace("[", "").replace("]", "");
+                return new ArrayList < > (Arrays.asList(out));
+            }
+        }
+        return null;
+    }
+
+    public static String getCpuGov() {
+        String file = getKsmFile(UKSM_CPU_GOV);
+        if (Utils.existFile(file)) {
+            String values = Utils.readFile(file);
+            if (values != null) {
+                String[] valueArray = values.split(" ");
+
+                for (String value: valueArray)
+                    if (value.contains("["))
+                        return value.replace("[", "").replace("]", "");
+            }
+        }
+        return "";
+    }
+
+    public static boolean hasCpuGov() {
+        return Utils.existFile(getKsmFile(UKSM_CPU_GOV));
+    }
 }

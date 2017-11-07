@@ -666,6 +666,8 @@
     <string name="ksm_deferred_timer_summary">Prevents KSM activities when the CPU is at sleep, reduces some CPU usage in return for less memory savings.</string>
     <string name="uksm_cpu_use">Max CPU Usage</string>
     <string name="uksm_cpu_use_summary">Max CPU percentage for UKSM to use when merging pages</string>
+    <string name="uksm_cpu_governor">KSM Governor</string>
+    <string name="uksm_cpu_governor_summary">Set the governor for KSM</string>
 
     <!-- Low Memory Killer -->
     <string name="lmk_minfree">LMK Min free</string>

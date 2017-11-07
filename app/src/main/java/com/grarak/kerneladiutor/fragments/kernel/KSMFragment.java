@@ -19,6 +19,7 @@ import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
+import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.elements.cards.SeekBarCardView;
 import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
@@ -30,9 +31,11 @@ import java.util.List;
 /**
  * Created by willi on 27.12.14.
  */
-public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
+public class KSMFragment extends RecyclerViewFragment implements PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
     private CardViewItem.DCardView[] mInfos;
+
+    private PopupCardView.DPopupCard mCpuGovCard;
 
     private SwitchCardView.DSwitchCard mEnableKsmCard, mDeferredTimerCard;
 
@@ -63,7 +66,6 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
         mEnableKsmCard = new SwitchCardView.DSwitchCard();
         mEnableKsmCard.setTitle(getString(R.string.ksm_enable));
         mEnableKsmCard.setDescription(getString(R.string.ksm_enable_summary));
-        mEnableKsmCard.setChecked(KSM.isKsmActive());
         mEnableKsmCard.setOnDSwitchCardListener(this);
 
         addView(mEnableKsmCard);
@@ -72,7 +74,6 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
             mDeferredTimerCard = new SwitchCardView.DSwitchCard();
             mDeferredTimerCard.setTitle(getString(R.string.ksm_deferred_timer));
             mDeferredTimerCard.setDescription(getString(R.string.ksm_deferred_timer_summary));
-            mDeferredTimerCard.setChecked(KSM.isDeferredTimerActive());
             mDeferredTimerCard.setOnDSwitchCardListener(this);
 
             addView(mDeferredTimerCard);
@@ -90,13 +91,21 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
             addView(mPagesToScanCard);
         }
 
+        if (KSM.hasCpuGov()) {
+            mCpuGovCard = new PopupCardView.DPopupCard(KSM.getCpuGovs());
+            mCpuGovCard.setTitle(getString(R.string.uksm_cpu_governor));
+            mCpuGovCard.setDescription(getString(R.string.uksm_cpu_governor_summary));
+            mCpuGovCard.setOnDPopupCardListener(this);
+
+            addView(mCpuGovCard);
+        }
+
         if (KSM.hasSleepMilliseconds()) {
             List < String > list = new ArrayList < > ();
             for (int i = 0; i < 5001; i++) list.add(i + getString(R.string.ms));
 
             mSleepMillisecondsCard = new SeekBarCardView.DSeekBarCard(list);
             mSleepMillisecondsCard.setTitle(getString(R.string.ksm_sleep_milliseconds));
-            mSleepMillisecondsCard.setProgress(KSM.getSleepMilliseconds());
             mSleepMillisecondsCard.setOnDSeekBarCardListener(this);
 
             addView(mSleepMillisecondsCard);
@@ -109,12 +118,17 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
             mCpuUseCard = new SeekBarCardView.DSeekBarCard(list);
             mCpuUseCard.setTitle(getString(R.string.uksm_cpu_use));
             mCpuUseCard.setDescription(getString(R.string.uksm_cpu_use_summary));
-            mCpuUseCard.setProgress(KSM.getCpuUse());
             mCpuUseCard.setOnDSeekBarCardListener(this);
 
             addView(mCpuUseCard);
         }
 
+    }
+
+    @Override
+    public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
+        if (dPopupCard == mCpuGovCard)
+            KSM.setCpuGov(KSM.getCpuGovs().get(position), getActivity());
     }
 
     @Override
@@ -143,9 +157,25 @@ public class KSMFragment extends RecyclerViewFragment implements SwitchCardView.
     }
 
     public void Update() {
-        if (mInfos != null)
+        if (mInfos != null) {
             for (int i = 0; i < mInfos.length; i++)
                 if (mInfos[i] != null) mInfos[i].setDescription(KSM.getInfo(i));
+        }
+
+        if (mCpuUseCard != null)
+            mCpuUseCard.setProgress(KSM.getCpuUse());
+
+        if (mSleepMillisecondsCard != null)
+            mSleepMillisecondsCard.setProgress(KSM.getSleepMilliseconds());
+
+        if (mCpuGovCard != null)
+            mCpuGovCard.setItem(KSM.getCpuGov());
+
+        if (mDeferredTimerCard != null)
+            mDeferredTimerCard.setChecked(KSM.isDeferredTimerActive());
+
+        if (mEnableKsmCard != null)
+            mEnableKsmCard.setChecked(KSM.isKsmActive());
     }
 
 }

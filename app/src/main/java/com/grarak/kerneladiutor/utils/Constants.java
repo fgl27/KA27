@@ -1114,6 +1114,7 @@ public interface Constants {
     String PAGES_TO_SCAN = "pages_to_scan";
     String SLEEP_MILLISECONDS = "sleep_millisecs";
     String UKSM_CPU_USE = "max_cpu_percentage";
+    String UKSM_CPU_GOV = "cpu_governor";
 
     String[] KSM_INFOS = {
         FULL_SCANS,
