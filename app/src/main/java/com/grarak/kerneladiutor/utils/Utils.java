@@ -637,11 +637,11 @@ public class Utils implements Constants {
     public static String getActiveWakeLock() {
         String out = "";
 
-        String pre_dmesg = RootUtils.runCommand("dmesg -t | grep 'wakeup source'");
+        String pre_dmesg = RootUtils.runCommand("dmesg -t | grep -i 'wakeup source'");
         String[] dmesg = (pre_dmesg != null  && !pre_dmesg.isEmpty()) ? pre_dmesg.split("\\r?\\n") : null;
 
         if (dmesg != null && dmesg.length > 1) {
-            String pre_dmesg_time = RootUtils.runCommand("dmesg | grep 'wakeup source' | cut -d'[' -f2 | cut -d. -f1");
+            String pre_dmesg_time = RootUtils.runCommand("dmesg | grep -i 'wakeup source' | cut -d'[' -f2 | cut -d. -f1");
             String[] dmesg_time = (pre_dmesg_time != null && !pre_dmesg_time.isEmpty()) ? pre_dmesg_time.split("\\r?\\n") : null;
             long last_time = stringToInt(RootUtils.runCommand("dmesg | tail -1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
 
