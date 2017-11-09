@@ -634,30 +634,6 @@ public class Utils implements Constants {
         return "";
     }
 
-    public static String getActiveWakeLock() {
-        String out = "";
-
-        String pre_dmesg = RootUtils.runCommand("dmesg -t | grep -i 'wakeup source'");
-        String[] dmesg = (pre_dmesg != null  && !pre_dmesg.isEmpty()) ? pre_dmesg.split("\\r?\\n") : null;
-
-        if (dmesg != null && dmesg.length > 1) {
-            String pre_dmesg_time = RootUtils.runCommand("dmesg | grep -i 'wakeup source' | cut -d'[' -f2 | cut -d. -f1");
-            String[] dmesg_time = (pre_dmesg_time != null && !pre_dmesg_time.isEmpty()) ? pre_dmesg_time.split("\\r?\\n") : null;
-            long last_time = stringToInt(RootUtils.runCommand("dmesg | tail -1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
-
-            for (int i = 0; i < dmesg_time.length / 2; i++) {
-                String temp = dmesg_time[i];
-                dmesg_time[i] = dmesg_time[dmesg_time.length - i - 1];
-                dmesg_time[dmesg_time.length - i - 1] = temp;
-            }
-            for (int i = 0; i < dmesg_time.length; i++) {
-                if (!dmesg[i].contains("event1") && !dmesg[i].contains("eventpoll") && !dmesg[i].contains("KeyEvents"))
-                    out += timeMs(last_time - (stringToInt(dmesg_time[i]) * 1000)) + " " + dmesg[i] + "\n";
-            }
-        }
-        return out;
-    }
-
     public static String lessthanten(int time) {
         return (time < 10) ? "0" + time : "" + time;
     }

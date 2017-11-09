@@ -20,9 +20,11 @@ import android.content.DialogInterface;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -48,14 +50,13 @@ import java.util.List;
 
 public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
-    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard, mBlueSleepWakeLockCard, mBlueDroidTimeWakeLockCard, mSensorIndWakeLockCard, mMsmHsicHostWakeLockCard, mTimerFdWakeLockCard, mNetlinkWakeLockCard, mWakeLockDebugCard;
+    private SwitchCardView.DSwitchCard mSmb135xWakeLockCard, mBlueSleepWakeLockCard, mBlueDroidTimeWakeLockCard, mSensorIndWakeLockCard, mMsmHsicHostWakeLockCard, mTimerFdWakeLockCard, mNetlinkWakeLockCard;
     private SwitchCardView.DSwitchCard mWlanrxWakelockCard, mWlanctrlWakelockCard, mWlanWakelockCard;
     private SeekBarCardView.DSeekBarCard mWlanrxWakelockDividerCard, mMsmHsicWakelockDividerCard, mBCMDHDWakelockDividerCard;
 
     private CardViewItem.DCardView mTestWakeLock;
     private boolean temp_bool = false;
     private String ActiveWakeSources, WakeLocks, test_wake, getTestWakeLock;
-    private int wakelockcount = 0;
 
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -66,17 +67,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
 
     private void wakelockDebugInit() {
 
-        if (WakeLock.hasWakeLockDebug()) {
-            temp_bool = WakeLock.isWakeLockDebugActive();
-            mWakeLockDebugCard = new SwitchCardView.DSwitchCard();
-            mWakeLockDebugCard.setTitle(getString(R.string.wakelock_debug));
-            mWakeLockDebugCard.setDescription(String.format(getString(R.string.wakelock_debug_summary), temp_bool ?
-                getString(R.string.enabled) : getString(R.string.disabled)));
-            mWakeLockDebugCard.setChecked(temp_bool);
-            mWakeLockDebugCard.setOnDSwitchCardListener(this);
-
-            addView(mWakeLockDebugCard);
-
+        if (WakeLock.getWakeLocksCount()) {
             CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
             wakesourceCard.setTitle(getString(R.string.wakelock_list));
             wakesourceCard.setDescription(getString(R.string.wakelock_list_summary));
@@ -86,9 +77,7 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
                     getHandler().post(new Runnable() {
                         @Override
                         public void run() {
-                            WakeLock.activateWakeLockDebug(false, getActivity());
-                            wakelockcount = WakeLock.getWakeLocksCount();
-                            if (wakelockcount != 0) getWakeLocksAlert();
+                            if (WakeLock.getWakeLocksCount()) getWakeLocksAlert();
                             else Utils.toast(getString(R.string.wakelock_list_empty), getActivity(), Toast.LENGTH_LONG);
                         }
                     });
@@ -96,24 +85,6 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             });
             addView(wakesourceCard);
         }
-
-        CardViewItem.DCardView wakesourceCard = new CardViewItem.DCardView();
-        wakesourceCard.setTitle(getString(R.string.active_wakelock));
-        wakesourceCard.setDescription(getString(R.string.active_wakelock_summary));
-        wakesourceCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-            @Override
-            public void onClick(CardViewItem.DCardView dCardView) {
-                getHandler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        ActiveWakeSources = Utils.getActiveWakeLock();
-                        if (!ActiveWakeSources.isEmpty()) ActiveWakeLockCard();
-                        else Utils.toast(getString(R.string.wakelock_list_empty), getActivity(), Toast.LENGTH_LONG);
-                    }
-                });
-            }
-        });
-        addView(wakesourceCard);
 
         if (WakeLock.hasTestWakeLock()) {
 
@@ -367,10 +338,6 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             mWlanWakelockCard.setDescription(String.format(getString(R.string.wlan_wakelock_summary), checked ?
                 getString(R.string.enabled) : getString(R.string.disabled)));
             WakeLock.activateWlanWakeLock(checked, getActivity());
-        } else if (dSwitchCard == mWakeLockDebugCard) {
-            mWakeLockDebugCard.setDescription(String.format(getString(R.string.wakelock_debug_summary), checked ?
-                getString(R.string.enabled) : getString(R.string.disabled)));
-            WakeLock.activateWakeLockDebug(checked, getActivity());
         }
     }
 
@@ -379,22 +346,23 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
         linearLayout.setGravity(Gravity.CENTER);
-        linearLayout.setPadding(30, 20, 30, 20);
+        linearLayout.setPadding(15, 10, 15, 10);
 
         TextView result_title = new TextView(getActivity());
-        String result_title_content = String.format(getString(R.string.wakelock_list_result), wakelockcount) +
-            " " + Utils.timeMs(WakeLock.getWakeLocksDuration()) + "(hh:mm:ss)" + "\n\n" + getString(R.string.wakelock_list_info);
+        String result_title_content = getString(R.string.wakelock_list_info);
         result_title.setText(result_title_content);
         linearLayout.addView(result_title);
 
         ScrollView scrollView = new ScrollView(getActivity());
-        scrollView.setPadding(0, 0, 0, 10);
+        scrollView.setPadding(0, 0, 0, 5);
         linearLayout.addView(scrollView);
 
-        WakeLocks = WakeLock.getWakeLocks();
+        WakeLocks = WakeLock.getWakeLocks(true);
         TextView final_result = new TextView(getActivity());
         final_result.setText(WakeLocks);
         final_result.setTextIsSelectable(true);
+        final_result.setTypeface(Typeface.MONOSPACE);
+        final_result.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13f);
         scrollView.addView(final_result);
 
         new AlertDialog.Builder(getActivity(),
@@ -459,47 +427,6 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             }).show();
     }
 
-    private void ActiveWakeLockCard() {
-
-        LinearLayout linearLayout = new LinearLayout(getActivity());
-        linearLayout.setOrientation(LinearLayout.VERTICAL);
-        linearLayout.setGravity(Gravity.CENTER);
-        linearLayout.setPadding(30, 20, 30, 20);
-
-        TextView under_title = new TextView(getActivity());
-        under_title.setText(getString(R.string.active_wakelock_dialog_summary));
-        linearLayout.addView(under_title);
-
-        ScrollView scrollView = new ScrollView(getActivity());
-        scrollView.setPadding(0, 0, 0, 10);
-        linearLayout.addView(scrollView);
-
-        TextView final_result = new TextView(getActivity());
-        final_result.setText(ActiveWakeSources);
-        final_result.setTextIsSelectable(true);
-        scrollView.addView(final_result);
-
-        new AlertDialog.Builder(getActivity(),
-                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-            .setTitle(getString(R.string.active_wakelock))
-            .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                        ClipData clip = ClipData.newPlainText("FreqFrag", ActiveWakeSources);
-                        clipboard.setPrimaryClip(clip);
-                        Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
-                        return;
-                    }
-                })
-            .setPositiveButton(getString(R.string.close),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                }).show();
-    }
-
     @Override
     public boolean onRefresh() {
         Update();
@@ -511,12 +438,6 @@ public class WakeLockFragment extends RecyclerViewFragment implements SeekBarCar
             getTestWakeLock = WakeLock.getTestWakeLock();
             mTestWakeLock.setDescription(String.format(getString(R.string.wakelock_test_summary), !getTestWakeLock.isEmpty() ?
                 getTestWakeLock : getString(R.string.wakelock_test_empty)));
-        }
-        if (mWakeLockDebugCard != null) {
-            temp_bool = WakeLock.isWakeLockDebugActive();
-            mWakeLockDebugCard.setDescription(String.format(getString(R.string.wakelock_debug_summary), temp_bool ?
-                getString(R.string.enabled) : getString(R.string.disabled)));
-            mWakeLockDebugCard.setChecked(temp_bool);
         }
     }
 }

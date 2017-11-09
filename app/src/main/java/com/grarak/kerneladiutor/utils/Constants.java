@@ -1237,7 +1237,6 @@ public interface Constants {
     String NETLINK_WAKELOCK = "/sys/module/wakeup/parameters/enable_netlink_ws";
     String TIMERFD_WAKELOCK = "/sys/module/wakeup/parameters/enable_timerfd_ws";
 
-    String WAKELOCK_DEBUG = "/sys/module/wakeup/parameters/enable_debug_ws";
     String TEST_WAKELOCK = "/sys/module/wakeup/parameters/disable_test_ws";
 
     String[] WLAN_RX_WAKELOCKS = {

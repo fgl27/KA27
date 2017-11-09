@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.utils.kernel;
 import android.content.Context;
 import android.util.Log;
 
+import java.lang.Math;
 import java.util.Arrays;
 
 import com.grarak.kerneladiutor.utils.Constants;
@@ -243,18 +244,6 @@ public class WakeLock implements Constants {
         return Utils.existFile(NETLINK_WAKELOCK);
     }
 
-    public static void activateWakeLockDebug(boolean active, Context context) {
-        Control.runCommand(active ? "Y" : "N", WAKELOCK_DEBUG, Control.CommandType.GENERIC, context);
-    }
-
-    public static boolean isWakeLockDebugActive() {
-        return Utils.readFile(WAKELOCK_DEBUG).equals("Y");
-    }
-
-    public static boolean hasWakeLockDebug() {
-        return Utils.existFile(WAKELOCK_DEBUG);
-    }
-
     public static void setTestWakeLock(String value, Context context) {
         Control.runCommand(value, TEST_WAKELOCK, Control.CommandType.GENERIC, context);
     }
@@ -267,23 +256,31 @@ public class WakeLock implements Constants {
         return Utils.existFile(TEST_WAKELOCK);
     }
 
-    public static int getWakeLocksCount() {
-        int count = 0;
-
-        String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
+    public static boolean getWakeLocksCount() {
+        String[] wakes_temp;
+        String pre_wakes = RootUtils.runCommand("cat sys/kernel/debug/wakeup_sources|tail -n +2");
         String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
 
-        if (wakes != null && wakes.length > 1)
-            count = wakes.length;
+        if (wakes != null && wakes.length > 1) {
+            for (int i = 0; i < wakes.length; ++i) {
+                if (!wakes[i].contains("event") && !wakes[i].contains("KeyEvents") && !wakes[i].contains("Service Cal")) {
+                    wakes_temp = wakes[i].split("\\s+");
+                    if ((Utils.stringToInt(wakes_temp[1]) > 0) && (Utils.stringToInt(wakes_temp[7]) > 1000))
+                        return true;
+                }
+            }
+        }
 
-        return count;
+        return false;
     }
 
-    public static String getWakeLocks() {
+    public static String getWakeLocks(boolean time) {
         String result = "", tempSort = "";
-        int count = 1;
+        int offset = 0, temp = 0, space_length = 0, space_length_temp = 0;
+        if (time) offset = 1;
+        String[] wakes_temp;
 
-        String pre_wakes = RootUtils.runCommand("dmesg | grep 'wakelock activated' | cut -d: -f2 | cut -d' ' -f2");
+        String pre_wakes = RootUtils.runCommand("cat sys/kernel/debug/wakeup_sources|tail -n +2");
         String[] wakes = pre_wakes != null ? pre_wakes.split("\\r?\\n") : null;
 
         if (wakes != null && wakes.length > 1) {
@@ -291,14 +288,15 @@ public class WakeLock implements Constants {
             //sort add number of duplicated for it result and remove duplicated result
             Arrays.sort(wakes);
             for (int i = 0; i < wakes.length; ++i) {
-                if (i + 1 == wakes.length) {
-                    result += count + " " + wakes[i] + "\n";
-                    count = 1;
-                } else if (wakes[i].equals(wakes[i + 1])) {
-                    count++;
-                } else {
-                    result += count + " " + wakes[i] + "\n";
-                    count = 1;
+                if (!wakes[i].contains("event") && !wakes[i].contains("KeyEvents") && !wakes[i].contains("Service Cal")) {
+                    wakes_temp = wakes[i].split("\\s+");
+                    temp = Utils.stringToInt(wakes_temp[1]);
+                    if ((temp > 0) && (Utils.stringToInt(wakes_temp[7]) > 1000)) {
+                        space_length_temp = (int)(Math.log10(temp) + 1);
+                        if (space_length_temp > space_length)
+                            space_length = space_length_temp;
+                        result += wakes_temp[1] + " " + wakes_temp[6] + " " + wakes_temp[0] + "\n";
+                    }
                 }
             }
 
@@ -307,7 +305,7 @@ public class WakeLock implements Constants {
             for (int a = 0; a < wakes.length; a++) {
                 for (int b = 0; b < wakes.length; b++) {
                     if ((b + 1) != wakes.length) {
-                        if (Utils.stringToInt(wakes[b].split(" ")[0]) < Utils.stringToInt(wakes[b + 1].split(" ")[0])) {
+                        if (Utils.stringToInt(wakes[b].split(" ")[0 + offset]) < Utils.stringToInt(wakes[b + 1].split(" ")[0 + offset])) {
                             tempSort = wakes[b];
                             wakes[b] = wakes[b + 1];
                             wakes[b + 1] = tempSort;
@@ -316,19 +314,30 @@ public class WakeLock implements Constants {
                 }
             }
 
-            //Make a \n from array on to a string
+            //Make a \n from array on to a string formating the time
             result = "";
             for (int i = 0; i < wakes.length; i++) {
-                result += wakes[i] + "\n";
+                wakes_temp = wakes[i].split(" ");
+                if (time)
+                    result += Utils.timeMs(Utils.stringToInt(wakes_temp[1])) + "|" + center(space_length, wakes_temp[0]) +
+                    "|" + wakes_temp[2] + "\n";
+                else
+                    result += center(space_length, wakes_temp[0]) + "|" + Utils.timeMs(Utils.stringToInt(wakes_temp[1])) +
+                    "|" + wakes_temp[2] + "\n";
             }
         }
         return result;
     }
 
-    public static long getWakeLocksDuration() {
-        long first = Utils.stringToInt(RootUtils.runCommand("dmesg | grep 'wakelock activated' | head -n1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
-        long last = Utils.stringToInt(RootUtils.runCommand("dmesg | grep 'wakelock activated' | tail -1 | cut -d'[' -f2 | cut -d. -f1")) * 1000;
-        return last - first;
+    // center text but only works well with TextView.setTypeface(Typeface.MONOSPACE); maybe others font too
+    public static String center(int len, String text) {
+        if (len <= text.length())
+            return text.substring(0, len);
+        int before = (len - text.length()) / 2;
+        if (before == 0)
+            return String.format("%-" + len + "s", text);
+        int rest = len - before;
+        return String.format("%" + (before) + "s%-" + (rest) + "s", "", text);
     }
 
 }
