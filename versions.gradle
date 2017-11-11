@@ -10,7 +10,7 @@ ext.versions = [
         benmanes             : '0.17.0',
 
         picasso              : '2.5.2',
-        supportLib           : '27.0.0',
+        supportLib           : '27.0.1',
         ztzip                : '1.12',
         materialdialogs      : '0.9.5.0',
         materialtabs         : '2.0.5',
