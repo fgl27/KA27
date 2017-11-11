@@ -182,8 +182,17 @@ public class RecyclerViewFragment extends BaseFragment {
             @Override
             protected Void doInBackground(Void...params) {
                 try {
-                    if (isAdded()) init(savedInstanceState);
-                } catch (IllegalStateException e) {
+                    if (Looper.myLooper() == Looper.getMainLooper()) {
+                        if (isAdded()) init(savedInstanceState);
+                    } else {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (isAdded()) init(savedInstanceState);
+                            }
+                        });
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -269,17 +278,20 @@ public class RecyclerViewFragment extends BaseFragment {
     public void addView(DAdapter.DView view) {
         if (adapter.DViews.indexOf(view) < 0) {
             adapter.DViews.add(view);
-
             // Ensure we always call notifyDataSetChanged() on the main thread
-            if (Looper.myLooper() == Looper.getMainLooper()) {
-                adapter.notifyDataSetChanged();
-            } else {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+            try {
+                if (Looper.myLooper() == Looper.getMainLooper()) {
+                    adapter.notifyDataSetChanged();
+                } else {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            adapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
     }
@@ -317,7 +329,7 @@ public class RecyclerViewFragment extends BaseFragment {
     public void animateRecyclerView() {
         try {
             recyclerView.startAnimation(AnimationUtils.loadAnimation(getActivity(), R.anim.recyclerview));
-        } catch (NullPointerException ignored) {}
+        } catch (NullPointerException ignored) {} catch (RuntimeException e) {}
     }
 
     @Override
@@ -381,38 +393,36 @@ public class RecyclerViewFragment extends BaseFragment {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
-            try {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    int height = applyOnBootLayout.getHeight();
-                    if (offset > 0 && offset < height && ViewHelper.getTranslationY(applyOnBootLayout) != 0)
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
-                                    float density = getResources().getDisplayMetrics().density * 2;
-                                    for (; offset >= 0; offset -= density) {
-                                        getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                move(offset);
-                                            }
-                                        });
-                                        Thread.sleep(16);
-                                    }
+
+            if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                int height = applyOnBootLayout.getHeight();
+                if (offset > 0 && offset < height && ViewHelper.getTranslationY(applyOnBootLayout) != 0) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                float density = getResources().getDisplayMetrics().density * 2;
+                                for (; offset >= 0; offset -= density) {
                                     getActivity().runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            if (offset != 0) move(offset = 0);
+                                            move(offset);
                                         }
                                     });
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
+                                    Thread.sleep(16);
                                 }
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (offset != 0) move(offset = 0);
+                                    }
+                                });
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
-                        });
+                        }
+                    }).start();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }

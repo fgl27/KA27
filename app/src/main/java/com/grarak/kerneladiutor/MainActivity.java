@@ -480,17 +480,12 @@ public class MainActivity extends BaseActivity implements Constants {
                     if (pressAgain) {
                         Utils.toast(getString(R.string.press_back_again), this);
                         pressAgain = false;
-                        this.runOnUiThread(new Runnable() {
+                        new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        pressAgain = true;
-                                    }
-                                }, 2000);
+                                pressAgain = true;
                             }
-                        });
+                        }, 2000);
                     } else super.onBackPressed();
                 } else mDrawerLayout.closeDrawer(mScrimInsetsFrameLayout);
         } catch (Exception e) {
