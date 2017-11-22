@@ -647,7 +647,7 @@ public class Utils implements Constants {
         time = time / 60;
         minutes = lessthanten((int) time % 60);
 
-        time = (time / 60) % 24;
+        time = (time / 60);
         hours = lessthanten((int) time);
 
         return (hours + ":" + minutes + ":" + seconds);
