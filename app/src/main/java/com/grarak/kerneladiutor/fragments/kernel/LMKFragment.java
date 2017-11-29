@@ -71,7 +71,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
 
         values.clear();
         modifiedvalues.clear();
-        for (int x = 0; x < 513; x++) {
+        for (int x = 0; x < 1025; x++) {
             modifiedvalues.add(x + getString(R.string.mb));
             values.add(String.valueOf(x * 256));
         }
@@ -131,7 +131,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
 
         if (LMK.hasVmPressureFileMin()) {
             List < String > list = new ArrayList < > ();
-            for (int i = 0; i < 513; i++)
+            for (int i = 0; i < 1025; i++)
                 list.add(i + getString(R.string.mb));
 
             mVmPressureFileMinCard = new SeekBarCardView.DSeekBarCard(list);
