@@ -1,7 +1,7 @@
 ext.versions = [
         minSdk               : 21,
         compileSdk           : 27,
-        buildTools           : '27.0.1',
+        buildTools           : '27.0.3',
 
         publishVersion       : 'Quark.58',
         publishVersionCode   : 58,
