@@ -215,8 +215,8 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     private void S2WTimeInit() {
         List < String > list = new ArrayList < > ();
-        for (int i = 1; i <= 200; i++)
-            list.add(i * 10 + getString(R.string.ms));
+        for (int i = 1; i <= 450; i++)
+            list.add(i + getString(R.string.ms));
 
         mS2WTimeCard = new SeekBarCardView.DSeekBarCard(list);
         mS2WTimeCard.setTitle(getString(R.string.wake_S2W_time));
@@ -229,13 +229,13 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
 
     private void DT2WTimeBetweenTapsInit() {
         List < String > list = new ArrayList < > ();
-        for (int i = 25; i <= 100; i++)
-            list.add(i * 10 + getString(R.string.ms));
+        for (int i = 1; i <= 450; i++)
+            list.add(i + getString(R.string.ms));
 
         mDT2WTimeBetweenTapsCard = new SeekBarCardView.DSeekBarCard(list);
         mDT2WTimeBetweenTapsCard.setTitle(getString(R.string.wake_dt2w_timebetweentaps));
         mDT2WTimeBetweenTapsCard.setDescription(getString(R.string.wake_dt2w_timebetweentaps_summary));
-        mDT2WTimeBetweenTapsCard.setProgress(Wake.getDT2WTimeBetweenTaps() - 25);
+        mDT2WTimeBetweenTapsCard.setProgress(Wake.getDT2WTimeBetweenTaps() - 1);
         mDT2WTimeBetweenTapsCard.setOnDSeekBarCardListener(this);
 
         addView(mDT2WTimeBetweenTapsCard);
@@ -286,7 +286,7 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         if (dSeekBarCard == mWakeGesturesVibStrengthCard) Wake.setvibstrength(position, getActivity());
         else if (dSeekBarCard == mWakeTimeoutCard) Wake.setWakeTimeout(position, getActivity());
         else if (dSeekBarCard == mS2WTimeCard) Wake.setS2WTime(position + 1, getActivity());
-        else if (dSeekBarCard == mDT2WTimeBetweenTapsCard) Wake.setDT2WTimeBetweenTaps(position + 25, getActivity());
+        else if (dSeekBarCard == mDT2WTimeBetweenTapsCard) Wake.setDT2WTimeBetweenTaps(position + 1, getActivity());
         else if (dSeekBarCard == mDT2WFeatherXCard) Wake.setDT2WFeatherX(position + 1, getActivity());
         else if (dSeekBarCard == mDT2WFeatherYCard) Wake.setDT2WFeatherY(position + 1, getActivity());
     }
@@ -312,4 +312,26 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
         }
     }
 
+    @Override
+    public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    public void Update() {
+        if (mDT2WTimeBetweenTapsCard != null)
+            mDT2WTimeBetweenTapsCard.setProgress(Wake.getDT2WTimeBetweenTaps() - 1);
+
+        if (mS2WTimeCard != null)
+            mS2WTimeCard.setProgress(Wake.getS2WTime() - 1);
+
+        if (mDT2WFeatherXCard != null)
+            mDT2WFeatherXCard.setProgress(Wake.getDT2WFeatherX() - 1);
+
+        if (mDT2WFeatherYCard != null)
+            mDT2WFeatherYCard.setProgress(Wake.getDT2WFeatherY() - 1);
+
+        if (mWakeGesturesVibStrengthCard != null)
+            mWakeGesturesVibStrengthCard.setProgress(Wake.getvibstrength());
+    }
 }

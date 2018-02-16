@@ -409,13 +409,13 @@
 
 
   <string name="wake_S2W_time">Tempo de um Sweep2Wake</string>
-  <string name="wake_S2W_time_summary">Use para controlar o tempo mínimo que um deslize precisa ter para ser considera uma intenção de acordar por Sweep2Wake.\nPadram é tradicionalmente 300ms.</string>
+  <string name="wake_S2W_time_summary">Use para controlar o tempo mínimo que um deslize precisa ter para ser considera uma intenção de acordar por Sweep2Wake</string>
   <string name="wake_dt2w_timebetweentaps">Tempo de um DoubleTap2Wake</string>
-  <string name="wake_dt2w_timebetweentaps_summary">Use para controlar o tempo mínimo entre dois toques para ser considera uma intenção de acordar por DoubleTap2Wake.\nPadram é tradicionalmente 500ms.</string>
+  <string name="wake_dt2w_timebetweentaps_summary">Use para controlar o tempo mínimo entre dois toques para ser considera uma intenção de acordar por DoubleTap2Wake</string>
   <string name="wake_dt2w_featherx">DoubleTap2Wake Distancia (no eixo horizontal)</string>
-  <string name="wake_dt2w_featherx_summary">Use para controlar a distancia máxima entre o 1° e o 2° toque no eixo horizontal. Este ajuda a impedir toques intencionais.\nPadram é tradicionalmente 150px.</string>
+  <string name="wake_dt2w_featherx_summary">Use para controlar a distancia máxima entre o 1° e o 2° toque no eixo horizontal. Este ajuda a impedir toques intencionais</string>
   <string name="wake_dt2w_feathery">DoubleTap2Wake Distancia (no eixo vertical)</string>
-  <string name="wake_dt2w_feathery_summary">Use para controlar a distancia máxima entre o 1° e o 2° toque no eixo vertical. Este ajuda a impedir toques intencionais.\nPadram é tradicionalmente 150px.</string>
+  <string name="wake_dt2w_feathery_summary">Use para controlar a distancia máxima entre o 1° e o 2° toque no eixo vertical. Este ajuda a impedir toques intencionais</string>
   <string name="vib_strength">Intensidade da vibração dos gestos deacordar</string>
   <string name="vib_strength_summary">Este valor é exclusivo para esta seção e independente da intensidade de vibração do resto do sistema.</string>
   <string name="dt2w_summary">Acorda seu dispositivo com um duplo toque na tela.</string>
