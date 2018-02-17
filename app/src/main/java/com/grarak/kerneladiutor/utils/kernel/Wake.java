@@ -324,7 +324,6 @@ public class Wake implements Constants {
 
     public static int getS2wValue() {
         int val = Utils.stringToInt(Utils.readFile(S2W_FILE));
-        if (val == 0) return 0;
         return val;
     }
 
