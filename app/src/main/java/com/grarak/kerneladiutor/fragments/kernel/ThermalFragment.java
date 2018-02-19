@@ -140,10 +140,11 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             addView(mThermalDebugModeCard);
         }
 
-        if (!Thermal.hasIntelliThermalEnable()) {
+        if (Thermal.isIntelliThermalActive()) {
+
             if (Thermal.hasCoreControlEnable()) {
                 mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
-                mCoreControlEnableCard.setTitle(getString(R.string.core_control));
+                mCoreControlEnableCard.setDescription(getString(R.string.core_control));
                 mCoreControlEnableCard.setChecked(Thermal.isCoreControlActive());
                 mCoreControlEnableCard.setOnDSwitchCardListener(this);
 
@@ -152,15 +153,13 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
 
             if (Thermal.hasVddRestrictionEnable()) {
                 mVddRestrictionEnableCard = new SwitchCardView.DSwitchCard();
-                mVddRestrictionEnableCard.setTitle(getString(R.string.vdd_restriction));
+                mVddRestrictionEnableCard.setDescription(getString(R.string.vdd_restriction));
                 mVddRestrictionEnableCard.setChecked(Thermal.isVddRestrictionActive());
                 mVddRestrictionEnableCard.setOnDSwitchCardListener(this);
 
                 addView(mVddRestrictionEnableCard);
             }
-        }
 
-        if (Thermal.isIntelliThermalActive()) {
             if (Thermal.hasLimitTempDegC()) {
                 List < String > list = new ArrayList < > ();
                 for (double i = 50; i < 101; i++)
