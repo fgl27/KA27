@@ -112,8 +112,13 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
 
         if (Thermal.hasIntelliThermalEnable()) {
             mIntelliThermalEnableCard = new SwitchCardView.DSwitchCard();
-            mIntelliThermalEnableCard.setTitle(getString(R.string.intellithermal));
-            mIntelliThermalEnableCard.setDescription(getString(R.string.intellithermal_summary));
+            if (Thermal.hasCoreLimitTempDegC()) {
+                mIntelliThermalEnableCard.setTitle(getString(R.string.intellithermal));
+                mIntelliThermalEnableCard.setDescription(getString(R.string.intellithermal_summary));
+            } else {
+                mIntelliThermalEnableCard.setTitle(getString(R.string.thermald));
+                mIntelliThermalEnableCard.setDescription(getString(R.string.thermald_summary));
+            }
             mIntelliThermalEnableCard.setChecked(Thermal.isIntelliThermalActive());
             mIntelliThermalEnableCard.setOnDSwitchCardListener(this);
 
@@ -141,6 +146,16 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.isIntelliThermalActive()) {
+
+            if (Thermal.hasTempThrottleEnable()) {
+                mTempThrottleEnableCard = new SwitchCardView.DSwitchCard();
+                mTempThrottleEnableCard.setTitle(getString(R.string.temp_throttle));
+                mTempThrottleEnableCard.setDescription(getString(R.string.temp_throttle_summary));
+                mTempThrottleEnableCard.setChecked(Thermal.isTempThrottleActive());
+                mTempThrottleEnableCard.setOnDSwitchCardListener(this);
+
+                addView(mTempThrottleEnableCard);
+            }
 
             if (Thermal.hasCoreControlEnable()) {
                 mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
@@ -280,16 +295,6 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             mTempSafetyCard.setOnDSwitchCardListener(this);
 
             addView(mTempSafetyCard);
-        }
-
-        if (Thermal.hasTempThrottleEnable()) {
-            mTempThrottleEnableCard = new SwitchCardView.DSwitchCard();
-            mTempThrottleEnableCard.setTitle(getString(R.string.temp_throttle));
-            mTempThrottleEnableCard.setDescription(getString(R.string.temp_throttle_summary));
-            mTempThrottleEnableCard.setChecked(Thermal.isTempThrottleActive());
-            mTempThrottleEnableCard.setOnDSwitchCardListener(this);
-
-            addView(mTempThrottleEnableCard);
         }
 
         if (Thermal.hasTempLimit()) {
@@ -495,23 +500,17 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         else if (dSwitchCard == mIntelliThermalEnableCard) {
             Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateIntelliThermal(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            ReloadFragment();
         } else if (dSwitchCard == mThermalEngineEnableCard) {
-            Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateThermalengine(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
+            if (Thermal.hasIntelliThermalEnable()) {
+                Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
+                ReloadFragment();
+            } else {
+                if (!checked) {
+                    Utils.toast(getString(R.string.no_termal_toast), getContext(), Toast.LENGTH_LONG);
+                }
             }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
         } else if (dSwitchCard == mIntelliThermalOptimizedEnableCard)
             Thermal.activateIntelliThermalOptimized(checked, getActivity());
         else if (dSwitchCard == mThermalDebugModeCard)
@@ -582,4 +581,15 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         else if (dPopupCard == mAllowedMaxFreqCard)
             Thermal.setAllowedMaxFreq(CPU.getFreqs().get(position), getActivity());
     }
+
+    private void ReloadFragment() {
+        view.invalidate();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+    }
+
 }

@@ -387,9 +387,9 @@
     <string name="hima_profile_summary">Hotplug Style</string>
 	
     <!-- Thermal -->
-    <string name="thermal_info">On stock kernel using this app don\'t change a thing in here.\n\nOn custom Kernel:\n\nWhen using Intellithermal be aware too high value for (Frequency Throttle Temperature) can be danger!!\n\nOnly one thermal driver must be enable, the app will auto switch one off if the other is on and vice versa.</string>
+    <string name="thermal_info">Using stock kernel the recommendation is to not change a thing in here.\n\nOn custom Kernel:\n\nWhen using Intellithermal be aware too high value for (Frequency Throttle Temperature) can be danger!\n\nOnly one thermal driver can be enable, the app will auto switch one off if the other is on and vice versa.</string>
     <string name="thermald">Thermald</string>
-    <string name="thermald_summary">Stock Qualcomm thermal driver that prevents device from overheating. This should be disabled if current kernel has an alternative.</string>
+    <string name="thermald_summary">Stock Qualcomm thermal kernel driver that prevents device from overheating. This should be disabled if the device has an default alternative.</string>
     <string name="intellithermal">Intellithermal</string>
     <string name="intellithermal_summary">An in-kernel replacement for Qualcomm\'s Thermald. Developed by faux123.\nEnable to see the tunables</string>
     <string name="intellithermal_optimized">Intellithermal Optimized</string>
@@ -433,9 +433,10 @@
     <string name="temp_limit_min_freq_summary">The thermal will use this frequency to throttle the maximum temperature.</string>
     <string name="temp_limit">Temperature Limit</string>
     <string name="temp_limit_summary">If the temperature goes above, the thermal will throttle the CPU frequency to lower the temperature.</string>
-    <string name="termal_engine">Thermal Engine</string>
+    <string name="termal_engine">Thermal Engine (Default)</string>
     <string name="termal_engine_summary">An system binary thermald, this thermald have no user control.</string>
     <string name="termal_toast">Only one thermal drive can be enable\nEnable one disable the other\nand vice versa</string>
+    <string name="no_termal_toast">No Thermal protection enable, this can cause over heat and permanently damaged to the device</string>
 
     <!-- RAM -->
     <string name="ram">RAM</string>

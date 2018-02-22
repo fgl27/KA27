@@ -334,7 +334,7 @@ public class Thermal implements Constants {
     }
 
     public static boolean hasTempThrottleEnable() {
-        return Utils.existFile(MSM_THERMAL_TEMP_THROTTLE) && !Utils.existFile("/sys/module/msm_thermal/parameters/core_limit_temp_degC");
+        return Utils.existFile(MSM_THERMAL_TEMP_THROTTLE) && !Utils.existFile(MSM_THERMAL + "/" + PARAMETERS_CORE_LIMIT_TEMP_DEGC);
     }
 
     public static void activateTempSafety(boolean active, Context context) {
@@ -520,7 +520,11 @@ public class Thermal implements Constants {
     }
 
     public static boolean isIntelliThermalActive() {
-        return Utils.readFile(getThermalFile(PARAMETERS_ENABLED)).equals("Y");
+        return Utils.readFile(getThermalFile(PARAMETERS_ENABLED)).equals("Y") && hasCoreLimitTempDegC();
+    }
+
+    public static boolean hasThermalEnable() {
+        return Utils.existFile(getThermalFile(PARAMETERS_ENABLED));
     }
 
     public static boolean hasIntelliThermalEnable() {
