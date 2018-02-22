@@ -260,8 +260,6 @@
   <string name="allowed_max_freq">Fase 2: Permesso frequenza massima</string>
   <string name="check_interval">Controlla intervalli</string>
   <string name="shutdown_temp">Temperatura di spegnimento</string>
-  <string name="temp_throttle">Controllo temperatura</string>
-  <string name="temp_throttle_summary">Cambio di limite temperatura SoC.</string>
   <string name="freq_limit_debug">Debug limite frequenza</string>
   <string name="freq_limit_debug_summary">Questo permette di eseguire il debug del limitatore CPU quando la temperatura raggiunge il massimo.</string>
   <string name="temp_limit_min_freq">Limite temperatura frequenza minima</string>

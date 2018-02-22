@@ -262,8 +262,6 @@
   <string name="allowed_max_freq">フェーズ3: Allowed Max Frequency</string>
   <string name="check_interval">チェック間隔</string>
   <string name="shutdown_temp">シャットダウン温度</string>
-  <string name="temp_throttle">温度スロットル</string>
-  <string name="temp_throttle_summary">SoCの温度制限を切り替えます。</string>
   <string name="freq_limit_debug">周波数制限のデバッグ</string>
   <string name="freq_limit_debug_summary">温度が最大に達した時のCPUスロットルをデバッグできます。</string>
   <string name="temp_limit_min_freq">温度制限の最小周波数</string>

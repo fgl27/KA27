@@ -262,8 +262,6 @@
   <string name="allowed_max_freq">Faza 3: Najvišja dovoljena frekvenca</string>
   <string name="check_interval">Preveri interval</string>
   <string name="shutdown_temp">Temperatura za izkop</string>
-  <string name="temp_throttle">Temperatura za zbijanje</string>
-  <string name="temp_throttle_summary">Stikalo za omejevanje frekvence SoC.</string>
   <string name="freq_limit_debug">Razhroščevanje omejevanja frekvence</string>
   <string name="freq_limit_debug_summary">To dovoljuje razhroščevanje CPU zaviranja, ki temperatura doseže najvišjo možno.</string>
   <string name="temp_limit_min_freq">Najnižja frekvenca zaviranja temperature</string>

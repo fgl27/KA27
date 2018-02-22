@@ -229,8 +229,6 @@
   <string name="msm_thermal_summary">퀄컴의 Thermald를 대체합니다.  show-p1984님이 개발했습니다.</string>
   <string name="check_interval">확인하는 간격</string>
   <string name="shutdown_temp">종료 온도</string>
-  <string name="temp_throttle">온도 제한</string>
-  <string name="temp_throttle_summary">SoC  온도 제한</string>
   <string name="freq_limit_debug">클럭 제한 디버그</string>
   <string name="temp_limit_min_freq">온도 제한 최소 클럭</string>
   <string name="temp_limit">온도 제한</string>

@@ -177,8 +177,6 @@
   <string name="allowed_max_freq">चरण 3: अधिकतम आवृत्ति की अनुमति दी</string>
   <string name="check_interval">अंतराल की जाँच करें</string>
   <string name="shutdown_temp">शट डाउन तापमान</string>
-  <string name="temp_throttle">तापमान गला घोंटना</string>
-  <string name="temp_throttle_summary">SoC तापमान सीमा टॉगल।</string>
   <string name="freq_limit_debug">आवृत्ति सीमा डीबग</string>
   <string name="freq_limit_debug_summary">यह अधिकतम तापमान तक पहुँच जाता, जब CPUs कुचलना डीबग करने के लिए अनुमति देता है।</string>
   <string name="temp_limit_min_freq">तापमान सीमा न्यूनतम आवृत्ति</string>

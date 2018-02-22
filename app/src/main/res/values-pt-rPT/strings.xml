@@ -239,7 +239,6 @@
   <string name="allowed_max_freq">Fase 2: Permitido frequência média</string>
   <string name="check_interval">Intervalo de verificação</string>
   <string name="shutdown_temp">Temperatura de encerramento</string>
-  <string name="temp_throttle">Regulador de temperatura</string>
   <string name="temp_limit">Limite de temperatura</string>
   <string name="temp_limit_summary">Se a temperatura for maior, o CPU vai ser regulada para descer a temperatura.</string>
   <string name="gpu_2d_cur_freq">GPU 2D frequência atual</string>

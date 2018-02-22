@@ -255,8 +255,6 @@
   <string name="allowed_max_freq">Phase 3: Höchste zulässige Frequenz</string>
   <string name="check_interval">Prüfintervall</string>
   <string name="shutdown_temp">Abschalten bei Temperatur</string>
-  <string name="temp_throttle">Temperatur Drosseln</string>
-  <string name="temp_throttle_summary">SoC Temperatur Limit einstellen.</string>
   <string name="freq_limit_debug">Frequenzbegrenzung untersuchen</string>
   <string name="freq_limit_debug_summary">Wenn die Temperatur das Maximum erreicht können sie damit die CPU Drosselklappe debuggen.</string>
   <string name="temp_limit_min_freq">Temperaturgrenze für minimale Frequenz</string>

@@ -261,8 +261,6 @@
   <string name="allowed_max_freq">3. szakasz: Engedélyezett Maximális Frekvencia</string>
   <string name="check_interval">Ellenőrzések időköze</string>
   <string name="shutdown_temp">Kikapcsolási hőmérséklet</string>
-  <string name="temp_throttle">Hőmérséklet szabályozó</string>
-  <string name="temp_throttle_summary">SoC hőmérséklet határ kapcsoló.</string>
   <string name="freq_limit_debug">Frekvenciahatár hibakeresés</string>
   <string name="freq_limit_debug_summary">Ez lehetővé teszi a CPU fojtás hibakeresését, amikor a hőmérséklet eléri a maximális értéket.</string>
   <string name="temp_limit_min_freq">Hőmérsékleti határ minimális frekvenciája</string>

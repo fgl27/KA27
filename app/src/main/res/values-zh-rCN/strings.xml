@@ -260,8 +260,6 @@
   <string name="allowed_max_freq">第 3 阶段: 允许最大频率</string>
   <string name="check_interval">检查间隔</string>
   <string name="shutdown_temp">关机温度</string>
-  <string name="temp_throttle">温度调节机制</string>
-  <string name="temp_throttle_summary">SoC 温度限制开关</string>
   <string name="freq_limit_debug">频率限制调试</string>
   <string name="freq_limit_debug_summary">这将允许在温度达到最大值的情形下调试 CPU 温度调节机制</string>
   <string name="temp_limit_min_freq">温度限制最低频率</string>

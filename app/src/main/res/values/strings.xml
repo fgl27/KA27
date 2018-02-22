@@ -425,8 +425,6 @@
     <string name="allowed_max_freq">Phase 3: Allowed Max Frequency</string>
     <string name="check_interval">Check Interval</string>
     <string name="shutdown_temp">Shutdown Temperature</string>
-    <string name="temp_throttle">Temperature Throttle</string>
-    <string name="temp_throttle_summary">SoC temperature limit toggle.</string>
     <string name="freq_limit_debug">Frequency Limit Debug</string>
     <string name="freq_limit_debug_summary">This allows to debug the CPUs throttle when the temperature reaches maximum.</string>
     <string name="temp_limit_min_freq">Temperature Limit Minimum Frequency</string>

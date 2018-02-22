@@ -248,8 +248,6 @@
   <string name="allowed_max_freq">第 3 階段: 允許最大頻率</string>
   <string name="check_interval">檢查間隔</string>
   <string name="shutdown_temp">關機溫度</string>
-  <string name="temp_throttle">溫度調節</string>
-  <string name="temp_throttle_summary">SoC 溫度限制切換。</string>
   <string name="freq_limit_debug">頻率限制調試</string>
   <string name="freq_limit_debug_summary">當溫度達到最大值允許偵錯 Cpu 節流</string>
   <string name="temp_limit_min_freq">溫度限制最低頻率</string>

@@ -56,7 +56,6 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     private SeekBarCardView.DSeekBarCard mThermalLimitLowCard;
     private SeekBarCardView.DSeekBarCard mThermalLimitHighCard;
     private SwitchCardView.DSwitchCard mTempSafetyCard;
-    private SwitchCardView.DSwitchCard mTempThrottleEnableCard;
     private SeekBarCardView.DSeekBarCard mTempLimitCard;
     private SwitchCardView.DSwitchCard mFreqLimitDebugCard;
     private PopupCardView.DPopupCard mMinFreqIndexCard;
@@ -146,16 +145,6 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         }
 
         if (Thermal.isIntelliThermalActive()) {
-
-            if (Thermal.hasTempThrottleEnable()) {
-                mTempThrottleEnableCard = new SwitchCardView.DSwitchCard();
-                mTempThrottleEnableCard.setTitle(getString(R.string.temp_throttle));
-                mTempThrottleEnableCard.setDescription(getString(R.string.temp_throttle_summary));
-                mTempThrottleEnableCard.setChecked(Thermal.isTempThrottleActive());
-                mTempThrottleEnableCard.setOnDSwitchCardListener(this);
-
-                addView(mTempThrottleEnableCard);
-            }
 
             if (Thermal.hasCoreControlEnable()) {
                 mCoreControlEnableCard = new SwitchCardView.DSwitchCard();
@@ -525,8 +514,6 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
         else if (dSwitchCard == mImmediatelyLimitStopCard)
             Thermal.activateImmediatelyLimitStop(checked, getActivity());
         else if (dSwitchCard == mTempSafetyCard) Thermal.activateTempSafety(checked, getActivity());
-        else if (dSwitchCard == mTempThrottleEnableCard)
-            Thermal.activateTempThrottle(checked, getActivity());
         else if (dSwitchCard == mFreqLimitDebugCard)
             Thermal.activateFreqLimitDebug(checked, getActivity());
         else if (dSwitchCard == mEnabledCard)

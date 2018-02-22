@@ -246,8 +246,6 @@
   <string name="allowed_max_freq">Fas 3: Frecuencia máxima almitida</string>
   <string name="check_interval">Intervalu de comprobación</string>
   <string name="shutdown_temp">Temperatura d\'apagáu</string>
-  <string name="temp_throttle">Regulación de temperatura</string>
-  <string name="temp_throttle_summary">Alternancia de la llende de temperatura\'l SoC.</string>
   <string name="freq_limit_debug">Depuración de llende de frecuencia</string>
   <string name="freq_limit_debug_summary">Esto permite depurar les regulaciones de CPUs cuando la temperatura algame\'l máximu.</string>
   <string name="temp_limit_min_freq">Frecuencia mínima de llende de temperatura</string>

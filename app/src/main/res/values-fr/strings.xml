@@ -243,8 +243,6 @@
   <string name="msm_thermal_summary">Un remplacement dans le noyau pour Thermald de Qualcomm. Développé par show-p1984.</string>
   <string name="check_interval">Intervalle de vérification</string>
   <string name="shutdown_temp">Température d’arrêt</string>
-  <string name="temp_throttle">Température pour commencer à limiter</string>
-  <string name="temp_throttle_summary">Activer/désactiver la limite de température du SoC.</string>
   <string name="temp_limit_min_freq">Limite de fréquence en cas de température critique</string>
   <string name="temp_limit_min_freq_summary">Cette limite en fréquence est appliquée lorsque la température maximale est atteinte.</string>
   <string name="temp_limit">Limite de Température</string>

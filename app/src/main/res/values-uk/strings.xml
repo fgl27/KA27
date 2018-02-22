@@ -209,8 +209,6 @@
   <string name="allowed_max_freq">Етап 2: Допускаються високі частоти</string>
   <string name="check_interval">Інтервал перевірки</string>
   <string name="shutdown_temp">Температура вимкнення</string>
-  <string name="temp_throttle">Дросельна температура</string>
-  <string name="temp_throttle_summary">Межа температури СнК перемикання.</string>
   <string name="freq_limit_debug">Налагодження обмеження частот</string>
   <string name="freq_limit_debug_summary">Це дозволяє налагодити дроселювання процесора, коли температура досягає максимуму.</string>
   <string name="temp_limit_min_freq">Мінімальна частота обмеження температур</string>

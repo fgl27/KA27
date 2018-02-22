@@ -300,8 +300,6 @@
   <string name="allowed_max_freq">Fase 3: Frequência Max permitida</string>
   <string name="check_interval">Intervalo de verificação</string>
   <string name="shutdown_temp">Temperatura de desligamento</string>
-  <string name="temp_throttle">Regulador de temperatura</string>
-  <string name="temp_throttle_summary">Controle de limite de temperatura do SoC.</string>
   <string name="freq_limit_debug">Freqüência limite Debug</string>
   <string name="freq_limit_debug_summary">Isto permite depurar o acelerador de CPUs quando a temperatura atinge o máximo.</string>
   <string name="temp_limit_min_freq">Frequência Mínima de Limite de Temperatura</string>

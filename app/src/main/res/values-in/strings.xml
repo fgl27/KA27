@@ -260,8 +260,6 @@
   <string name="allowed_max_freq">Tahap 2: Frekuensi Tertinggi Dijinkan</string>
   <string name="check_interval">Jangka Pengecekan</string>
   <string name="shutdown_temp">Suhu Pematian</string>
-  <string name="temp_throttle">Pengendali Suhu</string>
-  <string name="temp_throttle_summary">Pengalih Batas Suhu SoC.</string>
   <string name="freq_limit_debug">Batas Frekuensi Debug</string>
   <string name="freq_limit_debug_summary">Memperbolehkan untuk men-debug pengendali CPU ketika mencapai suhu tertinggi.</string>
   <string name="temp_limit_min_freq">Batas Suhu Frekuensi Terendah</string>

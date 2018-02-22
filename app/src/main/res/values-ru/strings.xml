@@ -263,8 +263,6 @@
   <string name="allowed_max_freq">Этап 2: Допускается средней частоты</string>
   <string name="check_interval">Интервал проверки</string>
   <string name="shutdown_temp">Температура выключения</string>
-  <string name="temp_throttle">Троттлинг</string>
-  <string name="temp_throttle_summary">Предел троттлинга.</string>
   <string name="freq_limit_debug">Отладка лимита частот</string>
   <string name="freq_limit_debug_summary">Позволяет отследить работу ЦП при достижении лимита температур.</string>
   <string name="temp_limit_min_freq">Минимальная частота лимита температур</string>
