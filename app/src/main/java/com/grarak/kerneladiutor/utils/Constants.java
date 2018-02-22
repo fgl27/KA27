@@ -473,6 +473,7 @@ public interface Constants {
     String CONF_POLL_MS = MSM_THERMAL_CONF + "/poll_ms";
 
     String THERMAL_ENGINE = "thermal-engine";
+    String THERMAL_ENGINE_RE_ENABLE = "re_enable_thermal";
 
     String[] THERMAL_ARRAY = {
         MSM_THERMAL,

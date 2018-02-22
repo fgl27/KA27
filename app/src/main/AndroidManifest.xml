@@ -147,6 +147,12 @@
             </intent-filter>
        </service>
 
+        <receiver android:name=".services.NotificationReceiver" android:exported="false" android:process=":background" >
+            <intent-filter>
+                <action android:name="re_enable_thermal"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

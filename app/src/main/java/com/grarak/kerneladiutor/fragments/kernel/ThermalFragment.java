@@ -508,7 +508,10 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
                 ReloadFragment();
             } else {
                 if (!checked) {
-                    Utils.toast(getString(R.string.no_termal_toast), getContext(), Toast.LENGTH_LONG);
+                    Utils.toast(getString(R.string.no_termal_toast) + "\n" + getString(R.string.no_termal_toast_2), getContext(), Toast.LENGTH_LONG);
+                    Utils.DoNotification(getContext());
+                } else {
+                    Utils.ClearAllNotification(getContext());
                 }
             }
         } else if (dSwitchCard == mIntelliThermalOptimizedEnableCard)
@@ -580,6 +583,13 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
             Thermal.setAllowedMidFreq(CPU.getFreqs().get(position), getActivity());
         else if (dPopupCard == mAllowedMaxFreqCard)
             Thermal.setAllowedMaxFreq(CPU.getFreqs().get(position), getActivity());
+    }
+
+    @Override
+    public boolean onRefresh() {
+        if (mThermalEngineEnableCard != null)
+            mThermalEngineEnableCard.setChecked(Thermal.isThermalengineActive());
+        return true;
     }
 
     private void ReloadFragment() {

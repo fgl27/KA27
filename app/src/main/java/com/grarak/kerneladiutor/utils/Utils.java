@@ -18,6 +18,8 @@ package com.grarak.kerneladiutor.utils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.UiModeManager;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -29,12 +31,14 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.MainThread;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.text.Spanned;
@@ -675,4 +679,26 @@ public class Utils implements Constants {
             RootUtils.runCommand("pm grant " + context.getPackageName() + " android.permission.WRITE_SECURE_SETTINGS");
     }
 
+    public static void DoNotification(Context context) {
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, "no_thermal");
+        notification.setSmallIcon(R.drawable.ka);
+        notification.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
+        notification.setContentTitle(context.getString(R.string.no_termal_toast));
+        notification.setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.no_termal_toast_2)));
+        notification.setOngoing(true);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+
+        Intent reEnableReceiver = new Intent();
+        reEnableReceiver.setAction(THERMAL_ENGINE_RE_ENABLE);
+        PendingIntent pendingIntentYes = PendingIntent.getBroadcast(context, 12345, reEnableReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
+        NotificationCompat.Action ActionSet = new NotificationCompat.Action.Builder(R.drawable.ic_accept, context.getString(R.string.no_termal_reenable), pendingIntentYes).build();
+        notification.addAction(ActionSet);
+
+        notificationManager.notify(10, notification.build());
+    }
+
+    public static void ClearAllNotification(Context context) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancelAll();
+    }
 }

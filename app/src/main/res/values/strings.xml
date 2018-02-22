@@ -436,7 +436,9 @@
     <string name="termal_engine">Thermal Engine (Default)</string>
     <string name="termal_engine_summary">An system binary thermald, this thermald have no user control.</string>
     <string name="termal_toast">Only one thermal drive can be enable\nEnable one disable the other\nand vice versa</string>
-    <string name="no_termal_toast">No Thermal protection enable, this can cause over heat and permanently damaged to the device</string>
+    <string name="no_termal_toast">No Thermal driver enable</string>
+    <string name="no_termal_toast_2">This can cause over heat and permanently damaged to the device</string>
+    <string name="no_termal_reenable">Re enable thermal driver</string>
 
     <!-- RAM -->
     <string name="ram">RAM</string>
