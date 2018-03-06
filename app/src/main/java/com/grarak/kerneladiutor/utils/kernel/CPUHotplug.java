@@ -1731,7 +1731,7 @@ public class CPUHotplug implements Constants {
     public static boolean isMpdecisionActive() {
         // Doing this here instead of the utils.ispropactive function because it can show either of these statuses
         try {
-            String result = RootUtils.runCommand("getprop | grep " + HOTPLUG_MPDEC).split("]: ")[1];
+            String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\.mpdecision\' | head -1").split("]: ")[1];
             if (result.equals("[running]") || result.equals("[restarting]")) {
                 return true;
             }

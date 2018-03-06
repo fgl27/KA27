@@ -577,7 +577,7 @@ public class Thermal implements Constants {
     public static boolean isThermalengineActive() {
         // copy this from mpdecision
         try {
-            String result = RootUtils.runCommand("getprop | grep thermal-engine").split("]: ")[1];
+            String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\.thermal-engine\' | head -1").split("]: ")[1];
             if (result.equals("[running]") || result.equals("[restarting]")) {
                 return true;
             }
