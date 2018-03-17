@@ -227,7 +227,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
     private void bclHotmask() {
         mBclHotmask = new PopupCardView.DPopupCard(new ArrayList < > (
-                Arrays.asList(getResources().getStringArray(R.array.bcl_hot_plug))));
+            Arrays.asList(getResources().getStringArray(R.array.bcl_hot_plug))));
         mBclHotmask.setTitle(getString(R.string.bcl_cores));
         mBclHotmask.setDescription(getString(R.string.bcl_cores_summary));
         mBclHotmask.setItem(Battery.getBclHotMask());
@@ -338,7 +338,6 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
             Battery.setBclFreq(CPU.getFreqs().get((CPU.getFreqs().size() - bclFreqCount) + position), getActivity());
         if (dPopupCard == mBclHotmask)
             Battery.setBclHotMask(position, getActivity());
-
     }
 
     @Override
@@ -348,6 +347,8 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     }
 
     public void Update() {
+        if (mBclMaxFreqCard != null) mBclMaxFreqCard.setItem(Battery.getBclFreq() / 1000 + getString(R.string.mhz));
+        if (mBclHotmask != null) mBclHotmask.setItem(Battery.getBclHotMask());
         if (mBatteryLevelCard != null) mBatteryLevelCard.setDescription(Battery.getBatteryLevel() + getString(R.string.percent));
         if (mBatteryChargingCurrentCard != null) {
             double amperage = (double) Battery.getChargingCurrent() / 1000;
