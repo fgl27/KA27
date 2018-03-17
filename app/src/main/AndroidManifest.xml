@@ -82,20 +82,6 @@
             android:name=".services.ProfileWidget$WidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <!-- DashClock -->
-        <service
-            android:name=".services.DashClockService"
-            android:icon="@drawable/ic_launcher_preview"
-            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
-            <intent-filter>
-                <action android:name="com.google.android.apps.dashclock.Extension" />
-            </intent-filter>
-
-            <meta-data
-                android:name="protocolVersion"
-                android:value="1" />
-        </service>
-
         <!-- Tasker -->
         <activity
             android:name=".tasker.AddProfileActivity"

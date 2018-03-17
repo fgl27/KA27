@@ -32,7 +32,6 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
@@ -47,7 +46,6 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.widget.ImageView;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,8 +71,6 @@ import com.grarak.kerneladiutor.fragments.kernel.WakeLockFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.kerneladiutor.library.Tools;
 import com.kerneladiutor.library.root.RootUtils;
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -94,7 +90,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -224,38 +219,6 @@ public class Utils implements Constants {
 
     public static Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
         return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, false);
-    }
-
-    private static final Set<CustomTarget> protectedFromGarbageCollectorTargets = new HashSet<>();
-
-    public static void loadImagefromUrl(String url, ImageView imageView) {
-        CustomTarget target = new CustomTarget().setImageView(imageView);
-        protectedFromGarbageCollectorTargets.add(target);
-        Picasso.get().load(url).into(target);
-    }
-
-    private static class CustomTarget implements Target {
-        private ImageView imageView;
-
-        public CustomTarget setImageView(ImageView imageView) {
-            this.imageView = imageView;
-            return this;
-        }
-
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            imageView.setImageBitmap(scaleDownBitmap(bitmap, 1920, 1920));
-            protectedFromGarbageCollectorTargets.remove(this);
-        }
-
-        @Override
-        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-            protectedFromGarbageCollectorTargets.remove(this);
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-        }
     }
 
     public static String getDeviceName() {
