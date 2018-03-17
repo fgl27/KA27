@@ -34,6 +34,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.Battery;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -50,6 +51,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     private SwitchCardView.DSwitchCard mBclCard, mBclHotplugCard;
 
     private PopupCardView.DPopupCard mBclMaxFreqCard;
+    private PopupCardView.DPopupCard mBclHotmask;
     private SeekBarCardView.DSeekBarCard mBclVphLowCard, mBclVphHighCard;
 
     private SeekBarCardView.DSeekBarCard mBlxCard;
@@ -76,6 +78,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
         if (Battery.hasBcl()) bclInit();
         if (Battery.hasBclFreq()) bclMaxFreqInit();
+        if (Battery.hasBclHotMask()) bclHotmask();
         if (Battery.hasBclVphLow()) BclVphLowInit();
         if (Battery.hasBclVphHigh()) BclVphHighInit();
         if (Battery.hasBclHotplug()) bclHotplugInit();
@@ -222,6 +225,17 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         addView(mBclMaxFreqCard);
     }
 
+    private void bclHotmask() {
+        mBclHotmask = new PopupCardView.DPopupCard(new ArrayList < > (
+                Arrays.asList(getResources().getStringArray(R.array.bcl_hot_plug))));
+        mBclHotmask.setTitle(getString(R.string.bcl_cores));
+        mBclHotmask.setDescription(getString(R.string.bcl_cores_summary));
+        mBclHotmask.setItem(Battery.getBclHotMask());
+        mBclHotmask.setOnDPopupCardListener(this);
+
+        addView(mBclHotmask);
+    }
+
     private void BclVphLowInit() {
         int position = 0;
         List < String > list = new ArrayList < > ();
@@ -322,6 +336,9 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mBclMaxFreqCard)
             Battery.setBclFreq(CPU.getFreqs().get((CPU.getFreqs().size() - bclFreqCount) + position), getActivity());
+        if (dPopupCard == mBclHotmask)
+            Battery.setBclHotMask(position, getActivity());
+
     }
 
     @Override

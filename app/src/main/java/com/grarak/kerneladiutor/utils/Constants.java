@@ -1014,6 +1014,8 @@ public interface Constants {
     String BCL_FREQ_LIMIT = "/sys/devices/qcom,bcl.*/thermal_freq_limit";
     String BCL_VPH_LOW = "/sys/devices/qcom,bcl.*/vph_low_thresh_uv";
     String BCL_VPH_HIGH = "/sys/devices/qcom,bcl.*/vph_high_thresh_uv";
+    String BCL_HOT_MASK = "/sys/devices/qcom,bcl.*/hotplug_mask";
+    String BCL_HOT_STATUS = "/sys/devices/qcom,bcl.*/V";
     String BCL_HOTPLUG = "/sys/module/battery_current_limit/parameters/bcl_hotplug_enable";
 
     String[] BATTERY_ARRAY = {
@@ -1021,6 +1023,7 @@ public interface Constants {
         BCL_FREQ_MAX,
         BCL_FREQ_LIMIT,
         BCL_VPH_LOW,
+        BCL_HOT_MASK,
         BCL_VPH_HIGH,
         FORCE_FAST_CHARGE,
         BLX,

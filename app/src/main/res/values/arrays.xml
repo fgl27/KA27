@@ -89,4 +89,12 @@
         <item>@string/delete</item>
     </string-array>
 
+    <string-array name="bcl_hot_plug">
+        <item>@string/bcl_cores_none</item>
+        <item>@string/bcl_cores_1</item>
+        <item>@string/bcl_cores_2</item>
+        <item>@string/bcl_cores_3</item>
+        <item>@string/bcl_cores_4</item>
+    </string-array>
+
 </resources>

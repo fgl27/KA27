@@ -256,4 +256,27 @@ public class Battery implements Constants {
     public static int getBatteryLevel() {
         return Utils.stringToInt(Utils.readFile(BATTERY_LEVEL));
     }
+
+    public static boolean hasBclHotMask() {
+        if (Utils.existFile(BCL_HOT_MASK)) return true;
+        return false;
+    }
+
+    public static int getBclHotMask() {
+        int read_position = Utils.stringToInt(Utils.readFile(BCL_HOT_MASK));
+        if (read_position == 8) return 1;
+        else if (read_position == 10) return 2;
+        else if (read_position == 12) return 3;
+        else if (read_position == 14) return 4;
+        return 0;
+    }
+
+    public static void setBclHotMask(int value, Context context) {
+        String position = "0";
+        if (value == 1) position = "8";
+        if (value == 2) position = "10";
+        if (value == 3) position = "12";
+        if (value == 4) position = "14";
+        Control.runCommand(position, BCL_HOT_MASK, Control.CommandType.ASTERISK, context);
+    }
 }

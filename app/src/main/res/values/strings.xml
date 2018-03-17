@@ -777,6 +777,13 @@
     <string name="bcl_voltage_low_summary">The battery voltage threshold below which the BCL driver starts monitoring the battery current thresholds and mitigates the CPU on the event of high load.</string>
     <string name="bcl_hotplug">Battery Current Limit Driver - Hotplugging</string>
     <string name="bcl_hotplug_summary">Enable or Disable BCL Hotplugging</string>
+    <string name="bcl_cores">BCL Hotplugging</string>
+    <string name="bcl_cores_summary">Choose how many core will be unplugged when the BCL driver starts to mitigate the CPU</string>
+    <string name="bcl_cores_none">None</string>
+    <string name="bcl_cores_1">1 (Core 3)</string>
+    <string name="bcl_cores_2">2 (Core 1 and 3)</string>
+    <string name="bcl_cores_3">2 (Core 2 and 3)</string>
+    <string name="bcl_cores_4">3 (Core 1 to 3)</string>
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30 &#37; of their performance.</string>
     <string name="fsync">Fsync</string>
