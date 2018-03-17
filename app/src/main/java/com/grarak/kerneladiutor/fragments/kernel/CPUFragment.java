@@ -214,7 +214,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                     View view = inflater.inflate(R.layout.coreview, container, false);
 
                     mCoreCheckBox[i] = (AppCompatCheckBox) view.findViewById(R.id.core_checkbox);
-                    mCoreCheckBox[i].setText(getString(R.string.core, i + 1));
+                    mCoreCheckBox[i].setText(getString(R.string.core, i));
                     mCoreCheckBox[i].setOnClickListener(this);
 
                     mCoreProgressBar[i] = (ProgressBar) view.findViewById(R.id.progressbar);
@@ -448,7 +448,7 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                     View view = inflater.inflate(R.layout.coreview, container, false);
 
                     mCoreCheckBoxLITTLE[i] = (AppCompatCheckBox) view.findViewById(R.id.core_checkbox);
-                    mCoreCheckBoxLITTLE[i].setText(getString(R.string.core, i + 1));
+                    mCoreCheckBoxLITTLE[i].setText(getString(R.string.core, i));
                     mCoreCheckBoxLITTLE[i].setOnClickListener(this);
 
                     mCoreProgressBarLITTLE[i] = (ProgressBar) view.findViewById(R.id.progressbar);
@@ -677,12 +677,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                         mCpuBoostInputFreqCard[i] = new PopupCardView.DPopupCard(list);
                         if (i == 0) {
                             if (freqs.size() > 1)
-                                mCpuBoostInputFreqCard[i].setTitle(getString(R.string.input_boost_freq_core, i + 1));
+                                mCpuBoostInputFreqCard[i].setTitle(getString(R.string.input_boost_freq_core, i));
                             else
                                 mCpuBoostInputFreqCard[i].setTitle(getString(R.string.input_boost_freq));
                             mCpuBoostInputFreqCard[i].setDescription(getString(R.string.input_boost_freq_summary));
                         } else {
-                            mCpuBoostInputFreqCard[i].setDescription(getString(R.string.input_boost_freq_core, i + 1));
+                            mCpuBoostInputFreqCard[i].setDescription(getString(R.string.input_boost_freq_core, i));
                         }
                         mCpuBoostInputFreqCard[i].setItem(freqs.get(i));
                         mCpuBoostInputFreqCard[i].setOnDPopupCardListener(this);
