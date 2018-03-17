@@ -10,7 +10,7 @@ ext.versions = [
         gradlePlugin         : '3.0.1',
         benmanes             : '0.17.0',
 
-        picasso              : '2.5.2',
+        picasso              : '2.71828',
         supportLib           : '27.1.0',
         ztzip                : '1.12',
         materialdialogs      : '0.9.6.0',
