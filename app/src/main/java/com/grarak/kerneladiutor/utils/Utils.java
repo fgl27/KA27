@@ -231,7 +231,7 @@ public class Utils implements Constants {
     public static void loadImagefromUrl(String url, ImageView imageView) {
         CustomTarget target = new CustomTarget().setImageView(imageView);
         protectedFromGarbageCollectorTargets.add(target);
-        Picasso.with(imageView.getContext()).load(url).into(target);
+        Picasso.get().load(url).into(target);
     }
 
     private static class CustomTarget implements Target {
@@ -249,7 +249,7 @@ public class Utils implements Constants {
         }
 
         @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
+        public void onBitmapFailed(Exception e, Drawable errorDrawable) {
             protectedFromGarbageCollectorTargets.remove(this);
         }
 

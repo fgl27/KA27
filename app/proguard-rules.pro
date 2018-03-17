@@ -35,9 +35,12 @@
 -dontwarn org.slf4j.**
 -dontwarn org.zeroturnaround.zip.**
 
-# picasso.OkHttpDownloade
--dontwarn com.squareup.picasso.**
--dontnote com.squareup.picasso.**
+# picasso https://github.com/square/okhttp/#proguard
+-dontwarn okhttp3.**
+-dontnote okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
 
 # afollestad.material-dialogs
 -dontnote com.afollestad.materialdialogs.**
