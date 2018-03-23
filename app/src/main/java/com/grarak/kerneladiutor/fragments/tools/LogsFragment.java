@@ -737,12 +737,14 @@ public class LogsFragment extends RecyclerViewFragment {
                     else if (position == 7) logs(dmesgC, log_folder, "dmesg" + getDate());
                     else if (position == 8) logs(getpropC, log_folder, "getprop" + getDate());
                     else if (position == 9) new Execute(getActivity()).execute("kernel_changes");
-                }
+                } else Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
+
             }
 
             @Override
             public void denied() {
                 Utils.request_writeexternalstorage(getActivity());
+                Utils.toast(getString(R.string.no_permission), getActivity());
             }
         });
     }

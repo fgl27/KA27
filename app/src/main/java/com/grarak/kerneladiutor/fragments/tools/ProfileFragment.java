@@ -128,6 +128,7 @@ public class ProfileFragment extends RecyclerViewFragment {
                     @Override
                     public void denied() {
                         Utils.request_writeexternalstorage(getActivity());
+                        Utils.toast(getString(R.string.no_permission), getActivity());
                     }
                 });
             }
