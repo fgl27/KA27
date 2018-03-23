@@ -18,6 +18,7 @@ package com.grarak.kerneladiutor.fragments.tools;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.Manifest;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,6 +35,7 @@ import com.grarak.kerneladiutor.FileBrowserActivity;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
+import com.grarak.kerneladiutor.utils.GetPermission;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.kerneladiutor.library.Tools;
@@ -54,7 +56,6 @@ public class BackupFragment extends RecyclerViewFragment {
 
     private RootFile boot;
     private RootFile recovery;
-    private RootFile fota;
 
     @Override
     public int getSpan() {
@@ -72,7 +73,17 @@ public class BackupFragment extends RecyclerViewFragment {
         view.findViewById(R.id.backup_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                options(false, null);
+                new GetPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE).ask(new GetPermission.PermissionCallBack() {
+                    @Override
+                    public void granted() {
+                        options(false, null);
+                    }
+
+                    @Override
+                    public void denied() {
+                        Utils.request_writeexternalstorage(getActivity());
+                    }
+                });
             }
         });
 
@@ -102,8 +113,6 @@ public class BackupFragment extends RecyclerViewFragment {
             menu.put(getString(R.string.boot), Backup.PARTITION.BOOT);
         if (Backup.getRecoveryPartition() != null)
             menu.put(getString(R.string.recovery), Backup.PARTITION.RECOVERY);
-        if (Backup.getFotaPartition() != null)
-            menu.put(getString(R.string.fota), Backup.PARTITION.FOTA);
 
         String[] items = new String[menu.keySet().toArray().length];
         for (int i = 0; i < items.length; i++)
@@ -113,8 +122,7 @@ public class BackupFragment extends RecyclerViewFragment {
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    if (flashing)
-                        restoreDialog(file, (Backup.PARTITION) menu.values().toArray()[which], false);
+                    if (flashing) restoreDialog(file, (Backup.PARTITION) menu.values().toArray()[which], false);
                     else backupDialog((Backup.PARTITION) menu.values().toArray()[which]);
                 }
             }).show();
@@ -155,9 +163,6 @@ public class BackupFragment extends RecyclerViewFragment {
                             break;
                         case RECOVERY:
                             file = recovery;
-                            break;
-                        case FOTA:
-                            file = fota;
                             break;
                     }
                     if (file != null && new File(file.toString() + "/" + name + ".img").exists()) {
@@ -207,7 +212,6 @@ public class BackupFragment extends RecyclerViewFragment {
         String kafolder = Environment.getExternalStorageDirectory().getPath() + "/KA_Backups/";
         boot = new RootFile(kafolder + "boot");
         recovery = new RootFile(kafolder + "recovery");
-        fota = new RootFile(kafolder + "fota");
     }
 
     @Override
@@ -219,8 +223,7 @@ public class BackupFragment extends RecyclerViewFragment {
     private void create() {
         removeAllViews();
 
-        final long size = viewInit(boot, Backup.PARTITION.BOOT) + viewInit(recovery, Backup.PARTITION.RECOVERY) +
-            viewInit(fota, Backup.PARTITION.FOTA);
+        final long size = viewInit(boot, Backup.PARTITION.BOOT) + viewInit(recovery, Backup.PARTITION.RECOVERY);
         getActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -237,7 +240,6 @@ public class BackupFragment extends RecyclerViewFragment {
         String text = null;
         if (folder.toString().endsWith("boot")) text = getString(R.string.boot);
         else if (folder.toString().endsWith("recovery")) text = getString(R.string.recovery);
-        else if (folder.toString().endsWith("fota")) text = getString(R.string.fota);
         if (text == null) return 0;
         for (final RootFile file: folder.listFiles())
             if (file.getName().endsWith(".img")) {

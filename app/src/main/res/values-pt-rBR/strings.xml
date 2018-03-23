@@ -16,7 +16,7 @@
   <string name="more">Mais</string>
   
   <!-- FileBrowser -->
-  <string name="no_permission">Sem permissão</string>
+  <string name="no_permission">Sem permissão de armazenamento</string>
   <string name="select_file">Selecione a %s</string>
   <string name="no_files">Não há arquivos nesta pasta.</string>
 

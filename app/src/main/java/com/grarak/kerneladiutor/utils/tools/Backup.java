@@ -132,10 +132,10 @@ public class Backup {
                 break;
         }
         String sdcard_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Backups/" + folder;
-        File genericFolder = new File(sdcard_folder);
+        RootFile genericFolder = new RootFile(sdcard_folder);
         genericFolder.mkdir();
         if (genericFolder.exists()) return genericFolder.toString();
-            File genericFolder2 = new File(sdcard_folder);
+            RootFile genericFolder2 = new RootFile(sdcard_folder);
             genericFolder2.mkdir();
         return genericFolder2.toString();
     }

@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor.utils;
 
+import android.annotation.TargetApi;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.NotificationManager;
@@ -32,6 +33,7 @@ import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.Manifest;
 import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
@@ -49,6 +51,10 @@ import android.view.ViewAnimationUtils;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.app.ActivityCompat;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
@@ -663,5 +669,24 @@ public class Utils implements Constants {
     public static void ClearAllNotification(Context context) {
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancelAll();
+    }
+
+    @TargetApi(23)
+    public static void check_writeexternalstorage(FragmentActivity activity) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                request_writeexternalstorage(activity);
+            }
+        }
+    }
+
+    @TargetApi(23)
+    public static void request_writeexternalstorage(FragmentActivity activity) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            ActivityCompat.requestPermissions(activity, new String[] {
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                },
+                123);
+        }
     }
 }

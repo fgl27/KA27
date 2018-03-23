@@ -19,6 +19,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.Manifest;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -42,6 +43,7 @@ import com.grarak.kerneladiutor.elements.cards.CardViewItem;
 import com.grarak.kerneladiutor.elements.cards.PopupCardView;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.GetPermission;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -117,12 +119,8 @@ public class LogsFragment extends RecyclerViewFragment {
             Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
 
         if (!Utils.existFile(log_folder)) {
-            File dir = new File(log_folder);
+            RootFile dir = new RootFile(log_folder);
             dir.mkdir();
-            if (!Utils.existFile(log_folder)) {
-                Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
-                return;
-            }
         }
     }
 
@@ -153,9 +151,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                if (!Misc.isLoggerActive())
-                    Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                new Execute(getActivity()).execute("zip");
+                LogsonClick(1);
             }
         });
 
@@ -171,9 +167,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mSearchCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                if (!Misc.isLoggerActive())
-                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                GrepLogs();
+                LogsonClick(2);
             }
         });
 
@@ -189,11 +183,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mLogcatCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-
-                if (!Misc.isLoggerActive())
-                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                else
-                    logs(logcatC, log_folder, "logcat" + getDate());
+                LogsonClick(3);
             }
         });
 
@@ -203,10 +193,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mLogRadioCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                if (!Misc.isLoggerActive())
-                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                else
-                    logs(radioC, log_folder, "radio" + getDate());
+                LogsonClick(4);
             }
         });
 
@@ -216,10 +203,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mLogEventsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                if (!Misc.isLoggerActive())
-                    Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                else
-                    logs(eventsC, log_folder, "events" + getDate());
+                LogsonClick(5);
+
             }
         });
 
@@ -229,7 +214,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mLastDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute(getActivity()).execute("lastdmesg");
+                LogsonClick(6);
             }
         });
 
@@ -239,7 +224,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs(dmesgC, log_folder, "dmesg" + getDate());
+                LogsonClick(7);
             }
         });
 
@@ -249,7 +234,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                logs(getpropC, log_folder, "getprop" + getDate());
+                LogsonClick(8);
             }
         });
 
@@ -259,7 +244,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mKernelChanges.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                new Execute(getActivity()).execute("kernel_changes");
+                LogsonClick(9);
             }
         });
 
@@ -314,11 +299,11 @@ public class LogsFragment extends RecyclerViewFragment {
             super.onPreExecute();
             Context mContext = contextRef.get();
             progressDialog = new MaterialDialog.Builder(mContext)
-            .title(mContext.getString(R.string.logs))
-            .content(mContext.getString(R.string.execute))
-            .progress(true, 0)
-            .canceledOnTouchOutside(false)
-            .show();
+                .title(mContext.getString(R.string.logs))
+                .content(mContext.getString(R.string.execute))
+                .progress(true, 0)
+                .canceledOnTouchOutside(false)
+                .show();
         }
 
         @Override
@@ -332,10 +317,10 @@ public class LogsFragment extends RecyclerViewFragment {
                 String tmplogcat = log_temp_folder + "tmplogcat.txt";
                 if (Utils.existFile(log_temp_folder)) {
                     RootUtils.runCommand("rm -rf " + log_temp_folder);
-                    File dir = new File(log_temp_folder);
+                    RootFile dir = new RootFile(log_temp_folder);
                     dir.mkdir();
                 } else {
-                    File dir = new File(log_temp_folder);
+                    RootFile dir = new RootFile(log_temp_folder);
                     dir.mkdir();
                 }
                 if (!Misc.isLoggerActive()) {
@@ -641,8 +626,7 @@ public class LogsFragment extends RecyclerViewFragment {
     private String sysfsrecord(String file) {
         String ret = "";
         RootFile sysfspath = new RootFile(file);
-        if (sysfspath.isDirectory())
-            return ret = sysfspathIsdirectory(file);
+        if (sysfspath.isDirectory()) return ret = sysfspathIsdirectory(file);
         else {
             Log.i(Constants.TAG, "Path: " + file + " | Value: " + Utils.readFile(file));
             return ret = ret + "Path: " + file + " | Value: " + Utils.readFile(file) + "\n";
@@ -727,5 +711,51 @@ public class LogsFragment extends RecyclerViewFragment {
             return allcommands;
         }
         return "No changes";
+    }
+
+    private void LogsonClick(int position) {
+        new GetPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE).ask(new GetPermission.PermissionCallBack() {
+            @Override
+            public void granted() {
+                if (FolderExit()) {
+                    if (position == 1) {
+                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
+                        new Execute(getActivity()).execute("zip");
+                    } else if (position == 2) {
+                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
+                        GrepLogs();
+                    } else if (position == 3) {
+                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                        else logs(logcatC, log_folder, "logcat" + getDate());
+                    } else if (position == 4) {
+                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                        else logs(radioC, log_folder, "radio" + getDate());
+                    } else if (position == 5) {
+                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                        else logs(eventsC, log_folder, "events" + getDate());
+                    } else if (position == 6) new Execute(getActivity()).execute("lastdmesg");
+                    else if (position == 7) logs(dmesgC, log_folder, "dmesg" + getDate());
+                    else if (position == 8) logs(getpropC, log_folder, "getprop" + getDate());
+                    else if (position == 9) new Execute(getActivity()).execute("kernel_changes");
+                }
+            }
+
+            @Override
+            public void denied() {
+                Utils.request_writeexternalstorage(getActivity());
+            }
+        });
+    }
+
+    private boolean FolderExit() {
+        if (!Utils.existFile(log_folder)) {
+            RootFile dir = new RootFile(log_folder);
+            dir.mkdir();
+
+            if (!Utils.existFile(log_folder)) {
+                Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
+                return false;
+            } else return true;
+        } else return true;
     }
 }

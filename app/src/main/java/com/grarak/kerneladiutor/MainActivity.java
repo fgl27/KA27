@@ -100,6 +100,7 @@ import com.grarak.kerneladiutor.utils.kernel.WakeLock;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.Buildprop;
 import com.kerneladiutor.library.root.RootUtils;
+import com.kerneladiutor.library.root.RootFile;
 
 import java.io.File;
 import java.io.IOException; 
@@ -377,33 +378,19 @@ public class MainActivity extends BaseActivity implements Constants {
 
                 setList();
             }
-            check_writeexternalstorage();
+            Utils.check_writeexternalstorage(MainActivity.this);
 
             // Create a blank profiles.json to prevent logspam.
             String sdcard = Environment.getExternalStorageDirectory().getPath();
             String profpath = (sdcard +"/KA_profiles/");
             if (!Utils.existFile(profpath)) {
-                File dir = new File(profpath);
+                RootFile dir = new RootFile(profpath);
                 dir.mkdir();
             }
             String file = sdcard + "/KA_profiles/profiles.json";
-            if (!Utils.existFile(file)) {
-                File pfile = new File(file);
-                try {
-                    pfile.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            if (!Utils.existFile(file)) RootUtils.runCommand("echo > " + file);
             file = sdcard + "/KA_profiles/per_app.json";
-            if (!Utils.existFile(file)) {
-                File apfile = new File(file);
-                try {
-                    apfile.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            if (!Utils.existFile(file)) RootUtils.runCommand("echo > " + file);
 
             return null;
         }

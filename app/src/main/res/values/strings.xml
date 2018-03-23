@@ -17,7 +17,7 @@
     <string name="more">More</string>
 
     <!-- FileBrowser -->
-    <string name="no_permission">No permission</string>
+    <string name="no_permission">No storage permission</string>
     <string name="select_file">Select %s ?</string>
     <string name="no_files">No files in this path.</string>
     <string name="copy">Copy</string>
@@ -872,7 +872,6 @@
     <string name="flash_img">Flash IMG</string>
     <string name="flashing">Flashing</string>
     <string name="boot" translatable="false">Boot</string>
-    <string name="fota" translatable="false">Fota</string>
     <string name="backing_up">Backing up</string>
     <string name="empty_name">Name is empty!</string>
     <string name="backup_already_exists">A backup with the same name already exists. Delete it first!</string>
@@ -969,7 +968,7 @@
     <string name="saved_to_summary">\n/sdcard/KA_Logs/grep_a_log%s.txt</string>
     <string name="logcat_disable_zip">Zip generated but only with Driver message and Get prop!</string>
     <string name="logcat_disable">Android logging is disable!</string>
-    <string name="logcat_disable_summary">Android logging is disable, Logcat, Radio Log and Events Logs is empty!\n\nTurn Android logging on under Misc and try again</string>
+    <string name="logcat_disable_summary">Android logging is disable, Logcat, Radio Logs and Events Logs is empty!\n\nEnable Android logging in Misc and try again</string>
     <string name="log_folder_error">Error!\n\nCan\'t create a Log folder in /sdcard/KA_Logs/ Check permission if the problem persist contact the developer</string>
     <string name="kernel_changes">Kernel Changes</string>
     <string name="kernel_changes_summary">Copy current kernel saved changes (section with changes and apply on boot enable) to:\n/sdcard/KA_Logs/kernel_changes%s.txt</string>

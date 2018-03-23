@@ -38,9 +38,9 @@ public class GetPermission {
     }
 
     public interface PermissionCallBack {
-        void granted(String permission);
+        void granted();
 
-        void denied(String permission);
+        void denied();
     }
 
     public void ask(PermissionCallBack permissionCallBack) {
@@ -61,17 +61,17 @@ public class GetPermission {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     if (checkSelfPermission(permissions[i]) != PackageManager.PERMISSION_GRANTED) {
                         if (shouldShowRequestPermissionRationale(permissions[i])) {
-                            permissionCallBack.denied(permissions[i]);
+                            permissionCallBack.denied();
                             if (permissions.length == i + 1) finish();
                         } else {
                             requestPermissions(permissions, i + 1);
                         }
                     } else {
-                        permissionCallBack.granted(permissions[i]);
+                        permissionCallBack.granted();
                         if (permissions.length == i + 1) finish();
                     }
                 } else {
-                    permissionCallBack.granted(permissions[i]);
+                    permissionCallBack.granted();
                     finish();
                 }
             }
@@ -81,9 +81,9 @@ public class GetPermission {
         public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
             if (permissions.length >= requestCode) {
                 if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    permissionCallBack.granted(permissions[requestCode - 1]);
+                    permissionCallBack.granted();
                 } else {
-                    permissionCallBack.denied(permissions[requestCode - 1]);
+                    permissionCallBack.denied();
                 }
             } else {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);

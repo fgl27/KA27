@@ -68,14 +68,15 @@ public class FileBrowserActivity extends BaseActivity {
 
         new GetPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE).ask(new GetPermission.PermissionCallBack() {
             @Override
-            public void granted(String permission) {
+            public void granted() {
                 fileBrowserActivity = FileBrowserActivity.this;
                 setFragment(R.id.content_frame, fileBrowserFragment
                         = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)));
             }
 
             @Override
-            public void denied(String permission) {
+            public void denied() {
+                Utils.request_writeexternalstorage(FileBrowserActivity.this);
                 Utils.toast(getString(R.string.no_permission), FileBrowserActivity.this);
                 finish();
             }
