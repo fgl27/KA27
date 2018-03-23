@@ -32,7 +32,7 @@ public class BootReceiver extends BroadcastReceiver {
 
         String action = intent.getAction();
 
-        if (Intent.ACTION_BOOT_COMPLETED.equals(action)) {
+        if (Intent.ACTION_BOOT_COMPLETED.equals(action) && Utils.getBoolean("ka_run", false, context)) {
             if (Utils.getBoolean("emulateinit.d", false, context))
                 context.startService(new Intent(context, InitdService.class));
             context.startService(new Intent(context, BootService.class));

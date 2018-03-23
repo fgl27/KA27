@@ -148,10 +148,9 @@ public class MainActivity extends BaseActivity implements Constants {
         setView();
         String password;
         extractAssets(this);
-        if (!(password = Utils.getString("password", "", this)).isEmpty())
-            askPassword(password);
-        else // Use an AsyncTask to initialize everything
-            new Task().execute();
+        if (!(password = Utils.getString("password", "", this)).isEmpty()) askPassword(password);
+        else new Task().execute(); // Use an AsyncTask to initialize everything
+        Utils.saveBoolean("ka_run", true, MainActivity.this);
     }
 
     @Override
