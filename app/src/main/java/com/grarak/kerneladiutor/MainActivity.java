@@ -236,45 +236,32 @@ public class MainActivity extends BaseActivity implements Constants {
         ITEMS.add(new DAdapter.Item(getString(R.string.kernel_information), new KernelInformationFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.frequency_table), new FrequencyTableFragment()));
         ITEMS.add(new DAdapter.Header(getString(R.string.kernel)));
+
         ITEMS.add(new DAdapter.Item(getString(R.string.cpu), new CPUFragment()));
-        if (CPUVoltage.hasCpuVoltage())
-            ITEMS.add(new DAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
-        if (CPUHotplug.hasCpuHotplug())
-            ITEMS.add(new DAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
-        if (Thermal.hasThermal())
-            ITEMS.add(new DAdapter.Item(getString(R.string.thermal), new ThermalFragment()));
-        if (GPU.hasGpuControl())
-            ITEMS.add(new DAdapter.Item(getString(R.string.gpu), new GPUFragment()));
-        if (Ram.hasRamControl())
-            ITEMS.add(new DAdapter.Item(getString(R.string.ram), new RamFragment()));
-        if (Screen.hasScreen())
-            ITEMS.add(new DAdapter.Item(getString(R.string.screen), new ScreenFragment()));
-        if (Wake.hasWake())
-            ITEMS.add(new DAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
-        if (Sound.hasSound())
-            ITEMS.add(new DAdapter.Item(getString(R.string.sound), new SoundFragment()));
-        if (!Utils.isTV(this))
-            ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));
+        if (CPUHotplug.hasCpuHotplug()) ITEMS.add(new DAdapter.Item(getString(R.string.cpu_hotplug), new CPUHotplugFragment()));
+        if (CPUVoltage.hasCpuVoltage()) ITEMS.add(new DAdapter.Item(getString(R.string.cpu_voltage), new CPUVoltageFragment()));
+        if (Entropy.hasEntropy()) ITEMS.add(new DAdapter.Item(getString(R.string.entropy), new EntropyFragment()));
+        if (GPU.hasGpuControl()) ITEMS.add(new DAdapter.Item(getString(R.string.gpu), new GPUFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.io_scheduler), new IOFragment()));
-        if (KSM.hasKsm())
-            ITEMS.add(new DAdapter.Item(getString(R.string.ksm), new KSMFragment()));
-        if (LMK.getMinFrees() != null)
-            ITEMS.add(new DAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
-        if (WakeLock.hasAnyWakelocks())
-            ITEMS.add(new DAdapter.Item(getString(R.string.wakelocks), new WakeLockFragment())); 
-        if (Entropy.hasEntropy())
-            ITEMS.add(new DAdapter.Item(getString(R.string.entropy), new EntropyFragment()));
+        if (KSM.hasKsm()) ITEMS.add(new DAdapter.Item(getString(R.string.ksm), new KSMFragment()));
+        if (LMK.getMinFrees() != null) ITEMS.add(new DAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
+        if (!Utils.isTV(this)) ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));//Power and battery
+        if (Ram.hasRamControl()) ITEMS.add(new DAdapter.Item(getString(R.string.ram), new RamFragment()));
+        if (Screen.hasScreen()) ITEMS.add(new DAdapter.Item(getString(R.string.screen), new ScreenFragment()));
+        if (Sound.hasSound()) ITEMS.add(new DAdapter.Item(getString(R.string.sound), new SoundFragment()));
+        if (Thermal.hasThermal()) ITEMS.add(new DAdapter.Item(getString(R.string.thermal), new ThermalFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.virtual_memory), new VMFragment()));
+        if (Wake.hasWake()) ITEMS.add(new DAdapter.Item(getString(R.string.wake_controls), new WakeFragment()));
+        if (WakeLock.hasAnyWakelocks()) ITEMS.add(new DAdapter.Item(getString(R.string.wakelocks), new WakeLockFragment()));
+
         ITEMS.add(new DAdapter.Header(getString(R.string.tools)));
-        if (Backup.hasBackup())
-            ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
-        if (Buildprop.hasBuildprop())
-            ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
-        ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
+        if (Backup.hasBackup()) ITEMS.add(new DAdapter.Item(getString(R.string.backup), new BackupFragment()));
+        if (Buildprop.hasBuildprop()) ITEMS.add(new DAdapter.Item(getString(R.string.build_prop_editor), new BuildpropFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.initd), new InitdFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.logs), new LogsFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.profile), new ProfileFragment()));
+        ITEMS.add(new DAdapter.Item(getString(R.string.recovery), new RecoveryFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.startup_commands), new StartUpCommandsFragment()));
         ITEMS.add(new DAdapter.Header(getString(R.string.other)));
         ITEMS.add(new DAdapter.Item(getString(R.string.settings), new SettingsFragment()));
