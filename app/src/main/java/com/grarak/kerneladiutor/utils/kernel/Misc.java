@@ -220,7 +220,7 @@ public class Misc implements Constants {
     public static boolean isLoggerActive() {
         // copy this from mpdecision
         try {
-            String result = RootUtils.runCommand("getprop | grep logd]").split("]: ")[1];
+            String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\.logd]\'").split("]: ")[1];
             if (result.equals("[running]") || result.equals("[restarting]")) {
                 return true;
             }
