@@ -60,6 +60,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     private SeekBarCardView.DSeekBarCard mChargingRateCard;
 
     private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
+    private boolean BCLActive = false;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -76,12 +77,15 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
 
-        if (Battery.hasBcl()) bclInit();
-        if (Battery.hasBclFreq()) bclMaxFreqInit();
-        if (Battery.hasBclHotMask()) bclHotmask();
-        if (Battery.hasBclVphLow()) BclVphLowInit();
-        if (Battery.hasBclVphHigh()) BclVphHighInit();
-        if (Battery.hasBclHotplug()) bclHotplugInit();
+        if (Battery.hasBcl()) {
+            BCLActive = Battery.isBclActive();
+            bclInit();
+        } else BCLActive = true;
+        if (Battery.hasBclFreq() && BCLActive) bclMaxFreqInit();
+        if (Battery.hasBclHotMask() && BCLActive) bclHotmask();
+        if (Battery.hasBclVphLow() && BCLActive) BclVphLowInit();
+        if (Battery.hasBclVphHigh() && BCLActive) BclVphHighInit();
+        if (Battery.hasBclHotplug() && BCLActive) bclHotplugInit();
 
         cstatesInit();
         Update();
@@ -400,9 +404,10 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
             Battery.activateC3State(checked, getActivity());
         else if (dSwitchCard == mBatteryLedCard)
             Battery.setBatteryLed(checked, getActivity());
-        else if (dSwitchCard == mBclCard)
+        else if (dSwitchCard == mBclCard) {
             Battery.activateBcl(checked, getActivity());
-        else if (dSwitchCard == mBclHotplugCard)
+            RefreshFrag();
+        } else if (dSwitchCard == mBclHotplugCard)
             Battery.activateBclHotplug(checked, getActivity());
     }
 
@@ -424,5 +429,15 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     @Override
     public void onDestroy() {
         super.onDestroy();
+    }
+
+    private void RefreshFrag() {
+        view.invalidate();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 }
