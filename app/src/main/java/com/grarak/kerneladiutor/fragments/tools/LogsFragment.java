@@ -122,6 +122,7 @@ public class LogsFragment extends RecyclerViewFragment {
             RootFile dir = new RootFile(log_folder);
             dir.mkdir();
         }
+        if (!Utils.existFile(log_folder)) Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
     }
 
     @Override
@@ -151,7 +152,19 @@ public class LogsFragment extends RecyclerViewFragment {
         mAllLogsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(1);
+                new GetPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE).ask(new GetPermission.PermissionCallBack() {
+                    @Override
+                    public void granted() {
+                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
+                        new Execute(getActivity()).execute("zip");
+                    }
+
+                    @Override
+                    public void denied() {
+                        Utils.toast(getString(R.string.no_permission), getActivity());
+                        Utils.request_writeexternalstorage(getActivity());
+                    }
+                });
             }
         });
 
@@ -167,7 +180,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mSearchCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(2);
+                if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                GrepLogs();
             }
         });
 
@@ -183,7 +197,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mLogcatCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(3);
+                if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                else logs(logcatC, log_folder, "logcat" + getDate());
             }
         });
 
@@ -193,7 +208,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mLogRadioCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(4);
+                if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                else logs(radioC, log_folder, "radio" + getDate());
             }
         });
 
@@ -203,7 +219,8 @@ public class LogsFragment extends RecyclerViewFragment {
         mLogEventsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(5);
+                if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
+                else logs(eventsC, log_folder, "events" + getDate());
 
             }
         });
@@ -214,7 +231,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mLastDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(6);
+                new Execute(getActivity()).execute("lastdmesg");
             }
         });
 
@@ -224,7 +241,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mDmesgCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(7);
+                logs(dmesgC, log_folder, "dmesg" + getDate());
             }
         });
 
@@ -234,7 +251,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mGetPropCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(8);
+                logs(getpropC, log_folder, "getprop" + getDate());
             }
         });
 
@@ -244,7 +261,7 @@ public class LogsFragment extends RecyclerViewFragment {
         mKernelChanges.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
             @Override
             public void onClick(CardViewItem.DCardView dCardView) {
-                LogsonClick(9);
+                new Execute(getActivity()).execute("kernel_changes");
             }
         });
 
@@ -655,10 +672,8 @@ public class LogsFragment extends RecyclerViewFragment {
 
     private static void KernelChanges(String path, boolean date, Context context) {
         String file_name;
-        if (date)
-            file_name = path + "kernel_changes" + getDate() + ".txt";
-        else
-            file_name = path + "kernel_changes.txt";
+        if (date) file_name = path + "kernel_changes" + getDate() + ".txt";
+        else file_name = path + "kernel_changes.txt";
         RootUtils.runCommand("echo " + "'" + listcommands(context) + "'" + " > " + file_name);
     }
 
@@ -713,51 +728,4 @@ public class LogsFragment extends RecyclerViewFragment {
         return "No changes";
     }
 
-    private void LogsonClick(int position) {
-        new GetPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE).ask(new GetPermission.PermissionCallBack() {
-            @Override
-            public void granted() {
-                if (FolderExit()) {
-                    if (position == 1) {
-                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                        new Execute(getActivity()).execute("zip");
-                    } else if (position == 2) {
-                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_zip), getActivity(), Toast.LENGTH_LONG);
-                        GrepLogs();
-                    } else if (position == 3) {
-                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                        else logs(logcatC, log_folder, "logcat" + getDate());
-                    } else if (position == 4) {
-                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                        else logs(radioC, log_folder, "radio" + getDate());
-                    } else if (position == 5) {
-                        if (!Misc.isLoggerActive()) Utils.toast(getString(R.string.logcat_disable_summary), getActivity(), Toast.LENGTH_LONG);
-                        else logs(eventsC, log_folder, "events" + getDate());
-                    } else if (position == 6) new Execute(getActivity()).execute("lastdmesg");
-                    else if (position == 7) logs(dmesgC, log_folder, "dmesg" + getDate());
-                    else if (position == 8) logs(getpropC, log_folder, "getprop" + getDate());
-                    else if (position == 9) new Execute(getActivity()).execute("kernel_changes");
-                } else Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
-
-            }
-
-            @Override
-            public void denied() {
-                Utils.request_writeexternalstorage(getActivity());
-                Utils.toast(getString(R.string.no_permission), getActivity());
-            }
-        });
-    }
-
-    private boolean FolderExit() {
-        if (!Utils.existFile(log_folder)) {
-            RootFile dir = new RootFile(log_folder);
-            dir.mkdir();
-
-            if (!Utils.existFile(log_folder)) {
-                Utils.toast(getString(R.string.log_folder_error), getActivity(), Toast.LENGTH_LONG);
-                return false;
-            } else return true;
-        } else return true;
-    }
 }
