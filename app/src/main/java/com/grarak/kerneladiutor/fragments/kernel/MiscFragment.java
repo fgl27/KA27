@@ -77,6 +77,7 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
         if (Misc.hasGentleFairSleepers()) gentlefairsleepersInit();
         if (Misc.hasPowerSuspend()) powersuspendInit();
         networkInit();
+        Update();
     }
 
     private void selinuxInit() {
@@ -241,11 +242,6 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
         mEnableADBOverWifiCard = new SwitchCardView.DSwitchCard();
         mEnableADBOverWifiCard.setTitle(getString(R.string.adb_over_wifi));
-        if (Misc.isADBOverWifiActive()) {
-            mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_connect_summary) + Misc.getIpAddr(getActivity()) + ":5555");
-        } else {
-            mEnableADBOverWifiCard.setDescription(getString(R.string.adb_over_wifi_summary));
-        }
         mEnableADBOverWifiCard.setChecked(Misc.isADBOverWifiActive());
         mEnableADBOverWifiCard.setOnDSwitchCardListener(this);
 
@@ -292,47 +288,36 @@ public class MiscFragment extends RecyclerViewFragment implements PopupCardView.
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mSELinuxCard) {
-            Misc.activateSELinux(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-        } else if (dSwitchCard == mLoggerEnableCard)
-            Misc.activateLogger(checked, getActivity());
-        else if (dSwitchCard == mCrcCard)
-            Misc.activateCrc(checked, getActivity());
-        else if (dSwitchCard == mFsyncCard)
-            Misc.activateFsync(checked, getActivity());
-        else if (dSwitchCard == mDynamicFsyncCard)
-            Misc.activateDynamicFsync(checked, getActivity());
-        else if (dSwitchCard == mMotoTouchxCard)
-            Misc.activateMotoTouchx(checked, getActivity());
-        else if (dSwitchCard == mGentleFairSleepersCard)
-            Misc.activateGentleFairSleepers(checked, getActivity());
-        else if (dSwitchCard == mOldPowerSuspendStateCard)
+        if (dSwitchCard == mSELinuxCard) Misc.activateSELinux(checked, getActivity());
+        else if (dSwitchCard == mLoggerEnableCard) Misc.activateLogger(checked, getActivity());
+        else if (dSwitchCard == mCrcCard) Misc.activateCrc(checked, getActivity());
+        else if (dSwitchCard == mFsyncCard) Misc.activateFsync(checked, getActivity());
+        else if (dSwitchCard == mDynamicFsyncCard) Misc.activateDynamicFsync(checked, getActivity());
+        else if (dSwitchCard == mMotoTouchxCard) Misc.activateMotoTouchx(checked, getActivity());
+        else if (dSwitchCard == mGentleFairSleepersCard) Misc.activateGentleFairSleepers(checked, getActivity());
+        else if (dSwitchCard == mOldPowerSuspendStateCard) {
             if (Misc.getPowerSuspendMode() == 1) {
                 Misc.activateOldPowerSuspend(checked, getActivity());
             } else dSwitchCard.setChecked(Misc.isOldPowerSuspendStateActive());
-        else if (dSwitchCard == mEnableADBOverWifiCard) {
-            Misc.activateADBOverWifi(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
-        }
+        } else if (dSwitchCard == mEnableADBOverWifiCard) Misc.activateADBOverWifi(checked, getActivity());
+
     }
 
     @Override
     public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
         dEditTextCard.setDescription(value);
         if (dEditTextCard == mHostnameCard) Misc.setHostname(value, getActivity());
+    }
+
+    @Override
+    public boolean onRefresh() {
+        Update();
+        return true;
+    }
+
+    private void Update() {
+        if (mSELinuxCard != null) mSELinuxCard.setDescription(getString(R.string.se_linux_summary) + " " + Misc.getSELinuxStatus());
+        if (mEnableADBOverWifiCard != null) mEnableADBOverWifiCard.setDescription(Misc.isADBOverWifiActive() ? getString(R.string.adb_over_wifi_connect_summary) + Misc.getIpAddr(getActivity()) + ":5555" : getString(R.string.adb_over_wifi_summary));
     }
 
 }

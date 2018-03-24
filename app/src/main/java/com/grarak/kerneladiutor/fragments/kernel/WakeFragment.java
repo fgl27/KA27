@@ -329,20 +329,11 @@ public class WakeFragment extends RecyclerViewFragment implements PopupCardView.
     }
 
     private void Update() {
-        if (mDT2WTimeBetweenTapsCard != null)
-            mDT2WTimeBetweenTapsCard.setProgress(Wake.getDT2WTimeBetweenTaps() - 1);
-
-        if (mS2WTimeCard != null)
-            mS2WTimeCard.setProgress(Wake.getS2WTime() - 1);
-
-        if (mDT2WFeatherXCard != null)
-            mDT2WFeatherXCard.setProgress(Wake.getDT2WFeatherX() - 1);
-
-        if (mDT2WFeatherYCard != null)
-            mDT2WFeatherYCard.setProgress(Wake.getDT2WFeatherY() - 1);
-
-        if (mWakeGesturesVibStrengthCard != null)
-            mWakeGesturesVibStrengthCard.setProgress(Wake.getvibstrength());
+        if (mDT2WTimeBetweenTapsCard != null) mDT2WTimeBetweenTapsCard.setProgress(Wake.getDT2WTimeBetweenTaps() - 1);
+        if (mS2WTimeCard != null) mS2WTimeCard.setProgress(Wake.getS2WTime() - 1);
+        if (mDT2WFeatherXCard != null) mDT2WFeatherXCard.setProgress(Wake.getDT2WFeatherX() - 1);
+        if (mDT2WFeatherYCard != null) mDT2WFeatherYCard.setProgress(Wake.getDT2WFeatherY() - 1);
+        if (mWakeGesturesVibStrengthCard != null) mWakeGesturesVibStrengthCard.setProgress(Wake.getvibstrength());
     }
 
     private void ReloadFragment() {

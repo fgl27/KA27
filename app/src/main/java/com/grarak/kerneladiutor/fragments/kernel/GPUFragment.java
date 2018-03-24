@@ -299,12 +299,7 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
             GPU.setGpu2dGovernor(GPU.getGpu2dGovernors().get(position), getActivity());
         else if (dPopupCard == mGovernorCard) {
             GPU.setGpuGovernor(GPU.getGpuGovernors().get(position), getActivity());
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         }
     }
 
@@ -312,33 +307,25 @@ public class GPUFragment extends RecyclerViewFragment implements PopupCardView.D
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mSimpleGpuCard) {
             GPU.activateSimpleGpu(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         } else if (dSwitchCard == mAdrenoIdlerCard) {
             GPU.activateAdrenoIdler(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         } else if (dSwitchCard == mGamingModeGpuCard) GPU.activateGamingMode(checked, getActivity());
         else if (dSwitchCard == mSimpleOndemandScalingCard) {
             GPU.activateSimpleOndemandScaling(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         }
+    }
+
+    private void RefreshFrag() {
+        view.invalidate();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
     @Override

@@ -213,13 +213,7 @@ public class SoundFragment extends RecyclerViewFragment implements SwitchCardVie
             Sound.activateSoundControl(checked, getActivity());
         else if (dSwitchCard == mHeadphoneGainIndependentCard) {
             Sound.setIndependentHeadphoneGainEnabled(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         } else if (dSwitchCard == mHighPerfModeEnableCard)
             Sound.activateHighPerfMode(checked, getActivity());
         else if (dSwitchCard == mwcdHighPerfModeEnableCard)
@@ -251,5 +245,15 @@ public class SoundFragment extends RecyclerViewFragment implements SwitchCardVie
             Sound.setMicrophoneGain(Sound.getMicrophoneGainLimits().get(position), getActivity());
         else if (dSeekBarCard == mVolumeGainCard)
             Sound.setVolumeGain(Sound.getVolumeGainLimits().get(position), getActivity());
+    }
+
+    private void RefreshFrag() {
+        view.invalidate();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 }

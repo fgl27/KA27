@@ -901,12 +901,12 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
             }
 
             private void ForceRefresh() {
+                CPUFragment.cpuFragment.get().cpuPart.view.invalidate();
                 try {
                     Thread.sleep(250);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                 }
-                CPUFragment.cpuFragment.get().cpuPart.view.invalidate();
                 getActivity().getSupportFragmentManager().beginTransaction().detach(CPUFragment.cpuFragment.get()).attach(CPUFragment.cpuFragment.get()).commit();
             }
 

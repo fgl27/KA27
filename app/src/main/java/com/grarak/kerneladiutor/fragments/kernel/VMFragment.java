@@ -498,24 +498,12 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mProcessReclaimCard) {
             VM.activateProcessReclaim(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         } else if (dSwitchCard == mLaptopModeCard)
             VM.activateLaptopMode(checked, getActivity());
         else if (dSwitchCard == mDynamic_Dirty_WritebackCard) {
             VM.activateDynamicDirtyWriteback(checked, getActivity());
-            view.invalidate();
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-            }
-            getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
+            RefreshFrag();
         }
     }
 
@@ -564,6 +552,16 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         if (mZramRWCard != null)
             mZramRWCard.setDescription(getString(R.string.total) + VM.getZramReadWrites() + "\n" +
                 getString(R.string.fail) + VM.getZramFailReadWrites());
+    }
+
+    private void RefreshFrag() {
+        view.invalidate();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
 }
