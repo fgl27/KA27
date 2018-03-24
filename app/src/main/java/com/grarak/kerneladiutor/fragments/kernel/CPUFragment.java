@@ -552,29 +552,27 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
 
                 addView(mStateNotifierStateCard);
 
-                if (CPU.isStateNotifierStateActive()) {
-                    if (CPU.hasStateDebug()) {
-                        mStateDebugCard = new SwitchCardView.DSwitchCard();
-                        mStateDebugCard.setTitle(getString(R.string.state_notifier) + " " + getString(R.string.debug));
-                        mStateDebugCard.setDescription(getString(R.string.debug_summary));
-                        mStateDebugCard.setChecked(CPU.isStateDebugActive());
-                        mStateDebugCard.setOnDSwitchCardListener(this);
+                if (CPU.hasStateDebug()) {
+                    mStateDebugCard = new SwitchCardView.DSwitchCard();
+                    mStateDebugCard.setTitle(getString(R.string.state_notifier) + " " + getString(R.string.debug));
+                    mStateDebugCard.setDescription(getString(R.string.debug_summary));
+                    mStateDebugCard.setChecked(CPU.isStateDebugActive());
+                    mStateDebugCard.setOnDSwitchCardListener(this);
 
-                        addView(mStateDebugCard);
-                    }
-                    if (CPU.hasStateDefer()) {
-                        List < String > list = new ArrayList < > ();
-                        for (int i = 0; i < 51; i += 1)
-                            list.add(i + getString(R.string.sec));
+                    addView(mStateDebugCard);
+                }
+                if (CPU.hasStateDefer()) {
+                    List < String > list = new ArrayList < > ();
+                    for (int i = 0; i < 51; i += 1)
+                        list.add(i + getString(R.string.sec));
 
-                        mStateDeferCard = new SeekBarCardView.DSeekBarCard(list);
-                        mStateDeferCard.setTitle(getString(R.string.state_defer));
-                        mStateDeferCard.setDescription(getString(R.string.state_defer_summary));
-                        mStateDeferCard.setProgress(CPU.getStateDefer());
-                        mStateDeferCard.setOnDSeekBarCardListener(this);
+                    mStateDeferCard = new SeekBarCardView.DSeekBarCard(list);
+                    mStateDeferCard.setTitle(getString(R.string.state_defer));
+                    mStateDeferCard.setDescription(getString(R.string.state_defer_summary));
+                    mStateDeferCard.setProgress(CPU.getStateDefer());
+                    mStateDeferCard.setOnDSeekBarCardListener(this);
 
-                        addView(mStateDeferCard);
-                    }
+                    addView(mStateDeferCard);
                 }
             }
 
@@ -882,7 +880,6 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                 else if (dSwitchCard == mStateNotifierStateCard) {
                     CPU.activateStateNotifier(checked, getActivity());
                     mStateNotifierStateCard.setDescription(getString(checked ? R.string.state_notifier_mode_summary_enabled : R.string.state_notifier_mode_summary_disabled));
-                    ForceRefresh();
                 } else if (dSwitchCard == mStateDebugCard)
                     CPU.activateStateDebug(checked, getActivity());
                 else if (dSwitchCard == mCpuBoostWakeupCard)
@@ -893,14 +890,14 @@ public class CPUFragment extends ViewPagerFragment implements Constants {
                     CPU.activateCpuTouchBoost(checked, getActivity());
                 else if (dSwitchCard == mPerCoreFreqControlCard) {
                     CPU.setPerCoreFreqControlEnabled(checked, getActivity());
-                    ForceRefresh();
+                    RefreshFrag();
                 } else if (dSwitchCard == mPerCoreGovControlCard) {
                     CPU.setPerCoreGovControlEnabled(checked, getActivity());
-                    ForceRefresh();
+                    RefreshFrag();
                 }
             }
 
-            private void ForceRefresh() {
+            private void RefreshFrag() {
                 CPUFragment.cpuFragment.get().cpuPart.view.invalidate();
                 try {
                     Thread.sleep(250);

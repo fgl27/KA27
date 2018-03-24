@@ -183,7 +183,7 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                                         case 1:
                                             {
                                                 Control.deletespecificcommand(getActivity(), null, command);
-                                                forcerefresh(getActivity());
+                                                RefreshFrag();
                                                 break;
                                             }
 
@@ -203,7 +203,7 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
         }
     }
 
-    public void forcerefresh(Context context) {
+    public void RefreshFrag() {
         view.invalidate();
         try {
             Thread.sleep(100);
@@ -212,6 +212,7 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
         }
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
+
     DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialog, int which) {
@@ -219,7 +220,7 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                 case DialogInterface.BUTTON_POSITIVE:
                     //Yes button clicked
                     Control.deletespecificcommand(getActivity(), null, null);
-                    forcerefresh(getActivity());
+                    RefreshFrag();
                     break;
 
                 case DialogInterface.BUTTON_NEGATIVE:

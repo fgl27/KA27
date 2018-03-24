@@ -60,7 +60,6 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     private SeekBarCardView.DSeekBarCard mChargingRateCard;
 
     private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
-    private boolean BCLActive = false;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -77,15 +76,12 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
 
-        if (Battery.hasBcl()) {
-            BCLActive = Battery.isBclActive();
-            bclInit();
-        } else BCLActive = true;
-        if (Battery.hasBclFreq() && BCLActive) bclMaxFreqInit();
-        if (Battery.hasBclHotMask() && BCLActive) bclHotmask();
-        if (Battery.hasBclVphLow() && BCLActive) BclVphLowInit();
-        if (Battery.hasBclVphHigh() && BCLActive) BclVphHighInit();
-        if (Battery.hasBclHotplug() && BCLActive) bclHotplugInit();
+        if (Battery.hasBcl()) bclInit();
+        if (Battery.hasBclFreq()) bclMaxFreqInit();
+        if (Battery.hasBclHotMask()) bclHotmask();
+        if (Battery.hasBclVphLow()) BclVphLowInit();
+        if (Battery.hasBclVphHigh()) BclVphHighInit();
+        if (Battery.hasBclHotplug()) bclHotplugInit();
 
         cstatesInit();
         Update();
@@ -390,25 +386,15 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
     @Override
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-        if (dSwitchCard == mForceFastChargeCard)
-            Battery.activateForceFastCharge(checked, getActivity());
-        else if (dSwitchCard == mCustomChargeRateEnableCard)
-            Battery.activateCustomChargeRate(checked, getActivity());
-        else if (dSwitchCard == mC0StateCard)
-            Battery.activateC0State(checked, getActivity());
-        else if (dSwitchCard == mC1StateCard)
-            Battery.activateC1State(checked, getActivity());
-        else if (dSwitchCard == mC2StateCard)
-            Battery.activateC2State(checked, getActivity());
-        else if (dSwitchCard == mC3StateCard)
-            Battery.activateC3State(checked, getActivity());
-        else if (dSwitchCard == mBatteryLedCard)
-            Battery.setBatteryLed(checked, getActivity());
-        else if (dSwitchCard == mBclCard) {
-            Battery.activateBcl(checked, getActivity());
-            RefreshFrag();
-        } else if (dSwitchCard == mBclHotplugCard)
-            Battery.activateBclHotplug(checked, getActivity());
+        if (dSwitchCard == mForceFastChargeCard) Battery.activateForceFastCharge(checked, getActivity());
+        else if (dSwitchCard == mCustomChargeRateEnableCard) Battery.activateCustomChargeRate(checked, getActivity());
+        else if (dSwitchCard == mC0StateCard) Battery.activateC0State(checked, getActivity());
+        else if (dSwitchCard == mC1StateCard) Battery.activateC1State(checked, getActivity());
+        else if (dSwitchCard == mC2StateCard) Battery.activateC2State(checked, getActivity());
+        else if (dSwitchCard == mC3StateCard) Battery.activateC3State(checked, getActivity());
+        else if (dSwitchCard == mBatteryLedCard) Battery.setBatteryLed(checked, getActivity());
+        else if (dSwitchCard == mBclCard) Battery.activateBcl(checked, getActivity());
+        else if (dSwitchCard == mBclHotplugCard) Battery.activateBclHotplug(checked, getActivity());
     }
 
     @Override
@@ -429,15 +415,5 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     @Override
     public void onDestroy() {
         super.onDestroy();
-    }
-
-    private void RefreshFrag() {
-        view.invalidate();
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-        getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 }
