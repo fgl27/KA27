@@ -50,8 +50,7 @@ public abstract class DParent implements DAdapter.DView {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
-        return new RecyclerView.ViewHolder(getView(viewGroup)) {
-        };
+        return new RecyclerView.ViewHolder(getView(viewGroup)) {};
     }
 
     public abstract View getView(ViewGroup viewGroup);
@@ -64,8 +63,8 @@ public abstract class DParent implements DAdapter.DView {
     private void setUpLayout() {
         if (fullspan && view != null) {
             StaggeredGridLayoutManager.LayoutParams layoutParams =
-                    new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
+                new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.setFullSpan(true);
             int padding = view.getContext().getResources().getDimensionPixelSize(R.dimen.basecard_padding);
             layoutParams.setMargins(padding, padding, padding, 0);

@@ -40,9 +40,9 @@ public class PerAppDB extends JsonDB {
     }
 
     public boolean containsApp(String app) {
-        List<PerAppItem> profiles = getAllApps();
+        List < PerAppItem > profiles = getAllApps();
 
-        for (PerAppItem profile : profiles) {
+        for (PerAppItem profile: profiles) {
             if (profile.getApp().equals(app)) {
                 return true;
             }
@@ -51,15 +51,15 @@ public class PerAppDB extends JsonDB {
         return false;
     }
 
-    public ArrayList<String> get_info(String app) {
-        List<PerAppItem> profiles = getAllApps();
-        ArrayList<String> list = new ArrayList<String>();
+    public ArrayList < String > get_info(String app) {
+        List < PerAppItem > profiles = getAllApps();
+        ArrayList < String > list = new ArrayList < String > ();
 
-        for (PerAppItem profile : profiles) {
+        for (PerAppItem profile: profiles) {
             if (profile.getApp().equals(app)) {
                 list.add(0, profile.getApp());
                 list.add(1, profile.getID());
-                return(list);
+                return (list);
             }
         }
 
@@ -80,12 +80,12 @@ public class PerAppDB extends JsonDB {
     }
 
     public void delApp(int index) {
-            delete(index);
+        delete(index);
     }
 
-    public List<PerAppItem> getAllApps() {
-        List<PerAppItem> items = new ArrayList<>();
-        for (DBJsonItem jsonItem : getAllItems())
+    public List < PerAppItem > getAllApps() {
+        List < PerAppItem > items = new ArrayList < > ();
+        for (DBJsonItem jsonItem: getAllItems())
             items.add((PerAppItem) jsonItem);
         return items;
     }

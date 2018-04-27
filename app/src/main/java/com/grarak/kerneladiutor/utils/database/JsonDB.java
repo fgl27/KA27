@@ -56,8 +56,7 @@ public abstract class JsonDB {
                 if (databaseMain.getInt("version") == version)
                     databaseItems = databaseMain.getJSONArray("database");
             }
-        } catch (JSONException ignored) {
-        }
+        } catch (JSONException ignored) {}
 
         if (databaseItems == null) databaseItems = new JSONArray();
         try {
@@ -82,8 +81,8 @@ public abstract class JsonDB {
      *
      * @return all sets in a list
      */
-    public List<DBJsonItem> getAllItems() {
-        List<DBJsonItem> items = new ArrayList<>();
+    public List < DBJsonItem > getAllItems() {
+        List < DBJsonItem > items = new ArrayList < > ();
         try {
             for (int i = 0; i < length(); i++)
                 items.add(getItem(databaseItems.getJSONObject(i)));

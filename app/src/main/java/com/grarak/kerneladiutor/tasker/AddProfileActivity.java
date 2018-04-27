@@ -75,11 +75,11 @@ public class AddProfileActivity extends BaseActivity {
         return (Toolbar) findViewById(R.id.toolbar);
     }
 
-    public void finish(String name, List<String> commands) {
+    public void finish(String name, List < String > commands) {
         StringBuilder command = new StringBuilder();
         command.append(name).append(DIVIDER);
         boolean first = true;
-        for (String c : commands) {
+        for (String c: commands) {
             if (first) first = false;
             else command.append(DIVIDER);
             command.append(c);

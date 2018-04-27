@@ -78,10 +78,12 @@ public abstract class BaseCardView extends CardView {
 
         // Set background color depending on the current theme
         setCardBackgroundColor(ContextCompat.getColor(context, Utils.DARKTHEME ?
-                R.color.card_background_dark : R.color.card_background_light));
+            R.color.card_background_dark : R.color.card_background_light));
 
         // This will enable the touch feedback of the card
-        TypedArray ta = getContext().obtainStyledAttributes(new int[]{R.attr.selectableItemBackground});
+        TypedArray ta = getContext().obtainStyledAttributes(new int[] {
+            R.attr.selectableItemBackground
+        });
         Drawable d = ta.getDrawable(0);
         ta.recycle();
         setForeground(d);
@@ -197,8 +199,7 @@ public abstract class BaseCardView extends CardView {
             customLayout.removeAllViews();
             try {
                 ((ViewGroup) customView.getParent()).removeView(customView);
-            } catch (NullPointerException ignored) {
-            }
+            } catch (NullPointerException ignored) {}
             customLayout.addView(customView);
             if (Utils.isTV(getContext())) {
                 setFocusable(false);

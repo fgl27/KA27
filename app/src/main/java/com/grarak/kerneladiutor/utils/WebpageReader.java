@@ -32,7 +32,7 @@ import com.grarak.kerneladiutor.utils.Utils;
 /**
  * Created by willi on 03.04.15.
  */
-public class WebpageReader extends AsyncTask<String, Void, String> {
+public class WebpageReader extends AsyncTask < String, Void, String > {
 
     private final WebpageCallback webpageCallback;
     private HttpURLConnection connection;
@@ -44,7 +44,7 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected String doInBackground(String...params) {
         InputStream is = null;
         BufferedReader br = null;
         StringBuilder sb = new StringBuilder();
@@ -76,9 +76,9 @@ public class WebpageReader extends AsyncTask<String, Void, String> {
                     }
                     break;
                 } else if (cancelled) {
-                    connection.disconnect();
-                    return "";
-                }
+                connection.disconnect();
+                return "";
+            }
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

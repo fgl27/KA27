@@ -2498,7 +2498,7 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener, PopupCardView.DPopupCard.OnDPo
             CPUHotplug.setThunderPlugEnduranceLevel(position, getActivity());
         else if (dPopupCard == mThunderPlugHPStyleCard)
             CPUHotplug.setThunderPlughpstyle(position + 1, getActivity());
-       else if (dPopupCard == mLazyPlugProfileCard)
+        else if (dPopupCard == mLazyPlugProfileCard)
             CPUHotplug.setLazyPlugProfile(position, getActivity());
         else if (dPopupCard == mHimaProfileCard)
             CPUHotplug.setHimaProfile(position, getActivity());

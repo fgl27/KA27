@@ -39,7 +39,7 @@ public final class PluginBundleManager {
      * having the version, the plug-in can better detect when such bugs occur.
      */
     public static final String BUNDLE_EXTRA_INT_VERSION_CODE =
-            "com.grarak.kerneladiutor.tasker.extra.INT_VERSION_CODE"; //$NON-NLS-1$
+        "com.grarak.kerneladiutor.tasker.extra.INT_VERSION_CODE"; //$NON-NLS-1$
 
     /**
      * Method to verify the content of the bundle are correct.
@@ -50,10 +50,10 @@ public final class PluginBundleManager {
      * @return true if the Bundle is valid, false if the bundle is invalid.
      */
     public static boolean isBundleValid(Bundle bundle) {
-        return null != bundle && !(!bundle.containsKey(BUNDLE_EXTRA_STRING_MESSAGE)
-                || !bundle.containsKey(BUNDLE_EXTRA_INT_VERSION_CODE)) && !(2 != bundle.keySet().size()
-                || TextUtils.isEmpty(bundle.getString(BUNDLE_EXTRA_STRING_MESSAGE)))
-                && bundle.getInt(BUNDLE_EXTRA_INT_VERSION_CODE, 0) == bundle.getInt(BUNDLE_EXTRA_INT_VERSION_CODE, 1);
+        return null != bundle && !(!bundle.containsKey(BUNDLE_EXTRA_STRING_MESSAGE) ||
+                !bundle.containsKey(BUNDLE_EXTRA_INT_VERSION_CODE)) && !(2 != bundle.keySet().size() ||
+                TextUtils.isEmpty(bundle.getString(BUNDLE_EXTRA_STRING_MESSAGE))) &&
+            bundle.getInt(BUNDLE_EXTRA_INT_VERSION_CODE, 0) == bundle.getInt(BUNDLE_EXTRA_INT_VERSION_CODE, 1);
 
     }
 

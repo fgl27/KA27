@@ -37,54 +37,56 @@ public class Backup {
     private static String fota;
 
     public enum PARTITION {
-        BOOT, RECOVERY, FOTA
+        BOOT,
+        RECOVERY,
+        FOTA
     }
 
     private static final String[] Boot = {
-            "/dev/block/bootdevice/by-name/boot",
-            "/dev/block/platform/omap/omap_hsmmc.0/by-name/boot",
-            "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
-            "/dev/block/platform/sdhci-tegra.3/by-name/LX",
-            "/dev/block/platform/sdhci-tegra.3/by-name/LNX",
-            "/dev/block/platform/dw_mmc.0/by-name/BOOT",
-            "/dev/block/platform/12200000.dwmmc0/by-name/BOOT",
-            "/dev/block/platform/msm_sdcc.1/by-name/Kernel",
-            "/dev/block/platform/msm_sdcc.1/by-name/boot",
-            "/dev/block/platform/sdhci.1/by-name/KERNEL",
-            "/dev/block/platform/sdhci.1/by-name/boot",
-            "/dev/block/nandc",
-            "/dev/boot"
+        "/dev/block/bootdevice/by-name/boot",
+        "/dev/block/platform/omap/omap_hsmmc.0/by-name/boot",
+        "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
+        "/dev/block/platform/sdhci-tegra.3/by-name/LX",
+        "/dev/block/platform/sdhci-tegra.3/by-name/LNX",
+        "/dev/block/platform/dw_mmc.0/by-name/BOOT",
+        "/dev/block/platform/12200000.dwmmc0/by-name/BOOT",
+        "/dev/block/platform/msm_sdcc.1/by-name/Kernel",
+        "/dev/block/platform/msm_sdcc.1/by-name/boot",
+        "/dev/block/platform/sdhci.1/by-name/KERNEL",
+        "/dev/block/platform/sdhci.1/by-name/boot",
+        "/dev/block/nandc",
+        "/dev/boot"
     };
 
     private static final String[] Recovery = {
-            "/dev/block/bootdevice/by-name/recovery",
-            "/dev/block/platform/omap/omap_hsmmc.0/by-name/recovery",
-            "/dev/block/platform/omap/omap_hsmmc.1/by-name/recovery",
-            "/dev/block/platform/sdhci-tegra.3/by-name/recovery",
-            "/dev/block/platform/sdhci-pxav3.2/by-name/RECOVERY",
-            "/dev/block/platform/comip-mmc.1/by-name/recovery",
-            "/dev/block/platform/msm_sdcc.1/by-name/recovery",
-            "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
-            "/dev/block/platform/sdhci-tegra.3/by-name/SOS",
-            "/dev/block/platform/sdhci-tegra.3/by-name/USP",
-            "/dev/block/platform/dw_mmc.0/by-name/recovery",
-            "/dev/block/platform/dw_mmc.0/by-name/RECOVERY",
-            "/dev/block/platform/12200000.dwmmc0/by-name/RECOVERY",
-            "/dev/block/platform/hi_mci.1/by-name/recovery",
-            "/dev/block/platform/sdhci-tegra.3/by-name/UP",
-            "/dev/block/platform/sdhci-tegra.3/by-name/SS",
-            "/dev/block/platform/sdhci.1/by-name/RECOVERY",
-            "/dev/block/platform/sdhci.1/by-name/recovery",
-            "/dev/block/platform/dw_mmc/by-name/recovery",
-            "/dev/block/platform/dw_mmc/by-name/RECOVERY",
-            "/dev/block/recovery",
-            "/dev/block/nandg",
-            "/dev/block/acta",
-            "/dev/recovery"
+        "/dev/block/bootdevice/by-name/recovery",
+        "/dev/block/platform/omap/omap_hsmmc.0/by-name/recovery",
+        "/dev/block/platform/omap/omap_hsmmc.1/by-name/recovery",
+        "/dev/block/platform/sdhci-tegra.3/by-name/recovery",
+        "/dev/block/platform/sdhci-pxav3.2/by-name/RECOVERY",
+        "/dev/block/platform/comip-mmc.1/by-name/recovery",
+        "/dev/block/platform/msm_sdcc.1/by-name/recovery",
+        "/dev/block/platform/sprd-sdhci.3/by-name/KERNEL",
+        "/dev/block/platform/sdhci-tegra.3/by-name/SOS",
+        "/dev/block/platform/sdhci-tegra.3/by-name/USP",
+        "/dev/block/platform/dw_mmc.0/by-name/recovery",
+        "/dev/block/platform/dw_mmc.0/by-name/RECOVERY",
+        "/dev/block/platform/12200000.dwmmc0/by-name/RECOVERY",
+        "/dev/block/platform/hi_mci.1/by-name/recovery",
+        "/dev/block/platform/sdhci-tegra.3/by-name/UP",
+        "/dev/block/platform/sdhci-tegra.3/by-name/SS",
+        "/dev/block/platform/sdhci.1/by-name/RECOVERY",
+        "/dev/block/platform/sdhci.1/by-name/recovery",
+        "/dev/block/platform/dw_mmc/by-name/recovery",
+        "/dev/block/platform/dw_mmc/by-name/RECOVERY",
+        "/dev/block/recovery",
+        "/dev/block/nandg",
+        "/dev/block/acta",
+        "/dev/recovery"
     };
 
     private static final String[] Fota = {
-            "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"
+        "/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"
     };
 
     public static void restore(RootFile file, PARTITION partition_type) {
@@ -135,14 +137,14 @@ public class Backup {
         RootFile genericFolder = new RootFile(sdcard_folder);
         genericFolder.mkdir();
         if (genericFolder.exists()) return genericFolder.toString();
-            RootFile genericFolder2 = new RootFile(sdcard_folder);
-            genericFolder2.mkdir();
+        RootFile genericFolder2 = new RootFile(sdcard_folder);
+        genericFolder2.mkdir();
         return genericFolder2.toString();
     }
 
     public static String getBootPartition() {
         if (boot == null)
-            for (String partition : Boot)
+            for (String partition: Boot)
                 if (Utils.existFile(partition)) {
                     boot = partition;
                     return partition;
@@ -152,7 +154,7 @@ public class Backup {
 
     public static String getRecoveryPartition() {
         if (recovery == null)
-            for (String partition : Recovery)
+            for (String partition: Recovery)
                 if (Utils.existFile(partition)) {
                     recovery = partition;
                     return partition;
@@ -162,7 +164,7 @@ public class Backup {
 
     public static String getFotaPartition() {
         if (fota == null)
-            for (String partition : Fota)
+            for (String partition: Fota)
                 if (Utils.existFile(partition)) {
                     fota = partition;
                     return partition;

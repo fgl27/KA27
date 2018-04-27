@@ -51,7 +51,7 @@ public class RecoveryFragment extends RecyclerViewFragment {
 
     private AppCompatSpinner mRecoverySpinner;
 
-    private final List<Recovery> mCommands = new ArrayList<>();
+    private final List < Recovery > mCommands = new ArrayList < > ();
 
     @Override
     public boolean showApplyOnBoot() {
@@ -158,8 +158,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
                         String file = "/cache/recovery/" + mCommands.get(0).getFile(Recovery.RECOVERY.TWRP);
                         RootFile recoveryFile = new RootFile(file);
                         recoveryFile.delete();
-                        for (Recovery commands : mCommands) {
-                            for (String command : commands.getCommands(Recovery.RECOVERY.TWRP))
+                        for (Recovery commands: mCommands) {
+                            for (String command: commands.getCommands(Recovery.RECOVERY.TWRP))
                                 recoveryFile.write(command, true);
                         }
                         RootUtils.runCommand("reboot recovery");

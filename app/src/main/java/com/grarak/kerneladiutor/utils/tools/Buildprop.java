@@ -47,12 +47,12 @@ public class Buildprop implements Constants {
         RootUtils.runCommand("echo " + key + "=" + value + " >> " + BUILD_PROP);
     }
 
-    public static LinkedHashMap<String, String> getProps() {
-        LinkedHashMap<String, String> list = new LinkedHashMap<>();
+    public static LinkedHashMap < String, String > getProps() {
+        LinkedHashMap < String, String > list = new LinkedHashMap < > ();
         String buildprop;
         if ((buildprop = Utils.readFile(BUILD_PROP)) != null) {
             String[] values = buildprop.split("\\r?\\n");
-            for (String prop : values)
+            for (String prop: values)
                 if (!prop.isEmpty() && !prop.startsWith("#")) {
                     String[] line = prop.split("=");
 

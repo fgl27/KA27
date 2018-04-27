@@ -38,7 +38,7 @@ import java.util.List;
  */
 public class PopupCardView extends BaseCardView {
 
-    private final List<String> list;
+    private final List < String > list;
 
     private HeaderCardView headerCardView;
 
@@ -52,7 +52,7 @@ public class PopupCardView extends BaseCardView {
     private PopupMenu popup;
     private OnPopupCardListener onPopupCardListener;
 
-    public PopupCardView(Context context, final List<String> list) {
+    public PopupCardView(Context context, final List < String > list) {
         super(context, R.layout.popup_cardview);
         this.list = list;
 
@@ -176,7 +176,7 @@ public class PopupCardView extends BaseCardView {
 
     public static class DPopupCard extends DParent {
 
-        private final List<String> list;
+        private final List < String > list;
 
         private PopupCardView popupCardView;
 
@@ -187,7 +187,7 @@ public class PopupCardView extends BaseCardView {
         private OnDPopupCardListener onDPopupCardListener;
         private OnClickListener onClickListener;
 
-        public DPopupCard(List<String> list) {
+        public DPopupCard(List < String > list) {
             this.list = list;
         }
 

@@ -133,7 +133,7 @@ public class SplashView extends View {
     public void draw(@NonNull Canvas canvas) {
         super.draw(canvas);
 
-        draw(canvas, getWidth(), getHeight(), (int) (radius * density));
+        draw(canvas, getWidth(), getHeight(), (int)(radius * density));
     }
 
     private void draw(Canvas canvas, int x, int y, int radius) {

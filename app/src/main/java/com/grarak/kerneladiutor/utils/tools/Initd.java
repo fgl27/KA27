@@ -44,7 +44,7 @@ public class Initd implements Constants {
         return Utils.readFile(INITD + "/" + file);
     }
 
-    public static List<String> getInitds() {
+    public static List < String > getInitds() {
         RootFile initd = new RootFile(INITD);
         if (!initd.exists()) {
             RootUtils.mount(true, "/system");

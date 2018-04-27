@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class Per_App {
 
-    public static final class App implements Comparable<App>{
+    public static final class App implements Comparable < App > {
         final String name;
         final String packageId;
 
@@ -47,14 +47,14 @@ public class Per_App {
         }
     }
 
-    public static List<App> getInstalledApps (Context context) {
+    public static List < App > getInstalledApps(Context context) {
         // Get a list of installed apps. Currently this is only the package name
         final PackageManager pm = context.getPackageManager();
-        final List<App> applist = new ArrayList<>();
-        final List<ApplicationInfo> packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
+        final List < App > applist = new ArrayList < > ();
+        final List < ApplicationInfo > packages = pm.getInstalledApplications(PackageManager.GET_META_DATA);
 
-        for (ApplicationInfo packageInfo : packages) {
-            App app = new App (String.valueOf(packageInfo.loadLabel(pm)), packageInfo.packageName);
+        for (ApplicationInfo packageInfo: packages) {
+            App app = new App(String.valueOf(packageInfo.loadLabel(pm)), packageInfo.packageName);
             applist.add(app);
         }
 
@@ -63,37 +63,37 @@ public class Per_App {
         return applist;
     }
 
-    public static String[] getPackageNames (List<App> apps) {
-        String[] array = new String[apps.size()+1];
+    public static String[] getPackageNames(List < App > apps) {
+        String[] array = new String[apps.size() + 1];
 
-        for (int i = 0; i < apps.size()+1; i++) {
-            if(i == 0){
+        for (int i = 0; i < apps.size() + 1; i++) {
+            if (i == 0) {
                 array[i] = "Default";
             } else {
-                array[i] = apps.get(i-1).packageId;
+                array[i] = apps.get(i - 1).packageId;
             }
         }
 
-        return  array;
+        return array;
     }
 
-    public static String[] getAppNames (List<App> apps) {
-        String[] array = new String[apps.size()+1];
+    public static String[] getAppNames(List < App > apps) {
+        String[] array = new String[apps.size() + 1];
 
-        for (int i = 0; i < apps.size()+1; i++) {
-            if(i == 0){
+        for (int i = 0; i < apps.size() + 1; i++) {
+            if (i == 0) {
                 array[i] = "Default";
             } else {
-                array[i] = apps.get(i-1).name;
+                array[i] = apps.get(i - 1).name;
             }
         }
 
-        return  array;
+        return array;
     }
 
-    public static void save_app (String app, String id, Context context) {
+    public static void save_app(String app, String id, Context context) {
         PerAppDB perappDB = new PerAppDB(context);
-        List<PerAppDB.PerAppItem> PerAppItem = perappDB.getAllApps() ;
+        List < PerAppDB.PerAppItem > PerAppItem = perappDB.getAllApps();
         for (int i = 0; i < PerAppItem.size(); i++) {
             String p = PerAppItem.get(i).getApp();
             if (p != null && p.equals(app)) {
@@ -105,10 +105,10 @@ public class Per_App {
         perappDB.commit();
     }
 
-    public static void remove_app (String app, String id, Context context) {
+    public static void remove_app(String app, String id, Context context) {
         PerAppDB perappDB = new PerAppDB(context);
 
-        List<PerAppDB.PerAppItem> PerAppItem = perappDB.getAllApps() ;
+        List < PerAppDB.PerAppItem > PerAppItem = perappDB.getAllApps();
         for (int i = 0; i < PerAppItem.size(); i++) {
             String p = PerAppItem.get(i).getApp();
             if (p != null && p.equals(app)) {
@@ -119,14 +119,14 @@ public class Per_App {
         perappDB.commit();
     }
 
-    public static boolean app_profile_exists (String app, Context context) {
+    public static boolean app_profile_exists(String app, Context context) {
         PerAppDB perappDB = new PerAppDB(context);
         boolean exists = perappDB.containsApp(app);
 
         return exists;
     }
 
-    public static ArrayList<String> app_profile_info (String app, Context context) {
+    public static ArrayList < String > app_profile_info(String app, Context context) {
         PerAppDB perappDB = new PerAppDB(context);
         if (perappDB.containsApp(app)) {
             return perappDB.get_info(app);
@@ -135,11 +135,11 @@ public class Per_App {
         return null;
     }
 
-    public static boolean[] getExistingSelections (String[] apps, String profile, Context context) {
+    public static boolean[] getExistingSelections(String[] apps, String profile, Context context) {
         PerAppDB perappDB = new PerAppDB(context);
         boolean exists[] = new boolean[apps.length];
 
-        List<PerAppDB.PerAppItem> PerAppItem = perappDB.getAllApps() ;
+        List < PerAppDB.PerAppItem > PerAppItem = perappDB.getAllApps();
         for (int i = 0; i < PerAppItem.size(); i++) {
             String p = PerAppItem.get(i).getApp();
             String id = PerAppItem.get(i).getID();
@@ -155,11 +155,11 @@ public class Per_App {
     public static boolean isAccessibilityEnabled(Context context, String id) {
 
         AccessibilityManager am = (AccessibilityManager) context
-                .getSystemService(Context.ACCESSIBILITY_SERVICE);
+            .getSystemService(Context.ACCESSIBILITY_SERVICE);
 
-        List<AccessibilityServiceInfo> runningServices = am
-                .getEnabledAccessibilityServiceList(AccessibilityEvent.TYPES_ALL_MASK);
-        for (AccessibilityServiceInfo service : runningServices) {
+        List < AccessibilityServiceInfo > runningServices = am
+            .getEnabledAccessibilityServiceList(AccessibilityEvent.TYPES_ALL_MASK);
+        for (AccessibilityServiceInfo service: runningServices) {
             if (id != null && id.equals(service.getId())) {
                 return true;
             }

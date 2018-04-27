@@ -83,31 +83,44 @@ public class BootService extends Service {
     }
 
     private void init() {
-        final List<String> applys = new ArrayList<>();
+        final List < String > applys = new ArrayList < > ();
 
         CPUVoltage.storeVoltageTable(this);
         Utils.WriteSettings(this);
 
-        Class[] classes = {BatteryFragment.class, CPUFragment.class, CPUHotplugFragment.class,
-                CPUVoltageFragment.class, EntropyFragment.class, GPUFragment.class, IOFragment.class,
-                KSMFragment.class, LMKFragment.class, MiscFragment.class, RamFragment.class,
-                ScreenFragment.class, SoundFragment.class, ThermalFragment.class,
-                VMFragment.class, WakeFragment.class, WakeLockFragment.class
+        Class[] classes = {
+            BatteryFragment.class,
+            CPUFragment.class,
+            CPUHotplugFragment.class,
+            CPUVoltageFragment.class,
+            EntropyFragment.class,
+            GPUFragment.class,
+            IOFragment.class,
+            KSMFragment.class,
+            LMKFragment.class,
+            MiscFragment.class,
+            RamFragment.class,
+            ScreenFragment.class,
+            SoundFragment.class,
+            ThermalFragment.class,
+            VMFragment.class,
+            WakeFragment.class,
+            WakeLockFragment.class
         };
 
-        for (Class mClass : classes)
+        for (Class mClass: classes)
             if (Utils.getBoolean(mClass.getSimpleName() + "onboot", false, this)) {
                 log("Applying on boot for " + mClass.getSimpleName());
                 applys.addAll(Utils.getApplys(mClass));
             }
 
-         if (applys.size() > 0 ) {
+        if (applys.size() > 0) {
             final int delay = Utils.getInt("applyonbootdelay", 0, this);
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             mBuilder = new NotificationCompat.Builder(this, "KA_apply_on_boot");
             mBuilder.setContentTitle(getString(R.string.apply_on_boot))
-                    .setContentText(getString(R.string.apply_on_boot_time, delay))
-                    .setSmallIcon(R.drawable.ic_launcher_preview);
+                .setContentText(getString(R.string.apply_on_boot_time, delay))
+                .setSmallIcon(R.drawable.ic_launcher_preview);
 
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
             stackBuilder.addParentStack(MainActivity.class);
@@ -141,7 +154,7 @@ public class BootService extends Service {
         } else stopSelf();
     }
 
-    private void apply(List<String> applys) {
+    private void apply(List < String > applys) {
         boolean hasRoot = false;
         boolean hasBusybox = false;
         if (RootUtils.rooted()) hasRoot = RootUtils.rootAccess();
@@ -165,15 +178,17 @@ public class BootService extends Service {
         }
 
         RootUtils.SU su = new RootUtils.SU();
-        String[] writePermission = {Constants.LMK_MINFREE};
-        for (String file : writePermission)
+        String[] writePermission = {
+            Constants.LMK_MINFREE
+        };
+        for (String file: writePermission)
             su.runCommand("chmod 644 " + file);
 
-        List<CommandDB.CommandItem> allCommands = new CommandDB(this).getAllCommands();
-        List<String> commands = new ArrayList<>();
+        List < CommandDB.CommandItem > allCommands = new CommandDB(this).getAllCommands();
+        List < String > commands = new ArrayList < > ();
         if (applys.size() > 0)
-            for (CommandDB.CommandItem commandItem : allCommands)
-                for (String sys : applys) {
+            for (CommandDB.CommandItem commandItem: allCommands)
+                for (String sys: applys) {
                     String path = commandItem.getPath();
                     if ((sys.contains(path) || path.contains(sys))) {
                         String command = commandItem.getCommand();
@@ -182,7 +197,7 @@ public class BootService extends Service {
                     }
                 }
 
-        for (String command : commands) {
+        for (String command: commands) {
             log("run: " + command);
             // Core need to be online to any cpu command be accepted make shore of it here
             if (command.contains("/sys/devices/system/cpu/")) {

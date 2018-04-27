@@ -51,12 +51,12 @@ public class AboutusFragment extends RecyclerViewFragment {
     }
 
     private void ModififactionInit() {
-            CardViewItem.DCardView mModificationCard = new CardViewItem.DCardView();
-            mModificationCard.setTitle(getString(R.string.modification));
-            mModificationCard.setDescription(getString(R.string.modification_summary));
+        CardViewItem.DCardView mModificationCard = new CardViewItem.DCardView();
+        mModificationCard.setTitle(getString(R.string.modification));
+        mModificationCard.setDescription(getString(R.string.modification_summary));
 
-            addView(mModificationCard);
-        }
+        addView(mModificationCard);
+    }
 
     private void ModififactionVersionInit() {
         CardViewItem.DCardView mModificationVersionCard = new CardViewItem.DCardView();

@@ -222,15 +222,14 @@ public class DAdapter {
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder) {
             ((TextView) viewHolder.itemView.findViewById(R.id.text)).setText(title.toUpperCase(Locale.US));
             if (Utils.DARKTHEME)
-                viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(ContextCompat.
-                getColor(viewHolder.itemView.getContext(), R.color.divider_background_dark));
+                viewHolder.itemView.findViewById(R.id.divider_view).setBackgroundColor(ContextCompat.getColor(viewHolder.itemView.getContext(), R.color.divider_background_dark));
         }
 
     }
 
     public static class MainHeader implements DView {
 
-        private static WeakReference<ImageView> image;
+        private static WeakReference < ImageView > image;
         //private static ImageView image;
         private boolean noPic;
 
@@ -247,8 +246,8 @@ public class DAdapter {
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.header_main, viewGroup, false);
-            image = new WeakReference<ImageView>((ImageView) view.findViewById(R.id.picture));
-//            image = (ImageView) view.findViewById(R.id.picture);
+            image = new WeakReference < ImageView > ((ImageView) view.findViewById(R.id.picture));
+            //            image = (ImageView) view.findViewById(R.id.picture);
             try {
                 String uri = Utils.getString("previewpicture", null, image.get().getContext().getApplicationContext());
                 if (uri == null || uri.equals("nopicture")) noPic = true;

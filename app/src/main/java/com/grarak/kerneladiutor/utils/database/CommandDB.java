@@ -54,9 +54,9 @@ public class CommandDB extends JsonDB {
         }
     }
 
-    public List<CommandItem> getAllCommands() {
-        List<CommandItem> items = new ArrayList<>();
-        for (DBJsonItem jsonItem : getAllItems())
+    public List < CommandItem > getAllCommands() {
+        List < CommandItem > items = new ArrayList < > ();
+        for (DBJsonItem jsonItem: getAllItems())
             items.add((CommandItem) jsonItem);
         return items;
     }

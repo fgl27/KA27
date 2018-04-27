@@ -53,27 +53,26 @@ public class EditTextCardView extends CardViewItem {
                 final AppCompatEditText editText = new AppCompatEditText(getContext());
                 editText.setGravity(Gravity.CENTER);
                 editText.setTextColor(ContextCompat.getColor(getContext(),
-                        Utils.DARKTHEME ? R.color.white : R.color.black));
+                    Utils.DARKTHEME ? R.color.white : R.color.black));
                 editText.setLayoutParams(new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 if (value != null) editText.setText(value);
                 if (inputType > -1) editText.setInputType(inputType);
 
                 layout.addView(editText);
 
                 new AlertDialog.Builder(getContext()).setView(layout)
-                        .setNegativeButton(getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                            }
-                        }).setPositiveButton(getContext().getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        value = editText.getText().toString();
-                        if (onEditTextCardListener != null)
-                            onEditTextCardListener.onApply(EditTextCardView.this, editText.getText().toString());
-                    }
-                }).show();
+                    .setNegativeButton(getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {}
+                    }).setPositiveButton(getContext().getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            value = editText.getText().toString();
+                            if (onEditTextCardListener != null)
+                                onEditTextCardListener.onApply(EditTextCardView.this, editText.getText().toString());
+                        }
+                    }).show();
             }
         });
     }

@@ -49,8 +49,7 @@ public class InformationCardView extends BaseCardView {
     }
 
     @Override
-    public void setFocus() {
-    }
+    public void setFocus() {}
 
     public void setText(String text) {
         infoText = text;

@@ -337,7 +337,7 @@ public class WakeLock implements Constants {
         if (before == 0)
             return String.format("%-" + len + "s", text);
         int rest = len - before;
-        return String.format("%-" + (rest + before) + "s", text);// align left
+        return String.format("%-" + (rest + before) + "s", text); // align left
         //return String.format("%" + (before) + "s%-" + (rest) + "s", "", text);// align center
     }
 

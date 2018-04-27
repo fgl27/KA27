@@ -110,7 +110,7 @@ public class Utils implements Constants {
     public static String MbKb(int value, Context context) {
         String converted = "";
         if (value < 1024) converted = value + context.getString(R.string.kb);
-        else converted = (Math.round((float)value / 1024L)) + context.getString(R.string.mb);
+        else converted = (Math.round((float) value / 1024L)) + context.getString(R.string.mb);
         return converted;
     }
 
@@ -135,7 +135,7 @@ public class Utils implements Constants {
             context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packagename)));
         } catch (ActivityNotFoundException ignored) {
             context.startActivity(new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=" + packagename)));
+                Uri.parse("https://play.google.com/store/apps/details?id=" + packagename)));
         }
     }
 
@@ -255,11 +255,10 @@ public class Utils implements Constants {
 
     public static void errorDialog(Context context, Exception e) {
         new AlertDialog.Builder(context).setMessage(e.getMessage()).setNeutralButton(context.getString(R.string.ok),
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                }).show();
+            new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {}
+            }).show();
     }
 
     public static void circleAnimate(final View view, int cx, int cy) {
@@ -284,14 +283,13 @@ public class Utils implements Constants {
     }
 
     public static void confirmDialog(String title, String message, DialogInterface.OnClickListener onClickListener,
-                                     Context context) {
+        Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         if (title != null) builder.setTitle(title);
         if (message != null) builder.setMessage(message);
         builder.setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
+            public void onClick(DialogInterface dialog, int which) {}
         }).setPositiveButton(context.getString(R.string.ok), onClickListener).show();
     }
 
@@ -352,47 +350,55 @@ public class Utils implements Constants {
         RootUtils.runCommand("echo " + duration + " > /sys/class/timed_output/vibrator/enable");
     }
 
-    public static List<String> getApplys(Class mClass) {
-        List<String> applys = new ArrayList<>();
+    public static List < String > getApplys(Class mClass) {
+        List < String > applys = new ArrayList < > ();
 
         if (mClass == BatteryFragment.class)
-           applys.addAll(new ArrayList<>(Arrays.asList(BATTERY_ARRAY)));
+            applys.addAll(new ArrayList < > (Arrays.asList(BATTERY_ARRAY)));
         else if (mClass == CPUFragment.class) {
-            for (String cpu : CPU_ARRAY)
+            for (String cpu: CPU_ARRAY)
                 if (cpu.startsWith("/sys/devices/system/cpu/cpu%d"))
                     for (int i = 0; i < CPU.getCoreCount(); i++)
                         applys.add(String.format(cpu, i));
                 else applys.add(cpu);
-        } else if (mClass == CPUHotplugFragment.class) for (String[] array : CPU_HOTPLUG_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(array)));
+        } else if (mClass == CPUHotplugFragment.class)
+            for (String[] array: CPU_HOTPLUG_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(array)));
         else if (mClass == CPUVoltageFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(CPU_VOLTAGE_ARRAY)));
+            applys.addAll(new ArrayList < > (Arrays.asList(CPU_VOLTAGE_ARRAY)));
         else if (mClass == EntropyFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(ENTROPY_ARRAY)));
-        else if (mClass == GPUFragment.class) for (String[] arrays : GPU_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+            applys.addAll(new ArrayList < > (Arrays.asList(ENTROPY_ARRAY)));
+        else if (mClass == GPUFragment.class)
+            for (String[] arrays: GPU_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
         else if (mClass == IOFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(IO_ARRAY)));
+            applys.addAll(new ArrayList < > (Arrays.asList(IO_ARRAY)));
         else if (mClass == KSMFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(KSM_ARRAY)));
+            applys.addAll(new ArrayList < > (Arrays.asList(KSM_ARRAY)));
         else if (mClass == LMKFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(LMK_ARRAY)));
-        else if (mClass == MiscFragment.class) for (String[] arrays : MISC_ARRAY)
-             applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == ScreenFragment.class) for (String[] arrays : SCREEN_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == SoundFragment.class) for (String[] arrays : SOUND_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == ThermalFragment.class) for (String[] arrays : THERMAL_ARRAYS)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+            applys.addAll(new ArrayList < > (Arrays.asList(LMK_ARRAY)));
+        else if (mClass == MiscFragment.class)
+            for (String[] arrays: MISC_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
+        else if (mClass == ScreenFragment.class)
+            for (String[] arrays: SCREEN_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
+        else if (mClass == SoundFragment.class)
+            for (String[] arrays: SOUND_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
+        else if (mClass == ThermalFragment.class)
+            for (String[] arrays: THERMAL_ARRAYS)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
         else if (mClass == VMFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(VM_ARRAY)));
-        else if (mClass == WakeFragment.class) for (String[] arrays : WAKE_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
-        else if (mClass == WakeLockFragment.class) for (String[] arrays : WAKELOCK_ARRAY)
-            applys.addAll(new ArrayList<>(Arrays.asList(arrays)));
+            applys.addAll(new ArrayList < > (Arrays.asList(VM_ARRAY)));
+        else if (mClass == WakeFragment.class)
+            for (String[] arrays: WAKE_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
+        else if (mClass == WakeLockFragment.class)
+            for (String[] arrays: WAKELOCK_ARRAY)
+                applys.addAll(new ArrayList < > (Arrays.asList(arrays)));
         else if (mClass == RamFragment.class)
-            applys.addAll(new ArrayList<>(Arrays.asList(RAM_ARRAY)));
+            applys.addAll(new ArrayList < > (Arrays.asList(RAM_ARRAY)));
 
         return applys;
     }
@@ -414,7 +420,7 @@ public class Utils implements Constants {
     }
 
     public static long stringToLong(String number) {
-        if(TextUtils.isEmpty(number)){
+        if (TextUtils.isEmpty(number)) {
             return 0;
         }
         try {
@@ -425,17 +431,17 @@ public class Utils implements Constants {
     }
 
     public static int stringToInt(String number) {
-        if(TextUtils.isEmpty(number)){
+        if (TextUtils.isEmpty(number)) {
             return 0;
         }
-        if(number.contains(".")){
+        if (number.contains(".")) {
             try {
                 return Math.round(Float.parseFloat(number));
-            } catch (Exception ignored){}
+            } catch (Exception ignored) {}
         } else {
             try {
                 return Integer.parseInt(number);
-            } catch (Exception ignored){}
+            } catch (Exception ignored) {}
         }
         return 0;
     }
@@ -443,9 +449,9 @@ public class Utils implements Constants {
     @SuppressWarnings("deprecation")
     public static Spanned fromHtml(String link) {
         if (Build.VERSION.SDK_INT >= 24)
-             return Html.fromHtml(link, Html.FROM_HTML_MODE_LEGACY);
+            return Html.fromHtml(link, Html.FROM_HTML_MODE_LEGACY);
         else
-             return Html.fromHtml(link);
+            return Html.fromHtml(link);
     }
 
     @SuppressWarnings("deprecation")
@@ -465,7 +471,9 @@ public class Utils implements Constants {
     }
 
     public static int getActionBarHeight(Context context) {
-        TypedArray ta = context.obtainStyledAttributes(new int[]{R.attr.actionBarSize});
+        TypedArray ta = context.obtainStyledAttributes(new int[] {
+            R.attr.actionBarSize
+        });
         int actionBarSize = ta.getDimensionPixelSize(0, 112);
         ta.recycle();
         return actionBarSize;
@@ -474,26 +482,26 @@ public class Utils implements Constants {
     public static boolean isTV(Context context) {
         return ((UiModeManager) context
                 .getSystemService(Context.UI_MODE_SERVICE))
-                .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
+            .getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION;
     }
 
     public static boolean isTablet(Context context) {
-        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        return (context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >=
+            Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static int getScreenOrientation(Context context) {
         return context.getResources().getDisplayMetrics().widthPixels <
-                context.getResources().getDisplayMetrics().heightPixels ?
-                Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
+            context.getResources().getDisplayMetrics().heightPixels ?
+            Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
     }
 
-   @MainThread
+    @MainThread
     public static void toast(String message, Context context) {
         toast(message, context, Toast.LENGTH_SHORT);
     }
 
-   @MainThread
+    @MainThread
     public static void toast(String message, Context context, int duration) {
         Toast toast = Toast.makeText(context, message, duration);
         TextView view = (TextView) toast.getView().findViewById(android.R.id.message);
@@ -512,7 +520,7 @@ public class Utils implements Constants {
     public static boolean getBoolean(String name, boolean defaults, Context context) {
         try {
             return context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE).getBoolean(name, defaults);
-        } catch (Exception ignored){
+        } catch (Exception ignored) {
             return false;
         }
     }
@@ -565,7 +573,7 @@ public class Utils implements Constants {
         return Tools.readFile(file, true);
     }
 
-    public static double stringtodouble (String text) {
+    public static double stringtodouble(String text) {
         try {
             return Double.parseDouble(text);
         } catch (NumberFormatException e) {
@@ -573,7 +581,7 @@ public class Utils implements Constants {
         }
     }
 
-    public static boolean isLetter (String testchar) {
+    public static boolean isLetter(String testchar) {
         if (Character.isLetter(testchar.charAt(0))) {
             return true;
         }
@@ -582,7 +590,7 @@ public class Utils implements Constants {
 
     public static boolean is64bit() {
         if (Build.SUPPORTED_64_BIT_ABIS.length >= 1) {
-                return true;
+            return true;
         }
         return false;
     }
@@ -600,7 +608,7 @@ public class Utils implements Constants {
     //Helper function to get paths with integer format substitutions
     public static String getsysfspath(String[] paths, int sub) {
         for (int i = 0; i < paths.length; i++) {
-            if (Utils.existFile(String.format(paths[i], sub))){
+            if (Utils.existFile(String.format(paths[i], sub))) {
                 return String.format(paths[i], sub);
             }
         }

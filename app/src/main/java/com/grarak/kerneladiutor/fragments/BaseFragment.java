@@ -54,7 +54,6 @@ public abstract class BaseFragment extends Fragment implements MainActivity.OnBa
         });
     }
 
-    public void onViewCreated() {
-    }
+    public void onViewCreated() {}
 
 }

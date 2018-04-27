@@ -45,7 +45,8 @@ import java.util.List;
 public abstract class PathReaderFragment extends RecyclerViewFragment {
 
     public enum PATH_TYPE {
-        GOVERNOR, IO
+        GOVERNOR,
+        IO
     }
 
     @Override
@@ -102,8 +103,8 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
 
         final String path = getPath();
         if (path != null) {
-            List<String> files = new RootFile(path).list();
-            for (String file : files) {
+            List < String > files = new RootFile(path).list();
+            for (String file: files) {
                 String value = Utils.readFile(path + "/" + file);
                 if (value != null && !value.isEmpty() && !value.contains("\n")) {
                     PopupCardView.DPopupCard mPathCard = new PopupCardView.DPopupCard(null);
@@ -113,7 +114,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
                         @Override
                         public void onClick(View v) {
                             boolean freq = CPU.getFreqs().indexOf(Utils.stringToInt(Utils
-                                    .readFile(path + "/" + ((PopupCardView) v).getDescription()))) > -1;
+                                .readFile(path + "/" + ((PopupCardView) v).getDescription()))) > -1;
 
                             if (freq && getType() == PATH_TYPE.GOVERNOR) {
                                 String[] values = new String[CPU.getFreqs().size()];
@@ -122,7 +123,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
                                 showPopupDialog(path + "/" + ((PopupCardView) v).getDescription(), values);
                             } else
                                 showDialog(path + "/" + ((PopupCardView) v).getDescription(),
-                                        ((PopupCardView) v).getItem());
+                                    ((PopupCardView) v).getItem());
                         }
                     });
 
@@ -141,7 +142,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
         final EditText editText = new EditText(getActivity());
         editText.setGravity(Gravity.CENTER);
         editText.setLayoutParams(new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (!Utils.DARKTHEME)
             editText.setTextColor(ContextCompat.getColor(getActivity(), R.color.black));
         editText.setText(value);
@@ -150,18 +151,17 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setView(layout)
-                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Control.runCommand(editText.getText().toString(), file, Control.CommandType.GENERIC, getActivity());
-                refreshLayout.setRefreshing(true);
-                getHandler().postDelayed(refresh, 500);
-            }
-        }).show();
+            .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {}
+            }).setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Control.runCommand(editText.getText().toString(), file, Control.CommandType.GENERIC, getActivity());
+                    refreshLayout.setRefreshing(true);
+                    getHandler().postDelayed(refresh, 500);
+                }
+            }).show();
     }
 
     private void showPopupDialog(final String file, final String[] values) {
@@ -177,8 +177,7 @@ public abstract class PathReaderFragment extends RecyclerViewFragment {
     }
 
     @Override
-    public void animateRecyclerView() {
-    }
+    public void animateRecyclerView() {}
 
     public abstract String getName();
 

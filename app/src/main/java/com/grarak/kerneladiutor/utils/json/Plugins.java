@@ -29,8 +29,7 @@ public class Plugins {
     public Plugins(String json) {
         try {
             PLUGINS = new JSONArray(json);
-        } catch (JSONException ignored) {
-        }
+        } catch (JSONException ignored) {}
     }
 
     public String getDownloadLink(int position) {

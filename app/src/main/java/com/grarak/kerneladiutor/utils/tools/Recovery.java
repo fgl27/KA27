@@ -34,7 +34,9 @@ public class Recovery {
     }
 
     public enum RECOVERY_COMMAND {
-        WIPE_DATA, WIPE_CACHE, FLASH_ZIP
+        WIPE_DATA,
+        WIPE_CACHE,
+        FLASH_ZIP
     }
 
     private final RECOVERY_COMMAND recovery_command;
@@ -53,7 +55,7 @@ public class Recovery {
         return recovery == RECOVERY.TWRP ? "openrecoveryscript" : "extendedcommand";
     }
 
-    public List<String> getCommands(RECOVERY recovery) {
+    public List < String > getCommands(RECOVERY recovery) {
         RecoveryType recoveryType = new TWRP();
         switch (recovery_command) {
             case WIPE_DATA:
@@ -68,11 +70,11 @@ public class Recovery {
 
     private abstract class RecoveryType {
 
-        public abstract List<String> getWipeData();
+        public abstract List < String > getWipeData();
 
-        public abstract List<String> getWipeCache();
+        public abstract List < String > getWipeCache();
 
-        public abstract List<String> getFlashZip(File file);
+        public abstract List < String > getFlashZip(File file);
 
         public abstract String getExternalPath();
 
@@ -95,15 +97,15 @@ public class Recovery {
     private class TWRP extends RecoveryType {
 
         @Override
-        public List<String> getWipeData() {
-            List<String> commands = new ArrayList<>();
+        public List < String > getWipeData() {
+            List < String > commands = new ArrayList < > ();
             commands.add("wipe data");
             return commands;
         }
 
         @Override
-        public List<String> getWipeCache() {
-            List<String> commands = new ArrayList<>();
+        public List < String > getWipeCache() {
+            List < String > commands = new ArrayList < > ();
 
             commands.add("wipe cache");
             commands.add("wipe dalvik");
@@ -112,8 +114,8 @@ public class Recovery {
         }
 
         @Override
-        public List<String> getFlashZip(File file) {
-            List<String> commands = new ArrayList<>();
+        public List < String > getFlashZip(File file) {
+            List < String > commands = new ArrayList < > ();
 
             commands.add("set tw_signed_zip_verify 0");
             commands.add("install " + formatFile(file));

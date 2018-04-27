@@ -32,7 +32,7 @@ public class GetPermission {
     private String[] permissions;
     private static PermissionCallBack permissionCallBack;
 
-    public GetPermission(Activity activity, String... permissions) {
+    public GetPermission(Activity activity, String...permissions) {
         this.activity = activity;
         this.permissions = permissions;
     }

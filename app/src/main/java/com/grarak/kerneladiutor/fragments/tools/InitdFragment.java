@@ -70,21 +70,20 @@ public class InitdFragment extends RecyclerViewFragment {
                 linearLayout.addView(nameEdit);
 
                 new AlertDialog.Builder(getActivity()).setView(linearLayout)
-                        .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                            }
-                        })
-                        .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(getActivity(), EditTextActivity.class);
-                                Bundle args = new Bundle();
-                                args.putString(EditTextActivity.NAME_ARG, nameEdit.getText().toString());
-                                intent.putExtras(args);
-                                startActivityForResult(intent, 0);
-                            }
-                        }).show();
+                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {}
+                    })
+                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            Intent intent = new Intent(getActivity(), EditTextActivity.class);
+                            Bundle args = new Bundle();
+                            args.putString(EditTextActivity.NAME_ARG, nameEdit.getText().toString());
+                            intent.putExtras(args);
+                            startActivityForResult(intent, 0);
+                        }
+                    }).show();
             }
         });
         return (RecyclerView) view.findViewById(R.id.recycler_view);
@@ -202,7 +201,7 @@ public class InitdFragment extends RecyclerViewFragment {
 
         addView(mInformationCard);
 
-        for (final String file : Initd.getInitds()) {
+        for (final String file: Initd.getInitds()) {
             if (file == null || file.isEmpty()) return;
             final CardViewItem.DCardView mInitdCard = new CardViewItem.DCardView();
             mInitdCard.setDescription(file);
@@ -218,21 +217,21 @@ public class InitdFragment extends RecyclerViewFragment {
                                     new AlertDialog.Builder(getActivity()).setMessage(Initd.getInitd(file)).show();
                                     break;
                                 case 1:
-                                    new AsyncTask<Void, Void, String>() {
+                                    new AsyncTask < Void, Void, String > () {
                                         private MaterialDialog progressDialog;
 
                                         @Override
                                         protected void onPreExecute() {
                                             super.onPreExecute();
                                             progressDialog = new MaterialDialog.Builder(getActivity())
-                                            .content(getString(R.string.executing))
-                                            .progress(true, 0)
-                                            .canceledOnTouchOutside(false)
-                                            .show();
+                                                .content(getString(R.string.executing))
+                                                .progress(true, 0)
+                                                .canceledOnTouchOutside(false)
+                                                .show();
                                         }
 
                                         @Override
-                                        protected String doInBackground(Void... params) {
+                                        protected String doInBackground(Void...params) {
                                             return Initd.execute(file);
                                         }
 
@@ -243,8 +242,7 @@ public class InitdFragment extends RecyclerViewFragment {
                                             if (!s.isEmpty())
                                                 try {
                                                     new AlertDialog.Builder(getActivity()).setMessage(s).show();
-                                                } catch (NullPointerException ignored) {
-                                                }
+                                                } catch (NullPointerException ignored) {}
                                         }
                                     }.execute();
                                     break;
@@ -286,7 +284,7 @@ public class InitdFragment extends RecyclerViewFragment {
             if (text != null) {
                 RootFile file = Initd.delete(name);
                 RootUtils.mount(true, "/system");
-                for (String line : text.split("\\r?\\n")) file.write(line, true);
+                for (String line: text.split("\\r?\\n")) file.write(line, true);
             }
             if (requestCode == 0) getHandler().post(new Runnable() {
                 @Override

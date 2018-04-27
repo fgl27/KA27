@@ -69,8 +69,7 @@ public class HeaderCardView {
      *
      * @param view is the parent innerlayout of the custom layout
      */
-    public void setUpHeaderLayout(View view) {
-    }
+    public void setUpHeaderLayout(View view) {}
 
     /**
      * Sets the string value of TextView in the header

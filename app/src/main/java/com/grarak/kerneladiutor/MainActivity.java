@@ -103,7 +103,7 @@ import com.kerneladiutor.library.root.RootUtils;
 import com.kerneladiutor.library.root.RootFile;
 
 import java.io.File;
-import java.io.IOException; 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -170,8 +170,7 @@ public class MainActivity extends BaseActivity implements Constants {
     }
 
     @Override
-    public void setStatusBarColor() {
-    }
+    public void setStatusBarColor() {}
 
     /**
      * Dialog which asks the user to enter his password
@@ -190,17 +189,17 @@ public class MainActivity extends BaseActivity implements Constants {
         linearLayout.addView(mPassword);
 
         new AlertDialog.Builder(this).setView(linearLayout).setCancelable(false)
-                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if (mPassword.getText().toString().equals(Utils.decodeString(password)))
-                            new Task().execute();
-                        else {
-                            Utils.toast(getString(R.string.password_wrong), MainActivity.this);
-                            finish();
-                        }
+            .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if (mPassword.getText().toString().equals(Utils.decodeString(password)))
+                        new Task().execute();
+                    else {
+                        Utils.toast(getString(R.string.password_wrong), MainActivity.this);
+                        finish();
                     }
-                }).show();
+                }
+            }).show();
     }
 
     /**
@@ -247,7 +246,7 @@ public class MainActivity extends BaseActivity implements Constants {
         if (KSM.hasKsm()) ITEMS.add(new DAdapter.Item(getString(R.string.ksm), new KSMFragment()));
         if (LMK.getMinFrees() != null) ITEMS.add(new DAdapter.Item(getString(R.string.low_memory_killer), new LMKFragment()));
         ITEMS.add(new DAdapter.Item(getString(R.string.misc_controls), new MiscFragment()));
-        if (!Utils.isTV(this)) ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment()));//Power and battery
+        if (!Utils.isTV(this)) ITEMS.add(new DAdapter.Item(getString(R.string.battery), new BatteryFragment())); //Power and battery
         if (Ram.hasRamControl()) ITEMS.add(new DAdapter.Item(getString(R.string.ram), new RamFragment()));
         if (Screen.hasScreen()) ITEMS.add(new DAdapter.Item(getString(R.string.screen), new ScreenFragment()));
         if (Sound.hasSound()) ITEMS.add(new DAdapter.Item(getString(R.string.sound), new SoundFragment()));
@@ -293,8 +292,7 @@ public class MainActivity extends BaseActivity implements Constants {
             }
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-            }
+            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {}
 
             @Override
             public int getItemCount() {
@@ -304,18 +302,18 @@ public class MainActivity extends BaseActivity implements Constants {
     }
 
     public void setItems(BaseFragment fragment) {
-        List<DAdapter.DView> tmpViews = new ArrayList<>();
-        for (DAdapter.DView item : ITEMS)
-            if (item.getFragment() == null
-                    || Utils.getBoolean(item.getFragment().getClass().getSimpleName() + "visible", true, this))
+        List < DAdapter.DView > tmpViews = new ArrayList < > ();
+        for (DAdapter.DView item: ITEMS)
+            if (item.getFragment() == null ||
+                Utils.getBoolean(item.getFragment().getClass().getSimpleName() + "visible", true, this))
                 tmpViews.add(item);
 
         VISIBLE_ITEMS.clear();
         // Sort out headers without any sections
         for (int i = 0; i < tmpViews.size(); i++)
-            if ((tmpViews.get(i).getFragment() == null && i < tmpViews.size() && tmpViews.get(i + 1).getFragment() != null)
-                    || tmpViews.get(i).getFragment() != null
-                    || tmpViews.get(i) instanceof DAdapter.MainHeader)
+            if ((tmpViews.get(i).getFragment() == null && i < tmpViews.size() && tmpViews.get(i + 1).getFragment() != null) ||
+                tmpViews.get(i).getFragment() != null ||
+                tmpViews.get(i) instanceof DAdapter.MainHeader)
                 VISIBLE_ITEMS.add(tmpViews.get(i));
 
         mAdapter = new DAdapter.Adapter(VISIBLE_ITEMS);
@@ -327,11 +325,12 @@ public class MainActivity extends BaseActivity implements Constants {
                 selectItem(position);
             }
         });
-        if (fragment != null) for (int i = 0; i < VISIBLE_ITEMS.size(); i++)
-            if (VISIBLE_ITEMS.get(i).getFragment() != null && VISIBLE_ITEMS.get(i).getFragment() == fragment) {
-                cur_position = i;
-                mAdapter.setItemChecked(i, true);
-            }
+        if (fragment != null)
+            for (int i = 0; i < VISIBLE_ITEMS.size(); i++)
+                if (VISIBLE_ITEMS.get(i).getFragment() != null && VISIBLE_ITEMS.get(i).getFragment() == fragment) {
+                    cur_position = i;
+                    mAdapter.setItemChecked(i, true);
+                }
 
     }
 
@@ -359,7 +358,7 @@ public class MainActivity extends BaseActivity implements Constants {
         }
     }
 
-    private class Task extends AsyncTask<Void, Void, Void> {
+    private class Task extends AsyncTask < Void, Void, Void > {
 
         private boolean hasRoot;
 
@@ -382,7 +381,7 @@ public class MainActivity extends BaseActivity implements Constants {
 
             // Create a blank profiles.json to prevent logspam.
             String sdcard = Environment.getExternalStorageDirectory().getPath();
-            String profpath = (sdcard +"/KA_profiles/");
+            String profpath = (sdcard + "/KA_profiles/");
             if (!Utils.existFile(profpath)) {
                 RootFile dir = new RootFile(profpath);
                 dir.mkdir();
@@ -476,7 +475,7 @@ public class MainActivity extends BaseActivity implements Constants {
     }
 
     /**
-	     * A function to set Navigation Drawer Parameters
+     * A function to set Navigation Drawer Parameters
      *
      * @return the LayoutParams for the Drawer
      */
@@ -514,8 +513,10 @@ public class MainActivity extends BaseActivity implements Constants {
         if (Build.VERSION.SDK_INT >= 23) {
             int hasWriteExternalPermission = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
             if (hasWriteExternalPermission != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        REQUEST_CODE_ASK_PERMISSIONS);
+                requestPermissions(new String[] {
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    },
+                    REQUEST_CODE_ASK_PERMISSIONS);
                 return;
             }
         }

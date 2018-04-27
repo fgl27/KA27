@@ -47,11 +47,11 @@ public class ViewPagerFragment extends BaseFragment {
     private CustomViewPager mViewPager;
     protected MaterialTabs mTabs;
 
-    private final List<ViewPagerItem> items = new ArrayList<>();
+    private final List < ViewPagerItem > items = new ArrayList < > ();
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             final @Nullable Bundle savedInstanceState) {
+        final @Nullable Bundle savedInstanceState) {
         this.inflater = inflater;
         this.container = container;
         items.clear();
@@ -62,8 +62,7 @@ public class ViewPagerFragment extends BaseFragment {
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
 
             @Override
             public void onPageSelected(int position) {
@@ -71,11 +70,10 @@ public class ViewPagerFragment extends BaseFragment {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {
-            }
+            public void onPageScrollStateChanged(int state) {}
         });
 
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTask < Void, Void, Void > () {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
@@ -88,7 +86,7 @@ public class ViewPagerFragment extends BaseFragment {
             }
 
             @Override
-            protected Void doInBackground(Void... params) {
+            protected Void doInBackground(Void...params) {
                 try {
                     if (isAdded()) init(savedInstanceState);
                 } catch (IllegalStateException e) {
@@ -127,17 +125,13 @@ public class ViewPagerFragment extends BaseFragment {
         return inflater.inflate(R.layout.viewpager, container, false);
     }
 
-    public void preInit(Bundle savedInstanceState) {
-    }
+    public void preInit(Bundle savedInstanceState) {}
 
-    public void init(Bundle savedInstanceState) {
-    }
+    public void init(Bundle savedInstanceState) {}
 
-    public void postInit(Bundle savedInstanceState) {
-    }
+    public void postInit(Bundle savedInstanceState) {}
 
-    public void onSwipe(int page) {
-    }
+    public void onSwipe(int page) {}
 
     public void setCurrentItem(int item) {
         mViewPager.setCurrentItem(item);
@@ -156,7 +150,7 @@ public class ViewPagerFragment extends BaseFragment {
             items.add(item);
             adapter.notifyDataSetChanged();
         }
-        if (!items.isEmpty() && isVisible() && mTabs != null){
+        if (!items.isEmpty() && isVisible() && mTabs != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -178,15 +172,15 @@ public class ViewPagerFragment extends BaseFragment {
         mTabs.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    public List<ViewPagerItem> getItems() {
+    public List < ViewPagerItem > getItems() {
         return items;
     }
 
     private static class Adapter extends FragmentPagerAdapter {
 
-        private final List<ViewPagerItem> items;
+        private final List < ViewPagerItem > items;
 
-        public Adapter(FragmentManager fragmentManager, List<ViewPagerItem> items) {
+        public Adapter(FragmentManager fragmentManager, List < ViewPagerItem > items) {
             super(fragmentManager);
             this.items = items;
         }

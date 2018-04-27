@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class SeekBarCardView extends BaseCardView {
 
-    private final List<String> list;
+    private final List < String > list;
 
     private final HeaderCardView headerCardView;
     private TextView descriptionView;
@@ -53,7 +53,7 @@ public class SeekBarCardView extends BaseCardView {
 
     private OnSeekBarCardListener onSeekBarCardListener;
 
-    public SeekBarCardView(Context context, List<String> list) {
+    public SeekBarCardView(Context context, List < String > list) {
         // Ugly hack, res folders don't do their job
         super(context, R.layout.seekbar_cardview);
         this.list = list;
@@ -71,8 +71,7 @@ public class SeekBarCardView extends BaseCardView {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -162,8 +161,7 @@ public class SeekBarCardView extends BaseCardView {
     }
 
     @Override
-    public void setFocus() {
-    }
+    public void setFocus() {}
 
     public void setTitle(String title) {
         this.title = title;
@@ -217,7 +215,7 @@ public class SeekBarCardView extends BaseCardView {
 
     public static class DSeekBarCard extends DParent {
 
-        private final List<String> list;
+        private final List < String > list;
 
         private SeekBarCardView seekBarCardView;
 
@@ -228,7 +226,7 @@ public class SeekBarCardView extends BaseCardView {
 
         private OnDSeekBarCardListener onDSeekBarCardListener;
 
-        public DSeekBarCard(List<String> list) {
+        public DSeekBarCard(List < String > list) {
             this.list = list;
         }
 

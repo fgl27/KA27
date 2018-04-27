@@ -249,7 +249,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
     }
 
     public void Update() {
-        if (mLMKcount != null) 
+        if (mLMKcount != null)
             mLMKcount.setDescription(LMK.getLMKcount() + " " + getString(R.string.lmk_count_summary));
     }
 }

@@ -36,7 +36,13 @@ import java.util.Locale;
 public class Control implements Constants {
 
     public enum CommandType {
-        GENERIC, CPU, CPU_LITTLE, FAUX_GENERIC, CUSTOM, SHELL, ASTERISK
+        GENERIC,
+        CPU,
+        CPU_LITTLE,
+        FAUX_GENERIC,
+        CUSTOM,
+        SHELL,
+        ASTERISK
     }
 
     public static void commandSaver(final Context context, final String path, final String command) {
@@ -44,7 +50,7 @@ public class Control implements Constants {
         // Something keeps trying to save commands wtih a null path... This makes the bootservice Force Close.
         // Ensure that this isn't a possibility by not saving null paths or commands.
         if (path != null && command != null && !path.equals("null") && !command.equals("null")) {
-            List<CommandDB.CommandItem> commandItems = commandDB.getAllCommands();
+            List < CommandDB.CommandItem > commandItems = commandDB.getAllCommands();
             for (int i = 0; i < commandItems.size(); i++) {
                 String p = commandItems.get(i).getPath();
                 if (p != null && p.equals(path)) {
@@ -63,8 +69,7 @@ public class Control implements Constants {
             RootUtils.runCommand(command);
             commandSaver(context, path, command);
             Log.i(TAG, "Run command: " + command);
-        }
-        else {
+        } else {
             Log.i(TAG, "Unable to run command due to null values.");
         }
     }
@@ -92,7 +97,7 @@ public class Control implements Constants {
 
     private static void runFauxGeneric(String file, String value, Context context) {
         String command = value.contains(" ") ? value + " " + getChecksum(Utils.stringToInt(value.split(" ")[0]),
-                Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
+            Utils.stringToInt(value.split(" ")[1])) : value + " " + getChecksum(Utils.stringToInt(value), 0);
         run("echo " + value + " > " + file, file + "nochecksum", context);
         run("echo " + command + " > " + file, file, context);
     }
@@ -113,10 +118,10 @@ public class Control implements Constants {
         if (context != null) commandSaver(context, service, "stop " + service);
     }
 
-    private static final List<Thread> tasks = new ArrayList<>();
+    private static final List < Thread > tasks = new ArrayList < > ();
 
     public static void runCommand(final String value, final String file, final CommandType command, final String id,
-                                  final Context context) {
+        final Context context) {
         final Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -127,7 +132,7 @@ public class Control implements Constants {
                         stopService(HOTPLUG_MPDEC, null);
                     }
 
-                    List<Integer> range = command == CommandType.CPU ? CPU.getBigCoreRange() : CPU.getLITTLECoreRange();
+                    List < Integer > range = command == CommandType.CPU ? CPU.getBigCoreRange() : CPU.getLITTLECoreRange();
                     for (int i = 0; i < range.size(); i++) {
                         if (i != 0) {
                             Control.run(String.format(Locale.US, "echo 0 > " + CPU_CORE_ONLINE, i),
@@ -159,16 +164,17 @@ public class Control implements Constants {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) if (tasks.get(0) == thread) {
-                    thread.start();
-                    try {
-                        thread.join();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                while (true)
+                    if (tasks.get(0) == thread) {
+                        thread.start();
+                        try {
+                            thread.join();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        tasks.remove(thread);
+                        break;
                     }
-                    tasks.remove(thread);
-                    break;
-                }
             }
         }).start();
     }
@@ -177,16 +183,15 @@ public class Control implements Constants {
         runCommand(value, file, command, null, context);
     }
 
-   public static void deletespecificcommand(final Context context, final String path, final String command) {
+    public static void deletespecificcommand(final Context context, final String path, final String command) {
         CommandDB commandDB = new CommandDB(context);
 
-        List<CommandDB.CommandItem> commandItems = commandDB.getAllCommands();
+        List < CommandDB.CommandItem > commandItems = commandDB.getAllCommands();
         if (path == null && command == null) {
-           for (int i = 0; i <= commandItems.size(); i++) {
-              commandDB.delete(0);
+            for (int i = 0; i <= commandItems.size(); i++) {
+                commandDB.delete(0);
             }
-        }
-        else {
+        } else {
             for (int i = 0; i < commandItems.size(); i++) {
                 String p = commandItems.get(i).getPath();
                 String c = commandItems.get(i).getCommand();

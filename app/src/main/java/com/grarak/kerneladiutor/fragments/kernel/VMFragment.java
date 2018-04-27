@@ -455,14 +455,14 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
             mZramDataSizeCard.setTitle(getString(R.string.zram_data_size));
 
             addView(mZramDataSizeCard);
-        } 
+        }
 
         if (VM.hasZRAMReadWrites() && VM.hasZRAMFailReadWrites()) {
             mZramRWCard = new CardViewItem.DCardView();
             mZramRWCard.setTitle(getString(R.string.read_write));
 
             addView(mZramRWCard);
-        } 
+        }
     }
 
     @Override
@@ -484,8 +484,8 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         else if (dSeekBarCard == mOverCommitRatioCard) VM.setOverCommitRatio(position, getActivity());
         else if (dSeekBarCard == mSwappinessCard) VM.setSwappiness(position, getActivity());
         else if (dSeekBarCard == mVFSCachePressureCard) VM.setVFSCachePressure(position + 1, getActivity());
-        else if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAM(null, String.valueOf(position * 10), null,  getActivity());
-        else if (dSeekBarCard == mZRAMMaxCompStreamsCard) VM.setZRAM(null, null, String.valueOf(position + 1),  getActivity());
+        else if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAM(null, String.valueOf(position * 10), null, getActivity());
+        else if (dSeekBarCard == mZRAMMaxCompStreamsCard) VM.setZRAM(null, null, String.valueOf(position + 1), getActivity());
     }
 
     @Override

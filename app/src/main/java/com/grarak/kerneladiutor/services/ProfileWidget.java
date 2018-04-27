@@ -93,13 +93,13 @@ public class ProfileWidget extends AppWidgetProvider {
                 ProfileDB.ProfileItem profileItem = profileDB.getAllProfiles().get(position);
                 RootUtils.SU su = new RootUtils.SU();
 
-                List<String> paths = profileItem.getPath();
+                List < String > paths = profileItem.getPath();
                 for (int i = 0; i < paths.size(); i++) {
                     Control.commandSaver(context, paths.get(i), profileItem.getCommands().get(i));
                     su.runCommand(profileItem.getCommands().get(i));
                 }
                 su.close();
-                 Utils.toast("Profile: \"" + profileItem.getName() + "\" applied.", context);
+                Utils.toast("Profile: \"" + profileItem.getName() + "\" applied.", context);
             }
         }
 
@@ -109,7 +109,7 @@ public class ProfileWidget extends AppWidgetProvider {
     private static class ListViewFactory implements RemoteViewsService.RemoteViewsFactory {
 
         private final Context context;
-        public static List<ProfileDB.ProfileItem> items;
+        public static List < ProfileDB.ProfileItem > items;
 
         public ListViewFactory(Context context) {
             this.context = context;
@@ -168,8 +168,7 @@ public class ProfileWidget extends AppWidgetProvider {
         }
 
         @Override
-        public void onDestroy() {
-        }
+        public void onDestroy() {}
 
     }
 

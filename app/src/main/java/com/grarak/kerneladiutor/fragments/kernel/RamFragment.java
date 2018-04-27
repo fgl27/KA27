@@ -68,10 +68,10 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
 
     private void RamInit() {
 
-            mRamUsedCard = new CardViewItem.DCardView();
-            mRamUsedCard.setTitle(getString(R.string.memosize_used));
+        mRamUsedCard = new CardViewItem.DCardView();
+        mRamUsedCard.setTitle(getString(R.string.memosize_used));
 
-            addView(mRamUsedCard);
+        addView(mRamUsedCard);
 
         mCurFreqCard = new CardViewItem.DCardView();
         mCurFreqCard.setTitle(getString(R.string.ram_cur_freq));

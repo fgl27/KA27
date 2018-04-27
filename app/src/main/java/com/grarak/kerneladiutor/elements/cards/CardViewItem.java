@@ -73,8 +73,7 @@ public class CardViewItem extends BaseCardView {
     }
 
     @Override
-    public void setUpInnerLayout(View view) {
-    }
+    public void setUpInnerLayout(View view) {}
 
     public static class DCardView extends DParent {
 

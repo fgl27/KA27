@@ -316,16 +316,16 @@ public class GammaProfiles {
             return getString("value", position);
         }
 
-        public String getContrast (int position) {
+        public String getContrast(int position) {
             return getString("contrast", position);
         }
 
-        public String getHue (int position) {
+        public String getHue(int position) {
             return getString("hue", position);
         }
 
-        public String getValues (int position) {
-            String values = getString("rgb", position) + "," + getString("sat", position) + "," + getString("value", position) + ","  + getString("contrast", position) + "," + getString("hue", position);
+        public String getValues(int position) {
+            String values = getString("rgb", position) + "," + getString("sat", position) + "," + getString("value", position) + "," + getString("contrast", position) + "," + getString("hue", position);
             return values;
         }
 

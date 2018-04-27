@@ -893,10 +893,10 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
     public void onClick(CardViewItem.DCardView dCardView) {
         if (dCardView == mAdditionalProfilesCard) {
             final MaterialDialog progressDialog = new MaterialDialog.Builder(getActivity())
-            .content(getString(R.string.loading))
-            .progress(true, 0)
-            .canceledOnTouchOutside(false)
-            .show();
+                .content(getString(R.string.loading))
+                .progress(true, 0)
+                .canceledOnTouchOutside(false)
+                .show();
             new WebpageReader(new WebpageReader.WebpageCallback() {
                 @Override
                 public void onCallback(String raw, String html) {

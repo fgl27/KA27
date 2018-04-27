@@ -53,8 +53,8 @@ public class CustomViewPager extends ViewPager {
     public boolean onTouchEvent(MotionEvent ev) {
         int action = ev.getAction();
         if (action == MotionEvent.ACTION_DOWN) {
-           performClick();
-           return true;
+            performClick();
+            return true;
         }
         return swipe && super.onTouchEvent(ev);
     }

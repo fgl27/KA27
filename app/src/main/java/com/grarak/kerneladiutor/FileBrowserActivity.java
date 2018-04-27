@@ -70,8 +70,7 @@ public class FileBrowserActivity extends BaseActivity {
             @Override
             public void granted() {
                 fileBrowserActivity = FileBrowserActivity.this;
-                setFragment(R.id.content_frame, fileBrowserFragment
-                        = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)));
+                setFragment(R.id.content_frame, fileBrowserFragment = FileBrowserFragment.newInstance(getIntent().getExtras().getString(FILE_TYPE_ARG)));
             }
 
             @Override
@@ -116,7 +115,7 @@ public class FileBrowserActivity extends BaseActivity {
             String externalStorage = Tools.getExternalStorage();
 
             fileBrowserActivity.internalStorage =
-                    StorageFragment.newInstance(Environment.getExternalStorageDirectory().getPath(), fileType);
+                StorageFragment.newInstance(Environment.getExternalStorageDirectory().getPath(), fileType);
             addFragment(new ViewPagerItem(fileBrowserActivity.internalStorage, getString(R.string.internal_storage)));
             if (externalStorage != null) {
                 fileBrowserActivity.externalStorage = StorageFragment.newInstance(externalStorage, fileType);
@@ -186,11 +185,11 @@ public class FileBrowserActivity extends BaseActivity {
             File[] storageFiles = new File(current_path).listFiles();
             if (storageFiles == null) return;
 
-            final List<DAdapter.DView> views = new ArrayList<>();
-            List<File> files = new ArrayList<>();
-            List<File> folders = new ArrayList<>();
+            final List < DAdapter.DView > views = new ArrayList < > ();
+            List < File > files = new ArrayList < > ();
+            List < File > folders = new ArrayList < > ();
 
-            for (File file : storageFiles) {
+            for (File file: storageFiles) {
                 if (file.isDirectory()) folders.add(file);
                 else if (type != null) {
                     if (file.getName().endsWith("." + type)) files.add(file);
@@ -200,8 +199,8 @@ public class FileBrowserActivity extends BaseActivity {
             Collections.sort(files);
             Collections.sort(folders);
 
-            for (File folder : folders) views.add(new FileItem(folder));
-            for (File file : files) views.add(new FileItem(file));
+            for (File folder: folders) views.add(new FileItem(folder));
+            for (File file: files) views.add(new FileItem(file));
 
             if (views.size() > 0) {
                 pathText.setText(current_path);
@@ -216,17 +215,16 @@ public class FileBrowserActivity extends BaseActivity {
                             updateData();
                         } else {
                             new AlertDialog.Builder(getActivity()).setMessage(getString(R.string.select_file, file.getName()))
-                                    .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                        }
-                                    })
-                                    .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            fileBrowserActivity.finished(file.getAbsolutePath());
-                                        }
-                                    }).show();
+                                .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {}
+                                })
+                                .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        fileBrowserActivity.finished(file.getAbsolutePath());
+                                    }
+                                }).show();
                         }
                     }
                 });
@@ -270,8 +268,7 @@ public class FileBrowserActivity extends BaseActivity {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup) {
                 return new RecyclerView.ViewHolder(LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.filebrowser_item, viewGroup, false)) {
-                };
+                    .inflate(R.layout.filebrowser_item, viewGroup, false)) {};
             }
 
             @Override
@@ -279,7 +276,7 @@ public class FileBrowserActivity extends BaseActivity {
                 text = (TextView) viewHolder.itemView.findViewById(R.id.text);
                 text.setText(file.getName());
                 text.setCompoundDrawablesWithIntrinsicBounds(file.isDirectory() ? R.drawable.ic_folder : R.drawable.ic_file,
-                        0, 0, 0);
+                    0, 0, 0);
 
                 if (Utils.isTV(viewHolder.itemView.getContext())) {
                     viewHolder.itemView.setFocusable(true);

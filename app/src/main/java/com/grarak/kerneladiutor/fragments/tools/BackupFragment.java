@@ -134,7 +134,7 @@ public class BackupFragment extends RecyclerViewFragment {
         layout.setPadding(30, 30, 30, 30);
 
         final AppCompatEditText editText = new AppCompatEditText(getActivity());
-        editText.setTextColor(ContextCompat.getColor(getActivity(), 
+        editText.setTextColor(ContextCompat.getColor(getActivity(),
             Utils.DARKTHEME ? R.color.textcolor_dark : R.color.black));
         editText.setLayoutParams(new LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -178,10 +178,10 @@ public class BackupFragment extends RecyclerViewFragment {
                         protected void onPreExecute() {
                             super.onPreExecute();
                             progressDialog = new MaterialDialog.Builder(getActivity())
-                            .content(getString(R.string.backing_up))
-                            .progress(true, 0)
-                            .canceledOnTouchOutside(false)
-                            .show();
+                                .content(getString(R.string.backing_up))
+                                .progress(true, 0)
+                                .canceledOnTouchOutside(false)
+                                .show();
                         }
 
                         @Override
@@ -287,10 +287,10 @@ public class BackupFragment extends RecyclerViewFragment {
                     protected void onPreExecute() {
                         super.onPreExecute();
                         progressDialog = new MaterialDialog.Builder(getActivity())
-                        .content(restoring ? R.string.restoring : R.string.flashing)
-                        .progress(true, 0)
-                        .canceledOnTouchOutside(false)
-                        .show();
+                            .content(restoring ? R.string.restoring : R.string.flashing)
+                            .progress(true, 0)
+                            .canceledOnTouchOutside(false)
+                            .show();
                     }
 
                     @Override
