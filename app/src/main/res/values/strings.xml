@@ -779,7 +779,6 @@
     <string name="bcl_hotplug_summary">Enable or Disable BCL Hotplugging</string>
     <string name="bcl_cores">BCL Hotplugging</string>
     <string name="bcl_cores_summary">Choose how many core will be unplugged when the BCL driver starts to mitigate the CPU</string>
-    <string name="bcl_cores_none">None</string>
     <string name="bcl_cores_1">1 (Core 3)</string>
     <string name="bcl_cores_2">2 (Core 1 and 3)</string>
     <string name="bcl_cores_3">2 (Core 2 and 3)</string>

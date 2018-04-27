@@ -43,7 +43,8 @@ import java.util.List;
 public class BatteryFragment extends RecyclerViewFragment implements
 PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwitchCardListener, SeekBarCardView.DSeekBarCard.OnDSeekBarCardListener {
 
-    private int bclFreqCount = 0, bclArraylist = 60;
+    private int bclFreqCount = 0, bclArraylist = 60, bclFreqValue = 0;
+    private List < Integer > Cpufreqs;
 
     private CardViewItem.DCardView mBatteryLevelCard, mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
 
@@ -210,16 +211,25 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     private void bclMaxFreqInit() {
         bclFreqCount = 0;
         List < String > freqs = new ArrayList < > ();
-        for (int freq: CPU.getFreqs()) {
+        Cpufreqs = CPU.getFreqs();
+        for (int freq: Cpufreqs) {
             if (freq >= Battery.getBclLimitFreq()) {
                 bclFreqCount++;
                 freqs.add(freq / 1000 + getString(R.string.mhz));
             }
         }
+
+        // replace top freq with a disable
+        freqs.set(freqs.size() - 1, getString(R.string.disabled));
+
         mBclMaxFreqCard = new PopupCardView.DPopupCard(freqs);
         mBclMaxFreqCard.setTitle(getString(R.string.bcl_max_freq));
         mBclMaxFreqCard.setDescription(getString(R.string.bcl_max_freq_summary));
-        mBclMaxFreqCard.setItem(Battery.getBclFreq() / 1000 + getString(R.string.mhz));
+
+        bclFreqValue = Battery.getBclFreq();
+        if (bclFreqValue == Cpufreqs.get((Cpufreqs.size() - 1))) mBclMaxFreqCard.setItem(getString(R.string.disabled));
+        else mBclMaxFreqCard.setItem(bclFreqValue / 1000 + getString(R.string.mhz));
+        
         mBclMaxFreqCard.setOnDPopupCardListener(this);
 
         addView(mBclMaxFreqCard);
@@ -335,7 +345,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mBclMaxFreqCard)
-            Battery.setBclFreq(CPU.getFreqs().get((CPU.getFreqs().size() - bclFreqCount) + position), getActivity());
+            Battery.setBclFreq(Cpufreqs.get((Cpufreqs.size() - bclFreqCount) + position), getActivity());
         if (dPopupCard == mBclHotmask)
             Battery.setBclHotMask(position, getActivity());
     }
@@ -347,8 +357,11 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     }
 
     public void Update() {
-        if (mBclMaxFreqCard != null) mBclMaxFreqCard.setItem(Battery.getBclFreq() / 1000 + getString(R.string.mhz));
-        if (mBclHotmask != null) mBclHotmask.setItem(Battery.getBclHotMask());
+        if (mBclMaxFreqCard != null) {
+            bclFreqValue = Battery.getBclFreq();
+            if (bclFreqValue == Cpufreqs.get((Cpufreqs.size() - 1))) mBclMaxFreqCard.setItem(getString(R.string.disabled));
+            else mBclMaxFreqCard.setItem(bclFreqValue / 1000 + getString(R.string.mhz));
+        } if (mBclHotmask != null) mBclHotmask.setItem(Battery.getBclHotMask());
         if (mBatteryLevelCard != null) mBatteryLevelCard.setDescription(Battery.getBatteryLevel() + getString(R.string.percent));
         if (mBatteryChargingCurrentCard != null) {
             double amperage = (double) Battery.getChargingCurrent() / 1000;
