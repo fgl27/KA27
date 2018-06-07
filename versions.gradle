@@ -7,11 +7,11 @@ ext.versions = [
         publishVersion       : 'Quark.63',
         publishVersionCode   : 63,
 
-        gradlePlugin         : '3.0.1',
+        gradlePlugin         : '3.1.1',
         benmanes             : '0.17.0',
 
-        supportLib           : '27.1.0',
-        ztzip                : '1.12',
+        supportLib           : '27.1.1',
+        ztzip                : '1.13',
         materialdialogs      : '0.9.6.0',
         materialtabs         : '2.0.5',
         bintrayplugin        : '1.8.0',
