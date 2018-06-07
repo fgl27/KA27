@@ -783,6 +783,8 @@
     <string name="bcl_cores_2">2 (Core 1 and 3)</string>
     <string name="bcl_cores_3">2 (Core 2 and 3)</string>
     <string name="bcl_cores_4">3 (Core 1 to 3)</string>
+    <string name="battery_health_cold_disabler">Battery health Cold charging</string>
+    <string name="battery_health_cold_disabler_summary">When enable allow to charge the device if the battery is in the \"Cold\" health state. This is only recommended for devices that have a malfunctioning battery temperature sensor that always show \"Cold\" as the state</string>
     <string name="crc">Software CRC control</string>
     <string name="crc_summary">CRC is a mechanism aiming to prevent data corruption when enabled. Data blocks can lose up to 30 &#37; of their performance.</string>
     <string name="fsync">Fsync</string>

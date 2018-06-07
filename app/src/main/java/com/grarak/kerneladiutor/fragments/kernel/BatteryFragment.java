@@ -49,7 +49,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
     private CardViewItem.DCardView mBatteryLevelCard, mBatteryVoltageCard, mBatteryTemperature, mBatteryChargingCurrentCard, mBatteryChargingTypeCard, mBatteryHealthCard;
 
     private SwitchCardView.DSwitchCard mForceFastChargeCard, mBatteryLedCard;
-    private SwitchCardView.DSwitchCard mBclCard, mBclHotplugCard;
+    private SwitchCardView.DSwitchCard mBclCard, mBclHotplugCard, mColdDisablerCard;
 
     private PopupCardView.DPopupCard mBclMaxFreqCard;
     private PopupCardView.DPopupCard mBclHotmask;
@@ -73,6 +73,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         batteryChargingCurrentInit();
         batteryTemperatureInit();
         batteryChargingTypeInit();
+        if (Battery.hasColdDisabler()) bclColdDisablerInit();
         if (Battery.hasForceFastCharge()) forceFastChargeInit();
         if (Battery.hasBlx()) blxInit();
         if (Battery.hasChargeRate()) chargerateInit();
@@ -290,6 +291,16 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         addView(mBclHotplugCard);
     }
 
+    private void bclColdDisablerInit() {
+        mColdDisablerCard = new SwitchCardView.DSwitchCard();
+        mColdDisablerCard.setTitle(getString(R.string.battery_health_cold_disabler));
+        mColdDisablerCard.setDescription(getString(R.string.battery_health_cold_disabler_summary));
+        mColdDisablerCard.setChecked(Battery.isBclHotplugActive());
+        mColdDisablerCard.setOnDSwitchCardListener(this);
+
+        addView(mColdDisablerCard);
+    }
+
     private void cstatesInit() {
         List < DAdapter.DView > views = new ArrayList < > ();
 
@@ -392,6 +403,8 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
             mBclCard.setChecked(Battery.isBclActive());
         if (mBclHotplugCard != null)
             mBclHotplugCard.setChecked(Battery.isBclHotplugActive());
+        if (mColdDisablerCard != null)
+            mColdDisablerCard.setChecked(Battery.isColdDisablerActive());
         if (mBclVphHighCard != null)
             mBclVphHighCard.setProgress((((Battery.getBclVphHigh()) / 1000) - (bclArraylist * 50)) / 50);
         if (mBclVphLowCard != null)
@@ -409,6 +422,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         else if (dSwitchCard == mBatteryLedCard) Battery.setBatteryLed(checked, getActivity());
         else if (dSwitchCard == mBclCard) Battery.activateBcl(checked, getActivity());
         else if (dSwitchCard == mBclHotplugCard) Battery.activateBclHotplug(checked, getActivity());
+        else if (dSwitchCard == mColdDisablerCard) Battery.activateColdDisabler(checked, getActivity());
     }
 
     @Override

@@ -1018,6 +1018,8 @@ public interface Constants {
     String BCL_HOT_STATUS = "/sys/devices/qcom,bcl.*/V";
     String BCL_HOTPLUG = "/sys/module/battery_current_limit/parameters/bcl_hotplug_enable";
 
+    String BATTERY_COLD_STATE_DISABLER = "/sys/module/power_supply/parameters/cold_state_disable";
+
     String[] BATTERY_ARRAY = {
         BCL,
         BCL_FREQ_MAX,
@@ -1033,7 +1035,8 @@ public interface Constants {
         C0STATE,
         C1STATE,
         C2STATE,
-        C3STATE
+        C3STATE,
+        BATTERY_COLD_STATE_DISABLER
     };
 
     // RAM

@@ -279,4 +279,16 @@ public class Battery implements Constants {
         if (value == 4) position = "14";
         Control.runCommand(position, BCL_HOT_MASK, Control.CommandType.ASTERISK, context);
     }
+
+    public static void activateColdDisabler(boolean active, Context context) {
+        Control.runCommand(active ? "Y" : "N", BATTERY_COLD_STATE_DISABLER, Control.CommandType.GENERIC, context);
+    }
+
+    public static boolean isColdDisablerActive() {
+        return Utils.readFile(BATTERY_COLD_STATE_DISABLER).equals("Y");
+    }
+
+    public static boolean hasColdDisabler() {
+        return Utils.existFile(BATTERY_COLD_STATE_DISABLER);
+    }
 }
