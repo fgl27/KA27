@@ -95,7 +95,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
         muptimeCard.setDescription(getSysTimers());
         addView(muptimeCard);
 
-        int wasoffline = 0;
+        int wasoffline = 0, total_time_offset = 10;
         for (int i = 0; i < CPU.getCoreCount(); i++) {
             if (!CPU.isCoreOnline(i)) {
                 wasoffline = 1;
@@ -132,7 +132,18 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             LinearLayout uiStatesView = new LinearLayout(getActivity());
             uiStatesView.setOrientation(LinearLayout.VERTICAL);
             CardViewItem.DCardView frequencyCard = new CardViewItem.DCardView();
-            frequencyCard.setTitle(String.format(getString(R.string.core_time_in_state), i) + " " + getDurationBreakdown(total_time * 10));
+
+            // Multiple the time_in_state time value by 10 as it is stored in UserTime Units (10ms) when CONFIG_HZ=100
+            // Multiple the time_in_state time value by 3.33 as it is stored in UserTime Units (3.33ms) when CONFIG_HZ=300
+            // Multiple the time_in_state time value by 1 as it is stored in UserTime Units (1ms) when CONFIG_HZ=1000
+
+            //Core 0 never goes to sleep so it's time is almost equal to Awake time aka uptimeMillis
+            //if the total_time * total_time_offset is bigger then awake time set total_time_offset to 1
+            if (i == 0 && ((total_time * total_time_offset) > SystemClock.uptimeMillis())) total_time_offset = 1;
+            //Another check that can be added here is to do total_time_offset = 3.33 before set it to 1, as HZ can be set to 300
+            //But this app kernel doesn't uses it so check yours if using this changes
+
+            frequencyCard.setTitle(String.format(getString(R.string.core_time_in_state), i) + " " + getDurationBreakdown(total_time * total_time_offset));
             frequencyCard.setView(uiStatesView);
             frequencyCard.setFullSpan(true);
             for (int x = 0; x < freq_use_list.size(); x++) {
@@ -162,8 +173,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                     this_pct = pct + getString(R.string.percent);
                     freqText.setText(this_freq);
                     perText.setText(this_pct);
-                    // Multiple the time_in_state time value by 10 as it is stored in UserTime Units (10ms)
-                    durText.setText(getDurationBreakdown((freq_use_list.get(allfreqs.get(x))) * 10));
+                    durText.setText(getDurationBreakdown((freq_use_list.get(allfreqs.get(x))) * total_time_offset));
                     bar.setProgress(pct);
 
                     uiStatesView.addView(layout);
