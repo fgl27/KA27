@@ -149,9 +149,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             for (int x = 0; x < freq_use_list.size(); x++) {
                 if (allfreqs.size() < x || allfreqs.get(x) == null) continue;
 
-                Long time = freq_use_list.get(allfreqs.get(x));
-                if (time == null) continue;
-                long freq_time = time;
+                Long freq_time = freq_use_list.get(allfreqs.get(x));
+                if (freq_time == null) continue;
                 int pct = total_time > 0 ? (int)(0.5 + ((freq_time * 100) / total_time)) : 0;
                 //Limit the freqs shown to only anything with at least 1% use
                 if (pct >= 1) {
