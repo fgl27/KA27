@@ -30,7 +30,7 @@ import com.kerneladiutor.library.root.RootUtils;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import android.util.SparseIntArray;
+import android.util.SparseLongArray;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -102,8 +102,8 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                 CPU.activateCore(i, true, getContext());
             }
             // <Freq, time>
-            int total_time = 0;
-            SparseIntArray freq_use_list = new SparseIntArray();
+            long total_time = 0;
+            SparseLongArray freq_use_list = new SparseLongArray();
             StringBuilder unusedStates = new StringBuilder();
 
             try {
@@ -116,7 +116,7 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
                     while ((line = buffreader.readLine()) != null) {
                         linePieces = line.split(" ");
                         total_time = total_time + Integer.parseInt(linePieces[1]);
-                        freq_use_list.put(Integer.parseInt(linePieces[0]), Integer.parseInt(linePieces[1]));
+                        freq_use_list.put(Integer.parseInt(linePieces[0]), Long.parseLong(linePieces[1]));
                     }
                     inputStreamReader.close();
                     buffreader.close();
@@ -147,16 +147,12 @@ public class FrequencyTableFragment extends RecyclerViewFragment implements Cons
             frequencyCard.setView(uiStatesView);
             frequencyCard.setFullSpan(true);
             for (int x = 0; x < freq_use_list.size(); x++) {
-                if (allfreqs.size() < x || allfreqs.get(x) == null) {
-                    continue;
-                }
+                if (allfreqs.size() < x || allfreqs.get(x) == null) continue;
 
-                Integer time = freq_use_list.get(allfreqs.get(x));
-                if (time == null) {
-                    continue;
-                }
-                int freq_time = time;
-                int pct = total_time > 0 ? (freq_time * 100) / total_time : 0;
+                Long time = freq_use_list.get(allfreqs.get(x));
+                if (time == null) continue;
+                long freq_time = time;
+                int pct = total_time > 0 ? (int)(0.5 + ((freq_time * 100) / total_time)) : 0;
                 //Limit the freqs shown to only anything with at least 1% use
                 if (pct >= 1) {
                     FrameLayout layout = (FrameLayout) LayoutInflater.from(getActivity())
