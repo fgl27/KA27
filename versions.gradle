@@ -4,8 +4,8 @@ ext.versions = [
         compileSdk           : 27,
         buildTools           : '27.0.3',
 
-        publishVersion       : 'Quark.64',
-        publishVersionCode   : 64,
+        publishVersion       : 'Quark.65',
+        publishVersionCode   : 65,
 
         gradlePlugin         : '3.1.3',
         benmanes             : '0.17.0',
