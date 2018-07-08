@@ -8,13 +8,13 @@ ext.versions = [
         publishVersionCode   : 65,
 
         gradlePlugin         : '3.1.3',
-        benmanes             : '0.17.0',
+        benmanes             : '0.20.0',
 
         supportLib           : '27.1.1',
         ztzip                : '1.13',
         materialdialogs      : '0.9.6.0',
         materialtabs         : '2.0.5',
-        bintrayplugin        : '1.8.1',
+        bintrayplugin        : '1.8.3',
         mavengradleplugin    : '2.1',
         floatingactionbutton : '1.10.1'
 ]
