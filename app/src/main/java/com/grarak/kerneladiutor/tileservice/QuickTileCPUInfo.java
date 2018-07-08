@@ -55,6 +55,11 @@ public class QuickTileCPUInfo extends TileService {
     }
 
     @Override
+    public void onStopListening() {
+        RootUtils.closeSU();
+    }
+
+    @Override
     public void onClick() {
         if (RootUtils.rootAccess()) {
             mTile = getQsTile();
