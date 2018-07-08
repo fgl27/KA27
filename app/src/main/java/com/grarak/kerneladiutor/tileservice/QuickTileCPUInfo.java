@@ -23,6 +23,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.service.quicksettings.TileService;
+import android.service.quicksettings.Tile;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
@@ -32,35 +33,47 @@ import com.kerneladiutor.library.root.RootUtils;
 @TargetApi(24)
 public class QuickTileCPUInfo extends TileService {
 
+    private String serviceName = "com.android.systemui/.CPUInfoService";
+    private Tile mTile;
     private boolean state;
 
     @Override
     public void onStartListening() {
         super.onStartListening();
-        Utils.WriteSettings(this);
-        state = Utils.GlobalIntGet(this, Constants.SHOW_CPU);
-        Utils.GlobalIntSet(state, this, Constants.SHOW_CPU); // set it at start unlless it will show as not_available even if is available if it was never used
-        if ((Utils.HasGlobalInt(this, Constants.SHOW_CPU, 10) == 10) || !RootUtils.rootAccess())
-            getQsTile().setLabel(this.getString(R.string.not_available));
-        else {
-            getQsTile().setLabel(this.getString(R.string.show_cpu_info) + (state ? " ON" : " OFF"));
-        }
-        getQsTile().updateTile();
+        mTile = getQsTile();
+        if (RootUtils.rootAccess()) {
+            Utils.WriteSettings(this);
+            state = Utils.GlobalIntGet(this, Constants.SHOW_CPU);
+            if (state && !Utils.ServiceRunning()) {
+                TileUavailable();
+                return;
+            }
+            mTile.setLabel(this.getString(R.string.show_cpu_info) + (state ? " ON" : " OFF"));
+            mTile.setState(state ? mTile.STATE_ACTIVE : mTile.STATE_INACTIVE);
+            mTile.updateTile();
+        } else TileUavailable();
     }
 
     @Override
     public void onClick() {
-        if ((Utils.HasGlobalInt(this, Constants.SHOW_CPU, 10) != 10) && RootUtils.rootAccess()) {
+        if (RootUtils.rootAccess()) {
+            mTile = getQsTile();
             state = !Utils.GlobalIntGet(this, Constants.SHOW_CPU);
             Utils.GlobalIntSet(state, this, Constants.SHOW_CPU);
-            Utils.StartAppService(state, "com.android.systemui/.CPUInfoService");
-            getQsTile().setLabel(this.getString(R.string.show_cpu_info) + (state ? " ON" : " OFF"));
-            getQsTile().updateTile();
-        } else {
-            Utils.toast(this.getString(R.string.not_available), this);
-            getQsTile().setLabel(this.getString(R.string.not_available));
-            getQsTile().updateTile();
-        }
+            Utils.StartAppService(state, serviceName);
+            mTile.setLabel(this.getString(R.string.show_cpu_info) + (state ? " ON" : " OFF"));
+            mTile.setState(state ? mTile.STATE_ACTIVE : mTile.STATE_INACTIVE);
+            mTile.updateTile();
+
+            if (state && !Utils.ServiceRunning()) TileUavailable();
+        } else TileUavailable();
+    }
+
+    private void TileUavailable() {
+        mTile = getQsTile();
+        mTile.setLabel(this.getString(R.string.not_available));
+        mTile.setState(mTile.STATE_UNAVAILABLE);
+        mTile.updateTile();
     }
 
 }

@@ -651,6 +651,10 @@ public class Utils implements Constants {
         return (Settings.Global.getInt(context.getContentResolver(), name, def)); // e.g. SHOW_CPU can only be 0 or 1, def=10 if return 10 name doesn't exist
     }
 
+    public static boolean ServiceRunning() {
+        return RootUtils.runCommand("dumpsys activity services | grep -i CPUInfoService").contains("CPUInfoService");
+    }
+
     public static void WriteSettings(Context context) {
         if (context.checkCallingOrSelfPermission("android.permission.WRITE_SECURE_SETTINGS") != PackageManager.PERMISSION_GRANTED)
             RootUtils.runCommand("pm grant " + context.getPackageName() + " android.permission.WRITE_SECURE_SETTINGS");
