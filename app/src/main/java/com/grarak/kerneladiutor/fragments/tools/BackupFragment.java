@@ -26,6 +26,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -140,6 +141,7 @@ public class BackupFragment extends RecyclerViewFragment {
             ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         if (partition_type == Backup.PARTITION.BOOT) editText.setText(RootUtils.getKernelVersion());
         editText.setHint(getString(R.string.name));
+        editText.setInputType(InputType.TYPE_CLASS_TEXT);
 
         layout.addView(editText);
 

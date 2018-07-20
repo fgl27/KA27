@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -67,6 +68,7 @@ public class InitdFragment extends RecyclerViewFragment {
 
                 final AppCompatEditText nameEdit = new AppCompatEditText(getActivity());
                 nameEdit.setHint(getString(R.string.file_name));
+                nameEdit.setInputType(InputType.TYPE_CLASS_TEXT);
                 linearLayout.addView(nameEdit);
 
                 new AlertDialog.Builder(getActivity()).setView(linearLayout)

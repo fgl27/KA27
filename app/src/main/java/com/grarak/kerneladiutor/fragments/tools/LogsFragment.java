@@ -407,6 +407,7 @@ public class LogsFragment extends RecyclerViewFragment {
 
         final AppCompatEditText grep_string = new AppCompatEditText(getActivity());
         grep_string.setHint(getString(R.string.log_hint));
+        grep_string.setInputType(InputType.TYPE_CLASS_TEXT);
         linearLayout.addView(grep_string);
 
         ScrollView scrollView = new ScrollView(getActivity());

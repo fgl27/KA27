@@ -25,6 +25,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -177,12 +178,14 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
         if (modify) keyEdit.setText(key.trim());
         else keyEdit.setHint(getString(R.string.key));
+        keyEdit.setInputType(InputType.TYPE_CLASS_TEXT);
 
         final AppCompatEditText valueEdit = new AppCompatEditText(getActivity());
         valueEdit.setTextColor(ContextCompat.getColor(getActivity(), Utils.DARKTHEME ? R.color.white : R.color.black));
 
         if (modify) valueEdit.setText(value.trim());
         else valueEdit.setHint(getString(R.string.value));
+        valueEdit.setInputType(InputType.TYPE_CLASS_TEXT);
 
         dialogLayout.addView(keyEdit);
         dialogLayout.addView(valueEdit);

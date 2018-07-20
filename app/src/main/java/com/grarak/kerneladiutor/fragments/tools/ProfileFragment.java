@@ -31,6 +31,7 @@ import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -327,6 +328,7 @@ public class ProfileFragment extends RecyclerViewFragment {
         final AppCompatEditText profileName = new AppCompatEditText(getActivity());
         profileName.setTextColor(ContextCompat.getColor(getActivity(), Utils.DARKTHEME ? R.color.white : R.color.black));
         profileName.setHint(getString(R.string.name));
+        profileName.setInputType(InputType.TYPE_CLASS_TEXT);
         linearLayout.addView(profileName);
 
         ScrollView scrollView = new ScrollView(getActivity());
