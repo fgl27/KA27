@@ -43,12 +43,13 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
     private SeekBarCardView.DSeekBarCard mPollMsCard;
 
     private List < String > freqs;
-    private List < String > freqs_dev;
+    private List < String > freqs_dev = new ArrayList < > ();
 
     private ActivityManager mActivityManager;
     private MemoryInfo mMemoryInfo = new MemoryInfo();
     private long mMemoryDivider = 1048576L; // 1024*1024
     private int mFreeRAM, mTotalRAM;
+    private double RamDivider = 15.255; // apq8084 ram freq divider, from qcom,cpubw 16250 / 1065 ≈ 15.255
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -58,11 +59,9 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         mTotalRAM = (int)(mMemoryInfo.totalMem / mMemoryDivider);
 
         freqs = Ram.getFreqs();
-        if (Ram.device("quark", "8084")) {
-            freqs_dev = new ArrayList < > ();
-            for (String freq: Ram.devFreqs())
-                freqs_dev.add(freq + getString(R.string.mhz));
-        } else freqs_dev = Ram.getFreqs();
+        for (String freq: freqs)
+            freqs_dev.add(convertRamFreq(freq));
+
         RamInit();
     }
 
@@ -81,7 +80,7 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
             mMaxFreqCard = new PopupCardView.DPopupCard(freqs_dev);
             mMaxFreqCard.setTitle(getString(R.string.ram_max_freq));
             mMaxFreqCard.setDescription(getString(R.string.ram_max_freq_summary));
-            mMaxFreqCard.setItem(FreqValue(Ram.getRamMaxFreq()));
+            mMaxFreqCard.setItem(convertRamFreq(Ram.getRamMaxFreq()));
             mMaxFreqCard.setOnDPopupCardListener(this);
 
             addView(mMaxFreqCard);
@@ -91,7 +90,7 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
             mMinFreqCard = new PopupCardView.DPopupCard(freqs_dev);
             mMinFreqCard.setTitle(getString(R.string.ram_min_freq));
             mMinFreqCard.setDescription(getString(R.string.ram_min_freq_summary));
-            mMinFreqCard.setItem(FreqValue(Ram.getRamMinFreq()));
+            mMinFreqCard.setItem(convertRamFreq(Ram.getRamMinFreq()));
             mMinFreqCard.setOnDPopupCardListener(this);
 
             addView(mMinFreqCard);
@@ -135,11 +134,11 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
 
     public void Update() {
         if (mCurFreqCard != null)
-            mCurFreqCard.setDescription(FreqValue(Ram.getRamCurFreq()));
+            mCurFreqCard.setDescription(convertRamFreq(Ram.getRamCurFreq()));
         if (mMaxFreqCard != null)
-            mMaxFreqCard.setItem(FreqValue(Ram.getRamMaxFreq()));
+            mMaxFreqCard.setItem(convertRamFreq(Ram.getRamMaxFreq()));
         if (mMinFreqCard != null)
-            mMinFreqCard.setItem(FreqValue(Ram.getRamMinFreq()));
+            mMinFreqCard.setItem(convertRamFreq(Ram.getRamMinFreq()));
         if (mPollMsCard != null)
             mPollMsCard.setProgress((Ram.getRamPoll() / 10) - 1);
         if (mRamUsedCard != null) {
@@ -150,12 +149,7 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         }
     }
 
-    private String FreqValue(String value) {
-        return freqs_dev.get(getListPos(freqs, value));
+    public String convertRamFreq(String freq) {
+        return (int) Math.rint(Utils.stringToInt(freq) / RamDivider) + getString(R.string.mhz);
     }
-
-    private int getListPos(List list, String value) {
-        return list.indexOf(value);
-    }
-
 }
