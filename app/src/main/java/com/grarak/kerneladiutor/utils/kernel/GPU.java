@@ -291,14 +291,18 @@ public class GPU implements Constants {
         return GPU_SCALING_GOVERNOR != null;
     }
 
-    public static void setGpuMinFreq(int freq, Context context) {
-        if (GPU_MIN_FREQ != null)
+    public static void setGpuMinFreq(int freq, int powerLevel, Context context) {
+        if (GPU_MIN_FREQ != null) {
             Control.runCommand(String.valueOf(freq), GPU_MIN_FREQ, Control.CommandType.GENERIC, context);
+            Control.runCommand(String.valueOf(powerLevel), GPU_MIN_POWER_LEVEL, Control.CommandType.GENERIC, context);
+        }
     }
 
-    public static void setGpuMaxFreq(int freq, Context context) {
-        if (GPU_MAX_FREQ != null)
+    public static void setGpuMaxFreq(int freq, int powerLevel, Context context) {
+        if (GPU_MAX_FREQ != null) {
             Control.runCommand(String.valueOf(freq), GPU_MAX_FREQ, Control.CommandType.GENERIC, context);
+            Control.runCommand(String.valueOf(powerLevel), GPU_MAX_POWER_LEVEL, Control.CommandType.GENERIC, context);
+        }
     }
 
     public static List < Integer > getGpuFreqs() {
@@ -382,4 +386,19 @@ public class GPU implements Constants {
         return false;
     }
 
+    public static int getGpuMinPowerLevel() {
+        if (Utils.existFile(GPU_MIN_POWER_LEVEL)) {
+            String value = Utils.readFile(GPU_MIN_POWER_LEVEL);
+            if (value != null) return Utils.stringToInt(value);
+        }
+        return 0;
+    }
+
+    public static int getGpuMaxPowerLevel() {
+        if (Utils.existFile(GPU_MAX_POWER_LEVEL)) {
+            String value = Utils.readFile(GPU_MAX_POWER_LEVEL);
+            if (value != null) return Utils.stringToInt(value);
+        }
+        return 0;
+    }
 }
