@@ -33,6 +33,8 @@ import java.lang.Math;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by willi on 27.12.14.
@@ -52,6 +54,9 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
     private PopupCardView.DPopupCard mZRAMCompAlgosCard;
 
     private SwitchCardView.DSwitchCard mProcessReclaimCard, mLaptopModeCard, mDynamic_Dirty_WritebackCard;
+
+    private Timer setZRAMTimer = new Timer();
+    private boolean CanUpdateZramStatus = true;
 
     @Override
     public void init(Bundle savedInstanceState) {
@@ -73,8 +78,7 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         if (VM.hasExtraFreeKbytes()) extrafreekbytesInit();
 
         if (VM.hasZRAM()) {
-            if (VM.hasZRAMReadOnly()) zramROInit();
-            else zramInit();
+            zramInit();
             ExtraZramInit();
         }
         Update();
@@ -97,20 +101,16 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         if (VM.isProcessReclaimActive()) {
             // short things here PR = Process Reclaim
             if (VM.hasPRPressure()) {
-                int pressure = VM.getPRPressure();
-
                 mPRPressureCard = new CardViewItem.DCardView();
                 mPRPressureCard.setTitle(getString(R.string.process_reclaim_pressure));
-                mPRPressureCard.setDescription(String.valueOf(pressure));
+                mPRPressureCard.setDescription(String.valueOf(VM.getPRPressure()));
 
                 addView(mPRPressureCard);
             }
             if (VM.hasPRAvgEff()) {
-                int avg = VM.getPRAvgEff();
-
                 mPRAcgEffCard = new CardViewItem.DCardView();
                 mPRAcgEffCard.setTitle(getString(R.string.process_reclaim_avg_eff));
-                mPRAcgEffCard.setDescription(String.valueOf(avg));
+                mPRAcgEffCard.setDescription(String.valueOf(VM.getPRAvgEff()));
 
                 addView(mPRAcgEffCard);
             }
@@ -386,31 +386,10 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         addView(mExtraFreeKbytesCard);
     }
 
-    private void zramROInit() {
-        DDivider mZRAMDividerCard = new DDivider();
-        mZRAMDividerCard.setText(getString(R.string.zram_ro));
-        addView(mZRAMDividerCard);
-
-        String Swap = VM.getFreeSwap(getActivity());
-        if (Swap != null) {
-            String[] swap_split = Swap.split("[ ]+");
-
-            mZramSwapUsedCard = new CardViewItem.DCardView();
-            mZramSwapUsedCard.setTitle(getString(R.string.disksize_used));
-
-            addView(mZramSwapUsedCard);
-        } else {
-            mZramDiskCard = new CardViewItem.DCardView();
-            mZramDiskCard.setTitle(getString(R.string.disksize));
-
-            addView(mZramDiskCard);
-        }
-
-    }
-
     private void zramInit() {
         DDivider mZRAMDividerCard = new DDivider();
         mZRAMDividerCard.setText(getString(R.string.zram));
+        mZRAMDividerCard.setDescription(getString(R.string.zram_summary));
         addView(mZRAMDividerCard);
 
         List < String > list = new ArrayList < > ();
@@ -447,6 +426,26 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
 
             addView(mZRAMMaxCompStreamsCard);
         }
+
+        zramStatus();
+    }
+
+    private void zramStatus() {
+        String Swap = VM.getFreeSwap(getActivity());
+        if (Swap != null) {
+            String[] swap_split = Swap.split("[ ]+");
+
+            mZramSwapUsedCard = new CardViewItem.DCardView();
+            mZramSwapUsedCard.setTitle(getString(R.string.disksize_used));
+
+            addView(mZramSwapUsedCard);
+        } else {
+            mZramDiskCard = new CardViewItem.DCardView();
+            mZramDiskCard.setTitle(getString(R.string.disksize));
+
+            addView(mZramDiskCard);
+        }
+
     }
 
     private void ExtraZramInit() {
@@ -484,14 +483,14 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         else if (dSeekBarCard == mOverCommitRatioCard) VM.setOverCommitRatio(position, getActivity());
         else if (dSeekBarCard == mSwappinessCard) VM.setSwappiness(position, getActivity());
         else if (dSeekBarCard == mVFSCachePressureCard) VM.setVFSCachePressure(position + 1, getActivity());
-        else if (dSeekBarCard == mZRAMDisksizeCard) VM.setZRAM(null, String.valueOf(position * 10), null, getActivity());
-        else if (dSeekBarCard == mZRAMMaxCompStreamsCard) VM.setZRAM(null, null, String.valueOf(position + 1), getActivity());
+        else if (dSeekBarCard == mZRAMDisksizeCard) setZRAM(null, String.valueOf(position * 10), null);
+        else if (dSeekBarCard == mZRAMMaxCompStreamsCard) setZRAM(null, null, String.valueOf(position + 1));
     }
 
     @Override
     public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
         if (dPopupCard == mZRAMCompAlgosCard)
-            VM.setZRAM(VM.getZRAMCompAlgos().get(position), null, null, getActivity());
+            setZRAM(VM.getZRAMCompAlgos().get(position), null, null);
     }
 
     @Override
@@ -514,44 +513,37 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
     }
 
     public void Update() {
-        int pressure = VM.getPRPressure();
-        int avg = VM.getPRAvgEff();
+        if (mPRPressureCard != null) mPRPressureCard.setDescription(String.valueOf(VM.getPRPressure()));
+        if (mPRAcgEffCard != null) mPRAcgEffCard.setDescription(String.valueOf(VM.getPRAvgEff()));
 
-        if (mPRPressureCard != null) mPRPressureCard.setDescription(String.valueOf(pressure));
-        if (mPRAcgEffCard != null) mPRAcgEffCard.setDescription(String.valueOf(avg));
+        if (CanUpdateZramStatus) {
+            if (mZRAMDisksizeCard != null) mZRAMDisksizeCard.setProgress(VM.getZRAMDisksize() / 10);
+            if (mZRAMMaxCompStreamsCard != null) mZRAMMaxCompStreamsCard.setProgress(VM.getZRAMMaxCompStreams() - 1);
+            if (mZRAMCompAlgosCard != null) mZRAMCompAlgosCard.setItem(VM.getZRAMCompAlgo());
+            if (mZramDiskCard != null)
+                mZramDiskCard.setDescription(VM.getZRAMDisksize() + getString(R.string.mb));
 
-        try {
-            Thread.sleep(250);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
+            if (mZramSwapUsedCard != null) {
+                String[] swap_split = VM.getFreeSwap(getActivity()).split("[ ]+");
+                int total = Utils.stringToInt(swap_split[1]);
+                int free = Utils.stringToInt(swap_split[3]);
+                int used = Utils.stringToInt(swap_split[2]);
+                mZramSwapUsedCard.setDescription(Utils.MbKb(total, getActivity()) + " | " +
+                    Utils.MbKb(free, getActivity()) + " | " + Utils.MbKb(used, getActivity()) + " | " +
+                    Utils.percentage(total, used, getActivity()));
+            }
+
+            if (mZramDataSizeCard != null) {
+                int original = VM.getZramOrigDataSize() / 1024;
+                int compressed = VM.getZramCompDataSize() / 1024;
+                mZramDataSizeCard.setDescription(Utils.MbKb(original, getActivity()) + " | " +
+                    Utils.MbKb(compressed, getActivity()) + " | " + Utils.percentage(original / 1024, compressed / 1024, getActivity()));
+            }
+
+            if (mZramRWCard != null)
+                mZramRWCard.setDescription(getString(R.string.total) + VM.getZramReadWrites() + "\n" +
+                    getString(R.string.fail) + VM.getZramFailReadWrites());
         }
-        if (mZRAMDisksizeCard != null) mZRAMDisksizeCard.setProgress(VM.getZRAMDisksize() / 10);
-        if (mZRAMMaxCompStreamsCard != null) mZRAMMaxCompStreamsCard.setProgress(VM.getZRAMMaxCompStreams() - 1);
-        if (mZRAMCompAlgosCard != null) mZRAMCompAlgosCard.setItem(VM.getZRAMCompAlgo());
-
-        if (mZramDiskCard != null)
-            mZramDiskCard.setDescription(VM.getZRAMDisksize() + getString(R.string.mb));
-
-        if (mZramSwapUsedCard != null) {
-            String[] swap_split = VM.getFreeSwap(getActivity()).split("[ ]+");
-            int total = Utils.stringToInt(swap_split[1]);
-            int free = Utils.stringToInt(swap_split[3]);
-            int used = Utils.stringToInt(swap_split[2]);
-            mZramSwapUsedCard.setDescription(Utils.MbKb(total, getActivity()) + " | " +
-                Utils.MbKb(free, getActivity()) + " | " + Utils.MbKb(used, getActivity()) + " | " +
-                Utils.percentage(total, used, getActivity()));
-        }
-
-        if (mZramDataSizeCard != null) {
-            int original = VM.getZramOrigDataSize() / 1024;
-            int compressed = VM.getZramCompDataSize() / 1024;
-            mZramDataSizeCard.setDescription(Utils.MbKb(original, getActivity()) + " | " +
-                Utils.MbKb(compressed, getActivity()) + " | " + Utils.percentage(original / 1024, compressed / 1024, getActivity()));
-        }
-
-        if (mZramRWCard != null)
-            mZramRWCard.setDescription(getString(R.string.total) + VM.getZramReadWrites() + "\n" +
-                getString(R.string.fail) + VM.getZramFailReadWrites());
     }
 
     private void RefreshFrag() {
@@ -564,4 +556,20 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         getActivity().getSupportFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
 
+    private void setZRAM(String algo, String disksize, String max_comp) {
+
+        CanUpdateZramStatus = false;
+        setZRAMTimer.cancel();
+        setZRAMTimer.purge();
+        setZRAMTimer = new Timer();
+
+        setZRAMTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                VM.setZRAM(algo, disksize, max_comp, getActivity());
+                CanUpdateZramStatus = true;
+            }
+        }, 3000);
+
+    }
 }

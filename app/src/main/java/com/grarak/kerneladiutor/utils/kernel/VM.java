@@ -62,10 +62,6 @@ public class VM implements Constants {
         return " " + Utils.readFile(ZRAM_FAIL_READ) + " | " + Utils.readFile(ZRAM_FAIL_WRITES);
     }
 
-    public static boolean hasZRAMReadOnly() {
-        return RootUtils.runCommand("cat proc/swaps").contains("dev/block/zram0");
-    }
-
     public static String getFreeSwap(Context context) {
         return RootUtils.runCommand(context.getFilesDir().getPath() + "/busybox free | grep Swap | head -1");
     }
