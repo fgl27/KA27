@@ -30,6 +30,9 @@ import android.support.v7.widget.AppCompatEditText;
 import android.text.InputType;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -106,6 +109,8 @@ public class LogsFragment extends RecyclerViewFragment {
     private static final String dmesgramoopsC = "cat /sys/fs/pstore/dmesg-ramoops*";
     private static final String log_folder = Environment.getExternalStorageDirectory().getPath() + "/KA_Logs/";
     private static final String grep = " | grep -i ";
+    private boolean isAllChecked = false;
+    private String SearchString = "";
 
     @Override
     public boolean showApplyOnBoot() {
@@ -395,6 +400,7 @@ public class LogsFragment extends RecyclerViewFragment {
         }
     }
 
+    //TODO improve this function there is too much here it can be improved
     private void GrepLogs() {
         LinearLayout linearLayout = new LinearLayout(getActivity());
         linearLayout.setOrientation(LinearLayout.VERTICAL);
@@ -452,135 +458,270 @@ public class LogsFragment extends RecyclerViewFragment {
         selectAllButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((AppCompatCheckBox) logcat).setChecked(true);
-                ((AppCompatCheckBox) log_radio).setChecked(true);
-                ((AppCompatCheckBox) log_events).setChecked(true);
-                ((AppCompatCheckBox) last_driver_message).setChecked(true);
-                ((AppCompatCheckBox) driver_message).setChecked(true);
-                ((AppCompatCheckBox) get_prop).setChecked(true);
+                isAllChecked = !isAllChecked;
+
+                logcat.setChecked(isAllChecked);
+                log_radio.setChecked(isAllChecked);
+                log_events.setChecked(isAllChecked);
+                last_driver_message.setChecked(isAllChecked);
+                driver_message.setChecked(isAllChecked);
+                get_prop.setChecked(isAllChecked);
+
+                selectAllButton.setText(isAllChecked ? getString(R.string.unselect_all) : getString(R.string.select_all));
             }
         });
-        new AlertDialog.Builder(getActivity(),
+
+        last_driver_message.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isAllChecked) {
+                    if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                        !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.select_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                } else {
+                    if (logcat.isChecked() && log_radio.isChecked() && log_events.isChecked() &&
+                        driver_message.isChecked() && get_prop.isChecked() && last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.unselect_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                }
+            }
+        });
+
+        driver_message.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isAllChecked) {
+                    if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                        !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.select_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                } else {
+                    if (logcat.isChecked() && log_radio.isChecked() && log_events.isChecked() &&
+                        driver_message.isChecked() && get_prop.isChecked() && last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.unselect_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                }
+            }
+        });
+
+        log_events.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isAllChecked) {
+                    if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                        !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.select_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                } else {
+                    if (logcat.isChecked() && log_radio.isChecked() && log_events.isChecked() &&
+                        driver_message.isChecked() && get_prop.isChecked() && last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.unselect_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                }
+            }
+        });
+
+        get_prop.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isAllChecked) {
+                    if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                        !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.select_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                } else {
+                    if (logcat.isChecked() && log_radio.isChecked() && log_events.isChecked() &&
+                        driver_message.isChecked() && get_prop.isChecked() && last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.unselect_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                }
+            }
+        });
+
+        logcat.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isAllChecked) {
+                    if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                        !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.select_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                } else {
+                    if (logcat.isChecked() && log_radio.isChecked() && log_events.isChecked() &&
+                        driver_message.isChecked() && get_prop.isChecked() && last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.unselect_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                }
+            }
+        });
+
+        log_radio.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isAllChecked) {
+                    if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                        !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.select_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                } else {
+                    if (logcat.isChecked() && log_radio.isChecked() && log_events.isChecked() &&
+                        driver_message.isChecked() && get_prop.isChecked() && last_driver_message.isChecked()) {
+                        selectAllButton.setText(getString(R.string.unselect_all));
+                        isAllChecked = !isAllChecked;
+                    }
+                }
+            }
+        });
+
+        final AlertDialog Searchdialog = new AlertDialog.Builder(getActivity(),
                 (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
             .setTitle(getString(R.string.search_dialog))
-            .setView(linearLayout).setNegativeButton(getString(R.string.cancel),
-                new DialogInterface.OnClickListener() {
+            .setView(linearLayout).setNegativeButton(getString(R.string.cancel), null)
+            .setView(linearLayout).setPositiveButton(getString(R.string.ok), null)
+            .create();
+
+        Searchdialog.setOnShowListener(new DialogInterface.OnShowListener() {
+
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+
+                Button mOKButton = Searchdialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                mOKButton.setOnClickListener(new View.OnClickListener() {
+
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {}
-                })
-            .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    final String name = grep_string.getText().toString();
-                    final_logcat = "";
-                    final_log_radio = "";
-                    final_log_events = "";
-                    final_driver_message = "";
-                    final_last_driver_message = "";
-                    final_get_prop = "";
-                    if (name.isEmpty()) {
-                        Utils.toast(getString(R.string.empty_text), getActivity(), Toast.LENGTH_LONG);
-                        return;
-                    } else if (name.contains("-") || name.contains("'") || name.contains("\"")) {
-                        Utils.toast(getString(R.string.forbidden_special), getActivity(), Toast.LENGTH_LONG);
-                        return;
-                    }
-                    if (((AppCompatCheckBox) logcat).isChecked()) {
-                        final String logcat = RootUtils.runCommand(logcatC + grep + "'" + name + "'");
-                        if (!logcat.isEmpty())
-                            final_logcat = getString(R.string.logcat) + " " + getString(R.string.result) + "\n\n" + logcat + "\n\n";
-                    }
-                    if (((AppCompatCheckBox) log_radio).isChecked()) {
-                        final String log_radio = RootUtils.runCommand(radioC + grep + "'" + name + "'");
-                        if (!log_radio.isEmpty())
-                            final_log_radio = getString(R.string.log_radio) + " " + getString(R.string.result) + "\n\n" + log_radio + "\n\n";
-                    }
-                    if (((AppCompatCheckBox) log_events).isChecked()) {
-                        final String log_events = RootUtils.runCommand(eventsC + grep + "'" + name + "'");
-                        if (!log_events.isEmpty())
-                            final_log_events = getString(R.string.log_events) + " " + getString(R.string.result) + "\n\n" + log_events + "\n\n";
-                    }
-                    if (((AppCompatCheckBox) driver_message).isChecked()) {
-                        final String driver_message = RootUtils.runCommand(dmesgC + grep + "'" + name + "'");
-                        if (!driver_message.isEmpty())
-                            final_driver_message = getString(R.string.driver_message) + " " + getString(R.string.result) + "\n\n" + driver_message + "\n\n";
-                    }
-                    if (((AppCompatCheckBox) last_driver_message).isChecked()) {
-                        String last_driver_message = "";
-                        last_driver_message = last_driver_message + RootUtils.runCommand(consoleramoopsC + grep + "'" + name + "'");
-                        last_driver_message = last_driver_message + RootUtils.runCommand(dmesgramoopsC + grep + "'" + name + "'");
-                        if (!last_driver_message.isEmpty())
-                            final_last_driver_message = getString(R.string.last_driver_message) + " " + getString(R.string.result) + "\n\n" + last_driver_message + "\n\n";
-                    }
-                    if (((AppCompatCheckBox) get_prop).isChecked()) {
-                        final String get_prop = RootUtils.runCommand(getpropC + grep + "'" + name + "'");
-                        if (!get_prop.isEmpty())
-                            final_get_prop = getString(R.string.get_prop) + " " + getString(R.string.result) + "\n\n" + get_prop + "\n\n\n";
-                    }
-                    if (!(((AppCompatCheckBox) logcat).isChecked()) && !(((AppCompatCheckBox) log_radio).isChecked()) &&
-                        !(((AppCompatCheckBox) log_events).isChecked()) && !(((AppCompatCheckBox) driver_message).isChecked()) &&
-                        !(((AppCompatCheckBox) get_prop).isChecked()) && !(((AppCompatCheckBox) last_driver_message).isChecked())) {
-                        Utils.toast(getString(R.string.no_log_selected), getActivity(), Toast.LENGTH_LONG);
-                        return;
-                    } else
-                        final_grep = final_logcat + final_log_radio + final_log_events +
-                        final_last_driver_message + final_driver_message + final_get_prop;
-                    if (!final_grep.isEmpty()) {
-                        LinearLayout linearLayout = new LinearLayout(getActivity());
-                        linearLayout.setOrientation(LinearLayout.VERTICAL);
-                        linearLayout.setGravity(Gravity.CENTER);
-                        linearLayout.setPadding(30, 20, 30, 20);
+                    public void onClick(View view) {
 
-                        TextView result_tip = new TextView(getActivity());
-                        String result_tip_final = getString(R.string.result_tip) + name + "\n";
-                        result_tip.setText(result_tip_final);
-                        linearLayout.addView(result_tip);
+                        SearchString = grep_string.getText().toString();
+                        final String PrintSearchString = SearchString;
+                        boolean wasforbidden = false;
 
-                        ScrollView scrollView = new ScrollView(getActivity());
-                        scrollView.setPadding(0, 0, 0, 10);
-                        linearLayout.addView(scrollView);
+                        // some special caracter may crash or halt the app/search
+                        if (SearchString.contains("\\")) SearchString = SearchString.replace("\\", "\\\\");
+                        if (SearchString.contains("-")) SearchString = SearchString.replace("-", "\\-");
+                        if (SearchString.contains("\"")) SearchString = SearchString.replace("\"", "\\\"");
+                        if (SearchString.contains("\'")) {
+                            SearchString = SearchString.replace("\'", "");
+                            wasforbidden = true;
+                        }
 
-                        TextView final_result = new TextView(getActivity());
-                        final_result.setText(final_grep);
-                        final_result.setTextIsSelectable(true);
-                        scrollView.addView(final_result);
+                        if (SearchString.isEmpty()) {
+                            Utils.toast(getString(R.string.empty_text) +
+                                (wasforbidden ? getString(R.string.forbidden_character) : ""), getActivity(), Toast.LENGTH_LONG);
+                            return;
+                        }
 
-                        new AlertDialog.Builder(getActivity(),
-                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-                            .setTitle(getString(R.string.result))
-                            .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                        ClipData clip = ClipData.newPlainText("Logs", getString(R.string.search_text) + name + "\n\n" + final_grep);
-                                        clipboard.setPrimaryClip(clip);
-                                        Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
-                                        return;
-                                    }
-                                })
-                            .setPositiveButton(getString(R.string.save_to_file),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        RootUtils.runCommand("echo " + "'" + getString(R.string.search_text) + name + "\n\n" + final_grep + "'" + " > " + log_folder + "grep_a_log" + getDate() + ".txt");
-                                        new AlertDialog.Builder(getActivity(),
-                                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-                                            .setTitle(getString(R.string.saved_to))
-                                            .setMessage(String.format(getString(R.string.saved_to_summary), getDate()))
-                                            .setNegativeButton(getString(R.string.close),
-                                                new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        return;
-                                                    }
-                                                }).show();
-                                    }
-                                }).show();
-                    } else
-                        Utils.toast(getString(R.string.result_empty), getActivity(), Toast.LENGTH_LONG);
-                }
-            }).show();
+                        final_logcat = "";
+                        final_log_radio = "";
+                        final_log_events = "";
+                        final_driver_message = "";
+                        final_last_driver_message = "";
+                        final_get_prop = "";
+
+                        if (logcat.isChecked()) {
+                            final String logcat = grep(logcatC, SearchString);
+                            if (!logcat.isEmpty())
+                                final_logcat = getString(R.string.logcat) + " " + getString(R.string.result) + "\n\n" + logcat + "\n\n";
+                        }
+                        if (log_radio.isChecked()) {
+                            final String log_radio = grep(radioC, SearchString);
+                            if (!log_radio.isEmpty())
+                                final_log_radio = getString(R.string.log_radio) + " " + getString(R.string.result) + "\n\n" + log_radio + "\n\n";
+                        }
+                        if (log_events.isChecked()) {
+                            final String log_events = grep(eventsC, SearchString);
+                            if (!log_events.isEmpty())
+                                final_log_events = getString(R.string.log_events) + " " + getString(R.string.result) + "\n\n" + log_events + "\n\n";
+                        }
+                        if (driver_message.isChecked()) {
+                            final String driver_message = grep(dmesgC, SearchString);
+                            if (!driver_message.isEmpty())
+                                final_driver_message = getString(R.string.driver_message) + " " + getString(R.string.result) + "\n\n" + driver_message + "\n\n";
+                        }
+                        if (last_driver_message.isChecked()) {
+                            String last_driver_message = "";
+                            last_driver_message = last_driver_message + grep(consoleramoopsC, SearchString);
+                            last_driver_message = last_driver_message + grep(dmesgramoopsC, SearchString);
+                            if (!last_driver_message.isEmpty())
+                                final_last_driver_message = getString(R.string.last_driver_message) + " " + getString(R.string.result) + "\n\n" + last_driver_message + "\n\n";
+                        }
+                        if (get_prop.isChecked()) {
+                            final String get_prop = grep(getpropC, SearchString);
+                            if (!get_prop.isEmpty())
+                                final_get_prop = getString(R.string.get_prop) + " " + getString(R.string.result) + "\n\n" + get_prop + "\n\n\n";
+                        }
+                        if (!logcat.isChecked() && !log_radio.isChecked() && !log_events.isChecked() &&
+                            !driver_message.isChecked() && !get_prop.isChecked() && !last_driver_message.isChecked()) {
+                            Utils.toast(getString(R.string.no_log_selected), getActivity(), Toast.LENGTH_LONG);
+                            return;
+                        } else final_grep = final_logcat + final_log_radio + final_log_events +
+                            final_last_driver_message + final_driver_message + final_get_prop;
+
+                        if (!final_grep.isEmpty()) {
+                            Searchdialog.dismiss();
+                            LinearLayout linearLayout = new LinearLayout(getActivity());
+                            linearLayout.setOrientation(LinearLayout.VERTICAL);
+                            linearLayout.setGravity(Gravity.CENTER);
+                            linearLayout.setPadding(30, 20, 30, 20);
+
+                            TextView result_tip = new TextView(getActivity());
+                            String result_tip_final = getString(R.string.result_tip) + PrintSearchString + "\n";
+                            result_tip.setText(result_tip_final);
+                            linearLayout.addView(result_tip);
+
+                            ScrollView scrollView = new ScrollView(getActivity());
+                            scrollView.setPadding(0, 0, 0, 10);
+                            linearLayout.addView(scrollView);
+
+                            TextView final_result = new TextView(getActivity());
+                            final_result.setText(final_grep);
+                            final_result.setTextIsSelectable(true);
+                            scrollView.addView(final_result);
+
+                            new AlertDialog.Builder(getActivity(),
+                                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                                .setTitle(getString(R.string.result))
+                                .setView(linearLayout).setNegativeButton(getString(R.string.copy_clipboard),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                            ClipData clip = ClipData.newPlainText("Logs", getString(R.string.search_text) + PrintSearchString + "\n\n" + final_grep);
+                                            clipboard.setPrimaryClip(clip);
+                                            Utils.toast(getString(R.string.copy_clipboard_ok), getActivity(), Toast.LENGTH_LONG);
+                                            return;
+                                        }
+                                    })
+                                .setPositiveButton(getString(R.string.save_to_file),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            RootUtils.runCommand("echo " + "'" + getString(R.string.search_text) + PrintSearchString + "\n\n" + final_grep + "'" + " > " + log_folder + "grep_a_log" + getDate() + ".txt");
+                                            new AlertDialog.Builder(getActivity(),
+                                                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                                                .setTitle(getString(R.string.saved_to))
+                                                .setMessage(String.format(getString(R.string.saved_to_summary), getDate()))
+                                                .setNegativeButton(getString(R.string.close),
+                                                    new DialogInterface.OnClickListener() {
+                                                        @Override
+                                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                                            return;
+                                                        }
+                                                    }).show();
+                                        }
+                                    }).show();
+                        } else
+                            Utils.toast(getString(R.string.result_empty), getActivity(), Toast.LENGTH_LONG);
+                    }
+                });
+            }
+        });
+        Searchdialog.show();
     }
 
     private void dumpsysfs(String path, boolean date) {
@@ -729,4 +870,7 @@ public class LogsFragment extends RecyclerViewFragment {
         return "No changes";
     }
 
+    private static String grep(String type, String search) {
+        return RootUtils.runCommand(type + grep + "\'" + search + "\'");
+    }
 }

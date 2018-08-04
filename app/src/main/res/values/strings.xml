@@ -897,6 +897,7 @@
     <string name="profile_information">Profiles:\n Adding a profile will save your current settings to Internal Storage/KA_profiles/profiles.json. You can apply them later, and share with others.\n\nPer App Settings:\n Enable a pre saved profile to automatic load the Kernel Adiutor settings based on the start of foreground app, it is saved on Internal Storage/KA_profiles/per_app.json.\n\nTip:\n 1. If you plan to share a profile do not Select CPU Voltage when making a profile, as it device runs on a different voltage table.\n 2. Do Not share Per app Profiles as it person have a different set of apps</string>
     <string name="name">Name</string>
     <string name="select_all">Select all</string>
+    <string name="unselect_all">unselect all</string>
     <string name="apply">Apply</string>
     <string name="removed_all_sections">You removed all sections! No profiles for you.</string>
     <string name="no_settings">No settings found!</string>
@@ -935,10 +936,11 @@
     <string name="grep_log">Grep a Log</string>
     <string name="search_log">Search in a Log</string>
     <string name="search_log_summary">Click to search in a log, the result can be copied or saved to a file</string>
-    <string name="log_hint">Enter Text don\'t use ( - \' \")</string>
+    <string name="log_hint">Write yours search (\' will be removed)</string>
     <string name="empty_text">Entered text is empty!</string>
     <string name="search_dialog">Write the text to search:</string>
-    <string name="search_dialog_summary">Some special characters are forbidden ( - \' \")\nThe search is case insensitive\nRecommendation Use only one space between characters</string>
+    <string name="search_dialog_summary">Some special characters are forbidden (\') they are automatic removed\nThe search is case insensitive</string>
+    <string name="forbidden_character">, because of forbidden special character</string>
     <string name="zip_log">One click All Logs to a ZIP</string>
     <string name="zip_log_summary">Generates a .zip file with all individual logs to:\n/sdcard/KA_Logs/logs%s.zip</string>
     <string name="logcat">Logcat</string>
@@ -964,7 +966,6 @@
     <string name="copy_clipboard_ok">Result copied OK.</string>
     <string name="save_to_file">Save To a File</string>
     <string name="close">close</string>
-    <string name="forbidden_special">Forbidden Special Character in the text!</string>
     <string name="saved_to">Result saved to:</string>
     <string name="saved_to_summary">\n/sdcard/KA_Logs/grep_a_log%s.txt</string>
     <string name="logcat_disable_zip">Zip generated but only with Driver message and Get prop!</string>
