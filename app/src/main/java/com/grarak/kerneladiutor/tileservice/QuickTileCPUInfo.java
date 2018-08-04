@@ -48,7 +48,7 @@ public class QuickTileCPUInfo extends TileService {
                 TileUavailable();
                 return;
             }
-            mTile.setLabel(this.getString(R.string.show_cpu_info) + (state ? " ON" : " OFF"));
+            mTile.setLabel(this.getString(R.string.show_sys_info) + (state ? " ON" : " OFF"));
             mTile.setState(state ? mTile.STATE_ACTIVE : mTile.STATE_INACTIVE);
             mTile.updateTile();
         } else TileUavailable();
@@ -66,7 +66,7 @@ public class QuickTileCPUInfo extends TileService {
             state = !Utils.GlobalIntGet(this, Constants.SHOW_CPU);
             Utils.GlobalIntSet(state, this, Constants.SHOW_CPU);
             Utils.StartAppService(state, serviceName);
-            mTile.setLabel(this.getString(R.string.show_cpu_info) + (state ? " ON" : " OFF"));
+            mTile.setLabel(this.getString(R.string.show_sys_info) + (state ? " ON" : " OFF"));
             mTile.setState(state ? mTile.STATE_ACTIVE : mTile.STATE_INACTIVE);
             mTile.updateTile();
 
