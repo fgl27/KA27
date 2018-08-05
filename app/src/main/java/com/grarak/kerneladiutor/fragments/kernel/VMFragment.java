@@ -15,9 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.ActivityManager;
-import android.app.ActivityManager.MemoryInfo;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 
@@ -30,6 +27,7 @@ import com.grarak.kerneladiutor.elements.cards.SwitchCardView;
 import com.grarak.kerneladiutor.elements.DDivider;
 import com.grarak.kerneladiutor.fragments.RecyclerViewFragment;
 import com.grarak.kerneladiutor.utils.kernel.VM;
+import com.grarak.kerneladiutor.utils.kernel.Ram;
 import com.grarak.kerneladiutor.utils.Utils;
 
 import java.lang.Math;
@@ -395,11 +393,7 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         mZRAMDividerCard.setDescription(getString(R.string.zram_summary));
         addView(mZRAMDividerCard);
 
-        ActivityManager mActivityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
-        MemoryInfo mMemoryInfo = new MemoryInfo();
-        mActivityManager.getMemoryInfo(mMemoryInfo);
-        int mTotalRAM = (int)(mMemoryInfo.totalMem / 1048576L);// mMemoryInfo.totalMem = (Total - reserved), 1048576L = 1024*1024
-        mTotalRAM = (int)(mTotalRAM * 0.073); // 0.073 = (7.3 / 100) result Around 60 to 65%
+        int mTotalRAM = (int)(Ram.GetRam(true, getActivity()) * 0.073); // 0.073 = (7.3 / 100) result Around 60 to 65%
 
         List < String > list = new ArrayList < > ();
         for (int i = 0; i < mTotalRAM; i++)

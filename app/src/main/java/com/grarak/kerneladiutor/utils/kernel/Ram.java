@@ -15,6 +15,8 @@
  */
 package com.grarak.kerneladiutor.utils.kernel;
 
+import android.app.ActivityManager;
+import android.app.ActivityManager.MemoryInfo;
 import android.content.Context;
 
 import java.util.ArrayList;
@@ -100,5 +102,12 @@ public class Ram implements Constants {
             mAvail_Freq = value.split(" ");
         }
         return new ArrayList < > (Arrays.asList(mAvail_Freq));
+    }
+
+    public static int GetRam(boolean total, Context context) {
+        MemoryInfo mMemoryInfo = new MemoryInfo();
+        ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryInfo(mMemoryInfo);
+
+        return (int)((total ? mMemoryInfo.totalMem : mMemoryInfo.availMem) >> 20); // log2(1024*1024) = 20
     }
 }

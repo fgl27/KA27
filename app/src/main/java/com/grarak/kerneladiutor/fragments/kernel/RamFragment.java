@@ -15,9 +15,6 @@
  */
 package com.grarak.kerneladiutor.fragments.kernel;
 
-import android.app.ActivityManager;
-import android.app.ActivityManager.MemoryInfo;
-import android.content.Context;
 import android.os.Bundle;
 
 import com.grarak.kerneladiutor.R;
@@ -45,18 +42,13 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
     private List < String > freqs;
     private List < String > freqs_dev = new ArrayList < > ();
 
-    private ActivityManager mActivityManager;
-    private MemoryInfo mMemoryInfo = new MemoryInfo();
-    private long mMemoryDivider = 1048576L; // 1024*1024
     private int mFreeRAM, mTotalRAM;
     private double RamDivider = 15.255; // apq8084 ram freq divider, from qcom,cpubw 16250 / 1065 ≈ 15.255
 
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
-        mActivityManager = (ActivityManager) getActivity().getSystemService(Context.ACTIVITY_SERVICE);
-        mActivityManager.getMemoryInfo(mMemoryInfo);
-        mTotalRAM = (int)(mMemoryInfo.totalMem / mMemoryDivider);
+        mTotalRAM = Ram.GetRam(true, getActivity());
 
         freqs = Ram.getFreqs();
         for (String freq: freqs)
@@ -142,8 +134,7 @@ public class RamFragment extends RecyclerViewFragment implements PopupCardView.D
         if (mPollMsCard != null)
             mPollMsCard.setProgress((Ram.getRamPoll() / 10) - 1);
         if (mRamUsedCard != null) {
-            mActivityManager.getMemoryInfo(mMemoryInfo);
-            mFreeRAM = (int)(mMemoryInfo.availMem / mMemoryDivider);
+            mFreeRAM = Ram.GetRam(false, getActivity());
             mRamUsedCard.setDescription(mTotalRAM + getString(R.string.mb) + " | " +
                 mFreeRAM + getString(R.string.mb) + " | " + Utils.percentage(mTotalRAM, mFreeRAM, getActivity()));
         }
