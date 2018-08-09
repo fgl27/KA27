@@ -83,12 +83,6 @@
         <item>@string/delete</item>
     </string-array>
 
-    <!-- Startup Commands -->
-    <string-array name="startup_commands_menu">
-        <item>@string/copy</item>
-        <item>@string/delete</item>
-    </string-array>
-
     <string-array name="bcl_hot_plug">
         <item>@string/disabled</item>
         <item>@string/bcl_cores_1</item>

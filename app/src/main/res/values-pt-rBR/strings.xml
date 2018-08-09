@@ -78,8 +78,6 @@
   <string name="startup_commands_list_info">Clique num comando para escolher entre copiar ou deletar o comando da lista.</string>
   <string name="all_startup_commands">Clique neste para copiar ou deletar todos comandos da lista abaixo salva.</string>
   <string name="startup_commands_delete_all">Tem certeza que deseja deletar todos comandos de inicialização.</string>
-  <string name="startup_commands_delete_all_yes">Sim</string>
-  <string name="startup_commands_delete_all_no">Não</string>
   <string name="startup_commands_none">Nenhum comando de inicialização encontrado.</string>
   
   <!-- Frequency Table -->

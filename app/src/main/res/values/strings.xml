@@ -87,8 +87,6 @@
     <string name="startup_commands_list_info">Tap on an individual command to choose between copying it or deleting it from the database.</string>
     <string name="all_startup_commands">Tap this card to copy or delete all saved startup settings</string>
     <string name="startup_commands_delete_all">Are you sure you want to delete all Start-up Commands?</string>
-    <string name="startup_commands_delete_all_yes">Yes</string>
-    <string name="startup_commands_delete_all_no">No</string>
     <string name="startup_commands_delete_all_commands">All commands:</string>
     <string name="startup_commands_delete_single">Command:</string>
     <string name="startup_commands_copy">Command copied OK</string>
