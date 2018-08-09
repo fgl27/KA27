@@ -21,6 +21,7 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DDivider;
@@ -48,6 +49,7 @@ import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -102,7 +104,7 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
             }
 
         if (applys.size() > 0)
-            for (CommandDB.CommandItem commandItem: commandItems)
+            for (CommandDB.CommandItem commandItem: commandItems) {
                 for (String sys: applys) {
                     String path = commandItem.getPath();
                     if ((sys.contains(path) || path.contains(sys))) {
@@ -111,8 +113,10 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                             commands.add(command);
                     }
                 }
+            }
 
         if (commands.size() > 0) {
+            Collections.reverse(commands);
             mAllStartUpCommandsCard = new CardViewItem.DCardView();
             mAllStartUpCommandsCard.setTitle(getString(R.string.all_startup_commands));
             final String allcommands = android.text.TextUtils.join("\n", commands);
@@ -124,30 +128,35 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                         @Override
                         public void run() {
                             new AlertDialog.Builder(getActivity(),
-                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight)).setItems(getResources().getStringArray(R.array.startup_commands_menu),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        switch (which) {
-                                            case 0:
-                                                {
-                                                    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                                    ClipData clip = ClipData.newPlainText("Startup Comnmand", allcommands);
-                                                    clipboard.setPrimaryClip(clip);
-                                                    break;
-                                                }
-                                            case 1:
-                                                {
-                                                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),
-                                                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
-                                                    builder.setMessage(getString(R.string.startup_commands_delete_all)).setPositiveButton(getString(R.string.startup_commands_delete_all_yes), dialogClickListener)
-                                                    .setNegativeButton(getString(R.string.startup_commands_delete_all_no), dialogClickListener).show();
-                                                    break;
-                                                }
+                                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                                .setTitle(getString(R.string.startup_commands_delete_all_commands))
+                                .setItems(getResources().getStringArray(R.array.startup_commands_menu),
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            switch (which) {
+                                                case 0:
+                                                    {
+                                                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                                        ClipData clip = ClipData.newPlainText("Startup Comnmand", allcommands);
+                                                        clipboard.setPrimaryClip(clip);
+                                                        Utils.toast(getString(R.string.startup_commands_copy_all), getActivity(), Toast.LENGTH_LONG);
+                                                        break;
+                                                    }
+                                                case 1:
+                                                    {
+                                                        new AlertDialog.Builder(getActivity(),
+                                                            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                                                        .setMessage(getString(R.string.startup_commands_delete_all))
+                                                        .setPositiveButton(getString(R.string.startup_commands_delete_all_yes), dialogClickListener)
+                                                        .setNegativeButton(getString(R.string.startup_commands_delete_all_no), dialogClickListener)
+                                                        .show();
+                                                        break;
+                                                    }
 
+                                            }
                                         }
-                                    }
-                                }).show();
+                                    }).show();
                         }
                     });
                 }
@@ -168,28 +177,37 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                     @Override
                     public void onClick(CardViewItem.DCardView dCardView) {
 
-                        new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.startup_commands_menu),
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    switch (which) {
-                                        case 0:
-                                            {
-                                                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                                ClipData clip = ClipData.newPlainText("Startup Comnmand", command);
-                                                clipboard.setPrimaryClip(clip);
-                                                break;
-                                            }
-                                        case 1:
-                                            {
-                                                Control.deletespecificcommand(getActivity(), null, command);
-                                                RefreshFrag();
-                                                break;
-                                            }
+                        final CharSequence[] items = {
+                            command + "\n\n" + getString(R.string.copy),
+                            getString(R.string.delete)
+                        };
 
+                        new AlertDialog.Builder(getActivity(),
+                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                            .setTitle(getString(R.string.startup_commands_delete_single))
+                            .setItems(items,
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case 0:
+                                                {
+                                                    ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                                    ClipData clip = ClipData.newPlainText("Startup Comnmand", command);
+                                                    clipboard.setPrimaryClip(clip);
+                                                    Utils.toast(getString(R.string.startup_commands_copy), getActivity(), Toast.LENGTH_LONG);
+                                                    break;
+                                                }
+                                            case 1:
+                                                {
+                                                    Control.deletespecificcommand(getActivity(), null, command);
+                                                    RefreshFrag();
+                                                    break;
+                                                }
+
+                                        }
                                     }
-                                }
-                            }).show();
+                                }).show();
 
                     }
                 });
@@ -222,7 +240,6 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                     Control.deletespecificcommand(getActivity(), null, null);
                     RefreshFrag();
                     break;
-
                 case DialogInterface.BUTTON_NEGATIVE:
                     //No button clicked
                     break;
