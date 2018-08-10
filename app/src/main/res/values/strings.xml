@@ -719,7 +719,7 @@
     <string name="disksize">Disksize</string>
     <string name="disksize_summary">Attempts to increase performance by avoiding paging on physical storage, instead using a compressed virtual device in RAM. Paging takes place in RAM until it is necessary to use the swap space on physical storage.</string>
     <string name="zram_comp_algo">Compression Algorithm</string>
-    <string name="zram_comp_algo_summary">Compression size LZO smaller then LZ4, compression/decompression speed LZ4 better then LZO</string>
+    <string name="zram_comp_algo_summary">Size LZO smaller then LZ4\nPerformance LZ4 faster then LZO</string>
     <string name="zram_comp_streams">Concurrent Compress Operations</string>
     <string name="disksize_used">Disk Size | Free | Used | Used &#37;</string>
     <string name="memosize_used">Total Size | Free | Free &#37;</string>
