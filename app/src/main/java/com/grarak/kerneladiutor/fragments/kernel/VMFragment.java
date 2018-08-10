@@ -531,16 +531,16 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
                 int total = Utils.stringToInt(swap_split[1]);
                 int free = Utils.stringToInt(swap_split[3]);
                 int used = Utils.stringToInt(swap_split[2]);
-                mZramSwapUsedCard.setDescription(Utils.MbKb(total, getActivity()) + " | " +
-                    Utils.MbKb(free, getActivity()) + " | " + Utils.MbKb(used, getActivity()) + " | " +
+                mZramSwapUsedCard.setDescription(Utils.KbToMb(total, getActivity()) + " | " +
+                    Utils.KbToMb(free, getActivity()) + " | " + Utils.KbToMb(used, getActivity()) + " | " +
                     Utils.percentage(total, used, getActivity()));
             }
 
             if (mZramDataSizeCard != null) {
-                int original = VM.getZramOrigDataSize() / 1024;
-                int compressed = VM.getZramCompDataSize() / 1024;
-                mZramDataSizeCard.setDescription(Utils.MbKb(original, getActivity()) + " | " +
-                    Utils.MbKb(compressed, getActivity()) + " | " + Utils.percentage(original / 1024, compressed / 1024, getActivity()));
+                int original = VM.getZramOrigDataSize();
+                int compressed = VM.getZramCompDataSize();
+                mZramDataSizeCard.setDescription(Utils.bToMb(original, getActivity()) + " | " +
+                    Utils.bToMb(compressed, getActivity()) + " | " + Utils.percentage(original / 1024, compressed / 1024, getActivity()));
             }
 
             if (mZramRWCard != null)

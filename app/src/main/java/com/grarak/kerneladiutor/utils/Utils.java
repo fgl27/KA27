@@ -88,6 +88,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
 import java.security.MessageDigest;
@@ -107,18 +108,29 @@ public class Utils implements Constants {
 
     public static boolean DARKTHEME = false;
 
-    public static String MbKb(int value, Context context) {
+    public static String KbToMb(int value, Context context) {
         String converted = "";
         if (value < 1024) converted = value + context.getString(R.string.kb);
-        else converted = (Math.round((float) value / 1024L)) + context.getString(R.string.mb);
+        else converted = StripeZeros((float) value / 1024L) + context.getString(R.string.mb);
+        return converted;
+    }
+
+    public static String bToMb(int value, Context context) {
+        String converted = "";
+        if (value < 1048576) converted = StripeZeros((float) value / 1024L) + context.getString(R.string.kb);
+        else converted = StripeZeros((float) value / 1048576L) + context.getString(R.string.mb);
         return converted;
     }
 
     public static String percentage(int total, int tocheck, Context context) {
         float value;
-        if (tocheck > 0) value = (float)((tocheck * 100.0f) / total);
+        if (tocheck > 0) value = (float)(((float) tocheck * 100.0f) / total);
         else value = 0;
-        return String.format(Locale.US, "%.2f", value) + context.getString(R.string.percent);
+        return StripeZeros(value) + context.getString(R.string.percent);
+    }
+
+    public static String StripeZeros(float value) {
+        return new BigDecimal(String.format(Locale.US, "%.2f", value)).stripTrailingZeros().toPlainString();
     }
 
     public static boolean isAppInstalled(String packagename, Context context) {

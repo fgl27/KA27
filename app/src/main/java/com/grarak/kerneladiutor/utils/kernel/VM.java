@@ -55,11 +55,11 @@ public class VM implements Constants {
     }
 
     public static String getZramReadWrites() {
-        return " " + Utils.readFile(ZRAM_READ) + " | " + Utils.readFile(ZRAM_WRITES);
+        return ":\n" + Utils.readFile(ZRAM_READ) + " | " + Utils.readFile(ZRAM_WRITES);
     }
 
     public static String getZramFailReadWrites() {
-        return " " + Utils.readFile(ZRAM_FAIL_READ) + " | " + Utils.readFile(ZRAM_FAIL_WRITES);
+        return ":\n" + Utils.readFile(ZRAM_FAIL_READ) + " | " + Utils.readFile(ZRAM_FAIL_WRITES);
     }
 
     public static String getFreeSwap(Context context) {
