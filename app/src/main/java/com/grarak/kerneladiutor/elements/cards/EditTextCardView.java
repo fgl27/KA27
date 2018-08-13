@@ -13,19 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.elements.cards;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.view.LayoutInflater;
 
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DParent;
@@ -36,8 +37,8 @@ import com.grarak.kerneladiutor.utils.Utils;
  */
 public class EditTextCardView extends CardViewItem {
 
-    private String value;
-    private int inputType = -1;
+    private String value, titleText, base, current, textViewText;
+
     private OnEditTextCardListener onEditTextCardListener;
 
     public EditTextCardView(Context context) {
@@ -46,33 +47,74 @@ public class EditTextCardView extends CardViewItem {
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context = getContext();
 
-                LinearLayout layout = new LinearLayout(getContext());
-                layout.setPadding(30, 30, 30, 30);
+                if (value == null) value = "";
+                if (base == null) base = "";
+                if (titleText == null) titleText = "";
+                current = value;
 
-                final AppCompatEditText editText = new AppCompatEditText(getContext());
-                editText.setGravity(Gravity.CENTER);
-                editText.setTextColor(ContextCompat.getColor(getContext(),
-                    Utils.DARKTHEME ? R.color.white : R.color.black));
-                editText.setLayoutParams(new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                if (value != null) editText.setText(value);
-                if (inputType > -1) editText.setInputType(inputType);
+                ViewGroup base_parent = (ViewGroup) findViewById(R.id.base_parent);
+                View alertLayout = LayoutInflater.from(context).inflate(R.layout.global_offset_view, base_parent, false);
 
-                layout.addView(editText);
+                final TextView textView = (TextView) alertLayout.findViewById(R.id.offset_text);
+                textViewText = value + base;
+                textView.setText(textViewText);
 
-                new AlertDialog.Builder(getContext()).setView(layout)
-                    .setNegativeButton(getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {}
-                    }).setPositiveButton(getContext().getString(R.string.ok), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            value = editText.getText().toString();
-                            if (onEditTextCardListener != null)
-                                onEditTextCardListener.onApply(EditTextCardView.this, editText.getText().toString());
+                AppCompatButton minus = (AppCompatButton) alertLayout.findViewById(R.id.button_minus);
+                minus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            value = String.valueOf(Utils.stringToInt(value) - 5);
+                            textViewText = value + base;
+                            textView.setText(textViewText);
+                        } catch (NumberFormatException e) {
+                            textView.setText(textViewText);
                         }
-                    }).show();
+                    }
+                });
+
+                AppCompatButton plus = (AppCompatButton) alertLayout.findViewById(R.id.button_plus);
+                plus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            value = String.valueOf(Utils.stringToInt(value) + 5);
+                            textViewText = value + base;
+                            textView.setText(textViewText);
+                        } catch (NumberFormatException e) {
+                            textView.setText(textViewText);
+                        }
+                    }
+                });
+
+                if (Utils.DARKTHEME) {
+                    textView.setTextColor(ContextCompat.getColor(context, R.color.textcolor_dark));
+                    minus.setTextColor(ContextCompat.getColor(context, R.color.textcolor_dark));
+                    plus.setTextColor(ContextCompat.getColor(context, R.color.textcolor_dark));
+                }
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(context)
+                    .setTitle(titleText)
+                    .setMessage(String.format(context.getString(R.string.current_value), value + base))
+                    .setView(alertLayout)
+                    .setNegativeButton(context.getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            value = current;
+                        }
+                    })
+                    .setPositiveButton(context.getString(R.string.ok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (onEditTextCardListener != null && !current.equals(value))
+                                onEditTextCardListener.onApply(EditTextCardView.this, value);
+                        }
+                    });
+
+                AlertDialog dialog = alert.create();
+                dialog.show();
             }
         });
     }
@@ -81,12 +123,16 @@ public class EditTextCardView extends CardViewItem {
         this.value = value;
     }
 
-    public void setOnEditTextCardListener(OnEditTextCardListener onEditTextCardListener) {
-        this.onEditTextCardListener = onEditTextCardListener;
+    public void setBase(String base) {
+        this.base = base;
     }
 
-    public void setInputType(int inputType) {
-        this.inputType = inputType;
+    public void titleText(String title) {
+        this.titleText = title;
+    }
+
+    public void setOnEditTextCardListener(OnEditTextCardListener onEditTextCardListener) {
+        this.onEditTextCardListener = onEditTextCardListener;
     }
 
     public interface OnEditTextCardListener {
@@ -97,10 +143,7 @@ public class EditTextCardView extends CardViewItem {
 
         private EditTextCardView editTextCardView;
 
-        private String title;
-        private String description;
-        private String value;
-        private int inputType = -1;
+        private String title, description, value, base;
 
         private OnDEditTextCardListener onDEditTextCardListener;
 
@@ -110,10 +153,13 @@ public class EditTextCardView extends CardViewItem {
 
             editTextCardView = (EditTextCardView) viewHolder.itemView;
 
-            if (title != null) editTextCardView.setTitle(title);
+            if (title != null) {
+                editTextCardView.setTitle(title);
+                editTextCardView.titleText(title);
+            };
             if (description != null) editTextCardView.setDescription(description);
             if (value != null) editTextCardView.setValue(value);
-            if (inputType > -1) editTextCardView.setInputType(inputType);
+            if (base != null) editTextCardView.setBase(base);
 
             editTextCardView.setOnEditTextCardListener(new EditTextCardView.OnEditTextCardListener() {
                 @Override
@@ -134,6 +180,11 @@ public class EditTextCardView extends CardViewItem {
             if (editTextCardView != null) editTextCardView.setTitle(title);
         }
 
+        public void setBase(String base) {
+            this.base = base;
+            if (editTextCardView != null) editTextCardView.setBase(base);
+        }
+
         public void setDescription(String description) {
             this.description = description;
             if (editTextCardView != null) editTextCardView.setDescription(description);
@@ -142,11 +193,6 @@ public class EditTextCardView extends CardViewItem {
         public void setValue(String value) {
             this.value = value;
             if (editTextCardView != null) editTextCardView.setValue(value);
-        }
-
-        public void setInputType(int inputType) {
-            this.inputType = inputType;
-            if (editTextCardView != null) editTextCardView.setInputType(inputType);
         }
 
         public void setOnDEditTextCardListener(OnDEditTextCardListener onDEditTextCardListener) {

@@ -39,7 +39,7 @@
         android:visibility="gone" />
 
     <FrameLayout
-        android:id="@+id/null_parent"
+        android:id="@+id/base_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

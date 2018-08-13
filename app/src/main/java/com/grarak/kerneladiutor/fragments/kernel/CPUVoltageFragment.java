@@ -123,7 +123,7 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
                 mVoltageCard[i].setDescription(voltages.get(i) + getString(R.string.mv));
             }
             mVoltageCard[i].setValue(voltages.get(i));
-            mVoltageCard[i].setInputType(InputType.TYPE_CLASS_NUMBER);
+            mVoltageCard[i].setBase(getString(R.string.mv));
             mVoltageCard[i].setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
                 @Override
                 public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
@@ -233,6 +233,8 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setView(view)
+                    .setTitle(getString(R.string.global_offset))
+                    .setMessage(getString(R.string.global_offset_summary))
                     .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {}

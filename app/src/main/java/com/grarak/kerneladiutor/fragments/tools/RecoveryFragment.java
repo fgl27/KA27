@@ -118,8 +118,8 @@ public class RecoveryFragment extends RecyclerViewFragment {
         final Recovery recovery = new Recovery(recovery_command, new File(description));
         mCommands.add(recovery);
         // null parent avoid Layout Inflation without a Parent
-        ViewGroup null_parent = (ViewGroup) getActivity().findViewById(R.id.null_parent);
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, null_parent, false);
+        ViewGroup base_parent = (ViewGroup) getActivity().findViewById(R.id.base_parent);
+        View view = LayoutInflater.from(getActivity()).inflate(R.layout.recovery_actionview, base_parent, false);
 
         final CardViewItem.DCardView mActionCard = new CardViewItem.DCardView();
 

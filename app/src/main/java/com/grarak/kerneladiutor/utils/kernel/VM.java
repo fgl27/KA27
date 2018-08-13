@@ -252,14 +252,12 @@ public class VM implements Constants {
         return false;
     }
 
-    public static void setMinFreeKbytes(String value, Context context) {
-        Control.runCommand(value, VM_MIN_FREE_KBYTES, Control.CommandType.GENERIC, context);
+    public static void setMinFreeKbytes(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_MIN_FREE_KBYTES, Control.CommandType.GENERIC, context);
     }
 
-    public static String getMinFreeKbytes() {
-        String value = Utils.readFile(VM_MIN_FREE_KBYTES);
-        if (value != null) return value;
-        return null;
+    public static int getMinFreeKbytes() {
+        return Utils.stringToInt(Utils.readFile(VM_MIN_FREE_KBYTES));
     }
 
     public static boolean hasExtraFreeKbytes() {
@@ -267,14 +265,12 @@ public class VM implements Constants {
         return false;
     }
 
-    public static void setExtraFreeKbytes(String value, Context context) {
-        Control.runCommand(value, VM_EXTRA_FREE_KBYTES, Control.CommandType.GENERIC, context);
+    public static void setExtraFreeKbytes(int value, Context context) {
+        Control.runCommand(String.valueOf(value), VM_EXTRA_FREE_KBYTES, Control.CommandType.GENERIC, context);
     }
 
-    public static String getExtraFreeKbytes() {
-        String value = Utils.readFile(VM_EXTRA_FREE_KBYTES);
-        if (value != null) return value;
-        return null;
+    public static int getExtraFreeKbytes() {
+        return Utils.stringToInt(Utils.readFile(VM_EXTRA_FREE_KBYTES));
     }
 
     public static boolean hasDynamicDirtyWriteback() {

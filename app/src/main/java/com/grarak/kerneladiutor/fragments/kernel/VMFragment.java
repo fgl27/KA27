@@ -47,9 +47,7 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
 
     private CardViewItem.DCardView mZramDiskCard, mZramSwapUsedCard, mZramRWCard, mZramDataSizeCard;
 
-    private EditTextCardView.DEditTextCard mMinFreeKbytesCard, mExtraFreeKbytesCard;
-
-    private SeekBarCardView.DSeekBarCard mPRPerSwapSizeCard, mPRSwapWinCard, mPRSwapOptEffCard, mPRPressureMaxCard, mPRPressureMinCard, mDirtyRatioCard, mDirtyBackgroundRatioCard, mDirtyExpireCard, mDirtyWritebackCard, mOverCommitRatioCard, mSwappinessCard, mVFSCachePressureCard, mZRAMDisksizeCard, mZRAMMaxCompStreamsCard;
+    private SeekBarCardView.DSeekBarCard mPRPerSwapSizeCard, mPRSwapWinCard, mPRSwapOptEffCard, mPRPressureMaxCard, mPRPressureMinCard, mDirtyRatioCard, mDirtyBackgroundRatioCard, mDirtyExpireCard, mDirtyWritebackCard, mOverCommitRatioCard, mSwappinessCard, mVFSCachePressureCard, mZRAMDisksizeCard, mZRAMMaxCompStreamsCard, mExtraFreeKbytesCard, mMinFreeKbytesCard;
     private SeekBarCardView.DSeekBarCard mDirty_Writeback_SuspendCard, mDirty_Writeback_ActiveCard;
 
     private PopupCardView.DPopupCard mZRAMCompAlgosCard;
@@ -343,46 +341,31 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         addView(mLaptopModeCard);
     }
     private void minfreekbytesInit() {
-        DDivider mMinFreeKbytesDividerCard = new DDivider();
-        mMinFreeKbytesDividerCard.setText(getString(R.string.min_free_kbytes));
-        mMinFreeKbytesDividerCard.setDescription(getString(R.string.min_free_kbytes_summary));
-        addView(mMinFreeKbytesDividerCard);
+        List < String > list = new ArrayList < > ();
+        list.add(getString(R.string.disabled));
+        for (int i = 1; i <= 5000; i++)
+            list.add(i + getString(R.string.kb));
 
-        String value = VM.getMinFreeKbytes();
-        mMinFreeKbytesCard = new EditTextCardView.DEditTextCard();
-        mMinFreeKbytesCard.setDescription(value + " kb");
-        mMinFreeKbytesCard.setValue(value);
-        mMinFreeKbytesCard.setInputType(InputType.TYPE_CLASS_NUMBER);
-        mMinFreeKbytesCard.setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
-            @Override
-            public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-                VM.setMinFreeKbytes(value.replace(" kb", ""), getActivity());
-                dEditTextCard.setDescription(value + " kb");
-            }
-        });
+        mMinFreeKbytesCard = new SeekBarCardView.DSeekBarCard(list);
+        mMinFreeKbytesCard.setTitle(getString(R.string.min_free_kbytes));
+        mMinFreeKbytesCard.setDescription(getString(R.string.min_free_kbytes_summary));
+        mMinFreeKbytesCard.setProgress(VM.getMinFreeKbytes());
+        mMinFreeKbytesCard.setOnDSeekBarCardListener(this);
 
         addView(mMinFreeKbytesCard);
-
     }
 
     private void extrafreekbytesInit() {
-        DDivider mExtraFreeKbytesDividerCard = new DDivider();
-        mExtraFreeKbytesDividerCard.setText(getString(R.string.extra_free_kbytes));
-        mExtraFreeKbytesDividerCard.setDescription(getString(R.string.extra_free_kbytes_summary));
-        addView(mExtraFreeKbytesDividerCard);
+        List < String > list = new ArrayList < > ();
+        list.add(getString(R.string.disabled));
+        for (int i = 1; i <= 1000; i++)
+            list.add((i * 100) + getString(R.string.kb));
 
-        String value = VM.getExtraFreeKbytes();
-        mExtraFreeKbytesCard = new EditTextCardView.DEditTextCard();
-        mExtraFreeKbytesCard.setDescription(value + " kb");
-        mExtraFreeKbytesCard.setValue(value);
-        mExtraFreeKbytesCard.setInputType(InputType.TYPE_CLASS_NUMBER);
-        mExtraFreeKbytesCard.setOnDEditTextCardListener(new EditTextCardView.DEditTextCard.OnDEditTextCardListener() {
-            @Override
-            public void onApply(EditTextCardView.DEditTextCard dEditTextCard, String value) {
-                VM.setExtraFreeKbytes(value.replace(" kb", ""), getActivity());
-                dEditTextCard.setDescription(value + " kb");
-            }
-        });
+        mExtraFreeKbytesCard = new SeekBarCardView.DSeekBarCard(list);
+        mExtraFreeKbytesCard.setTitle(getString(R.string.extra_free_kbytes));
+        mExtraFreeKbytesCard.setDescription(getString(R.string.extra_free_kbytes_summary));
+        mExtraFreeKbytesCard.setProgress(VM.getExtraFreeKbytes() / 100);
+        mExtraFreeKbytesCard.setOnDSeekBarCardListener(this);
 
         addView(mExtraFreeKbytesCard);
     }
@@ -486,6 +469,8 @@ public class VMFragment extends RecyclerViewFragment implements PopupCardView.DP
         else if (dSeekBarCard == mOverCommitRatioCard) VM.setOverCommitRatio(position, getActivity());
         else if (dSeekBarCard == mSwappinessCard) VM.setSwappiness(position, getActivity());
         else if (dSeekBarCard == mVFSCachePressureCard) VM.setVFSCachePressure(position + 1, getActivity());
+        else if (dSeekBarCard == mMinFreeKbytesCard) VM.setMinFreeKbytes(position, getActivity());
+        else if (dSeekBarCard == mExtraFreeKbytesCard) VM.setExtraFreeKbytes(position * 100, getActivity());
         else if (dSeekBarCard == mZRAMDisksizeCard) setZRAM(null, String.valueOf(position * 10), null);
         else if (dSeekBarCard == mZRAMMaxCompStreamsCard) setZRAM(null, null, String.valueOf(position + 1));
     }
