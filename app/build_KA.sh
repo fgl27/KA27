@@ -84,7 +84,7 @@ else
         ISSUES=$(grep issues build_log.txt | grep release)
 	if [ -n "$ISSUES" ]; then
 		NOISSUES=0;
-		contains "$ISSUES" ": 8 issues" && NOISSUES=1;
+		contains "$ISSUES" ": 10 issues" && NOISSUES=1;
 		if [ $NOISSUES == 0 ]; then
 			echo -e "\n${CYAN}Lint issues:\n${NC}";
 			echo -e "${RED}$ISSUES${NC}";

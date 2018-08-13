@@ -28,7 +28,7 @@ import android.service.quicksettings.Tile;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.Constants;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 @TargetApi(24)
 public class QuickTileCPUInfo extends TileService {

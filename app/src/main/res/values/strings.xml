@@ -1022,11 +1022,9 @@
     <string name="google" translatable="false">Google</string>
     <string name="fab" translatable="false">FloatingActionButton</string>
     <string name="jerzy" translatable="false">Jerzy Chałupski</string>
-    <string name="dashclock" translatable="false">Dashclock</string>
-    <string name="nurik" translatable="false">Roman Nurik</string>
-    <string name="picasso" translatable="false">Picasso</string>
-    <string name="square" translatable="false">Square Inc.</string>
     <string name="materialtabs" translatable="false">MaterialTabs</string>
+    <string name="busibox" translatable="false">Busybox Binary</string>
+    <string name="busibox_by" translatable="false">by Denys Vlasenko, build by Chris Renshaw aka osm0sis</string>
     <string name="frenn" translatable="false">Karim Frenn</string>
     <string name="ztzip" translatable="false">Zt-Zip</string>
     <string name="zero" translatable="false">ZeroTurnaround</string>

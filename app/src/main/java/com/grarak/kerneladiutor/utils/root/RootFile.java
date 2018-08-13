@@ -13,12 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.grarak.kerneladiutor.utils.root;
 
-package com.kerneladiutor.library.root;
-
-import android.util.Log;
-
-import com.kerneladiutor.library.Tools;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,32 +51,33 @@ public class RootFile {
     public void write(String text, boolean append) {
         String[] textarray = text.split("\\r?\\n");
         RootUtils.runCommand(append ? "echo '" + textarray[0] + "' >> " + file : "echo '" + textarray[0] + "' > " + file);
-        if (textarray.length > 1) for (int i = 1; i < textarray.length; i++)
-            RootUtils.runCommand("echo '" + textarray[i] + "' >> " + file);
+        if (textarray.length > 1)
+            for (int i = 1; i < textarray.length; i++)
+                RootUtils.runCommand("echo '" + textarray[i] + "' >> " + file);
     }
 
     public void delete() {
         RootUtils.runCommand("rm -r '" + file + "'");
     }
 
-    public List<String> list() {
-        List<String> list = new ArrayList<>();
+    public List < String > list() {
+        List < String > list = new ArrayList < > ();
         String files = RootUtils.runCommand("ls '" + file + "'");
         if (files != null)
             // Make sure the file exists
-            for (String file : files.split("\\r?\\n"))
-                if (file != null && !file.isEmpty() && Tools.existFile(this.file + "/" + file, true))
+            for (String file: files.split("\\r?\\n"))
+                if (file != null && !file.isEmpty() && Utils.existFile(this.file + "/" + file, true))
                     list.add(file);
         return list;
     }
 
-    public List<RootFile> listFiles() {
-        List<RootFile> list = new ArrayList<>();
+    public List < RootFile > listFiles() {
+        List < RootFile > list = new ArrayList < > ();
         String files = RootUtils.runCommand("ls '" + file + "'");
         if (files != null)
             // Make sure the file exists
-            for (String file : files.split("\\r?\\n"))
-                if (file != null && !file.isEmpty() && Tools.existFile(this.file + "/" + file, true))
+            for (String file: files.split("\\r?\\n"))
+                if (file != null && !file.isEmpty() && Utils.existFile(this.file + "/" + file, true))
                     list.add(new RootFile(this.file + "/" + file));
         return list;
     }

@@ -21,9 +21,8 @@ import android.util.Log;
 
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.kerneladiutor.library.Tools;
-import com.kerneladiutor.library.root.RootFile;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 import java.io.File;
 
@@ -93,7 +92,7 @@ public class Backup {
         String parentFile = file.getParent();
         String sdcard = Environment.getExternalStorageDirectory().getPath();
         if (parentFile.startsWith(sdcard))
-            parentFile = parentFile.replace(sdcard, Tools.getInternalStorage());
+            parentFile = parentFile.replace(sdcard, Utils.getInternalStorage());
         String command = "dd if='" + parentFile + "/" + file.getName() + "' of=" + getPartition(partition_type);
         Log.i(Constants.TAG, "Executing: " + command);
         RootUtils.runCommand(command);

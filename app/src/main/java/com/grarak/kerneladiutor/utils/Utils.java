@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.utils;
 
 import android.annotation.TargetApi;
@@ -36,6 +35,7 @@ import android.graphics.BitmapFactory;
 import android.Manifest;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.MainThread;
@@ -75,14 +75,16 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeLockFragment;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
-import com.kerneladiutor.library.Tools;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -570,19 +572,19 @@ public class Utils implements Constants {
     }
 
     public static boolean existFile(String file) {
-        return Tools.existFile(file, true);
+        return Utils.existFile(file, true);
     }
 
     public static boolean compareFiles(String file, String file2) {
-        return Tools.compareFiles(file, file2, true);
+        return Utils.compareFiles(file, file2, true);
     }
 
     public static void writeFile(String path, String text, boolean append) {
-        Tools.writeFile(path, text, append, true);
+        Utils.writeFile(path, text, append, true);
     }
 
     public static String readFile(String file) {
-        return Tools.readFile(file, true);
+        return Utils.readFile(file, true);
     }
 
     public static double stringtodouble(String text) {
@@ -712,5 +714,79 @@ public class Utils implements Constants {
                 },
                 123);
         }
+    }
+
+    public static String getExternalStorage() {
+        String path = RootUtils.runCommand("echo ${SECONDARY_STORAGE%%:*}");
+        return path.contains("/") ? path : null;
+    }
+
+    public static String getInternalStorage() {
+        String dataPath = existFile("/data/media/0", true) ? "/data/media/0" : "/data/media";
+        if (!new RootFile(dataPath).isEmpty()) return dataPath;
+        if (existFile("/sdcard", true)) return "/sdcard";
+        return Environment.getExternalStorageDirectory().getPath();
+    }
+
+    public static boolean existFile(String file, boolean asRoot) {
+        if (asRoot) return new RootFile(file).exists();
+        return new File(file).exists();
+    }
+
+    public static boolean compareFiles(String file, String file2, boolean asRoot) {
+        Log.i(TAG, "compareFiles " + file + " size is " + new RootFile(file).length() + " and " +
+            file2 + " size is " + new RootFile(file2).length());
+        if (asRoot) return new RootFile(file).length() == new RootFile(file2).length();
+        return new File(file).length() == new RootFile(file2).length();
+    }
+
+    public static void writeFile(String path, String text, boolean append, boolean asRoot) {
+        if (asRoot) {
+            new RootFile(path).write(text, append);
+            return;
+        }
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(path, append);
+            writer.write(text);
+            writer.flush();
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to write " + path);
+        } finally {
+            try {
+                if (writer != null) writer.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static String readFile(String file, boolean asRoot) {
+        if (asRoot) return new RootFile(file).readFile();
+
+        StringBuilder s = null;
+        FileReader fileReader = null;
+        BufferedReader buf = null;
+        try {
+            fileReader = new FileReader(file);
+            buf = new BufferedReader(fileReader);
+
+            String line;
+            s = new StringBuilder();
+            while ((line = buf.readLine()) != null) s.append(line).append("\n");
+        } catch (FileNotFoundException ignored) {
+            Log.e(TAG, "File does not exist " + file);
+        } catch (IOException e) {
+            Log.e(TAG, "Failed to read " + file);
+        } finally {
+            try {
+                if (fileReader != null) fileReader.close();
+                if (buf != null) buf.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return s == null ? null : s.toString().trim();
     }
 }

@@ -37,7 +37,6 @@ import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.WebpageReader;
 import com.grarak.kerneladiutor.utils.json.GammaProfiles;
 import com.grarak.kerneladiutor.utils.kernel.Screen;
-import com.kerneladiutor.library.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -905,7 +904,7 @@ public class ScreenFragment extends RecyclerViewFragment implements SeekBarCardV
                     GammaProfiles gammaProfiles = new GammaProfiles(raw);
                     String path = getActivity().getApplicationContext().getCacheDir() + "/gamma_profiles.json";
                     if (gammaProfiles.readable()) {
-                        Tools.writeFile(path, raw, false, false);
+                        Utils.writeFile(path, raw, false, false);
                         showMoreGammaProfiles(gammaProfiles);
                     } else {
                         if (Utils.existFile(path)) {

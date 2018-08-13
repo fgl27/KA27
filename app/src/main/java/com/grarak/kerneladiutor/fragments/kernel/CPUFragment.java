@@ -39,7 +39,7 @@ import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.Control;
-import com.kerneladiutor.library.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import android.widget.Toast;
 

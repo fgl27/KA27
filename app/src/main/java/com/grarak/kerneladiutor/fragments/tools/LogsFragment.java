@@ -50,8 +50,8 @@ import com.grarak.kerneladiutor.utils.GetPermission;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 import com.grarak.kerneladiutor.utils.Utils;
-import com.kerneladiutor.library.root.RootUtils;
-import com.kerneladiutor.library.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import com.grarak.kerneladiutor.fragments.kernel.BatteryFragment;
 import com.grarak.kerneladiutor.fragments.kernel.CPUFragment;

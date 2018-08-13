@@ -18,7 +18,7 @@ package com.grarak.kerneladiutor.utils.tools;
 
 import android.os.Environment;
 
-import com.kerneladiutor.library.Tools;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -83,9 +83,9 @@ public class Recovery {
 
             String internalStorage = Environment.getExternalStorageDirectory().toString();
             if (zip.startsWith(internalStorage + "/"))
-                return zip.replace(internalStorage + "/", Tools.getInternalStorage() + "/");
+                return zip.replace(internalStorage + "/", Utils.getInternalStorage() + "/");
 
-            String externalStorage = Tools.getExternalStorage();
+            String externalStorage = Utils.getExternalStorage();
             if (externalStorage != null && zip.startsWith(externalStorage + "/"))
                 return zip.replace(externalStorage + "/", getExternalPath() + "/");
 

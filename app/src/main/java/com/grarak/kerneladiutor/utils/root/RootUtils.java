@@ -13,13 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.kerneladiutor.library.root;
+package com.grarak.kerneladiutor.utils.root;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.kerneladiutor.library.Tools;
+import com.grarak.kerneladiutor.utils.Utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -52,15 +51,15 @@ public class RootUtils {
 
     public static boolean hasAppletSupport(Context context) {
         String busybox = context.getFilesDir().getPath() + "/busybox";
-       if (Tools.existFile(busybox, true))
+        if (Utils.existFile(busybox, true))
             return true;
         return false;
     }
 
     private static boolean existBinary(String binary) {
-        for (String path : System.getenv("PATH").split(":")) {
+        for (String path: System.getenv("PATH").split(":")) {
             if (!path.endsWith("/")) path += "/";
-            if (new File(path + binary).exists() || Tools.existFile(path + binary, true))
+            if (new File(path + binary).exists() || Utils.existFile(path + binary, true))
                 return true;
         }
         return false;
@@ -72,9 +71,9 @@ public class RootUtils {
 
     public static void mount(boolean writeable, String mountpoint) {
         runCommand(writeable ? "mount -o remount,rw " + mountpoint + " " + mountpoint :
-                "mount -o remount,ro " + mountpoint + " " + mountpoint);
+            "mount -o remount,ro " + mountpoint + " " + mountpoint);
         runCommand(writeable ? "mount -o remount,rw " + mountpoint :
-                "mount -o remount,ro " + mountpoint);
+            "mount -o remount,ro " + mountpoint);
     }
 
     public static void closeSU() {
@@ -113,13 +112,13 @@ public class RootUtils {
         public SU(boolean root) {
             this.root = root;
             try {
-                Log.i(Tools.TAG, root ? "SU initialized" : "SH initialized");
+                Log.i(Utils.TAG, root ? "SU initialized" : "SH initialized");
                 firstTry = true;
                 process = Runtime.getRuntime().exec(root ? "su" : "sh");
                 bufferedWriter = new BufferedWriter(new OutputStreamWriter(process.getOutputStream()));
                 bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             } catch (IOException e) {
-                Log.e(Tools.TAG, root ? "Failed to run shell as su" : "Failed to run shell as sh");
+                Log.e(Utils.TAG, root ? "Failed to run shell as su" : "Failed to run shell as sh");
                 denied = true;
                 closed = true;
             }
@@ -144,7 +143,7 @@ public class RootUtils {
                 firstTry = false;
                 return sb.toString().trim();
             } catch (NullPointerException e) {
-                Log.e(Tools.TAG, "catch NullPointerException runCommand as Su");
+                Log.e(Utils.TAG, "catch NullPointerException runCommand as Su");
             } catch (IOException e) {
                 closed = true;
                 e.printStackTrace();
@@ -164,10 +163,10 @@ public class RootUtils {
                 bufferedWriter.flush();
 
                 process.waitFor();
-                Log.i(Tools.TAG, root ? "SU closed: " + process.exitValue() : "SH closed: " + process.exitValue());
+                Log.i(Utils.TAG, root ? "SU closed: " + process.exitValue() : "SH closed: " + process.exitValue());
                 closed = true;
             } catch (NullPointerException e) {
-                Log.e(Tools.TAG, "catch NullPointerException close Su");
+                Log.e(Utils.TAG, "catch NullPointerException close Su");
             } catch (Exception e) {
                 e.printStackTrace();
             }

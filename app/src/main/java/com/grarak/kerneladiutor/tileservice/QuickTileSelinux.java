@@ -26,7 +26,7 @@ import android.service.quicksettings.TileService;
 import android.service.quicksettings.Tile;
 
 import com.grarak.kerneladiutor.R;
-import com.kerneladiutor.library.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.kernel.Misc;
 
 @TargetApi(24)

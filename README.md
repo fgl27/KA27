@@ -39,6 +39,9 @@ $ cd KernelAdiutor
 $ ./gradlew build
 ```
 
+**I particularly prefer to use this .sh to build**
+[Build app Script](https://github.com/bhb27/KA27/blob/master/app/build_KA.sh)
+
 ## Credits
 
 I used following libraries:
@@ -47,10 +50,10 @@ I used following libraries:
 * Google: [Cardview v7](https://developer.android.com/tools/support-library/features.html#v7-cardview)
 * Google: [Recyclerview v7](https://developer.android.com/tools/support-library/features.html#v7-recyclerview)
 * Jerzy Chałupski: [FloatingActionButton](https://github.com/futuresimple/android-floating-action-button)
-* Roman Nurik: [Dashclock](https://github.com/romannurik/dashclock)
-* Jake Wharton: [NineOldAndroids](https://github.com/JakeWharton/NineOldAndroids)
-* Square Inc.: [Picasso](https://github.com/square/picasso)
 * Karim Frenn: [MaterialTabs](https://github.com/pizza/MaterialTabs)
+* ZeroTurnaround ZIP Library [by zeroturnaround](https://github.com/zeroturnaround/zt-zip)
+* Material Dialogs Library, a beautiful, fluid, and customizable dialogs API [by Aidan Follestad](https://github.com/afollestad/material-dialogs)
+* Busybox Binary, the Swiss Army Knife of Embedded Linux [by Denys Vlasenko, build by Chris Renshaw aka osm0sis](https://forum.xda-developers.com/showthread.php?t=2239421)
 
 Also codes from different people:
 

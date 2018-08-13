@@ -99,8 +99,8 @@ import com.grarak.kerneladiutor.utils.kernel.Wake;
 import com.grarak.kerneladiutor.utils.kernel.WakeLock;
 import com.grarak.kerneladiutor.utils.tools.Backup;
 import com.grarak.kerneladiutor.utils.tools.Buildprop;
-import com.kerneladiutor.library.root.RootUtils;
-import com.kerneladiutor.library.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import java.io.File;
 import java.io.IOException;

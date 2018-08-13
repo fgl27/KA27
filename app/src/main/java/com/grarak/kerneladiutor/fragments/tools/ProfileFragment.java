@@ -53,8 +53,8 @@ import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.database.ProfileDB;
 import com.grarak.kerneladiutor.utils.root.Control;
 import com.grarak.kerneladiutor.utils.tools.Per_App;
-import com.kerneladiutor.library.root.RootUtils;
-import com.kerneladiutor.library.root.RootFile;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
+import com.grarak.kerneladiutor.utils.root.RootFile;
 
 import java.io.File;
 import java.util.ArrayList;

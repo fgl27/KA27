@@ -53,8 +53,6 @@ repositories {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':library')
     api 'com.android.support:support-v4:' + versions.supportLib
     api 'com.android.support:support-v13:' + versions.supportLib
     api 'com.android.support:appcompat-v7:' + versions.supportLib
