@@ -95,7 +95,8 @@ public class EditTextCardView extends CardViewItem {
                     plus.setTextColor(ContextCompat.getColor(context, R.color.textcolor_dark));
                 }
 
-                AlertDialog.Builder alert = new AlertDialog.Builder(context)
+                AlertDialog.Builder alert = new AlertDialog.Builder(context,
+                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
                     .setTitle(titleText)
                     .setMessage(String.format(context.getString(R.string.current_value), value + base))
                     .setView(alertLayout)

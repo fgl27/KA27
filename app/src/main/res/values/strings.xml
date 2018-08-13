@@ -8,6 +8,7 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="current_value_not_supported">Current value is not supported</string>
+    <string name="banner_picture">Banner Picture</string>
     <string name="select_picture">Select Picture</string>
     <string name="no_picture">No Picture</string>
     <string name="went_wrong">Something went wrong!</string>

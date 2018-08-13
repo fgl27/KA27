@@ -255,6 +255,7 @@ public class BackupFragment extends RecyclerViewFragment {
                     public void onClick(CardViewItem.DCardView dCardView) {
                         new AlertDialog.Builder(getActivity(),
                                 (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                            .setTitle(file.getName().replace(".img", ""))
                             .setItems(getResources().getStringArray(R.array.backup_menu),
                                 new DialogInterface.OnClickListener() {
                                     @Override

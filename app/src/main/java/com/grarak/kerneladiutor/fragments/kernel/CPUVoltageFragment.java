@@ -199,13 +199,9 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
                 View view = inflater.inflate(R.layout.global_offset_view, container, false);
 
                 final TextView textView = (TextView) view.findViewById(R.id.offset_text);
-                if (Utils.DARKTHEME)
-                    textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                 textView.setText("0");
 
                 AppCompatButton minus = (AppCompatButton) view.findViewById(R.id.button_minus);
-                if (Utils.DARKTHEME)
-                    minus.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                 minus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -218,8 +214,6 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
                 });
 
                 AppCompatButton plus = (AppCompatButton) view.findViewById(R.id.button_plus);
-                if (Utils.DARKTHEME)
-                    plus.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
                 plus.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -231,8 +225,15 @@ SwitchCardView.DSwitchCard.OnDSwitchCardListener {
                     }
                 });
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setView(view)
+                if (Utils.DARKTHEME) {
+                    textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
+                    minus.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
+                    plus.setTextColor(ContextCompat.getColor(getActivity(), R.color.textcolor_dark));
+                }
+
+                new AlertDialog.Builder(getActivity(),
+                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                    .setView(view)
                     .setTitle(getString(R.string.global_offset))
                     .setMessage(getString(R.string.global_offset_summary))
                     .setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {

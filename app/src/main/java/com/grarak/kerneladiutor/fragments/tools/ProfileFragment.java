@@ -175,47 +175,50 @@ public class ProfileFragment extends RecyclerViewFragment {
                         } catch (ClassCastException ignored) {}
                     }
 
-                    new AlertDialog.Builder(getActivity()).setItems(getResources().getStringArray(R.array.profile_menu),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                ProfileDB.ProfileItem profileItem = profileItems.get(position);
-                                switch (which) {
-                                    case 0:
-                                        List < String > paths = profileItem.getPath();
-                                        for (int i = 0; i < paths.size(); i++) {
-                                            Control.commandSaver(getActivity(), paths.get(i),
-                                                profileItem.getCommands().get(i));
-                                            RootUtils.runCommand(profileItem.getCommands().get(i));
-                                        }
-                                        break;
-                                    case 1:
-                                        ProfileDB profileDB = new ProfileDB(getActivity());
-                                        profileDB.delete(position);
-
-                                        profileDB.commit();
-
-                                        getHandler().post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                create();
+                    new AlertDialog.Builder(getActivity(),
+                            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                        .setTitle(profileItems.get(position).getName())
+                        .setItems(getResources().getStringArray(R.array.profile_menu),
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ProfileDB.ProfileItem profileItem = profileItems.get(position);
+                                    switch (which) {
+                                        case 0:
+                                            List < String > paths = profileItem.getPath();
+                                            for (int i = 0; i < paths.size(); i++) {
+                                                Control.commandSaver(getActivity(), paths.get(i),
+                                                    profileItem.getCommands().get(i));
+                                                RootUtils.runCommand(profileItem.getCommands().get(i));
                                             }
-                                        });
-                                        break;
-                                    case 2:
-                                        StringBuilder s = new StringBuilder();
-                                        for (String command: profileItem.getCommands())
-                                            s.append(command).append("\n");
-                                        s.setLength(s.length() - 1);
-                                        new AlertDialog.Builder(getActivity()).setMessage(s.toString()).show();
-                                        break;
-                                    case 3:
-                                        dialog.dismiss();
-                                        PerAppDialog(profileItems.get(position).getID());
-                                        break;
+                                            break;
+                                        case 1:
+                                            ProfileDB profileDB = new ProfileDB(getActivity());
+                                            profileDB.delete(position);
+
+                                            profileDB.commit();
+
+                                            getHandler().post(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    create();
+                                                }
+                                            });
+                                            break;
+                                        case 2:
+                                            StringBuilder s = new StringBuilder();
+                                            for (String command: profileItem.getCommands())
+                                                s.append(command).append("\n");
+                                            s.setLength(s.length() - 1);
+                                            new AlertDialog.Builder(getActivity()).setMessage(s.toString()).show();
+                                            break;
+                                        case 3:
+                                            dialog.dismiss();
+                                            PerAppDialog(profileItems.get(position).getID());
+                                            break;
+                                    }
                                 }
-                            }
-                        }).show();
+                            }).show();
                 }
             });
 

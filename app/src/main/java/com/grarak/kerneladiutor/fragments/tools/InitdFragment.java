@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.fragments.tools;
 
 import android.content.DialogInterface;
@@ -210,7 +209,9 @@ public class InitdFragment extends RecyclerViewFragment {
             mInitdCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                 @Override
                 public void onClick(CardViewItem.DCardView dCardView) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity(),
+                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
+                    builder.setTitle(file);
                     builder.setItems(R.array.initd_menu, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

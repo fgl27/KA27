@@ -264,25 +264,28 @@ public class DAdapter {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    new AlertDialog.Builder(v.getContext()).setItems(v.getResources()
-                        .getStringArray(R.array.main_header_picture_items), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which) {
-                                    case 0:
-                                        v.getContext().startActivity(new Intent(v.getContext(), MainHeaderActivity.class));
-                                        break;
-                                    case 1:
-                                        if (Utils.getString("previewpicture", null, v.getContext()).equals("nopicture"))
-                                            return;
-                                        Utils.saveString("previewpicture", "nopicture", v.getContext());
-                                        image.get().setImageDrawable(null);
-                                        animate();
-                                        break;
-                                }
+                    new AlertDialog.Builder(v.getContext(),
+                            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                        .setTitle(v.getContext().getString(R.string.banner_picture))
+                        .setItems(v.getResources()
+                            .getStringArray(R.array.main_header_picture_items), new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which) {
+                                        case 0:
+                                            v.getContext().startActivity(new Intent(v.getContext(), MainHeaderActivity.class));
+                                            break;
+                                        case 1:
+                                            if (Utils.getString("previewpicture", null, v.getContext()).equals("nopicture"))
+                                                return;
+                                            Utils.saveString("previewpicture", "nopicture", v.getContext());
+                                            image.get().setImageDrawable(null);
+                                            animate();
+                                            break;
+                                    }
 
-                            }
-                        }).show();
+                                }
+                            }).show();
                 }
             });
 

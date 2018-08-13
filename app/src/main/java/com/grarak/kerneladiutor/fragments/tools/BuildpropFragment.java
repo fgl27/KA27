@@ -118,23 +118,23 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
 
     @Override
     public void onClick(final View v) {
-        AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(),
-            (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight));
-        dialog.setItems(getResources().getStringArray(R.array.build_prop_menu),
-            new DialogInterface.OnClickListener() {
+        PopupCardView popupCardView = (PopupCardView) v;
+        new AlertDialog.Builder(getActivity(),
+                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+            .setTitle(getString(R.string.build_prop_editor))
+            .setMessage(popupCardView.getDescription().toString() + " = " + popupCardView.getItem())
+            .setNeutralButton(getString(R.string.delete), new DialogInterface.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    PopupCardView popupCardView = (PopupCardView) v;
-                    switch (which) {
-                        case 0:
-                            addKeyDialog(popupCardView.getDescription().toString(),
-                                popupCardView.getItem(), true);
-                            break;
-                        case 1:
-                            deleteDialog(popupCardView.getDescription().toString(),
-                                popupCardView.getItem());
-                            break;
-                    }
+                public void onClick(DialogInterface dialog, int i) {
+                    deleteDialog(popupCardView.getDescription().toString(),
+                        popupCardView.getItem());
+                }
+            })
+            .setPositiveButton(getString(R.string.edit), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int i) {
+                    addKeyDialog(popupCardView.getDescription().toString(),
+                        popupCardView.getItem(), true);
                 }
             }).show();
     }
@@ -211,7 +211,7 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     }
 
     private void deleteDialog(final String key, final String value) {
-        Utils.confirmDialog(null, getString(R.string.delete_question, key), new DialogInterface.OnClickListener() {
+        Utils.confirmDialog(null, getString(R.string.delete_question, key + " = " + value), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 delete(getActivity(), key.trim());
