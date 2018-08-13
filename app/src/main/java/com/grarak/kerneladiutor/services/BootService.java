@@ -190,7 +190,7 @@ public class BootService extends Service {
             for (CommandDB.CommandItem commandItem: allCommands)
                 for (String sys: applys) {
                     String path = commandItem.getPath();
-                    if ((sys.contains(path) || path.contains(sys))) {
+                    if (sys.contains(path)) {
                         String command = commandItem.getCommand();
                         if (commands.indexOf(command) < 0)
                             commands.add(command);
