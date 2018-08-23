@@ -1720,8 +1720,10 @@ public class CPUHotplug implements Constants {
 
     public static void activateMpdecision(boolean active, Context context) {
         if (active) {
+            CPU.onlineAllCores(context);
             Control.startService(HOTPLUG_MPDEC, context);
             togglehotplugs("MPDecision", context);
+            CPU.onlineAllCores(context);
         } else {
             Control.stopService(HOTPLUG_MPDEC, context);
             CPU.onlineAllCores(context);
@@ -1753,30 +1755,28 @@ public class CPUHotplug implements Constants {
     }
 
     public static void togglehotplugs(String activehotplug, Context context) {
-        if (CPUHotplug.isMpdecisionActive() && !activehotplug.equals("MPDecision")) {
-            if (isMpdecisionActive()) {
-                Control.stopService(HOTPLUG_MPDEC, context);
-                CPU.onlineAllCores(context);
-            }
+        if (isMpdecisionActive() && !activehotplug.equals("MPDecision")) {
+            Control.stopService(HOTPLUG_MPDEC, context);
+            CPU.onlineAllCores(context);
         }
-        if (CPUHotplug.isAutoSmpActive() && hasAutoSmpEnable() && !activehotplug.equals("AutoSMP")) Control.runCommand("N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isThunderPlugActive() && hasThunderPlugEnable() && !activehotplug.equals("ThunderPlug")) Control.runCommand("0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isAlucardHotplugActive() && hasAlucardHotplugEnable() && !activehotplug.equals("AlucardHotplug")) Control.runCommand("0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isMakoHotplugActive() && hasMakoHotplugEnable() && !activehotplug.equals("MakoHotPlug")) Control.runCommand("0", MAKO_HOTPLUG_ENABLED, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isBluPlugActive() && CPUHotplug.hasBluPlugEnable() && !activehotplug.equals("BluPlug")) Control.runCommand("0", HOTPLUG_BLU_PLUG_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isIntelliPlugActive() && hasIntelliPlugEnable() && !activehotplug.equals("IntelliPlug")) {
+        if (isAutoSmpActive() && !activehotplug.equals("AutoSMP")) Control.runCommand("N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
+        if (isThunderPlugActive() && !activehotplug.equals("ThunderPlug")) Control.runCommand("0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (isAlucardHotplugActive() && !activehotplug.equals("AlucardHotplug")) Control.runCommand("0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (isMakoHotplugActive() && !activehotplug.equals("MakoHotPlug")) Control.runCommand("0", MAKO_HOTPLUG_ENABLED, Control.CommandType.GENERIC, context);
+        if (isBluPlugActive() && !activehotplug.equals("BluPlug")) Control.runCommand("0", HOTPLUG_BLU_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (isIntelliPlugActive() && !activehotplug.equals("IntelliPlug")) {
             if (Utils.existFile(HOTPLUG_INTELLI_PLUG_ENABLE)) Control.runCommand("0", HOTPLUG_INTELLI_PLUG_ENABLE, Control.CommandType.GENERIC, context);
             if (Utils.existFile(HOTPLUG_INTELLI_PLUG_5_ENABLE)) Control.runCommand("0", HOTPLUG_INTELLI_PLUG_5_ENABLE, Control.CommandType.GENERIC, context);
         }
-        if (CPUHotplug.isZenDecisionActive() && hasZenDecisionEnable() && !activehotplug.equals("ZenDecision")) Control.runCommand("0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isMSMSleeperActive() && hasMSMSleeperEnable() && !activehotplug.equals("MSM_Sleeper")) Control.runCommand("0", MSM_SLEEPER_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isMBHotplugActive() && hasMBHotplugEnable() && !activehotplug.equals("MBHotplug")) Control.runCommand("0", Utils.getsysfspath(MB_HOTPLUG_ARRAY) + "/" + MB_ENABLED, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isMsmHotplugActive() && hasMsmHotplugEnable() && !activehotplug.equals("MSMHotPlug")) Control.runCommand("0", MSM_HOTPLUG_ENABLE_FILE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isStateHelperActive() && hasStateHelperEnable() && !activehotplug.equals("State_Helper")) Control.runCommand("0", STATE_HELPER_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isLazyPlugActive() && hasLazyPlugEnable() && !activehotplug.equals("LazyPlug")) Control.runCommand("0", HOTPLUG_LAZYPLUG_TOUCH_BOOST_ACTIVE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isDynPlugActive() && hasDynPlugEnable() && !activehotplug.equals("DynPlug")) Control.runCommand("N", HOTPLUG_DYN_PLUG_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isAutoHotplugActive() && hasAutoHotplugEnable() && !activehotplug.equals("AutoHotplug")) Control.runCommand("N", HOTPLUG_AUTO_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
-        if (CPUHotplug.isHimaActive() && hasHimaEnable() && !activehotplug.equals("Hima")) Control.runCommand("N", HIMA_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (isZenDecisionActive() && !activehotplug.equals("ZenDecision")) Control.runCommand("0", HOTPLUG_ZEN_DECISION_ENABLE, Control.CommandType.GENERIC, context);
+        if (isMSMSleeperActive() && !activehotplug.equals("MSM_Sleeper")) Control.runCommand("0", MSM_SLEEPER_ENABLE, Control.CommandType.GENERIC, context);
+        if (isMBHotplugActive() && !activehotplug.equals("MBHotplug")) Control.runCommand("0", Utils.getsysfspath(MB_HOTPLUG_ARRAY) + "/" + MB_ENABLED, Control.CommandType.GENERIC, context);
+        if (isMsmHotplugActive() && !activehotplug.equals("MSMHotPlug")) Control.runCommand("0", MSM_HOTPLUG_ENABLE_FILE, Control.CommandType.GENERIC, context);
+        if (isStateHelperActive() && !activehotplug.equals("State_Helper")) Control.runCommand("0", STATE_HELPER_ENABLE, Control.CommandType.GENERIC, context);
+        if (isLazyPlugActive() && !activehotplug.equals("LazyPlug")) Control.runCommand("0", HOTPLUG_LAZYPLUG_TOUCH_BOOST_ACTIVE, Control.CommandType.GENERIC, context);
+        if (isDynPlugActive() && !activehotplug.equals("DynPlug")) Control.runCommand("N", HOTPLUG_DYN_PLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (isAutoHotplugActive() && !activehotplug.equals("AutoHotplug")) Control.runCommand("N", HOTPLUG_AUTO_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+        if (isHimaActive() && !activehotplug.equals("Hima")) Control.runCommand("N", HIMA_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
     }
 
     public static boolean hasMSMSleeper() {
