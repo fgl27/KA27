@@ -21,6 +21,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.UiModeManager;
+import android.app.NotificationChannel;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -676,13 +677,27 @@ public class Utils implements Constants {
     }
 
     public static void DoNotification(Context context) {
-        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, "no_thermal");
-        notification.setSmallIcon(R.drawable.ka);
-        notification.setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher));
-        notification.setContentTitle(context.getString(R.string.no_termal_toast));
-        notification.setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.no_termal_toast_2)));
-        notification.setOngoing(true);
+        final int NOTIFY_ID = 0;
+        String id = "no_thermal";
+        String title = context.getString(R.string.no_termal_toast);
+
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+
+        //Create a channel for oreo notification to work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = notificationManager.getNotificationChannel(id);
+            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
+            notificationManager.createNotificationChannel(mChannel);
+        }
+
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, id)
+            .setSmallIcon(R.drawable.ka)
+            .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher))
+            .setContentTitle(title)
+            .setStyle(new NotificationCompat.BigTextStyle().bigText(context.getString(R.string.no_termal_toast_2)))
+            .setOngoing(true)
+            .setChannelId(id);
+
 
         Intent reEnableReceiver = new Intent();
         reEnableReceiver.setAction(THERMAL_ENGINE_RE_ENABLE);
@@ -690,7 +705,7 @@ public class Utils implements Constants {
         NotificationCompat.Action ActionSet = new NotificationCompat.Action.Builder(R.drawable.ic_accept, context.getString(R.string.no_termal_reenable), pendingIntentYes).build();
         notification.addAction(ActionSet);
 
-        notificationManager.notify(10, notification.build());
+        notificationManager.notify(NOTIFY_ID, notification.build());
     }
 
     public static void ClearAllNotification(Context context) {

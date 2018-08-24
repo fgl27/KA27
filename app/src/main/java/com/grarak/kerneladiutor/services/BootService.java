@@ -16,11 +16,13 @@
 
 package com.grarak.kerneladiutor.services;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
@@ -66,7 +68,7 @@ public class BootService extends Service {
 
     private final Handler hand = new Handler();
 
-    private final int id = 1;
+    private final int NOTIFY_ID = 0;
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
 
@@ -116,11 +118,24 @@ public class BootService extends Service {
 
         if (applys.size() > 0) {
             final int delay = Utils.getInt("applyonbootdelay", 0, this);
+
+            String id = "KA_apply_on_boot";
+            String title = getString(R.string.apply_on_boot);
+
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            mBuilder = new NotificationCompat.Builder(this, "KA_apply_on_boot");
-            mBuilder.setContentTitle(getString(R.string.apply_on_boot))
+
+            //Create a channel for oreo notification to work
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel mChannel = mNotifyManager.getNotificationChannel(id);
+                mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
+                mNotifyManager.createNotificationChannel(mChannel);
+            }
+
+            mBuilder = new NotificationCompat.Builder(this, id)
+                .setContentTitle(title)
                 .setContentText(getString(R.string.apply_on_boot_time, delay))
-                .setSmallIcon(R.drawable.ic_launcher_preview);
+                .setSmallIcon(R.drawable.ic_launcher_preview)
+                .setChannelId(id);
 
             TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
             stackBuilder.addParentStack(MainActivity.class);
@@ -138,14 +153,14 @@ public class BootService extends Service {
                             String note = getString(R.string.apply_on_boot_time, i);
                             if (notification) {
                                 mBuilder.setContentText(note).setProgress(delay, delay - i, false);
-                                mNotifyManager.notify(id, mBuilder.build());
+                                mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
                             } else if ((i % 10 == 0 || i == delay) && i != 0) toast(note);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
                     if (notification) {
                         mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
-                        mNotifyManager.notify(id, mBuilder.build());
+                        mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
                     }
                     apply(applys);
                     stopSelf();
@@ -173,7 +188,7 @@ public class BootService extends Service {
         if (!hasRoot || !hasBusybox) {
             toast(message);
             mBuilder.setContentText(message);
-            mNotifyManager.notify(id, mBuilder.build());
+            mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
             return;
         }
 
