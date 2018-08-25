@@ -16,11 +16,16 @@
 
 package com.grarak.kerneladiutor.services;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.grarak.kerneladiutor.R;
@@ -34,10 +39,30 @@ import com.grarak.kerneladiutor.utils.root.RootUtils;
 public class InitdService extends Service {
 
     private final Handler hand = new Handler();
+    private final int NOTIFY_ID = 101;
+    private NotificationManager mNotifyManager;
+    private NotificationCompat.Builder mBuilder;
+    private String id = "KA_initd_boot";
 
     @Override
     public void onCreate() {
         super.onCreate();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String title = getString(R.string.initd);
+            mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            NotificationChannel mChannel = mNotifyManager.getNotificationChannel(id);
+            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
+            mNotifyManager.createNotificationChannel(mChannel);
+            mBuilder = new NotificationCompat.Builder(this, id)
+                .setContentTitle(title)
+                .setSmallIcon(R.drawable.ic_launcher_preview)
+                .setChannelId(id);
+
+            startForeground(NOTIFY_ID, mBuilder.build());
+        }
+
         new AsyncTask < Void, Void, String > () {
             @Override
             protected void onPreExecute() {
@@ -70,13 +95,12 @@ public class InitdService extends Service {
     }
 
     private void toast(final String message) {
-        if (Utils.getBoolean("applyonbootshowtoast", true, getApplicationContext()))
-            hand.post(new Runnable() {
-                @Override
-                public void run() {
-                    Utils.toast(getString(R.string.app_name) + ": " + message, InitdService.this);
-                }
-            });
+        hand.post(new Runnable() {
+            @Override
+            public void run() {
+                Utils.toast(getString(R.string.app_name) + ": " + message, InitdService.this);
+            }
+        });
     }
 
 }

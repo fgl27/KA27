@@ -19,6 +19,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
@@ -148,37 +149,40 @@ public class SettingsFragment extends RecyclerViewFragment {
             addView(mHideApplyOnBootCard);
         }
 
-        final List < String > list = new ArrayList < > ();
-        list.add(0 + " " + getString(R.string.sec));
-        for (int i = 5; i < 421; i *= 2)
-            list.add(i + " " + getString(R.string.sec));
+        if (Build.VERSION.SDK_INT < 26) {
 
-        PopupCardView.DPopupCard mApplyonbootDelayCard = new PopupCardView.DPopupCard(list);
-        mApplyonbootDelayCard.setDescription(getString(R.string.delay));
-        mApplyonbootDelayCard.setItem(Utils.getInt("applyonbootdelay", 0, getActivity()) + " " + getString(R.string.sec));
-        mApplyonbootDelayCard.setOnDPopupCardListener(new PopupCardView.DPopupCard.OnDPopupCardListener() {
-            @Override
-            public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
-                Utils.saveInt("applyonbootdelay", Utils.stringToInt(list.get(position)
-                    .replace(" " + getString(R.string.sec), "")), getActivity());
-            }
-        });
+            final List < String > list = new ArrayList < > ();
+            list.add(0 + " " + getString(R.string.sec));
+            for (int i = 5; i < 421; i *= 2)
+                list.add(i + " " + getString(R.string.sec));
 
-        addView(mApplyonbootDelayCard);
-
-        SwitchCardView.DSwitchCard mApplyonbootNotificationCard = new SwitchCardView.DSwitchCard();
-        mApplyonbootNotificationCard.setTitle(getString(R.string.notification));
-        mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
-        mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", false, getActivity()));
-        mApplyonbootNotificationCard.setOnDSwitchCardListener(
-            new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+            PopupCardView.DPopupCard mApplyonbootDelayCard = new PopupCardView.DPopupCard(list);
+            mApplyonbootDelayCard.setDescription(getString(R.string.delay));
+            mApplyonbootDelayCard.setItem(Utils.getInt("applyonbootdelay", 0, getActivity()) + " " + getString(R.string.sec));
+            mApplyonbootDelayCard.setOnDPopupCardListener(new PopupCardView.DPopupCard.OnDPopupCardListener() {
                 @Override
-                public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                    Utils.saveBoolean("applyonbootnotification", checked, getActivity());
+                public void onItemSelected(PopupCardView.DPopupCard dPopupCard, int position) {
+                    Utils.saveInt("applyonbootdelay", Utils.stringToInt(list.get(position)
+                        .replace(" " + getString(R.string.sec), "")), getActivity());
                 }
             });
 
-        addView(mApplyonbootNotificationCard);
+            addView(mApplyonbootDelayCard);
+
+            SwitchCardView.DSwitchCard mApplyonbootNotificationCard = new SwitchCardView.DSwitchCard();
+            mApplyonbootNotificationCard.setTitle(getString(R.string.notification));
+            mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
+            mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", false, getActivity()));
+            mApplyonbootNotificationCard.setOnDSwitchCardListener(
+                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+                    @Override
+                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                        Utils.saveBoolean("applyonbootnotification", checked, getActivity());
+                    }
+                });
+
+            addView(mApplyonbootNotificationCard);
+        }
 
         SwitchCardView.DSwitchCard mShowToastCard = new SwitchCardView.DSwitchCard();
         mShowToastCard.setDescription(getString(R.string.show_toast));

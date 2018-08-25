@@ -698,7 +698,6 @@ public class Utils implements Constants {
             .setOngoing(true)
             .setChannelId(id);
 
-
         Intent reEnableReceiver = new Intent();
         reEnableReceiver.setAction(THERMAL_ENGINE_RE_ENABLE);
         PendingIntent pendingIntentYes = PendingIntent.getBroadcast(context, 12345, reEnableReceiver, PendingIntent.FLAG_UPDATE_CURRENT);

@@ -16,6 +16,7 @@
 
 package com.grarak.kerneladiutor.services;
 
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -68,9 +69,12 @@ public class BootService extends Service {
 
     private final Handler hand = new Handler();
 
-    private final int NOTIFY_ID = 0;
+    private int delay;
+    private final int NOTIFY_ID = 101;
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
+    private boolean needNotification = false;
+    private String id = "KA_apply_on_boot";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -80,6 +84,31 @@ public class BootService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        String title = getString(R.string.apply_on_boot);
+
+        mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        //Create a channel for oreo notification to work
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            needNotification = true;
+            NotificationChannel mChannel = mNotifyManager.getNotificationChannel(id);
+            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
+            mNotifyManager.createNotificationChannel(mChannel);
+        }
+
+        mBuilder = new NotificationCompat.Builder(this, id)
+            .setContentTitle(title)
+            .setSmallIcon(R.drawable.ic_launcher_preview)
+            .setChannelId(id);
+
+        if (!needNotification) {
+            delay = Utils.getInt("applyonbootdelay", 0, this);
+            mBuilder.setContentText(getString(R.string.apply_on_boot_time, delay));
+        }
+
+        if (needNotification) startForeground(NOTIFY_ID, mBuilder.build());
+
         log("initialize");
         init();
     }
@@ -117,50 +146,35 @@ public class BootService extends Service {
             }
 
         if (applys.size() > 0) {
-            final int delay = Utils.getInt("applyonbootdelay", 0, this);
 
-            String id = "KA_apply_on_boot";
-            String title = getString(R.string.apply_on_boot);
-
-            mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            //Create a channel for oreo notification to work
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                NotificationChannel mChannel = mNotifyManager.getNotificationChannel(id);
-                mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
-                mNotifyManager.createNotificationChannel(mChannel);
+            if (!needNotification) {
+                TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+                stackBuilder.addParentStack(MainActivity.class);
+                stackBuilder.addNextIntent(new Intent(this, MainActivity.class));
+                PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+                mBuilder.setContentIntent(pendingIntent);
             }
-
-            mBuilder = new NotificationCompat.Builder(this, id)
-                .setContentTitle(title)
-                .setContentText(getString(R.string.apply_on_boot_time, delay))
-                .setSmallIcon(R.drawable.ic_launcher_preview)
-                .setChannelId(id);
-
-            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
-            stackBuilder.addParentStack(MainActivity.class);
-            stackBuilder.addNextIntent(new Intent(this, MainActivity.class));
-            PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-            mBuilder.setContentIntent(pendingIntent);
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    boolean notification = Utils.getBoolean("applyonbootnotification", false, BootService.this);
-                    for (int i = delay; i >= 0; i--)
-                        try {
-                            Thread.sleep(1000);
-                            String note = getString(R.string.apply_on_boot_time, i);
-                            if (notification) {
-                                mBuilder.setContentText(note).setProgress(delay, delay - i, false);
-                                mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
-                            } else if ((i % 10 == 0 || i == delay) && i != 0) toast(note);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                    if (!needNotification) {
+                        boolean notification = Utils.getBoolean("applyonbootnotification", false, BootService.this);
+                        for (int i = delay; i >= 0; i--)
+                            try {
+                                Thread.sleep(1000);
+                                String note = getString(R.string.apply_on_boot_time, i);
+                                if (notification) {
+                                    mBuilder.setContentText(note).setProgress(delay, delay - i, false);
+                                    mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
+                                } else if ((i % 10 == 0 || i == delay) && i != 0) toast(note);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        if (notification) {
+                            mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
+                            mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
                         }
-                    if (notification) {
-                        mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
-                        mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
                     }
                     apply(applys);
                     stopSelf();
