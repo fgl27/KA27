@@ -16,7 +16,6 @@
 
 package com.grarak.kerneladiutor.services;
 
-import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -93,7 +92,7 @@ public class BootService extends Service {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             needNotification = true;
             NotificationChannel mChannel = mNotifyManager.getNotificationChannel(id);
-            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
+            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_NONE);
             mNotifyManager.createNotificationChannel(mChannel);
         }
 

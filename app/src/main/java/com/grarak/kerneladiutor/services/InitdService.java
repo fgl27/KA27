@@ -53,7 +53,7 @@ public class InitdService extends Service {
             mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
             NotificationChannel mChannel = mNotifyManager.getNotificationChannel(id);
-            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_LOW);
+            mChannel = new NotificationChannel(id, title, NotificationManager.IMPORTANCE_NONE);
             mNotifyManager.createNotificationChannel(mChannel);
             mBuilder = new NotificationCompat.Builder(this, id)
                 .setContentTitle(title)

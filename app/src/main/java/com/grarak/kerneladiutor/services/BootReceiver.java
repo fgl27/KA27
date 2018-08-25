@@ -15,8 +15,10 @@
  */
 package com.grarak.kerneladiutor.services;
 
+import android.os.Build;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.content.Intent;
 
 import com.grarak.kerneladiutor.utils.Utils;
@@ -32,11 +34,10 @@ public class BootReceiver extends BroadcastReceiver {
         String action = intent.getAction();
 
         if (Intent.ACTION_BOOT_COMPLETED.equals(action) && Utils.getBoolean("ka_run", false, context)) {
+            ContextCompat.startForegroundService(context, new Intent(context, BootService.class));
 
             if (Utils.getBoolean("emulateinit.d", false, context))
-                context.startService(new Intent(context, InitdService.class));
-
-            context.startService(new Intent(context, BootService.class));
+                ContextCompat.startForegroundService(context, new Intent(context, InitdService.class));
         }
     }
 
