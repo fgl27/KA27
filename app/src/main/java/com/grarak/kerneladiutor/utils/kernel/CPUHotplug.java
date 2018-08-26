@@ -1720,10 +1720,8 @@ public class CPUHotplug implements Constants {
 
     public static void activateMpdecision(boolean active, Context context) {
         if (active) {
-            CPU.onlineAllCores(context);
             Control.startService(HOTPLUG_MPDEC, context);
             togglehotplugs("MPDecision", context);
-            CPU.onlineAllCores(context);
         } else {
             Control.stopService(HOTPLUG_MPDEC, context);
             CPU.onlineAllCores(context);
@@ -1755,10 +1753,7 @@ public class CPUHotplug implements Constants {
     }
 
     public static void togglehotplugs(String activehotplug, Context context) {
-        if (isMpdecisionActive() && !activehotplug.equals("MPDecision")) {
-            Control.stopService(HOTPLUG_MPDEC, context);
-            CPU.onlineAllCores(context);
-        }
+        if (isMpdecisionActive() && !activehotplug.equals("MPDecision")) Control.stopService(HOTPLUG_MPDEC, context);
         if (isAutoSmpActive() && !activehotplug.equals("AutoSMP")) Control.runCommand("N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
         if (isThunderPlugActive() && !activehotplug.equals("ThunderPlug")) Control.runCommand("0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
         if (isAlucardHotplugActive() && !activehotplug.equals("AlucardHotplug")) Control.runCommand("0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
@@ -1777,6 +1772,7 @@ public class CPUHotplug implements Constants {
         if (isDynPlugActive() && !activehotplug.equals("DynPlug")) Control.runCommand("N", HOTPLUG_DYN_PLUG_ENABLE, Control.CommandType.GENERIC, context);
         if (isAutoHotplugActive() && !activehotplug.equals("AutoHotplug")) Control.runCommand("N", HOTPLUG_AUTO_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
         if (isHimaActive() && !activehotplug.equals("Hima")) Control.runCommand("N", HIMA_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);
+        CPU.onlineAllCores(context);
     }
 
     public static boolean hasMSMSleeper() {
