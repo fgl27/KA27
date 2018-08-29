@@ -30,7 +30,7 @@ import com.grarak.kerneladiutor.BuildConfig;
  */
 public class AboutusFragment extends RecyclerViewFragment {
 
-    private final String APP_SOURCE = "https://github.com/bhb27/KA27/";
+    private final String APP_SOURCE = "https://github.com/fgl27/KA27/";
     private final String XDA_LINK = "http://forum.xda-developers.com/moto-maxx/development/kernel-bhb27-kernel-t3207526";
 
     @Override
