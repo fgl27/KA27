@@ -68,12 +68,13 @@ public class BootService extends Service {
 
     private final Handler hand = new Handler();
 
-    private int delay;
+    private int delay = 0;
     private final int NOTIFY_ID = 101;
     private NotificationManager mNotifyManager;
     private NotificationCompat.Builder mBuilder;
     private boolean needNotification = false;
     private String id = "KA_apply_on_boot";
+    private String title;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -84,7 +85,7 @@ public class BootService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        String title = getString(R.string.apply_on_boot);
+        title = getString(R.string.apply_on_boot);
 
         mNotifyManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -157,9 +158,9 @@ public class BootService extends Service {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (!needNotification) {
-                        boolean notification = Utils.getBoolean("applyonbootnotification", false, BootService.this);
-                        for (int i = delay; i >= 0; i--)
+                    boolean notification = Utils.getBoolean("applyonbootnotification", false, BootService.this);
+                    if (delay > 0) {
+                        for (int i = delay; i >= 0; i--) {
                             try {
                                 Thread.sleep(1000);
                                 String note = getString(R.string.apply_on_boot_time, i);
@@ -170,12 +171,18 @@ public class BootService extends Service {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                        if (notification) {
+                        }
+                    }
+                    apply(applys);
+                    if (notification) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            mBuilder.setContentText(getString(R.string.apply_on_boot_finished));
+                            mNotifyManager.notify(102, mBuilder.build());
+                        } else {
                             mBuilder.setContentText(getString(R.string.apply_on_boot_finished)).setProgress(0, 0, false);
                             mNotifyManager.notify(NOTIFY_ID, mBuilder.build());
                         }
                     }
-                    apply(applys);
                     stopSelf();
                 }
             }).start();
