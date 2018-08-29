@@ -75,6 +75,7 @@ import com.grarak.kerneladiutor.fragments.kernel.ThermalFragment;
 import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeLockFragment;
+import com.grarak.kerneladiutor.services.NotificationReceiver;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
@@ -698,7 +699,9 @@ public class Utils implements Constants {
             .setOngoing(true)
             .setChannelId(id);
 
-        Intent reEnableReceiver = new Intent();
+        Intent reEnableReceiver = new Intent("com.grarak.kerneladiutor.services.NotificationReceiver.re_enable_thermal");
+        reEnableReceiver.putExtra(THERMAL_ENGINE_RE_ENABLE, 100);
+        reEnableReceiver.setClass(context, NotificationReceiver.class);
         reEnableReceiver.setAction(THERMAL_ENGINE_RE_ENABLE);
         PendingIntent pendingIntentYes = PendingIntent.getBroadcast(context, 12345, reEnableReceiver, PendingIntent.FLAG_UPDATE_CURRENT);
         NotificationCompat.Action ActionSet = new NotificationCompat.Action.Builder(R.drawable.ic_accept, context.getString(R.string.no_termal_reenable), pendingIntentYes).build();

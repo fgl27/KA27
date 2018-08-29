@@ -149,7 +149,7 @@ public class SettingsFragment extends RecyclerViewFragment {
             addView(mHideApplyOnBootCard);
         }
 
-        if (Build.VERSION.SDK_INT < 26) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
 
             final List < String > list = new ArrayList < > ();
             list.add(0 + " " + getString(R.string.sec));
@@ -168,21 +168,21 @@ public class SettingsFragment extends RecyclerViewFragment {
             });
 
             addView(mApplyonbootDelayCard);
-
-            SwitchCardView.DSwitchCard mApplyonbootNotificationCard = new SwitchCardView.DSwitchCard();
-            mApplyonbootNotificationCard.setTitle(getString(R.string.notification));
-            mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
-            mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", false, getActivity()));
-            mApplyonbootNotificationCard.setOnDSwitchCardListener(
-                new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
-                    @Override
-                    public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
-                        Utils.saveBoolean("applyonbootnotification", checked, getActivity());
-                    }
-                });
-
-            addView(mApplyonbootNotificationCard);
         }
+
+        SwitchCardView.DSwitchCard mApplyonbootNotificationCard = new SwitchCardView.DSwitchCard();
+        mApplyonbootNotificationCard.setTitle(getString(R.string.notification));
+        mApplyonbootNotificationCard.setDescription(getString(R.string.notification_summary));
+        mApplyonbootNotificationCard.setChecked(Utils.getBoolean("applyonbootnotification", false, getActivity()));
+        mApplyonbootNotificationCard.setOnDSwitchCardListener(
+            new SwitchCardView.DSwitchCard.OnDSwitchCardListener() {
+                @Override
+                public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
+                    Utils.saveBoolean("applyonbootnotification", checked, getActivity());
+                }
+            });
+
+        addView(mApplyonbootNotificationCard);
 
         SwitchCardView.DSwitchCard mShowToastCard = new SwitchCardView.DSwitchCard();
         mShowToastCard.setDescription(getString(R.string.show_toast));

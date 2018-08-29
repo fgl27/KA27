@@ -487,12 +487,16 @@ public class ThermalFragment extends RecyclerViewFragment implements SwitchCardV
     public void onChecked(SwitchCardView.DSwitchCard dSwitchCard, boolean checked) {
         if (dSwitchCard == mThermaldCard) Thermal.activateThermald(checked, getActivity());
         else if (dSwitchCard == mIntelliThermalEnableCard) {
-            Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
             Thermal.activateIntelliThermal(checked, getActivity());
-            RefreshFrag();
+            if (Thermal.hasThermalengine()) {
+                Thermal.activateThermalengine(!checked, getActivity());
+                Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
+                RefreshFrag();
+            }
         } else if (dSwitchCard == mThermalEngineEnableCard) {
             Thermal.activateThermalengine(checked, getActivity());
             if (Thermal.hasIntelliThermalEnable()) {
+                Thermal.activateIntelliThermal(!checked, getActivity());
                 Utils.toast(getString(R.string.termal_toast), getContext(), Toast.LENGTH_LONG);
                 RefreshFrag();
             } else {

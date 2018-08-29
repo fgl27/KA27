@@ -510,13 +510,8 @@ public class Thermal implements Constants {
     }
 
     public static void activateIntelliThermal(boolean active, Context context) {
-        if (active) {
-            Control.stopService(THERMAL_ENGINE, context);
-            Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-        } else {
-            Control.startService(THERMAL_ENGINE, context);
-            Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-        }
+        if (active) Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
+        else Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
     }
 
     public static boolean isIntelliThermalActive() {
@@ -565,13 +560,8 @@ public class Thermal implements Constants {
     }
 
     public static void activateThermalengine(boolean active, Context context) {
-        if (active) {
-            Control.startService(THERMAL_ENGINE, context);
-            Control.runCommand(String.valueOf("N"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-        } else {
-            Control.stopService(THERMAL_ENGINE, context);
-            Control.runCommand(String.valueOf("Y"), getThermalFile(PARAMETERS_ENABLED), Control.CommandType.GENERIC, context);
-        }
+        if (active) Control.startService(THERMAL_ENGINE, context);
+        else Control.stopService(THERMAL_ENGINE, context);
     }
 
     public static boolean isThermalengineActive() {
