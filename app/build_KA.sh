@@ -18,7 +18,8 @@ echo -e "\n Script start $(date)\n";
 #Folders Folder= you app folder SDK_Folder android sdk folder Download it if you don't have it, don't remove the sdk.dir= from the line
 
 FOLDER=$HOME/android/KA27;
-SDK_FOLDER="sdk.dir=/home/fgl27/android/sdk";
+SDK_FOLDER="$HOME"/android/sdk;
+SDK_DIR="sdk.dir=$SDK_FOLDER";
 #build the app BAPP=1?
 BAPP=1;
 
