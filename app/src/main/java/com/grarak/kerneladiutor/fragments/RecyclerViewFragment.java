@@ -15,6 +15,7 @@
  */
 package com.grarak.kerneladiutor.fragments;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
@@ -43,7 +44,9 @@ import android.widget.TextView;
 import com.grarak.kerneladiutor.R;
 import com.grarak.kerneladiutor.elements.DAdapter;
 import com.grarak.kerneladiutor.utils.Constants;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.Utils;
+import com.grarak.kerneladiutor.TextActivity;
 import com.nineoldandroids.view.ViewHelper;
 
 import java.util.ArrayList;
@@ -477,12 +480,28 @@ public class RecyclerViewFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        //If lost SU after resume warn and exit
+        if (!RootUtils.rootAccess()) {
+            Utils.toast(getString(R.string.no_root), getActivity());
+
+            Intent i = new Intent(getActivity(), TextActivity.class);
+            Bundle args = new Bundle();
+            args.putString(TextActivity.ARG_TEXT, getString(R.string.no_root));
+            Log.d(Constants.TAG, "onResume no root");
+            i.putExtras(args);
+            startActivity(i);
+
+            final Intent NewIntent = new Intent();
+            NewIntent.setAction("updateMainReceiver");
+            getActivity().sendBroadcast(NewIntent);
+        }
         handler.post(run);
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        RootUtils.closeSU();
         handler.removeCallbacks(run);
     }
 

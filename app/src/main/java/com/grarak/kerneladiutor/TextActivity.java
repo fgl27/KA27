@@ -16,12 +16,16 @@
 
 package com.grarak.kerneladiutor;
 
+import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+
+import com.grarak.kerneladiutor.MainActivity;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 public class TextActivity extends BaseActivity {
 
@@ -40,6 +44,18 @@ public class TextActivity extends BaseActivity {
         textView.setTextSize(getResources().getDisplayMetrics().density * 7);
         textView.setGravity(Gravity.CENTER);
         textView.setText(getIntent().getExtras().getString(ARG_TEXT));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (RootUtils.rootAccess()) this.startActivity(new Intent(this, MainActivity.class));
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        RootUtils.closeSU();
     }
 
     @Override
