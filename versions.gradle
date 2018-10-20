@@ -2,12 +2,12 @@ ext.versions = [
         minSdk               : 21,
         maxSdk               : 28,
         compileSdk           : 28,
-        buildTools           : '28.0.2',
+        buildTools           : '28.0.3',
 
-        publishVersion       : 'Quark.75',
-        publishVersionCode   : 75,
+        publishVersion       : 'Quark.76',
+        publishVersionCode   : 76,
 
-        gradlePlugin         : '3.2.0',
+        gradlePlugin         : '3.2.1',
         benmanes             : '0.20.0',
 
         supportLib           : '28.0.0',
