@@ -145,7 +145,7 @@ public class LMKFragment extends RecyclerViewFragment implements Constants, Swit
 
         DDivider mProfilesDividerCard = new DDivider();
         mProfilesDividerCard.setText(getString(R.string.lmk_profiles));
-        mProfilesDividerCard.setDescription(getString(R.string.lmk_profiles_summary));
+        mProfilesDividerCard.setDescription(LMK.hasVmPressureFileMin() ? getString(R.string.lmk_profiles_summary_vmp) : getString(R.string.lmk_profiles_summary));
         addView(mProfilesDividerCard);
 
         DDivider mProfilesBHBDividerCard = new DDivider();

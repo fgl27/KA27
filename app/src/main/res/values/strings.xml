@@ -699,7 +699,8 @@
     <string name="lmk_profiles_original">Profiles (General use)</string>
     <string name="lmk_bhb_profiles">BHB27 Profiles</string>
     <string name="lmk_profiles">LMK Profiles</string>
-    <string name="lmk_profiles_summary">Click on one of the Profile below to set its values to LMK Min Free parameters.\n\nValues will be set according this order:\nA,B,C,D,E,F,G\nWere:\nA = Foreground Applications\nB = Visible Applications\nC = Secondary Server\nD = Hidden Applications\nE = Content Provider\nF = Empty Applications\nG = VM Pressure Min\n\n*G VM Pressure Min, only available in BHB27 Kernel</string>
+    <string name="lmk_profiles_summary">Click on one of the Profile below to set its values to LMK Min Free parameters.\n\nValues will be set according this order:\nA,B,C,D,E,F\nWere:\nA = Foreground Applications\nB = Visible Applications\nC = Secondary Server\nD = Hidden Applications\nE = Content Provider\nF = Empty Applications\n</string>
+    <string name="lmk_profiles_summary_vmp">Click on one of the Profile below to set its values to LMK Min Free parameters.\n\nValues will be set according this order:\nA,B,C,D,E,F,G\nWere:\nA = Foreground Applications\nB = Visible Applications\nC = Secondary Server\nD = Hidden Applications\nE = Content Provider\nF = Empty Applications\nG = VM Pressure Min</string>
 
     <!-- Virtual Memory -->
     <string name="process_reclaim">Process Reclaim</string>
