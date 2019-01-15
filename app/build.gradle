@@ -35,7 +35,8 @@ android {
                 'ExportedReceiver', // easy tasker support need to have a exporte receiver
                 'PluralsCandidate', //the string start at a plural
                 'StringFormatCount', //lint doesnot get it
-                'VectorPath' //ka drawable
+                'VectorPath', //ka drawable
+                'VectorRaster' //ka drawable
     }
     productFlavors {
     }

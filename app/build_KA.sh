@@ -66,7 +66,7 @@ fi;
 if [ $BAPP == 1 ]; then
 ./gradlew clean
 echo -e "\n The above is just the cleaning build start now\n";
-./gradlew build 2>&1 | tee build_log.txt
+./gradlew build --warning-mode all 2>&1 | tee build_log.txt
 fi;
 
 END2="$(date)";
@@ -85,7 +85,7 @@ else
         ISSUES=$(grep issues build_log.txt | grep release)
 	if [ -n "$ISSUES" ]; then
 		NOISSUES=0;
-		contains "$ISSUES" ": 10 issues" && NOISSUES=1;
+		contains "$ISSUES" ": 11 issues" && NOISSUES=1;
 		if [ $NOISSUES == 0 ]; then
 			echo -e "\n${CYAN}Lint issues:\n${NC}";
 			echo -e "${RED}$ISSUES${NC}";
