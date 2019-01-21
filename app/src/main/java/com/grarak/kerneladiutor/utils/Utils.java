@@ -565,9 +565,17 @@ public class Utils implements Constants {
         }
     }
 
-    public static boolean hasProp(String key) {
+    public static boolean hasProp(String prop) {
         try {
-            return RootUtils.runCommand("getprop | grep " + key).split("]:").length > 1;
+            return RootUtils.runCommand("getprop | grep " + prop).split("]:").length > 1;
+        } catch (Exception ignored) {
+            return false;
+        }
+    }
+
+    public static boolean hasServiceProp(String prop) {
+        try {
+            return RootUtils.runCommand("getprop | grep \'init\\.svc\\." + prop + "\'").split("]:").length > 1;
         } catch (Exception ignored) {
             return false;
         }

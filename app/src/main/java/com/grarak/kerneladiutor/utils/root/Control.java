@@ -129,7 +129,7 @@ public class Control implements Constants {
                     boolean mpd = false;
                     if (CPUHotplug.hasMpdecision() && CPUHotplug.isMpdecisionActive()) {
                         mpd = true;
-                        stopService(HOTPLUG_MPDEC, null);
+                        CPUHotplug.activateMpdecision(false, context);
                     }
 
                     List < Integer > range = command == CommandType.CPU ? CPU.getBigCoreRange() : CPU.getLITTLECoreRange();
@@ -145,7 +145,7 @@ public class Control implements Constants {
                         setPermission(String.format(file, range.get(i)), 444, context);
                     }
 
-                    if (mpd) startService(HOTPLUG_MPDEC, null);
+                    if (mpd) CPUHotplug.activateMpdecision(true, context);
                 } else if (command == CommandType.GENERIC) {
                     runGeneric(file, value, id, context);
                 } else if (command == CommandType.ASTERISK) {

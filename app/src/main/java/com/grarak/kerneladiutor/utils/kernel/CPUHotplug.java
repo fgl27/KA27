@@ -39,6 +39,8 @@ public class CPUHotplug implements Constants {
 
     private static INTELLIPLUG_TYPE TYPE;
 
+    private static String MPDECISION_FILE;
+    
     private static String MSM_HOTPLUG_ENABLE_FILE;
     private static String MSM_HOTPLUG_UPDATE_RATE_FILE;
     private static String MSM_HOTPLUG_IO_IS_BUSY_FILE;
@@ -1720,10 +1722,10 @@ public class CPUHotplug implements Constants {
 
     public static void activateMpdecision(boolean active, Context context) {
         if (active) {
-            Control.startService(HOTPLUG_MPDEC, context);
+            Control.startService(MPDECISION_FILE, context);
             togglehotplugs("MPDecision", context);
         } else {
-            Control.stopService(HOTPLUG_MPDEC, context);
+            Control.stopService(MPDECISION_FILE, context);
             CPU.onlineAllCores(context);
         }
     }
@@ -1731,7 +1733,7 @@ public class CPUHotplug implements Constants {
     public static boolean isMpdecisionActive() {
         // Doing this here instead of the utils.ispropactive function because it can show either of these statuses
         try {
-            String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\.mpdecision\' | head -1").split("]: ")[1];
+            String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\." + MPDECISION_FILE + "\' | head -1").split("]: ")[1];
             if (result.equals("[running]") || result.equals("[restarting]")) {
                 return true;
             }
@@ -1740,8 +1742,17 @@ public class CPUHotplug implements Constants {
         }
         return false;
     }
+
     public static boolean hasMpdecision() {
-        return Utils.hasProp(HOTPLUG_MPDEC);
+        if (MPDECISION_FILE == null) {
+            for (String prop: HOTPLUG_MPDEC_ARRAY) {
+                if (Utils.hasServiceProp(prop)) {
+                    MPDECISION_FILE = prop;
+                    return true;
+                }
+            }
+        }
+        return MPDECISION_FILE != null;
     }
 
     public static boolean hasCpuHotplug() {
@@ -1753,7 +1764,7 @@ public class CPUHotplug implements Constants {
     }
 
     public static void togglehotplugs(String activehotplug, Context context) {
-        if (isMpdecisionActive() && !activehotplug.equals("MPDecision")) Control.stopService(HOTPLUG_MPDEC, context);
+        if (isMpdecisionActive() && !activehotplug.equals("MPDecision")) Control.stopService(MPDECISION_FILE, context);
         if (isAutoSmpActive() && !activehotplug.equals("AutoSMP")) Control.runCommand("N", HOTPLUG_AUTOSMP_ENABLE, Control.CommandType.GENERIC, context);
         if (isThunderPlugActive() && !activehotplug.equals("ThunderPlug")) Control.runCommand("0", HOTPLUG_THUNDER_PLUG_ENABLE, Control.CommandType.GENERIC, context);
         if (isAlucardHotplugActive() && !activehotplug.equals("AlucardHotplug")) Control.runCommand("0", ALUCARD_HOTPLUG_ENABLE, Control.CommandType.GENERIC, context);

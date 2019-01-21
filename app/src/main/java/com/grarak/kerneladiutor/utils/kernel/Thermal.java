@@ -39,6 +39,7 @@ public class Thermal implements Constants {
     private static MSMTHERMAL_TYPE TYPE;
 
     private static String THERMAL_FILE;
+    private static String THERMAL_ENGINE_FILE;
     private static String CORE_CONTROL_ENABLE_FILE;
 
     private static String TEMP_LIMIT_FILE;
@@ -560,25 +561,33 @@ public class Thermal implements Constants {
     }
 
     public static void activateThermalengine(boolean active, Context context) {
-        if (active) Control.startService(THERMAL_ENGINE, context);
-        else Control.stopService(THERMAL_ENGINE, context);
+        if (active) Control.startService(THERMAL_ENGINE_FILE, context);
+        else Control.stopService(THERMAL_ENGINE_FILE, context);
     }
 
     public static boolean isThermalengineActive() {
-        // copy this from mpdecision
-        try {
-            String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\.thermal-engine\' | head -1").split("]: ")[1];
-            if (result.equals("[running]") || result.equals("[restarting]")) {
-                return true;
+        if (THERMAL_ENGINE_FILE != null) {
+            try {
+                String result = RootUtils.runCommand("getprop | grep \'init\\.svc\\." + THERMAL_ENGINE_FILE + "\' | head -1").split("]: ")[1];
+                if (result.equals("[running]") || result.equals("[restarting]")) {
+                    return true;
+                }
+            } catch (Exception ignored) {
+                return false;
             }
-        } catch (Exception ignored) {
-            return false;
         }
         return false;
     }
 
     public static boolean hasThermalengine() {
-        return Utils.hasProp(THERMAL_ENGINE);
+        if (THERMAL_ENGINE_FILE == null) {
+            for (String prop: THERMAL_ENGINE_ARRAY) {
+                if (Utils.hasServiceProp(prop)) {
+                    THERMAL_ENGINE_FILE = prop;
+                    return true;
+                }
+            }
+        }
+        return THERMAL_ENGINE_FILE != null;
     }
-
 }

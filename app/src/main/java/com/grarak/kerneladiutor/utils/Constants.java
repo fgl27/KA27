@@ -130,7 +130,7 @@ public interface Constants {
 
     // CPU Hotplug
     String BCH = "/sys/kernel/boeffla_config_mode/enabled";
-    String HOTPLUG_MPDEC = "mpdecision";
+    String[] HOTPLUG_MPDEC_ARRAY = {"mpdecision", "vendor.mpdecision"};
 
     String MSMPERFORMANCE = "/sys/module/msm_performance/parameters/max_cpus";
 
@@ -386,13 +386,13 @@ public interface Constants {
 
     String[][] CPU_HOTPLUG_ARRAY = {
         {
-            HOTPLUG_MPDEC,
             MSM_SLEEPER,
             STATE_HELPER,
             MSMPERFORMANCE,
             BCH,
             HIMA_HOTPLUG
         },
+        HOTPLUG_MPDEC_ARRAY,
         INTELLIPLUG_ARRAY,
         BLU_PLUG_ARRAY,
         HOTPLUG_MSM_ARRAY,
@@ -472,16 +472,16 @@ public interface Constants {
     String CONF_FREQ_HIGH_THRESH = MSM_THERMAL_CONF + "/freq_high_thresh";
     String CONF_POLL_MS = MSM_THERMAL_CONF + "/poll_ms";
 
-    String THERMAL_ENGINE = "thermal-engine";
+    String[] THERMAL_ENGINE_ARRAY = {"thermal-engine", "vendor\\.thermal-engine"};
     String THERMAL_ENGINE_RE_ENABLE = "re_enable_thermal";
 
     String[] THERMAL_ARRAY = {
         MSM_THERMAL,
         MSM_THERMAL_V2,
-        THERMAL_ENGINE
     };
 
     String[][] THERMAL_ARRAYS = {
+        THERMAL_ENGINE_ARRAY,
         THERMAL_ARRAY,
         TEMP_LIMIT_ARRAY,
         {
