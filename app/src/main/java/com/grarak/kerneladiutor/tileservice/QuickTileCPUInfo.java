@@ -38,6 +38,25 @@ public class QuickTileCPUInfo extends TileService {
     private boolean state;
 
     @Override
+    public void onTileAdded() {
+        super.onTileAdded();
+        mTile = getQsTile();
+        mTile.setState(mTile.STATE_INACTIVE);
+        mTile.updateTile();
+    }
+
+    @Override
+    public void onTileRemoved() {
+        super.onTileRemoved();
+        if (state) {
+            state = !state;
+            Utils.GlobalIntSet(state, this, Constants.SHOW_CPU);
+            Utils.StartAppService(state, serviceName);
+        }
+        RootUtils.closeSU();
+    }
+
+    @Override
     public void onStartListening() {
         super.onStartListening();
         mTile = getQsTile();

@@ -23,11 +23,22 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.service.quicksettings.TileService;
+import android.service.quicksettings.Tile;
 
 import com.grarak.kerneladiutor.MainActivity;
 
 @TargetApi(24)
 public class QuickTileKA extends TileService {
+
+    private Tile mTile;
+
+    @Override
+    public void onTileAdded() {
+        super.onTileAdded();
+        mTile = getQsTile();
+        mTile.setState(mTile.STATE_INACTIVE);
+        mTile.updateTile();
+    }
 
     @Override
     public void onStartListening() {
@@ -54,7 +65,10 @@ public class QuickTileKA extends TileService {
     }
 
     private void launch() {
-        startActivityAndCollapse(new Intent(this, MainActivity.class));
+        Intent start = new Intent(Intent.ACTION_VIEW);
+        start.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        start.setClass(this, MainActivity.class);
+        startActivityAndCollapse(start);
     }
 
 }

@@ -48,6 +48,20 @@ public class QuickTileHBM extends TileService {
     }
 
     @Override
+    public void onTileAdded() {
+        super.onTileAdded();
+        mTile = getQsTile();
+        mTile.setState(mTile.STATE_INACTIVE);
+        mTile.updateTile();
+    }
+
+    @Override
+    public void onTileRemoved() {
+        super.onTileRemoved();
+        RootUtils.closeSU();
+    }
+
+    @Override
     public void onStopListening() {
         RootUtils.closeSU();
     }
