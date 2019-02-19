@@ -43,7 +43,9 @@ public class QuickTileKA extends TileService {
     @Override
     public void onStartListening() {
         super.onStartListening();
-        getQsTile().updateTile();
+        mTile = getQsTile();
+        mTile.setState(mTile.STATE_INACTIVE);
+        mTile.updateTile();
     }
 
     @Override
