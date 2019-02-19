@@ -76,6 +76,7 @@ import com.grarak.kerneladiutor.fragments.kernel.VMFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeFragment;
 import com.grarak.kerneladiutor.fragments.kernel.WakeLockFragment;
 import com.grarak.kerneladiutor.services.NotificationReceiver;
+import com.grarak.kerneladiutor.utils.database.CommandDB;
 import com.grarak.kerneladiutor.utils.kernel.CPU;
 import com.grarak.kerneladiutor.utils.root.RootUtils;
 import com.grarak.kerneladiutor.utils.root.RootFile;
@@ -364,6 +365,38 @@ public class Utils implements Constants {
 
     public static void vibrate(int duration) {
         RootUtils.runCommand("echo " + duration + " > /sys/class/timed_output/vibrator/enable");
+    }
+
+    public static List < String > getcommands(List < CommandDB.CommandItem > allCommands, List < String > applys, Context context) {
+
+        List < String > commands = new ArrayList < > ();
+        //Prevent apply cpuvoltage strings that conflict with cpu strings
+        ArrayList < String > cpuvoltage = new ArrayList < > (Arrays.asList(CPU_VOLTAGE_ARRAY));
+        boolean cpuvoltageboot = getApply(CPUVoltageFragment.class, context);
+
+        for (CommandDB.CommandItem commandItem: allCommands) {
+            for (String sys: applys) {
+                String path = commandItem.getPath();
+                if ((sys.contains(path) || path.contains(sys))) {
+                    if (path.startsWith("/sys/devices/system/cpu/cpu") && !cpuvoltageboot) {
+                        if (!cpuvoltage.contains(path)) {
+                            String command = commandItem.getCommand();
+                            if (commands.indexOf(command) < 0)
+                                commands.add(command);
+                        }
+                    } else {
+                        String command = commandItem.getCommand();
+                        if (commands.indexOf(command) < 0)
+                            commands.add(command);
+                    }
+                }
+            }
+        }
+        return commands;
+    }
+
+    public static boolean getApply(Class mClass, Context context) {
+        return getBoolean(mClass.getSimpleName() + "onboot", false, context);
     }
 
     public static List < String > getApplys(Class mClass) {

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.grarak.kerneladiutor.services;
 
 import android.app.NotificationChannel;
@@ -219,32 +218,25 @@ public class BootService extends Service {
         for (String file: writePermission)
             su.runCommand("chmod 644 " + file);
 
-        List < CommandDB.CommandItem > allCommands = new CommandDB(this).getAllCommands();
-        List < String > commands = new ArrayList < > ();
-        if (applys.size() > 0)
-            for (CommandDB.CommandItem commandItem: allCommands)
-                for (String sys: applys) {
-                    String path = commandItem.getPath();
-                    if ((sys.contains(path) || path.contains(sys))) {
-                        String command = commandItem.getCommand();
-                        if (commands.indexOf(command) < 0)
-                            commands.add(command);
-                    }
-                }
+        if (applys.size() > 0) {
+            List < CommandDB.CommandItem > allCommands = new CommandDB(this).getAllCommands();
+            List < String > commands = Utils.getcommands(allCommands, applys, this);
 
-        for (String command: commands) {
-            log("run: " + command);
-            // Core need to be online to any cpu command be accepted make shore of it here
-            if (command.contains("/sys/devices/system/cpu/")) {
-                log("OnlineCores if enter in command = " + command);
-                //Core 0 is always on
-                for (int i = 1; i < CPU.getCoreCount(); i++) {
-                    su.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
+            for (String command: commands) {
+                log("run: " + command);
+                // Core need to be online to any cpu command be accepted make shore of it here
+                if (command.contains("/sys/devices/system/cpu/")) {
+                    log("OnlineCores if enter in command = " + command);
+                    //Core 0 is always on
+                    for (int i = 1; i < CPU.getCoreCount(); i++) {
+                        su.runCommand("echo " + "1" + " > " + String.format(Locale.US, Constants.CPU_CORE_ONLINE, i));
+                        su.runCommand(command);
+                    }
+                } else
                     su.runCommand(command);
-                }
-            } else
-                su.runCommand(command);
+            }
         }
+
         su.close();
         toast(getString(R.string.apply_on_boot_finished));
     }

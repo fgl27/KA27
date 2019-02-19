@@ -73,10 +73,7 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
     }
 
     public void listcommands() {
-        CommandDB commandDB = new CommandDB(getActivity());
-        List < CommandDB.CommandItem > commandItems = commandDB.getAllCommands();
         final List < String > applys = new ArrayList < > ();
-        List < String > commands = new ArrayList < > ();
 
         Class[] classes = {
             BatteryFragment.class,
@@ -103,59 +100,96 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                 applys.addAll(Utils.getApplys(mClass));
             }
 
-        if (applys.size() > 0)
-            for (CommandDB.CommandItem commandItem: commandItems) {
-                for (String sys: applys) {
-                    String path = commandItem.getPath();
-                    if ((sys.contains(path) || path.contains(sys))) {
-                        String command = commandItem.getCommand();
-                        if (commands.indexOf(command) < 0)
-                            commands.add(command);
+        if (applys.size() > 0) {
+            List < CommandDB.CommandItem > allCommands = new CommandDB(getContext()).getAllCommands();
+            List < String > commands = Utils.getcommands(allCommands, applys, getContext());
+
+            if (commands.size() > 0) {
+                Collections.reverse(commands);
+                mAllStartUpCommandsCard = new CardViewItem.DCardView();
+                mAllStartUpCommandsCard.setTitle(getString(R.string.all_startup_commands));
+                final String allcommands = android.text.TextUtils.join("\n", commands);
+
+                mAllStartUpCommandsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
+                    @Override
+                    public void onClick(CardViewItem.DCardView dCardView) {
+                        getHandler().post(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                new AlertDialog.Builder(getActivity(),
+                                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                                    .setTitle(getString(R.string.startup_commands_delete_all_commands))
+                                    .setNeutralButton(getString(R.string.delete),
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                new AlertDialog.Builder(getActivity(),
+                                                        (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
+                                                    .setMessage(getString(R.string.startup_commands_delete_all))
+                                                    .setNeutralButton(getString(R.string.delete),
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                                Control.deletespecificcommand(getActivity(), null, null);
+                                                                RefreshFrag();
+                                                                return;
+                                                            }
+                                                        })
+                                                    .setPositiveButton(getString(R.string.cancel),
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int i) {
+                                                                return;
+                                                            }
+                                                        }).show();
+
+                                                return;
+                                            }
+                                        })
+                                    .setPositiveButton(getString(R.string.copy),
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int i) {
+                                                ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+                                                ClipData clip = ClipData.newPlainText("Startup Comnmand", allcommands);
+                                                clipboard.setPrimaryClip(clip);
+                                                Utils.toast(getString(R.string.startup_commands_copy_all), getActivity(), Toast.LENGTH_SHORT);
+                                                return;
+                                            }
+                                        }).show();
+
+                            }
+                        });
                     }
-                }
-            }
+                });
+                addView(mAllStartUpCommandsCard);
 
-        if (commands.size() > 0) {
-            Collections.reverse(commands);
-            mAllStartUpCommandsCard = new CardViewItem.DCardView();
-            mAllStartUpCommandsCard.setTitle(getString(R.string.all_startup_commands));
-            final String allcommands = android.text.TextUtils.join("\n", commands);
+                DDivider mStartUpCommandsListDividerCard = new DDivider();
+                mStartUpCommandsListDividerCard.setText(getString(R.string.startup_commands_list));
+                mStartUpCommandsListDividerCard.setDescription(getString(R.string.startup_commands_list_info));
+                addView(mStartUpCommandsListDividerCard);
 
-            mAllStartUpCommandsCard.setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                @Override
-                public void onClick(CardViewItem.DCardView dCardView) {
-                    getHandler().post(new Runnable() {
+                mStartUpCommands = new CardViewItem.DCardView[allCommands.size()];
+                for (int i = 0; i < commands.size(); i++) {
+                    mStartUpCommands[i] = new CardViewItem.DCardView();
+                    mStartUpCommands[i].setDescription(commands.get(i));
+                    final String command = commands.get(i);
+                    mStartUpCommands[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
                         @Override
-                        public void run() {
+                        public void onClick(CardViewItem.DCardView dCardView) {
 
                             new AlertDialog.Builder(getActivity(),
                                     (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-                                .setTitle(getString(R.string.startup_commands_delete_all_commands))
+                                .setTitle(getString(R.string.startup_commands_delete_single))
+                                .setMessage(command)
                                 .setNeutralButton(getString(R.string.delete),
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            new AlertDialog.Builder(getActivity(),
-                                                    (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-                                                .setMessage(getString(R.string.startup_commands_delete_all))
-                                                .setNeutralButton(getString(R.string.delete),
-                                                    new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                                            Control.deletespecificcommand(getActivity(), null, null);
-                                                            RefreshFrag();
-                                                            return;
-                                                        }
-                                                    })
-                                                .setPositiveButton(getString(R.string.cancel),
-                                                    new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialog, int i) {
-                                                            return;
-                                                        }
-                                                    }).show();
-
+                                            Control.deletespecificcommand(getActivity(), null, command);
+                                            RefreshFrag();
                                             return;
                                         }
                                     })
@@ -164,67 +198,23 @@ public class StartUpCommandsFragment extends RecyclerViewFragment {
                                         @Override
                                         public void onClick(DialogInterface dialog, int i) {
                                             ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                            ClipData clip = ClipData.newPlainText("Startup Comnmand", allcommands);
+                                            ClipData clip = ClipData.newPlainText("Startup Comnmand", command);
                                             clipboard.setPrimaryClip(clip);
-                                            Utils.toast(getString(R.string.startup_commands_copy_all), getActivity(), Toast.LENGTH_SHORT);
+                                            Utils.toast(getString(R.string.startup_commands_copy), getActivity(), Toast.LENGTH_SHORT);
                                             return;
                                         }
                                     }).show();
 
                         }
                     });
+                    addView(mStartUpCommands[i]);
                 }
-            });
-            addView(mAllStartUpCommandsCard);
+            } else {
+                mAllStartUpCommandsCard = new CardViewItem.DCardView();
+                mAllStartUpCommandsCard.setTitle(getString(R.string.startup_commands_none));
 
-            DDivider mStartUpCommandsListDividerCard = new DDivider();
-            mStartUpCommandsListDividerCard.setText(getString(R.string.startup_commands_list));
-            mStartUpCommandsListDividerCard.setDescription(getString(R.string.startup_commands_list_info));
-            addView(mStartUpCommandsListDividerCard);
-
-            mStartUpCommands = new CardViewItem.DCardView[commandItems.size()];
-            for (int i = 0; i < commands.size(); i++) {
-                mStartUpCommands[i] = new CardViewItem.DCardView();
-                mStartUpCommands[i].setDescription(commands.get(i));
-                final String command = commands.get(i);
-                mStartUpCommands[i].setOnDCardListener(new CardViewItem.DCardView.OnDCardListener() {
-                    @Override
-                    public void onClick(CardViewItem.DCardView dCardView) {
-
-                        new AlertDialog.Builder(getActivity(),
-                                (Utils.DARKTHEME ? R.style.AlertDialogStyleDark : R.style.AlertDialogStyleLight))
-                            .setTitle(getString(R.string.startup_commands_delete_single))
-                            .setMessage(command)
-                            .setNeutralButton(getString(R.string.delete),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        Control.deletespecificcommand(getActivity(), null, command);
-                                        RefreshFrag();
-                                        return;
-                                    }
-                                })
-                            .setPositiveButton(getString(R.string.copy),
-                                new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int i) {
-                                        ClipboardManager clipboard = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-                                        ClipData clip = ClipData.newPlainText("Startup Comnmand", command);
-                                        clipboard.setPrimaryClip(clip);
-                                        Utils.toast(getString(R.string.startup_commands_copy), getActivity(), Toast.LENGTH_SHORT);
-                                        return;
-                                    }
-                                }).show();
-
-                    }
-                });
-                addView(mStartUpCommands[i]);
+                addView(mAllStartUpCommandsCard);
             }
-        } else {
-            mAllStartUpCommandsCard = new CardViewItem.DCardView();
-            mAllStartUpCommandsCard.setTitle(getString(R.string.startup_commands_none));
-
-            addView(mAllStartUpCommandsCard);
         }
     }
 
