@@ -864,6 +864,14 @@
     <string name="c2state_summary">Deeper sleep with longer latency when waking up.</string>
     <string name="c3state">C3 (Power Collapse)</string>
     <string name="c3state_summary">Really deep sleep with longest latency when waking up.</string>
+    <string name="deviceidle">Doze (deviceidle)</string>
+    <string name="deviceidle_summary">If a user leaves a device unplugged and stationary for a period of time, with the screen off, the device enters Doze mode. In Doze mode, the system attempts to conserve battery by restricting app\'s access to network and CPU-intensive services. It also prevents apps from accessing the network and defers their jobs, syncs, and standard alarms.</string>
+    <string name="deviceidle_doze">Doze</string>
+    <string name="deviceidle_doze_summary">Enable/disable Doze feature, also enables/disables light and deep mode</string>
+    <string name="deviceidle_doze_light">Doze light mode</string>
+    <string name="deviceidle_doze_light_summary">Lighter mode, will restrict for a lower period of time</string>
+    <string name="deviceidle_doze_deep">Doze deep mode</string>
+    <string name="deviceidle_doze_deep_summary">Deeper mode, will restrict for a higher period of time</string>
     <string name="battery_led">Battery LED Full charge</string>
     <string name="battery_led_summary">Turn on green front LED when battery reaches 100&#37;</string>
     <string name="moto_touchx">Moto Predictive Touch driver</string>

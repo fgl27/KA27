@@ -20,6 +20,7 @@ import android.content.Context;
 import com.grarak.kerneladiutor.utils.Constants;
 import com.grarak.kerneladiutor.utils.Utils;
 import com.grarak.kerneladiutor.utils.root.Control;
+import com.grarak.kerneladiutor.utils.root.RootUtils;
 
 /**
  * Created by willi on 03.01.15.
@@ -128,7 +129,6 @@ public class Battery implements Constants {
             Control.runCommand(active ? "1" : "0", path.replace("0", Integer.toString(i)), Control.CommandType.GENERIC, context);
         }
     }
-
 
     public static boolean isC2StateActive() {
         return Utils.readFile(C2STATE).equals("1");
@@ -290,5 +290,53 @@ public class Battery implements Constants {
 
     public static boolean hasColdDisabler() {
         return Utils.existFile(BATTERY_COLD_STATE_DISABLER);
+    }
+
+    public static void activateDeviceidle(boolean active, Context context) {
+        Control.deletespecificcommand(context, active ? DEVICEIDLE_DIS : DEVICEIDLE_ENA, null);
+        Control.deletespecificcommand(context, DEVICEIDLE_DEEP_ENA, null);
+        Control.deletespecificcommand(context, DEVICEIDLE_DEEP_DIS, null);
+        Control.deletespecificcommand(context, DEVICEIDLE_LIGHT_DIS, null);
+        Control.deletespecificcommand(context, DEVICEIDLE_LIGHT_ENA, null);
+        Control.runCommand("", active ?  DEVICEIDLE_ENA : DEVICEIDLE_DIS, Control.CommandType.SHELL, context);
+    }
+
+    public static boolean isDeviceidleActive() {
+        return RootUtils.runCommand(DEVICEIDLE + " enabled").equals("1") || RootUtils.runCommand(DEVICEIDLE + " enabled light").equals("1")  || RootUtils.runCommand(DEVICEIDLE + " enabled deep").equals("1");
+    }
+
+    public static boolean hasDeviceidle() {
+        String has = RootUtils.runCommand(DEVICEIDLE + " enabled");
+        return has.equals("0") || has.equals("1");
+    }
+
+    public static void activateDeviceidlelight(boolean active, Context context) {
+        if (!active) Control.deletespecificcommand(context, DEVICEIDLE_ENA, null);
+        Control.deletespecificcommand(context, active ? DEVICEIDLE_LIGHT_DIS : DEVICEIDLE_LIGHT_ENA, null);
+        Control.runCommand("", active ?  DEVICEIDLE_LIGHT_ENA : DEVICEIDLE_LIGHT_DIS, Control.CommandType.SHELL, context);
+    }
+
+    public static boolean isDeviceidlelightActive() {
+        return RootUtils.runCommand(DEVICEIDLE + " enabled light").equals("1");
+    }
+
+    public static boolean hasDeviceidlelight() {
+        String has = RootUtils.runCommand(DEVICEIDLE + " enabled light");
+        return has.equals("0") || has.equals("1");
+    }
+
+    public static void activateDeviceidledeep(boolean active, Context context) {
+        if (!active) Control.deletespecificcommand(context, DEVICEIDLE_ENA, null);
+        Control.deletespecificcommand(context, active ? DEVICEIDLE_DEEP_DIS : DEVICEIDLE_DEEP_ENA, null);
+        Control.runCommand("", active ?  DEVICEIDLE_DEEP_ENA : DEVICEIDLE_DEEP_DIS, Control.CommandType.SHELL, context);
+    }
+
+    public static boolean isDeviceidledeepActive() {
+        return RootUtils.runCommand(DEVICEIDLE + " enabled deep").equals("1");
+    }
+
+    public static boolean hasDeviceidledeep() {
+        String has = RootUtils.runCommand(DEVICEIDLE + " enabled deep");
+        return has.equals("0") || has.equals("1");
     }
 }

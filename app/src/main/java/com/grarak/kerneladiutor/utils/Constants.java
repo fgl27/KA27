@@ -1004,6 +1004,15 @@ public interface Constants {
     String BATTERY_LED = "/sys/class/leds/charging/trigger";
     String BATTERY_LED_PROP = "led.batton";
 
+    // deviceidle
+    String DEVICEIDLE = "dumpsys deviceidle";
+    String DEVICEIDLE_ENA = DEVICEIDLE + " enable";
+    String DEVICEIDLE_DIS = DEVICEIDLE + " disable";
+    String DEVICEIDLE_DEEP_ENA = DEVICEIDLE + " enable deep";
+    String DEVICEIDLE_DEEP_DIS = DEVICEIDLE + " disable deep";
+    String DEVICEIDLE_LIGHT_ENA = DEVICEIDLE + " enable light";
+    String DEVICEIDLE_LIGHT_DIS = DEVICEIDLE + " disable light";
+
     // C-States
     String C0STATE = "/sys/module/msm_pm/modes/cpu0/wfi/idle_enabled";
     String C1STATE = "/sys/module/msm_pm/modes/cpu0/retention/idle_enabled";
@@ -1038,6 +1047,12 @@ public interface Constants {
         C1STATE,
         C2STATE,
         C3STATE,
+        DEVICEIDLE_ENA,
+        DEVICEIDLE_DIS,
+        DEVICEIDLE_DEEP_ENA,
+        DEVICEIDLE_DEEP_DIS,
+        DEVICEIDLE_LIGHT_ENA,
+        DEVICEIDLE_LIGHT_DIS,
         BATTERY_COLD_STATE_DISABLER
     };
 

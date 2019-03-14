@@ -62,6 +62,8 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
 
     private SwitchCardView.DSwitchCard mC0StateCard, mC1StateCard, mC2StateCard, mC3StateCard;
 
+    private SwitchCardView.DSwitchCard mDeviceidle, mDeviceidlelight, mDeviceidledeep;
+
     @Override
     public void init(Bundle savedInstanceState) {
         super.init(savedInstanceState);
@@ -85,6 +87,7 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         if (Battery.hasBclVphHigh()) BclVphHighInit();
         if (Battery.hasBclHotplug()) bclHotplugInit();
 
+        DeviceidleInit();
         cstatesInit();
         Update();
     }
@@ -301,6 +304,49 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         addView(mColdDisablerCard);
     }
 
+    private void DeviceidleInit() {
+        List < DAdapter.DView > views = new ArrayList < > ();
+
+        if (Battery.hasDeviceidle()) {
+            mDeviceidle = new SwitchCardView.DSwitchCard();
+            mDeviceidle.setTitle(getString(R.string.deviceidle_doze));
+            mDeviceidle.setDescription(getString(R.string.deviceidle_doze_summary));
+            mDeviceidle.setChecked(Battery.isDeviceidleActive());
+            mDeviceidle.setOnDSwitchCardListener(this);
+
+            views.add(mDeviceidle);
+        }
+
+        if (Battery.hasDeviceidlelight()) {
+            mDeviceidlelight = new SwitchCardView.DSwitchCard();
+            mDeviceidlelight.setTitle(getString(R.string.deviceidle_doze_light));
+            mDeviceidlelight.setDescription(getString(R.string.deviceidle_doze_light_summary));
+            mDeviceidlelight.setChecked(Battery.isDeviceidlelightActive());
+            mDeviceidlelight.setOnDSwitchCardListener(this);
+
+            views.add(mDeviceidlelight);
+        }
+
+        if (Battery.hasDeviceidledeep()) {
+            mDeviceidledeep = new SwitchCardView.DSwitchCard();
+            mDeviceidledeep.setTitle(getString(R.string.deviceidle_doze_deep));
+            mDeviceidledeep.setDescription(getString(R.string.deviceidle_doze_deep_summary));
+            mDeviceidledeep.setChecked(Battery.isDeviceidledeepActive());
+            mDeviceidledeep.setOnDSwitchCardListener(this);
+
+            views.add(mDeviceidledeep);
+        }
+
+        if (views.size() > 0) {
+            DDivider mDeviceidleCard = new DDivider();
+            mDeviceidleCard.setText(getString(R.string.deviceidle));
+            mDeviceidleCard.setDescription(getString(R.string.deviceidle_summary));
+            addView(mDeviceidleCard);
+
+            addAllViews(views);
+        }
+    }
+
     private void cstatesInit() {
         List < DAdapter.DView > views = new ArrayList < > ();
 
@@ -409,6 +455,13 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
             mBclVphHighCard.setProgress((((Battery.getBclVphHigh()) / 1000) - (bclArraylist * 50)) / 50);
         if (mBclVphLowCard != null)
             mBclVphLowCard.setProgress((((Battery.getBclVphLow()) / 1000) - (bclArraylist * 50)) / 50);
+
+        if (mDeviceidle != null)
+            mDeviceidle.setChecked(Battery.isDeviceidleActive());
+        if (mDeviceidlelight != null)
+            mDeviceidlelight.setChecked(Battery.isDeviceidlelightActive());
+        if (mDeviceidledeep != null)
+            mDeviceidledeep.setChecked(Battery.isDeviceidledeepActive());
     }
 
     @Override
@@ -423,6 +476,9 @@ PopupCardView.DPopupCard.OnDPopupCardListener, SwitchCardView.DSwitchCard.OnDSwi
         else if (dSwitchCard == mBclCard) Battery.activateBcl(checked, getActivity());
         else if (dSwitchCard == mBclHotplugCard) Battery.activateBclHotplug(checked, getActivity());
         else if (dSwitchCard == mColdDisablerCard) Battery.activateColdDisabler(checked, getActivity());
+        else if (dSwitchCard == mDeviceidle) Battery.activateDeviceidle(checked, getActivity());
+        else if (dSwitchCard == mDeviceidlelight) Battery.activateDeviceidlelight(checked, getActivity());
+        else if (dSwitchCard == mDeviceidledeep) Battery.activateDeviceidledeep(checked, getActivity());
     }
 
     @Override
