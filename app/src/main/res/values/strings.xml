@@ -869,9 +869,9 @@
     <string name="deviceidle_doze">Doze</string>
     <string name="deviceidle_doze_summary">Enable/disable Doze feature, also enables/disables light and deep mode</string>
     <string name="deviceidle_doze_light">Doze light mode</string>
-    <string name="deviceidle_doze_light_summary">Lighter mode, will restrict for a lower period of time</string>
+    <string name="deviceidle_doze_light_summary">Lighter mode, will doze for a shorter period of time</string>
     <string name="deviceidle_doze_deep">Doze deep mode</string>
-    <string name="deviceidle_doze_deep_summary">Deeper mode, will restrict for a higher period of time</string>
+    <string name="deviceidle_doze_deep_summary">Deeper mode, will doze for a longer period of time</string>
     <string name="battery_led">Battery LED Full charge</string>
     <string name="battery_led_summary">Turn on green front LED when battery reaches 100&#37;</string>
     <string name="moto_touchx">Moto Predictive Touch driver</string>
