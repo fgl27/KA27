@@ -286,8 +286,9 @@ public class InitdFragment extends RecyclerViewFragment {
             String text = data.getExtras().getString("text");
             if (text != null) {
                 RootFile file = Initd.delete(name);
-                RootUtils.mount(true, "/system");
+                RootUtils.mountSystem(true);
                 for (String line: text.split("\\r?\\n")) file.write(line, true);
+                RootUtils.mountSystem(false);
             }
             if (requestCode == 0) getHandler().post(new Runnable() {
                 @Override

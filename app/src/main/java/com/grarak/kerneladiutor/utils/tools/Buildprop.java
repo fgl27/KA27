@@ -31,20 +31,23 @@ public class Buildprop implements Constants {
         String oldvalue = oldKey + "=" + oldValue;
         String newvalue = newKey + "=" + newValue;
         String command = "old=" + oldvalue + " && " + "new=" + newvalue + " && " + busybox + " sed -i -r \"s%$old%$new%g\" " + BUILD_PROP;
-        RootUtils.mount(true, "/system");
+        RootUtils.mountSystem(true);
         RootUtils.runCommand(command);
+        RootUtils.mountSystem(false);
     }
 
     public static void delete(String key, String busybox) {
         if (!key.isEmpty()) {
-            RootUtils.mount(true, "/system");
+            RootUtils.mountSystem(true);
             RootUtils.runCommand(busybox + " sed -i -r \"/" + key + "=/d\" " + BUILD_PROP);
+            RootUtils.mountSystem(false);
         }
     }
 
     public static void addKey(String key, String value) {
-        RootUtils.mount(true, "/system");
+        RootUtils.mountSystem(true);
         RootUtils.runCommand("echo " + key + "=" + value + " >> " + BUILD_PROP);
+        RootUtils.mountSystem(false);
     }
 
     public static LinkedHashMap < String, String > getProps() {

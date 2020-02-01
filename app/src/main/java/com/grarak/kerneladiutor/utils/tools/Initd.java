@@ -29,9 +29,10 @@ import java.util.List;
 public class Initd implements Constants {
 
     public static RootFile delete(String file) {
-        RootUtils.mount(true, "/system");
+        RootUtils.mountSystem(true);
         RootFile f = new RootFile(INITD + "/" + file);
         f.delete();
+        RootUtils.mountSystem(false);
         return f;
     }
 
@@ -47,8 +48,9 @@ public class Initd implements Constants {
     public static List < String > getInitds() {
         RootFile initd = new RootFile(INITD);
         if (!initd.exists()) {
-            RootUtils.mount(true, "/system");
+            RootUtils.mountSystem(true);
             initd.mkdir();
+            RootUtils.mountSystem(false);
         }
         return initd.list();
     }

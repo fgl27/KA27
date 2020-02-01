@@ -69,11 +69,14 @@ public class RootUtils {
         return runCommand("uname -r");
     }
 
+    public static void mountSystem(boolean writeable) {
+        mount(writeable, "/system");
+        mount(writeable, "/");
+    }
+
     public static void mount(boolean writeable, String mountpoint) {
-        runCommand(writeable ? "mount -o remount,rw " + mountpoint + " " + mountpoint :
-            "mount -o remount,ro " + mountpoint + " " + mountpoint);
-        runCommand(writeable ? "mount -o remount,rw " + mountpoint :
-            "mount -o remount,ro " + mountpoint);
+        if (writeable) runCommand("mount -o rw,remount " + mountpoint);
+        else runCommand("mount -o ro,remount " + mountpoint);
     }
 
     public static void closeSU() {

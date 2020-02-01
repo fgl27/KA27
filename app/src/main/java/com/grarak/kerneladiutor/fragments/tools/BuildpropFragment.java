@@ -220,8 +220,9 @@ public class BuildpropFragment extends RecyclerViewFragment implements View.OnCl
     }
 
     private void backup() {
-        RootUtils.mount(true, "/system");
+        RootUtils.mountSystem(true);
         RootUtils.runCommand("cp -f " + Constants.BUILD_PROP + " " + Constants.BUILD_PROP + ".bak");
+        RootUtils.mountSystem(false);
         Utils.toast(getString(R.string.backup_created, Constants.BUILD_PROP + ".bak"), getActivity());
     }
 
