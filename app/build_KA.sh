@@ -20,6 +20,12 @@ echo -e "\n Script start $(date)\n";
 FOLDER=$HOME/android/KA27;
 SDK_FOLDER="$HOME"/android/sdk;
 SDK_DIR="sdk.dir=$SDK_FOLDER";
+
+TOOLVERSION=$(grep buildTools "$FOLDER"/versions.gradle | head -n1 | cut -d\' -f2);
+ZIPALIGN_FOLDER=$SDK_FOLDER/build-tools/$TOOLVERSION/zipalign;
+KEY_FOLDER="$HOME"/android/temp/sign/fgl_pem.key;
+KEY_PASS=$(<"$HOME"/android/temp/sign/pass);
+
 #build the app BAPP=1?
 BAPP=1;
 
@@ -77,9 +83,10 @@ if [ ! -e $OUT_FOLDER/app-release-unsigned.apk ]; then
 	exit 1;
 else
 	echo -e "\n${bldred}Signing the App${txtrst}\n"
-	$SIGN_FOLDER/sign.sh test $OUT_FOLDER/app-release-unsigned.apk
-	mv $OUT_FOLDER/app-release-unsigned.apk-signed.zip $OUT_FOLDER/$APP_FINAL_NAME
+    jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -storepass "$KEY_PASS" -keystore "$KEY_FOLDER" "$OUT_FOLDER"/app-release-unsigned.apk Felipe_Leon
+	"$ZIPALIGN_FOLDER" -v 4 "$OUT_FOLDER"/app-release-unsigned.apk "$OUT_FOLDER"/"$APP_FINAL_NAME"
 	cp "$OUT_FOLDER"/"$APP_FINAL_NAME" "$OUT_FOLDER"/ka"$(date +%s)".apk
+	
 	echo "$(./gradlew -q gradleUpdates | sed '/jacoco/d')" >> build_log.txt
 
         ISSUES=$(grep issues build_log.txt | grep release)
